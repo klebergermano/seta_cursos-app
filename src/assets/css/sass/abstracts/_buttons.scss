@@ -1,0 +1,23 @@
+@use 'variables' as *;
+@use 'functions' as *; 
+%btn{
+    display:block;
+    border-radius: 5px;
+    padding: 8px 20px;
+    margin:5px;
+    border:1px solid $border-color-dark;
+    cursor:pointer;
+    &:hover{
+        transform: scale(.99);
+    }
+}
+
+.btn-primary{
+    @extend %btn;
+   @include set-background-text-color($primary-color);
+}
+.btn-secondary{
+    @extend %btn;
+    @include set-background-text-color($primary-color);
+   
+}

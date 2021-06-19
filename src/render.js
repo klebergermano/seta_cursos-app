@@ -1,28 +1,35 @@
 //Funções Globais
+const { rmSync } = require("original-fs");
 const ImportHtml = require("./modules/#common/ImportHtml.js");
 const ImportHtmlUsingNav = require("./modules/#common/ImportHtmlUsingNav.js");
 
-
 //Load Homepage
-ImportHtml("./components/home/index.html", "#app");
+ImportHtml("./components/controle_aula/index.html", "#app");
 
 //Carrega navegação do menu
 ImportHtmlUsingNav("#nav_header", "#app");
 
-/*
 //Firerbase
-db.collection('aluno_historico').onSnapshot((snap)=>{
+const alunoHistorico = db
+  .collection("aluno_historico")
+  .doc("RA01")
+  .collection("cursos")
+  .get();
 
-    let changes = snap.docChanges();
-    changes.forEach((item)=>{
-       if(item.doc.id === "RA01") {
+alunoHistorico.then((data) => {
 
-        console.log(item);
-       
-    }
+    let elemento = document.querySelector("#bg_cursos");
+    let html;
+    let aluno;
+    let curso;
+
+    data.forEach((res) => {
+      res = res.data();
+      html = '';
+      elemento.insertAdjacentHTML("afterend", html);
     });
-   
+
 });
 
-
-*/
+function appedHTML() {}
+rmSync;

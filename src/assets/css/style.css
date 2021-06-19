@@ -5,6 +5,10 @@
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
+* {
+  box-sizing: border-box;
+}
+
 ul, li {
   padding: 0px;
   margin: 0px;
@@ -342,6 +346,90 @@ template {
   display: none;
 }
 
+.btn-secondary, .btn-primary {
+  display: block;
+  border-radius: 5px;
+  padding: 8px 20px;
+  margin: 5px;
+  border: 1px solid #333;
+  cursor: pointer;
+}
+.btn-secondary:hover, .btn-primary:hover {
+  transform: scale(0.99);
+}
+
+.btn-primary {
+  background: #0064ff;
+  color: #fafafa;
+}
+
+.btn-secondary {
+  background: #0064ff;
+  color: #fafafa;
+}
+
+.input-primary {
+  border-color: #ddd;
+  border: 1px solid;
+  padding: 5px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.input-primary {
+  color: #444;
+}
+
+#controle_aula {
+  overflow: hidden;
+}
+#controle_aula h1 {
+  color: #333;
+  text-align: left;
+}
+#controle_aula #form_select_aluno {
+  background: #ebebeb;
+  width: 100%;
+  height: auto;
+  padding: 5px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#controle_aula #form_select_aluno .div_input {
+  float: left;
+  padding-top: 5px;
+}
+#controle_aula #form_select_aluno button {
+  float: right;
+}
+#controle_aula #bg_cursos #nav_cursos {
+  overflow: hidden;
+  padding: 5px;
+  margin-top: 10px;
+}
+#controle_aula #bg_cursos #nav_cursos ul {
+  float: right;
+  display: flex;
+  align-items: flex-start;
+  justify-content: right;
+}
+#controle_aula #bg_cursos #nav_cursos ul li {
+  list-style: none;
+}
+#controle_aula #bg_cursos #nav_cursos ul li a {
+  padding: 10px 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  color: #333;
+}
+#controle_aula #bg_cursos #bimestres {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  width: 100%;
+  min-height: 300px;
+}
+
 a {
   cursor: pointer;
 }
@@ -352,7 +440,7 @@ body {
 }
 
 header {
-  background: #333;
+  background: #222;
   width: 100%;
 }
 header #header_center {
@@ -383,6 +471,10 @@ header #header_center nav ul li a {
 header #header_center nav ul li a:hover {
   color: #99c1ff;
   border-bottom: 4px solid #66a2ff;
+}
+
+.components {
+  padding: 0px 40px;
 }
 
 /*# sourceMappingURL=style.css.map */

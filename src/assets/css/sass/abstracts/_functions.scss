@@ -1,0 +1,15 @@
+
+//Set text color based on background
+
+@function set-text-color($color){
+    @if(lightness($color) > 70){
+            @return #333;
+    }@else{
+            @return #fafafa;
+    }
+}
+
+@mixin set-background-text-color($color){
+    background: $color;
+    color: set-text-color($color);
+}

@@ -1,0 +1,55 @@
+@use '../abstracts/' as *;
+
+#controle_aula {
+  overflow: hidden;
+  h1 {
+    color: $title-color-dark;
+    text-align: left;
+  }
+
+  #form_select_aluno {
+    background: #ebebeb;
+    width: 100%;
+    height: auto;
+    padding: 5px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .div_input {
+      float: left;
+      padding-top: 5px;
+    }
+    button {
+      float: right;
+    }
+  }
+  #bg_cursos {
+    #nav_cursos {
+        overflow: hidden;
+        padding:5px;
+        margin-top:10px;
+      ul {
+          float:right;
+        display: flex;
+        align-items: flex-start;
+        justify-content: right;
+        li{
+            list-style: none;
+            a{
+                padding:10px 20px;
+                background:#fff;
+                border: $border-default;
+                color:#333;
+            }
+        }
+      }
+    }
+    #bimestres {
+      background: #fff;
+      border: $border-default;
+      padding: 20px;
+      width: 100%;
+      min-height: 300px;
+    }
+  }
+}

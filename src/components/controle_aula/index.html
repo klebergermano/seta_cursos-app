@@ -1,17 +1,33 @@
-<div class='components'>
-<div class='pages' id='controle_aula'>
-    <h1>Controle Aula</h1>
-<div>
-<form id='form_select_aluno'>
-    <div>
-        <label>Aluno: </label> 
-        <select id='select_aluno'>
-            <option value='' disabled >Selectione uma Aluno</option> 
-        </select>
-    </div>
+<div class="components" id="controle_aula">
+  <h1>Controle de Aula</h1>
+  <div class="page_content">
+    <form id="form_select_aluno">
+      <div>
+        <div class="div_input">
+          <label>Aluno: </label>
+          <select id="select_aluno" class="input-primary">
+            <option value="" disabled>Selectione uma Aluno</option>
+          </select>
+        </div>
+        <button class="btn-primary" id="btn_add_aula" type="button">
+          + Adicionar Aula
+        </button>
+      </div>
+      <a href="#">Ver Todos</a>
+    </form>
+    <div id="bg_cursos">
+      <nav id="nav_cursos">
+        <ul>
+          <li><a>Informática Completo</a></li>
+          <li><a>Inglês Básico</a></li>
+        </ul>
+      </nav>
+      <div id='bimestres'>
 
-</form>    
+      </div><!--bimestres-->
+    </div><!--bg_curos-->
+  </div>
+  <!--page_content-->
 </div>
-
-</div>
-</div>
+<!--components-->
+<script src="redern.js"></script>

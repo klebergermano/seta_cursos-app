@@ -1,0 +1,16 @@
+@use 'variables' as *;
+
+
+%inputs{
+    
+    border-color: $border-color-default;
+    border:1px solid;
+    padding:5px; 
+    font-family: $font-stack;
+}
+
+.input-primary{
+    @extend %inputs;
+    color:$text-color;
+
+}
