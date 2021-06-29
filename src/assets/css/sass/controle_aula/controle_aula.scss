@@ -25,31 +25,84 @@
   }
   #bg_cursos {
     #nav_cursos {
-        overflow: hidden;
-        padding:5px;
-        margin-top:10px;
+      overflow: hidden;
+      padding: 5px;
+      margin-top: 10px;
       ul {
-          float:right;
+        float: right;
         display: flex;
         align-items: flex-start;
         justify-content: right;
-        li{
-            list-style: none;
-            a{
-                padding:10px 20px;
-                background:#fff;
-                border: $border-default;
-                color:#333;
-            }
+        li {
+          list-style: none;
+          a {
+            padding: 10px 20px;
+            background: #fff;
+            border: $border-default;
+            color: #333;
+          }
         }
       }
     }
-    #bimestres {
+    #bg_bimestres {
       background: #fff;
       border: $border-default;
       padding: 20px;
       width: 100%;
       min-height: 300px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      .bimestres {
+        min-width: 100%;
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: space-around;
+        border: 1px solid #f90;
+
+        h2 {
+          flex-basis: 100%;
+          background: #ffc;
+          height: 20px;
+        }
+        .columns {
+          width: 25%;
+          min-width: 200px;
+          flex-grow: 1;
+        }
+        .aulas {
+          margin: 5px;
+
+          width: auto;
+          background: #ffc;
+          cursor: pointer;
+          height: 50px;
+          border: 1px solid #ccc;
+          overflow: hidden;
+          transition: height 0.5s;
+          box-shadow: 0px 1px 0px #ccc;
+          font-size: 13px;
+          padding: 5px;
+
+          .aula_detalhes{
+            border:1px solid #999;
+            overflow-y: scroll;
+            height:140px;
+            scrollbar-color: red yellow;
+       
+
+          }
+
+     
+        }
+        .open_aula {
+          height: 220px;
+        }
+      }
     }
   }
 }

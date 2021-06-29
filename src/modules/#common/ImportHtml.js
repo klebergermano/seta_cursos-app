@@ -1,7 +1,17 @@
-function ImportHtml(pathHtmlFile, target){
+function ImportHtml(pathHtmlFile, target, scriptSRC = null){
+    let element = document.querySelector(target);
     fetch(`${pathHtmlFile}`)
     .then((res)=>res.text())
-    .then((html)=> document.querySelector(target).innerHTML = html);
+    .then((html)=> element.innerHTML = html)
+    .then(()=>{
+        if(scriptSRC){
+            let script = document.createElement('script');
+            script.src = scriptSRC; 
+            element.appendChild(script);
+            
+        }
+    });
+
 }
 
 module.exports = ImportHtml;

@@ -21,3 +21,13 @@
     @include set-background-text-color($primary-color);
    
 }
+
+.btn-content{
+    @extend %btn;
+    @include set-background-text-color($primary-color);
+    border-radius: 0px;
+    background:#fff;
+    border: $border-default;
+    color:#333;
+   
+}

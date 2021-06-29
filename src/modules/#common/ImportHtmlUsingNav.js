@@ -3,7 +3,7 @@
  //Importa o index.html de cada component dentro do folder "components". 
   //usa pra isso o atributo 'data-path' como nome de cada component.
   //'data-path' pode ser usado em qualquer elemento filho de um menu.
-  function ImportHtmlUsingNav(navName, target){
+  async function ImportHtmlUsingNav(navName, target){
     let childs = document.querySelector(navName).querySelectorAll('[data-path]');
     childs.forEach((item)=>{
       item.addEventListener('click', (e)=>{

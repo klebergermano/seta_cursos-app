@@ -346,7 +346,7 @@ template {
   display: none;
 }
 
-.btn-secondary, .btn-primary {
+.btn-content, .btn-secondary, .btn-primary {
   display: block;
   border-radius: 5px;
   padding: 8px 20px;
@@ -354,7 +354,7 @@ template {
   border: 1px solid #333;
   cursor: pointer;
 }
-.btn-secondary:hover, .btn-primary:hover {
+.btn-content:hover, .btn-secondary:hover, .btn-primary:hover {
   transform: scale(0.99);
 }
 
@@ -366,6 +366,15 @@ template {
 .btn-secondary {
   background: #0064ff;
   color: #fafafa;
+}
+
+.btn-content {
+  background: #0064ff;
+  color: #fafafa;
+  border-radius: 0px;
+  background: #fff;
+  border: 1px solid #ddd;
+  color: #333;
 }
 
 .input-primary {
@@ -422,12 +431,57 @@ template {
   border: 1px solid #ddd;
   color: #333;
 }
-#controle_aula #bg_cursos #bimestres {
+#controle_aula #bg_cursos #bg_bimestres {
   background: #fff;
   border: 1px solid #ddd;
   padding: 20px;
   width: 100%;
   min-height: 300px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+#controle_aula #bg_cursos #bg_bimestres .bimestres {
+  min-width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-around;
+  border: 1px solid #f90;
+}
+#controle_aula #bg_cursos #bg_bimestres .bimestres h2 {
+  flex-basis: 100%;
+  background: #ffc;
+  height: 20px;
+}
+#controle_aula #bg_cursos #bg_bimestres .bimestres .columns {
+  width: 25%;
+  min-width: 200px;
+  flex-grow: 1;
+}
+#controle_aula #bg_cursos #bg_bimestres .bimestres .aulas {
+  margin: 5px;
+  width: auto;
+  background: #ffc;
+  cursor: pointer;
+  height: 50px;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  transition: height 0.5s;
+  box-shadow: 0px 1px 0px #ccc;
+  font-size: 13px;
+  padding: 5px;
+}
+#controle_aula #bg_cursos #bg_bimestres .bimestres .aulas .aula_detalhes {
+  border: 1px solid #999;
+  overflow-y: scroll;
+  height: 140px;
+  scrollbar-color: red yellow;
+}
+#controle_aula #bg_cursos #bg_bimestres .bimestres .open_aula {
+  height: 220px;
 }
 
 a {
