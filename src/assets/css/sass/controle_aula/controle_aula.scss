@@ -5,7 +5,11 @@
   h1 {
     color: $title-color-dark;
     text-align: left;
+    font-size:20px; 
+    color: $primary-color;
+    width:100%;
   }
+
 
   #form_select_aluno {
     background: #ebebeb;
@@ -66,8 +70,10 @@
 
         h2 {
           flex-basis: 100%;
-          background: #ffc;
           height: 20px;
+          font-size:18px;
+          color:$secondary-color;
+          
         }
         .columns {
           width: 25%;
@@ -75,9 +81,11 @@
           flex-grow: 1;
         }
         .aulas {
+          position:relative;
           margin: 5px;
 
           width: auto;
+          max-width:300px;
           background: #ffc;
           cursor: pointer;
           height: 50px;
@@ -101,6 +109,21 @@
         }
         .open_aula {
           height: 220px;
+        }
+        .btn_open_close_aulas{
+          position:absolute; 
+         right:0px;
+         top:0px;
+          font-size:16px;
+          background:#eed; 
+          text-align: center;
+          height:25px;
+          width:40px;
+          padding:2px;
+          &:active{
+            background:#aa9;
+            user-select: none;
+          }
         }
       }
     }

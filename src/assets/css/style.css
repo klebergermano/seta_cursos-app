@@ -394,6 +394,9 @@ template {
 #controle_aula h1 {
   color: #333;
   text-align: left;
+  font-size: 20px;
+  color: #0064ff;
+  width: 100%;
 }
 #controle_aula #form_select_aluno {
   background: #ebebeb;
@@ -453,8 +456,9 @@ template {
 }
 #controle_aula #bg_cursos #bg_bimestres .bimestres h2 {
   flex-basis: 100%;
-  background: #ffc;
   height: 20px;
+  font-size: 18px;
+  color: #ed1860;
 }
 #controle_aula #bg_cursos #bg_bimestres .bimestres .columns {
   width: 25%;
@@ -462,8 +466,10 @@ template {
   flex-grow: 1;
 }
 #controle_aula #bg_cursos #bg_bimestres .bimestres .aulas {
+  position: relative;
   margin: 5px;
   width: auto;
+  max-width: 300px;
   background: #ffc;
   cursor: pointer;
   height: 50px;
@@ -482,6 +488,21 @@ template {
 }
 #controle_aula #bg_cursos #bg_bimestres .bimestres .open_aula {
   height: 220px;
+}
+#controle_aula #bg_cursos #bg_bimestres .bimestres .btn_open_close_aulas {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  font-size: 16px;
+  background: #eed;
+  text-align: center;
+  height: 25px;
+  width: 40px;
+  padding: 2px;
+}
+#controle_aula #bg_cursos #bg_bimestres .bimestres .btn_open_close_aulas:active {
+  background: #aa9;
+  user-select: none;
 }
 
 a {
