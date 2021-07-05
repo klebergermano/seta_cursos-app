@@ -1,43 +1,86 @@
+const { dialog } = require("electron");
+
 ImportHtml("./components/controle_aula/formAddAula.html", "#bg_forms_add");
+
+//Display formulário "Add Aluno"
+(() => {
+  document.querySelector("#btn_add_aluno").addEventListener("click", (e) => {
+    document.querySelector("#form_add_aluno").style.display = "block";
+    document.querySelector(".block_screen").style.display = "block";
+  });
+     document.querySelector("#btn_add_aula").addEventListener("click", (e) => {
+    document.querySelector("#form_add_aula").style.display = "block";
+    document.querySelector(".block_screen").style.display = "block";
+  });
+})();
+
+function AddEventBtnCloseForm() {
+  document.querySelectorAll(".close_form").forEach((item) => {
+    item.addEventListener("click", (e) => {
+     closeForm(e);
+    });
+  });
+}
+
+
+function closeForm(e) {
+      let parent = e.target.parentElement;
+      parent.style.display = "none";
+      document.querySelector(".block_screen").style.display = "none";
+}
 
 function formAddAula() {
   document.querySelector("#form_add_aula").addEventListener("submit", (e) => {
     e.preventDefault();
     let form = e.target;
-    let alunoHistorico = db
-      .collection("aluno_historico")
-      .doc("RA02")
-      .collection("cursos")
-      .doc("IFC")
-      .update({
-        "bimestres.bimestre_1": "FUlano dtestse tlsket slt e",
-      });
+    try {
+      aulaHistorico = db
+        .collection("aluno_historico")
+        .doc("RA02")
+        .collection("cursos")
+        .doc("IFC")
+        .update({
+          "bimestres.bimestre_1": "FUlano dtestse tlsket slt e",
+        });
+    } catch (err) {
+      console.log("Houve um erro", err);
+    }
   });
 }
 
-
-
 function formAddAluno() {
-  document.querySelector('#form_add_aluno').addEventListener('submit', (e)=>{
+  document.querySelector("#form_add_aluno").addEventListener("submit", (e) => {
     e.preventDefault();
-    let form =  e.target;
-   let alunoHistorico = db.collection("aluno_historico")
-   alunoHistorico.doc(form.ra.value)
-   .collection('cursos')
-   .doc(form.curso.value)
-   .set(
-     {
-       bimestres: {
-         bimestre_1: {
-         
-         }
-   }}
-   );
+    let form = e.target;
+    let alunoHistorico = db.collection("aluno_historico");
+    alunoHistorico
+      .doc(form.ra.value)
+      .collection("cursos")
+      .doc(form.curso.value)
+      .set({
+        bimestres: {
+          bimestre_1: {},
+        },
+      })
+      .then(function () {
+       function showMessage(targetID, message){
+        document.getElementById(targetID).innerHTML = `<div class='show_message'>${message}</div>`
+       }
+      showMessage('form_add_aluno', 'Aluno salvo com sucess!');
+      }).then(()=>{
+        setTimeout(()=>{
+          closeForm(e);
 
-   
-   alunoHistorico.doc(form.ra.value).set({nome: form.nome.value}, {merge: true});
-  })
+        }, 1500);
+      })
+      .catch(function (error) {
+        console.error("Error writing document: ", error);
+      });
 
+    alunoHistorico
+      .doc(form.ra.value)
+      .set({ nome: form.nome.value }, { merge: true });
+  });
 }
 
 function formAddAula2() {
@@ -53,8 +96,8 @@ function formAddAula2() {
       bimestres: {
         bimestre_1: {
           aula_1: {
-            data: '24/01/2021',
-            horario: '8:00h às 10:00h',
+            data: "24/01/2021",
+            horario: "8:00h às 10:00h",
             tema: "Folders e Pastas",
             detalhes: "LÇores rekr lsejrsklejr skjer sj lfjslfjlas fls f",
           },
@@ -170,7 +213,9 @@ function InsertBlockAulas(alunoData) {
       //form
       formAddAula();
       formAddAluno();
-
+    })
+    .then(() => {
+      AddEventBtnCloseForm();
     });
 })();
 

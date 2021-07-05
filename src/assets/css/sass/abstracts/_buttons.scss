@@ -14,15 +14,12 @@
 @mixin btn-primary{
     @extend %btn;
     @include set-background-text-color($primary-color);
-
-
 }
 
 @mixin btn-secondary{
     @extend %btn;
     @include set-background-text-color($secondary-color);
 }
-
 
 .btn-primary{
     @extend %btn;
@@ -31,15 +28,4 @@
 .btn-secondary{
     @extend %btn;
     @include set-background-text-color($primary-color);
-   
-}
-
-.btn-content{
-    @extend %btn;
-    @include set-background-text-color($primary-color);
-    border-radius: 0px;
-    background:#fff;
-    border: $border-set-default;
-    color:#333;
-   
 }

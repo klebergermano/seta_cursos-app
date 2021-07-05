@@ -348,7 +348,7 @@ template {
   display: none;
 }
 
-.forms input[type=submit], .btn-content, .btn-secondary, .btn-primary {
+.forms input[type=submit], .btn-secondary, .btn-primary {
   display: block;
   border-radius: 5px;
   padding: 8px 20px;
@@ -364,6 +364,10 @@ template {
 .btn-primary:hover {
   background: #1a74ff;
 }
+.btn-primary:active {
+  background: #005ae6;
+  box-shadow: inset 0px 1px 3px #003c99;
+}
 
 .btn-secondary {
   background: #0064ff;
@@ -372,17 +376,9 @@ template {
 .btn-secondary:hover {
   background: #1a74ff;
 }
-
-.btn-content {
-  background: #0064ff;
-  color: #fafafa;
-  border-radius: 0px;
-  background: #fff;
-  border: 1px solid #ccc;
-  color: #333;
-}
-.btn-content:hover {
-  background: #1a74ff;
+.btn-secondary:active {
+  background: #005ae6;
+  box-shadow: inset 0px 1px 3px #003c99;
 }
 
 .input-primary {
@@ -413,8 +409,14 @@ dialog {
   padding: 20px;
   max-width: 500px;
   margin: 20px auto;
+  background: #fff;
   border: 1px solid #ccc;
-  float: left;
+  position: fixed;
+  right: 0px;
+  left: 0px;
+  top: 30%;
+  z-index: 2;
+  box-shadow: 0px 1px 2px #666;
 }
 .forms h3 {
   flex-basis: 100%;
@@ -456,6 +458,20 @@ dialog {
 .forms input[type=submit]:hover {
   background: #1a74ff;
 }
+.forms input[type=submit]:active {
+  background: #005ae6;
+  box-shadow: inset 0px 1px 3px #003c99;
+}
+.forms .close_form {
+  right: 0px;
+  top: 0px;
+  padding: 5px 10px;
+  position: absolute;
+  cursor: pointer;
+}
+.forms .close_form:hover {
+  background: #ddd;
+}
 
 #form_add_aula {
   display: none;
@@ -468,6 +484,7 @@ dialog {
   float: right;
   flex-basis: 100%;
   clear: both;
+  display: none;
 }
 
 #form_add_aluno {
@@ -610,6 +627,17 @@ dialog {
   user-select: none;
 }
 
+.block_screen {
+  width: 100%;
+  min-height: 100vh;
+  position: absolute;
+  background-color: #33333350;
+  z-index: 1;
+  bottom: 0px;
+  top: 0px;
+  display: none;
+}
+
 a {
   cursor: pointer;
 }
@@ -617,6 +645,7 @@ a {
 body {
   background: #fafafa;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  position: relative;
 }
 
 header {

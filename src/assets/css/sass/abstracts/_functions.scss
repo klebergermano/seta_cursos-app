@@ -15,4 +15,8 @@
     &:hover{
         background: lighten($color, 5%);
     }
+    &:active{
+        background: darken($color, 5%);
+        box-shadow: inset 0px 1px 3px darken($color, 20%);
+    }
 }

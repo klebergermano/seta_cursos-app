@@ -6,12 +6,24 @@
 //Controle Aula
 //Gerador Contrato
 
+.block_screen{
+  width:100%; 
+  min-height: 100vh;
+  position: absolute;
+  background-color: #33333350;
+  z-index: 1;
+  bottom:0px;
+  top:0px;
+  display:none;
+
+}
 a {
   cursor: pointer;
 }
 body {
   background: #fafafa;
   font-family: $font-stack;
+  position:relative;
 }
 header {
   background: #222;
