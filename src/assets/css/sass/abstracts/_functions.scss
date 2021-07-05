@@ -12,4 +12,7 @@
 @mixin set-background-text-color($color){
     background: $color;
     color: set-text-color($color);
+    &:hover{
+        background: lighten($color, 5%);
+    }
 }

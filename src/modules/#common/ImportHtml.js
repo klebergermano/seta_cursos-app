@@ -1,4 +1,4 @@
-function ImportHtml(pathHtmlFile, target, scriptSRC = null){
+function ImportHtml(pathHtmlFile, target, scriptSRC = false){
     let element = document.querySelector(target);
     fetch(`${pathHtmlFile}`)
     .then((res)=>res.text())

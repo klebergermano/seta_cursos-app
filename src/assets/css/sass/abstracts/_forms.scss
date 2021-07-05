@@ -1,0 +1,55 @@
+@use 'variables' as *;
+@use 'buttons' as *;
+
+
+@mixin form_flex(){
+display:flex;
+   flex-wrap: wrap;
+   border-radius: $border-radius;
+   border-color: $border-color-medium;
+   padding: $padding-medium;
+  max-width: 500px;
+  margin: 20px auto;
+  h3{
+    flex-basis:100%;
+    text-align: center;
+    margin-bottom:10px;
+  }
+   div{
+     display:flex;
+     padding: $padding-extra-light;
+     flex-grow: 1;
+     max-width: 100%;
+     label{
+       display:flex;
+       align-items: center;
+       min-width:85px;
+       
+       background:#f0f0f0;
+       padding:5px 10px;
+
+     }
+     input, textarea{
+       width:auto;
+       max-width: 500px;
+       min-width: 100px;
+       flex-shrink: 1;
+       flex-grow:1;
+       display:block;
+       border: $border-set-default;
+        padding: $padding-extra-light;
+        color: $text-color; 
+    
+     }
+     
+   
+   }
+   input[type=submit]{
+       @include btn-primary;
+       display: block;
+       clear:both;
+       width:50%;
+       margin: 20px auto ;
+}
+
+}

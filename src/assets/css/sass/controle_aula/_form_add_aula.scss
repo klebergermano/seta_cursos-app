@@ -1,0 +1,58 @@
+@use "../abstracts" as *; 
+dialog{
+  margin: 0 auto;
+  padding: 20px;
+}
+#bg_forms_add{
+  overflow: hidden;
+
+}
+
+.forms{
+  @include form_flex;
+  border: $border-set-default;
+  float:left;
+}
+#form_add_aula{
+  display:none;
+
+    #data_hora{
+        display:flex; 
+        max-width: 100%;
+        input{
+        }
+    }
+
+}
+#btn_novo_aluno{
+  float:right;
+  flex-basis: 100%;
+  clear:both;
+  
+}
+#form_add_aluno{
+  display:none;
+
+div{
+  #ra{
+    max-width: 20px;
+    flex-shrink:1;
+  }
+}
+
+
+}
+
+#nav_forms_add{
+  padding:5px;
+  display:flex;
+  li{list-style: none;
+    margin:3px;
+  }
+  a{
+    padding:$padding-extra-light;
+    color: $primary-color;
+    background: #ddd;
+    text-decoration: none;
+  }
+}

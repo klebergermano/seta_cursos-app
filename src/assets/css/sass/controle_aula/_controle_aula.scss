@@ -1,4 +1,6 @@
 @use '../abstracts/' as *;
+@use './form_add_aula.scss/' as *;
+
 
 #controle_aula {
   overflow: hidden;
@@ -42,7 +44,7 @@
           a {
             padding: 10px 20px;
             background: #fff;
-            border: $border-default;
+            border: $border-set-default;
             color: #333;
           }
         }
@@ -50,7 +52,7 @@
     }
     #bg_bimestres {
       background: #fff;
-      border: $border-default;
+      border: $border-set-default;
       padding: 20px;
       width: 100%;
       min-height: 300px;

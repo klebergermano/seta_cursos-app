@@ -1,16 +1,28 @@
 @use 'variables' as *;
 @use 'functions' as *; 
+
 %btn{
     display:block;
     border-radius: 5px;
     padding: 8px 20px;
     margin:5px;
-    border:1px solid $border-color-dark;
+    border:0px;
     cursor:pointer;
-    &:hover{
-        transform: scale(.99);
-    }
+ 
 }
+
+@mixin btn-primary{
+    @extend %btn;
+    @include set-background-text-color($primary-color);
+
+
+}
+
+@mixin btn-secondary{
+    @extend %btn;
+    @include set-background-text-color($secondary-color);
+}
+
 
 .btn-primary{
     @extend %btn;
@@ -27,7 +39,7 @@
     @include set-background-text-color($primary-color);
     border-radius: 0px;
     background:#fff;
-    border: $border-default;
+    border: $border-set-default;
     color:#333;
    
 }
