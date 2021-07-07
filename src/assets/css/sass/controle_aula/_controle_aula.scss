@@ -8,7 +8,7 @@
     color: $title-color-dark;
     text-align: left;
     font-size:20px; 
-    color: $primary-color;
+    color: $text-color;
     width:100%;
   }
 
@@ -68,13 +68,13 @@
         flex-wrap: wrap;
         align-items: flex-start;
         justify-content: space-around;
-        border: 1px solid #f90;
+        border: $border-set-default;
 
         h2 {
           flex-basis: 100%;
           height: 20px;
           font-size:18px;
-          color:$secondary-color;
+          color:$text-color;
           
         }
         .columns {

@@ -1,111 +1,11 @@
-const { dialog } = require("electron");
-
-ImportHtml("./components/controle_aula/formAddAula.html", "#bg_forms_add");
-
-//Display formulário "Add Aluno"
-(() => {
-  document.querySelector("#btn_add_aluno").addEventListener("click", (e) => {
-    document.querySelector("#form_add_aluno").style.display = "block";
-    document.querySelector(".block_screen").style.display = "block";
-  });
-     document.querySelector("#btn_add_aula").addEventListener("click", (e) => {
-    document.querySelector("#form_add_aula").style.display = "block";
-    document.querySelector(".block_screen").style.display = "block";
-  });
-})();
-
-function AddEventBtnCloseForm() {
-  document.querySelectorAll(".close_form").forEach((item) => {
-    item.addEventListener("click", (e) => {
-     closeForm(e);
-    });
-  });
+ImportHtml("./components/controle_aula/formAddAula.html", "#bg_forms_add", "./modules/controle_aula/formAddAluno.js");
+function changeCSSDisplay(targetName, displayValue) {
+  document.querySelector(targetName).style.display = displayValue;
 }
 
 
-function closeForm(e) {
-      let parent = e.target.parentElement;
-      parent.style.display = "none";
-      document.querySelector(".block_screen").style.display = "none";
-}
 
-function formAddAula() {
-  document.querySelector("#form_add_aula").addEventListener("submit", (e) => {
-    e.preventDefault();
-    let form = e.target;
-    try {
-      aulaHistorico = db
-        .collection("aluno_historico")
-        .doc("RA02")
-        .collection("cursos")
-        .doc("IFC")
-        .update({
-          "bimestres.bimestre_1": "FUlano dtestse tlsket slt e",
-        });
-    } catch (err) {
-      console.log("Houve um erro", err);
-    }
-  });
-}
 
-function formAddAluno() {
-  document.querySelector("#form_add_aluno").addEventListener("submit", (e) => {
-    e.preventDefault();
-    let form = e.target;
-    let alunoHistorico = db.collection("aluno_historico");
-    alunoHistorico
-      .doc(form.ra.value)
-      .collection("cursos")
-      .doc(form.curso.value)
-      .set({
-        bimestres: {
-          bimestre_1: {},
-        },
-      })
-      .then(function () {
-       function showMessage(targetID, message){
-        document.getElementById(targetID).innerHTML = `<div class='show_message'>${message}</div>`
-       }
-      showMessage('form_add_aluno', 'Aluno salvo com sucess!');
-      }).then(()=>{
-        setTimeout(()=>{
-          closeForm(e);
-
-        }, 1500);
-      })
-      .catch(function (error) {
-        console.error("Error writing document: ", error);
-      });
-
-    alunoHistorico
-      .doc(form.ra.value)
-      .set({ nome: form.nome.value }, { merge: true });
-  });
-}
-
-function formAddAula2() {
-  // document.querySelector('#form_add_aula')
-  // e.preventDefault();
-  // let form =  e.target;
-  let alunoHistorico = db
-    .collection("aluno_historico")
-    .doc("RA02")
-    .collection("cursos")
-    .doc("IFC")
-    .set({
-      bimestres: {
-        bimestre_1: {
-          aula_1: {
-            data: "24/01/2021",
-            horario: "8:00h às 10:00h",
-            tema: "Folders e Pastas",
-            detalhes: "LÇores rekr lsejrsklejr skjer sj lfjslfjlas fls f",
-          },
-        },
-      },
-    });
-}
-//formAddAula2();
 
 function addEventListenerClickAulas() {
   let btn_open_close_aulas = document.querySelectorAll(".btn_open_close_aulas");
@@ -142,12 +42,11 @@ function blockAula(aula) {
 `;
   return block;
 }
+//Insere as aulas na página
 
 function InsertBlockAulas(alunoData) {
-  console.log(alunoData);
   let a_bimestres;
-
-  //data do db
+  //dados do firerstore
   alunoData.forEach((res) => {
     res = res.data();
     let curso_nome = res.curso;
@@ -158,10 +57,8 @@ function InsertBlockAulas(alunoData) {
     for (key in a_bimestres) {
       let aula;
       let counter = 1;
-
       //cria a div bimestres
       aulas_bimestre += "<div class='bimestres'>";
-
       //numero de bimestres
       //TODO alterar o numero generico para o numero do bimestre que vem do DB
       aulas_bimestre += `<h2>Bimestre ${num_bimestre}</h2>`;
@@ -190,33 +87,54 @@ function InsertBlockAulas(alunoData) {
       .querySelector("#bg_bimestres")
       .insertAdjacentHTML("afterbegin", aulas_bimestre);
   });
-
   //-------------------------------------------------------
+  //carrega a função de click
+  addEventListenerClickAulas();
 }
 
-//--------------------Firerbase
-(function alunoHistoricoDB() {
-  let alunoHistorico = db
-    .collection("aluno_historico")
-    .doc("RA01")
-    .collection("cursos")
-    .get();
 
-  alunoHistorico
-    .then((data) => {
-      //chama a função que insere os cursos/bimestres/aulas
-      InsertBlockAulas(data);
-    })
-    .then(() => {
-      //carrega a função de click
-      addEventListenerClickAulas();
-      //form
-      formAddAula();
-      formAddAluno();
-    })
-    .then(() => {
-      AddEventBtnCloseForm();
+async function selectAluno() {
+  let RA = document.querySelector("#select_aluno");
+  let x = RA.selected;
+  console.log(x);
+  const alunoDB = await alunoHistoricoDB("RA01");
+  InsertBlockAulas(alunoDB);
+}
+
+
+(async function InsertSelectAlunos() {
+  let alunos = db.collection("aluno_historico").get();
+  alunos.then((res) => {
+    let selectAluno = ``;
+    res.forEach((item) => {
+      selectAluno += `<option value='${item.id}'>${item.id} - ${
+        item.data().nome
+      }</option>`;
     });
+    document.querySelector("#select_aluno").innerHTML = selectAluno;
+  });
 })();
 
+//--------------------Firerbase----------------------------
+function alunoHistoricoDB(RA) {
+  let alunoHistorico = db
+    .collection("aluno_historico")
+    .doc(RA)
+    .collection("cursos")
+    .get();
+  return alunoHistorico;
+}
+
+//--------------------Carrega funções----------------------------
+
+(async function loadDocuments() {
+   const alunoDB = await alunoHistoricoDB('RA01');
+   InsertBlockAulas(alunoDB);
+  // formAddAluno();
+  // formAddAula();
+  //AddEventBtnCloseForm();
+  //navAddFormsDisplayEvent();
+  //eventFormAddAluno();
+
+})();
 //----------------------------------------------------------

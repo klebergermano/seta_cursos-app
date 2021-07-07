@@ -1,14 +1,17 @@
 @use 'variables' as *;
 
 %inputs{
-    border-color: $border-color-medium;
-    border:1px solid;
-    padding:5px; 
+    border: $border-set-default;
+    padding: $padding-extra-light; 
     font-family: $font-stack;
+    color:$text-color;
+
+}
+@mixin inputs(){
+    @extend %inputs;
 }
 
 .input-primary{
     @extend %inputs;
-    color:$text-color;
 
 }

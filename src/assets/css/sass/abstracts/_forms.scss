@@ -1,6 +1,10 @@
 @use 'variables' as *;
 @use 'buttons' as *;
+@use 'inputs' as *;
 
+inputs{
+  @include inputs;
+}
 
 @mixin form_flex(){
 display:flex;
