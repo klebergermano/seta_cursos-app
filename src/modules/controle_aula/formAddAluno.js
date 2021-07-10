@@ -38,6 +38,7 @@ function showMessage(targetID, message) {
 
   }
 
+
   function formAddAluno(e){
     e.preventDefault();
     let form = e.target;
@@ -57,7 +58,7 @@ function showMessage(targetID, message) {
           .set({ nome: form.nome.value }, { merge: true });
       })
       //Remove conteúdo do formulário e acrescenta a mensagem
-      .then(() => showMessage("form_add_aluno", "Aluno salvo com sucess!"))
+      .then(() => showMessage("form_add_aluno", "Aluno salvo com sucesso!"))
       //tira o diplay do formulário e block_screen
       .then(() => {
         setTimeout(() => {
@@ -74,6 +75,16 @@ function showMessage(targetID, message) {
     });
   }
 
+  function objectAula(aula){
+ addAula =  {
+   [aula.nuemero]:{
+
+   }
+    }
+
+  }
+
+
   function formAddAula(RA) {
     document.querySelector("#form_add_aula").addEventListener("submit", (e) => {
       e.preventDefault();
@@ -82,10 +93,28 @@ function showMessage(targetID, message) {
         .collection("aluno_historico")
         .doc(RA)
         .collection("cursos")
-        .doc("IFC")
+        .doc(form.curso.value)
         .update({
-          "bimestres.bimestre_1": "FUlano dtestse tlsket slt e",
-        });
+          bimestres: {
+            bimestre_1:{
+              aula_1:{
+
+              }
+            }
+
+          } 
+         
+        })
+        //Remove conteúdo do formulário e acrescenta a mensagem
+      .then(() => showMessage("form_add_aluno", "Aula adicionada com sucesso!"))
+      .then(() => {
+        setTimeout(() => {
+          e.target.style.display = "none";
+          changeCSSDisplay("#block_screen", "none");
+        }, 1500);
+      })
+      .catch((error) => console.error("Error writing document: ", error));
+
     });
   }
   

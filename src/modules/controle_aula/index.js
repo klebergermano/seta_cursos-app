@@ -1,11 +1,22 @@
-ImportHtml("./components/controle_aula/formAddAula.html", "#bg_forms_add", "./modules/controle_aula/formAddAluno.js");
+ImportHtml(
+  "./components/controle_aula/formAddAula.html",
+  "#bg_forms_add",
+  "./modules/controle_aula/formAddAluno.js"
+);
 function changeCSSDisplay(targetName, displayValue) {
   document.querySelector(targetName).style.display = displayValue;
 }
 
-
-
-
+function insertAulasWhenChangeAluno() {
+  let select = document.querySelector("#select_aluno");
+  select.addEventListener("input", () => {
+    let RA = select.options[select.selectedIndex].value;
+    const alunoDB = alunoHistoricoDB(RA);
+    alunoDB.then((data) => {
+      InsertBlockAulas(data);
+    });
+  });
+}
 
 function addEventListenerClickAulas() {
   let btn_open_close_aulas = document.querySelectorAll(".btn_open_close_aulas");
@@ -24,83 +35,88 @@ function addEventListenerClickAulas() {
   });
 }
 
-function blockAula(aula) {
-  let num = 0;
+function blockAula(aulaDados, n_aula, n_bimestre) {
+  //substitui espaços em branco pelo underscore e passa para minúsculas as letras
+  let id_aula = n_aula.replace(/\s+/g, "_").toLowerCase();
+  let id_bimestre = n_bimestre.replace(/\s+/g, "_").toLowerCase();
+
   let block = `
-<div id='b1_aula_${num}' class="aulas aula_feita">
+  <div id='${id_bimestre}_${id_aula}' class="aulas aula_feita">
    <span class='btn_open_close_aulas'>&#706;</span>
-   <p>Aula: ${num} - ${aula.tema}</p>
+   <p>${n_aula} - ${aulaDados.tema}</p>
    <div class='aula_data'>
    <p>Data: 25/02/2021</p>
    </div>
    <div class='aula_detalhes'>
       <p>
-         Detalhes: ${aula.detalhes}
+         Detalhes: ${aulaDados.detalhes}
       </p>
-   </div>"
+   </div>
 </div>
 `;
   return block;
 }
 //Insere as aulas na página
-
 function InsertBlockAulas(alunoData) {
-  let a_bimestres;
   //dados do firerstore
+  let resultHTML = "";
   alunoData.forEach((res) => {
     res = res.data();
-    let curso_nome = res.curso;
-    a_bimestres = res.bimestres;
-    let aulas_bimestre = `<h1>${curso_nome}</h1>`;
-    let num_bimestre = 1;
+    let bimestres_bd = res.bimestres;
+    let curso_nome_bd = res.curso;
+    let id_curso;
+    //evita erro por undefined no nome do curso
+    if(curso_nome_bd){
+      id_curso = curso_nome_bd.replace(/\s+/g, "_").toLowerCase();
+    }
+ 
+    let html = document.createElement('div');
+    html.innerHTML = `<div class='bg_curso' id='${id_curso}'><h3>${curso_nome_bd}</h3><div id='curso_content'></div></div>`
+    let curso_content = html.querySelector('#curso_content');
 
-    for (key in a_bimestres) {
+    let content = `<div class='bg_bimestres'>`;
+    for (bimestreKey in bimestres_bd) {
       let aula;
       let counter = 1;
       //cria a div bimestres
-      aulas_bimestre += "<div class='bimestres'>";
+      content += "<div class='bimestres'>";
       //numero de bimestres
       //TODO alterar o numero generico para o numero do bimestre que vem do DB
-      aulas_bimestre += `<h2>Bimestre ${num_bimestre}</h2>`;
-      num_bimestre++;
-      for (aulaKey in a_bimestres[key]) {
-        aula = a_bimestres[key][aulaKey];
+      content += `<h2>${bimestreKey}</h2>`;
+      for (aulaKey in bimestres_bd[bimestreKey]) {
+        //usa as keys dos dois fors, a do bimestre "ex: bimestres_1" e a key da aula
+        // "ex: aula_3" para gerar o bloco aula
+        aula = bimestres_bd[bimestreKey][aulaKey];
         if (counter === 1) {
-          aulas_bimestre += "<div class='columns'>";
+          //abre a div columns quando o contador esta em 1
+          content += "<div class='columns'>";
         }
         //carrega as aulas chamando a função blockAula
-        aulas_bimestre += blockAula(aula);
+        //passa a key para gera o numero da aula ex: aula_1
+        content += blockAula(aula, aulaKey, bimestreKey);
         counter++;
         if (counter === 5) {
-          aulas_bimestre += "</div>";
+          content += "</div>";
           counter = 1;
         }
       }
       //caso não haja aulas suficientes para terminar a columa a condição fecha a div 'columns'
       if (counter > 1) {
-        aulas_bimestre += "</div>";
+        content += "</div>";
       }
       //fecha a div bimestres
-      aulas_bimestre += "</div>";
+      content += "</div>";
+      curso_content.innerHTML = content;
     }
-    document
-      .querySelector("#bg_bimestres")
-      .insertAdjacentHTML("afterbegin", aulas_bimestre);
+    content += '</div>';//fecha bg_bimestres
+    resultHTML += html.innerHTML;
   });
+  document.querySelector("#bg_cursos").innerHTML = resultHTML;
+
   //-------------------------------------------------------
   //carrega a função de click
   addEventListenerClickAulas();
 }
-
-
-async function selectAluno() {
-  let RA = document.querySelector("#select_aluno");
-  let x = RA.selected;
-  console.log(x);
-  const alunoDB = await alunoHistoricoDB("RA01");
-  InsertBlockAulas(alunoDB);
-}
-
 
 (async function InsertSelectAlunos() {
   let alunos = db.collection("aluno_historico").get();
@@ -112,6 +128,9 @@ async function selectAluno() {
       }</option>`;
     });
     document.querySelector("#select_aluno").innerHTML = selectAluno;
+
+    //insere optolns no select no "select_aluno_add_aula"
+    document.querySelector("#select_aluno_add_aula").innerHTML = selectAluno;
   });
 })();
 
@@ -128,13 +147,13 @@ function alunoHistoricoDB(RA) {
 //--------------------Carrega funções----------------------------
 
 (async function loadDocuments() {
-   const alunoDB = await alunoHistoricoDB('RA01');
-   InsertBlockAulas(alunoDB);
+  const alunoDB = await alunoHistoricoDB("RA01");
+  InsertBlockAulas(alunoDB);
+  insertAulasWhenChangeAluno();
   // formAddAluno();
   // formAddAula();
   //AddEventBtnCloseForm();
   //navAddFormsDisplayEvent();
   //eventFormAddAluno();
-
 })();
 //----------------------------------------------------------

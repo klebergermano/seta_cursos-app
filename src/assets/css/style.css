@@ -403,7 +403,7 @@ dialog {
   border-radius: 3px;
   border-color: #ccc;
   padding: 20px;
-  max-width: 500px;
+  max-width: 600px;
   margin: 20px auto;
   background: #fff;
   border: 1px solid #ccc;
@@ -552,17 +552,22 @@ dialog {
   border: 1px solid #ccc;
   color: #333;
 }
-#controle_aula #bg_cursos #bg_bimestres {
-  background: #fff;
+#controle_aula #bg_cursos .bg_curso {
+  padding: 10px;
   border: 1px solid #ccc;
-  padding: 20px;
+}
+#controle_aula #bg_cursos .bg_curso h3 {
+  padding: 10px;
+}
+#controle_aula #bg_cursos .bg_bimestres {
+  background: #fff;
   width: 100%;
   min-height: 300px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
-#controle_aula #bg_cursos #bg_bimestres .bimestres {
+#controle_aula #bg_cursos .bg_bimestres .bimestres {
   min-width: 100%;
   padding: 10px;
   display: flex;
@@ -572,18 +577,18 @@ dialog {
   justify-content: space-around;
   border: 1px solid #ccc;
 }
-#controle_aula #bg_cursos #bg_bimestres .bimestres h2 {
+#controle_aula #bg_cursos .bg_bimestres .bimestres h2 {
   flex-basis: 100%;
   height: 20px;
   font-size: 18px;
   color: #444;
 }
-#controle_aula #bg_cursos #bg_bimestres .bimestres .columns {
+#controle_aula #bg_cursos .bg_bimestres .bimestres .columns {
   width: 25%;
   min-width: 200px;
   flex-grow: 1;
 }
-#controle_aula #bg_cursos #bg_bimestres .bimestres .aulas {
+#controle_aula #bg_cursos .bg_bimestres .bimestres .aulas {
   position: relative;
   margin: 5px;
   width: auto;
@@ -598,16 +603,17 @@ dialog {
   font-size: 13px;
   padding: 5px;
 }
-#controle_aula #bg_cursos #bg_bimestres .bimestres .aulas .aula_detalhes {
+#controle_aula #bg_cursos .bg_bimestres .bimestres .aulas .aula_detalhes {
+  margin-top: 10px;
   border: 1px solid #999;
   overflow-y: scroll;
   height: 140px;
   scrollbar-color: red yellow;
 }
-#controle_aula #bg_cursos #bg_bimestres .bimestres .open_aula {
+#controle_aula #bg_cursos .bg_bimestres .bimestres .open_aula {
   height: 220px;
 }
-#controle_aula #bg_cursos #bg_bimestres .bimestres .btn_open_close_aulas {
+#controle_aula #bg_cursos .bg_bimestres .bimestres .btn_open_close_aulas {
   position: absolute;
   right: 0px;
   top: 0px;
@@ -618,7 +624,7 @@ dialog {
   width: 40px;
   padding: 2px;
 }
-#controle_aula #bg_cursos #bg_bimestres .bimestres .btn_open_close_aulas:active {
+#controle_aula #bg_cursos .bg_bimestres .bimestres .btn_open_close_aulas:active {
   background: #aa9;
   user-select: none;
 }
@@ -632,6 +638,12 @@ dialog {
   bottom: 0px;
   top: 0px;
   display: none;
+}
+
+p {
+  line-height: 18px;
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 a {
