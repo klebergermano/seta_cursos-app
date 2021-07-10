@@ -1,29 +1,67 @@
-<form id='form_add_aluno' class='forms'>
-    <span class='close_form'>X</span>
-<h3 >Adicionar Aluno</h3>
-    <div>
-        <label for='nome' >Nome:</label><input required id='nome' type='text'>
-        <label for='ra' >RA:</label><input  required id='ra' type='text'>
-    </div>
-    <div><label>Curso:</label><input required id='curso' ype='text'></div>
-    <input type='submit' value='Salvar'/>
+<form id="form_add_aluno" class="forms">
+  <span class="close_form">X</span>
+  <h3>Adicionar Aluno</h3>
+  <div>
+    <label for="nome">Aluno:</label><input required id="nome" type="text" />
+    <label for="ra">RA:</label><input required id="ra" type="text" />
+  </div>
+  <div><label>Curso:</label><input required id="curso" ype="text" /></div>
+  <input type="submit" value="Salvar" />
 </form>
 
-<form id='form_add_aula' class='forms'>
-    <span class='close_form'>X</span>
+<form id="form_add_aula" class="forms">
+  <span class="close_form">X</span>
+  <h3>Adicionar Aula</h3>
 
-    <h3 >Adicionar Aula</h3>
-    
-        <div><label for='nome' >Nome:</label><input id='nome' type='text'></div>
-        <div><label>Curso:</label><input id='curso' ype='text'></div>
-        <div id='data_hora'>
-            <label>Data:</label><input id='data' type='date'>
-            <label>Horário:</label><input id='horario'>
-        </div>
-        <div><label>Tema:</label><input id='tema' type='text'></div>
-        <div>
-            <label>Detalhes:</label><textarea id='detalhes' ></textarea>
-        </div>
-        <input type='submit' value='Salvar'/>
-    </form>
-    
+  <div>
+      <label for="nome">Nome:</label>
+      <select id='select_aluno_add_aula'>
+          <option></option>
+      </select>
+</div>
+
+  <div><label>Curso:</label><input id="curso" type="text" /></div>
+
+  <div>
+    <label>Bimestres</label>
+    <select id='select_bimestre_add_aluno'>
+         <option value='bimestre_1'>Bimestre 1</option>
+         <option value='bimestre_2'>Bimestre 2</option>
+         <option value='bimestre_3'>Bimestre 3</option>
+         <option value='bimestre_4'>Bimestre 4</option>
+         <option value='bimestre_5'>Bimestre 5</option>
+         <option value='bimestre_6'>Bimestre 6</option>
+    </select>
+
+
+    <label>Aulas Nº:</label>
+    <select>
+      <option value="aula_1">Aula 1</option>
+      <option value="aula_2">Aula 2</option>
+      <option value="aula_3">Aula 3</option>
+      <option value="aula_4">Aula 4</option>
+      <option value="aula_5">Aula 5</option>
+      <option value="aula_6">Aula 6</option>
+      <option value="aula_7">Aula 7</option>
+      <option value="aula_8">Aula 8</option>
+      <option value="aula_9">Aula 9</option>
+      <option value="aula_10">Aula 10</option>
+      <option value="aula_11">Aula 11</option>
+      <option value="aula_12">Aula 12</option>
+      <option value="aula_13">Aula 13</option>
+      <option value="aula_14">Aula 14</option>
+      <option value="aula_15">Aula 15</option>
+      <option value="aula_16">Aula 16</option>
+      <option value="aula_reposicao">Aula Reposição</option>
+
+  </select>
+  </div>
+
+  <div id="data_hora">
+    <label>Data:</label><input id="data" type="date" /> <label>Horário:</label
+    ><input id="horario" />
+  </div>
+  <div><label>Tema:</label><input id="tema" type="text" /></div>
+  <div><label>Detalhes:</label><textarea id="detalhes"></textarea></div>
+  <input type="submit" value="Salvar" />
+</form>

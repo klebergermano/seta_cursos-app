@@ -15,7 +15,11 @@
   bottom:0px;
   top:0px;
   display:none;
-
+}
+p{
+  line-height: 18px;
+  font-size:14px;
+  font-family: $font-stack;
 }
 a {
   cursor: pointer;
@@ -30,13 +34,11 @@ header {
   width: 100%;
   #header_center {
     height: 55px;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 0px;
-  padding: 0px $padding-heavy;
-
+    padding: 0px $padding-heavy;
 
     figure {
       width: auto;

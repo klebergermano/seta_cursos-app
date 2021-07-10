@@ -50,10 +50,14 @@
         }
       }
     }
-    #bg_bimestres {
+    .bg_curso{
+      padding:10px; 
+      border:$border-set-default;
+      h3{ padding:10px;}
+    }
+    .bg_bimestres {
       background: #fff;
-      border: $border-set-default;
-      padding: 20px;
+     // border: $border-set-default;
       width: 100%;
       min-height: 300px;
       display: flex;
@@ -69,6 +73,7 @@
         align-items: flex-start;
         justify-content: space-around;
         border: $border-set-default;
+       // border: 1px solid #f90;
 
         h2 {
           flex-basis: 100%;
@@ -99,6 +104,7 @@
           padding: 5px;
 
           .aula_detalhes{
+            margin-top:10px;
             border:1px solid #999;
             overflow-y: scroll;
             height:140px;
