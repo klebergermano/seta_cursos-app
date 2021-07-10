@@ -532,29 +532,36 @@ dialog {
 #controle_aula #form_select_aluno button {
   float: right;
 }
-#controle_aula #bg_cursos #nav_cursos {
+#controle_aula #bg_cursos nav.nav_cursos {
   overflow: hidden;
-  padding: 5px;
-  margin-top: 10px;
 }
-#controle_aula #bg_cursos #nav_cursos ul {
+#controle_aula #bg_cursos nav.nav_cursos ul {
   float: right;
   display: flex;
-  align-items: flex-start;
   justify-content: right;
+  align-items: flex-end;
+  margin: 20px 0px 10px 0px;
 }
-#controle_aula #bg_cursos #nav_cursos ul li {
+#controle_aula #bg_cursos nav.nav_cursos ul li {
   list-style: none;
 }
-#controle_aula #bg_cursos #nav_cursos ul li a {
+#controle_aula #bg_cursos nav.nav_cursos ul li a {
   padding: 10px 20px;
   background: #fff;
   border: 1px solid #ccc;
   color: #333;
+  user-select: none;
+}
+#controle_aula #bg_cursos nav.nav_cursos ul li a:hover {
+  background: #f6f6f6;
+}
+#controle_aula #bg_cursos nav.nav_cursos ul li a:active {
+  background: #f0f0f0;
 }
 #controle_aula #bg_cursos .bg_curso {
   padding: 10px;
   border: 1px solid #ccc;
+  display: none;
 }
 #controle_aula #bg_cursos .bg_curso h3 {
   padding: 10px;

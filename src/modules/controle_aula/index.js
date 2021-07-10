@@ -56,10 +56,23 @@ function blockAula(aulaDados, n_aula, n_bimestre) {
 `;
   return block;
 }
+
+function displayCursos(idCurso){
+document.querySelector(".bg_curso").style.display = 'none';
+
+document.querySelector("#"+idCurso).style.display = 'block';
+
+}
+
 //Insere as aulas na página
 function InsertBlockAulas(alunoData) {
+  
   //dados do firerstore
   let resultHTML = "";
+  navCursos = document.createElement('nav');
+  navCursos.classList.add('nav_cursos');
+  navCursos.appendChild(document.createElement('ul'));
+
   alunoData.forEach((res) => {
     res = res.data();
     let bimestres_bd = res.bimestres;
@@ -68,12 +81,13 @@ function InsertBlockAulas(alunoData) {
     //evita erro por undefined no nome do curso
     if(curso_nome_bd){
       id_curso = curso_nome_bd.replace(/\s+/g, "_").toLowerCase();
+      console.log('id_curso:', id_curso);
     }
  
     let html = document.createElement('div');
-    html.innerHTML = `<div class='bg_curso' id='${id_curso}'><h3>${curso_nome_bd}</h3><div id='curso_content'></div></div>`
+    html.innerHTML = `<div class='bg_curso' id='${id_curso}'><h3>${curso_nome_bd}</h3><div id='curso_content'></div></div>`;
+    navCursos.getElementsByTagName('ul')[0].innerHTML += `<li><a data-active='${id_curso}' onClick='displayCursos("${id_curso}")'>${curso_nome_bd}</a></li>`  
     let curso_content = html.querySelector('#curso_content');
-
     let content = `<div class='bg_bimestres'>`;
     for (bimestreKey in bimestres_bd) {
       let aula;
@@ -111,7 +125,10 @@ function InsertBlockAulas(alunoData) {
     content += '</div>';//fecha bg_bimestres
     resultHTML += html.innerHTML;
   });
-  document.querySelector("#bg_cursos").innerHTML = resultHTML;
+  //adiciona o navCursos
+  document.querySelector("#bg_cursos").appendChild(navCursos);
+ //adiciona todo o conteúdo gerado em #bg_cursos 
+  document.querySelector("#bg_cursos").innerHTML += resultHTML;
 
   //-------------------------------------------------------
   //carrega a função de click
