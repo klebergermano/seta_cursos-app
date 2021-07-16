@@ -558,6 +558,9 @@ dialog {
 #controle_aula #bg_cursos nav.nav_cursos ul li a:active {
   background: #f0f0f0;
 }
+#controle_aula #bg_cursos nav.nav_cursos ul li .active {
+  background: #f0f0f0;
+}
 #controle_aula #bg_cursos .bg_curso {
   padding: 10px;
   border: 1px solid #ccc;

@@ -5,7 +5,24 @@
     <label for="nome">Aluno:</label><input required id="nome" type="text" />
     <label for="ra">RA:</label><input required id="ra" type="text" />
   </div>
-  <div><label>Curso:</label><input required id="curso" ype="text" /></div>
+  <div>
+    <label><span class='required'>&nbsp;&nbsp;*</span> Curso:</label> 
+    <select required id='curso_nome'>
+      <option selected="true" disabled="disabled"></option>
+      <option class='informatica' data-abreviation='IFK' value='Informática KIDS'>Informática KIDS</option>
+      <option class='informatica' data-abreviation='IFC' value='Informática Completo'>Informática Completo</option>
+      <option class='informatica' data-abreviation='IFPRO' value='Informática Profissional'>Informática Profissional</option>
+      <option class='informatica' data-abreviation='IFP' value='Informática Prática'>Informática Prática</option>
+      <option class='ingles' data-abreviation='IGK' value='Inglês KIDS'>Inglês KIDS</option>
+      <option class='ingles' data-abreviation='IGPT' value='Inglês Pre-teen'>Inglês Pre-teen</option>
+      <option class='ingles' data-abreviation='IGB' value='Inglês Básico'>Inglês Básico</option>
+      <option class='ingles' data-abreviation='IGI' value='Inglês Intermediário'>Inglês Intermediário</option>
+      <option class='ingles' data-abreviation='IGA' value='Inglês Avançado'>Inglês Avançado</option>
+      <option class='excel' data-abreviation='EXA' value='Excel Avançado'>Excel Avançado</option>
+      <option class='web' data-abreviation='DWB' value='Desenvolvimento Web'>Desenvolvimento Web</option>
+      <option class='bd' data-abreviation='BDBMYSQL' value='Banco de Dados Básico(MySQL)'>Banco de Dados Básico MySQL</option>
+    </select>
+  </div>
   <input type="submit" value="Salvar" />
 </form>
 
@@ -20,8 +37,11 @@
       </select>
 </div>
 
-  <div><label>Curso:</label><input id="curso" type="text" /></div>
-
+  <div><label>Curso:</label>
+    <select id='select_curso_add_aluno'>
+      <option></option>
+      </select>
+    </div>
   <div>
     <label>Bimestres</label>
     <select id='select_bimestre_add_aluno'>
@@ -33,9 +53,8 @@
          <option value='bimestre_6'>Bimestre 6</option>
     </select>
 
-
     <label>Aulas Nº:</label>
-    <select>
+    <select id='aula_numero'>
       <option value="aula_1">Aula 1</option>
       <option value="aula_2">Aula 2</option>
       <option value="aula_3">Aula 3</option>
