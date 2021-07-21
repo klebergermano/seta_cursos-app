@@ -14,7 +14,8 @@
 
 
   #form_select_aluno {
-    background: #ebebeb;
+    background: #fff;
+    border: $border-set-default;
     width: 100%;
     height: auto;
     padding: 5px 20px;
@@ -30,6 +31,7 @@
     }
   }
   #bg_cursos {
+    
   nav.nav_cursos {
       overflow: hidden;
       ul {
@@ -37,35 +39,46 @@
         display: flex;
         justify-content: right;
         align-items: flex-end;
-       margin: 20px 0px 10px 0px;
+       margin: 25px 0px 7px 0px;
         li {
           list-style: none;
           
           a {
-            padding: 10px 20px;
+            padding: 5px 20px 7px 20px;
             background: #fff;
             border: $border-set-default;
             color: #333;
             user-select: none;
             &:hover{
-              background:#f6f6f6;
+            background:#ffd;
+
+            //  color: $primary-color;
             }
             &:active{
               background:#f0f0f0;
             }
           }
           .active{
-            background:#f0f0f0;
+            background:#ffd;
+            color: $primary-color;
+
 
           }
         }
       }
     }
     .bg_curso{
+      background:#fff;
       padding:10px; 
       border:$border-set-default;
       h3{ padding:10px;}
       display:none;
+    }
+    .title_info{
+      padding: 10px 0px 20px;
+      .title_aluno_nome{
+       color:blue;
+      }
     }
     .bg_bimestres {
       background: #fff;
@@ -88,6 +101,7 @@
        // border: 1px solid #f90;
 
         h2 {
+          font-weight: normal;
           flex-basis: 100%;
           height: 20px;
           font-size:18px;

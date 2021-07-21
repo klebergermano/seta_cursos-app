@@ -9,28 +9,11 @@ function insertAulasWhenChangeAluno() {
   select.addEventListener("input", () => {
     let RA = select.options[select.selectedIndex].value;
     realTimeDataAlunoHistorico(RA);
-   //carrega o primeiro curso do menu navC
-  // displayCursoWhenLoad(); //TODO CONFERIR NECESSIDADE
+    //carrega o primeiro curso do menu navC
+    // displayCursoWhenLoad(); //TODO CONFERIR NECESSIDADE
   });
 }
-/*
-function insertAulasWhenChangeAlunoXXXXXXXXXXXXXXXX() {
-  let select = document.querySelector("#select_aluno");
-  select.addEventListener("input", () => {
-    let RA = select.options[select.selectedIndex].value;
-    const alunoDB = alunoHistoricoDB(RA);
 
-    alunoDB
-      .then((data) => {
-        InsertBlockAulas(data);
-      })
-      .then(() => {
-        //carrega o primeiro curso do menu navC
-        displayCursoWhenLoad();
-      });
-  });
-}
-*/
 function addEventListenerClickAulas() {
   let btn_open_close_aulas = document.querySelectorAll(".btn_open_close_aulas");
 
@@ -80,8 +63,11 @@ function displayCursoWhenLoad() {
 }
 
 function displayCursos(idCurso) {
-  document.querySelector(".bg_curso").style.display = "none";
-  document.getElementById(idCurso).style.display = "block";
+  document.querySelectorAll(".bg_curso").forEach((item) => {
+    item.style.display = "none";
+  });
+
+  document.querySelector("#" + idCurso).style.display = "block";
 }
 
 function navCursosClick(e) {
@@ -94,8 +80,20 @@ function navCursosClick(e) {
   idCurso = e.target.dataset.active;
   displayCursos(idCurso);
 }
+
+
+  
+function sortObjectKeys(obj){
+  let objKeys = Object.keys(obj);
+  let sortedObjKeys = objKeys.sort(); 
+  sortedObjKeys.reverse();
+  return sortedObjKeys;     
+}
+
+
 //Insere as aulas na página
-function InsertBlockAulas(alunoData) {
+function InsertBlockAulas(alunoData, alunoInfoGeral) {
+
   //dados do firerstore
   let resultHTML = "";
   navCursos = document.createElement("nav");
@@ -103,12 +101,11 @@ function InsertBlockAulas(alunoData) {
   navCursos.appendChild(document.createElement("ul"));
 
   alunoData.forEach((res) => {
-
-if(typeof res.data !== 'undefined'){ 
-res = res.data()
-}else{
-res = res.doc.data()
-}
+    if (typeof res.data !== "undefined") {
+      res = res.data();
+    } else {
+      res = res.doc.data();
+    }
     let bimestres_bd = res.bimestres;
     let curso_nome_bd = res.curso;
     let id_curso;
@@ -118,31 +115,47 @@ res = res.doc.data()
     }
 
     let html = document.createElement("div");
-    html.innerHTML = `<div class='bg_curso' id='${id_curso}'><h3>${curso_nome_bd}</h3><div id='curso_content'></div></div>`;
+    html.innerHTML = `
+    <div class='bg_curso' id='${id_curso}'>
+      <div class='title_info'>
+        <span class='title_ra'>${alunoInfoGeral.RA}:</span>
+        <span class='title_aluno_nome'>${alunoInfoGeral.nome}</span> - 
+        <span class='title_curso_nome'>${curso_nome_bd}</span>
+        </div><div id='curso_content'>
+      </div>
+    </div>`;
     navCursos.getElementsByTagName(
       "ul"
     )[0].innerHTML += `<li><a data-active='${id_curso}' onClick='navCursosClick(event)'>${curso_nome_bd}</a></li>`;
     let curso_content = html.querySelector("#curso_content");
     let content = `<div class='bg_bimestres'>`;
-    for (bimestreKey in bimestres_bd) {
+
+// Pega as keys reordenadas do obj bimestres_bd e usa no para 
+// criar o for, eles também são utilizadas com o index do for
+// para carregar os dados ex.: "sortedKeys[i]"
+let sortedKeys = sortObjectKeys(bimestres_bd);
+
+for(let i = 0; i < sortedKeys.length; i ++){
+
       let aula;
       let counter = 1;
       //cria a div bimestres
       content += "<div class='bimestres'>";
       //numero de bimestres
       //TODO alterar o numero generico para o numero do bimestre que vem do DB
-      content += `<h2>${bimestreKey}</h2>`;
-      for (aulaKey in bimestres_bd[bimestreKey]) {
+      content += `<h2>${[sortedKeys[i]]}</h2>`;
+
+      for (aulaKey in bimestres_bd[sortedKeys[i]]) {
         //usa as keys dos dois fors, a do bimestre "ex: bimestres_1" e a key da aula
         // "ex: aula_3" para gerar o bloco aula
-        aula = bimestres_bd[bimestreKey][aulaKey];
+        aula = bimestres_bd[sortedKeys[i]][aulaKey];
         if (counter === 1) {
           //abre a div columns quando o contador esta em 1
           content += "<div class='columns'>";
         }
         //carrega as aulas chamando a função blockAula
         //passa a key para gera o numero da aula ex: aula_1
-        content += blockAula(aula, aulaKey, bimestreKey);
+        content += blockAula(aula, aulaKey, sortedKeys[i]);
         counter++;
         if (counter === 5) {
           content += "</div>";
@@ -156,7 +169,10 @@ res = res.doc.data()
       //fecha a div bimestres
       content += "</div>";
       curso_content.innerHTML = content;
-    }
+    //} CLOSE FOR IN
+
+  }// FOR NORMAL
+
     content += "</div>"; //fecha bg_bimestres
     resultHTML += html.innerHTML;
   });
@@ -166,7 +182,11 @@ res = res.doc.data()
   document
     .querySelector("#bg_cursos")
     .insertAdjacentElement("afterbegin", navCursos);
-
+    /*
+  document
+    .querySelector("#bg_cursos")
+    .insertAdjacentHTML("afterbegin", `<h3 class='title_aluno_nome'>${alunoInfoGeral.RA} - ${alunoInfoGeral.nome}</h3>`);
+    */
   //-------------------------------------------------------
   //carrega a função de click
   addEventListenerClickAulas();
@@ -176,9 +196,8 @@ res = res.doc.data()
 }
 
 (async function InsertSelectAlunos() {
- 
- db.collection("aluno_historico").onSnapshot((snap)=>{
-  let selectAluno = ``;
+  db.collection("aluno_historico").onSnapshot((snap) => {
+    let selectAluno = ``;
     snap.forEach((item) => {
       selectAluno += `<option value='${item.id}'>${item.id} - ${
         item.data().nome
@@ -188,61 +207,48 @@ res = res.doc.data()
     //insere options do select no "select_aluno_add_aula"
     document.querySelector("#select_aluno_add_aula").innerHTML = selectAluno;
   });
-
 })();
 
-(async function InsertSelectAlunosXXXXXXXXX() {
-  let alunos = db.collection("aluno_historico").get();
-  alunos.then((res) => {
-    let selectAluno = ``;
-    res.forEach((item) => {
-      selectAluno += `<option value='${item.id}'>${item.id} - ${
-        item.data().nome
-      }</option>`;
+async function getAlunoInfoGeral(RA){
+  let alunoInfo = await db
+    .collection("aluno_historico")
+    .doc(RA)
+    .get()
+    .then((res) => {
+      return res.data();
     });
-    document.querySelector("#select_aluno").innerHTML = selectAluno;
-    //insere optolns no select no "select_aluno_add_aula"
-    document.querySelector("#select_aluno_add_aula").innerHTML = selectAluno;
-  });
-})();
+    alunoInfo.RA = RA;
+  return alunoInfo;
+}
 
 //--------------------Firerbase----------------------------
 function alunoHistoricoDB(RA) {
-
   let alunoHistorico = db
     .collection("aluno_historico")
     .doc(RA)
     .collection("cursos")
     .get();
-     console.log(alunoHistorico);
-    return alunoHistorico;
+  return alunoHistorico;
 }
 
-function realTimeDataAlunoHistorico(RA){
+function realTimeDataAlunoHistorico(RA) {
   db.collection("aluno_historico")
-  .doc(RA)
-  .collection("cursos")
-  .onSnapshot((snap) => {
-    let changes = snap.docChanges();
-    InsertBlockAulas(changes); 
-  });
+    .doc(RA)
+    .collection("cursos")
+    .onSnapshot((snap) => {
+      let changes = snap.docChanges();
+      let alunoInfoGeral = getAlunoInfoGeral(RA)
+      alunoInfoGeral.then((alunoInfo)=>{
+        InsertBlockAulas(changes, alunoInfo);
+      })
+    });
 }
 
 //--------------------Carrega funções----------------------------
 (async function loadDocuments() {
-  //const alunoDB = await alunoHistoricoDB("RA01");
-  //InsertBlockAulas(alunoDB);
-  insertAulasWhenChangeAluno();
-  realTimeDataAlunoHistorico("RA01")
 
-  // formAddAluno();
-  // formAddAula();
-  //AddEventBtnCloseForm();
-  //navAddFormsDisplayEvent();
-  //eventFormAddAluno();
+  insertAulasWhenChangeAluno();
+  realTimeDataAlunoHistorico("RA02");
+
 })();
 //----------------------------------------------------------
-
-
-
-

@@ -1,3 +1,4 @@
+
 function eventFormsAdd() {
   document.querySelector("#form_add_aluno").addEventListener("submit", (e) => {
     formAddAluno(e);
@@ -22,6 +23,7 @@ function eventSelectAlunoAddAula() {
 function selectAlunoAddAula(e) {
   let RA = e.target.value;
   insertSelectCursosAddAula(RA);
+
 }
 
 function insertSelectCursosAddAula(RA) {
@@ -108,7 +110,8 @@ function formAddAluno(e) {
       setTimeout(() => {
         e.target.style.display = "none";
         changeCSSDisplay("#block_screen", "none");
-      }, 1500);
+      }, 500);
+      
     })
     .catch((error) => console.error("Error writing document: ", error));
 }
@@ -130,11 +133,10 @@ function blocoAddAula(dados) {
 function formAddAula(e) {
   e.preventDefault();
     let form = e.target;
-   console.log(blocoAddAula(form));
-  console.log(form.select_curso_add_aluno.value);
+let RA = form.select_aluno_add_aula.value;
     aulaHistorico = db
       .collection("aluno_historico")
-      .doc(form.select_aluno_add_aula.value)
+      .doc(RA)
       .collection("cursos")
       .doc(form.select_curso_add_aluno.value)
       .set({
@@ -146,18 +148,35 @@ function formAddAula(e) {
         setTimeout(() => {
           e.target.style.display = "none";
           changeCSSDisplay("#block_screen", "none");
-        }, 1500);
+        }, 500);
+      }).then(()=>{
+            //seta o #select_aluno com o RA que acabou de ser atualizado
+        setSelectedInSelectAlunoAfterAddAula(RA);
       })
       .catch((error) => console.error("Error writing document: ", error));
 }
 
+function setSelectedInSelectAlunoAfterAddAula(RA){
+        //Remove o select das options "select_aluno" e adiciona selected no item salvo
+        let select_aluno =  document.querySelector('#select_aluno');
+        let allOptions = select_aluno.options;
+        //limpa o selected=true de todas as opções do select. 
+        for(item of allOptions){
+          item.removeAttribute('selected')
+        }
+        //Readiciona os mesmos options no select para garantir que a option com 
+        //selected=true funcione
+        select_aluno.innerHTML = select_aluno.innerHTML;
+
+        //adiciona o select=true na opção com o RA que acabou de ser salvo
+        let option = select_aluno.querySelector(`option[value='${RA}']`);
+        option.setAttribute('selected', true);
+}
 (async function loadDocuments() {
-  // const alunoDB = await alunoHistoricoDB('RA01');
-  //InsertBlockAulas(alunoDB);
-  //formAddAluno();
-  // formAddAula();
+
   AddEventBtnCloseForm();
   navAddFormsDisplayEvent();
   eventFormsAdd();
   eventSelectAlunoAddAula();
+
 })();
