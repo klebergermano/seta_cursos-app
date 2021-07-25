@@ -151,12 +151,12 @@ let RA = form.select_aluno_add_aula.value;
         }, 500);
       }).then(()=>{
             //seta o #select_aluno com o RA que acabou de ser atualizado
-        setSelectedInSelectAlunoAfterAddAula(RA);
+            setSelectedInSelectAluno(RA);
       })
       .catch((error) => console.error("Error writing document: ", error));
 }
 
-function setSelectedInSelectAlunoAfterAddAula(RA){
+function setSelectedInSelectAluno(RA){
         //Remove o select das options "select_aluno" e adiciona selected no item salvo
         let select_aluno =  document.querySelector('#select_aluno');
         let allOptions = select_aluno.options;
@@ -172,6 +172,11 @@ function setSelectedInSelectAlunoAfterAddAula(RA){
         let option = select_aluno.querySelector(`option[value='${RA}']`);
         option.setAttribute('selected', true);
 }
+
+
+
+
+
 (async function loadDocuments() {
 
   AddEventBtnCloseForm();
