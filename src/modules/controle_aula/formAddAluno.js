@@ -8,11 +8,12 @@ function eventFormsAdd() {
   });
 }
 
-
 function changeCSSDisplay(target, display) {
   document.querySelector(target).style.display = display;
 }
 
+
+//Insere os cursos do aluno quando o select_aluno_add_aula é alterado
 function eventSelectAlunoAddAula() {
   let aluno = document.querySelector("#select_aluno_add_aula");
   aluno.addEventListener("input", (e) => {
@@ -23,10 +24,9 @@ function eventSelectAlunoAddAula() {
 function selectAlunoAddAula(e) {
   let RA = e.target.value;
   insertSelectCursosAddAula(RA);
-
 }
 
-function insertSelectCursosAddAula(RA) {
+function insertSelectCursosAddAula(RA){
   let aluno = db
     .collection("aluno_historico")
     .doc(RA)

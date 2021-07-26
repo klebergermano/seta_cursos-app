@@ -11,7 +11,28 @@ function insertAulasWhenChangeAluno() {
     realTimeDataAlunoHistorico(RA);
     //carrega o primeiro curso do menu navC
     setSelectedInSelectAlunoAddAula(RA);
+    //quando o select_aluno é alterado chama a função para carregar as opções de cursos em 
+    //select_aluno_add_aula
+    insertSelectCursosAddAula(RA);
   });
+}
+//Seta as opções de cursos em select_curso_add_aluno;
+function insertSelectCursosAddAula(RA){
+  let aluno = db
+    .collection("aluno_historico")
+    .doc(RA)
+    .collection("cursos")
+    .get();
+  let option = ``;
+  aluno
+    .then((al) => {
+      al.forEach((item) => {
+        option += `<option>${item.data().curso}</option>`;
+      });
+    })
+    .then(() => {
+      document.querySelector("#select_curso_add_aluno").innerHTML = option;
+    });
 }
 
 function setSelectedInSelectAlunoAddAula(RA) {
