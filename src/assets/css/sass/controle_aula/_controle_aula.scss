@@ -14,40 +14,72 @@
 
 
   #form_select_aluno {
-    background: #fff;
-    border: $border-set-default;
+  //  background: #fff;
+   // border: $border-set-default;
+   margin-bottom:20px;
     width: 100%;
     height: auto;
-    padding: 5px 20px;
+    padding: 5px 0px;
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    label{
+      background:#fff;
+      border:$border-set-default;
+      display: block;
+      padding:6px;
+
+    }
     .div_input {
+ 
+    display:flex;
       float: left;
-      padding-top: 5px;
+      justify-content: center;
     }
     button {
       float: right;
+      margin:0px;
+      margin-left:10px;
     }
   }
   #bg_cursos {
     
   nav.nav_cursos {
-      overflow: hidden;
+ 
+      background-color: #fff;
+      border: $border-set-default;
+      border-bottom:0px;
+      display:flex;
+      justify-content: space-between;
+      span{
+        font-weight: bold;
+        margin-top:10px;
+        display: block;
+        margin-bottom: 0px;
+        font-size:18px;
+        margin-left:20px;
+        text-transform: uppercase;
+
+      }
       ul {
+        overflow:hidden;
+        display:block;
         float: right;
         display: flex;
-        justify-content: right;
-        align-items: flex-end;
-       margin: 25px 0px 7px 0px;
+
         li {
           list-style: none;
+          padding:10px 0px;
           
           a {
-            padding: 5px 20px 7px 20px;
+            padding: 10px 20px 10px 20px;
             background: #fff;
             border: $border-set-default;
+            border-top:0px;
+            border-bottom:0px;
             color: #333;
+
             user-select: none;
             &:hover{
             background:#ffd;
@@ -75,9 +107,41 @@
       display:none;
     }
     .title_info{
+      text-transform: uppercase;
+      font-weight: bold;
+
+      display:flex;
+      font-size:18px;
+      justify-content: center;
       padding: 10px 0px 20px;
+      flex-grow: 1;
+      span{ padding:0px 5px;}
+      .title_ra{
+        display:none;
+
+      }
       .title_aluno_nome{
-       color:blue;
+        display:none;
+
+      }
+      .title_curso_nome{
+        color:$secondary-color;
+      
+      }
+span[class*="web"]{
+  color:rgb(32, 97, 134);
+}
+span[class*="inglês"]{
+  color:red;
+}
+
+   //excel
+      span[class*="excel"]{ 
+        color:green;
+      }
+   //informática
+      span[class^="informática"], span[class*="informática"]{ 
+        color:blue !important;
       }
     }
     .bg_bimestres {

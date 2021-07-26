@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -517,39 +518,63 @@ dialog {
   width: 100%;
 }
 #controle_aula #form_select_aluno {
-  background: #fff;
-  border: 1px solid #ccc;
+  margin-bottom: 20px;
   width: 100%;
   height: auto;
-  padding: 5px 20px;
+  padding: 5px 0px;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
+#controle_aula #form_select_aluno label {
+  background: #fff;
+  border: 1px solid #ccc;
+  display: block;
+  padding: 6px;
+}
 #controle_aula #form_select_aluno .div_input {
+  display: flex;
   float: left;
-  padding-top: 5px;
+  justify-content: center;
 }
 #controle_aula #form_select_aluno button {
   float: right;
+  margin: 0px;
+  margin-left: 10px;
 }
 #controle_aula #bg_cursos nav.nav_cursos {
-  overflow: hidden;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-bottom: 0px;
+  display: flex;
+  justify-content: space-between;
+}
+#controle_aula #bg_cursos nav.nav_cursos span {
+  font-weight: bold;
+  margin-top: 10px;
+  display: block;
+  margin-bottom: 0px;
+  font-size: 18px;
+  margin-left: 20px;
+  text-transform: uppercase;
 }
 #controle_aula #bg_cursos nav.nav_cursos ul {
+  overflow: hidden;
+  display: block;
   float: right;
   display: flex;
-  justify-content: right;
-  align-items: flex-end;
-  margin: 25px 0px 7px 0px;
 }
 #controle_aula #bg_cursos nav.nav_cursos ul li {
   list-style: none;
+  padding: 10px 0px;
 }
 #controle_aula #bg_cursos nav.nav_cursos ul li a {
-  padding: 5px 20px 7px 20px;
+  padding: 10px 20px 10px 20px;
   background: #fff;
   border: 1px solid #ccc;
+  border-top: 0px;
+  border-bottom: 0px;
   color: #333;
   user-select: none;
 }
@@ -573,10 +598,37 @@ dialog {
   padding: 10px;
 }
 #controle_aula #bg_cursos .title_info {
+  text-transform: uppercase;
+  font-weight: bold;
+  display: flex;
+  font-size: 18px;
+  justify-content: center;
   padding: 10px 0px 20px;
+  flex-grow: 1;
+}
+#controle_aula #bg_cursos .title_info span {
+  padding: 0px 5px;
+}
+#controle_aula #bg_cursos .title_info .title_ra {
+  display: none;
 }
 #controle_aula #bg_cursos .title_info .title_aluno_nome {
-  color: blue;
+  display: none;
+}
+#controle_aula #bg_cursos .title_info .title_curso_nome {
+  color: #ed1860;
+}
+#controle_aula #bg_cursos .title_info span[class*=web] {
+  color: #206186;
+}
+#controle_aula #bg_cursos .title_info span[class*=inglês] {
+  color: red;
+}
+#controle_aula #bg_cursos .title_info span[class*=excel] {
+  color: green;
+}
+#controle_aula #bg_cursos .title_info span[class^=informática], #controle_aula #bg_cursos .title_info span[class*=informática] {
+  color: blue !important;
 }
 #controle_aula #bg_cursos .bg_bimestres {
   background: #fff;

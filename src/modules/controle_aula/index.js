@@ -70,6 +70,29 @@ function blockAula(aulaDados, n_aula, n_bimestre) {
 }
 
 
+async function addMenuCursosAluno(RA, nomeAluno = 'Fulano de Talzes') {
+  let nomeA = document.createElement('span');
+  nomeA.innerHTML = RA +': Fulano de Talzes'; 
+  let cursos = arrayCursosAluno(RA);
+  let nav = document.createElement("nav");
+  let ul = document.createElement("ul");
+  let id_curso;
+  let menuNav = cursos
+    .then((res) => {
+      nav.classList.add("nav_cursos");
+
+      res.forEach((item) => {
+        id_curso = item.replace(/\s+/g, "_").toLowerCase();
+        ul.innerHTML += `<li><a data-active='${id_curso}' onClick='navCursosClick(event)'>${item}</a></li>`;
+      });
+    })
+    .then(() => {
+      nav.appendChild(ul);
+      nav.insertAdjacentElement('afterbegin', nomeA);
+      return nav;
+    });
+  return menuNav;
+}
 
 function displayCursoWhenLoad() {
   //adiciona class "active" no primeiro elemento do navCursos
@@ -114,9 +137,12 @@ function criaHtmlCursoContent (curso_nome_bd, alunoInfoGeral){
   htmlAula.innerHTML = `
   <div class='bg_curso' id='${id_curso}'>
     <div class='title_info'>
+    <span>
+    <span class='title_aluno_nome'>${alunoInfoGeral.nome}</span> 
+
       <span class='title_ra'>${alunoInfoGeral.RA}:</span>
-      <span class='title_aluno_nome'>${alunoInfoGeral.nome}</span> - 
-      <span class='title_curso_nome'>${curso_nome_bd}</span>
+      </span>
+      <span class='title_curso_nome ${id_curso}'>${curso_nome_bd}</span>
       </div><div id='curso_content'>
     </div>
   </div>`;
@@ -126,7 +152,8 @@ return htmlAula;
 
 
 //Insere as aulas na página
-function InsertBlockAulas(alunoData, alunoInfoGeral) {
+function InsertBlockAulas(alunoData, alunoInfoGeral, changes) {
+
   let resultHTML = "";
 
   
@@ -201,13 +228,26 @@ function InsertBlockAulas(alunoData, alunoInfoGeral) {
   }).then(()=>{
     displayCursoWhenLoad();
 
+
   }).then(()=>{
      //carrega a função de click
   addEventListenerClickAulas();
+//---------------------------------------------------------------------
+    //mostra o curso que foi atualizado usando  displayCursos
+    let nomeCursoAtualizado = changes[0].doc.data().curso;
+    nomeCursoAtualizado = nomeCursoAtualizado.replace(/\s+/g, "_").toLowerCase();
+    displayCursos(nomeCursoAtualizado);
+   let link = document.querySelectorAll('.nav_cursos')[0].getElementsByTagName('a');
+    for(let i = 0; i < link.length; i++){
+    link[i].classList.remove('active');
+  };
+    let x = document.querySelectorAll(`[data-active="${nomeCursoAtualizado}"]`);
+    x[0].classList.add('active');
   });
+//-------------------------------------------------------------------
+
   //adiciona todo o conteúdo gerado em #bg_cursos
   document.querySelector("#bg_cursos").innerHTML = resultHTML;
-
 }
 
 (async function InsertSelectAlunos() {
@@ -265,18 +305,12 @@ function realTimeDataAlunoHistorico(RA) {
     .onSnapshot((snap) => {
       let changes = snap.docChanges();
       let alunoInfoGeral = getAlunoInfoGeral(RA);
-      
       let alunoH = alunoHistoricoDB(RA);
       alunoH.then((aluno)=>{
           alunoInfoGeral.then((res) => {
-            InsertBlockAulas(aluno, res);
+            InsertBlockAulas(aluno, res, changes);
           })
       });
-     
-console.log('AH', alunoH);
-console.log('CH', changes);
- 
-   
     });
 }
 
@@ -286,24 +320,3 @@ console.log('CH', changes);
   realTimeDataAlunoHistorico("RA01");
 })();
 //----------------------------------------------------------
-
-async function addMenuCursosAluno(RA) {
-  let cursos = arrayCursosAluno(RA);
-  let nav = document.createElement("nav");
-  let ul = document.createElement("ul");
-  let id_curso;
-  let menuNav = cursos
-    .then((res) => {
-      nav.classList.add("nav_cursos");
-
-      res.forEach((item) => {
-        id_curso = item.replace(/\s+/g, "_").toLowerCase();
-        ul.innerHTML += `<li><a data-active='${id_curso}' onClick='navCursosClick(event)'>${item}</a></li>`;
-      });
-    })
-    .then(() => {
-      nav.appendChild(ul);
-      return nav;
-    });
-  return menuNav;
-}
