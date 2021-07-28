@@ -1,3 +1,6 @@
+//formAddAuluno.js utiliza funções disponivéis no index.js
+
+
 ImportHtml(
   "./components/controle_aula/formAddAula.html",
   "#bg_forms_add",
@@ -10,9 +13,12 @@ function insertAulasWhenChangeAluno() {
     let RA = select.options[select.selectedIndex].value;
     realTimeDataAlunoHistorico(RA);
     //carrega o primeiro curso do menu navC
-    setSelectedInSelectAlunoAddAula(RA);
-    //quando o select_aluno é alterado chama a função para carregar as opções de cursos em 
-    //select_aluno_add_aula
+   // setSelectedInSelectAlunoAddAulaAndAddCurso(RA);
+
+    setSelectedInASelectBasedOnRA("#select_aluno", RA)
+    setSelectedInASelectBasedOnRA("#select_aluno_add_curso", RA)
+    //quando o select_aluno é alterado chama a função para carregar as opções 
+    //de cursos em select_aluno_add_aula
     insertSelectCursosAddAula(RA);
   });
 }
@@ -35,22 +41,24 @@ function insertSelectCursosAddAula(RA){
     });
 }
 
-function setSelectedInSelectAlunoAddAula(RA) {
+function setSelectedInASelectBasedOnRA(idSelectTarget, RA) {
   //Remove o select das options "select_aluno" e adiciona selected no item salvo
-  let select_aluno = document.querySelector("#select_aluno_add_aula");
-  let allOptions = select_aluno.options;
+  let select = document.querySelector(idSelectTarget);
+  let allOptions = select.options;
+
   //limpa o selected=true de todas as opções do select.
   for (item of allOptions) {
     item.removeAttribute("selected");
   }
   //Readiciona os mesmos options no select para garantir que a option com
   //selected=true funcione
-  select_aluno.innerHTML = select_aluno.innerHTML;
-
+  select.innerHTML = select.innerHTML;
   //adiciona o select=true na opção com o RA que acabou de ser salvo
-  let option = select_aluno.querySelector(`option[value='${RA}']`);
+  let option = select.querySelector(`option[value='${RA}']`);
   option.setAttribute("selected", true);
+
 }
+
 
 function addEventListenerClickAulas() {
   let btn_open_close_aulas = document.querySelectorAll(".btn_open_close_aulas");
@@ -90,7 +98,6 @@ function blockAula(aulaDados, n_aula, n_bimestre) {
   return block;
 }
 
-
 async function addMenuCursosAluno(RA, nomeAluno) {
   let nomeA = document.createElement('span');
 nomeA.classList.add('title_aluno_info');
@@ -104,7 +111,7 @@ nomeA.classList.add('title_aluno_info');
       nav.classList.add("nav_cursos");
 
       res.forEach((item) => {
-        id_curso = item.replace(/\s+/g, "_").toLowerCase();
+        id_curso = item.replace(/\s+|\(|\)/g, "_").toLowerCase();
         ul.innerHTML += `<li><a data-active='${id_curso}' onClick='navCursosClick(event)'>${item}</a></li>`;
       });
     })
@@ -151,8 +158,8 @@ function sortObjectKeys(obj) {
   return sortedObjKeys;
 }
 
-function criaHtmlCursoContent (curso_nome_bd, alunoInfoGeral){
-  id_curso = curso_nome_bd.replace(/\s+/g, "_").toLowerCase();
+function criaHtmlCursoContent (curso_nome_bd){
+  id_curso = curso_nome_bd.replace(/\s+|\(|\)/g, "_").toLowerCase();
 
 
   let htmlAula = document.createElement("div");
@@ -166,14 +173,9 @@ function criaHtmlCursoContent (curso_nome_bd, alunoInfoGeral){
 return htmlAula; 
 }
 
-
-
 //Insere as aulas na página
 function InsertBlockAulas(alunoData, alunoInfoGeral, changes) {
-
   let resultHTML = "";
-
-  
   //Main forEach
   alunoData.forEach((res) => {
     if (typeof res.data !== "undefined") {
@@ -186,7 +188,7 @@ function InsertBlockAulas(alunoData, alunoInfoGeral, changes) {
     let id_curso;
     //evita erro por undefined no nome do curso
     if (curso_nome_bd) {
-      id_curso = curso_nome_bd.replace(/\s+/g, "_").toLowerCase();
+      id_curso = curso_nome_bd.replace(/\s+|\(|\)/g, "_").toLowerCase();
     }
     let html = criaHtmlCursoContent(curso_nome_bd, alunoInfoGeral);
     let curso_content = html.querySelector("#curso_content");
@@ -261,7 +263,7 @@ function InsertBlockAulas(alunoData, alunoInfoGeral, changes) {
   //---------------------------------------------------------------------
     //mostra o curso que foi atualizado usando  displayCursos
     let nomeCursoAtualizado = changes[0].doc.data().curso;
-    nomeCursoAtualizado = nomeCursoAtualizado.replace(/\s+/g, "_").toLowerCase();
+    nomeCursoAtualizado = nomeCursoAtualizado.replace(/\s|\(|\)+/g, "_").toLowerCase();
     displayCursos(nomeCursoAtualizado);
    let link = document.querySelectorAll('.nav_cursos')[0].getElementsByTagName('a');
     for(let i = 0; i < link.length; i++){
@@ -285,14 +287,17 @@ function InsertBlockAulas(alunoData, alunoInfoGeral, changes) {
       }</option>`;
     });
     document.querySelector("#select_aluno").innerHTML = selectAluno;
+
     //insere options do select no "select_aluno_add_aula"
     document.querySelector("#select_aluno_add_aula").innerHTML = selectAluno;
-        //insere options do select no "select_aluno_add_curso"
-        document.querySelector("#select_aluno_add_curso").innerHTML = selectAluno;
+   
+    //insere options do select no "select_aluno_add_curso"
+    document.querySelector("#select_aluno_add_curso").innerHTML = selectAluno;
   });
 })();
 
 async function getAlunoInfoGeral(RA) {
+  
   let alunoInfo = await db
     .collection("aluno_historico")
     .doc(RA)
@@ -348,3 +353,7 @@ function realTimeDataAlunoHistorico(RA) {
   realTimeDataAlunoHistorico("RA01");
 })();
 //----------------------------------------------------------
+
+function teste(){
+  console.log('aaaaaaaaaaaaaaaaaaaaaaaaaa');
+};
