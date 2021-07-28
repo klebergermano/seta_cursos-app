@@ -91,9 +91,10 @@ function blockAula(aulaDados, n_aula, n_bimestre) {
 }
 
 
-async function addMenuCursosAluno(RA, nomeAluno = 'Fulano de Talzes') {
+async function addMenuCursosAluno(RA, nomeAluno) {
   let nomeA = document.createElement('span');
-  nomeA.innerHTML = RA +': Fulano de Talzes'; 
+nomeA.classList.add('title_aluno_info');
+  nomeA.innerHTML = `<span class='title_info_ra'>${RA}:&nbsp;</span><span class='title_info_nome_luno'>${nomeAluno}</span>`; 
   let cursos = arrayCursosAluno(RA);
   let nav = document.createElement("nav");
   let ul = document.createElement("ul");
@@ -157,12 +158,7 @@ function criaHtmlCursoContent (curso_nome_bd, alunoInfoGeral){
   let htmlAula = document.createElement("div");
   htmlAula.innerHTML = `
   <div class='bg_curso' id='${id_curso}'>
-    <div class='title_info'>
-    <span>
-    <span class='title_aluno_nome'>${alunoInfoGeral.nome}</span> 
-
-      <span class='title_ra'>${alunoInfoGeral.RA}:</span>
-      </span>
+    <div class='title'>
       <span class='title_curso_nome ${id_curso}'>${curso_nome_bd}</span>
       </div><div id='curso_content'>
     </div>
@@ -240,20 +236,29 @@ function InsertBlockAulas(alunoData, alunoInfoGeral, changes) {
     content += "</div>"; //fecha bg_bimestres
     resultHTML += html.innerHTML;
   });
+
+
   //adiciona o navCursos
-  let navCursos = addMenuCursosAluno(alunoInfoGeral.RA);
+  let navCursos = addMenuCursosAluno(alunoInfoGeral.RA, alunoInfoGeral.nome);
   navCursos.then((n)=>{
     document
     .querySelector("#bg_cursos")
     .insertAdjacentElement("afterbegin", n);
   }).then(()=>{
+    /*Evita o bug de multiplos nav_cursos serem adicionados removendo eles 
+    caso o lengh nav_cursos seja maior que 1*/
+    let navC = document.querySelectorAll('.nav_cursos');
+    let nLength = navC.length;
+    for(let k = nLength; k > 1; k--){
+      document.querySelector('#bg_cursos').removeChild(navC[0]);
+    }
     displayCursoWhenLoad();
 
 
   }).then(()=>{
      //carrega a função de click
   addEventListenerClickAulas();
-//---------------------------------------------------------------------
+  //---------------------------------------------------------------------
     //mostra o curso que foi atualizado usando  displayCursos
     let nomeCursoAtualizado = changes[0].doc.data().curso;
     nomeCursoAtualizado = nomeCursoAtualizado.replace(/\s+/g, "_").toLowerCase();
@@ -265,7 +270,7 @@ function InsertBlockAulas(alunoData, alunoInfoGeral, changes) {
     let x = document.querySelectorAll(`[data-active="${nomeCursoAtualizado}"]`);
     x[0].classList.add('active');
   });
-//-------------------------------------------------------------------
+  //-------------------------------------------------------------------
 
   //adiciona todo o conteúdo gerado em #bg_cursos
   document.querySelector("#bg_cursos").innerHTML = resultHTML;
@@ -282,6 +287,8 @@ function InsertBlockAulas(alunoData, alunoInfoGeral, changes) {
     document.querySelector("#select_aluno").innerHTML = selectAluno;
     //insere options do select no "select_aluno_add_aula"
     document.querySelector("#select_aluno_add_aula").innerHTML = selectAluno;
+        //insere options do select no "select_aluno_add_curso"
+        document.querySelector("#select_aluno_add_curso").innerHTML = selectAluno;
   });
 })();
 

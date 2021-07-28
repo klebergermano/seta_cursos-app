@@ -1,4 +1,5 @@
 
+<!------------------------------------ADD ALUNO----------------------->
 
 <form id="form_add_aluno" class="forms">
   <span class="close_form">X</span>
@@ -27,6 +28,39 @@
   </div>
   <input type="submit" value="Salvar" />
 </form>
+
+<!--------------------------------------ADD CURSOS----------------------->
+
+<form id="form_add_curso" class="forms">
+  <span class="close_form">X</span>
+  <h3>Adicionar Curso</h3>
+  <div>
+    <label for="nome">Aluno:</label>
+    <select required id='select_aluno_add_curso'></select>
+    
+  </div>
+  <div>
+    <label><span class='required'>&nbsp;&nbsp;*</span> Curso:</label> 
+    <select required id='add_curso_nome_curso'>
+      <option selected="true" disabled="disabled"></option>
+      <option class='informatica' data-abreviation='IFK' value='Informática KIDS'>Informática KIDS</option>
+      <option class='informatica' data-abreviation='IFC' value='Informática Completo'>Informática Completo</option>
+      <option class='informatica' data-abreviation='IFPRO' value='Informática Profissional'>Informática Profissional</option>
+      <option class='informatica' data-abreviation='IFP' value='Informática Prática'>Informática Prática</option>
+      <option class='ingles' data-abreviation='IGK' value='Inglês KIDS'>Inglês KIDS</option>
+      <option class='ingles' data-abreviation='IGPT' value='Inglês Pre-teen'>Inglês Pre-teen</option>
+      <option class='ingles' data-abreviation='IGB' value='Inglês Básico'>Inglês Básico</option>
+      <option class='ingles' data-abreviation='IGI' value='Inglês Intermediário'>Inglês Intermediário</option>
+      <option class='ingles' data-abreviation='IGA' value='Inglês Avançado'>Inglês Avançado</option>
+      <option class='excel' data-abreviation='EXA' value='Excel Avançado'>Excel Avançado</option>
+      <option class='web' data-abreviation='DWB' value='Desenvolvimento Web'>Desenvolvimento Web</option>
+      <option class='bd' data-abreviation='BDBMYSQL' value='Banco de Dados Básico(MySQL)'>Banco de Dados Básico MySQL</option>
+    </select>
+  </div>
+  <input type="submit" value="Salvar" />
+</form>
+<!----------------------------------------------------------------------->
+<!-------------------------------------------ADD AULA----------------------->
 <form id="form_add_aula" class="forms">
   <span class="close_form">X</span>
   <h3>Adicionar Aula</h3>

@@ -413,6 +413,9 @@ dialog {
   left: 0px;
   top: 30%;
   z-index: 2;
+  transition: all 2s;
+  background: #fff;
+  transform: scale(1);
   box-shadow: 0px 1px 2px #666;
 }
 .forms h3 {
@@ -472,6 +475,8 @@ dialog {
 
 #form_add_aula {
   display: none;
+  transition: all 2s;
+  background: #fff;
 }
 #form_add_aula #data_hora {
   display: flex;
@@ -576,17 +581,23 @@ dialog {
   border-top: 0px;
   border-bottom: 0px;
   color: #333;
+  font-size: 14px;
+  text-transform: uppercase;
   user-select: none;
 }
 #controle_aula #bg_cursos nav.nav_cursos ul li a:hover {
-  background: #ffd;
+  background: #f8f8f8;
+  color: #333;
 }
 #controle_aula #bg_cursos nav.nav_cursos ul li a:active {
   background: #f0f0f0;
 }
 #controle_aula #bg_cursos nav.nav_cursos ul li .active {
-  background: #ffd;
-  color: #0064ff;
+  background: #dddede;
+  border: 0px;
+}
+#controle_aula #bg_cursos nav.nav_cursos ul li .active:hover {
+  background: #dddede;
 }
 #controle_aula #bg_cursos .bg_curso {
   background: #fff;
@@ -597,7 +608,14 @@ dialog {
 #controle_aula #bg_cursos .bg_curso h3 {
   padding: 10px;
 }
-#controle_aula #bg_cursos .title_info {
+#controle_aula #bg_cursos .title_aluno_info span {
+  float: left;
+  margin: 0px !important;
+}
+#controle_aula #bg_cursos .title_aluno_info .title_info_ra {
+  font-weight: normal;
+}
+#controle_aula #bg_cursos .title {
   text-transform: uppercase;
   font-weight: bold;
   display: flex;
@@ -606,28 +624,19 @@ dialog {
   padding: 10px 0px 20px;
   flex-grow: 1;
 }
-#controle_aula #bg_cursos .title_info span {
+#controle_aula #bg_cursos .title span {
   padding: 0px 5px;
 }
-#controle_aula #bg_cursos .title_info .title_ra {
-  display: none;
-}
-#controle_aula #bg_cursos .title_info .title_aluno_nome {
-  display: none;
-}
-#controle_aula #bg_cursos .title_info .title_curso_nome {
-  color: #ed1860;
-}
-#controle_aula #bg_cursos .title_info span[class*=web] {
+#controle_aula #bg_cursos .title span[class*=web] {
   color: #206186;
 }
-#controle_aula #bg_cursos .title_info span[class*=inglês] {
+#controle_aula #bg_cursos .title span[class*=inglês] {
   color: red;
 }
-#controle_aula #bg_cursos .title_info span[class*=excel] {
+#controle_aula #bg_cursos .title span[class*=excel] {
   color: green;
 }
-#controle_aula #bg_cursos .title_info span[class^=informática], #controle_aula #bg_cursos .title_info span[class*=informática] {
+#controle_aula #bg_cursos .title span[class^=informática], #controle_aula #bg_cursos .title span[class*=informática] {
   color: blue !important;
 }
 #controle_aula #bg_cursos .bg_bimestres {

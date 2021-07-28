@@ -8,10 +8,8 @@ function ImportHtml(pathHtmlFile, target, scriptSRC = false){
             let script = document.createElement('script');
             script.src = scriptSRC; 
             element.appendChild(script);
-            
         }
     });
-
 }
 
 module.exports = ImportHtml;

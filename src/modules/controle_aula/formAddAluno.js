@@ -6,10 +6,48 @@ function eventFormsAdd() {
   document.querySelector("#form_add_aula").addEventListener("submit", (e) => {
     formAddAula(e);
   });
+  document.querySelector("#form_add_curso").addEventListener("submit", (e) => {
+    formAddCurso(e);
+  });
+}
+
+function formAddCurso(e) {
+  e.preventDefault();
+  let form = e.target;
+  let alunoHistorico = db.collection("aluno_historico");
+  alunoHistorico
+    .doc(form.select_aluno_add_curso.value)
+    .collection("cursos")
+    .doc(form.add_curso_nome_curso.value)
+    .set({
+      curso: form.add_curso_nome_curso.value,
+      bimestres: {
+        ['bimestre 1']: {},
+      },
+    },{merge: true})
+    /*
+    .then(() => {
+      alunoHistorico
+        .doc(form.ra.value)
+        .set({ nome: form.nome.value }, { merge: true });
+    })
+    */
+    //Remove conteúdo do formulário e acrescenta a mensagem
+    .then(() => showMessage("form_add_aluno", "Aluno salvo com sucesso!"))
+    //tira o diplay do formulário e block_screen
+    .then(() => {
+      setTimeout(() => {
+        e.target.style.display = "none";
+        changeCSSDisplay("#block_screen", "none");
+      }, 500);
+      
+    })
+    .catch((error) => console.error("Error writing document: ", error));
 }
 
 function changeCSSDisplay(target, display) {
   document.querySelector(target).style.display = display;
+
 }
 
 
@@ -60,6 +98,10 @@ function closeForm(e) {
 }
 
 function navAddFormsDisplayEvent() {
+  document.querySelector("#btn_add_curso").addEventListener("click", () => {
+    changeCSSDisplay("#form_add_curso", "block");
+    changeCSSDisplay("#block_screen", "block");
+  });
   document.querySelector("#btn_add_aluno").addEventListener("click", () => {
     changeCSSDisplay("#form_add_aluno", "block");
     changeCSSDisplay("#block_screen", "block");
@@ -95,7 +137,7 @@ function formAddAluno(e) {
     .set({
       curso: form.curso_nome.value,
       bimestres: {
-        bimestre_1: {},
+        ['bimestre 1']: {},
       },
     })
     .then(() => {
