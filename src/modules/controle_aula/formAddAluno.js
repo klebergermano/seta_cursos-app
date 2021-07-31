@@ -1,4 +1,3 @@
-
 function eventFormsAdd() {
   document.querySelector("#form_add_aluno").addEventListener("submit", (e) => {
     formAddAluno(e);
@@ -13,7 +12,6 @@ function eventFormsAdd() {
 
 
 
-
 function formAddCurso(e) {
   e.preventDefault();
   let form = e.target;
@@ -24,12 +22,15 @@ function formAddCurso(e) {
     .doc(RA)
     .collection("cursos")
     .doc(form.add_curso_nome_curso.value)
-    .set({
-      curso: form.add_curso_nome_curso.value,
-      bimestres: {
-        ['bimestre 1']: {},
+    .set(
+      {
+        curso: form.add_curso_nome_curso.value,
+        bimestres: {
+          ["bimestre 1"]: {},
+        },
       },
-    },{merge: true})
+      { merge: true }
+    )
 
     //Remove conteúdo do formulário e acrescenta a mensagem
     .then(() => showMessage("form_add_aluno", "Aluno salvo com sucesso!"))
@@ -39,11 +40,11 @@ function formAddCurso(e) {
         e.target.style.display = "none";
         changeCSSDisplay("#block_screen", "none");
       }, 500);
-      
-    }).then(()=>{
+    })
+    .then(() => {
       //seta o #select_aluno com o RA que acabou de ser atualizado
-      setSelectedInASelectBasedOnRA("#select_aluno",RA);
-      setSelectedInASelectBasedOnRA("#select_aluno_add_aula",RA);
+      setSelectedInASelectBasedOnRA("#select_aluno", RA);
+      setSelectedInASelectBasedOnRA("#select_aluno_add_aula", RA);
     })
     .catch((error) => console.error("Error writing document: ", error));
 }
@@ -63,7 +64,6 @@ function selectAlunoAddAula(e) {
   let RA = e.target.value;
   insertSelectCursosAddAula(RA);
 }
-
 
 insertSelectCursosAddAula("RA01");
 
@@ -121,7 +121,7 @@ function formAddAluno(e) {
     .set({
       curso: form.curso_nome.value,
       bimestres: {
-        ['bimestre 1']: {},
+        ["bimestre 1"]: {},
       },
     })
     .then(() => {
@@ -137,7 +137,6 @@ function formAddAluno(e) {
         e.target.style.display = "none";
         changeCSSDisplay("#block_screen", "none");
       }, 500);
-      
     })
     .catch((error) => console.error("Error writing document: ", error));
 }
@@ -157,41 +156,38 @@ function blocoAddAula(dados) {
 }
 function formAddAula(e) {
   e.preventDefault();
-    let form = e.target;
-let RA = form.select_aluno_add_aula.value;
-    aulaHistorico = db
-      .collection("aluno_historico")
-      .doc(RA)
-      .collection("cursos")
-      .doc(form.select_curso_add_aluno.value)
-      .set({
-      bimestres: blocoAddAula(form)
-      },{merge: true})
-      //Remove conteúdo do formulário e acrescenta a mensagem
-      .then(() => showMessage("form_add_aluno", "Aula adicionada com sucesso!"))
-      .then(() => {
-        setTimeout(() => {
-          e.target.style.display = "none";
-          changeCSSDisplay("#block_screen", "none");
-        }, 500);
-      }).then(()=>{
-            //seta o #select_aluno com o RA que acabou de ser atualizado
-            setSelectedInASelectBasedOnRA("#select_aluno",RA);
-            setSelectedInASelectBasedOnRA("#select_aluno_add_curso",RA);
-            
-      })
-      .catch((error) => console.error("Error writing document: ", error));
+  let form = e.target;
+  let RA = form.select_aluno_add_aula.value;
+  aulaHistorico = db
+    .collection("aluno_historico")
+    .doc(RA)
+    .collection("cursos")
+    .doc(form.select_curso_add_aluno.value)
+    .set(
+      {
+        bimestres: blocoAddAula(form),
+      },
+      { merge: true }
+    )
+    //Remove conteúdo do formulário e acrescenta a mensagem
+    .then(() => showMessage("form_add_aluno", "Aula adicionada com sucesso!"))
+    .then(() => {
+      setTimeout(() => {
+        e.target.style.display = "none";
+        changeCSSDisplay("#block_screen", "none");
+      }, 500);
+    })
+    .then(() => {
+      //seta o #select_aluno com o RA que acabou de ser atualizado
+      setSelectedInASelectBasedOnRA("#select_aluno_add_aula", RA);
+      setSelectedInASelectBasedOnRA("#select_aluno_add_curso", RA);
+    })
+    .catch((error) => console.error("Error writing document: ", error));
 }
 
-
-
-
-
 (async function loadDocuments() {
-
   AddEventBtnCloseForm();
   navAddFormsDisplayEvent();
   eventFormsAdd();
   eventSelectAlunoAddAula();
-
 })();

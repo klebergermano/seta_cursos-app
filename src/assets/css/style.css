@@ -473,6 +473,10 @@ dialog {
   background: #ddd;
 }
 
+#form_add_curso {
+  display: none;
+}
+
 #form_add_aula {
   display: none;
   transition: all 2s;
@@ -482,6 +486,10 @@ dialog {
   display: flex;
   max-width: 100%;
 }
+#form_add_aula #aula_numero option[disabled=true] {
+  background: #eec;
+}
+
 #btn_novo_aluno {
   float: right;
   flex-basis: 100%;

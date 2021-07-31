@@ -1,6 +1,6 @@
 
 <!------------------------------------ADD ALUNO----------------------->
-
+<button id='btn_teste'>Teste</button>
 <form id="form_add_aluno" class="forms">
   <span class="close_form">X</span>
   <h3>Adicionar Aluno</h3>
@@ -79,7 +79,9 @@
     </div>
   <div>
     <label>Bimestres</label>
-    <select id='select_bimestre_add_aluno'>
+    <select required id='select_bimestre_add_aluno'>
+     
+      <option value='' disabled  selected>Selecione o Bimestre</option>
          <option value='bimestre 1'>Bimestre 1</option>
          <option value='bimestre 2'>Bimestre 2</option>
          <option value='bimestre 3'>Bimestre 3</option>
@@ -89,7 +91,9 @@
     </select>
 
     <label>Aulas Nº:</label>
-    <select id='aula_numero'>
+    <select required id='aula_numero' disabled>
+      <option value='' disabled selected>Selecione a Aula</option>
+
       <option value="aula 01">Aula 1</option>
       <option value="aula 02">Aula 2</option>
       <option value="aula 03">Aula 3</option>
@@ -112,10 +116,10 @@
   </div>
 
   <div id="data_hora">
-    <label>Data:</label><input id="data" type="date" /> <label>Horário:</label
+    <label>Data:</label><input required id="data" type="date" /> <label>Horário:</label
     ><input id="horario" />
   </div>
-  <div><label>Tema:</label><input id="tema" type="text" /></div>
-  <div><label>Detalhes:</label><textarea id="detalhes"></textarea></div>
+  <div><label>Tema:</label><input  required  id="tema" type="text" /></div>
+  <div><label>Detalhes:</label><textarea  required  id="detalhes"></textarea></div>
   <input type="submit" value="Salvar" />
 </form>
