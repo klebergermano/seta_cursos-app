@@ -1,4 +1,3 @@
-
 function eventFormsAdd() {
   document.querySelector("#form_add_aluno").addEventListener("submit", (e) => {
     formAddAluno(e);
@@ -11,27 +10,28 @@ function eventFormsAdd() {
   });
 }
 
+
+
 function formAddCurso(e) {
   e.preventDefault();
   let form = e.target;
+  let RA = form.select_aluno_add_curso.value;
+
   let alunoHistorico = db.collection("aluno_historico");
   alunoHistorico
-    .doc(form.select_aluno_add_curso.value)
+    .doc(RA)
     .collection("cursos")
     .doc(form.add_curso_nome_curso.value)
-    .set({
-      curso: form.add_curso_nome_curso.value,
-      bimestres: {
-        ['bimestre 1']: {},
+    .set(
+      {
+        curso: form.add_curso_nome_curso.value,
+        bimestres: {
+          ["bimestre 1"]: {},
+        },
       },
-    },{merge: true})
-    /*
-    .then(() => {
-      alunoHistorico
-        .doc(form.ra.value)
-        .set({ nome: form.nome.value }, { merge: true });
-    })
-    */
+      { merge: true }
+    )
+
     //Remove conteúdo do formulário e acrescenta a mensagem
     .then(() => showMessage("form_add_aluno", "Aluno salvo com sucesso!"))
     //tira o diplay do formulário e block_screen
@@ -40,17 +40,18 @@ function formAddCurso(e) {
         e.target.style.display = "none";
         changeCSSDisplay("#block_screen", "none");
       }, 500);
-      
+    })
+    .then(() => {
+      //seta o #select_aluno com o RA que acabou de ser atualizado
+      setSelectedInASelectBasedOnRA("#select_aluno", RA);
+      setSelectedInASelectBasedOnRA("#select_aluno_add_aula", RA);
     })
     .catch((error) => console.error("Error writing document: ", error));
 }
 
 function changeCSSDisplay(target, display) {
   document.querySelector(target).style.display = display;
-
 }
-
-
 //Insere os cursos do aluno quando o select_aluno_add_aula é alterado
 function eventSelectAlunoAddAula() {
   let aluno = document.querySelector("#select_aluno_add_aula");
@@ -64,23 +65,6 @@ function selectAlunoAddAula(e) {
   insertSelectCursosAddAula(RA);
 }
 
-function insertSelectCursosAddAula(RA){
-  let aluno = db
-    .collection("aluno_historico")
-    .doc(RA)
-    .collection("cursos")
-    .get();
-  let option = ``;
-  aluno
-    .then((al) => {
-      al.forEach((item) => {
-        option += `<option>${item.data().curso}</option>`;
-      });
-    })
-    .then(() => {
-      document.querySelector("#select_curso_add_aluno").innerHTML = option;
-    });
-}
 insertSelectCursosAddAula("RA01");
 
 function AddEventBtnCloseForm() {
@@ -137,7 +121,7 @@ function formAddAluno(e) {
     .set({
       curso: form.curso_nome.value,
       bimestres: {
-        ['bimestre 1']: {},
+        ["bimestre 1"]: {},
       },
     })
     .then(() => {
@@ -153,11 +137,9 @@ function formAddAluno(e) {
         e.target.style.display = "none";
         changeCSSDisplay("#block_screen", "none");
       }, 500);
-      
     })
     .catch((error) => console.error("Error writing document: ", error));
 }
-
 
 function blocoAddAula(dados) {
   let aula = {
@@ -174,56 +156,38 @@ function blocoAddAula(dados) {
 }
 function formAddAula(e) {
   e.preventDefault();
-    let form = e.target;
-let RA = form.select_aluno_add_aula.value;
-    aulaHistorico = db
-      .collection("aluno_historico")
-      .doc(RA)
-      .collection("cursos")
-      .doc(form.select_curso_add_aluno.value)
-      .set({
-      bimestres: blocoAddAula(form)
-      },{merge: true})
-      //Remove conteúdo do formulário e acrescenta a mensagem
-      .then(() => showMessage("form_add_aluno", "Aula adicionada com sucesso!"))
-      .then(() => {
-        setTimeout(() => {
-          e.target.style.display = "none";
-          changeCSSDisplay("#block_screen", "none");
-        }, 500);
-      }).then(()=>{
-            //seta o #select_aluno com o RA que acabou de ser atualizado
-            setSelectedInSelectAluno(RA);
-      })
-      .catch((error) => console.error("Error writing document: ", error));
+  let form = e.target;
+  let RA = form.select_aluno_add_aula.value;
+  aulaHistorico = db
+    .collection("aluno_historico")
+    .doc(RA)
+    .collection("cursos")
+    .doc(form.select_curso_add_aluno.value)
+    .set(
+      {
+        bimestres: blocoAddAula(form),
+      },
+      { merge: true }
+    )
+    //Remove conteúdo do formulário e acrescenta a mensagem
+    .then(() => showMessage("form_add_aluno", "Aula adicionada com sucesso!"))
+    .then(() => {
+      setTimeout(() => {
+        e.target.style.display = "none";
+        changeCSSDisplay("#block_screen", "none");
+      }, 500);
+    })
+    .then(() => {
+      //seta o #select_aluno com o RA que acabou de ser atualizado
+      setSelectedInASelectBasedOnRA("#select_aluno_add_aula", RA);
+      setSelectedInASelectBasedOnRA("#select_aluno_add_curso", RA);
+    })
+    .catch((error) => console.error("Error writing document: ", error));
 }
-
-function setSelectedInSelectAluno(RA){
-        //Remove o select das options "select_aluno" e adiciona selected no item salvo
-        let select_aluno =  document.querySelector('#select_aluno');
-        let allOptions = select_aluno.options;
-        //limpa o selected=true de todas as opções do select. 
-        for(item of allOptions){
-          item.removeAttribute('selected')
-        }
-        //Readiciona os mesmos options no select para garantir que a option com 
-        //selected=true funcione
-        select_aluno.innerHTML = select_aluno.innerHTML;
-
-        //adiciona o select=true na opção com o RA que acabou de ser salvo
-        let option = select_aluno.querySelector(`option[value='${RA}']`);
-        option.setAttribute('selected', true);
-}
-
-
-
-
 
 (async function loadDocuments() {
-
   AddEventBtnCloseForm();
   navAddFormsDisplayEvent();
   eventFormsAdd();
   eventSelectAlunoAddAula();
-
 })();

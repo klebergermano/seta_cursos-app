@@ -35,6 +35,9 @@ cursor:pointer;
   }
 
 }
+#form_add_curso{
+  display:none;
+}
 #form_add_aula{
   display:none;
 transition: all 2s;
@@ -45,6 +48,12 @@ background:#fff;
         max-width: 100%;
         input{
         }
+    }
+
+    #aula_numero{
+      option[disabled=true]{
+        background:#eec;
+      }
     }
 
 }
