@@ -476,6 +476,12 @@ dialog {
 #form_add_curso {
   display: none;
 }
+#form_add_curso select > option:disabled {
+  background: #ffc;
+}
+#form_add_curso select > option:first-child {
+  background: #f0f0f0;
+}
 
 #form_add_aula {
   display: none;
@@ -500,6 +506,13 @@ dialog {
 #form_add_aluno {
   display: none;
 }
+#form_add_aluno #add_aluno_ra {
+  text-transform: uppercase;
+}
+#form_add_aluno .blocked {
+  border: 1px solid red;
+  background: #fad3d3;
+}
 #form_add_aluno div #ra {
   max-width: 20px;
   flex-shrink: 1;
@@ -518,6 +531,10 @@ dialog {
   color: #0064ff;
   background: #ddd;
   text-decoration: none;
+}
+
+input:disabled {
+  background: #999 !important;
 }
 
 #controle_aula {

@@ -37,6 +37,12 @@ cursor:pointer;
 }
 #form_add_curso{
   display:none;
+  select > option:disabled{
+    background:#ffc;
+  }
+  select > option:first-child{
+    background:#f0f0f0;
+  }
 }
 #form_add_aula{
   display:none;
@@ -67,6 +73,13 @@ background:#fff;
 }
 #form_add_aluno{
  display:none;
+ #add_aluno_ra{
+   text-transform: uppercase;
+ }
+ .blocked{
+   border: 1px solid red;
+   background:rgb(250, 211, 211);
+ }
 
 div{
   #ra{
@@ -90,4 +103,8 @@ div{
     background: #ddd;
     text-decoration: none;
   }
+}
+input:disabled{
+  
+  background:#999 !important;
 }

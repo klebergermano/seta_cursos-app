@@ -10,8 +10,6 @@ function eventFormsAdd() {
   });
 }
 
-
-
 function formAddCurso(e) {
   e.preventDefault();
   let form = e.target;
@@ -45,6 +43,7 @@ function formAddCurso(e) {
       //seta o #select_aluno com o RA que acabou de ser atualizado
       setSelectedInASelectBasedOnRA("#select_aluno", RA);
       setSelectedInASelectBasedOnRA("#select_aluno_add_aula", RA);
+      
     })
     .catch((error) => console.error("Error writing document: ", error));
 }
@@ -115,7 +114,7 @@ function formAddAluno(e) {
   let form = e.target;
   let alunoHistorico = db.collection("aluno_historico");
   alunoHistorico
-    .doc(form.ra.value)
+    .doc(form.add_aluno_ra.value)
     .collection("cursos")
     .doc(form.curso_nome.value)
     .set({
@@ -126,7 +125,7 @@ function formAddAluno(e) {
     })
     .then(() => {
       alunoHistorico
-        .doc(form.ra.value)
+        .doc(form.add_aluno_ra.value)
         .set({ nome: form.nome.value }, { merge: true });
     })
     //Remove conteúdo do formulário e acrescenta a mensagem
@@ -190,4 +189,8 @@ function formAddAula(e) {
   navAddFormsDisplayEvent();
   eventFormsAdd();
   eventSelectAlunoAddAula();
+  eventSelectAlunoAddCurso();
+  validaSelectOptionsAddAluno();
+  insertOptionsAddAlunoRA();
+
 })();
