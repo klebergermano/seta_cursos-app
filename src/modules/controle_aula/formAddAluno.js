@@ -10,6 +10,7 @@ function eventFormsAdd() {
   });
 }
 
+
 function formAddCurso(e) {
   e.preventDefault();
   let form = e.target;

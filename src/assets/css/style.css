@@ -700,8 +700,7 @@ input:disabled {
   width: auto;
   max-width: 300px;
   background: #ffc;
-  cursor: pointer;
-  height: 50px;
+  height: 55px;
   border: 1px solid #ccc;
   overflow: hidden;
   transition: height 0.5s;
@@ -713,22 +712,59 @@ input:disabled {
   margin-top: 10px;
   border: 1px solid #999;
   overflow-y: scroll;
-  height: 140px;
-  scrollbar-color: red yellow;
+  height: 145px;
+  padding: 5px;
+}
+#controle_aula #bg_cursos .bg_bimestres .bimestres .aulas .aula_numero {
+  text-transform: capitalize;
+  color: #000;
+}
+#controle_aula #bg_cursos .bg_bimestres .bimestres .aulas .aula_data {
+  padding: 5px 0px;
+}
+#controle_aula #bg_cursos .bg_bimestres .bimestres .aulas .aula_data svg {
+  max-height: 14px;
+  margin-bottom: -2px;
+  color: #444;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .open_aula {
-  height: 220px;
+  height: 240px;
+}
+#controle_aula #bg_cursos .bg_bimestres .bimestres .btn_deletar_aula {
+  cursor: pointer;
+  float: left;
+  padding: 3px;
+  margin-top: 5px;
+  font-size: 12px;
+  color: #444;
+}
+#controle_aula #bg_cursos .bg_bimestres .bimestres .btn_deletar_aula:hover {
+  background: #f9f0f0;
+  color: #db1e1e;
+}
+#controle_aula #bg_cursos .bg_bimestres .bimestres .btn_edit_aulas {
+  float: right;
+  padding: 3px;
+  margin-top: 5px;
+  cursor: pointer;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .btn_open_close_aulas {
+  cursor: pointer;
   position: absolute;
   right: 0px;
   top: 0px;
   font-size: 16px;
-  background: #eed;
+  background: #dd9;
   text-align: center;
-  height: 25px;
-  width: 40px;
+  height: 22px;
+  width: 30px;
   padding: 2px;
+  color: #444;
+  font-stretch: expanded;
+  border-radius: 0px 0px 0px 3px;
+}
+#controle_aula #bg_cursos .bg_bimestres .bimestres .btn_open_close_aulas svg {
+  margin-top: 1px;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .btn_open_close_aulas:active {
   background: #aa9;
