@@ -1,17 +1,20 @@
 
 <!------------------------------------ADD ALUNO----------------------->
-<button id='btn_teste'>Teste</button>
 <form id="form_add_aluno" class="forms">
   <span class="close_form">X</span>
   <h3>Adicionar Aluno</h3>
   <div>
-    <label for="nome">Aluno:</label><input required id="nome" type="text" />
-    <label for="ra">RA:</label><input required id="ra" type="text" />
+    <label for="nome">Aluno:</label><input required id="nome" type="text" placeholder='Digite o nome do aluno' />
+    <label for="add_aluno_ra">RA:</label>
+    <input required id="add_aluno_ra" type="text" list="add_aluno_datalist_ra"/>
+<datalist id='add_aluno_datalist_ra'>
+  <option value='tesette'></option>
+</datalist>
   </div>
   <div>
-    <label><span class='required'>&nbsp;&nbsp;*</span> Curso:</label> 
+    <label><span class='required'>&nbsp;&nbsp; *</span> Curso:</label> 
     <select required id='curso_nome'>
-      <option selected="true" disabled="disabled"></option>
+      <option selected="true" disabled value=''>Selecione o Curso</option>
       <option class='informatica' data-abreviation='IFK' value='Informática KIDS'>Informática KIDS</option>
       <option class='informatica' data-abreviation='IFC' value='Informática Completo'>Informática Completo</option>
       <option class='informatica' data-abreviation='IFPRO' value='Informática Profissional'>Informática Profissional</option>
@@ -42,7 +45,7 @@
   <div>
     <label><span class='required'>&nbsp;&nbsp;*</span> Curso:</label> 
     <select required id='add_curso_nome_curso'>
-      <option selected="true" disabled="disabled"></option>
+      <option selected="true" disabled="disabled" value=''>Selecione o Curso</option>
       <option class='informatica' data-abreviation='IFK' value='Informática KIDS'>Informática KIDS</option>
       <option class='informatica' data-abreviation='IFC' value='Informática Completo'>Informática Completo</option>
       <option class='informatica' data-abreviation='IFPRO' value='Informática Profissional'>Informática Profissional</option>

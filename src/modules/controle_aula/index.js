@@ -6,10 +6,134 @@ ImportHtml(
   "./modules/controle_aula/formAddAluno.js"
 );
 
+(async function InsertSelectAlunos(){
+  db.collection("aluno_historico").onSnapshot((snap) => {
+    let selectAluno = ``;
+    snap.forEach((item) => {
+      selectAluno += `<option value='${item.id}'>${item.id} - ${
+        item.data().nome
+      }</option>`;
+    });
+    document.querySelector("#select_aluno").innerHTML = selectAluno;
+    //insere options do select no "select_aluno_add_aula"
+    document.querySelector("#select_aluno_add_aula").innerHTML = selectAluno;
+    //insere options do select no "select_aluno_add_curso"
+    document.querySelector("#select_aluno_add_curso").innerHTML = selectAluno;
+  });
+})();
+
+function insertOptionsAddAlunoRA(){
+  let dataList = document.querySelector('#add_aluno_datalist_ra');
+   let options = createOptionsRA();
+   options.then((res)=>{
+     dataList.innerHTML = res;
+   });
+}            
+function blockSubmitForm(form){
+form.querySelector("input[type='submit']").setAttribute('disabled', true);
+}
+function removeblockSubmitForm(form){
+  form.querySelector("input[type='submit']").removeAttribute('disabled');
+  }
+function createOptionsRA(){
+  let array = "";
+  let listAlunoRA = getAlunosListRA();
+  let options = listAlunoRA.then((listRA) => {
+    listRA.forEach((list)=>{
+      console.log(list)
+      array += `<option value='${list}' />`;
+    });
+    return array;
+  });
+
+return options;
+}
+function validaSelectOptionsAddAluno() {
+
+ form = document.querySelector('#form_add_aluno');
+  document.querySelector('#add_aluno_ra').addEventListener('input', (e)=>{
+    let inputRA = e.target.value;
+    let listAlunoRA = getAlunosListRA();
+    let valida = listAlunoRA.then((listRA) => {
+
+    for(let i = 0; i <= listRA.length -1; i++){
+    if(inputRA.toUpperCase() === listRA[i]){
+      e.target.classList.add('blocked');
+    blockSubmitForm(form);
+      return false;
+
+    }else{
+      removeblockSubmitForm(form);
+      e.target.classList.remove('blocked');
+    }
+    }
+    })
+    return valida;
+});;
+}
+
+
+function getAlunosListRA() {
+  let alunosList = db.collection("aluno_historico").get();
+  let IDs = [];
+  let alunoListRA = alunosList.then((res) => {
+    res.forEach((item) => {
+      IDs.push(item.id);
+    });
+    return IDs.reverse();
+  });
+  return alunoListRA;
+}
+
+function eventSelectAlunoAddCurso() {
+  let aluno = document.querySelector("#select_aluno_add_curso");
+  aluno.addEventListener("input", (e) => {
+    validaSelectOptionsAddCurso();
+  });
+}
+
+function validaSelectOptionsAddCurso() {
+  let selectAluno = document.querySelector("#select_aluno_add_curso");
+  let RA = selectAluno.options[selectAluno.selectedIndex].value;
+  let cursos = getKeysCursos(RA);
+  cursos.then((res) => {
+    blockSelectOptionsAddCurso(res);
+  });
+}
+function blockSelectOptionsAddCurso(cursos) {
+  let selectCurso = document.querySelector("#add_curso_nome_curso");
+  //Remove os atributes "disabled" setados anteriormente
+  for (let k = 0; k <= selectCurso.options.length - 1; k++) {
+    if (selectCurso.options[k].value !== "") {
+      selectCurso.options[k].removeAttribute("disabled");
+    }
+  }
+  //Adiciona disabled nas options que ja existirem no array cursos
+  for (let j = 0; j <= cursos.length - 1; j++) {
+    for (let i = 0; i <= selectCurso.options.length - 1; i++) {
+      if (selectCurso.options[i].value === cursos[j]) {
+        selectCurso.options[i].setAttribute("disabled", true);
+      }
+    }
+  }
+}
+
+function getKeysCursos(RA) {
+  let aluno = alunoHistoricoDB(RA);
+  let cursos = [];
+  let keys = aluno.then((res) => {
+    res.forEach((item) => {
+      cursos.push(item.data().curso);
+    });
+    return cursos;
+  });
+  return keys;
+}
+
 function validaFormAddAulaOptionsAulaNumero() {
   let infoAula;
   infoAula = getInfoFormAddAula();
-  blockSelectOptiosAddAulas(infoAula.RA, infoAula.curso, infoAula.bimestre);
+  blockSelectOptionsAddAulas(infoAula.RA, infoAula.curso, infoAula.bimestre);
 }
 
 function enableSelectAulaNumeroWhenBimestreChange() {
@@ -19,7 +143,6 @@ function enableSelectAulaNumeroWhenBimestreChange() {
 function setSelectAulaDefaultWhenBimestreChange() {
   let select = document.querySelector("#aula_numero");
   select.selectedIndex = 0;
-
 }
 
 function getInfoFormAddAula() {
@@ -45,7 +168,7 @@ function getInfoFormAddAula() {
   return infoAddAula;
 }
 
-function blockSelectOptiosAddAulas(RA, curso, bimestre) {
+function blockSelectOptionsAddAulas(RA, curso, bimestre) {
   //Bloqueia as options do select #aula_numero no formulário form_add_aula
   let select = document.querySelector("#aula_numero");
   let aulasKeys = getKeysAulas(RA, curso, bimestre);
@@ -58,7 +181,6 @@ function blockSelectOptiosAddAulas(RA, curso, bimestre) {
         if (select.options[i].value !== "") {
           select.options[i].removeAttribute("disabled");
         }
-
         //res[j] são as aulas ja feitas
         for (let j = 0; j <= res.length; j++) {
           if (res[j] === select.options[i].value) {
@@ -71,8 +193,7 @@ function blockSelectOptiosAddAulas(RA, curso, bimestre) {
 }
 function getKeysAulas(RA, curso, bimestre) {
   let aluno = alunoHistoricoDB(RA);
-  //let curso = "Excel Avançado";
-  //let bimestre = "bimestre 1";
+
   let keysAulas = [];
   let keys = aluno.then((res) => {
     res.forEach((e) => {
@@ -100,7 +221,6 @@ function eventChangeSelectAlunoAddCurso() {
     .addEventListener("input", (e) => {
       validaFormAddAulaOptionsAulaNumero();
       enableSelectAulaNumeroWhenBimestreChange();
-      
     });
 }
 
@@ -383,24 +503,6 @@ function InsertBlockAulas(alunoData, alunoInfoGeral, changes) {
   document.querySelector("#bg_cursos").innerHTML = resultHTML;
 }
 
-(async function InsertSelectAlunos() {
-  db.collection("aluno_historico").onSnapshot((snap) => {
-    let selectAluno = ``;
-    snap.forEach((item) => {
-      selectAluno += `<option value='${item.id}'>${item.id} - ${
-        item.data().nome
-      }</option>`;
-    });
-    document.querySelector("#select_aluno").innerHTML = selectAluno;
-
-    //insere options do select no "select_aluno_add_aula"
-    document.querySelector("#select_aluno_add_aula").innerHTML = selectAluno;
-
-    //insere options do select no "select_aluno_add_curso"
-    document.querySelector("#select_aluno_add_curso").innerHTML = selectAluno;
-  });
-})();
-
 async function getAlunoInfoGeral(RA) {
   let alunoInfo = await db
     .collection("aluno_historico")
@@ -456,5 +558,6 @@ function realTimeDataAlunoHistorico(RA) {
 (async function loadDocuments() {
   insertAulasWhenChangeAluno();
   realTimeDataAlunoHistorico("RA01");
+
 })();
 //----------------------------------------------------------
