@@ -1,5 +1,10 @@
 //formAddAuluno.js utiliza funções disponivéis no index.js
+import testes from './testes.js';
 
+testes('adsfasdfsa');
+//========================================================================================================
+//======================================= FORM ========================================================
+//========================================================================================================
 function eventFormsAdd() {
   document.querySelector("#form_add_aluno").addEventListener("submit", (e) => {
     formAddAluno(e);
@@ -12,12 +17,10 @@ function eventFormsAdd() {
   });
 }
 
-
 function formAddCurso(e) {
   e.preventDefault();
   let form = e.target;
   let RA = form.select_aluno_add_curso.value;
-
   let alunoHistorico = db.collection("aluno_historico");
   alunoHistorico
     .doc(RA)
@@ -188,6 +191,7 @@ function formAddAula(e) {
 }
 
 (async function loadDocuments() {
+  /*
   AddEventBtnCloseForm();
   navAddFormsDisplayEvent();
   eventFormsAdd();
@@ -195,8 +199,13 @@ function formAddAula(e) {
   eventSelectAlunoAddCurso();
   validaSelectOptionsAddAluno();
   insertOptionsAddAlunoRA();
-
+*/
 })();
+
+//========================================================================================================
+//======================================= INDEX ========================================================
+//========================================================================================================
+
 
 (async function InsertSelectAlunos() {
   db.collection("aluno_historico").onSnapshot((snap) => {
@@ -445,6 +454,9 @@ function eventChangeSelectAlunoAddCurso() {
 
 function insertAulasWhenChangeAluno() {
   let select = document.querySelector("#select_aluno");
+  if(select){
+
+
   select.addEventListener("input", () => {
     let RA = select.options[select.selectedIndex].value;
     realTimeDataAlunoHistorico(RA);
@@ -457,6 +469,7 @@ function insertAulasWhenChangeAluno() {
     //de cursos em select_aluno_add_aula
     insertSelectCursosAddAula(RA);
   });
+}
 }
 //Seta as opções de cursos em select_curso_add_aluno;
 function insertSelectCursosAddAula(RA) {
@@ -533,6 +546,7 @@ e.target.innerHTML = '';
     });
   });
 }
+//==========================================================================================================
 //&#709;
 function blockAula(aulaDados, n_aula, n_bimestre) {
   //substitui espaços em branco pelo underscore e passa para minúsculas as letras
@@ -589,6 +603,8 @@ function blockAula(aulaDados, n_aula, n_bimestre) {
 `;
   return block;
 }
+
+//========================================================================================================
 
 async function addMenuCursosAluno(RA, nomeAluno) {
   let nomeA = document.createElement("span");
@@ -651,7 +667,9 @@ function sortObjectKeys(obj) {
 }
 
 function criaHtmlCursoContent(curso_nome_bd) {
-  id_curso = curso_nome_bd.replace(/\s+|\(|\)/g, "_").toLowerCase();
+  if(curso_nome_bd){
+
+ let id_curso = curso_nome_bd.replace(/\s+|\(|\)/g, "_").toLowerCase();
 
   let htmlAula = document.createElement("div");
   htmlAula.innerHTML = `
@@ -662,6 +680,10 @@ function criaHtmlCursoContent(curso_nome_bd) {
     </div>
   </div>`;
   return htmlAula;
+}else{
+  return false;
+}
+
 }
 
 //Insere as aulas na página
@@ -767,8 +789,9 @@ function InsertBlockAulas(alunoData, alunoInfoGeral, changes) {
         `[data-active="${nomeCursoAtualizado}"]`
       );
       x[0].classList.add("active");
-    });
-  //-------------------------------------------------------------------
+    });    
+    
+//========================================================================
 
   //adiciona todo o conteúdo gerado em #bg_cursos
   document.querySelector("#bg_cursos").innerHTML = resultHTML;
@@ -829,7 +852,17 @@ function realTimeDataAlunoHistorico(RA) {
 
 //--------------------Carrega funções----------------------------
 (async function loadDocuments() {
+
   insertAulasWhenChangeAluno();
   realTimeDataAlunoHistorico("RA01");
+
+  //FORMS
+  AddEventBtnCloseForm();
+  navAddFormsDisplayEvent();
+  eventFormsAdd();
+  eventSelectAlunoAddAula();
+  eventSelectAlunoAddCurso();
+  validaSelectOptionsAddAluno();
+  insertOptionsAddAlunoRA();
 })();
 //----------------------------------------------------------
