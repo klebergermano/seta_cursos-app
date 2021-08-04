@@ -9,6 +9,7 @@ function ImportHtml(pathHtmlFile, target, scriptSRC = false){
         if(scriptSRC){
             let script = document.createElement('script');
             script.src = scriptSRC; 
+           // script.setAttribute('type', 'module');
             element.appendChild(script);
         }
     });

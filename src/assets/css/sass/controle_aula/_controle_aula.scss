@@ -182,10 +182,10 @@
           min-width: 200px;
           flex-grow: 1;
         }
+        
         .aulas {
           position:relative;
-          margin: 5px;
-
+          margin-top: 10px;
           width: auto;
           max-width:300px;
           background: #ffc;
@@ -197,6 +197,7 @@
           font-size: 13px;
           padding: 5px;
 
+      
           .aula_detalhes{
             margin-top:10px;
             border:1px solid #999;
@@ -242,15 +243,25 @@
            padding:3px; 
            margin-top:5px;
            cursor:pointer;
+           &:hover{
+            background: #f9f0f0;
+            color:$primary-color;
+
+          }
+           &:active{
+            background: #f9f0f0;
+            color:darken($primary-color, 10%);
+           }
          }
   
+     
         .btn_open_close_aulas{
           cursor: pointer;
           position:absolute; 
          right:0px;
          top:0px;
           font-size:16px;
-          background:#dd9; 
+          background:#dda; 
           text-align: center;
           height:22px;
           width:30px;

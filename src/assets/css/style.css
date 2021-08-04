@@ -496,6 +496,25 @@ dialog {
   background: #eec;
 }
 
+.edit_form {
+  background: #ffc !important;
+}
+.edit_form div label {
+  background: transparent !important;
+}
+.edit_form .disabled {
+  position: relative;
+  color: grey;
+}
+.edit_form .disabled:after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  content: " ";
+}
+
 #btn_novo_aluno {
   float: right;
   flex-basis: 100%;
@@ -696,7 +715,7 @@ input:disabled {
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .aulas {
   position: relative;
-  margin: 5px;
+  margin-top: 10px;
   width: auto;
   max-width: 300px;
   background: #ffc;
@@ -748,13 +767,21 @@ input:disabled {
   margin-top: 5px;
   cursor: pointer;
 }
+#controle_aula #bg_cursos .bg_bimestres .bimestres .btn_edit_aulas:hover {
+  background: #f9f0f0;
+  color: #0064ff;
+}
+#controle_aula #bg_cursos .bg_bimestres .bimestres .btn_edit_aulas:active {
+  background: #f9f0f0;
+  color: #0050cc;
+}
 #controle_aula #bg_cursos .bg_bimestres .bimestres .btn_open_close_aulas {
   cursor: pointer;
   position: absolute;
   right: 0px;
   top: 0px;
   font-size: 16px;
-  background: #dd9;
+  background: #dda;
   text-align: center;
   height: 22px;
   width: 30px;

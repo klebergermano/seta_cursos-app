@@ -1,4 +1,5 @@
 //formAddAuluno.js utiliza funções disponivéis no index.js
+
 ImportHtml(
   "./components/controle_aula/formAddAula.html",
   "#bg_forms_add",
@@ -20,6 +21,38 @@ ImportHtml(
     document.querySelector("#select_aluno_add_curso").innerHTML = selectAluno;
   });
 })();
+//-----------------------------EDIT ---------------------
+function clickEditButton(){
+  console.log('load');
+
+let btn = document.querySelectorAll('.btn_edit_aulas');
+btn.forEach((item)=>{
+  item.addEventListener('click', (e)=>{
+    showEditAula(e.target);
+  });
+});;
+}
+
+function showEditAula(e){
+  
+  let addForm = document.querySelector('#form_add_aula');
+  let savePreviousHTMLForm = addForm.innerHTML;
+  addForm.classList.add('edit_form');
+
+
+  changeCSSDisplay('#form_add_aula', 'block');
+  changeCSSDisplay('#block_screen', 'block');
+
+  let select = addForm.querySelectorAll('select')
+  select.forEach((item)=>{
+    item.setAttribute('disabled', true);
+  });
+  console.log(select);
+
+console.log(e);
+}
+
+//---------------------------------------------------------
 
 function insertOptionsAddAlunoRA() {
   let dataList = document.querySelector("#add_aluno_datalist_ra");
@@ -39,7 +72,6 @@ function createOptionsRA() {
   let listAlunoRA = getAlunosListRA();
   let options = listAlunoRA.then((listRA) => {
     listRA.forEach((list) => {
-      console.log(list);
       array += `<option value='${list}' />`;
     });
     return array;
@@ -304,7 +336,6 @@ e.target.innerHTML = '';
        svg.innerHTML = pathCloseIcon; 
       }
       
-
       e.target.appendChild(svg);
 
     });
@@ -597,6 +628,8 @@ function realTimeDataAlunoHistorico(RA) {
       alunoH.then((aluno) => {
         alunoInfoGeral.then((res) => {
           InsertBlockAulas(aluno, res, changes);
+        }).then(()=>{
+          clickEditButton()
         });
       });
     });
