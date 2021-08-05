@@ -1,6 +1,6 @@
 //Funções Globais
-const ImportHtml = require("./modules/#common/ImportHtml.js");
-const ImportHtmlUsingNav = require("./modules/#common/ImportHtmlUsingNav.js");
+const ImportHtml = require("./modules/common/ImportHtml.js");
+const ImportHtmlUsingNav = require("./modules/common/ImportHtmlUsingNav.js");
 
 
 

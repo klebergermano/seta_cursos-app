@@ -1,7 +1,10 @@
 //formAddAuluno.js utiliza funções disponivéis no index.js
-import testes from './testes.js';
+import testes from "./testes.js";
+testes("adsfasdfsaaaaaaaaaaaaaaaa");
 
-testes('adsfasdfsa');
+import * as commonFunc from "../common/commonFunctions.js";
+
+//commonFunc.changeCSSDisplay
 //========================================================================================================
 //======================================= FORM ========================================================
 //========================================================================================================
@@ -37,26 +40,22 @@ function formAddCurso(e) {
     )
 
     //Remove conteúdo do formulário e acrescenta a mensagem
-    .then(() => showMessage("form_add_aluno", "Aluno salvo com sucesso!"))
+    .then(() => commonFunc.showMessage("form_add_aluno", "Aluno salvo com sucesso!"))
     //tira o diplay do formulário e block_screen
     .then(() => {
       setTimeout(() => {
         e.target.style.display = "none";
-        changeCSSDisplay("#block_screen", "none");
+        commonFunc.changeCSSDisplay("#block_screen", "none");
       }, 500);
     })
     .then(() => {
       //seta o #select_aluno com o RA que acabou de ser atualizado
       setSelectedInASelectBasedOnRA("#select_aluno", RA);
       setSelectedInASelectBasedOnRA("#select_aluno_add_aula", RA);
-      
     })
     .catch((error) => console.error("Error writing document: ", error));
 }
 
-function changeCSSDisplay(target, display) {
-  document.querySelector(target).style.display = display;
-}
 //Insere os cursos do aluno quando o select_aluno_add_aula é alterado
 function eventSelectAlunoAddAula() {
   let aluno = document.querySelector("#select_aluno_add_aula");
@@ -75,45 +74,26 @@ insertSelectCursosAddAula("RA01");
 function AddEventBtnCloseForm() {
   document.querySelectorAll(".close_form").forEach((item) => {
     item.addEventListener("click", (e) => {
-      closeForm(e);
+      commonFunc.parenteDisplayAndBlockScreenNone(e);
     });
   });
 }
 
-function closeForm(e) {
-  //Pega o elemento "parent" do event e set display none.
-  e.target.parentElement.style.display = "none";
-  changeCSSDisplay("#block_screen", "none");
-}
-
 function navAddFormsDisplayEvent() {
   document.querySelector("#btn_add_curso").addEventListener("click", () => {
-    changeCSSDisplay("#form_add_curso", "block");
-    changeCSSDisplay("#block_screen", "block");
+    commonFunc.changeCSSDisplay("#form_add_curso", "block");
+    commonFunc.changeCSSDisplay("#block_screen", "block");
   });
   document.querySelector("#btn_add_aluno").addEventListener("click", () => {
-    changeCSSDisplay("#form_add_aluno", "block");
-    changeCSSDisplay("#block_screen", "block");
+    commonFunc.changeCSSDisplay("#form_add_aluno", "block");
+    commonFunc.changeCSSDisplay("#block_screen", "block");
   });
   document.querySelector("#btn_add_aula").addEventListener("click", () => {
-    changeCSSDisplay("#form_add_aula", "block");
-    changeCSSDisplay("#block_screen", "block");
+    commonFunc.changeCSSDisplay("#form_add_aula", "block");
+    commonFunc.changeCSSDisplay("#block_screen", "block");
   });
 }
 
-function showMessage(targetID, message) {
-  let previousHTML = document.getElementById(targetID).innerHTML;
-  document.getElementById(
-    targetID
-  ).innerHTML = `<div class='show_message'>${message}</div>`;
-  setTimeout(() => {
-    document.getElementById(targetID).innerHTML = previousHTML;
-  }, 2000);
-  //restaura a função de fechar do formulário
-  setTimeout(() => {
-    AddEventBtnCloseForm();
-  }, 2200);
-}
 
 function formAddAluno(e) {
   e.preventDefault();
@@ -135,12 +115,12 @@ function formAddAluno(e) {
         .set({ nome: form.nome.value }, { merge: true });
     })
     //Remove conteúdo do formulário e acrescenta a mensagem
-    .then(() => showMessage("form_add_aluno", "Aluno salvo com sucesso!"))
+    .then(() => commonFunc.showMessage("form_add_aluno", "Aluno salvo com sucesso!"))
     //tira o diplay do formulário e block_screen
     .then(() => {
       setTimeout(() => {
         e.target.style.display = "none";
-        changeCSSDisplay("#block_screen", "none");
+        commonFunc.changeCSSDisplay("#block_screen", "none");
       }, 500);
     })
     .catch((error) => console.error("Error writing document: ", error));
@@ -175,11 +155,11 @@ function formAddAula(e) {
       { merge: true }
     )
     //Remove conteúdo do formulário e acrescenta a mensagem
-    .then(() => showMessage("form_add_aluno", "Aula adicionada com sucesso!"))
+    .then(() => commonFunc.showMessage("form_add_aluno", "Aula adicionada com sucesso!"))
     .then(() => {
       setTimeout(() => {
         e.target.style.display = "none";
-        changeCSSDisplay("#block_screen", "none");
+        commonFunc.changeCSSDisplay("#block_screen", "none");
       }, 500);
     })
     .then(() => {
@@ -206,7 +186,6 @@ function formAddAula(e) {
 //======================================= INDEX ========================================================
 //========================================================================================================
 
-
 (async function InsertSelectAlunos() {
   db.collection("aluno_historico").onSnapshot((snap) => {
     let selectAluno = ``;
@@ -223,34 +202,32 @@ function formAddAula(e) {
   });
 })();
 //-----------------------------EDIT ---------------------
-function clickEditButton(){
-  console.log('load');
+function clickEditButton() {
+  console.log("load");
 
-let btn = document.querySelectorAll('.btn_edit_aulas');
-btn.forEach((item)=>{
-  item.addEventListener('click', (e)=>{
-    showEditAula(e.target);
+  let btn = document.querySelectorAll(".btn_edit_aulas");
+  btn.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      showEditAula(e.target);
+    });
   });
-});;
 }
 
-function showEditAula(e){
-  
-  let addForm = document.querySelector('#form_add_aula');
+function showEditAula(e) {
+  let addForm = document.querySelector("#form_add_aula");
   let savePreviousHTMLForm = addForm.innerHTML;
-  addForm.classList.add('edit_form');
+  addForm.classList.add("edit_form");
 
+  commonFunc.changeCSSDisplay("#form_add_aula", "block");
+  commonFunc.changeCSSDisplay("#block_screen", "block");
 
-  changeCSSDisplay('#form_add_aula', 'block');
-  changeCSSDisplay('#block_screen', 'block');
-
-  let select = addForm.querySelectorAll('select')
-  select.forEach((item)=>{
-    item.setAttribute('disabled', true);
+  let select = addForm.querySelectorAll("select");
+  select.forEach((item) => {
+    item.setAttribute("disabled", true);
   });
   console.log(select);
 
-console.log(e);
+  console.log(e);
 }
 
 //---------------------------------------------------------
@@ -454,22 +431,20 @@ function eventChangeSelectAlunoAddCurso() {
 
 function insertAulasWhenChangeAluno() {
   let select = document.querySelector("#select_aluno");
-  if(select){
+  if (select) {
+    select.addEventListener("input", () => {
+      let RA = select.options[select.selectedIndex].value;
+      realTimeDataAlunoHistorico(RA);
+      //carrega o primeiro curso do menu navC
+      // setSelectedInSelectAlunoAddAulaAndAddCurso(RA);
 
-
-  select.addEventListener("input", () => {
-    let RA = select.options[select.selectedIndex].value;
-    realTimeDataAlunoHistorico(RA);
-    //carrega o primeiro curso do menu navC
-    // setSelectedInSelectAlunoAddAulaAndAddCurso(RA);
-
-    setSelectedInASelectBasedOnRA("#select_aluno_add_aula", RA);
-    setSelectedInASelectBasedOnRA("#select_aluno_add_curso", RA);
-    //quando o select_aluno é alterado chama a função para carregar as opções
-    //de cursos em select_aluno_add_aula
-    insertSelectCursosAddAula(RA);
-  });
-}
+      setSelectedInASelectBasedOnRA("#select_aluno_add_aula", RA);
+      setSelectedInASelectBasedOnRA("#select_aluno_add_curso", RA);
+      //quando o select_aluno é alterado chama a função para carregar as opções
+      //de cursos em select_aluno_add_aula
+      insertSelectCursosAddAula(RA);
+    });
+  }
 }
 //Seta as opções de cursos em select_curso_add_aluno;
 function insertSelectCursosAddAula(RA) {
@@ -519,30 +494,30 @@ function addEventListenerClickAulas() {
   btn_open_close_aulas.forEach((element) => {
     element.addEventListener("click", (e) => {
       let parent = element.parentElement;
-      let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 
-      svg.setAttribute('width', '16' );
-      svg.setAttribute('height', '16' );
-      svg.setAttribute('fill', 'currentColor' );
-      svg.setAttribute('viewBox', '0 0 16 16' );
-      svg.classList.add('bi', 'bi-chevron-down');
+      svg.setAttribute("width", "16");
+      svg.setAttribute("height", "16");
+      svg.setAttribute("fill", "currentColor");
+      svg.setAttribute("viewBox", "0 0 16 16");
+      svg.classList.add("bi", "bi-chevron-down");
 
-let pathCloseIcon = '<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>';
-let pathOpenIcon = '<path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>';
-e.target.innerHTML = '';
-     
-      
+      let pathCloseIcon =
+        '<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>';
+      let pathOpenIcon =
+        '<path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>';
+      e.target.innerHTML = "";
+
       parent.classList.toggle("open_aula");
       if (parent.classList.contains("open_aula")) {
         //shows when it wast open
-        svg.innerHTML = pathOpenIcon; 
+        svg.innerHTML = pathOpenIcon;
       } else {
-       //e.target.classList.remove('icon_open_aula')
-       svg.innerHTML = pathCloseIcon; 
+        //e.target.classList.remove('icon_open_aula')
+        svg.innerHTML = pathCloseIcon;
       }
-      
-      e.target.appendChild(svg);
 
+      e.target.appendChild(svg);
     });
   });
 }
@@ -667,23 +642,21 @@ function sortObjectKeys(obj) {
 }
 
 function criaHtmlCursoContent(curso_nome_bd) {
-  if(curso_nome_bd){
+  if (curso_nome_bd) {
+    let id_curso = curso_nome_bd.replace(/\s+|\(|\)/g, "_").toLowerCase();
 
- let id_curso = curso_nome_bd.replace(/\s+|\(|\)/g, "_").toLowerCase();
-
-  let htmlAula = document.createElement("div");
-  htmlAula.innerHTML = `
+    let htmlAula = document.createElement("div");
+    htmlAula.innerHTML = `
   <div class='bg_curso' id='${id_curso}'>
     <div class='title'>
       <span class='title_curso_nome ${id_curso}'>${curso_nome_bd}</span>
       </div><div id='curso_content'>
     </div>
   </div>`;
-  return htmlAula;
-}else{
-  return false;
-}
-
+    return htmlAula;
+  } else {
+    return false;
+  }
 }
 
 //Insere as aulas na página
@@ -789,9 +762,9 @@ function InsertBlockAulas(alunoData, alunoInfoGeral, changes) {
         `[data-active="${nomeCursoAtualizado}"]`
       );
       x[0].classList.add("active");
-    });    
-    
-//========================================================================
+    });
+
+  //========================================================================
 
   //adiciona todo o conteúdo gerado em #bg_cursos
   document.querySelector("#bg_cursos").innerHTML = resultHTML;
@@ -841,18 +814,19 @@ function realTimeDataAlunoHistorico(RA) {
       let alunoInfoGeral = getAlunoInfoGeral(RA);
       let alunoH = alunoHistoricoDB(RA);
       alunoH.then((aluno) => {
-        alunoInfoGeral.then((res) => {
-          InsertBlockAulas(aluno, res, changes);
-        }).then(()=>{
-          clickEditButton()
-        });
+        alunoInfoGeral
+          .then((res) => {
+            InsertBlockAulas(aluno, res, changes);
+          })
+          .then(() => {
+            clickEditButton();
+          });
       });
     });
 }
 
 //--------------------Carrega funções----------------------------
 (async function loadDocuments() {
-
   insertAulasWhenChangeAluno();
   realTimeDataAlunoHistorico("RA01");
 
