@@ -7,12 +7,12 @@ function ImportHtml(pathHtmlFile, target, scriptSRC = false){
     .then((html)=> element.innerHTML = html)
     .then(()=>{
         if(scriptSRC){
-            /*
+           
             let script = document.createElement('script');
             script.src = scriptSRC; 
-           // script.setAttribute('type', 'module');
+          script.setAttribute('type', 'module');
             element.appendChild(script);
-            */
+          
         }
     });
 }
