@@ -23,3 +23,18 @@ export function showMessage(targetID, message) {
     AddEventBtnCloseForm();
   }, 2200);
 }
+
+export function blockSubmitForm(form) {
+  form.querySelector("input[type='submit']").setAttribute("disabled", true);
+}
+export function removeblockSubmitForm(form) {
+  form.querySelector("input[type='submit']").removeAttribute("disabled");
+}
+
+
+export function getReverseObjectKeys(obj) {
+  let objKeys = Object.keys(obj);
+  let sortedObjKeys = objKeys.sort();
+  sortedObjKeys.reverse();
+  return sortedObjKeys;
+}
