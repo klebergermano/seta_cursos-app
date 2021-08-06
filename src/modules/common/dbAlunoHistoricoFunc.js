@@ -19,7 +19,6 @@ export function getAlunosListRA() {
     return alunoListRA;
   }
 
-
   export async function getAlunoInfoGeral(RA) {
     let alunoInfo = await db
       .collection("aluno_historico")

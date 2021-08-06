@@ -376,16 +376,18 @@ function eventChangeSelectAlunoAddCurso() {
     });
 }
 
-
 function insertAulasWhenChangeAluno() {
   let select = document.querySelector("#select_aluno");
   if (select) {
     select.addEventListener("input", () => {
       let RA = select.options[select.selectedIndex].value;
-      
-     // dbAlunoHistFunc.realTimeDataAlunoHistorico(RA);
-     dbAlunoHistFunc.dbRealTimeAlunoHistCursos(RA, insertAulasCursosFunc.insertAulasWhenAlunoChange);
-      
+
+      // dbAlunoHistFunc.realTimeDataAlunoHistorico(RA);
+      dbAlunoHistFunc.dbRealTimeAlunoHistCursos(
+        RA,
+        insertAulasCursosFunc.insertAulasWhenAlunoChange
+      );
+
       //carrega o primeiro curso do menu navC
 
       setSelectedInASelectBasedOnRA("#select_aluno_add_aula", RA);
@@ -442,8 +444,10 @@ function setSelectedInASelectBasedOnRA(idSelectTarget, RA) {
 (async function loadDocuments() {
   insertAulasWhenChangeAluno();
   //insertAulasCursosFunc.realTimeDataAlunoHistorico("RA01");
-  dbAlunoHistFunc.dbRealTimeAlunoHistCursos('RA01', insertAulasCursosFunc.insertAulasWhenAlunoChange);
-
+  dbAlunoHistFunc.dbRealTimeAlunoHistCursos(
+    "RA01",
+    insertAulasCursosFunc.insertAulasWhenAlunoChange
+  );
 
   //FORMS
   AddEventBtnCloseForm();

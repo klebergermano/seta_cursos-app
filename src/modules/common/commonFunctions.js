@@ -2,6 +2,12 @@ export function changeCSSDisplay(target, display) {
     document.querySelector(target).style.display = display;
   }
 
+  //Substitui todos os espaços e parenteses por underscore usando REGEX
+  export function stringToID(string){
+    let id = string.replace(/\s+|\(|\)/g, "_").toLowerCase();
+return id;
+  }
+
   export function hideAllElementsByClassName(className){
     document.querySelectorAll(className).forEach((item) => {
         item.style.display = "none";
