@@ -1,11 +1,13 @@
 import * as commonFunc from "../common/commonFunctions.js";
 import * as dbFunc from "../common/dbFunctions.js";
 import * as insertAulasCursosFunc from "./InsertAulasCursosFunc.js";
+import * as dbAlunoHistFunc from "../common/dbAlunoHistoricoFunc.js";
 
 //commonFunc.changeCSSDisplay
 //========================================================================================================
 //======================================= FORM ========================================================
 //========================================================================================================
+
 function eventFormsAdd() {
   document.querySelector("#form_add_aluno").addEventListener("submit", (e) => {
     formAddAluno(e);
@@ -205,7 +207,7 @@ function insertOptionsAddAlunoRA() {
 
 function createOptionsRA() {
   let array = "";
-  let listAlunoRA = dbFunc.getAlunosListRA();
+  let listAlunoRA = dbAlunoHistFunc.getAlunosListRA();
   let options = listAlunoRA.then((listRA) => {
     listRA.forEach((list) => {
       array += `<option value='${list}' />`;
@@ -219,7 +221,7 @@ function validaSelectOptionsAddAluno() {
   form = document.querySelector("#form_add_aluno");
   document.querySelector("#add_aluno_ra").addEventListener("input", (e) => {
     let inputRA = e.target.value;
-    let listAlunoRA = dbFunc.getAlunosListRA();
+    let listAlunoRA = dbAlunoHistFunc.getAlunosListRA();
     let valida = listAlunoRA.then((listRA) => {
       for (let i = 0; i <= listRA.length - 1; i++) {
         if (inputRA.toUpperCase() === listRA[i]) {
@@ -235,8 +237,6 @@ function validaSelectOptionsAddAluno() {
     return valida;
   });
 }
-
-
 
 function eventSelectAlunoAddCurso() {
   let aluno = document.querySelector("#select_aluno_add_curso");
@@ -345,7 +345,7 @@ function blockSelectOptionsAddAulas(RA, curso, bimestre) {
   });
 }
 function getKeysAulas(RA, curso, bimestre) {
-  let aluno = dbFunc.alunoHistoricoDB(RA);
+  let aluno = dbAlunoHistFunc.alunoHistoricoDB(RA);
   let keysAulas = [];
   let keys = aluno.then((res) => {
     res.forEach((e) => {
@@ -376,12 +376,16 @@ function eventChangeSelectAlunoAddCurso() {
     });
 }
 
+
 function insertAulasWhenChangeAluno() {
   let select = document.querySelector("#select_aluno");
   if (select) {
     select.addEventListener("input", () => {
       let RA = select.options[select.selectedIndex].value;
-      dbFunc.realTimeDataAlunoHistorico(RA);
+      
+     // dbAlunoHistFunc.realTimeDataAlunoHistorico(RA);
+     dbAlunoHistFunc.dbRealTimeAlunoHistCursos(RA, insertAulasCursosFunc.insertAulasWhenAlunoChange);
+      
       //carrega o primeiro curso do menu navC
 
       setSelectedInASelectBasedOnRA("#select_aluno_add_aula", RA);
@@ -437,7 +441,9 @@ function setSelectedInASelectBasedOnRA(idSelectTarget, RA) {
 //--------------------Carrega funções----------------------------
 (async function loadDocuments() {
   insertAulasWhenChangeAluno();
-  insertAulasCursosFunc.realTimeDataAlunoHistorico("RA01");
+  //insertAulasCursosFunc.realTimeDataAlunoHistorico("RA01");
+  dbAlunoHistFunc.dbRealTimeAlunoHistCursos('RA01', insertAulasCursosFunc.insertAulasWhenAlunoChange);
+
 
   //FORMS
   AddEventBtnCloseForm();

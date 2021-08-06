@@ -2,6 +2,12 @@ export function changeCSSDisplay(target, display) {
     document.querySelector(target).style.display = display;
   }
 
+  export function hideAllElementsByClassName(className){
+    document.querySelectorAll(className).forEach((item) => {
+        item.style.display = "none";
+      });
+  }
+
   //Função usada para fechar os formulários e tirar o block screen da tela.
 export function parenteDisplayAndBlockScreenNone(e) {
   //Pega o elemento "parent" do event e set display none.
