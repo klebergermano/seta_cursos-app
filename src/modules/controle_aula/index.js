@@ -1,5 +1,6 @@
 import * as commonFunc from "../common/commonFunctions.js";
 import * as dbFunc from "../common/dbFunctions.js";
+import * as insertAulasCursosFunc from "./InsertAulasCursosFunc.js";
 
 //commonFunc.changeCSSDisplay
 //========================================================================================================
@@ -345,7 +346,6 @@ function blockSelectOptionsAddAulas(RA, curso, bimestre) {
 }
 function getKeysAulas(RA, curso, bimestre) {
   let aluno = dbFunc.alunoHistoricoDB(RA);
-
   let keysAulas = [];
   let keys = aluno.then((res) => {
     res.forEach((e) => {
@@ -383,7 +383,6 @@ function insertAulasWhenChangeAluno() {
       let RA = select.options[select.selectedIndex].value;
       dbFunc.realTimeDataAlunoHistorico(RA);
       //carrega o primeiro curso do menu navC
-      // setSelectedInSelectAlunoAddAulaAndAddCurso(RA);
 
       setSelectedInASelectBasedOnRA("#select_aluno_add_aula", RA);
       setSelectedInASelectBasedOnRA("#select_aluno_add_curso", RA);
@@ -435,17 +434,10 @@ function setSelectedInASelectBasedOnRA(idSelectTarget, RA) {
   option.setAttribute("selected", true);
 }
 
-//==========================================================================================================
-//&#709;
-
-
-//========================================================================================================
-
-
 //--------------------Carrega funções----------------------------
 (async function loadDocuments() {
   insertAulasWhenChangeAluno();
-  dbFunc.realTimeDataAlunoHistorico("RA01");
+  insertAulasCursosFunc.realTimeDataAlunoHistorico("RA01");
 
   //FORMS
   AddEventBtnCloseForm();

@@ -1,5 +1,6 @@
 import * as commonFunc from './commonFunctions.js';
-import * as insertAulasCursosFunc from './InsertAulasCursosFunc.js';
+
+
 
 export function getAlunosListRA() {
     let alunosList = db.collection("aluno_historico").get();
@@ -13,25 +14,6 @@ export function getAlunosListRA() {
     return alunoListRA;
   }
 
-  export function realTimeDataAlunoHistorico(RA) {
-    db.collection("aluno_historico")
-      .doc(RA)
-      .collection("cursos")
-      .onSnapshot((snap) => {
-        let changes = snap.docChanges();
-        let alunoInfoGeral = getAlunoInfoGeral(RA);
-        let alunoH = alunoHistoricoDB(RA);
-        alunoH.then((aluno) => {
-          alunoInfoGeral
-            .then((res) => {
-                insertAulasCursosFunc.InsertBlockAulas(aluno, res, changes);
-            })
-            .then(() => {
-              clickEditButton();
-            });
-        });
-      });
-  }
 
   export async function getAlunoInfoGeral(RA) {
     let alunoInfo = await db
@@ -58,17 +40,7 @@ export function alunoHistoricoDB(RA) {
   //---------------REMOVER DESSE LUGAR
 
 //-----------------------------EDIT ---------------------
-function clickEditButton() {
-    console.log("load");
-  
-    let btn = document.querySelectorAll(".btn_edit_aulas");
-    btn.forEach((item) => {
-      item.addEventListener("click", (e) => {
-        showEditAula(e.target);
-      });
-    });
-  }
-  
+
 function showEditAula(e) {
     let addForm = document.querySelector("#form_add_aula");
     let savePreviousHTMLForm = addForm.innerHTML;

@@ -1,5 +1,38 @@
-import * as commonFunc from './commonFunctions.js';
-import * as dbFunc from './dbFunctions.js';
+import * as commonFunc from '../common/commonFunctions.js';
+import * as dbFunc from '../common/dbFunctions.js';
+
+function clickEditButton() {
+  console.log("load");
+
+  let btn = document.querySelectorAll(".btn_edit_aulas");
+  btn.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      showEditAula(e.target);
+    });
+  });
+}
+
+
+export function realTimeDataAlunoHistorico(RA) {
+  db.collection("aluno_historico")
+    .doc(RA)
+    .collection("cursos")
+    .onSnapshot((snap) => {
+      let changes = snap.docChanges();
+      let alunoInfoGeral = dbFunc.getAlunoInfoGeral(RA);
+      let alunoH = dbFunc.alunoHistoricoDB(RA);
+      alunoH.then((aluno) => {
+        alunoInfoGeral
+          .then((res) => {
+              InsertBlockAulas(aluno, res, changes);
+          })
+          .then(() => {
+            clickEditButton();
+          });
+      });
+    });
+}
+
 
 function criaHtmlCursoContent(curso_nome_bd) {
     if (curso_nome_bd) {
