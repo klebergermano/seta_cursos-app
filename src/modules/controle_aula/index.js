@@ -381,15 +381,9 @@ function insertAulasWhenChangeAluno() {
   if (select) {
     select.addEventListener("input", () => {
       let RA = select.options[select.selectedIndex].value;
-
       // dbAlunoHistFunc.realTimeDataAlunoHistorico(RA);
-      dbAlunoHistFunc.dbRealTimeAlunoHistCursos(
-        RA,
-        insertAulasCursosFunc.insertAulasWhenAlunoChange
-      );
-
+      dbAlunoHistFunc.dbRealTimeAlunoHistCursos(RA, insertAulasCursosFunc.insertAulasWhenAlunoChange);
       //carrega o primeiro curso do menu navC
-
       setSelectedInASelectBasedOnRA("#select_aluno_add_aula", RA);
       setSelectedInASelectBasedOnRA("#select_aluno_add_curso", RA);
       //quando o select_aluno é alterado chama a função para carregar as opções

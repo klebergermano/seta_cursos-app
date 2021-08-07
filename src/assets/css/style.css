@@ -592,14 +592,14 @@ input:disabled {
   margin: 0px;
   margin-left: 10px;
 }
-#controle_aula #bg_cursos nav.nav_cursos {
+#controle_aula #bg_cursos nav.nav_cursos_aluno {
   background-color: #fff;
   border: 1px solid #ccc;
   border-bottom: 0px;
   display: flex;
   justify-content: space-between;
 }
-#controle_aula #bg_cursos nav.nav_cursos span {
+#controle_aula #bg_cursos nav.nav_cursos_aluno span {
   font-weight: bold;
   margin-top: 10px;
   display: block;
@@ -608,17 +608,17 @@ input:disabled {
   margin-left: 20px;
   text-transform: uppercase;
 }
-#controle_aula #bg_cursos nav.nav_cursos ul {
+#controle_aula #bg_cursos nav.nav_cursos_aluno ul {
   overflow: hidden;
   display: block;
   float: right;
   display: flex;
 }
-#controle_aula #bg_cursos nav.nav_cursos ul li {
+#controle_aula #bg_cursos nav.nav_cursos_aluno ul li {
   list-style: none;
   padding: 10px 0px;
 }
-#controle_aula #bg_cursos nav.nav_cursos ul li a {
+#controle_aula #bg_cursos nav.nav_cursos_aluno ul li a {
   padding: 10px 20px 10px 20px;
   background: #fff;
   border: 1px solid #ccc;
@@ -629,18 +629,18 @@ input:disabled {
   text-transform: uppercase;
   user-select: none;
 }
-#controle_aula #bg_cursos nav.nav_cursos ul li a:hover {
+#controle_aula #bg_cursos nav.nav_cursos_aluno ul li a:hover {
   background: #f8f8f8;
   color: #333;
 }
-#controle_aula #bg_cursos nav.nav_cursos ul li a:active {
+#controle_aula #bg_cursos nav.nav_cursos_aluno ul li a:active {
   background: #f0f0f0;
 }
-#controle_aula #bg_cursos nav.nav_cursos ul li .active {
+#controle_aula #bg_cursos nav.nav_cursos_aluno ul li .active {
   background: #dddede;
   border: 0px;
 }
-#controle_aula #bg_cursos nav.nav_cursos ul li .active:hover {
+#controle_aula #bg_cursos nav.nav_cursos_aluno ul li .active:hover {
   background: #dddede;
 }
 #controle_aula #bg_cursos .bg_curso {

@@ -5,6 +5,9 @@ export function displayCursoById(idCurso) {
     commonFunc.changeCSSDisplay("#" + idCurso, 'block');
   }
   
+  /*
+  TODO: Conferir utilidade da função
+  
   export function displayFirstCursoOfNavCursos() {
     //adiciona class "active" no primeiro elemento do navCursos
     let navCursos = document
@@ -14,3 +17,4 @@ export function displayCursoById(idCurso) {
     //mostra o primeiro curso do menu navCursos
     displayCursoById(navCursos.dataset.active);
   }
+  */

@@ -5,7 +5,7 @@ import * as displayCursosFunc from "./displayCursosFunc.js";
 //-----------------------------NAV---------------------------
 
 function navCursosClick(event) {
-  let a = document.querySelector(".nav_cursos").getElementsByTagName("a");
+  let a = document.querySelector(".nav_cursos_aluno").getElementsByTagName("a");
   for (let item of a) {
     item.classList.remove("active");
   }
@@ -16,7 +16,7 @@ function navCursosClick(event) {
   displayCursosFunc.displayCursoById(idCurso);
 }
 
-
+//Cria o menu nav_cursos_aluno
 async function createNavCursosAluno(alunoInfo) {
   let nomeA = document.createElement("span");
   nomeA.classList.add("title_aluno_info");
@@ -27,7 +27,7 @@ async function createNavCursosAluno(alunoInfo) {
   let id_curso;
   let menuNav = cursos
     .then((res) => {
-      nav.classList.add("nav_cursos");
+      nav.classList.add("nav_cursos_aluno");
       res.forEach((item) => {
         id_curso = commonFunc.stringToID(item);
         ul.innerHTML += `<li><a data-active='${id_curso}'>${item}</a></li>`;
@@ -48,7 +48,7 @@ async function createNavCursosAluno(alunoInfo) {
   return menuNav;
 }
 
-//-----------------------------EDIT Aulas---------------------
+//TODO:-----------------------------EDIT Aulas---------------------
 function addEventListenerClickBtnEditAulas() {
   let btn = document.querySelectorAll(".btn_edit_aulas");
   btn.forEach((item) => {
@@ -62,10 +62,8 @@ function showEditAula(e) {
   let addForm = document.querySelector("#form_add_aula");
   let savePreviousHTMLForm = addForm.innerHTML;
   addForm.classList.add("edit_form");
-
   commonFunc.changeCSSDisplay("#form_add_aula", "block");
   commonFunc.changeCSSDisplay("#block_screen", "block");
-
   let select = addForm.querySelectorAll("select");
   select.forEach((item) => {
     item.setAttribute("disabled", true);
@@ -80,13 +78,12 @@ export function insertAulasWhenAlunoChange(RA, snapshotChange) {
   let changes = snapshotChange.docChanges();
   let alunoInfoGeral = dbAlunoHistFunc.getAlunoInfoGeral(RA);
   let alunoH = dbAlunoHistFunc.alunoHistoricoDB(RA);
-  alunoH.then((aluno) => {
-    alunoInfoGeral
-      .then((res) => {
+  alunoH.then((aluno) => { 
+    alunoInfoGeral.then((res) => {
         InsertHTMLAulas(aluno, res, changes);
       })
       .then(() => {
-        addEventListenerClickBtnEditAulas();
+      // addEventListenerClickBtnEditAulas();
       });
   });
 }
@@ -176,41 +173,78 @@ export function InsertHTMLAulas(alunoDB, alunoInfoGeral, snapChanges) {
   insertNavCursosInBGCursos(alunoInfoGeral, snapChanges)
   //adiciona todo o conteúdo gerado em #bg_cursos
   document.querySelector("#bg_cursos").innerHTML = resultHTML;
-  //carrega a função de click
-  addEventListenerClickAulas();
+  //Carrega a função de click no btn_edit_aulas
+  addEventListenerClickBtnEditAulas();
+  //Carrega a função de click
+  addEventListenerInAllElements('.btn_open_close_aulas', 'click', clickOpenCloseAulas);
+}
+
+function addEventListenerInAllElements(targetElements, event, callback){
+  let elements = document.querySelectorAll(targetElements);
+  elements.forEach((item)=>{
+    item.addEventListener(event, (e)=>{
+          callback(e)
+    });
+  });
+}
+
+function clickOpenCloseAulas(e){
+    let parent = e.target.closest(".aulas");
+    let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("width", "16");
+    svg.setAttribute("height", "16");
+    svg.setAttribute("fill", "currentColor");
+    svg.setAttribute("viewBox", "0 0 16 16");
+    svg.classList.add("bi", "bi-chevron-down");
+    let pathCloseIcon =`<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 
+                        .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>`;
+    let pathOpenIcon = `<path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 
+                        5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>`;
+    e.target.innerHTML = "";
+    parent.classList.toggle("open_aula");
+    if (parent.classList.contains("open_aula")) { svg.innerHTML = pathOpenIcon; /*shows when it wast open*/ } 
+    else { svg.innerHTML = pathCloseIcon;}
+    e.target.appendChild(svg);// Adiciona SVG correto
 }
 
 function insertNavCursosInBGCursos(alunoInfo, snapChanges) {
-  //adiciona o navCursos
-   createNavCursosAluno(alunoInfo).then((nav) => {
+  
+  //Cria o menu nav_cursos do aluno
+   createNavCursosAluno(alunoInfo)
+   .then((nav) => {
+    /*Evita o bug de multiplos nav_cursos serem adicionados removendo todos antes de adicionar o atual*/
+    removeAllNavCursos();
+    //Insere o menu nav_cursos em #bg_cursos
+    //TODO: Conferir alternativa de se usar o innerHTML para inserir o menu evitando a necessidade da função removeAllNavCursos
       document.querySelector("#bg_cursos").insertAdjacentElement("afterbegin", nav);
     })
     .then(() => {
-      /*Evita o bug de multiplos nav_cursos serem adicionados removendo eles 
-      caso o lengh nav_cursos seja maior que 1*/
-      let navCursos = document.querySelectorAll(".nav_cursos");
-      for (let i = navCursos.length; i > 1; i--) {
-        document.querySelector("#bg_cursos").removeChild(navCursos[0]);
-      }
-      displayCursosFunc.displayFirstCursoOfNavCursos();
-    })
-    .then(() => {
-      //---------------------------------------------------------------------
-      //TODO Remover essa função do navCursos 
-      //mostra o curso que foi atualizado usando displayCursos
-      displayCursoUpdated(snapChanges)
+        //mostra o curso que foi atualizado usando displayNavCursoAlunoUpdated
+        displayNavCursoAlunoUpdated(snapChanges[0].doc.data().curso /*Nome do curso atualizado*/)
     }).catch((err) => { console.log(err) });
 }
-
-function displayCursoUpdated(snapChanges){
-  let nomeCursoAtualizado = commonFunc.stringToID(snapChanges[0].doc.data().curso);
-  displayCursosFunc.displayCursoById(nomeCursoAtualizado);
-  let link = document.querySelectorAll(".nav_cursos")[0].getElementsByTagName("a");
-  for (let i = 0; i < link.length; i++) {
-    link[i].classList.remove("active");
+//Função usada para remover todos os '.nav_cursos'
+function removeAllNavCursos(){
+  let navCursos = document.querySelectorAll(".nav_cursos_aluno");
+  for (let i = navCursos.length; i > 1; i--) {
+    document.querySelector("#bg_cursos").removeChild(navCursos[0]);
   }
-  let x = document.querySelectorAll(`[data-active="${nomeCursoAtualizado}"]`);
-  x[0].classList.add("active");
+}
+
+function displayNavCursoAlunoUpdated(nomeCurso){
+  let nomeCursoAtualizado = commonFunc.stringToID(nomeCurso);
+  displayCursosFunc.displayCursoById(nomeCursoAtualizado);
+  removeActiveClassFromNavCursos()
+  //Adiciona class "active" no navCursos a[data-active='nomecurso']
+  let a = document.querySelectorAll(`[data-active="${nomeCursoAtualizado}"]`);
+  a[0].classList.add("active");
+}
+
+function removeActiveClassFromNavCursos(){
+  let a = document.querySelectorAll(".nav_cursos_aluno")[0].getElementsByTagName("a");
+  for (let i = 0; i < a.length; i++) {
+    a[i].classList.remove("active");
+  }
 }
 
 function createHTMLAula(aulaDados, n_aula, n_bimestre) {
@@ -279,35 +313,3 @@ function arrayCursosAluno(RA) {
   return result;
 }
 
-function addEventListenerClickAulas() {
-  let btn_open_close_aulas = document.querySelectorAll(".btn_open_close_aulas");
-
-  btn_open_close_aulas.forEach((element) => {
-    element.addEventListener("click", (e) => {
-      let parent = element.parentElement;
-      let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-
-      svg.setAttribute("width", "16");
-      svg.setAttribute("height", "16");
-      svg.setAttribute("fill", "currentColor");
-      svg.setAttribute("viewBox", "0 0 16 16");
-      svg.classList.add("bi", "bi-chevron-down");
-
-      let pathCloseIcon =
-        '<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>';
-      let pathOpenIcon =
-        '<path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>';
-      e.target.innerHTML = "";
-
-      parent.classList.toggle("open_aula");
-      if (parent.classList.contains("open_aula")) {
-        //shows when it wast open
-        svg.innerHTML = pathOpenIcon;
-      } else {
-        //e.target.classList.remove('icon_open_aula')
-        svg.innerHTML = pathCloseIcon;
-      }
-      e.target.appendChild(svg);
-    });
-  });
-}
