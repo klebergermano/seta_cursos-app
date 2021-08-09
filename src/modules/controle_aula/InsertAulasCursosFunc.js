@@ -1,79 +1,27 @@
 import * as commonFunc from "../common/commonFunctions.js";
 import * as dbAlunoHistFunc from "../common/dbAlunoHistoricoFunc.js";
-import * as displayCursosFunc from "./displayCursosFunc.js";
-
-//-----------------------------NAV---------------------------
-
-function navCursosClick(event) {
-  let a = document.querySelector(".nav_cursos_aluno").getElementsByTagName("a");
-  for (let item of a) {
-    item.classList.remove("active");
-  }
-  console.log(event.target.dataset.active);
-  event.target.classList.add("active");
-  let idCurso = event.target.dataset.active;
-  console.log(idCurso);
-  displayCursosFunc.displayCursoById(idCurso);
-}
-
-//Cria o menu nav_cursos_aluno
-async function createNavCursosAluno(alunoInfo) {
-  let nomeA = document.createElement("span");
-  nomeA.classList.add("title_aluno_info");
-  nomeA.innerHTML = `<span class='title_info_ra'>${alunoInfo.RA}:&nbsp;</span><span class='title_info_nome_luno'>${alunoInfo.nome}</span>`;
-  let cursos = arrayCursosAluno(alunoInfo.RA);
-  let nav = document.createElement("nav");
-  let ul = document.createElement("ul");
-  let id_curso;
-  let menuNav = cursos
-    .then((res) => {
-      nav.classList.add("nav_cursos_aluno");
-      res.forEach((item) => {
-        id_curso = commonFunc.stringToID(item);
-        ul.innerHTML += `<li><a data-active='${id_curso}'>${item}</a></li>`;
-      });
-    })
-    .then(() => {
-      ul.querySelectorAll("a").forEach((item) => {
-        item.addEventListener("click", (e) => {
-          navCursosClick(e);
-        });
-      });
-    })
-    .then(() => {
-      nav.appendChild(ul);
-      nav.insertAdjacentElement("afterbegin", nomeA);
-      return nav;
-    });
-  return menuNav;
-}
-
-//TODO:-----------------------------EDIT Aulas---------------------
-function addEventListenerClickBtnEditAulas() {
-  let btn = document.querySelectorAll(".btn_edit_aulas");
-  btn.forEach((item) => {
-    item.addEventListener("click", (e) => {
-      showEditAula(e.target);
-    });
-  });
-}
-
-function showEditAula(e) {
-  let addForm = document.querySelector("#form_add_aula");
-  let savePreviousHTMLForm = addForm.innerHTML;
-  addForm.classList.add("edit_form");
-  commonFunc.changeCSSDisplay("#form_add_aula", "block");
-  commonFunc.changeCSSDisplay("#block_screen", "block");
-  let select = addForm.querySelectorAll("select");
-  select.forEach((item) => {
-    item.setAttribute("disabled", true);
-  });
-  console.log(select);
-
-  console.log(e);
-}
+import * as navCursosAluno from "./navCursosAluno.js";
+import * as editAulas from "./editAulas.js"; 
+import * as addAulas from "./addAulas.js"; 
 
 //---------------------------------INSERT AULAS ------------------------------------
+export function insertAulasWhenChangeAluno(){
+  let select = document.querySelector("#select_aluno");
+  if (select) {
+    select.addEventListener("input", () => {
+      let RA = select.options[select.selectedIndex].value;
+      // dbAlunoHistFunc.realTimeDataAlunoHistorico(RA);
+      dbAlunoHistFunc.dbRealTimeAlunoHistCursos(RA, insertAulasWhenAlunoChange);
+      //carrega o primeiro curso do menu navC
+      addAulas.setSelectedInASelectBasedOnRA("#select_aluno_add_aula", RA);
+      addAulas.setSelectedInASelectBasedOnRA("#select_aluno_add_curso", RA);
+      //quando o select_aluno é alterado chama a função para carregar as opções
+      //de cursos em select_aluno_add_aula
+      addAulas.insertSelectCursosAddAula(RA);
+    });
+  }
+}
+
 export function insertAulasWhenAlunoChange(RA, snapshotChange) {
   let changes = snapshotChange.docChanges();
   let alunoInfoGeral = dbAlunoHistFunc.getAlunoInfoGeral(RA);
@@ -82,10 +30,12 @@ export function insertAulasWhenAlunoChange(RA, snapshotChange) {
     alunoInfoGeral.then((res) => {
         InsertHTMLAulas(aluno, res, changes);
       })
-      .then(() => {
-      // addEventListenerClickBtnEditAulas();
-      });
   });
+}
+
+function inserPageAluno(){
+
+
 }
 
 function createHtmlCursoContent(curso_nome_bd) {
@@ -104,9 +54,7 @@ function createHtmlCursoContent(curso_nome_bd) {
     return false;
   }
 }
-
 //Insere as aulas na página
-
 export function InsertHTMLAulas(alunoDB, alunoInfoGeral, snapChanges) {
   //TODO remover snapChanges
   let resultHTML = "";
@@ -114,7 +62,6 @@ export function InsertHTMLAulas(alunoDB, alunoInfoGeral, snapChanges) {
   alunoDB.forEach((res) => {
     if (typeof res.data !== "undefined") { res = res.data(); }
     else { res = res.doc.data(); }
-
     let bimestres_bd = res.bimestres;
     let curso_nome_bd = res.curso;
     let id_curso;
@@ -170,23 +117,17 @@ export function InsertHTMLAulas(alunoDB, alunoInfoGeral, snapChanges) {
   });
 
   //--------------------------------------------------------------------------------
-  insertNavCursosInBGCursos(alunoInfoGeral, snapChanges)
+  navCursosAluno.insertNavCursosInBGCursos(alunoInfoGeral, snapChanges)
   //adiciona todo o conteúdo gerado em #bg_cursos
   document.querySelector("#bg_cursos").innerHTML = resultHTML;
   //Carrega a função de click no btn_edit_aulas
-  addEventListenerClickBtnEditAulas();
+  //addEventListenerClickBtnEditAulas();
+  commonFunc.addEventListenerInAllElements('.btn_edit_aulas', 'click', editAulas.showEditAula);
+  
   //Carrega a função de click
-  addEventListenerInAllElements('.btn_open_close_aulas', 'click', clickOpenCloseAulas);
+  commonFunc.addEventListenerInAllElements('.btn_open_close_aulas', 'click', clickOpenCloseAulas);
 }
 
-function addEventListenerInAllElements(targetElements, event, callback){
-  let elements = document.querySelectorAll(targetElements);
-  elements.forEach((item)=>{
-    item.addEventListener(event, (e)=>{
-          callback(e)
-    });
-  });
-}
 
 function clickOpenCloseAulas(e){
     let parent = e.target.closest(".aulas");
@@ -207,45 +148,6 @@ function clickOpenCloseAulas(e){
     e.target.appendChild(svg);// Adiciona SVG correto
 }
 
-function insertNavCursosInBGCursos(alunoInfo, snapChanges) {
-  
-  //Cria o menu nav_cursos do aluno
-   createNavCursosAluno(alunoInfo)
-   .then((nav) => {
-    /*Evita o bug de multiplos nav_cursos serem adicionados removendo todos antes de adicionar o atual*/
-    removeAllNavCursos();
-    //Insere o menu nav_cursos em #bg_cursos
-    //TODO: Conferir alternativa de se usar o innerHTML para inserir o menu evitando a necessidade da função removeAllNavCursos
-      document.querySelector("#bg_cursos").insertAdjacentElement("afterbegin", nav);
-    })
-    .then(() => {
-        //mostra o curso que foi atualizado usando displayNavCursoAlunoUpdated
-        displayNavCursoAlunoUpdated(snapChanges[0].doc.data().curso /*Nome do curso atualizado*/)
-    }).catch((err) => { console.log(err) });
-}
-//Função usada para remover todos os '.nav_cursos'
-function removeAllNavCursos(){
-  let navCursos = document.querySelectorAll(".nav_cursos_aluno");
-  for (let i = navCursos.length; i > 1; i--) {
-    document.querySelector("#bg_cursos").removeChild(navCursos[0]);
-  }
-}
-
-function displayNavCursoAlunoUpdated(nomeCurso){
-  let nomeCursoAtualizado = commonFunc.stringToID(nomeCurso);
-  displayCursosFunc.displayCursoById(nomeCursoAtualizado);
-  removeActiveClassFromNavCursos()
-  //Adiciona class "active" no navCursos a[data-active='nomecurso']
-  let a = document.querySelectorAll(`[data-active="${nomeCursoAtualizado}"]`);
-  a[0].classList.add("active");
-}
-
-function removeActiveClassFromNavCursos(){
-  let a = document.querySelectorAll(".nav_cursos_aluno")[0].getElementsByTagName("a");
-  for (let i = 0; i < a.length; i++) {
-    a[i].classList.remove("active");
-  }
-}
 
 function createHTMLAula(aulaDados, n_aula, n_bimestre) {
   //substitui espaços em branco pelo underscore e passa para minúsculas as letras
@@ -301,15 +203,4 @@ function createHTMLAula(aulaDados, n_aula, n_bimestre) {
   return block;
 }
 
-function arrayCursosAluno(RA) {
-  let aluno = dbAlunoHistFunc.alunoHistoricoDB(RA);
-  let result = aluno.then((res) => {
-    let cursos = [];
-    res.forEach((e) => {
-      cursos.push(e.data().curso);
-    });
-    return cursos;
-  });
-  return result;
-}
 

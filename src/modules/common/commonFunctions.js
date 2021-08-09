@@ -1,3 +1,21 @@
+
+export function addEventListener(targetElement, event, callback){
+  document.querySelector(targetElement).addEventListener(event, (e)=>{
+    callback
+  });
+
+}
+export function addEventListenerInAllElements(targetElements, event, callback){
+  let elements = document.querySelectorAll(targetElements);
+  console.log(elements);
+  elements.forEach((item)=>{
+    item.addEventListener(event, (e)=>{
+          callback(e)
+    });
+  });
+}
+
+
 export function changeCSSDisplay(target, display) {
     document.querySelector(target).style.display = display;
   }
