@@ -1,8 +1,8 @@
 import * as commonFunc from "../common/commonFunctions.js";
 import * as dbAlunoHistFunc from "../common/dbAlunoHistoricoFunc.js";
 import * as navCursosAluno from "./navCursosAluno.js";
-import * as editAulas from "./editAulas.js"; 
-import * as addAulas from "./addAulas.js"; 
+import * as editAulas from "./formEditAulas.js"; 
+import * as addAulas from "./formAddAulas.js"; 
 
 //---------------------------------INSERT AULAS ------------------------------------
 export function insertAulasWhenChangeAluno(){
@@ -33,8 +33,7 @@ export function insertAulasWhenAlunoChange(RA, snapshotChange) {
   });
 }
 
-function inserPageAluno(){
-
+function inserPageHtmlAluno(){
 
 }
 
