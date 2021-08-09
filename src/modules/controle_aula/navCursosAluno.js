@@ -44,7 +44,6 @@ function navCursosClick(event) {
     for (let item of a) {
       item.classList.remove("active");
     }
-    console.log(event.target.dataset.active);
     event.target.classList.add("active");
     let idCurso = event.target.dataset.active;
     displayCursoById(idCurso);

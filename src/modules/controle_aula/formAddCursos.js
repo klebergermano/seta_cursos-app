@@ -10,7 +10,6 @@ function validaSelectOptionsAddCurso() {
       blockSelectOptionsAddCurso(res);
     });
   }
-  
 
   function getKeysCursos(RA) {
     let aluno = dbAlunoHistFunc.alunoHistoricoDB(RA);
@@ -23,7 +22,6 @@ function validaSelectOptionsAddCurso() {
     });
     return keys;
   }
-
 
   function blockSelectOptionsAddCurso(cursos) {
     let selectCurso = document.querySelector("#add_curso_nome_curso");

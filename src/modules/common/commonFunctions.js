@@ -7,7 +7,6 @@ export function addEventListener(targetElement, event, callback){
 }
 export function addEventListenerInAllElements(targetElements, event, callback){
   let elements = document.querySelectorAll(targetElements);
-  console.log(elements);
   elements.forEach((item)=>{
     item.addEventListener(event, (e)=>{
           callback(e)

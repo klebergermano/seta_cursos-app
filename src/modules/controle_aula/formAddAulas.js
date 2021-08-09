@@ -1,6 +1,5 @@
 import * as commonFunc from "../common/commonFunctions.js";
 import * as dbAlunoHistFunc from "../common/dbAlunoHistoricoFunc.js";
-import * as insertAulasCursosFunc from "./InsertAulasCursosFunc.js";
 import * as addAluno from "./formAddAlunos.js";
 //=====================================================================================
 //------------------------------------ADD AULA---------------------------------------
@@ -9,8 +8,6 @@ function validaFormAddAulaOptionsAulaNumero() {
     infoAula = getInfoFormAddAula();
     blockSelectOptionsAddAulas(infoAula.RA, infoAula.curso, infoAula.bimestre);
   }
-
-
     
   function enableSelectAulaNumeroWhenBimestreChange() {
     document.querySelector("#aula_numero").removeAttribute("disabled");
@@ -209,9 +206,6 @@ export function eventSelectAlunoAddAula() {
       document.querySelector("#select_aluno_add_curso").innerHTML = selectAluno;
     });
   })();
-  
-
-
 
   function getKeysAulas(RA, curso, bimestre) {
     let aluno = dbAlunoHistFunc.alunoHistoricoDB(RA);

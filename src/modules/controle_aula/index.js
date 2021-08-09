@@ -27,7 +27,9 @@ insertAulasCursosFunc.insertAulasWhenAlunoChange
   
   //Aluno
   formAddAlunos.insertOptionsAddAlunoRA();
-  formAddAlunos.validaSelectOptionsAddAluno();
+  
+  //TODO: gerando erro ao carregar
+ // formAddAlunos.validaSelectOptionsAddAluno();
 
 }
 loadOnStartUp()

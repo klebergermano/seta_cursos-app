@@ -1,9 +1,11 @@
 import * as commonFunc from "../common/commonFunctions.js";
+import * as  dbAlunoHistFunc from "../common/dbAlunoHistoricoFunc.js";
 
 //=====================================================================================
 //------------------------------------ADD ALUNO---------------------------------------
 export function validaSelectOptionsAddAluno() {
-    form = document.querySelector("#form_add_aluno");
+  let form = document.querySelector("#form_add_aluno");
+    
     document.querySelector("#add_aluno_ra").addEventListener("input", (e) => {
       let inputRA = e.target.value;
       let listAlunoRA = dbAlunoHistFunc.getAlunosListRA();
@@ -34,12 +36,14 @@ export function validaSelectOptionsAddAluno() {
     });
     return options;
   }
-  
+
   export function insertOptionsAddAlunoRA() {
     let dataList = document.querySelector("#add_aluno_datalist_ra");
     let options = createOptionsRA();
     options.then((res) => {
       dataList.innerHTML = res;
+    }).then(()=>{
+      validaSelectOptionsAddAluno()
     });
   }
 
