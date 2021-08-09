@@ -1,4 +1,5 @@
 import * as commonFunc from "../common/commonFunctions.js";
+import * as dbAlunoHistFunc from "../common/dbAlunoHistoricoFunc.js";
 import * as insertAulasCursosFunc from "./InsertAulasCursosFunc.js";
 import * as addAluno from "./formAddAlunos.js";
 //=====================================================================================
@@ -9,32 +10,7 @@ function validaFormAddAulaOptionsAulaNumero() {
     blockSelectOptionsAddAulas(infoAula.RA, infoAula.curso, infoAula.bimestre);
   }
 
-  function validaSelectOptionsAddCurso() {
-    let selectAluno = document.querySelector("#select_aluno_add_curso");
-    let RA = selectAluno.options[selectAluno.selectedIndex].value;
-    let cursos = getKeysCursos(RA);
-    cursos.then((res) => {
-      blockSelectOptionsAddCurso(res);
-    });
-  }
-  
-  function blockSelectOptionsAddCurso(cursos) {
-    let selectCurso = document.querySelector("#add_curso_nome_curso");
-    //Remove os atributes "disabled" setados anteriormente
-    for (let k = 0; k <= selectCurso.options.length - 1; k++) {
-      if (selectCurso.options[k].value !== "") {
-        selectCurso.options[k].removeAttribute("disabled");
-      }
-    }
-    //Adiciona disabled nas options que ja existirem no array cursos
-    for (let j = 0; j <= cursos.length - 1; j++) {
-      for (let i = 0; i <= selectCurso.options.length - 1; i++) {
-        if (selectCurso.options[i].value === cursos[j]) {
-          selectCurso.options[i].setAttribute("disabled", true);
-        }
-      }
-    }
-  }
+
     
   function enableSelectAulaNumeroWhenBimestreChange() {
     document.querySelector("#aula_numero").removeAttribute("disabled");
@@ -236,19 +212,6 @@ export function eventSelectAlunoAddAula() {
   
 
 
-
-
-  function getKeysCursos(RA) {
-    let aluno = alunoHistoricoDB(RA);
-    let cursos = [];
-    let keys = aluno.then((res) => {
-      res.forEach((item) => {
-        cursos.push(item.data().curso);
-      });
-      return cursos;
-    });
-    return keys;
-  }
 
   function getKeysAulas(RA, curso, bimestre) {
     let aluno = dbAlunoHistFunc.alunoHistoricoDB(RA);

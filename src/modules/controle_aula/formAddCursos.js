@@ -1,5 +1,48 @@
+import * as dbAlunoHistFunc from "../common/dbAlunoHistoricoFunc.js";
+
 //=====================================================================================
 //------------------------------------ADD CURSOS---------------------------------------
+function validaSelectOptionsAddCurso() {
+    let selectAluno = document.querySelector("#select_aluno_add_curso");
+    let RA = selectAluno.options[selectAluno.selectedIndex].value;
+    let cursos = getKeysCursos(RA);
+    cursos.then((res) => {
+      blockSelectOptionsAddCurso(res);
+    });
+  }
+  
+
+  function getKeysCursos(RA) {
+    let aluno = dbAlunoHistFunc.alunoHistoricoDB(RA);
+    let cursos = [];
+    let keys = aluno.then((res) => {
+      res.forEach((item) => {
+        cursos.push(item.data().curso);
+      });
+      return cursos;
+    });
+    return keys;
+  }
+
+
+  function blockSelectOptionsAddCurso(cursos) {
+    let selectCurso = document.querySelector("#add_curso_nome_curso");
+    //Remove os atributes "disabled" setados anteriormente
+    for (let k = 0; k <= selectCurso.options.length - 1; k++) {
+      if (selectCurso.options[k].value !== "") {
+        selectCurso.options[k].removeAttribute("disabled");
+      }
+    }
+    //Adiciona disabled nas options que ja existirem no array cursos
+    for (let j = 0; j <= cursos.length - 1; j++) {
+      for (let i = 0; i <= selectCurso.options.length - 1; i++) {
+        if (selectCurso.options[i].value === cursos[j]) {
+          selectCurso.options[i].setAttribute("disabled", true);
+        }
+      }
+    }
+  }
+
 export function eventSelectAlunoAddCurso() {
     let aluno = document.querySelector("#select_aluno_add_curso");
     aluno.addEventListener("input", (e) => {
