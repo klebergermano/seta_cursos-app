@@ -230,7 +230,7 @@ export function eventSelectAlunoAddAula() {
     let select = document.querySelector(idSelectTarget);
     let allOptions = select.options;
     //limpa o selected=true de todas as opções do select.
-    for (item of allOptions) {
+    for (let item of allOptions) {
       item.removeAttribute("selected");
     }
     //Readiciona os mesmos options no select para garantir que a option com
