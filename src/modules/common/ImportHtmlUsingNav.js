@@ -16,12 +16,11 @@ async function ImportHtmlUsingNav(navName, target) {
             if (scriptSRC) {
               let script = document.createElement("script");
               script.src = scriptSRC;
+              script.setAttribute('type', 'module')
               element.appendChild(script);
             }
           });
-
       }
-
       
       ImportHtml2(
         `./components/${e.target.dataset.path}/index.html`,

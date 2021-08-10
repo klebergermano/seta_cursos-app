@@ -45,7 +45,7 @@
   }
   #bg_cursos {
     
-  nav.nav_cursos {
+  nav.nav_cursos_aluno {
  
       background-color: #fff;
       border: $border-set-default;
@@ -182,15 +182,14 @@
           min-width: 200px;
           flex-grow: 1;
         }
+        
         .aulas {
           position:relative;
-          margin: 5px;
-
+          margin-top: 10px;
           width: auto;
           max-width:300px;
           background: #ffc;
-          cursor: pointer;
-          height: 50px;
+          height: 55px;
           border: 1px solid #ccc;
           overflow: hidden;
           transition: height 0.5s;
@@ -198,31 +197,82 @@
           font-size: 13px;
           padding: 5px;
 
+      
           .aula_detalhes{
             margin-top:10px;
             border:1px solid #999;
             overflow-y: scroll;
-            height:140px;
-            scrollbar-color: red yellow;
+            height:145px;
+            padding:5px;
        
 
           }
+       
+          .aula_numero{
+            text-transform: capitalize;
+            color:#000;
+     
+          }
+          .aula_data{
+            padding: 5px 0px;
+            svg{max-height:14px; margin-bottom:-2px;
+            color:$text-color}
 
+          }
      
         }
         .open_aula {
-          height: 220px;
+          height: 240px;
         }
+  
+         .btn_deletar_aula{
+           cursor:pointer;
+           float:left;
+           padding:3px;
+           margin-top:5px;
+           font-size:12px;
+           color:$text-color;
+           &:hover{
+             background: #f9f0f0;
+           color:rgb(219, 30, 30);
+
+           }
+         }
+         .btn_edit_aulas{
+           float:right;
+           padding:3px; 
+           margin-top:5px;
+           cursor:pointer;
+           &:hover{
+            background: #f9f0f0;
+            color:$primary-color;
+
+          }
+           &:active{
+            background: #f9f0f0;
+            color:darken($primary-color, 10%);
+           }
+         }
+  
+     
         .btn_open_close_aulas{
+          cursor: pointer;
           position:absolute; 
          right:0px;
          top:0px;
           font-size:16px;
-          background:#eed; 
+          background:#dda; 
           text-align: center;
-          height:25px;
-          width:40px;
+          height:22px;
+          width:30px;
           padding:2px;
+          color:$text-color;
+          font-stretch: expanded;
+          border-radius:0px 0px 0px 3px;
+          svg{
+            margin-top:1px;
+          }
+          
           &:active{
             background:#aa9;
             user-select: none;

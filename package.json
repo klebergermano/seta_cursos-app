@@ -16,6 +16,7 @@
     "name": "Kleber Germano",
     "email": "kleber_germano@outlook.com"
   },
+  
   "license": "MIT",
   "config": {
     "forge": {
@@ -45,6 +46,8 @@
     }
   },
   "dependencies": {
+    "@icons/material": "^0.4.1",
+    "bootstrap-icons": "^1.5.0",
     "electron-squirrel-startup": "^1.0.0"
   },
   "devDependencies": {
