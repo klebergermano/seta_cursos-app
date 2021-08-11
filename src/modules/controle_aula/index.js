@@ -3,6 +3,7 @@ import * as dbAlunoHistFunc from "../common/dbAlunoHistoricoFunc.js";
 import * as formAddAulas from "./formAddAulas.js";
 import * as formAddCursos from "./formAddCursos.js";
 import * as formAddAlunos from "./formAddAlunos.js";
+import * as dragForms from "./dragForms.js";
 
 //TODO: Arrumar ordem de execução das funções
 function loadOnStartUp(){
@@ -30,7 +31,7 @@ insertAulasCursosFunc.insertAulasWhenAlunoChange
   
   //TODO: gerando erro ao carregar
  // formAddAlunos.validaSelectOptionsAddAluno();
-
+ 
 }
 loadOnStartUp()
 
