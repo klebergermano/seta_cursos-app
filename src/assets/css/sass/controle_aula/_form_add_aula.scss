@@ -64,11 +64,15 @@ background:#fff;
 
 }
 .edit_form{
-  background:#ffc !important;
+  background:#ffd !important;
   div{
     label{
       background:transparent !important;
       
+    }
+    input, select, textarea{
+      background:#ffe;
+      border:1px solid rgb(170, 148, 115)
     }
   }
   .disabled { 

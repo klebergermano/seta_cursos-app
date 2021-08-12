@@ -1,35 +1,22 @@
 import * as formAddAulas from "./formAddAulas.js";
-
 import * as commonFunc from "../common/commonFunctions.js";
+import * as dateFunc from "../common/dateFunc.js";
 //TODO:-----------------------------EDIT Aulas------------------------------------
 export function showEditAula(e) {
-
     let formAddAula = document.querySelector("#form_add_aula");
-    let previousForm = {};
-    previousForm.tema = formAddAula.querySelector('#tema').value;
-    previousForm.data = formAddAula.querySelector('#data').value;
-    previousForm.horario = formAddAula.querySelector('#horario').value;
-    previousForm.detalhes = formAddAula.querySelector('#detalhes').value;
-
-
-
     //Insere as informações da aula em "#form_add_aula".
     insertInfoInputsFormAddAula(e, formAddAula);
-
     //Adiciona a classe edit_form no formulário.
     formAddAula.classList.add("edit_form");
-    
     //chama todas as funções de edição no formulário "#form_add_aula".
-    setEditAulaInfoInFormAddAula(formAddAula, previousForm);
+    setEditAulaInfoInFormAddAula(formAddAula);
   }
 
-  function setEditAulaInfoInFormAddAula(formAddAula, previousForm){
+  function setEditAulaInfoInFormAddAula(formAddAula){
     //Mostra o formulário "#form_add_aula" e o bloqueio de tela "#block_screen".
     displayFormEditAula()
-
     //adiciona o event listener no botão de fechar o formulário.
-    addEventListenerCloseForm(formAddAula, previousForm)
-
+    addEventListenerCloseForm(formAddAula)
    //disable de selects in #form_add_aula
     disableSelectsInFormAddAula(formAddAula)
   }
@@ -40,30 +27,45 @@ export function showEditAula(e) {
     formAddAula.querySelector("#horario").value = aulaInfo.horario;
     formAddAula.querySelector("#data").value = aulaInfo.data;
     formAddAula.querySelector("#detalhes").value = aulaInfo.detalhes;
-  }
-
+    let bimestres = formAddAula.querySelector('#select_bimestre_add_aluno');
+    let selectAulas = formAddAula.querySelector('#aula_numero');
+    for(let i = 0; i <= selectAulas.options.length -1; i++){
+      if(selectAulas.options[i].value === aulaInfo.aula){
+        selectAulas.selectedIndex = i;
+      }
+    }
+    for(let k = 0; k <= bimestres.options.length -1; k++){
+      if(commonFunc.stringToID(bimestres.options[k].value) === aulaInfo.bimestre){
+        bimestres.selectedIndex = k;
+      }
+    }
+}
   function getInfoInputsFormAddAula(e){
    let aula = e.target.closest('.aulas');
    let aulaInfo = {}
+   aulaInfo.bimestre = aula.dataset.bimestre;
+   aulaInfo.aula = aula.querySelectorAll('.aula_numero')[0].textContent;
    aulaInfo.tema = aula.querySelectorAll('.aula_tema_info')[0].textContent;
-   aulaInfo.data = aula.querySelectorAll('.aula_data_info')[0].textContent;
    aulaInfo.horario = aula.querySelectorAll('.aula_horario_info')[0].textContent;
+   let newDate = dateFunc.changeDateTextToYYYYMMDD(aula.querySelectorAll('.aula_data_info')[0].textContent);
+   aulaInfo.data = newDate;
    aulaInfo.detalhes = aula.querySelectorAll('.aula_detalhes_info')[0].textContent;
    return aulaInfo;
   }
 
-  function addEventListenerCloseForm(formAddAula, previousForm){
+  function addEventListenerCloseForm(formAddAula){
     let btn_close = formAddAula.querySelectorAll(".close_form")[0];
     btn_close.classList.add('close_form_edit');
     btn_close.addEventListener('click', (e)=>{
-    restorePreviousStateFormAddAula(formAddAula, previousForm);
+    restorePreviousStateFormAddAula(formAddAula);
     btn_close.classList.remove('close_form_edit');
-
+    formAddAulas.setInitialIndexAulaNumero();
+    formAddAulas.setInitialIndexBimestre();
     });
   }
 
   //Restaura o estado anterior do formulário "#form_add_aula";
-  function restorePreviousStateFormAddAula(formAddAula, previousForm){
+  function restorePreviousStateFormAddAula(formAddAula){
     removeClassEditForm(formAddAula);
     enableSelectsInFormAddAula(formAddAula);
    formAddAula.querySelector('#tema').value = '';

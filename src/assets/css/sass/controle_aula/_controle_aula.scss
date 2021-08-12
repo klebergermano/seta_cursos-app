@@ -166,7 +166,9 @@
         flex-wrap: wrap;
         align-items: flex-start;
         justify-content: space-around;
-        border: $border-set-default;
+        //border: $border-set-default;
+        background:#eee;
+        margin-bottom:10px;
        // border: 1px solid #f90;
 
         h2 {
@@ -188,12 +190,12 @@
           margin-top: 10px;
           width: auto;
           max-width:300px;
-          background: #ffc;
+          background: #f8f8f6;
           height: 55px;
-          border: 1px solid #ccc;
+          border: 0px solid #aaa;
           overflow: hidden;
           transition: height 0.5s;
-          box-shadow: 0px 1px 0px #ccc;
+          box-shadow: 0px 1px 2px #666;
           font-size: 13px;
           padding: 5px;
 

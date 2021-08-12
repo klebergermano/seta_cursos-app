@@ -1,4 +1,9 @@
-export function changeDateToYYYYMMDD(){
+export function changeDateTextToYYYYMMDD(dateString){
+
+let arrayDate = dateString.split('/');
+let newDate = arrayDate[2]+'-'+(arrayDate[1])+'-'+arrayDate[0];
+return newDate;
+
 
 }
 export function changeDateToDDMMYYYY(){

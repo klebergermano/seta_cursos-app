@@ -44,11 +44,11 @@ function disableAulaNumero(){
 
 
 }
-function setInitialIndexAulaNumero(){
+export function setInitialIndexAulaNumero(){
   let aulaNumero= document.querySelector("#form_add_aula").querySelector('#aula_numero');
   aulaNumero.options.selectedIndex = 0;
  }
-function setInitialIndexBimestre(){
+export function setInitialIndexBimestre(){
   let bimestreNumero= document.querySelector("#form_add_aula").querySelector('#select_bimestre_add_aluno');
   bimestreNumero.options.selectedIndex = 0;
  }
@@ -92,13 +92,11 @@ function validaFormAddAulaOptionsAulaNumero() {
   }
   
   function blockSelectOptionsAddAulas(RA, curso, bimestre) {
-    console.log(RA, curso, bimestre);
     //Bloqueia as options do select #aula_numero no formulário form_add_aula
     let select = document.querySelector("#aula_numero");
     let aulasKeys = getKeysAulas(RA, curso, bimestre);
     aulasKeys.then((res) => {
       //if evita o primeira execução do código desnecessária caso o array seja vazio.
-      console.log('res:', res);
       if (res) {
         //options[i] são as options do select
         for (let i = 0; i <= select.options.length - 1; i++) {
@@ -136,7 +134,6 @@ function validaFormAddAulaOptionsAulaNumero() {
       }).then(()=>{
      setInitialIndexBimestre()
     disableAulaNumero()
-
       })
  
   }
