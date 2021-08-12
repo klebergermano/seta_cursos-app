@@ -14,12 +14,12 @@
 
 
   #form_select_aluno {
-  //  background: #fff;
+   background: #fff;
    // border: $border-set-default;
    margin-bottom:20px;
     width: 100%;
     height: auto;
-    padding: 5px 0px;
+    padding: 10px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -84,25 +84,22 @@
 
             user-select: none;
             &:hover{
-            background:#f8f8f8;
-            color: #333;
-
-
-            //  color: $primary-color;
+    
             }
             &:active{
-              background:#f0f0f0;
+  
+              
             }
           }
           .active{
-            background:#dddede;
-            //color: #fff;
+            background:#eee;
+            color: #333;
             border:0px;
-&:hover{
- background:#dddede;
- // color:#fff;
+              &:hover{
+           //  background:#dddede;
+              // color:#fff;
 
-}
+              }
           }
         }
       }
@@ -160,7 +157,7 @@
 
       .bimestres {
         min-width: 100%;
-        padding: 10px;
+        padding: 20px 10px;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -169,14 +166,20 @@
         //border: $border-set-default;
         background:#eee;
         margin-bottom:10px;
+        box-shadow: 0px 1px 1px #999;
+
        // border: 1px solid #f90;
 
         h2 {
           font-weight: normal;
           flex-basis: 100%;
-          height: 20px;
           font-size:18px;
           color:$text-color;
+          text-transform: capitalize;
+          margin-top:-10px;
+          margin-bottom:10px;
+          padding-bottom:10px !important;
+          border-bottom:1px solid #ccc;
           
         }
         .columns {
@@ -190,7 +193,7 @@
           margin-top: 10px;
           width: auto;
           max-width:300px;
-          background: #f8f8f6;
+          background: #fff;
           height: 55px;
           border: 0px solid #aaa;
           overflow: hidden;
@@ -212,7 +215,7 @@
        
           .aula_numero{
             text-transform: capitalize;
-            color:#000;
+            color: darken($primary-color, 20%);
      
           }
           .aula_data{
@@ -269,7 +272,7 @@
          right:0px;
          top:0px;
           font-size:16px;
-          background:#dda; 
+          background: rgb(48, 104, 177); 
           text-align: center;
           height:22px;
           width:30px;
@@ -279,6 +282,7 @@
           border-radius:0px 0px 0px 3px;
           svg{
             margin-top:1px;
+            color:#fff;
           }
           
           &:active{

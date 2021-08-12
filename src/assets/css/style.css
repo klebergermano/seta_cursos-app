@@ -411,7 +411,7 @@ dialog {
   position: fixed;
   right: 0px;
   left: 0px;
-  top: 30%;
+  top: 25%;
   z-index: 2;
   transition: all 2s;
   background: #fff;
@@ -571,10 +571,11 @@ input:disabled {
   width: 100%;
 }
 #controle_aula #form_select_aluno {
+  background: #fff;
   margin-bottom: 20px;
   width: 100%;
   height: auto;
-  padding: 5px 0px;
+  padding: 10px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -633,19 +634,10 @@ input:disabled {
   text-transform: uppercase;
   user-select: none;
 }
-#controle_aula #bg_cursos nav.nav_cursos_aluno ul li a:hover {
-  background: #f8f8f8;
-  color: #333;
-}
-#controle_aula #bg_cursos nav.nav_cursos_aluno ul li a:active {
-  background: #f0f0f0;
-}
 #controle_aula #bg_cursos nav.nav_cursos_aluno ul li .active {
-  background: #dddede;
+  background: #eee;
+  color: #333;
   border: 0px;
-}
-#controle_aula #bg_cursos nav.nav_cursos_aluno ul li .active:hover {
-  background: #dddede;
 }
 #controle_aula #bg_cursos .bg_curso {
   background: #fff;
@@ -697,7 +689,7 @@ input:disabled {
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres {
   min-width: 100%;
-  padding: 10px;
+  padding: 20px 10px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -705,13 +697,18 @@ input:disabled {
   justify-content: space-around;
   background: #eee;
   margin-bottom: 10px;
+  box-shadow: 0px 1px 1px #999;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres h2 {
   font-weight: normal;
   flex-basis: 100%;
-  height: 20px;
   font-size: 18px;
   color: #444;
+  text-transform: capitalize;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  padding-bottom: 10px !important;
+  border-bottom: 1px solid #ccc;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .columns {
   width: 25%;
@@ -723,7 +720,7 @@ input:disabled {
   margin-top: 10px;
   width: auto;
   max-width: 300px;
-  background: #f8f8f6;
+  background: #fff;
   height: 55px;
   border: 0px solid #aaa;
   overflow: hidden;
@@ -741,7 +738,7 @@ input:disabled {
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .aulas .aula_numero {
   text-transform: capitalize;
-  color: #000;
+  color: #003c99;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .aulas .aula_data {
   padding: 5px 0px;
@@ -786,7 +783,7 @@ input:disabled {
   right: 0px;
   top: 0px;
   font-size: 16px;
-  background: #dda;
+  background: #3068b1;
   text-align: center;
   height: 22px;
   width: 30px;
@@ -797,6 +794,7 @@ input:disabled {
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .btn_open_close_aulas svg {
   margin-top: 1px;
+  color: #fff;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .btn_open_close_aulas:active {
   background: #aa9;
@@ -825,7 +823,7 @@ a {
 }
 
 body {
-  background: #f0f0f0;
+  background: #ddd;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   position: relative;
 }
