@@ -470,7 +470,8 @@ dialog {
   cursor: pointer;
 }
 .forms .close_form:hover {
-  background: #ddd;
+  background: #dd4f4f;
+  color: #fff;
 }
 
 #form_add_curso {
@@ -497,7 +498,7 @@ dialog {
 }
 
 .edit_form {
-  background: #fffff9 !important;
+  background: #fffffc !important;
 }
 .edit_form div label {
   background: transparent !important;
@@ -634,10 +635,12 @@ input:disabled {
   text-transform: uppercase;
   user-select: none;
 }
+#controle_aula #bg_cursos nav.nav_cursos_aluno ul li a:active {
+  background: #f6f6e0;
+}
 #controle_aula #bg_cursos nav.nav_cursos_aluno ul li .active {
-  background: #eee;
+  background: #ffe;
   color: #333;
-  border: 0px;
 }
 #controle_aula #bg_cursos .bg_curso {
   background: #fff;
