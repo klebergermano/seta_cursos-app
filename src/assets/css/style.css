@@ -497,13 +497,13 @@ dialog {
 }
 
 .edit_form {
-  background: #ffd !important;
+  background: #fffff9 !important;
 }
 .edit_form div label {
   background: transparent !important;
 }
 .edit_form div input, .edit_form div select, .edit_form div textarea {
-  background: #ffe;
+  background: transparent;
   border: 1px solid #aa9473;
 }
 .edit_form .disabled {
@@ -721,13 +721,13 @@ input:disabled {
   width: auto;
   max-width: 300px;
   background: #fff;
-  height: 55px;
-  border: 0px solid #aaa;
+  height: 70px;
+  border: 1px solid #ee9;
   overflow: hidden;
   transition: height 0.5s;
   box-shadow: 0px 1px 2px #666;
   font-size: 13px;
-  padding: 5px;
+  padding: 5px 10px 10px 10px;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .aulas .aula_detalhes {
   margin-top: 10px;
@@ -749,7 +749,7 @@ input:disabled {
   color: #444;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .open_aula {
-  height: 240px;
+  height: 260px;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .btn_deletar_aula {
   cursor: pointer;

@@ -8,8 +8,30 @@ export function showEditAula(e) {
     insertInfoInputsFormAddAula(e, formAddAula);
     //Adiciona a classe edit_form no formulário.
     formAddAula.classList.add("edit_form");
+    insertTextElementsEditAula();
     //chama todas as funções de edição no formulário "#form_add_aula".
     setEditAulaInfoInFormAddAula(formAddAula);
+    eventSubmitBtnEditAula()
+    function eventSubmitBtnEditAula(){
+      let btnSubmit = document.querySelector('#form_add_aula').querySelector('input[type="submit"]');
+    btnSubmit.addEventListener('click', (e)=>{
+     
+    })
+    }
+    
+  }
+
+  function insertTextElementsEditAula(){
+    let h3 = document.querySelector('#form_add_aula').querySelectorAll('h3')[0];
+    let btnSubmit = document.querySelector('#form_add_aula').querySelector('input[type="submit"]');
+    h3.innerHTML= "Editar Aula";
+    btnSubmit.value= "Salvar Edição";
+  }
+  function removeTextElementsEditAula(){
+    let h3 = document.querySelector('#form_add_aula').querySelectorAll('h3')[0];
+    let btnSubmit = document.querySelector('#form_add_aula').querySelector('input[type="submit"]');
+    h3.innerHTML= "Adicionar Aula";
+    btnSubmit.value= "Salvar";
   }
 
   function setEditAulaInfoInFormAddAula(formAddAula){
@@ -57,22 +79,25 @@ export function showEditAula(e) {
     let btn_close = formAddAula.querySelectorAll(".close_form")[0];
     btn_close.classList.add('close_form_edit');
     btn_close.addEventListener('click', (e)=>{
-    restorePreviousStateFormAddAula(formAddAula);
+      removeFormEditAula(formAddAula)
     btn_close.classList.remove('close_form_edit');
-    formAddAulas.setInitialIndexAulaNumero();
-    formAddAulas.setInitialIndexBimestre();
+    formAddAulas.resetFormAddAula(formAddAula);
+   
     });
   }
 
-  //Restaura o estado anterior do formulário "#form_add_aula";
-  function restorePreviousStateFormAddAula(formAddAula){
-    removeClassEditForm(formAddAula);
-    enableSelectsInFormAddAula(formAddAula);
-   formAddAula.querySelector('#tema').value = '';
-   formAddAula.querySelector('#data').value  = '';
-   formAddAula.querySelector('#horario').value = '';
-   formAddAula.querySelector('#detalhes').value = '';
+  export function removeFormEditAula(){
+    let formAddAula = document.querySelector('#form_add_aula');
+    if(formAddAula.classList.contains('edit_form')){
+      let btn_close = formAddAula.querySelectorAll(".close_form_edit")[0];
+      btn_close.classList.remove('close_form_edit');
+      removeClassEditForm(formAddAula);
+      enableSelectsInFormAddAula(formAddAula);
+      removeTextElementsEditAula()
+    }
+
   }
+
 
   function displayFormEditAula(){
     commonFunc.changeCSSDisplay("#form_add_aula", "block");

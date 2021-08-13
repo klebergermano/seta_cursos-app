@@ -50,9 +50,10 @@ async function createNavCursosAluno(alunoInfo) {
   }
 
   function setSelectedCusoInAddCurso(idCurso){
+    console.log(idCurso);
       let selectCurso = document.querySelector('#form_add_aula').querySelector("#select_curso_add_aluno");
       for(let i = 0; i <= selectCurso.options.length - 1; i++){
-        if(selectCurso.options[i].value === idCurso){
+        if(commonFunc.stringToID(selectCurso.options[i].value) === idCurso){
         selectCurso.options[i].setAttribute('selected', true);
         }else{
         selectCurso.options[i].removeAttribute('selected');
@@ -70,9 +71,8 @@ async function createNavCursosAluno(alunoInfo) {
 
   function navCursosClick(e) {
     let idCurso = e.target.dataset.active;
-    //setSelectedAluno()
-
-    //setSelectedCusoInAddCurso(idCurso)
+    setSelectedAluno()
+    setSelectedCusoInAddCurso(idCurso)
     //Remove a classe "active" dos elementos a.
     removeActiveClassNavCursosElement();
     //Mostra o curso pelo id do menu clicado.

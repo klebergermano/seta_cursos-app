@@ -64,14 +64,15 @@ background:#fff;
 
 }
 .edit_form{
-  background:#ffd !important;
+  background:#fffff9 !important;
+ // border:2px solid #ee9;
   div{
     label{
       background:transparent !important;
       
     }
     input, select, textarea{
-      background:#ffe;
+      background:transparent;
       border:1px solid rgb(170, 148, 115)
     }
   }

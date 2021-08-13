@@ -1,6 +1,7 @@
 import * as commonFunc from "../common/commonFunctions.js";
 import * as dbAlunoHistFunc from "../common/dbAlunoHistoricoFunc.js";
 import * as addAluno from "./formAddAlunos.js";
+import * as formEditAulas from "./formEditAulas.js";
 //=====================================================================================
 //------------------------------------ADD AULA---------------------------------------
 //TODO: Refatorar funções
@@ -155,7 +156,18 @@ function blocoAddAula(dados) {
   function selectAlunoAddAula(e) {
   }
 
-   
+     //Restaura o estado anterior do formulário "#form_add_aula";
+  export function resetFormAddAula(formAddAula){
+    
+   formAddAula.querySelector('#tema').value = '';
+   formAddAula.querySelector('#data').value  = '';
+   formAddAula.querySelector('#horario').value = '';
+   formAddAula.querySelector('#detalhes').value = '';
+   setInitialIndexAulaNumero();
+   setInitialIndexBimestre();
+
+   formEditAulas.removeFormEditAula(document.querySelector('#form_add_aula'));
+  }
   
   function formAddAula(e) {
     e.preventDefault();
@@ -181,15 +193,14 @@ function blocoAddAula(dados) {
         setTimeout(() => {
           e.target.style.display = "none";
           commonFunc.changeCSSDisplay("#block_screen", "none");
+        resetFormAddAula(document.querySelector('#form_add_aula'));
+
         }, 500);
       })
       .then(() => {
         //seta o #select_aluno com o RA que acabou de ser atualizado
         setSelectedInASelectBasedOnRA("#select_aluno_add_aula", RA);
         setSelectedInASelectBasedOnRA("#select_aluno_add_curso", RA);
-      }).then(()=>{
-        setInitialIndexBimestre()
-        disableAulaNumero()
       })
       .catch((error) => console.error("Error writing document: ", error));
   }
