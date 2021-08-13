@@ -41,6 +41,10 @@
       float: right;
       margin:0px;
       margin-left:10px;
+      svg{
+        margin-bottom:-2px;
+        margin-right:5px;
+      }
     }
   }
   #bg_cursos {
@@ -98,7 +102,6 @@
               &:hover{
            //  background:#dddede;
               // color:#fff;
-
               }
           }
         }
@@ -106,6 +109,8 @@
     }
     .bg_curso{
       background:#fff;
+    background:#ddd;
+
       padding:10px; 
       border:$border-set-default;
       h3{ padding:10px;}
@@ -139,7 +144,7 @@
 
    //excel
       span[class*="excel"]{ 
-        color:green;
+        color:rgb(38, 148, 38)
       }
    //informática
       span[class^="informática"], span[class*="informática"]{ 
@@ -147,7 +152,6 @@
       }
     }
     .bg_bimestres {
-      background: #fff;
      // border: $border-set-default;
       width: 100%;
       min-height: 300px;
@@ -180,6 +184,7 @@
           margin-bottom:10px;
           padding-bottom:10px !important;
           border-bottom:1px solid #ccc;
+          color:rgb(77, 77, 77);
           
         }
         .columns {
@@ -193,12 +198,12 @@
           margin-top: 10px;
           width: auto;
           max-width:300px;
-          background: #fff;
+          background: #ffffff;
           height: 70px;
-          border: 1px solid #ee9;
+         border: 1px solid rgb(70, 108, 179);
           overflow: hidden;
           transition: height 0.5s;
-          box-shadow: 0px 1px 2px #666;
+          box-shadow: 0px 1px 1px rgb(156, 156, 156);
           font-size: 13px;
           padding: 5px 10px 10px 10px;
 
@@ -209,7 +214,6 @@
             overflow-y: scroll;
             height:145px;
             padding:5px;
-       
 
           }
        
@@ -223,8 +227,6 @@
             svg{max-height:14px; margin-bottom:-2px;
             color:$text-color}
             .aula_data_info{
-       
-
        
             }
        
