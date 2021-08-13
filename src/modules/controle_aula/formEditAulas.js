@@ -29,7 +29,6 @@ export function showEditAula(e) {
     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
   </svg>`; 
     h3.innerHTML= svgEdit + " Editar Aula";
-    btnSubmit.value= "Salvar Edição";
   }
   function removeTextElementsEditAula(){
     let h3 = document.querySelector('#form_add_aula').querySelectorAll('h3')[0];
@@ -40,8 +39,7 @@ export function showEditAula(e) {
     <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
   </svg>`;
 
-    h3.innerHTML= svgAddAula + " Adicionar Aula";
-    btnSubmit.value= "Salvar";
+    h3.innerHTML= svgAddAula + "Adicionar Aula";
   }
 
   function setEditAulaInfoInFormAddAula(formAddAula){

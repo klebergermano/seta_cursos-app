@@ -423,6 +423,10 @@ dialog {
   text-align: center;
   margin-bottom: 10px;
 }
+.forms h3 svg {
+  margin-bottom: -1px;
+  margin-right: 2px;
+}
 .forms div {
   display: flex;
   padding: 5px;
@@ -498,7 +502,8 @@ dialog {
 }
 
 .edit_form {
-  background: #fffffc !important;
+  background: #ffffff !important;
+  border: 2px solid #6a8acf;
 }
 .edit_form div label {
   background: transparent !important;
