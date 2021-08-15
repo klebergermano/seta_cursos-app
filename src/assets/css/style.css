@@ -765,6 +765,7 @@ input:disabled {
   height: 260px;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .btn_deletar_aula {
+  z-index: 2;
   cursor: pointer;
   float: left;
   padding: 3px;
@@ -775,6 +776,9 @@ input:disabled {
 #controle_aula #bg_cursos .bg_bimestres .bimestres .btn_deletar_aula:hover {
   background: #f9f0f0;
   color: #db1e1e;
+}
+#controle_aula #bg_cursos .bg_bimestres .bimestres .btn_deletar_aula svg {
+  z-index: 0;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .btn_edit_aulas {
   float: right;

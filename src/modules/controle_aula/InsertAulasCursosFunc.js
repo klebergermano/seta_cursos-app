@@ -4,6 +4,7 @@ import * as navCursosAluno from "./navCursosAluno.js";
 import * as editAulas from "./formEditAulas.js"; 
 import * as addAulas from "./formAddAulas.js"; 
 import * as dateFunc from "../common/dateFunc.js"; 
+import * as deleteFunc from "./deleteAulas.js";
 
 //---------------------------------INSERT AULAS ------------------------------------
 export function insertAulasWhenChangeAluno(){
@@ -34,16 +35,14 @@ export function insertAulasWhenAlunoChange(RA, snapshotChange) {
   });
 }
 
-function inserPageHtmlAluno(){
 
-}
 
-function createHtmlCursoContent(curso_nome_bd) {
+function createHtmlCursoContent(curso_nome_bd, alunoInfoGeral) {
   if (curso_nome_bd) {
     let id_curso = commonFunc.stringToID(curso_nome_bd);
     let htmlAula = document.createElement("div");
     htmlAula.innerHTML = `
-    <div class='bg_curso' id='${id_curso}'>
+    <div class='bg_curso' id='${id_curso}' data-aluno_ra='${alunoInfoGeral.RA}' data-curso='${curso_nome_bd}'>
       <div class='title'>
         <span class='title_curso_nome ${id_curso}'>${curso_nome_bd}</span>
         </div><div id='curso_content'>
@@ -125,6 +124,9 @@ export function InsertHTMLAulas(alunoDB, alunoInfoGeral, snapChanges) {
   
   //Carrega a função de click
   commonFunc.addEventListenerInAllElements('.btn_open_close_aulas', 'click', clickOpenCloseAulas);
+
+  //Funções de delete aula
+  deleteFunc.eventsDeletarAula()
 }
 
 
@@ -155,7 +157,8 @@ function createHTMLAula(aulaDados, n_aula, n_bimestre) {
   //let id_bimestre = n_bimestre.replace(/\s+/g, "_").toLowerCase();
   let id_bimestre = commonFunc.stringToID(n_bimestre);
   let block = `
-    <div id='${id_bimestre}_${id_aula}' data-bimestre='${id_bimestre}' class="aulas aula_feita">
+    <div id='${id_bimestre}_${id_aula}' data-bimestre='${n_bimestre}' 
+    data-aula='${n_aula}'  class="aulas aula_feita">
      <span class='btn_open_close_aulas'>
      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
      <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>

@@ -31,7 +31,7 @@ insertAulasCursosFunc.insertAulasWhenAlunoChange
   
   //TODO: gerando erro ao carregar
  // formAddAlunos.validaSelectOptionsAddAluno();
- 
+ //Deletar Aulas
 }
 loadOnStartUp()
 
