@@ -117,8 +117,7 @@ function removeActiveClassFromNavCursos(){
     a[0].classList.add("active");
   }
 
-  export function insertNavCursosInBGCursos(alunoInfo, snapChanges) {
-  
+  export function insertNavCursosInBGCursos(alunoInfo, nomeDoCurso) {
     //Cria o menu nav_cursos_aluno
      createNavCursosAluno(alunoInfo)
      .then((nav) => {
@@ -130,6 +129,6 @@ function removeActiveClassFromNavCursos(){
       })
       .then(() => {
           //mostra o curso que foi atualizado usando displayNavCursoAlunoUpdated
-          displayNavCursoAlunoUpdated(snapChanges[0].doc.data().curso /*Nome do curso atualizado*/)
+          displayNavCursoAlunoUpdated(nomeDoCurso)
       }).catch((err) => { console.log(err) });
   }

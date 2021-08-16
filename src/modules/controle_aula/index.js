@@ -7,11 +7,9 @@ import * as dragForms from "./dragForms.js";
 
 //TODO: Arrumar ordem de execução das funções
 function loadOnStartUp(){
-  insertAulasCursosFunc.insertAulasWhenChangeAluno();
-  //insertAulasCursosFunc.realTimeDataAlunoHistorico("RA01");
-  dbAlunoHistFunc.dbRealTimeAlunoHistCursos("RA01",
-insertAulasCursosFunc.insertAulasWhenAlunoChange
-  );
+  insertAulasCursosFunc.eventInputSelectAluno();
+
+  dbAlunoHistFunc.dbRealTimeAlunoHistCursos("RA01", insertAulasCursosFunc.insertContentAlunoCurso);
 
   formAddAulas.navAddFormsDisplayEvent();
   //FORMS
