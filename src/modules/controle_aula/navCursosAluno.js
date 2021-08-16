@@ -50,7 +50,6 @@ async function createNavCursosAluno(alunoInfo) {
   }
 
   function setSelectedCusoInAddCurso(idCurso){
-    console.log(idCurso);
       let selectCurso = document.querySelector('#form_add_aula').querySelector("#select_curso_add_aluno");
       for(let i = 0; i <= selectCurso.options.length - 1; i++){
         if(commonFunc.stringToID(selectCurso.options[i].value) === idCurso){

@@ -25,20 +25,45 @@ export function insertAulasWhenChangeAluno(){
 }
 
 export function insertAulasWhenAlunoChange(RA, snapshotChange) {
-  let changes = snapshotChange.docChanges();
+  let snapChanges = snapshotChange.docChanges();
   let alunoInfoGeral = dbAlunoHistFunc.getAlunoInfoGeral(RA);
   let alunoH = dbAlunoHistFunc.alunoHistoricoDB(RA);
-  alunoH.then((aluno) => { 
-    alunoInfoGeral.then((res) => {
-        InsertHTMLAulas(aluno, res, changes);
+  alunoH.then((alunoDB) => { 
+    alunoInfoGeral.then((alunoInfo) => {
+        InsertHTMLAulas(alunoDB, alunoInfo, snapChanges);
       })
   });
 }
 
+function appendMessageDeleteCurso(){
+  let message = `Deseja deletar o curso? <button>DELETAR</button>`;
+  let div = document.createElement('div');
+  div.innerHTML = message;
+  document.querySelector('.title_curso_nome').appendChild(div);
+}
 
+function checkIfCursoIsEmpty(curso_nome_bd, lunoInfoGeral){
+  let isEmpty = db.collection("aluno_historico")
+  .doc(lunoInfoGeral.RA)
+  .collection("cursos")
+  .doc(curso_nome_bd)
+  .get('bimestres')
+  .then((res)=>{
+      let bimestres = res.data().bimestres;
+      let keys = Object.keys(bimestres);
+          if(keys.length <= 0){
+              console.log('vazio');
+              return  true;
+          }else{
+            return false;
+          }
+  });
+  return isEmpty;
+}
 
 function createHtmlCursoContent(curso_nome_bd, alunoInfoGeral) {
-  if (curso_nome_bd) {
+
+  if(curso_nome_bd) {
     let id_curso = commonFunc.stringToID(curso_nome_bd);
     let htmlAula = document.createElement("div");
     htmlAula.innerHTML = `
@@ -53,8 +78,37 @@ function createHtmlCursoContent(curso_nome_bd, alunoInfoGeral) {
     return false;
   }
 }
+function createHtmlCursoContentXXXXXXX(curso_nome_bd, alunoInfoGeral) {
+  let id_curso = commonFunc.stringToID(curso_nome_bd);
+  let htmlAula = document.createElement("div");
+ let resHTML = checkIfCursoIsEmpty(curso_nome_bd, alunoInfoGeral).then((res)=>{
+  if(res){
+    console.log('TRUE')
+    htmlAula.innerHTML = `
+    <div class='bg_curso' id='${id_curso}' data-aluno_ra='${alunoInfoGeral.RA}' data-curso='${curso_nome_bd}'>
+      <div class='title'>
+        <span class='title_curso_nome ${id_curso}'>${curso_nome_bd}</span>
+        </div><div id='curso_content'>
+      </div>
+      <div class='bg_btn_deletar_curso'>Deletar Curso</div>
+    </div>`;
+  }else{
+    console.log('FALSE')
+    htmlAula.innerHTML = `
+    <div class='bg_curso' id='${id_curso}' data-aluno_ra='${alunoInfoGeral.RA}' data-curso='${curso_nome_bd}'>
+      <div class='title'>
+        <span class='title_curso_nome ${id_curso}'>${curso_nome_bd}</span>
+        </div><div id='curso_content'>
+      </div>
+    </div>`;
+  }
+  return htmlAula;
+ });
+return resHTML;
+}
 //Insere as aulas na página
 export function InsertHTMLAulas(alunoDB, alunoInfoGeral, snapChanges) {
+
   //TODO remover snapChanges
   let resultHTML = "";
   //Main forEach
@@ -68,6 +122,10 @@ export function InsertHTMLAulas(alunoDB, alunoInfoGeral, snapChanges) {
     if (curso_nome_bd) {
       id_curso = commonFunc.stringToID(curso_nome_bd);
     }
+
+
+
+
     let html = createHtmlCursoContent(curso_nome_bd, alunoInfoGeral);
     let curso_content = html.querySelector("#curso_content");
     let content = `<div class='bg_bimestres'>`;
