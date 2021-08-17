@@ -70,39 +70,9 @@ function checkIfCursoIsEmpty(curso_nome_bd, lunoInfoGeral){
   return isEmpty;
 }
 
-function createHtmlCursoContentXXXXXXX(curso_nome_bd, alunoInfoGeral) {
-  let id_curso = commonFunc.stringToID(curso_nome_bd);
-  let htmlAula = document.createElement("div");
- let resHTML = checkIfCursoIsEmpty(curso_nome_bd, alunoInfoGeral).then((res)=>{
-  if(res){
-    console.log('TRUE')
-    htmlAula.innerHTML = `
-    <div class='bg_curso' id='${id_curso}' data-aluno_ra='${alunoInfoGeral.RA}' data-curso='${curso_nome_bd}'>
-      <div class='title'>
-        <span class='title_curso_nome ${id_curso}'>${curso_nome_bd}</span>
-        </div><div id='curso_content'>
-      </div>
-      <div class='bg_btn_deletar_curso'>Deletar Curso</div>
-    </div>`;
-  }else{
-    console.log('FALSE')
-    htmlAula.innerHTML = `
-    <div class='bg_curso' id='${id_curso}' data-aluno_ra='${alunoInfoGeral.RA}' data-curso='${curso_nome_bd}'>
-      <div class='title'>
-        <span class='title_curso_nome ${id_curso}'>${curso_nome_bd}</span>
-        </div><div id='curso_content'>
-      </div>
-    </div>`;
-  }
-  return htmlAula;
- });
-return resHTML;
-}
-//Insere as aulas na página
 
-
-
-function createHtmlCursoContent(curso_nome_bd, alunoInfoGeral) {
+        
+function createBgCursoHTML(curso_nome_bd, alunoInfoGeral) {
   if(curso_nome_bd) {
     let id_curso = commonFunc.stringToID(curso_nome_bd);
     let htmlAula = document.createElement("div");
@@ -119,7 +89,87 @@ function createHtmlCursoContent(curso_nome_bd, alunoInfoGeral) {
   }
 }
 
+function bimestreAulasHTML(){
+  //div bg_bimestres
+let divBgBimestres = document.createElement('div');
+    divBgBimestres.classList.add('bg_bimestres');
+for(let i = 0; i < 3; i++){
+  divBgBimestres.innerHTML += `<p>teste ${i}</p>`
+}
+}
+
 export function InsertHTMLAulas(alunoDataFromDB, alunoInfoGeral) {
+  bimestreAulasHTML()
+  //TODO remover snapChanges
+  let contentBgCursosHTML = "";
+  //Main forEach
+  alunoDataFromDB.forEach((res) => {
+    if (typeof res.data !== "undefined"){res = res.data();} else { res = res.doc.data(); }
+    let id_curso;
+    //evita erro por undefined no nome do curso
+    if (res.curso) id_curso = commonFunc.stringToID(res.curso) 
+    else id_curso = "nome_curso_nao_encontrado";
+
+    let bgCursoHTML = createBgCursoHTML(res.curso, alunoInfoGeral);
+    let divCursoContent = bgCursoHTML.querySelector("#curso_content");
+    let divBgBimestres = document.createElement('div');
+        divBgBimestres.className = 'bg_bimestres';
+    
+    // Pega as keys reordenadas do obj res.bimestres e usa no para criar o for, eles também 
+    //são utilizadas com o index do for para carregar os dados ex.: "b_sortedKeys[i]"
+    let bimSortedKeys = commonFunc.getReverseObjectKeys(res.bimestres);
+    for (let i = 0; i < bimSortedKeys.length; i++) {
+       
+        let aulaSortedKeys = commonFunc.getReverseObjectKeys(res.bimestres[bimSortedKeys[i]]);
+        let divBimestre =  document.createElement('div');  //cria a div '.bimestres'
+            divBimestre.className =  'bimestres'; 
+        let titleBimestre = document.createElement('h2');//cria o título do bimestre
+            titleBimestre.textContent = bimSortedKeys[i];
+        let innerHTMLBimestre = ''; //numero de bimestres
+        
+        let aula;
+        let counter = 1;
+        for (let j = 0; j < aulaSortedKeys.length; j++) {
+            //usa as keys dos dois fors, a do bimestre "ex: bimestres_1" e a key da aula
+            // "ex: aula_3" para gerar o bloco aula
+            aula = res.bimestres[bimSortedKeys[i]][aulaSortedKeys[j]];
+            if (counter === 1) { //abre a div columns quando o contador esta em 1
+            innerHTMLBimestre += "<div class='columns'>";
+            }
+            //carrega as aulas chamando a função createHTMLAula
+            //passa a key para gera o numero da aula ex: aula_1
+            innerHTMLBimestre += createHTMLAula(aula, aulaSortedKeys[j], bimSortedKeys[i]);
+            counter++;
+            if (counter === 5) {innerHTMLBimestre += "</div>"; counter = 1; }
+        } //--------------------------end for Aulas
+        //caso não haja aulas suficientes para terminar a columa a condição fecha a div 'columns'
+        if (counter > 1) {innerHTMLBimestre += "</div><!-- div fecha columns -->"; }
+        //fecha a div bimestres
+        divBimestre.appendChild(titleBimestre); // Adiciona o título do bimestre
+        divBimestre.innerHTML += innerHTMLBimestre; //Adiciona o conteúdo do bimestre
+        divBgBimestres.appendChild(divBimestre); //Adiciona o bimestre no .bg_bimestres
+        divCursoContent.appendChild(divBgBimestres); //Adiciona o '.bg_bimestres' em '#curso_content'
+
+    }//------------------------------------------------END FOR Bimestres
+
+    contentBgCursosHTML += bgCursoHTML.innerHTML;
+  });
+
+  //--------------------------------------------------------------------------------
+  //adiciona todo o conteúdo gerado em #bg_cursos
+  document.querySelector("#bg_cursos").innerHTML = contentBgCursosHTML;
+  //Carrega a função de click no btn_edit_aulas
+  commonFunc.addEventListenerInAllElements('.btn_edit_aulas', 'click', editAulas.showEditAula);
+  //Carrega a função de click
+  commonFunc.addEventListenerInAllElements('.btn_open_close_aulas', 'click', clickOpenCloseAulas);
+
+  //Funções de delete aula
+  deleteFunc.eventsDeletarAula()
+}
+
+
+
+export function InsertHTMLAulasAAAAAAA(alunoDataFromDB, alunoInfoGeral) {
   //TODO remover snapChanges
   let resultHTML = "";
   //Main forEach
@@ -195,85 +245,6 @@ export function InsertHTMLAulas(alunoDataFromDB, alunoInfoGeral) {
 }
 
 
-
-
-
-export function InsertHTMLAulasXXXX(alunoDB, alunoInfoGeral, snapChanges) {
-
-  //TODO remover snapChanges
-  let resultHTML = "";
-  //Main forEach
-  alunoDB.forEach((res) => {
-    if (typeof res.data !== "undefined") { res = res.data(); }
-    else { res = res.doc.data(); }
-    let bimestres_bd = res.bimestres;
-    let curso_nome_bd = res.curso;
-    let id_curso;
-    //evita erro por undefined no nome do curso
-    if (curso_nome_bd) {
-      id_curso = commonFunc.stringToID(curso_nome_bd);
-    }
-
-    let html = createHtmlCursoContent(curso_nome_bd, alunoInfoGeral);
-    let curso_content = html.querySelector("#curso_content");
-    let content = `<div class='bg_bimestres'>`;
-    // Pega as keys reordenadas do obj bimestres_bd e usa no para
-    // criar o for, eles também são utilizadas com o index do for
-    // para carregar os dados ex.: "b_sortedKeys[i]"
-    let bimSortedKeys = commonFunc.getReverseObjectKeys(bimestres_bd);
-    for (let i = 0; i < bimSortedKeys.length; i++) {
-      let aula;
-      let counter = 1;
-      //cria a div bimestres
-      content += "<div class='bimestres'>";
-      //numero de bimestres
-      content += `<h2>${[bimSortedKeys[i]]}</h2>`;
-      let aulaSortedKeys = commonFunc.getReverseObjectKeys(
-        bimestres_bd[bimSortedKeys[i]]
-      );
-
-      for (let j = 0; j < aulaSortedKeys.length; j++) {
-        //usa as keys dos dois fors, a do bimestre "ex: bimestres_1" e a key da aula
-        // "ex: aula_3" para gerar o bloco aula
-        aula = bimestres_bd[bimSortedKeys[i]][aulaSortedKeys[j]];
-        if (counter === 1) {
-          //abre a div columns quando o contador esta em 1
-          content += "<div class='columns'>";
-        }
-        //carrega as aulas chamando a função createHTMLAula
-        //passa a key para gera o numero da aula ex: aula_1
-        content += createHTMLAula(aula, aulaSortedKeys[j], bimSortedKeys[i]);
-        counter++;
-        if (counter === 5) {
-          content += "</div>";
-          counter = 1;
-        }
-      } // end for
-      //caso não haja aulas suficientes para terminar a columa a condição fecha a div 'columns'
-      if (counter > 1) {
-        content += "</div>";
-      }
-      //fecha a div bimestres
-      content += "</div>";
-      curso_content.innerHTML = content;
-    }
-    content += "</div>"; //fecha bg_bimestres
-    resultHTML += html.innerHTML;
-  });
-
-  //--------------------------------------------------------------------------------
-  navCursosAluno.insertNavCursosInBGCursos(alunoInfoGeral, snapChanges)
-  //adiciona todo o conteúdo gerado em #bg_cursos
-  document.querySelector("#bg_cursos").innerHTML = resultHTML;
-  //Carrega a função de click no btn_edit_aulas
-  commonFunc.addEventListenerInAllElements('.btn_edit_aulas', 'click', editAulas.showEditAula);
-  
-  //Carrega a função de click
-  commonFunc.addEventListenerInAllElements('.btn_open_close_aulas', 'click', clickOpenCloseAulas);
-
-  //Funções de delete aula
-  deleteFunc.eventsDeletarAula()
-}
 
 
 function clickOpenCloseAulas(e){
