@@ -38,8 +38,6 @@ function deleteDbAula(aulaInfoDelete){
     .doc(aulaInfoDelete.curso)
     .update(deleteQuery);
     delAula.then((res)=>{
-console.log('res', res);
-        checkIfBimestreIsEmptyToDelete(aulaInfoDelete)
     });
 }
 
