@@ -2,8 +2,8 @@ export function dbRealTimeAlunoHistCursos(RA, callback) {
     db.collection("aluno_historico")
     .doc(RA)
     .collection("cursos")
-    .onSnapshot((snap) => {
-        callback(RA, snap);
+    .onSnapshot((snapshot) => {
+        callback(RA, snapshot.docChanges());
     });
   }
   

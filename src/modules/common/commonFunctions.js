@@ -39,7 +39,7 @@ export function parenteDisplayAndBlockScreenNone(e) {
 }
 
 //usado para mostrar mensagem após um submit
-export function showMessage(targetID, message) {
+export function showMessage(targetID, message, callback) {
   let previousHTML = document.getElementById(targetID).innerHTML;
   document.getElementById(
     targetID
@@ -49,7 +49,7 @@ export function showMessage(targetID, message) {
   }, 2000);
   //restaura a função de fechar do formulário
   setTimeout(() => {
-    AddEventBtnCloseForm();
+    callback();
   }, 2200);
 }
 

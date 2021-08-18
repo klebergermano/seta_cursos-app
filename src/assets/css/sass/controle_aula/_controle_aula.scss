@@ -14,12 +14,12 @@
 
 
   #form_select_aluno {
-  //  background: #fff;
+   background: #fff;
    // border: $border-set-default;
    margin-bottom:20px;
     width: 100%;
     height: auto;
-    padding: 5px 0px;
+    padding: 10px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -41,6 +41,10 @@
       float: right;
       margin:0px;
       margin-left:10px;
+      svg{
+        margin-bottom:-2px;
+        margin-right:5px;
+      }
     }
   }
   #bg_cursos {
@@ -84,31 +88,29 @@
 
             user-select: none;
             &:hover{
-            background:#f8f8f8;
-            color: #333;
-
-
-            //  color: $primary-color;
+    
             }
             &:active{
-              background:#f0f0f0;
+              background:#f6f6e0;
+  
+              
             }
           }
           .active{
-            background:#dddede;
-            //color: #fff;
-            border:0px;
-&:hover{
- background:#dddede;
- // color:#fff;
-
-}
+            background:#ffe;
+            color: #333;
+              &:hover{
+           //  background:#dddede;
+              // color:#fff;
+              }
           }
         }
       }
     }
     .bg_curso{
       background:#fff;
+    background:#ddd;
+
       padding:10px; 
       border:$border-set-default;
       h3{ padding:10px;}
@@ -142,7 +144,7 @@
 
    //excel
       span[class*="excel"]{ 
-        color:green;
+        color:rgb(38, 148, 38)
       }
    //informática
       span[class^="informática"], span[class*="informática"]{ 
@@ -150,7 +152,6 @@
       }
     }
     .bg_bimestres {
-      background: #fff;
      // border: $border-set-default;
       width: 100%;
       min-height: 300px;
@@ -160,21 +161,30 @@
 
       .bimestres {
         min-width: 100%;
-        padding: 10px;
+        padding: 20px 10px;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         align-items: flex-start;
         justify-content: space-around;
-        border: $border-set-default;
+        //border: $border-set-default;
+        background:#eee;
+        margin-bottom:10px;
+        box-shadow: 0px 1px 1px #999;
+
        // border: 1px solid #f90;
 
         h2 {
           font-weight: normal;
           flex-basis: 100%;
-          height: 20px;
           font-size:18px;
           color:$text-color;
+          text-transform: capitalize;
+          margin-top:-10px;
+          margin-bottom:10px;
+          padding-bottom:10px !important;
+          border-bottom:1px solid #ccc;
+          color:rgb(77, 77, 77);
           
         }
         .columns {
@@ -188,14 +198,14 @@
           margin-top: 10px;
           width: auto;
           max-width:300px;
-          background: #ffc;
-          height: 55px;
-          border: 1px solid #ccc;
+          background: #ffffff;
+          height: 70px;
+       border: 1px solid rgb(70, 108, 179);
           overflow: hidden;
           transition: height 0.5s;
-          box-shadow: 0px 1px 0px #ccc;
+          box-shadow: 0px 1px 1px rgb(156, 156, 156);
           font-size: 13px;
-          padding: 5px;
+          padding: 5px 10px 10px 10px;
 
       
           .aula_detalhes{
@@ -204,28 +214,32 @@
             overflow-y: scroll;
             height:145px;
             padding:5px;
-       
 
           }
        
           .aula_numero{
             text-transform: capitalize;
-            color:#000;
+            color: darken($primary-color, 20%);
      
           }
           .aula_data{
             padding: 5px 0px;
             svg{max-height:14px; margin-bottom:-2px;
             color:$text-color}
+            .aula_data_info{
+       
+            }
+       
 
           }
      
         }
         .open_aula {
-          height: 240px;
+          height: 260px;
         }
   
          .btn_deletar_aula{
+           z-index: 2;
            cursor:pointer;
            float:left;
            padding:3px;
@@ -237,6 +251,8 @@
            color:rgb(219, 30, 30);
 
            }
+           svg{ z-index: 0;}
+           
          }
          .btn_edit_aulas{
            float:right;
@@ -261,7 +277,7 @@
          right:0px;
          top:0px;
           font-size:16px;
-          background:#dda; 
+          background: rgb(48, 104, 177); 
           text-align: center;
           height:22px;
           width:30px;
@@ -271,6 +287,7 @@
           border-radius:0px 0px 0px 3px;
           svg{
             margin-top:1px;
+            color:#fff;
           }
           
           &:active{

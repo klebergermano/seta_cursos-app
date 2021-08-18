@@ -411,7 +411,7 @@ dialog {
   position: fixed;
   right: 0px;
   left: 0px;
-  top: 30%;
+  top: 25%;
   z-index: 2;
   transition: all 2s;
   background: #fff;
@@ -422,6 +422,10 @@ dialog {
   flex-basis: 100%;
   text-align: center;
   margin-bottom: 10px;
+}
+.forms h3 svg {
+  margin-bottom: -1px;
+  margin-right: 2px;
 }
 .forms div {
   display: flex;
@@ -470,7 +474,8 @@ dialog {
   cursor: pointer;
 }
 .forms .close_form:hover {
-  background: #ddd;
+  background: #dd4f4f;
+  color: #fff;
 }
 
 #form_add_curso {
@@ -497,10 +502,15 @@ dialog {
 }
 
 .edit_form {
-  background: #ffc !important;
+  background: #ffffff !important;
+  border: 2px solid #6a8acf;
 }
 .edit_form div label {
   background: transparent !important;
+}
+.edit_form div input, .edit_form div select, .edit_form div textarea {
+  background: transparent;
+  border: 1px solid #aa9473;
 }
 .edit_form .disabled {
   position: relative;
@@ -567,10 +577,11 @@ input:disabled {
   width: 100%;
 }
 #controle_aula #form_select_aluno {
+  background: #fff;
   margin-bottom: 20px;
   width: 100%;
   height: auto;
-  padding: 5px 0px;
+  padding: 10px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -591,6 +602,10 @@ input:disabled {
   float: right;
   margin: 0px;
   margin-left: 10px;
+}
+#controle_aula #form_select_aluno button svg {
+  margin-bottom: -2px;
+  margin-right: 5px;
 }
 #controle_aula #bg_cursos nav.nav_cursos_aluno {
   background-color: #fff;
@@ -629,22 +644,16 @@ input:disabled {
   text-transform: uppercase;
   user-select: none;
 }
-#controle_aula #bg_cursos nav.nav_cursos_aluno ul li a:hover {
-  background: #f8f8f8;
-  color: #333;
-}
 #controle_aula #bg_cursos nav.nav_cursos_aluno ul li a:active {
-  background: #f0f0f0;
+  background: #f6f6e0;
 }
 #controle_aula #bg_cursos nav.nav_cursos_aluno ul li .active {
-  background: #dddede;
-  border: 0px;
-}
-#controle_aula #bg_cursos nav.nav_cursos_aluno ul li .active:hover {
-  background: #dddede;
+  background: #ffe;
+  color: #333;
 }
 #controle_aula #bg_cursos .bg_curso {
   background: #fff;
+  background: #ddd;
   padding: 10px;
   border: 1px solid #ccc;
   display: none;
@@ -678,13 +687,12 @@ input:disabled {
   color: red;
 }
 #controle_aula #bg_cursos .title span[class*=excel] {
-  color: green;
+  color: #269426;
 }
 #controle_aula #bg_cursos .title span[class^=informática], #controle_aula #bg_cursos .title span[class*=informática] {
   color: blue !important;
 }
 #controle_aula #bg_cursos .bg_bimestres {
-  background: #fff;
   width: 100%;
   min-height: 300px;
   display: flex;
@@ -693,20 +701,27 @@ input:disabled {
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres {
   min-width: 100%;
-  padding: 10px;
+  padding: 20px 10px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-around;
-  border: 1px solid #ccc;
+  background: #eee;
+  margin-bottom: 10px;
+  box-shadow: 0px 1px 1px #999;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres h2 {
   font-weight: normal;
   flex-basis: 100%;
-  height: 20px;
   font-size: 18px;
   color: #444;
+  text-transform: capitalize;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  padding-bottom: 10px !important;
+  border-bottom: 1px solid #ccc;
+  color: #4d4d4d;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .columns {
   width: 25%;
@@ -718,14 +733,14 @@ input:disabled {
   margin-top: 10px;
   width: auto;
   max-width: 300px;
-  background: #ffc;
-  height: 55px;
-  border: 1px solid #ccc;
+  background: #ffffff;
+  height: 70px;
+  border: 1px solid #466cb3;
   overflow: hidden;
   transition: height 0.5s;
-  box-shadow: 0px 1px 0px #ccc;
+  box-shadow: 0px 1px 1px #9c9c9c;
   font-size: 13px;
-  padding: 5px;
+  padding: 5px 10px 10px 10px;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .aulas .aula_detalhes {
   margin-top: 10px;
@@ -736,7 +751,7 @@ input:disabled {
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .aulas .aula_numero {
   text-transform: capitalize;
-  color: #000;
+  color: #003c99;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .aulas .aula_data {
   padding: 5px 0px;
@@ -747,9 +762,10 @@ input:disabled {
   color: #444;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .open_aula {
-  height: 240px;
+  height: 260px;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .btn_deletar_aula {
+  z-index: 2;
   cursor: pointer;
   float: left;
   padding: 3px;
@@ -760,6 +776,9 @@ input:disabled {
 #controle_aula #bg_cursos .bg_bimestres .bimestres .btn_deletar_aula:hover {
   background: #f9f0f0;
   color: #db1e1e;
+}
+#controle_aula #bg_cursos .bg_bimestres .bimestres .btn_deletar_aula svg {
+  z-index: 0;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .btn_edit_aulas {
   float: right;
@@ -781,7 +800,7 @@ input:disabled {
   right: 0px;
   top: 0px;
   font-size: 16px;
-  background: #dda;
+  background: #3068b1;
   text-align: center;
   height: 22px;
   width: 30px;
@@ -792,6 +811,7 @@ input:disabled {
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .btn_open_close_aulas svg {
   margin-top: 1px;
+  color: #fff;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .btn_open_close_aulas:active {
   background: #aa9;
@@ -820,7 +840,9 @@ a {
 }
 
 body {
-  background: #f0f0f0;
+  background: #ccc;
+  background: #ddd url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm380-16-x_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=d0c544f028f2405b219eb997cb580e21");
+  background-size: 100% auto;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   position: relative;
 }

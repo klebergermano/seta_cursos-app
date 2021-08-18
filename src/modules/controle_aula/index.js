@@ -3,14 +3,13 @@ import * as dbAlunoHistFunc from "../common/dbAlunoHistoricoFunc.js";
 import * as formAddAulas from "./formAddAulas.js";
 import * as formAddCursos from "./formAddCursos.js";
 import * as formAddAlunos from "./formAddAlunos.js";
+import * as dragForms from "./dragForms.js";
 
 //TODO: Arrumar ordem de execução das funções
 function loadOnStartUp(){
-  insertAulasCursosFunc.insertAulasWhenChangeAluno();
-  //insertAulasCursosFunc.realTimeDataAlunoHistorico("RA01");
-  dbAlunoHistFunc.dbRealTimeAlunoHistCursos("RA01",
-insertAulasCursosFunc.insertAulasWhenAlunoChange
-  );
+  insertAulasCursosFunc.eventInputSelectAluno();
+
+  dbAlunoHistFunc.dbRealTimeAlunoHistCursos("RA01", insertAulasCursosFunc.insertContentAlunoCurso);
 
   formAddAulas.navAddFormsDisplayEvent();
   //FORMS
@@ -30,7 +29,7 @@ insertAulasCursosFunc.insertAulasWhenAlunoChange
   
   //TODO: gerando erro ao carregar
  // formAddAlunos.validaSelectOptionsAddAluno();
-
+ //Deletar Aulas
 }
 loadOnStartUp()
 
