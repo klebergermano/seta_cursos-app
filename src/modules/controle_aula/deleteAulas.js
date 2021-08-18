@@ -37,7 +37,8 @@ function deleteDbAula(aulaInfoDelete){
     .collection("cursos")
     .doc(aulaInfoDelete.curso)
     .update(deleteQuery);
-    delAula.then((res)=>{
+    delAula.then(()=>{
+        checkIfBimestreIsEmptyToDelete(aulaInfoDelete)
     });
 }
 
