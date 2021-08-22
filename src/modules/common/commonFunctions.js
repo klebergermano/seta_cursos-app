@@ -14,6 +14,29 @@ export function addEventListenerInAllElements(targetElements, event, callback){
   });
 }
 
+  export function AddEventBtnCloseForm() {
+    document.querySelectorAll(".close_form").forEach((item) => {
+      item.addEventListener("click", (e) => {
+        parenteDisplayAndBlockScreenNone(e);
+      });
+    });
+  }
+export function setSelectedInASelectBasedOnRA(idSelectTarget, RA) {
+  //Remove o select das options "select_aluno" e adiciona selected no item salvo
+  let select = document.querySelector(idSelectTarget);
+  let allOptions = select.options;
+  //limpa o selected=true de todas as opções do select.
+  for (let item of allOptions) {
+    item.removeAttribute("selected");
+  }
+  //Readiciona os mesmos options no select para garantir que a option com
+  //selected=true funcione
+  select.innerHTML = select.innerHTML;
+  //adiciona o select=true na opção com o RA que acabou de ser salvo
+  let option = select.querySelector(`option[value='${RA}']`);
+  option.setAttribute("selected", true);
+}
+
 
 export function changeCSSDisplay(target, display) {
     document.querySelector(target).style.display = display;
@@ -49,8 +72,9 @@ export function showMessage(targetID, message, callback) {
   }, 2000);
   //restaura a função de fechar do formulário
   setTimeout(() => {
-    callback();
-  }, 2200);
+    if(callback()){
+      callback()
+    }}, 2500);
 }
 
 export function blockSubmitForm(form) {

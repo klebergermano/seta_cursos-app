@@ -1,4 +1,26 @@
 
+export function eventDeleteCurso(){
+    let btn_deletar_curso = document.querySelectorAll('.btn_deletar_curso');
+    btn_deletar_curso.forEach((item)=>{
+        item.addEventListener('click', (e)=>{
+            deleteCurso(e.target)
+        });
+    })
+}
+ function deleteCurso(btn){
+     console.log(btn);
+    let aulaInfoDelete = {};
+    aulaInfoDelete.RA = btn.dataset.aluno_ra;
+    aulaInfoDelete.curso =  btn.dataset.delete_curso;
+    console.log(aulaInfoDelete);
+     db.collection("aluno_historico")
+    .doc(aulaInfoDelete.RA)
+    .collection("cursos")
+    .doc(aulaInfoDelete.curso)
+    .delete()
+   
+}
+
 export function eventsDeletarAula(){
     let btn = document.querySelectorAll('.btn_deletar_aula');
     btn.forEach((item)=>{
@@ -24,6 +46,7 @@ Essa ação não poderá ser desfeita!`)){
     deleteDbAula(aulaInfoDelete)
 
 }
+
 
 function deleteDbAula(aulaInfoDelete){
     let bimestre = aulaInfoDelete.bimestre;

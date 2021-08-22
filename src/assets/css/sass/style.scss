@@ -33,7 +33,7 @@ body {
   position:relative;
 }
 header {
-  background: #051e34;
+  background: darken($primary-color, 10%);
   width: 100%;
   #header_center {
     height: 55px;

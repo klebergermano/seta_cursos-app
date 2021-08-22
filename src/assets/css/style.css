@@ -359,27 +359,27 @@ template {
 }
 
 .btn-primary {
-  background: #0064ff;
+  background: #245da7;
   color: #fafafa;
 }
 .btn-primary:hover {
-  background: #1a74ff;
+  background: #2969bc;
 }
 .btn-primary:active {
-  background: #005ae6;
-  box-shadow: inset 0px 1px 3px #003c99;
+  background: #1f5192;
+  box-shadow: inset 0px 1px 3px #122e53;
 }
 
 .btn-secondary {
-  background: #0064ff;
+  background: #245da7;
   color: #fafafa;
 }
 .btn-secondary:hover {
-  background: #1a74ff;
+  background: #2969bc;
 }
 .btn-secondary:active {
-  background: #005ae6;
-  box-shadow: inset 0px 1px 3px #003c99;
+  background: #1f5192;
+  box-shadow: inset 0px 1px 3px #122e53;
 }
 
 inputs, .input-primary {
@@ -452,7 +452,7 @@ dialog {
   color: #444;
 }
 .forms input[type=submit] {
-  background: #0064ff;
+  background: #245da7;
   color: #fafafa;
   display: block;
   clear: both;
@@ -460,11 +460,11 @@ dialog {
   margin: 20px auto;
 }
 .forms input[type=submit]:hover {
-  background: #1a74ff;
+  background: #2969bc;
 }
 .forms input[type=submit]:active {
-  background: #005ae6;
-  box-shadow: inset 0px 1px 3px #003c99;
+  background: #1f5192;
+  box-shadow: inset 0px 1px 3px #122e53;
 }
 .forms .close_form {
   right: 0px;
@@ -557,7 +557,7 @@ dialog {
 }
 #nav_forms_add a {
   padding: 5px;
-  color: #0064ff;
+  color: #245da7;
   background: #ddd;
   text-decoration: none;
 }
@@ -571,37 +571,47 @@ input:disabled {
 }
 #controle_aula h1 {
   color: #333;
-  text-align: left;
-  font-size: 20px;
+  text-align: center;
+  font-size: 24px;
+  margin-top: 40px;
+  margin-bottom: 40px;
   color: #444;
   width: 100%;
+  text-transform: uppercase;
+  color: #444;
 }
 #controle_aula #form_select_aluno {
-  background: #fff;
-  margin-bottom: 20px;
   width: 100%;
   height: auto;
-  padding: 10px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  padding-bottom: 10px;
 }
 #controle_aula #form_select_aluno label {
   background: #fff;
-  border: 1px solid #ccc;
   display: block;
-  padding: 6px;
+  padding: 10px;
+  border: 1px solid #444;
+  border-right: 0px;
 }
 #controle_aula #form_select_aluno .div_input {
   display: flex;
   float: left;
   justify-content: center;
 }
+#controle_aula #form_select_aluno .div_input select {
+  padding: 10px;
+  border: 1px solid #444;
+  font-weight: bold;
+  font-size: 16px;
+}
 #controle_aula #form_select_aluno button {
   float: right;
   margin: 0px;
   margin-left: 10px;
+  padding: 14px;
 }
 #controle_aula #form_select_aluno button svg {
   margin-bottom: -2px;
@@ -623,6 +633,23 @@ input:disabled {
   margin-left: 20px;
   text-transform: uppercase;
 }
+#controle_aula #bg_cursos nav.nav_cursos_aluno .btn_add_curso {
+  border: 1px solid #245da7;
+  padding: 5px 10px;
+  cursor: pointer;
+  background: #245da7;
+  color: #fff;
+}
+#controle_aula #bg_cursos nav.nav_cursos_aluno .btn_add_curso svg {
+  margin-bottom: -2px;
+  max-width: 100px;
+  max-height: 100px;
+  height: 25px;
+  width: auto;
+}
+#controle_aula #bg_cursos nav.nav_cursos_aluno .btn_add_curso:hover {
+  background: #245da7;
+}
 #controle_aula #bg_cursos nav.nav_cursos_aluno ul {
   overflow: hidden;
   display: block;
@@ -631,10 +658,10 @@ input:disabled {
 }
 #controle_aula #bg_cursos nav.nav_cursos_aluno ul li {
   list-style: none;
-  padding: 10px 0px;
+  padding: 15px 0px;
 }
 #controle_aula #bg_cursos nav.nav_cursos_aluno ul li a {
-  padding: 10px 20px 10px 20px;
+  padding: 15px 20px 16px 20px;
   background: #fff;
   border: 1px solid #ccc;
   border-top: 0px;
@@ -651,15 +678,27 @@ input:disabled {
   background: #ffe;
   color: #333;
 }
+#controle_aula #bg_cursos .btn_add_aula {
+  top: 20px;
+  right: 15px;
+  position: absolute;
+  color: #333;
+  border: 1px solid #245da7;
+  background: #f0f0f0;
+}
+#controle_aula #bg_cursos .btn_add_aula:hover {
+  background: #ffe;
+}
 #controle_aula #bg_cursos .bg_curso {
+  position: relative;
   background: #fff;
   background: #ddd;
-  padding: 10px;
+  padding: 20px;
   border: 1px solid #ccc;
   display: none;
 }
 #controle_aula #bg_cursos .bg_curso h3 {
-  padding: 10px;
+  padding: 20px;
 }
 #controle_aula #bg_cursos .title_aluno_info span {
   float: left;
@@ -691,6 +730,19 @@ input:disabled {
 }
 #controle_aula #bg_cursos .title span[class^=informática], #controle_aula #bg_cursos .title span[class*=informática] {
   color: blue !important;
+}
+#controle_aula #bg_cursos .bg_btn_deletar_curso {
+  text-align: center;
+}
+#controle_aula #bg_cursos .bg_btn_deletar_curso button {
+  background: #e55;
+  color: #fff;
+  padding: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+#controle_aula #bg_cursos .bg_btn_deletar_curso button:hover {
+  background: red;
 }
 #controle_aula #bg_cursos .bg_bimestres {
   width: 100%;
@@ -734,7 +786,7 @@ input:disabled {
   width: auto;
   max-width: 300px;
   background: #ffffff;
-  height: 70px;
+  height: 80px;
   border: 1px solid #466cb3;
   overflow: hidden;
   transition: height 0.5s;
@@ -751,7 +803,7 @@ input:disabled {
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .aulas .aula_numero {
   text-transform: capitalize;
-  color: #003c99;
+  color: #122e53;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .aulas .aula_data {
   padding: 5px 0px;
@@ -788,11 +840,11 @@ input:disabled {
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .btn_edit_aulas:hover {
   background: #f9f0f0;
-  color: #0064ff;
+  color: #245da7;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .btn_edit_aulas:active {
   background: #f9f0f0;
-  color: #0050cc;
+  color: #1b467d;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .btn_open_close_aulas {
   cursor: pointer;
@@ -800,7 +852,7 @@ input:disabled {
   right: 0px;
   top: 0px;
   font-size: 16px;
-  background: #3068b1;
+  background: #245da7;
   text-align: center;
   height: 22px;
   width: 30px;
@@ -848,7 +900,7 @@ body {
 }
 
 header {
-  background: #051e34;
+  background: #1b467d;
   width: 100%;
 }
 header #header_center {
@@ -880,8 +932,8 @@ header #header_center nav ul li a {
   font-size: 14px;
 }
 header #header_center nav ul li a:hover {
-  color: #99c1ff;
-  border-bottom: 4px solid #66a2ff;
+  color: #80ace4;
+  border-bottom: 4px solid #5690db;
 }
 
 .container {

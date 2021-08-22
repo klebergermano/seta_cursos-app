@@ -16,9 +16,7 @@ export function eventFormsAdd() {
   document.querySelector("#form_add_aula").addEventListener("submit", (e) => {
     formAddAula(e);
   });
-  document.querySelector("#form_add_curso").addEventListener("submit", (e) => {
-    addAulas.formAddCurso(e);
-  });
+
 
 
   document.querySelector("#select_aluno_add_aula").addEventListener("input", (e) => {
@@ -187,7 +185,7 @@ function blocoAddAula(dados) {
       )
       //Remove conteúdo do formulário e acrescenta a mensagem
       .then(() =>
-        commonFunc.showMessage("form_add_aluno", "Aula adicionada com sucesso!", AddEventBtnCloseForm)
+        commonFunc.showMessage("form_add_aluno", "Aula adicionada com sucesso!", commonFunc.AddEventBtnCloseForm)
       )
       .then(() => {
         setTimeout(() => {
@@ -199,26 +197,20 @@ function blocoAddAula(dados) {
       })
       .then(() => {
         //seta o #select_aluno com o RA que acabou de ser atualizado
-        setSelectedInASelectBasedOnRA("#select_aluno_add_aula", RA);
-        setSelectedInASelectBasedOnRA("#select_aluno_add_curso", RA);
+        commonFunc.setSelectedInASelectBasedOnRA("#select_aluno_add_aula", RA);
+        commonFunc.setSelectedInASelectBasedOnRA("#select_aluno_add_curso", RA);
       })
       .catch((error) => console.error("Error writing document: ", error));
   }
 
-
+  //TODO: Remover essa função desse arquivo
 export function navAddFormsDisplayEvent() {
-    document.querySelector("#btn_add_curso").addEventListener("click", () => {
-      commonFunc.changeCSSDisplay("#form_add_curso", "block");
-      commonFunc.changeCSSDisplay("#block_screen", "block");
-    });
+
     document.querySelector("#btn_add_aluno").addEventListener("click", () => {
       commonFunc.changeCSSDisplay("#form_add_aluno", "block");
       commonFunc.changeCSSDisplay("#block_screen", "block");
     });
-    document.querySelector("#btn_add_aula").addEventListener("click", () => {
-      commonFunc.changeCSSDisplay("#form_add_aula", "block");
-      commonFunc.changeCSSDisplay("#block_screen", "block");
-    });
+
   }
 
 export function eventSelectAlunoAddAula() {
@@ -265,27 +257,5 @@ export function eventSelectAlunoAddAula() {
     return keys;
   }
 
-  export function setSelectedInASelectBasedOnRA(idSelectTarget, RA) {
-    //Remove o select das options "select_aluno" e adiciona selected no item salvo
-    let select = document.querySelector(idSelectTarget);
-    let allOptions = select.options;
-    //limpa o selected=true de todas as opções do select.
-    for (let item of allOptions) {
-      item.removeAttribute("selected");
-    }
-    //Readiciona os mesmos options no select para garantir que a option com
-    //selected=true funcione
-    select.innerHTML = select.innerHTML;
-    //adiciona o select=true na opção com o RA que acabou de ser salvo
-    let option = select.querySelector(`option[value='${RA}']`);
-    option.setAttribute("selected", true);
-  }
-  
-  export function AddEventBtnCloseForm() {
-    document.querySelectorAll(".close_form").forEach((item) => {
-      item.addEventListener("click", (e) => {
-        commonFunc.parenteDisplayAndBlockScreenNone(e);
-      });
-    });
-  }
+
 

@@ -1,4 +1,5 @@
 import * as dbAlunoHistFunc from "../common/dbAlunoHistoricoFunc.js";
+import * as commonFunc from "../common/commonFunctions.js";
 
 //=====================================================================================
 //------------------------------------ADD CURSOS---------------------------------------
@@ -46,9 +47,12 @@ export function eventSelectAlunoAddCurso() {
     aluno.addEventListener("input", (e) => {
       validaSelectOptionsAddCurso();
     });
+    document.querySelector("#form_add_curso").addEventListener("submit", (e) => {
+     formAddCurso(e);
+    });
   }
 
-  export function formAddCurso(e) {
+  function formAddCurso(e) {
     e.preventDefault();
     let form = e.target;
     let RA = form.select_aluno_add_curso.value;
@@ -80,8 +84,8 @@ export function eventSelectAlunoAddCurso() {
       })
       .then(() => {
         //seta o #select_aluno com o RA que acabou de ser atualizado
-        setSelectedInASelectBasedOnRA("#select_aluno", RA);
-        setSelectedInASelectBasedOnRA("#select_aluno_add_aula", RA);
+        commonFunc.setSelectedInASelectBasedOnRA("#select_aluno", RA);
+        commonFunc.setSelectedInASelectBasedOnRA("#select_aluno_add_aula", RA);
       })
       .catch((error) => console.error("Error writing document: ", error));
   }
