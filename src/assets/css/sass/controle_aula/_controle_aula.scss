@@ -26,7 +26,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding-bottom:10px;
+    padding-bottom:20px;
     label{
       background:#fff;
       display: block;
@@ -62,43 +62,44 @@
     }
   }
   #bg_cursos {
+    border-radius: 5px 5px 0px 0px;
+    border: $border-set-default;
+    overflow: hidden;
     
   nav.nav_cursos_aluno {
- 
       background-color: #fff;
-      border: $border-set-default;
-      border-bottom:0px;
+      border-bottom:$border-set-default;
       display:flex;
       justify-content: flex-end;
       align-items: center;
- 
-      .btn_add_curso{
-        border: 1px solid $primary-color;
-        padding:5px 10px;
-        cursor:pointer;
-        background:$primary-color;
-        color:#fff;
-        display: flex;
-        align-items: center;
-
-        svg{
-           max-width: 100px;
-           max-height: 100px;
-           height:25px;
-           margin-right:5px;
-           width:auto;
-        }
-        &:hover{
-          background:$primary-color;
-        }
-      }
+  
 
       ul {
+        position: relative;
         overflow:hidden;
-        display:block;
-float:right;
         display: flex;
-    
+        justify-content: flex-end;
+        width:100%;
+        .btn_add_curso{
+
+          border: 1px solid $primary-color;
+          padding:5px 20px;
+          cursor:pointer;
+          background:$primary-color;
+          color:#fff;
+          display: flex;
+          align-items: center;
+  
+          svg{
+             max-width: 100px;
+             max-height: 100px;
+             height:25px;
+             width:auto;
+          }
+          &:hover{
+            background:lighten($primary-color, 5%);
+          }
+        }
 
         li {
           list-style: none;
@@ -136,16 +137,19 @@ float:right;
       }
     }
     .btn_add_aula{
-     top:20px;
+     top:17px;
      right:15px;
+     border-radius:5px ;
       position: absolute;
       border:1px solid $primary-color;
-      background:#f0f0f0;
+      display: flex;
+      align-items: center;
+      background:#eee;
 
       color:$primary-color;
-      padding:5px 10px;
+      padding:5px 15px;
       svg{
-     height:20px; width:auto;
+     height:25px; width:auto;
 
       }
       &:hover{
@@ -158,50 +162,40 @@ float:right;
     .bg_curso{
       position: relative;
       background:#fff;
-    background:#ddd;
-
+      background:#ddd;
       padding:20px; 
-      border:$border-set-default;
-      h3{ padding:20px;}
+      padding-top:0px;
       display:none;
+
+      h3{ height:80px; display: flex; align-items: center; justify-content: center;}
     }
     .title_aluno_info{
       span{float:left; margin:0px !important;}
       .title_info_ra{
         font-weight: normal;
       }
-
-   
-    
     } 
-    .title{
-      text-transform: uppercase;
-      font-weight: bold;
-
-      display:flex;
+      h3.title_curso_nome{ padding:30px;
       font-size:18px;
-      justify-content: center;
-      padding: 10px 0px 20px;
-      flex-grow: 1;
-      span{ padding:0px 5px;}
+      text-align: center;
+      width:100%;
+      text-transform: uppercase;
+    }
    
-   
-      span[class*="web"]{
+      h3[class*="web"]{
         color:rgb(32, 97, 134);
       }
-      span[class*="inglês"]{
+      h3[class*="inglês"]{
         color:red;
       }
-
    //excel
-      span[class*="excel"]{ 
+      h3[class*="excel"]{ 
         color:rgb(38, 148, 38)
       }
    //informática
-      span[class^="informática"], span[class*="informática"]{ 
+      h3[class^="informática"], h3[class*="informática"]{ 
         color:blue !important;
       }
-    }
     .bg_info_delete_curso{
       width:100%; 
       height:auto; padding:20px;
@@ -234,6 +228,7 @@ float:right;
   }
       }
       .btn_add_aula{
+       
        position: initial;
        margin-right:10px;
         svg{ width:auto; height: auto; margin-bottom:-2px}
@@ -280,9 +275,11 @@ float:right;
           
         }
         .columns {
-          width: 25%;
+          width: 24%;
           min-width: 200px;
           flex-grow: 1;
+          margin:0.5%;
+          
         }
         
         .aulas {

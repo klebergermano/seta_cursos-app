@@ -587,7 +587,7 @@ input:disabled {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
 }
 #controle_aula #form_select_aluno label {
   background: #fff;
@@ -617,38 +617,42 @@ input:disabled {
   margin-bottom: -2px;
   margin-right: 5px;
 }
+#controle_aula #bg_cursos {
+  border-radius: 5px 5px 0px 0px;
+  border: 1px solid #ccc;
+  overflow: hidden;
+}
 #controle_aula #bg_cursos nav.nav_cursos_aluno {
   background-color: #fff;
-  border: 1px solid #ccc;
-  border-bottom: 0px;
+  border-bottom: 1px solid #ccc;
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
-#controle_aula #bg_cursos nav.nav_cursos_aluno .btn_add_curso {
+#controle_aula #bg_cursos nav.nav_cursos_aluno ul {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+#controle_aula #bg_cursos nav.nav_cursos_aluno ul .btn_add_curso {
   border: 1px solid #245da7;
-  padding: 5px 10px;
+  padding: 5px 20px;
   cursor: pointer;
   background: #245da7;
   color: #fff;
   display: flex;
   align-items: center;
 }
-#controle_aula #bg_cursos nav.nav_cursos_aluno .btn_add_curso svg {
+#controle_aula #bg_cursos nav.nav_cursos_aluno ul .btn_add_curso svg {
   max-width: 100px;
   max-height: 100px;
   height: 25px;
-  margin-right: 5px;
   width: auto;
 }
-#controle_aula #bg_cursos nav.nav_cursos_aluno .btn_add_curso:hover {
-  background: #245da7;
-}
-#controle_aula #bg_cursos nav.nav_cursos_aluno ul {
-  overflow: hidden;
-  display: block;
-  float: right;
-  display: flex;
+#controle_aula #bg_cursos nav.nav_cursos_aluno ul .btn_add_curso:hover {
+  background: #2969bc;
 }
 #controle_aula #bg_cursos nav.nav_cursos_aluno ul li {
   list-style: none;
@@ -673,16 +677,19 @@ input:disabled {
   color: #333;
 }
 #controle_aula #bg_cursos .btn_add_aula {
-  top: 20px;
+  top: 17px;
   right: 15px;
+  border-radius: 5px;
   position: absolute;
   border: 1px solid #245da7;
-  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  background: #eee;
   color: #245da7;
-  padding: 5px 10px;
+  padding: 5px 15px;
 }
 #controle_aula #bg_cursos .btn_add_aula svg {
-  height: 20px;
+  height: 25px;
   width: auto;
 }
 #controle_aula #bg_cursos .btn_add_aula:hover {
@@ -693,11 +700,14 @@ input:disabled {
   background: #fff;
   background: #ddd;
   padding: 20px;
-  border: 1px solid #ccc;
+  padding-top: 0px;
   display: none;
 }
 #controle_aula #bg_cursos .bg_curso h3 {
-  padding: 20px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 #controle_aula #bg_cursos .title_aluno_info span {
   float: left;
@@ -706,28 +716,23 @@ input:disabled {
 #controle_aula #bg_cursos .title_aluno_info .title_info_ra {
   font-weight: normal;
 }
-#controle_aula #bg_cursos .title {
-  text-transform: uppercase;
-  font-weight: bold;
-  display: flex;
+#controle_aula #bg_cursos h3.title_curso_nome {
+  padding: 30px;
   font-size: 18px;
-  justify-content: center;
-  padding: 10px 0px 20px;
-  flex-grow: 1;
+  text-align: center;
+  width: 100%;
+  text-transform: uppercase;
 }
-#controle_aula #bg_cursos .title span {
-  padding: 0px 5px;
-}
-#controle_aula #bg_cursos .title span[class*=web] {
+#controle_aula #bg_cursos h3[class*=web] {
   color: #206186;
 }
-#controle_aula #bg_cursos .title span[class*=inglês] {
+#controle_aula #bg_cursos h3[class*=inglês] {
   color: red;
 }
-#controle_aula #bg_cursos .title span[class*=excel] {
+#controle_aula #bg_cursos h3[class*=excel] {
   color: #269426;
 }
-#controle_aula #bg_cursos .title span[class^=informática], #controle_aula #bg_cursos .title span[class*=informática] {
+#controle_aula #bg_cursos h3[class^=informática], #controle_aula #bg_cursos h3[class*=informática] {
   color: blue !important;
 }
 #controle_aula #bg_cursos .bg_info_delete_curso {
@@ -808,9 +813,10 @@ input:disabled {
   color: #4d4d4d;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .columns {
-  width: 25%;
+  width: 24%;
   min-width: 200px;
   flex-grow: 1;
+  margin: 0.5%;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .aulas {
   position: relative;
@@ -932,11 +938,13 @@ body {
 }
 
 header {
-  background: #1b467d;
+  grid-area: header;
+  background: #333;
+  border-bottom: 2px solid #ccc;
   width: 100%;
 }
 header #header_center {
-  height: 55px;
+  height: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -944,37 +952,62 @@ header #header_center {
   padding: 0px 40px;
   max-width: 1200px;
 }
-header #header_center figure {
-  width: auto;
-  height: 20px;
-  overflow: hidden;
-  display: block;
-}
-header #header_center figure img {
+
+#app {
   max-width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 250px 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: "aside header header header header header header header" "aside  cp     cp     cp     cp     cp     cp     cp" "aside  footer footer footer footer footer footer footer";
+}
+
+aside#bg_main_menu_lateral {
+  grid-area: aside;
+  background: #222;
+}
+aside#bg_main_menu_lateral figure#bg_logo {
+  padding: 20px;
+  max-width: 100%;
+  height: auto;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+aside#bg_main_menu_lateral figure#bg_logo img {
+  max-width: 150px;
   max-height: 100%;
 }
-header #header_center nav ul li {
-  display: inline;
+aside#bg_main_menu_lateral nav {
+  margin-top: 40px;
 }
-header #header_center nav ul li a {
+aside#bg_main_menu_lateral nav ul li {
+  clear: both;
+}
+aside#bg_main_menu_lateral nav ul li a {
   padding: 13px 15px;
   color: #fafafa;
   height: auto;
   font-size: 14px;
+  width: 100%;
+  display: block;
 }
-header #header_center nav ul li a:hover {
+aside#bg_main_menu_lateral nav ul li a:hover {
   color: #80ace4;
-  border-bottom: 4px solid #5690db;
+  background: #333;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
+#content_page {
+  grid-area: cp;
+  max-width: 1300px;
+  min-height: 100vh;
+  padding: 40px;
 }
 
-.components {
-  padding: 0px 40px;
+footer {
+  grid-area: footer;
+  height: 50px;
+  background: #111;
 }
 
 /*# sourceMappingURL=style.css.map */

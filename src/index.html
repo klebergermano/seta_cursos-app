@@ -10,32 +10,41 @@
   </head>
   <body>
     <div id="block_screen"></div>
-    <header>
-      <div id="header_center">
-        <title>Header</title>
-        <figure>
+
+    <div id="app" class="container">
+      <header>
+        <div id="header_center">
+       
+  
+          <div id="login"></div>
+        </div>
+      </header>
+      <aside id='bg_main_menu_lateral'>
+          
+        <figure id='bg_logo'>
           <img src="./assets/img/logo.png" />
         </figure>
-        <nav id="nav_header">
-          <ul>
-            <li><a data-path="home" data-script_src="home">Home</a></li>
-            <li>
-              <a data-path="controle_aula" data-script_src="controle_aula"
-                >Controle de Aula</a
-              >
-            </li>
-            <li>
-              <a data-path="gerador_contrato" data-script_src="gerador_contrato"
-                >Gerador de Contrato</a
-              >
-            </li>
-          </ul>
+          <nav id='main_menu_lateral'>
+            <ul>
+              <li><a data-path="home" data-script_src="home">Home</a></li>
+              <li>
+                <a data-path="controle_aula" data-script_src="controle_aula"
+                  >Controle de Aula</a
+                >
+              </li>
+              <li>
+                <a data-path="gerador_contrato" data-script_src="gerador_contrato"
+                  >Gerador de Contrato</a
+                >
+              </li>
+            </ul>
+
         </nav>
-        <div id="login"></div>
-      </div>
-    </header>
-    <div id="app" class="container"></div>
-    <footer></footer>
+      </aside>
+      <div id='content_page'></div>
+      <footer></footer>
+    </div>
+   
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
