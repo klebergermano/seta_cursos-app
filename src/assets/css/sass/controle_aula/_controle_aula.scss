@@ -69,29 +69,23 @@
       border: $border-set-default;
       border-bottom:0px;
       display:flex;
-      justify-content: space-between;
-      span{
-        font-weight: bold;
-        margin-top:10px;
-        display: block;
-        margin-bottom: 0px;
-        font-size:18px;
-        margin-left:20px;
-        text-transform: uppercase;
-
-      }
+      justify-content: flex-end;
+      align-items: center;
+ 
       .btn_add_curso{
         border: 1px solid $primary-color;
         padding:5px 10px;
         cursor:pointer;
         background:$primary-color;
         color:#fff;
+        display: flex;
+        align-items: center;
 
         svg{
-           margin-bottom:-2px; 
            max-width: 100px;
            max-height: 100px;
            height:25px;
+           margin-right:5px;
            width:auto;
         }
         &:hover{
@@ -102,7 +96,7 @@
       ul {
         overflow:hidden;
         display:block;
-        float: right;
+float:right;
         display: flex;
     
 
@@ -144,11 +138,16 @@
     .btn_add_aula{
      top:20px;
      right:15px;
-
       position: absolute;
-      color: #333;
       border:1px solid $primary-color;
       background:#f0f0f0;
+
+      color:$primary-color;
+      padding:5px 10px;
+      svg{
+     height:20px; width:auto;
+
+      }
       &:hover{
       background: #ffe;
 
@@ -203,18 +202,46 @@
         color:blue !important;
       }
     }
-    .bg_btn_deletar_curso{
-      text-align:center;
-      button{
-        background:#e55;
-        color:#fff;
-        padding:5px;
-        border:$border-set-default;
-        cursor:pointer;
+    .bg_info_delete_curso{
+      width:100%; 
+      height:auto; padding:20px;
+      display: flex;
+      justify-content: center;
+      flex-wrap:wrap;
+      overflow: hidden;
+      background:#ffd;
+      align-items: center;
+      p{
+        display: block;
+        width:100%;
+        text-align: center;
+        padding:10px;
+      }
+      button{ height:30px; margin: 0 auto;
+        display: block;
+        float:left;
+        border:1px solid;
+        padding:5px 10px;
+        cursor: pointer;
+    
+      }
+      .btn_deletar_curso{
+        border-color:rgb(54, 27, 27);
+  background:rgb(230, 62, 62);
+  color:#fff;
+  &:hover{
+    background: rgb(252, 70, 70);
+  }
+      }
+      .btn_add_aula{
+       position: initial;
+       margin-right:10px;
+        svg{ width:auto; height: auto; margin-bottom:-2px}
         &:hover{
-          background:red;
+          background: #fff
         }
       }
+
     }
     .bg_bimestres {
      // border: $border-set-default;

@@ -622,16 +622,8 @@ input:disabled {
   border: 1px solid #ccc;
   border-bottom: 0px;
   display: flex;
-  justify-content: space-between;
-}
-#controle_aula #bg_cursos nav.nav_cursos_aluno span {
-  font-weight: bold;
-  margin-top: 10px;
-  display: block;
-  margin-bottom: 0px;
-  font-size: 18px;
-  margin-left: 20px;
-  text-transform: uppercase;
+  justify-content: flex-end;
+  align-items: center;
 }
 #controle_aula #bg_cursos nav.nav_cursos_aluno .btn_add_curso {
   border: 1px solid #245da7;
@@ -639,12 +631,14 @@ input:disabled {
   cursor: pointer;
   background: #245da7;
   color: #fff;
+  display: flex;
+  align-items: center;
 }
 #controle_aula #bg_cursos nav.nav_cursos_aluno .btn_add_curso svg {
-  margin-bottom: -2px;
   max-width: 100px;
   max-height: 100px;
   height: 25px;
+  margin-right: 5px;
   width: auto;
 }
 #controle_aula #bg_cursos nav.nav_cursos_aluno .btn_add_curso:hover {
@@ -682,9 +676,14 @@ input:disabled {
   top: 20px;
   right: 15px;
   position: absolute;
-  color: #333;
   border: 1px solid #245da7;
   background: #f0f0f0;
+  color: #245da7;
+  padding: 5px 10px;
+}
+#controle_aula #bg_cursos .btn_add_aula svg {
+  height: 20px;
+  width: auto;
 }
 #controle_aula #bg_cursos .btn_add_aula:hover {
   background: #ffe;
@@ -731,18 +730,51 @@ input:disabled {
 #controle_aula #bg_cursos .title span[class^=informática], #controle_aula #bg_cursos .title span[class*=informática] {
   color: blue !important;
 }
-#controle_aula #bg_cursos .bg_btn_deletar_curso {
-  text-align: center;
+#controle_aula #bg_cursos .bg_info_delete_curso {
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+  background: #ffd;
+  align-items: center;
 }
-#controle_aula #bg_cursos .bg_btn_deletar_curso button {
-  background: #e55;
-  color: #fff;
-  padding: 5px;
-  border: 1px solid #ccc;
+#controle_aula #bg_cursos .bg_info_delete_curso p {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+}
+#controle_aula #bg_cursos .bg_info_delete_curso button {
+  height: 30px;
+  margin: 0 auto;
+  display: block;
+  float: left;
+  border: 1px solid;
+  padding: 5px 10px;
   cursor: pointer;
 }
-#controle_aula #bg_cursos .bg_btn_deletar_curso button:hover {
-  background: red;
+#controle_aula #bg_cursos .bg_info_delete_curso .btn_deletar_curso {
+  border-color: #361b1b;
+  background: #e63e3e;
+  color: #fff;
+}
+#controle_aula #bg_cursos .bg_info_delete_curso .btn_deletar_curso:hover {
+  background: #fc4646;
+}
+#controle_aula #bg_cursos .bg_info_delete_curso .btn_add_aula {
+  position: initial;
+  margin-right: 10px;
+}
+#controle_aula #bg_cursos .bg_info_delete_curso .btn_add_aula svg {
+  width: auto;
+  height: auto;
+  margin-bottom: -2px;
+}
+#controle_aula #bg_cursos .bg_info_delete_curso .btn_add_aula:hover {
+  background: #fff;
 }
 #controle_aula #bg_cursos .bg_bimestres {
   width: 100%;

@@ -58,7 +58,6 @@ export function validaSelectOptionsAddAluno() {
       .set({
         curso: form.curso_nome.value,
         bimestres: {
-          ["bimestre 1"]: {},
         },
       })
       .then(() => {

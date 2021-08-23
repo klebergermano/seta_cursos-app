@@ -65,7 +65,7 @@ export function eventSelectAlunoAddCurso() {
         {
           curso: form.add_curso_nome_curso.value,
           bimestres: {
-            ["bimestre 1"]: {},
+           
           },
         },
         { merge: true }
