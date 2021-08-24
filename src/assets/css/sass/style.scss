@@ -24,6 +24,8 @@ p{
 a {
   cursor: pointer;
 } 
+
+svg{ margin-bottom:-2px; margin: 0px 2px -2px 2px;}
 body {
  background:#ccc;
 
@@ -104,7 +106,7 @@ aside#bg_main_menu_lateral{
    grid-area: cp;
    max-width: 1300px;
    min-height:100vh;
-   padding:40px;
+   margin:0px 60px 0px 60px;
  }
 
 
