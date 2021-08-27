@@ -686,7 +686,7 @@ input:disabled {
   align-items: center;
   background: #eee;
   color: #245da7;
-  padding: 5px 15px;
+  padding: 5px 10px 8px 10px;
 }
 #controle_aula #bg_cursos .btn_add_aula svg {
   height: 25px;

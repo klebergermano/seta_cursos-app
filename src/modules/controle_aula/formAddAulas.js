@@ -220,22 +220,7 @@ export function eventSelectAlunoAddAula() {
     });
   }
 
-//=====================================================================================
-(async function InsertSelectAlunos() {
-    db.collection("aluno_historico").onSnapshot((snap) => {
-      let selectAluno = ``;
-      snap.forEach((item) => {
-        selectAluno += `<option value='${item.id}'>${item.id} - ${
-          item.data().nome
-        }</option>`;
-      });
-      document.querySelector("#select_aluno").innerHTML = selectAluno;
-      //insere options do select no "select_aluno_add_aula"
-      document.querySelector("#select_aluno_add_aula").innerHTML = selectAluno;
-      //insere options do select no "select_aluno_add_curso"
-      document.querySelector("#select_aluno_add_curso").innerHTML = selectAluno;
-    });
-  })();
+
 
   function getKeysAulas(RA, idCurso, bimestre) {
     let aluno = dbAlunoHistFunc.alunoHistoricoDB(RA);

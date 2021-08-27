@@ -63,7 +63,7 @@ async function createNavCursosAluno(alunoInfo) {
       }
   }
   function setSelectedAluno(){
-    let alunoSelectIndex = document.querySelector('#select_aluno').selectedIndex;
+    let alunoSelectIndex = document.querySelector('#main_select_aluno').selectedIndex;
     let selectAlunoAddAula = document.querySelector('#form_add_aula').querySelector("#select_aluno_add_aula");
     selectAlunoAddAula.selectedIndex = alunoSelectIndex;
     

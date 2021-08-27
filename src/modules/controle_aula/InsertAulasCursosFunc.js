@@ -6,13 +6,13 @@ import * as addAulas from "./formAddAulas.js";
 import * as dateFunc from "../common/dateFunc.js";
 import * as deleteFunc from "./deleteFunc.js";
 
-//---------------------------------INSERT AULAS ------------------------------------
 export function eventInputSelectAluno() {
+  //Carrega as opções do main_select_aluno;
+  InsertSelectAlunos();
 
-  document.querySelector("#select_aluno").addEventListener("input", () => {
+  document.querySelector("#main_select_aluno").addEventListener("input", () => {
     let RA = getRAfromSelectAluno();
 
-    // dbAlunoHistFunc.realTimeDataAlunoHistorico(RA);
     dbAlunoHistFunc.dbRealTimeAlunoHistCursos(RA, insertContentAlunoCurso);
     //---
     commonFunc.setSelectedInASelectBasedOnRA("#select_aluno_add_aula", RA);
@@ -22,9 +22,26 @@ export function eventInputSelectAluno() {
     addAulas.insertSelectCursosAddAula(RA);
   });
 }
+ 
+//=====================================================================================
+async function InsertSelectAlunos() {
+  db.collection("aluno_historico").onSnapshot((snap) => {
+    let selectAluno = ``;
+    snap.forEach((item) => {
+      selectAluno += `<option value='${item.id}'>${item.id} - ${
+        item.data().nome
+      }</option>`;
+    });
+    document.querySelector("#main_select_aluno").innerHTML = selectAluno;
+    //insere options do select no "select_aluno_add_aula"
+    document.querySelector("#select_aluno_add_aula").innerHTML = selectAluno;
+    //insere options do select no "select_aluno_add_curso"
+    document.querySelector("#select_aluno_add_curso").innerHTML = selectAluno;
+  });
+};
 
 function getRAfromSelectAluno() {
-  let select = document.querySelector("#select_aluno");
+  let select = document.querySelector("#main_select_aluno");
   let RA = select.options[select.selectedIndex].value;
   return RA;
 }
@@ -42,7 +59,6 @@ export function insertContentAlunoCurso(RA, snapshotChange) {
       navCursosAluno.insertNavCursosInBGCursos(alunoInfo, nomeDoCurso)
     }).then(() => {
       let btn_add_aula = document.querySelectorAll(".btn_add_aula");
-      console.log(btn_add_aula);
       btn_add_aula.forEach((item) => {
         item.addEventListener("click", () => {
           commonFunc.changeCSSDisplay("#form_add_aula", "block");
@@ -52,8 +68,6 @@ export function insertContentAlunoCurso(RA, snapshotChange) {
     });
   })
 }
-
-
 
 
 function createBgCursoMainStructure(curso_nome_bd, alunoInfoGeral) {
@@ -81,9 +95,6 @@ function createBgCursoMainStructure(curso_nome_bd, alunoInfoGeral) {
     return false;
   }
 }
-
-
-
 
 
 export function InsertBgCursosContent(alunoDataFromDB, alunoInfoGeral) {
@@ -173,7 +184,6 @@ function createBgCursosInnerContent(bgCursoHTML, cursoDB) {
       if (counter <= 4) {
         divColumn.innerHTML += createHTMLAula(aula, aulaSortedKeys[j], bimSortedKeys[i]);
         if (counter === 4) {
-          console.log('column');
           contentColumns.appendChild(divColumn);
           divColumn = document.createElement('div');
           divColumn.className = 'columns';
@@ -193,10 +203,6 @@ function createBgCursosInnerContent(bgCursoHTML, cursoDB) {
 
   return bgCursoHTML.innerHTML;
 }
-
-
-
-
 
 function clickOpenCloseAulas(e) {
   let parent = e.target.closest(".aulas");
