@@ -11,6 +11,17 @@
  
 }
 
+@mixin btn{
+    display:block;
+    border-radius: 2px;
+    padding: 8px 20px;
+    margin:5px;
+    border:0px;
+    cursor:pointer;
+    background:#f90;
+ 
+}
+
 @mixin btn-primary{
     @extend %btn;
     @include set-background-text-color($primary-color);

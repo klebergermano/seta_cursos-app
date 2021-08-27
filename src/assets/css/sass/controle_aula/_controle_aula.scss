@@ -6,41 +6,55 @@
   overflow: hidden;
   h1 {
     color: $title-color-dark;
-    text-align: left;
-    font-size:20px; 
+    text-align: center;
+    font-size:24px; 
+    margin-top:40px;
+    margin-bottom:40px;
     color: $text-color;
     width:100%;
+    text-transform: uppercase;
+    color:#444;
   }
 
 
   #form_select_aluno {
-   background: #fff;
-   // border: $border-set-default;
-   margin-bottom:20px;
+   //background: #333;
+   //border: $border-set-default;
     width: 100%;
     height: auto;
-    padding: 10px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    padding-bottom:20px;
     label{
       background:#fff;
-      border:$border-set-default;
       display: block;
-      padding:6px;
+      padding: 10px;
+      border: 1px solid #444;
+      border-right:0px;
+    
 
     }
+
     .div_input {
- 
     display:flex;
       float: left;
       justify-content: center;
+      select{
+    padding: 10px;
+    border: 1px solid #444;
+
+
+        font-weight: bold;
+        font-size:16px;
+      }
     }
     button {
       float: right;
       margin:0px;
       margin-left:10px;
+      padding:14px;
       svg{
         margin-bottom:-2px;
         margin-right:5px;
@@ -48,36 +62,51 @@
     }
   }
   #bg_cursos {
+    border-radius: 5px 5px 0px 0px;
+    border: $border-set-default;
+    overflow: hidden;
     
   nav.nav_cursos_aluno {
- 
       background-color: #fff;
-      border: $border-set-default;
-      border-bottom:0px;
+      border-bottom:$border-set-default;
       display:flex;
-      justify-content: space-between;
-      span{
-        font-weight: bold;
-        margin-top:10px;
-        display: block;
-        margin-bottom: 0px;
-        font-size:18px;
-        margin-left:20px;
-        text-transform: uppercase;
+      justify-content: flex-end;
+      align-items: center;
+  
 
-      }
       ul {
+        position: relative;
         overflow:hidden;
-        display:block;
-        float: right;
         display: flex;
+        justify-content: flex-end;
+        width:100%;
+        .btn_add_curso{
+
+          border: 1px solid $primary-color;
+          padding:5px 20px;
+          cursor:pointer;
+          background:$primary-color;
+          color:#fff;
+          display: flex;
+          align-items: center;
+  
+          svg{
+             max-width: 100px;
+             max-height: 100px;
+             height:25px;
+             width:auto;
+          }
+          &:hover{
+            background:lighten($primary-color, 5%);
+          }
+        }
 
         li {
           list-style: none;
-          padding:10px 0px;
+          padding:15px 0px;
           
           a {
-            padding: 10px 20px 10px 20px;
+            padding: 15px 20px 16px 20px;
             background: #fff;
             border: $border-set-default;
             border-top:0px;
@@ -107,49 +136,106 @@
         }
       }
     }
-    .bg_curso{
-      background:#fff;
-    background:#ddd;
+    .btn_add_aula{
+     top:17px;
+     right:15px;
+     border-radius:5px ;
+      position: absolute;
+      border:1px solid $primary-color;
+      display: flex;
+      align-items: center;
+      background:#eee;
+      color:$primary-color;
+      padding:5px 10px 8px 10px;
+      svg{
+     height:25px; width:auto;
 
-      padding:10px; 
-      border:$border-set-default;
-      h3{ padding:10px;}
+      }
+      &:hover{
+      background: #ffe;
+
+      }
+
+    }
+
+    .bg_curso{
+      position: relative;
+      background:#fff;
+      background:#ddd;
+      padding:20px; 
+      padding-top:0px;
       display:none;
+
+      h3{ height:80px; display: flex; align-items: center; justify-content: center;}
     }
     .title_aluno_info{
       span{float:left; margin:0px !important;}
       .title_info_ra{
         font-weight: normal;
       }
-    
     } 
-    .title{
-      text-transform: uppercase;
-      font-weight: bold;
-
-      display:flex;
+      h3.title_curso_nome{ padding:30px;
       font-size:18px;
-      justify-content: center;
-      padding: 10px 0px 20px;
-      flex-grow: 1;
-      span{ padding:0px 5px;}
+      text-align: center;
+      width:100%;
+      text-transform: uppercase;
+    }
    
-   
-      span[class*="web"]{
+      h3[class*="web"]{
         color:rgb(32, 97, 134);
       }
-      span[class*="inglês"]{
+      h3[class*="inglês"]{
         color:red;
       }
-
    //excel
-      span[class*="excel"]{ 
+      h3[class*="excel"]{ 
         color:rgb(38, 148, 38)
       }
    //informática
-      span[class^="informática"], span[class*="informática"]{ 
+      h3[class^="informática"], h3[class*="informática"]{ 
         color:blue !important;
       }
+    .bg_info_delete_curso{
+      width:100%; 
+      height:auto; padding:20px;
+      display: flex;
+      justify-content: center;
+      flex-wrap:wrap;
+      overflow: hidden;
+      background:#ffd;
+      align-items: center;
+      p{
+        display: block;
+        width:100%;
+        text-align: center;
+        padding:10px;
+      }
+      button{ height:30px; margin: 0 auto;
+        display: block;
+        float:left;
+        border:1px solid;
+        padding:5px 10px;
+        cursor: pointer;
+    
+      }
+      .btn_deletar_curso{
+        border-color:rgb(54, 27, 27);
+  background:rgb(230, 62, 62);
+  color:#fff;
+  &:hover{
+    background: rgb(252, 70, 70);
+  }
+      }
+      .btn_add_aula{
+       
+       position: initial;
+       margin-right:10px;
+        svg{ width:auto; height: auto; margin-bottom:-2px}
+        &:hover{
+          background: #fff
+        }
+      }
+
     }
     .bg_bimestres {
      // border: $border-set-default;
@@ -188,9 +274,11 @@
           
         }
         .columns {
-          width: 25%;
+          width: 24%;
           min-width: 200px;
           flex-grow: 1;
+          margin:0.5%;
+          
         }
         
         .aulas {
@@ -199,7 +287,7 @@
           width: auto;
           max-width:300px;
           background: #ffffff;
-          height: 70px;
+          height: 80px;
        border: 1px solid rgb(70, 108, 179);
           overflow: hidden;
           transition: height 0.5s;
@@ -277,7 +365,7 @@
          right:0px;
          top:0px;
           font-size:16px;
-          background: rgb(48, 104, 177); 
+          background: $primary-color; 
           text-align: center;
           height:22px;
           width:30px;

@@ -359,27 +359,27 @@ template {
 }
 
 .btn-primary {
-  background: #0064ff;
+  background: #245da7;
   color: #fafafa;
 }
 .btn-primary:hover {
-  background: #1a74ff;
+  background: #2969bc;
 }
 .btn-primary:active {
-  background: #005ae6;
-  box-shadow: inset 0px 1px 3px #003c99;
+  background: #1f5192;
+  box-shadow: inset 0px 1px 3px #122e53;
 }
 
 .btn-secondary {
-  background: #0064ff;
+  background: #245da7;
   color: #fafafa;
 }
 .btn-secondary:hover {
-  background: #1a74ff;
+  background: #2969bc;
 }
 .btn-secondary:active {
-  background: #005ae6;
-  box-shadow: inset 0px 1px 3px #003c99;
+  background: #1f5192;
+  box-shadow: inset 0px 1px 3px #122e53;
 }
 
 inputs, .input-primary {
@@ -452,7 +452,7 @@ dialog {
   color: #444;
 }
 .forms input[type=submit] {
-  background: #0064ff;
+  background: #245da7;
   color: #fafafa;
   display: block;
   clear: both;
@@ -460,11 +460,11 @@ dialog {
   margin: 20px auto;
 }
 .forms input[type=submit]:hover {
-  background: #1a74ff;
+  background: #2969bc;
 }
 .forms input[type=submit]:active {
-  background: #005ae6;
-  box-shadow: inset 0px 1px 3px #003c99;
+  background: #1f5192;
+  box-shadow: inset 0px 1px 3px #122e53;
 }
 .forms .close_form {
   right: 0px;
@@ -557,7 +557,7 @@ dialog {
 }
 #nav_forms_add a {
   padding: 5px;
-  color: #0064ff;
+  color: #245da7;
   background: #ddd;
   text-decoration: none;
 }
@@ -571,70 +571,95 @@ input:disabled {
 }
 #controle_aula h1 {
   color: #333;
-  text-align: left;
-  font-size: 20px;
+  text-align: center;
+  font-size: 24px;
+  margin-top: 40px;
+  margin-bottom: 40px;
   color: #444;
   width: 100%;
+  text-transform: uppercase;
+  color: #444;
 }
 #controle_aula #form_select_aluno {
-  background: #fff;
-  margin-bottom: 20px;
   width: 100%;
   height: auto;
-  padding: 10px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  padding-bottom: 20px;
 }
 #controle_aula #form_select_aluno label {
   background: #fff;
-  border: 1px solid #ccc;
   display: block;
-  padding: 6px;
+  padding: 10px;
+  border: 1px solid #444;
+  border-right: 0px;
 }
 #controle_aula #form_select_aluno .div_input {
   display: flex;
   float: left;
   justify-content: center;
 }
+#controle_aula #form_select_aluno .div_input select {
+  padding: 10px;
+  border: 1px solid #444;
+  font-weight: bold;
+  font-size: 16px;
+}
 #controle_aula #form_select_aluno button {
   float: right;
   margin: 0px;
   margin-left: 10px;
+  padding: 14px;
 }
 #controle_aula #form_select_aluno button svg {
   margin-bottom: -2px;
   margin-right: 5px;
 }
+#controle_aula #bg_cursos {
+  border-radius: 5px 5px 0px 0px;
+  border: 1px solid #ccc;
+  overflow: hidden;
+}
 #controle_aula #bg_cursos nav.nav_cursos_aluno {
   background-color: #fff;
-  border: 1px solid #ccc;
-  border-bottom: 0px;
+  border-bottom: 1px solid #ccc;
   display: flex;
-  justify-content: space-between;
-}
-#controle_aula #bg_cursos nav.nav_cursos_aluno span {
-  font-weight: bold;
-  margin-top: 10px;
-  display: block;
-  margin-bottom: 0px;
-  font-size: 18px;
-  margin-left: 20px;
-  text-transform: uppercase;
+  justify-content: flex-end;
+  align-items: center;
 }
 #controle_aula #bg_cursos nav.nav_cursos_aluno ul {
+  position: relative;
   overflow: hidden;
-  display: block;
-  float: right;
   display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+#controle_aula #bg_cursos nav.nav_cursos_aluno ul .btn_add_curso {
+  border: 1px solid #245da7;
+  padding: 5px 20px;
+  cursor: pointer;
+  background: #245da7;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+#controle_aula #bg_cursos nav.nav_cursos_aluno ul .btn_add_curso svg {
+  max-width: 100px;
+  max-height: 100px;
+  height: 25px;
+  width: auto;
+}
+#controle_aula #bg_cursos nav.nav_cursos_aluno ul .btn_add_curso:hover {
+  background: #2969bc;
 }
 #controle_aula #bg_cursos nav.nav_cursos_aluno ul li {
   list-style: none;
-  padding: 10px 0px;
+  padding: 15px 0px;
 }
 #controle_aula #bg_cursos nav.nav_cursos_aluno ul li a {
-  padding: 10px 20px 10px 20px;
+  padding: 15px 20px 16px 20px;
   background: #fff;
   border: 1px solid #ccc;
   border-top: 0px;
@@ -651,15 +676,38 @@ input:disabled {
   background: #ffe;
   color: #333;
 }
+#controle_aula #bg_cursos .btn_add_aula {
+  top: 17px;
+  right: 15px;
+  border-radius: 5px;
+  position: absolute;
+  border: 1px solid #245da7;
+  display: flex;
+  align-items: center;
+  background: #eee;
+  color: #245da7;
+  padding: 5px 10px 8px 10px;
+}
+#controle_aula #bg_cursos .btn_add_aula svg {
+  height: 25px;
+  width: auto;
+}
+#controle_aula #bg_cursos .btn_add_aula:hover {
+  background: #ffe;
+}
 #controle_aula #bg_cursos .bg_curso {
+  position: relative;
   background: #fff;
   background: #ddd;
-  padding: 10px;
-  border: 1px solid #ccc;
+  padding: 20px;
+  padding-top: 0px;
   display: none;
 }
 #controle_aula #bg_cursos .bg_curso h3 {
-  padding: 10px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 #controle_aula #bg_cursos .title_aluno_info span {
   float: left;
@@ -668,29 +716,70 @@ input:disabled {
 #controle_aula #bg_cursos .title_aluno_info .title_info_ra {
   font-weight: normal;
 }
-#controle_aula #bg_cursos .title {
-  text-transform: uppercase;
-  font-weight: bold;
-  display: flex;
+#controle_aula #bg_cursos h3.title_curso_nome {
+  padding: 30px;
   font-size: 18px;
-  justify-content: center;
-  padding: 10px 0px 20px;
-  flex-grow: 1;
+  text-align: center;
+  width: 100%;
+  text-transform: uppercase;
 }
-#controle_aula #bg_cursos .title span {
-  padding: 0px 5px;
-}
-#controle_aula #bg_cursos .title span[class*=web] {
+#controle_aula #bg_cursos h3[class*=web] {
   color: #206186;
 }
-#controle_aula #bg_cursos .title span[class*=inglês] {
+#controle_aula #bg_cursos h3[class*=inglês] {
   color: red;
 }
-#controle_aula #bg_cursos .title span[class*=excel] {
+#controle_aula #bg_cursos h3[class*=excel] {
   color: #269426;
 }
-#controle_aula #bg_cursos .title span[class^=informática], #controle_aula #bg_cursos .title span[class*=informática] {
+#controle_aula #bg_cursos h3[class^=informática], #controle_aula #bg_cursos h3[class*=informática] {
   color: blue !important;
+}
+#controle_aula #bg_cursos .bg_info_delete_curso {
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+  background: #ffd;
+  align-items: center;
+}
+#controle_aula #bg_cursos .bg_info_delete_curso p {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+}
+#controle_aula #bg_cursos .bg_info_delete_curso button {
+  height: 30px;
+  margin: 0 auto;
+  display: block;
+  float: left;
+  border: 1px solid;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+#controle_aula #bg_cursos .bg_info_delete_curso .btn_deletar_curso {
+  border-color: #361b1b;
+  background: #e63e3e;
+  color: #fff;
+}
+#controle_aula #bg_cursos .bg_info_delete_curso .btn_deletar_curso:hover {
+  background: #fc4646;
+}
+#controle_aula #bg_cursos .bg_info_delete_curso .btn_add_aula {
+  position: initial;
+  margin-right: 10px;
+}
+#controle_aula #bg_cursos .bg_info_delete_curso .btn_add_aula svg {
+  width: auto;
+  height: auto;
+  margin-bottom: -2px;
+}
+#controle_aula #bg_cursos .bg_info_delete_curso .btn_add_aula:hover {
+  background: #fff;
 }
 #controle_aula #bg_cursos .bg_bimestres {
   width: 100%;
@@ -724,9 +813,10 @@ input:disabled {
   color: #4d4d4d;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .columns {
-  width: 25%;
+  width: 24%;
   min-width: 200px;
   flex-grow: 1;
+  margin: 0.5%;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .aulas {
   position: relative;
@@ -734,7 +824,7 @@ input:disabled {
   width: auto;
   max-width: 300px;
   background: #ffffff;
-  height: 70px;
+  height: 80px;
   border: 1px solid #466cb3;
   overflow: hidden;
   transition: height 0.5s;
@@ -751,7 +841,7 @@ input:disabled {
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .aulas .aula_numero {
   text-transform: capitalize;
-  color: #003c99;
+  color: #122e53;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .aulas .aula_data {
   padding: 5px 0px;
@@ -788,11 +878,11 @@ input:disabled {
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .btn_edit_aulas:hover {
   background: #f9f0f0;
-  color: #0064ff;
+  color: #245da7;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .btn_edit_aulas:active {
   background: #f9f0f0;
-  color: #0050cc;
+  color: #1b467d;
 }
 #controle_aula #bg_cursos .bg_bimestres .bimestres .btn_open_close_aulas {
   cursor: pointer;
@@ -800,7 +890,7 @@ input:disabled {
   right: 0px;
   top: 0px;
   font-size: 16px;
-  background: #3068b1;
+  background: #245da7;
   text-align: center;
   height: 22px;
   width: 30px;
@@ -839,6 +929,11 @@ a {
   cursor: pointer;
 }
 
+svg {
+  margin-bottom: -2px;
+  margin: 0px 2px -2px 2px;
+}
+
 body {
   background: #ccc;
   background: #ddd url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm380-16-x_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=d0c544f028f2405b219eb997cb580e21");
@@ -848,11 +943,13 @@ body {
 }
 
 header {
-  background: #051e34;
+  grid-area: header;
+  background: #333;
+  border-bottom: 2px solid #ccc;
   width: 100%;
 }
 header #header_center {
-  height: 55px;
+  height: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -860,37 +957,62 @@ header #header_center {
   padding: 0px 40px;
   max-width: 1200px;
 }
-header #header_center figure {
-  width: auto;
-  height: 20px;
-  overflow: hidden;
-  display: block;
-}
-header #header_center figure img {
+
+#app {
   max-width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 250px 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: "aside header header header header header header header" "aside  cp     cp     cp     cp     cp     cp     cp" "aside  footer footer footer footer footer footer footer";
+}
+
+aside#bg_main_menu_lateral {
+  grid-area: aside;
+  background: #222;
+}
+aside#bg_main_menu_lateral figure#bg_logo {
+  padding: 20px;
+  max-width: 100%;
+  height: auto;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+aside#bg_main_menu_lateral figure#bg_logo img {
+  max-width: 150px;
   max-height: 100%;
 }
-header #header_center nav ul li {
-  display: inline;
+aside#bg_main_menu_lateral nav {
+  margin-top: 40px;
 }
-header #header_center nav ul li a {
+aside#bg_main_menu_lateral nav ul li {
+  clear: both;
+}
+aside#bg_main_menu_lateral nav ul li a {
   padding: 13px 15px;
   color: #fafafa;
   height: auto;
   font-size: 14px;
+  width: 100%;
+  display: block;
 }
-header #header_center nav ul li a:hover {
-  color: #99c1ff;
-  border-bottom: 4px solid #66a2ff;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
+aside#bg_main_menu_lateral nav ul li a:hover {
+  color: #80ace4;
+  background: #333;
 }
 
-.components {
-  padding: 0px 40px;
+#content_page {
+  grid-area: cp;
+  max-width: 1300px;
+  min-height: 100vh;
+  margin: 0px 60px 0px 60px;
+}
+
+footer {
+  grid-area: footer;
+  height: 50px;
+  background: #111;
 }
 
 /*# sourceMappingURL=style.css.map */
