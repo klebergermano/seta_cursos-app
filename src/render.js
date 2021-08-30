@@ -33,10 +33,10 @@ function importHTML(target, htmlSRC, scriptSRC){
       item.addEventListener("click", (e) => {
          let scriptSRC = './modules/'+ e.target.dataset.script_src + '/index.js'; 
         let htmlSRC = './components/'+ e.target.dataset.path + '/index.html'; 
-        importHTML('#content_page', htmlSRC, scriptSRC);
+        importHTML('#page_content', htmlSRC, scriptSRC);
       });
     });
 
 //Carrega a primeira página
-importHTML('#content_page', './components/controle_aula/index.html',"./modules/controle_aula/index.js" )
+importHTML('#page_content', './components/controle_aula/index.html',"./modules/controle_aula/index.js" )
 

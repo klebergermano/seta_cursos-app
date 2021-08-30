@@ -532,9 +532,6 @@ dialog {
   display: none;
 }
 
-#form_add_aluno {
-  display: none;
-}
 #form_add_aluno #add_aluno_ra {
   text-transform: uppercase;
 }
@@ -912,7 +909,7 @@ input:disabled {
   width: 100%;
   min-height: 100vh;
   position: absolute;
-  background-color: #33333350;
+  background-color: #11111170;
   z-index: 1;
   bottom: 0px;
   top: 0px;
@@ -1002,7 +999,7 @@ aside#bg_main_menu_lateral nav ul li a:hover {
   background: #333;
 }
 
-#content_page {
+#page_content {
   grid-area: cp;
   max-width: 1300px;
   min-height: 100vh;
