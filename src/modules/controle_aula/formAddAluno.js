@@ -2,16 +2,69 @@ import * as commonFunc from "../common/commonFunctions.js";
 import * as  dbAlunoHistFunc from "../common/dbAlunoHistoricoFunc.js";
 
 //=====================================================================================
-//------------------------------------ADD ALUNO---------------------------------------
-export function validaSelectOptionsAddAluno() {
-  let form = document.querySelector("#form_add_aluno");
+export function eventsFormAddAluno(){
+  document.querySelector('#btn_add_aluno').addEventListener('click', (e)=>{
     
-    document.querySelector("#add_aluno_ra").addEventListener("input", (e) => {
+     insertFormAddAlunoHTML()
+    });
+}
+
+
+function insertFormAddAlunoHTML(){
+
+  let pageContent = document.querySelector('#page_content');
+
+  fetch('./components/controle_aula/formAddAluno.html')
+  .then((res)=> res.text())
+  .then((htmlString)=>{
+    console.log(htmlString);
+       return new DOMParser().parseFromString(htmlString, 'text/html').body.firstElementChild;
+  })
+  .then((formAddAluno)=>{
+    pageContent.appendChild(formAddAluno);
+
+   return formAddAluno;
+  }).then((formAddAluno)=>{
+    onloadFormAddAluno(formAddAluno)
+  })
+  .catch((err)=> console.log(err));
+}
+
+function onloadFormAddAluno(form){
+  let input_ra = form.querySelector('#add_aluno_ra');
+  let btn_close_form = form.querySelector('.close_form');
+      btn_close_form.addEventListener('click', (e)=>{ removeFormFromPageContent(e.target) })
+  input_ra.addEventListener('input', (e)=>{
+    validaSelectOptionsAddAluno(e);
+  });   
+      commonFunc.changeCSSDisplay('#block_screen', 'block');
+      document.querySelector("#form_add_aluno").addEventListener("submit", (e) => {
+        formAddAluno(e);
+      });
+
+      //Insere as os RAs ja cadastrados como opções do datalist
+      insertOptionsAddAlunoRA()
+
+
+}
+
+function removeFormFromPageContent(btn){
+  let page_content = document.querySelector('#page_content');
+     let form = btn.closest('.forms');
+     page_content.removeChild(form);
+     commonFunc.changeCSSDisplay('#block_screen', 'none');
+ }
+
+
+//------------------------------------ADD ALUNO---------------------------------------
+function validaSelectOptionsAddAluno(e) {
+  let form = document.querySelector("#form_add_aluno");
       let inputRA = e.target.value;
       let listAlunoRA = dbAlunoHistFunc.getAlunosListRA();
       let valida = listAlunoRA.then((listRA) => {
         for (let i = 0; i <= listRA.length - 1; i++) {
           if (inputRA.toUpperCase() === listRA[i]) {
+           
             e.target.classList.add("blocked");
             commonFunc.blockSubmitForm(form);
             return false;
@@ -22,7 +75,6 @@ export function validaSelectOptionsAddAluno() {
         }
       });
       return valida;
-    });
   }
 
   function createOptionsRA() {
@@ -37,17 +89,15 @@ export function validaSelectOptionsAddAluno() {
     return options;
   }
 
-  export function insertOptionsAddAlunoRA() {
+  function insertOptionsAddAlunoRA() {
     let dataList = document.querySelector("#add_aluno_datalist_ra");
     let options = createOptionsRA();
     options.then((res) => {
       dataList.innerHTML = res;
-    }).then(()=>{
-      validaSelectOptionsAddAluno()
-    });
+    })
   }
 
-  export function formAddAluno(e) {
+  function formAddAluno(e) {
     e.preventDefault();
     let form = e.target;
     let alunoHistorico = db.collection("aluno_historico");

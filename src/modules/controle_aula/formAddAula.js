@@ -1,28 +1,25 @@
 import * as commonFunc from "../common/commonFunctions.js";
 import * as dbAlunoHistFunc from "../common/dbAlunoHistoricoFunc.js";
-import * as addAluno from "./formAddAlunos.js";
-import * as formEditAulas from "./formEditAulas.js";
+import * as formAddAluno from "./formAddAluno.js";
+import * as formEditAulas from "./formEditAula.js"; 
 //=====================================================================================
 //------------------------------------ADD AULA---------------------------------------
-//TODO: Refatorar funções
-
-
+//TODO: Refatorar funções //
 
 export function eventFormsAdd() {
+  /*
   document.querySelector("#form_add_aluno").addEventListener("submit", (e) => {
-    addAluno.formAddAluno(e);
-
+    formAddAluno.formAddAluno(e);
   });
+  */
   document.querySelector("#form_add_aula").addEventListener("submit", (e) => {
     formAddAula(e);
   });
 
-
-
   document.querySelector("#select_aluno_add_aula").addEventListener("input", (e) => {
     setInitialIndexAulaNumero()
-
   });
+ 
   document.querySelector("#select_curso_add_aluno").addEventListener("input", (e) => {
   // validaFormAddAulaOptionsAulaNumero();
     setInitialIndexBimestre()
@@ -33,15 +30,12 @@ export function eventFormsAdd() {
     validaFormAddAulaOptionsAulaNumero();
     enableSelectAulaNumeroWhenBimestreChange();
   });
-
 }
 
 function disableAulaNumero(){
   let aulaNumero= document.querySelector("#form_add_aula").querySelector('#aula_numero');
   aulaNumero.setAttribute('disabled', true);
   setInitialIndexAulaNumero()
-
-
 }
 export function setInitialIndexAulaNumero(){
   let aulaNumero= document.querySelector("#form_add_aula").querySelector('#aula_numero');
@@ -207,7 +201,6 @@ function blocoAddAula(dados) {
 export function navAddFormsDisplayEvent() {
 
     document.querySelector("#btn_add_aluno").addEventListener("click", () => {
-      commonFunc.changeCSSDisplay("#form_add_aluno", "block");
       commonFunc.changeCSSDisplay("#block_screen", "block");
     });
 

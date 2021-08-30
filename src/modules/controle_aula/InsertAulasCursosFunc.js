@@ -1,8 +1,8 @@
 import * as commonFunc from "../common/commonFunctions.js";
 import * as dbAlunoHistFunc from "../common/dbAlunoHistoricoFunc.js";
 import * as navCursosAluno from "./navCursosAluno.js";
-import * as editAulas from "./formEditAulas.js";
-import * as addAulas from "./formAddAulas.js";
+import * as editAulas from "./formEditAula.js";
+import * as formAddAula from "./formAddAula.js";
 import * as dateFunc from "../common/dateFunc.js";
 import * as deleteFunc from "./deleteFunc.js";
 
@@ -12,14 +12,12 @@ export function eventInputSelectAluno() {
 
   document.querySelector("#main_select_aluno").addEventListener("input", () => {
     let RA = getRAfromSelectAluno();
-
     dbAlunoHistFunc.dbRealTimeAlunoHistCursos(RA, insertContentAlunoCurso);
-    //---
     commonFunc.setSelectedInASelectBasedOnRA("#select_aluno_add_aula", RA);
     commonFunc.setSelectedInASelectBasedOnRA("#select_aluno_add_curso", RA);
     //quando o select_aluno é alterado chama a função para carregar as opções
     //de cursos em select_aluno_add_aula
-    addAulas.insertSelectCursosAddAula(RA);
+    formAddAula.insertSelectCursosAddAula(RA);
   });
 }
  

@@ -1,4 +1,3 @@
-//TODO: Refatorar funções.
 
 //Cria o menu nav_cursos_aluno
 import * as dbAlunoHistFunc from "../common/dbAlunoHistoricoFunc.js";
@@ -42,8 +41,6 @@ async function createNavCursosAluno(alunoInfo) {
       });
     return menuNavUl;
   }
-
-
 
   function removeActiveClassNavCursosElement(){
     let a = document.querySelector(".nav_cursos_aluno").getElementsByTagName("a");
