@@ -90,7 +90,6 @@ export function showEditAula(e) {
       removeFormEditAula(formAddAula)
     btn_close.classList.remove('close_form_edit');
     formAddAulas.resetFormAddAula(formAddAula);
-   
     });
   }
 

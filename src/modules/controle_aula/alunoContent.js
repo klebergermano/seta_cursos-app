@@ -6,52 +6,36 @@ import * as formAddAula from "./formAddAula.js";
 import * as dateFunc from "../common/dateFunc.js";
 import * as deleteFunc from "./deleteFunc.js";
 
-export function eventInputSelectAluno() {
-  //Carrega as opções do main_select_aluno;
-  InsertSelectAlunos();
 
-  document.querySelector("#main_select_aluno").addEventListener("input", () => {
-    let RA = getRAfromSelectAluno();
-    dbAlunoHistFunc.dbRealTimeAlunoHistCursos(RA, insertContentAlunoCurso);
-    commonFunc.setSelectedInASelectBasedOnRA("#select_aluno_add_aula", RA);
-    commonFunc.setSelectedInASelectBasedOnRA("#select_aluno_add_curso", RA);
+//=====================================================================================
+function onLoadAlunoContent(){
+
+}
+export function eventsAlunoContent() {
+    let RA = getRAfromMainSelectAluno();
+    dbAlunoHistFunc.alunoHistCursosRealTimeDB(RA, insertAlunoContent);
+    //commonFunc.setSelectedInASelectBasedOnRA("#select_aluno_add_aula", RA);
+    //commonFunc.setSelectedInASelectBasedOnRA("#select_aluno_add_curso", RA);
     //quando o select_aluno é alterado chama a função para carregar as opções
     //de cursos em select_aluno_add_aula
-    formAddAula.insertSelectCursosAddAula(RA);
-  });
+    //formAddAula.insertSelectCursosAddAula(RA);
 }
- 
-//=====================================================================================
-async function InsertSelectAlunos() {
-  db.collection("aluno_historico").onSnapshot((snap) => {
-    let selectAluno = ``;
-    snap.forEach((item) => {
-      selectAluno += `<option value='${item.id}'>${item.id} - ${
-        item.data().nome
-      }</option>`;
-    });
-    document.querySelector("#main_select_aluno").innerHTML = selectAluno;
-    //insere options do select no "select_aluno_add_aula"
-    document.querySelector("#select_aluno_add_aula").innerHTML = selectAluno;
-    //insere options do select no "select_aluno_add_curso"
-    document.querySelector("#select_aluno_add_curso").innerHTML = selectAluno;
-  });
-};
 
-function getRAfromSelectAluno() {
+function getRAfromMainSelectAluno() {
   let select = document.querySelector("#main_select_aluno");
   let RA = select.options[select.selectedIndex].value;
   return RA;
 }
 
-export function insertContentAlunoCurso(RA, snapshotChange) {
+export function insertAlunoContent(RA, snapshotChange) {
   let nomeDoCurso = snapshotChange[0].doc.data().curso;
   let alunoInfoGeral = dbAlunoHistFunc.getAlunoInfoGeral(RA);
   let alunoH = dbAlunoHistFunc.alunoHistoricoDB(RA);
 
   alunoH.then((alunoDB) => {
     alunoInfoGeral.then((alunoInfo) => {
-      InsertBgCursosContent(alunoDB, alunoInfo);
+     InsertBgCursosContent(alunoDB, alunoInfo);
+
       return alunoInfo;
     }).then((alunoInfo) => {
       navCursosAluno.insertNavCursosInBGCursos(alunoInfo, nomeDoCurso)
@@ -97,20 +81,41 @@ function createBgCursoMainStructure(curso_nome_bd, alunoInfoGeral) {
 
 export function InsertBgCursosContent(alunoDataFromDB, alunoInfoGeral) {
 
-  //TODO remover snapChanges
-
   let bgCursosContent = "";
   alunoDataFromDB.forEach((resCursoDB) => {
-    if (typeof resCursoDB.data !== "undefined") { resCursoDB = resCursoDB.data(); } else { resCursoDB = resCursoDB.doc.data(); }
+    if (typeof resCursoDB.data !== "undefined") { resCursoDB = resCursoDB.data(); } 
+    else { resCursoDB = resCursoDB.doc.data(); }
 
     let bgCursoMainStructure = createBgCursoMainStructure(resCursoDB.curso, alunoInfoGeral);
-
     if (checkIfBimestresIsEmpty(resCursoDB.bimestres)) {
       bgCursosContent += createBgCursosInnerContent(bgCursoMainStructure, resCursoDB);
     } else {
-      bgCursoMainStructure.querySelector('#curso_content').innerHTML =
-        `
-        <div class='bg_info_delete_curso'>
+      bgCursoMainStructure.querySelector('#curso_content').innerHTML = cursoVazioHTML(alunoInfoGeral.RA, resCursoDB.curso);
+      bgCursosContent += bgCursoMainStructure.innerHTML;
+    }
+  });
+  
+  //--------------------------------------------------------------------------------
+  //adiciona todo o conteúdo gerado em #aluno_content
+  document.querySelector("#aluno_content").innerHTML = bgCursosContent;
+  
+  //Eventos do bloco ".aulas".
+  eventsAulas()
+  deleteFunc.eventDeleteCurso();
+}
+
+function eventsAulas(){
+  //Carrega a função de click no btn_edit_aulas
+  commonFunc.addEventListenerInAllElements('.btn_edit_aulas', 'click', editAulas.showEditAula);
+  //Carrega a função de click
+  commonFunc.addEventListenerInAllElements('.btn_open_close_aulas', 'click', clickOpenCloseAulas);
+  //Funções de delete aula
+  deleteFunc.eventsDeletarAula()
+}
+
+function cursoVazioHTML(RA, curso){
+  return `
+  <div class='bg_info_delete_curso'>
       <p>
       Esse curso não possui nenhuma aula adicionada.
     </p> 
@@ -123,35 +128,22 @@ export function InsertBgCursosContent(alunoDataFromDB, alunoInfoGeral) {
       </svg>
      Adicionar Aula
     </button>
-    <button data-aluno_ra='${alunoInfoGeral.RA}' data-delete_curso='${resCursoDB.curso}' class='btn_deletar_curso'>Deletar Curso</button>
+    <button data-aluno_ra='${RA}' data-delete_curso='${curso}' class='btn_deletar_curso'>Deletar Curso</button>
       </div>
-      </div>`;
-      bgCursosContent += bgCursoMainStructure.innerHTML;
-    }
+      </div>
+  `
+}
 
-  });
 
-  function checkIfBimestresIsEmpty(bimestres) {
-    let keys = Object.keys(bimestres);
-    if (keys.length <= 0) {
-      //retorna false quando não há conteúdo em bimestres
-      return false;
-    } else {
-      //retorna true quando há conteúdo em bimestres
-      return true;
-    }
+function checkIfBimestresIsEmpty(bimestres) {
+  let keys = Object.keys(bimestres);
+  if (keys.length <= 0) {
+    //retorna false quando não há conteúdo em bimestres
+    return false;
+  } else {
+    //retorna true quando há conteúdo em bimestres
+    return true;
   }
-  //--------------------------------------------------------------------------------
-  //adiciona todo o conteúdo gerado em #bg_cursos
-  document.querySelector("#bg_cursos").innerHTML = bgCursosContent;
-  //Carrega a função de click no btn_edit_aulas
-  commonFunc.addEventListenerInAllElements('.btn_edit_aulas', 'click', editAulas.showEditAula);
-  //Carrega a função de click
-  commonFunc.addEventListenerInAllElements('.btn_open_close_aulas', 'click', clickOpenCloseAulas);
-  //Funções de delete aula
-  deleteFunc.eventsDeletarAula()
-
-  deleteFunc.eventDeleteCurso();
 }
 
 function createBgCursosInnerContent(bgCursoHTML, cursoDB) {

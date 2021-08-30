@@ -1,6 +1,21 @@
 import * as dbAlunoHistFunc from "../common/dbAlunoHistoricoFunc.js";
 import * as commonFunc from "../common/commonFunctions.js";
 
+export function insertFormAddCursoHTML(){
+
+
+}
+
+function eventsFormAddCurso() {
+  let aluno = document.querySelector("#select_aluno_add_curso");
+  aluno.addEventListener("input", (e) => {
+    validaSelectOptionsAddCurso();
+  });
+  document.querySelector("#form_add_curso").addEventListener("submit", (e) => {
+   formAddCurso(e);
+  });
+}
+
 //=====================================================================================
 //------------------------------------ADD CURSOS---------------------------------------
 function validaSelectOptionsAddCurso() {
@@ -42,15 +57,7 @@ function validaSelectOptionsAddCurso() {
     }
   }
 
-export function eventSelectAlunoAddCurso() {
-    let aluno = document.querySelector("#select_aluno_add_curso");
-    aluno.addEventListener("input", (e) => {
-      validaSelectOptionsAddCurso();
-    });
-    document.querySelector("#form_add_curso").addEventListener("submit", (e) => {
-     formAddCurso(e);
-    });
-  }
+
 
   function formAddCurso(e) {
     e.preventDefault();

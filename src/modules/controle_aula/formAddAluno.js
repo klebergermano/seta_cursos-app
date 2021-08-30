@@ -1,19 +1,8 @@
 import * as commonFunc from "../common/commonFunctions.js";
 import * as  dbAlunoHistFunc from "../common/dbAlunoHistoricoFunc.js";
 
-//=====================================================================================
-export function eventsFormAddAluno(){
-  document.querySelector('#btn_add_aluno').addEventListener('click', (e)=>{
-    
-     insertFormAddAlunoHTML()
-    });
-}
-
-
-function insertFormAddAlunoHTML(){
-
+export function insertFormAddAlunoHTML(){
   let pageContent = document.querySelector('#page_content');
-
   fetch('./components/controle_aula/formAddAluno.html')
   .then((res)=> res.text())
   .then((htmlString)=>{
@@ -25,29 +14,37 @@ function insertFormAddAlunoHTML(){
 
    return formAddAluno;
   }).then((formAddAluno)=>{
-    onloadFormAddAluno(formAddAluno)
+    eventsFormAddAluno(formAddAluno)
   })
   .catch((err)=> console.log(err));
 }
 
-function onloadFormAddAluno(form){
-  let input_ra = form.querySelector('#add_aluno_ra');
-  let btn_close_form = form.querySelector('.close_form');
-      btn_close_form.addEventListener('click', (e)=>{ removeFormFromPageContent(e.target) })
-  input_ra.addEventListener('input', (e)=>{
+
+function eventsFormAddAluno(){
+  let form = document.querySelector('#form_add_aluno');
+  form.querySelector('.close_form').addEventListener('click', (e)=>{ 
+    removeFormFromPageContent(e.target) 
+  })
+
+  form.querySelector('#add_aluno_ra').addEventListener('input', (e)=>{
     validaSelectOptionsAddAluno(e);
   });   
-      commonFunc.changeCSSDisplay('#block_screen', 'block');
-      document.querySelector("#form_add_aluno").addEventListener("submit", (e) => {
-        formAddAluno(e);
-      });
 
-      //Insere as os RAs ja cadastrados como opções do datalist
-      insertOptionsAddAlunoRA()
+ form.addEventListener("submit", (e) => {
+    formAddAluno(e);
+  });
 
-
+  //Mostra a tela de bloqueio de fundo "block_screen".
+  commonFunc.changeCSSDisplay('#block_screen', 'block');
+  //Insere as os RAs ja cadastrados como opções do datalist.
+  insertOptionsAddAlunoRA()
 }
 
+
+
+
+
+//Remove o formulário do contente page
 function removeFormFromPageContent(btn){
   let page_content = document.querySelector('#page_content');
      let form = btn.closest('.forms');
@@ -55,8 +52,8 @@ function removeFormFromPageContent(btn){
      commonFunc.changeCSSDisplay('#block_screen', 'none');
  }
 
-
-//------------------------------------ADD ALUNO---------------------------------------
+//Função de validação do valor inserido no campoo RA, 
+//caso esse valor ja exista bloqueia a inserção.
 function validaSelectOptionsAddAluno(e) {
   let form = document.querySelector("#form_add_aluno");
       let inputRA = e.target.value;
@@ -77,6 +74,15 @@ function validaSelectOptionsAddAluno(e) {
       return valida;
   }
 
+  //Insere os RAs dos alunos como opção do datalist.
+  function insertOptionsAddAlunoRA() {
+    let dataList = document.querySelector("#add_aluno_datalist_ra");
+    let options = createOptionsRA();
+    options.then((res) => {
+      dataList.innerHTML = res;
+    })
+  }
+//cria as options com o valor dos RAs dos alunos.
   function createOptionsRA() {
     let array = "";
     let listAlunoRA = dbAlunoHistFunc.getAlunosListRA();
@@ -89,14 +95,7 @@ function validaSelectOptionsAddAluno(e) {
     return options;
   }
 
-  function insertOptionsAddAlunoRA() {
-    let dataList = document.querySelector("#add_aluno_datalist_ra");
-    let options = createOptionsRA();
-    options.then((res) => {
-      dataList.innerHTML = res;
-    })
-  }
-
+  //Salva o aluno no banco de dados.
   function formAddAluno(e) {
     e.preventDefault();
     let form = e.target;
@@ -115,11 +114,11 @@ function validaSelectOptionsAddAluno(e) {
           .doc(form.add_aluno_ra.value)
           .set({ nome: form.nome.value }, { merge: true });
       })
-      //Remove conteúdo do formulário e acrescenta a mensagem
+      //Remove conteúdo do formulário e acrescenta a mensagem.
       .then(() =>
         commonFunc.showMessage("form_add_aluno", "Aluno salvo com sucesso!")
       )
-      //tira o diplay do formulário e block_screen
+      //tira o diplay do formulário e block_screen.
       .then(() => {
         setTimeout(() => {
           e.target.style.display = "none";

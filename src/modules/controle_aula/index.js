@@ -1,4 +1,4 @@
-import * as insertAulasCursosFunc from "./InsertAulasCursosFunc.js";
+import * as alunoContent from "./alunoContent.js";
 
 import * as formAddAula from "./formAddAula.js";
 import * as dbAlunoHistFunc from "../common/dbAlunoHistoricoFunc.js";
@@ -7,14 +7,38 @@ import * as formAddAluno from "./formAddAluno.js";
 import * as commonFunc from "../common/commonFunctions.js";
 import * as dragForms from "./dragForms.js";
 
+
+function insertSelectAlunos() {
+  db.collection("aluno_historico").onSnapshot((snap) => {
+    let selectAluno = ``;
+    snap.forEach((item) => {
+      selectAluno += `<option value='${item.id}'>${item.id} - ${
+        item.data().nome
+      }</option>`;
+    });
+    document.querySelector("#main_select_aluno").innerHTML = selectAluno;
+    //insere options do select no "select_aluno_add_aula"
+    document.querySelector("#select_aluno_add_aula").innerHTML = selectAluno;
+    //insere options do select no "select_aluno_add_curso"
+    document.querySelector("#select_aluno_add_curso").innerHTML = selectAluno;
+  });
+};
+
+
 //TODO: Arrumar ordem de execução das funções
 export function onload(){
+ insertSelectAlunos();
+ document.querySelector('#main_select_aluno').addEventListener('input', (e)=>{
+   alunoContent.eventsAlunoContent();
+ });
 
   //events FormAddAluno.js
-  formAddAluno.eventsFormAddAluno();
+  document.querySelector('#btn_add_aluno').addEventListener('click', (e)=>{
+    formAddAluno.insertFormAddAlunoHTML();
+  });
+
+  dbAlunoHistFunc.alunoHistCursosRealTimeDB("RA01", alunoContent.insertAlunoContent);
   
-  insertAulasCursosFunc.eventInputSelectAluno();
-  dbAlunoHistFunc.dbRealTimeAlunoHistCursos("RA01", insertAulasCursosFunc.insertContentAlunoCurso);
   formAddAula.navAddFormsDisplayEvent();
   //FORMS
   formAddAula.eventFormsAdd();
@@ -26,8 +50,7 @@ export function onload(){
   formAddAula.insertSelectCursosAddAula("RA01");
   
    
-  //Curso
-  formAddCursos.eventSelectAlunoAddCurso();
+
   
   //TODO: gerando erro ao carregar
   // formAddAluno.validaSelectOptionsAddAluno();
