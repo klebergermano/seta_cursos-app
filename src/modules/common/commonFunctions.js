@@ -1,3 +1,31 @@
+//Remove o formulário do contente page
+export function removeElementChild(parentElementID, childElementID, callback){
+  let parent = document.querySelector(parentElementID);
+  let child = document.querySelector(childElementID);
+     parent.removeChild(child);
+     callback();
+ }
+
+export function insertElementHTML(target, pathElementHTML, callback){
+  let targetElement = document.querySelector(target);
+  fetch(pathElementHTML)
+  .then((res)=> res.text())
+  .then((htmlString)=>{
+       return new DOMParser().parseFromString(htmlString, 'text/html').body.firstElementChild;
+  })
+  .then((htmlElement)=>{
+    targetElement.appendChild(htmlElement);
+
+   return htmlElement;
+  }).then((htmlElement)=>{
+
+    if(callback) callback(htmlElement);
+ 
+  })
+  .catch((err)=> console.log(err));
+
+
+} 
 
 export function addEventListener(targetElement, event, callback){
   document.querySelector(targetElement).addEventListener(event, (e)=>{
@@ -60,21 +88,16 @@ export function parenteDisplayAndBlockScreenNone(e) {
   e.target.parentElement.style.display = "none";
   changeCSSDisplay("#block_screen", "none");
 }
-
+//TODO: mudar função de mensagem para uma função independende que tenha sua própria estrutura
 //usado para mostrar mensagem após um submit
 export function showMessage(targetID, message, callback) {
   let previousHTML = document.getElementById(targetID).innerHTML;
   document.getElementById(
     targetID
   ).innerHTML = `<div class='show_message'>${message}</div>`;
-  setTimeout(() => {
-    document.getElementById(targetID).innerHTML = previousHTML;
-  }, 2000);
+
   //restaura a função de fechar do formulário
-  setTimeout(() => {
-    if(callback()){
-      callback()
-    }}, 2500);
+    if(callback){callback()}
 }
 
 export function blockSubmitForm(form) {

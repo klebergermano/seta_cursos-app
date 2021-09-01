@@ -1,144 +1,4 @@
 
-<div id='bg_forms_add'>
-<!------------------------------------ADD ALUNO----------------------->
-<form id="form_add_aluno" class="forms">
-  <span class="close_form">X</span>
-  <h3><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
-    <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-    <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
-  </svg> Adicionar Aluno</h3>
-  <div>
-    <label for="nome">Aluno:</label><input required id="nome" type="text" placeholder='Digite o nome do aluno' />
-    <label for="add_aluno_ra">RA:</label>
-    <input required id="add_aluno_ra" type="text" list="add_aluno_datalist_ra"/>
-<datalist id='add_aluno_datalist_ra'>
-  <option></option>
-</datalist>
-  </div>
-  <div>
-    <label><span class='required'>&nbsp;&nbsp; *</span> Curso:</label> 
-    <select required id='curso_nome'>
-      <option selected="true" disabled value=''>Selecione o Curso</option>
-      <option class='informatica' data-abreviation='IFK' value='Informática KIDS'>Informática KIDS</option>
-      <option class='informatica' data-abreviation='IFC' value='Informática Completo'>Informática Completo</option>
-      <option class='informatica' data-abreviation='IFPRO' value='Informática Profissional'>Informática Profissional</option>
-      <option class='informatica' data-abreviation='IFP' value='Informática Prática'>Informática Prática</option>
-      <option class='ingles' data-abreviation='IGK' value='Inglês KIDS'>Inglês KIDS</option>
-      <option class='ingles' data-abreviation='IGPT' value='Inglês Pre-teen'>Inglês Pre-teen</option>
-      <option class='ingles' data-abreviation='IGB' value='Inglês Básico'>Inglês Básico</option>
-      <option class='ingles' data-abreviation='IGI' value='Inglês Intermediário'>Inglês Intermediário</option>
-      <option class='ingles' data-abreviation='IGA' value='Inglês Avançado'>Inglês Avançado</option>
-      <option class='excel' data-abreviation='EXA' value='Excel Avançado'>Excel Avançado</option>
-      <option class='web' data-abreviation='DWB' value='Desenvolvimento Web'>Desenvolvimento Web</option>
-      <option class='bd' data-abreviation='BDBMYSQL' value='Banco de Dados Básico(MySQL)'>Banco de Dados Básico MySQL</option>
-    </select>
-  </div>
-  <input type="submit" value="Salvar" />
-</form>
-
-<!--------------------------------------ADD CURSOS----------------------->
-
-<form id="form_add_curso" class="forms">
-  <span class="close_form">X</span>
-  <h3><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-plus" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5z"/>
-    <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
-    <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
-  </svg> Adicionar Curso</h3>
-  <div>
-    <label for="nome">Aluno:</label>
-    <select required id='select_aluno_add_curso'></select>
-    
-  </div>
-  <div>
-    <label><span class='required'>&nbsp;&nbsp;*</span> Curso:</label> 
-    <select required id='add_curso_nome_curso'>
-      <option selected="true" disabled="disabled" value=''>Selecione o Curso</option>
-      <option class='informatica' data-abreviation='IFK' value='Informática KIDS'>Informática KIDS</option>
-      <option class='informatica' data-abreviation='IFC' value='Informática Completo'>Informática Completo</option>
-      <option class='informatica' data-abreviation='IFPRO' value='Informática Profissional'>Informática Profissional</option>
-      <option class='informatica' data-abreviation='IFP' value='Informática Prática'>Informática Prática</option>
-      <option class='ingles' data-abreviation='IGK' value='Inglês KIDS'>Inglês KIDS</option>
-      <option class='ingles' data-abreviation='IGPT' value='Inglês Pre-teen'>Inglês Pre-teen</option>
-      <option class='ingles' data-abreviation='IGB' value='Inglês Básico'>Inglês Básico</option>
-      <option class='ingles' data-abreviation='IGI' value='Inglês Intermediário'>Inglês Intermediário</option>
-      <option class='ingles' data-abreviation='IGA' value='Inglês Avançado'>Inglês Avançado</option>
-      <option class='excel' data-abreviation='EXA' value='Excel Avançado'>Excel Avançado</option>
-      <option class='web' data-abreviation='DWB' value='Desenvolvimento Web'>Desenvolvimento Web</option>
-      <option class='bd' data-abreviation='BDBMYSQL' value='Banco de Dados Básico(MySQL)'>Banco de Dados Básico MySQL</option>
-    </select>
-  </div>
-  <input type="submit" value="Salvar" />
-</form>
-<!----------------------------------------------------------------------->
-<!-------------------------------------------ADD AULA----------------------->
-<form id="form_add_aula" class="forms">
-  <span class="close_form">X</span>
-  <h3><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-plus" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"/>
-    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
-    <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
-  </svg> Adicionar Aula</h3>
-
-  <div>
-      <label for="nome">Nome:</label>
-      <select id='select_aluno_add_aula'>
-          <option></option>
-      </select>
-</div>
-
-  <div><label>Curso:</label>
-    <select id='select_curso_add_aluno'>
-      <option></option>
-      </select>
-    </div>
-  <div>
-    <label>Bimestres</label>
-    <select required id='select_bimestre_add_aluno'>
-     
-      <option value='' disabled  selected>Selecione o Bimestre</option>
-         <option value='bimestre 1'>Bimestre 1</option>
-         <option value='bimestre 2'>Bimestre 2</option>
-         <option value='bimestre 3'>Bimestre 3</option>
-         <option value='bimestre 4'>Bimestre 4</option>
-         <option value='bimestre 5'>Bimestre 5</option>
-         <option value='bimestre 6'>Bimestre 6</option>
-    </select>
-
-    <label>Aulas Nº:</label>
-    <select required id='aula_numero' disabled>
-      <option value='' disabled selected>Selecione a Aula</option>
-
-      <option value="aula 01">Aula 1</option>
-      <option value="aula 02">Aula 2</option>
-      <option value="aula 03">Aula 3</option>
-      <option value="aula 04">Aula 4</option>
-      <option value="aula 05">Aula 5</option>
-      <option value="aula 06">Aula 6</option>
-      <option value="aula 07">Aula 7</option>
-      <option value="aula 08">Aula 8</option>
-      <option value="aula 09">Aula 9</option>
-      <option value="aula 10">Aula 10</option>
-      <option value="aula 11">Aula 11</option>
-      <option value="aula 12">Aula 12</option>
-      <option value="aula 13">Aula 13</option>
-      <option value="aula 14">Aula 14</option>
-      <option value="aula 15">Aula 15</option>
-      <option value="aula 16">Aula 16</option>
-      <option value="aula reposicão">Aula Reposição</option>
-
-  </select>
-  </div>
-
-  <div id="data_hora">
-    <label>Data:</label><input required id="data" type="date" /> <label>Horário:</label
-    ><input id="horario" />
-  </div>
-  <div><label>Tema:</label><input  required  id="tema" type="text" /></div>
-  <div><label>Detalhes:</label><textarea  required  id="detalhes"></textarea></div>
-  <input type="submit" value="Salvar" />
-</form>
-</div>
 <div class="components" id="controle_aula">
   <h1>Controle de Aula</h1>
   <div class="page_content">
@@ -150,20 +10,19 @@
             <option value="" disabled>Selectione um Aluno</option>
           </select>
         </div>
-   
         <button class="btn-primary" id="btn_add_aluno" type="button">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
             <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
             <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
-          </svg> Aluno
+          </svg>Aluno
         </button>
       </div>
     </form>
 
-    <div id="bg_cursos">
+    <div id="aluno_content">
 
 
-    </div><!--bg_cursos-->
+    </div><!--aluno_content-->
     <!--page_content-->
 
   </div>

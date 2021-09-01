@@ -1,84 +1,61 @@
 import * as commonFunc from "../common/commonFunctions.js";
 import * as dbAlunoHistFunc from "../common/dbAlunoHistoricoFunc.js";
 import * as navCursosAluno from "./navCursosAluno.js";
-import * as editAulas from "./formEditAulas.js";
-import * as addAulas from "./formAddAulas.js";
+import * as editAulas from "./formEditAula.js";
+import * as formAddAula from "./formAddAula.js";
 import * as dateFunc from "../common/dateFunc.js";
 import * as deleteFunc from "./deleteFunc.js";
 
-export function eventInputSelectAluno() {
-  //Carrega as opções do main_select_aluno;
-  InsertSelectAlunos();
 
-  document.querySelector("#main_select_aluno").addEventListener("input", () => {
-    let RA = getRAfromSelectAluno();
 
-    dbAlunoHistFunc.dbRealTimeAlunoHistCursos(RA, insertContentAlunoCurso);
-    //---
-    commonFunc.setSelectedInASelectBasedOnRA("#select_aluno_add_aula", RA);
-    commonFunc.setSelectedInASelectBasedOnRA("#select_aluno_add_curso", RA);
-    //quando o select_aluno é alterado chama a função para carregar as opções
-    //de cursos em select_aluno_add_aula
-    addAulas.insertSelectCursosAddAula(RA);
-  });
+export function eventsAlunoContent() {
+  let RA = getRAfromMainSelectAluno();
+  dbAlunoHistFunc.alunoHistCursosRealTimeDB(RA, insertAlunoContent);
+
 }
- 
-//=====================================================================================
-async function InsertSelectAlunos() {
-  db.collection("aluno_historico").onSnapshot((snap) => {
-    let selectAluno = ``;
-    snap.forEach((item) => {
-      selectAluno += `<option value='${item.id}'>${item.id} - ${
-        item.data().nome
-      }</option>`;
-    });
-    document.querySelector("#main_select_aluno").innerHTML = selectAluno;
-    //insere options do select no "select_aluno_add_aula"
-    document.querySelector("#select_aluno_add_aula").innerHTML = selectAluno;
-    //insere options do select no "select_aluno_add_curso"
-    document.querySelector("#select_aluno_add_curso").innerHTML = selectAluno;
-  });
-};
 
-function getRAfromSelectAluno() {
+function getRAfromMainSelectAluno() {
   let select = document.querySelector("#main_select_aluno");
   let RA = select.options[select.selectedIndex].value;
   return RA;
 }
 
-export function insertContentAlunoCurso(RA, snapshotChange) {
-  let nomeDoCurso = snapshotChange[0].doc.data().curso;
-  let alunoInfoGeral = dbAlunoHistFunc.getAlunoInfoGeral(RA);
-  let alunoH = dbAlunoHistFunc.alunoHistoricoDB(RA);
+export function insertAlunoContent(RA, snapshotChange) {
+  let nomeCurso = snapshotChange[0].doc.data().curso;
 
-  alunoH.then((alunoDB) => {
-    alunoInfoGeral.then((alunoInfo) => {
-      InsertBgCursosContent(alunoDB, alunoInfo);
-      return alunoInfo;
-    }).then((alunoInfo) => {
-      navCursosAluno.insertNavCursosInBGCursos(alunoInfo, nomeDoCurso)
-    }).then(() => {
-      let btn_add_aula = document.querySelectorAll(".btn_add_aula");
-      btn_add_aula.forEach((item) => {
-        item.addEventListener("click", () => {
-          commonFunc.changeCSSDisplay("#form_add_aula", "block");
-          commonFunc.changeCSSDisplay("#block_screen", "block");
-        })
-      });
-    });
-  })
+  dbAlunoHistFunc.getAlunoHistCursosDB(RA)
+    .then((alunoCursosDB) => {
+          let alunoContentHTML = createAlunoContentHTML(alunoCursosDB, RA);
+          document.querySelector("#aluno_content").innerHTML = alunoContentHTML;
+    
+          navCursosAluno.insertNavCursosInBGCursos(RA, nomeCurso)
+
+          eventsAulas()
+          deleteFunc.eventDeleteCurso();
+    }).then(()=>{
+      eventBtnAddAula();
+      //Eventos do bloco ".aulas".
+    })
+}
+
+function eventBtnAddAula(){
+  document.querySelectorAll(".btn_add_aula").forEach((item) => {
+    item.addEventListener("click", () => {
+      formAddAula.insertFormAddAulaHTML();
+    })
+  });
 }
 
 
-function createBgCursoMainStructure(curso_nome_bd, alunoInfoGeral) {
+function createBgCursoMainStructureHTML(curso_nome_bd, RA) {
   if (curso_nome_bd) {
     let id_curso = commonFunc.stringToID(curso_nome_bd);
     let bgCursoHTML = document.createElement("div");
     bgCursoHTML.id = id_curso;
-    bgCursoHTML.setAttribute('data-aluno_ra', alunoInfoGeral.RA);
+    bgCursoHTML.setAttribute('data-aluno_ra', RA);
     bgCursoHTML.setAttribute('data-curso', curso_nome_bd);
     bgCursoHTML.innerHTML = `<nav class='nav_cursos_aluno'></nav>
-    <div class='bg_curso' id='${id_curso}' data-aluno_ra='${alunoInfoGeral.RA}' data-curso='${curso_nome_bd}'>
+    <div class='bg_curso' id='${id_curso}' data-aluno_ra='${RA}' data-curso='${curso_nome_bd}'>
        <h3 class='title_curso_nome ${id_curso}'>${curso_nome_bd}</h3>
         <div id='curso_content'>
         <button class="btn_add_aula btn-primary" id="btn_add_aula" title='Adicionar Aula' type="button">
@@ -96,23 +73,26 @@ function createBgCursoMainStructure(curso_nome_bd, alunoInfoGeral) {
   }
 }
 
-
-export function InsertBgCursosContent(alunoDataFromDB, alunoInfoGeral) {
-
-  //TODO remover snapChanges
-
-  let bgCursosContent = "";
+function createAlunoContentHTML(alunoDataFromDB, alunoInfoGeral) {
+  let alunoContentHTML = "";
   alunoDataFromDB.forEach((resCursoDB) => {
-    if (typeof resCursoDB.data !== "undefined") { resCursoDB = resCursoDB.data(); } else { resCursoDB = resCursoDB.doc.data(); }
+    if (typeof resCursoDB.data !== "undefined") { resCursoDB = resCursoDB.data(); }
+    else { resCursoDB = resCursoDB.doc.data(); }
 
-    let bgCursoMainStructure = createBgCursoMainStructure(resCursoDB.curso, alunoInfoGeral);
-
+    let bgCursoMainStructure = createBgCursoMainStructureHTML(resCursoDB.curso, alunoInfoGeral);
     if (checkIfBimestresIsEmpty(resCursoDB.bimestres)) {
-      bgCursosContent += createBgCursosInnerContent(bgCursoMainStructure, resCursoDB);
+      alunoContentHTML += createBgCursosInnerContent(bgCursoMainStructure, resCursoDB);
     } else {
-      bgCursoMainStructure.querySelector('#curso_content').innerHTML =
-        `
-        <div class='bg_info_delete_curso'>
+      bgCursoMainStructure.querySelector('#curso_content').innerHTML = cursoVazioHTML(alunoInfoGeral.RA, resCursoDB.curso);
+      alunoContentHTML += bgCursoMainStructure.innerHTML;
+    }
+  });
+  return alunoContentHTML;
+}
+
+function cursoVazioHTML(RA, curso) {
+  return `
+  <div class='bg_info_delete_curso'>
       <p>
       Esse curso não possui nenhuma aula adicionada.
     </p> 
@@ -125,35 +105,10 @@ export function InsertBgCursosContent(alunoDataFromDB, alunoInfoGeral) {
       </svg>
      Adicionar Aula
     </button>
-    <button data-aluno_ra='${alunoInfoGeral.RA}' data-delete_curso='${resCursoDB.curso}' class='btn_deletar_curso'>Deletar Curso</button>
+    <button data-aluno_ra='${RA}' data-delete_curso='${curso}' class='btn_deletar_curso'>Deletar Curso</button>
       </div>
-      </div>`;
-      bgCursosContent += bgCursoMainStructure.innerHTML;
-    }
-
-  });
-
-  function checkIfBimestresIsEmpty(bimestres) {
-    let keys = Object.keys(bimestres);
-    if (keys.length <= 0) {
-      //retorna false quando não há conteúdo em bimestres
-      return false;
-    } else {
-      //retorna true quando há conteúdo em bimestres
-      return true;
-    }
-  }
-  //--------------------------------------------------------------------------------
-  //adiciona todo o conteúdo gerado em #bg_cursos
-  document.querySelector("#bg_cursos").innerHTML = bgCursosContent;
-  //Carrega a função de click no btn_edit_aulas
-  commonFunc.addEventListenerInAllElements('.btn_edit_aulas', 'click', editAulas.showEditAula);
-  //Carrega a função de click
-  commonFunc.addEventListenerInAllElements('.btn_open_close_aulas', 'click', clickOpenCloseAulas);
-  //Funções de delete aula
-  deleteFunc.eventsDeletarAula()
-
-  deleteFunc.eventDeleteCurso();
+      </div>
+  `
 }
 
 function createBgCursosInnerContent(bgCursoHTML, cursoDB) {
@@ -202,25 +157,6 @@ function createBgCursosInnerContent(bgCursoHTML, cursoDB) {
   }//------------------------------------------------END FOR Bimestres
 
   return bgCursoHTML.innerHTML;
-}
-
-function clickOpenCloseAulas(e) {
-  let parent = e.target.closest(".aulas");
-  let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  svg.setAttribute("width", "16");
-  svg.setAttribute("height", "16");
-  svg.setAttribute("fill", "currentColor");
-  svg.setAttribute("viewBox", "0 0 16 16");
-  svg.classList.add("bi", "bi-chevron-down");
-  let pathCloseIcon = `<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 
-                        .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>`;
-  let pathOpenIcon = `<path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 
-                        5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>`;
-  e.target.innerHTML = "";
-  parent.classList.toggle("open_aula");
-  if (parent.classList.contains("open_aula")) { svg.innerHTML = pathOpenIcon; /*shows when it wast open*/ }
-  else { svg.innerHTML = pathCloseIcon; }
-  e.target.appendChild(svg);// Adiciona SVG correto
 }
 
 
@@ -279,5 +215,49 @@ function createHTMLAula(aulaDados, n_aula, n_bimestre) {
   `;
   return block;
 }
+
+
+function eventsAulas() {
+  //Carrega a função de click no btn_edit_aulas
+  commonFunc.addEventListenerInAllElements('.btn_edit_aulas', 'click', editAulas.showEditAula);
+  //Carrega a função de click
+  commonFunc.addEventListenerInAllElements('.btn_open_close_aulas', 'click', clickOpenCloseAulas);
+  //Funções de delete aula
+  deleteFunc.eventsDeletarAula()
+}
+
+
+
+function checkIfBimestresIsEmpty(bimestres) {
+  let keys = Object.keys(bimestres);
+  if (keys.length <= 0) {
+    //retorna false quando não há conteúdo em bimestres
+    return false;
+  } else {
+    //retorna true quando há conteúdo em bimestres
+    return true;
+  }
+}
+
+function clickOpenCloseAulas(e) {
+  let parent = e.target.closest(".aulas");
+  let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("width", "16");
+  svg.setAttribute("height", "16");
+  svg.setAttribute("fill", "currentColor");
+  svg.setAttribute("viewBox", "0 0 16 16");
+  svg.classList.add("bi", "bi-chevron-down");
+  let pathCloseIcon = `<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 
+                        .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>`;
+  let pathOpenIcon = `<path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 
+                        5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>`;
+  e.target.innerHTML = "";
+  parent.classList.toggle("open_aula");
+  if (parent.classList.contains("open_aula")) { svg.innerHTML = pathOpenIcon; /*shows when it wast open*/ }
+  else { svg.innerHTML = pathCloseIcon; }
+  e.target.appendChild(svg);// Adiciona SVG correto
+}
+
+
 
 

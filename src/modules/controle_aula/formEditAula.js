@@ -1,4 +1,4 @@
-import * as formAddAulas from "./formAddAulas.js";
+import * as formAddAulas from "./formAddAula.js";
 import * as commonFunc from "../common/commonFunctions.js";
 import * as dateFunc from "../common/dateFunc.js";
 //TODO:-----------------------------EDIT Aulas------------------------------------
@@ -90,7 +90,6 @@ export function showEditAula(e) {
       removeFormEditAula(formAddAula)
     btn_close.classList.remove('close_form_edit');
     formAddAulas.resetFormAddAula(formAddAula);
-   
     });
   }
 
