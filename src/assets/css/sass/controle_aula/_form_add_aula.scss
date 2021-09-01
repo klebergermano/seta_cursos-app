@@ -23,7 +23,7 @@ dialog{
 
   box-shadow: 0px 1px 2px #666;
 
-  .close_form{
+  .btn_close_form{
     right:0px;
     top:0px;
     padding: 5px 10px;
@@ -38,7 +38,6 @@ dialog{
 
 }
 #form_add_curso{
-  display:none;
   select > option:disabled{
     background:#ffc;
   }

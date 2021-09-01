@@ -145,9 +145,7 @@ function blocoAddAula(dados) {
     return aula;
   }
 
-  function selectAlunoAddAula(e) {
-  }
-
+  
      //Restaura o estado anterior do formulário "#form_add_aula";
   export function resetFormAddAula(formAddAula){
     

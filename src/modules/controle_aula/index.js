@@ -20,7 +20,6 @@ function insertSelectAlunos() {
     //insere options do select no "select_aluno_add_aula"
     document.querySelector("#select_aluno_add_aula").innerHTML = selectAluno;
     //insere options do select no "select_aluno_add_curso"
-    document.querySelector("#select_aluno_add_curso").innerHTML = selectAluno;
   });
 };
 

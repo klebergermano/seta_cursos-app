@@ -1,3 +1,31 @@
+//Remove o formulário do contente page
+export function removeElementChild(parentElementID, childElementID, callback){
+  let parent = document.querySelector(parentElementID);
+  let child = document.querySelector(childElementID);
+     parent.removeChild(child);
+     callback();
+ }
+
+export function insertElementHTML(target, pathElementHTML, callback){
+  let targetElement = document.querySelector(target);
+  fetch(pathElementHTML)
+  .then((res)=> res.text())
+  .then((htmlString)=>{
+       return new DOMParser().parseFromString(htmlString, 'text/html').body.firstElementChild;
+  })
+  .then((htmlElement)=>{
+    targetElement.appendChild(htmlElement);
+
+   return htmlElement;
+  }).then((htmlElement)=>{
+
+    if(callback) callback(htmlElement);
+ 
+  })
+  .catch((err)=> console.log(err));
+
+
+} 
 
 export function addEventListener(targetElement, event, callback){
   document.querySelector(targetElement).addEventListener(event, (e)=>{

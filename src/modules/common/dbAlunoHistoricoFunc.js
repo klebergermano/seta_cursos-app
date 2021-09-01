@@ -1,3 +1,5 @@
+
+
 export function alunoHistCursosRealTimeDB(RA, callback) {
     db.collection("aluno_historico")
     .doc(RA)
@@ -31,7 +33,7 @@ export function getAlunosListRA() {
     return alunoInfo;
   }
   
-export function alunoHistoricoDB(RA) {
+export function getAlunoHistCursosDB(RA) {
     let alunoHistorico = db
       .collection("aluno_historico")
       .doc(RA)

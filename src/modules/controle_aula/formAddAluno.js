@@ -2,28 +2,19 @@ import * as commonFunc from "../common/commonFunctions.js";
 import * as  dbAlunoHistFunc from "../common/dbAlunoHistoricoFunc.js";
 
 export function insertFormAddAlunoHTML(){
-  let pageContent = document.querySelector('#page_content');
-  fetch('./components/controle_aula/formAddAluno.html')
-  .then((res)=> res.text())
-  .then((htmlString)=>{
-    console.log(htmlString);
-       return new DOMParser().parseFromString(htmlString, 'text/html').body.firstElementChild;
-  })
-  .then((formAddAluno)=>{
-    pageContent.appendChild(formAddAluno);
-
-   return formAddAluno;
-  }).then((formAddAluno)=>{
-    eventsFormAddAluno(formAddAluno)
-  })
-  .catch((err)=> console.log(err));
+  commonFunc.insertElementHTML('#page_content',
+  './components/controle_aula/formAddAluno.html',
+  eventsFormAddAluno
+  );
 }
-
 
 function eventsFormAddAluno(){
   let form = document.querySelector('#form_add_aluno');
-  form.querySelector('.close_form').addEventListener('click', (e)=>{ 
-    removeFormFromPageContent(e.target) 
+  form.querySelector('.btn_close_form').addEventListener('click', (e)=>{ 
+    commonFunc.removeElementChild('#page_content', '#form_add_aluno',()=>{
+    commonFunc.changeCSSDisplay('#block_screen', 'none')
+    } 
+    );
   })
 
   form.querySelector('#add_aluno_ra').addEventListener('input', (e)=>{
@@ -39,18 +30,6 @@ function eventsFormAddAluno(){
   //Insere as os RAs ja cadastrados como opções do datalist.
   insertOptionsAddAlunoRA()
 }
-
-
-
-
-
-//Remove o formulário do contente page
-function removeFormFromPageContent(btn){
-  let page_content = document.querySelector('#page_content');
-     let form = btn.closest('.forms');
-     page_content.removeChild(form);
-     commonFunc.changeCSSDisplay('#block_screen', 'none');
- }
 
 //Função de validação do valor inserido no campoo RA, 
 //caso esse valor ja exista bloqueia a inserção.

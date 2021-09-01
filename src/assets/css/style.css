@@ -466,21 +466,18 @@ dialog {
   background: #1f5192;
   box-shadow: inset 0px 1px 3px #122e53;
 }
-.forms .close_form {
+.forms .btn_close_form {
   right: 0px;
   top: 0px;
   padding: 5px 10px;
   position: absolute;
   cursor: pointer;
 }
-.forms .close_form:hover {
+.forms .btn_close_form:hover {
   background: #dd4f4f;
   color: #fff;
 }
 
-#form_add_curso {
-  display: none;
-}
 #form_add_curso select > option:disabled {
   background: #ffc;
 }
