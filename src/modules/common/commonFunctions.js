@@ -88,21 +88,16 @@ export function parenteDisplayAndBlockScreenNone(e) {
   e.target.parentElement.style.display = "none";
   changeCSSDisplay("#block_screen", "none");
 }
-
+//TODO: mudar função de mensagem para uma função independende que tenha sua própria estrutura
 //usado para mostrar mensagem após um submit
 export function showMessage(targetID, message, callback) {
   let previousHTML = document.getElementById(targetID).innerHTML;
   document.getElementById(
     targetID
   ).innerHTML = `<div class='show_message'>${message}</div>`;
-  setTimeout(() => {
-    document.getElementById(targetID).innerHTML = previousHTML;
-  }, 2000);
+
   //restaura a função de fechar do formulário
-  setTimeout(() => {
-    if(callback()){
-      callback()
-    }}, 2500);
+    if(callback){callback()}
 }
 
 export function blockSubmitForm(form) {

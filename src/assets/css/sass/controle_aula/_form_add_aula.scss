@@ -5,9 +5,7 @@ dialog{
 }
 #bg_forms_add{
   overflow: hidden;
-
 }
-
 
 .forms{
   @include form_flex;
@@ -18,9 +16,7 @@ dialog{
   z-index: 2;
   transition: all 2s;
   background: #fff;
-
   transform: scale(1);
-
   box-shadow: 0px 1px 2px #666;
 
   .btn_close_form{
@@ -46,7 +42,6 @@ dialog{
   }
 }
 #form_add_aula{
-  display:none;
 transition: all 2s;
 background:#fff;
 
@@ -57,7 +52,7 @@ background:#fff;
         }
     }
 
-    #aula_numero{
+    #select_aula{
       option[disabled=true]{
         background:#eec;
       }

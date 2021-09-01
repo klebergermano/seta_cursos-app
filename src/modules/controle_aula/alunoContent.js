@@ -7,18 +7,11 @@ import * as dateFunc from "../common/dateFunc.js";
 import * as deleteFunc from "./deleteFunc.js";
 
 
-//=====================================================================================
-function onLoadAlunoContent() {
 
-}
 export function eventsAlunoContent() {
   let RA = getRAfromMainSelectAluno();
   dbAlunoHistFunc.alunoHistCursosRealTimeDB(RA, insertAlunoContent);
-  //commonFunc.setSelectedInASelectBasedOnRA("#select_aluno_add_aula", RA);
-  //commonFunc.setSelectedInASelectBasedOnRA("#select_aluno_add_curso", RA);
-  //quando o select_aluno é alterado chama a função para carregar as opções
-  //de cursos em select_aluno_add_aula
-  //formAddAula.insertSelectCursosAddAula(RA);
+
 }
 
 function getRAfromMainSelectAluno() {
@@ -37,21 +30,22 @@ export function insertAlunoContent(RA, snapshotChange) {
     
           navCursosAluno.insertNavCursosInBGCursos(RA, nomeCurso)
 
-          eventBtnAddAula();
-          //Eventos do bloco ".aulas".
           eventsAulas()
           deleteFunc.eventDeleteCurso();
+    }).then(()=>{
+      eventBtnAddAula();
+      //Eventos do bloco ".aulas".
     })
 }
 
 function eventBtnAddAula(){
   document.querySelectorAll(".btn_add_aula").forEach((item) => {
     item.addEventListener("click", () => {
-      commonFunc.changeCSSDisplay("#form_add_aula", "block");
-      commonFunc.changeCSSDisplay("#block_screen", "block");
+      formAddAula.insertFormAddAulaHTML();
     })
   });
 }
+
 
 function createBgCursoMainStructureHTML(curso_nome_bd, RA) {
   if (curso_nome_bd) {
@@ -94,7 +88,6 @@ function createAlunoContentHTML(alunoDataFromDB, alunoInfoGeral) {
     }
   });
   return alunoContentHTML;
-
 }
 
 function cursoVazioHTML(RA, curso) {

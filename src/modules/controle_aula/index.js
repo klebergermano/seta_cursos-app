@@ -5,7 +5,6 @@ import * as dbAlunoHistFunc from "../common/dbAlunoHistoricoFunc.js";
 import * as formAddCursos from "./formAddCurso.js";
 import * as formAddAluno from "./formAddAluno.js";
 import * as commonFunc from "../common/commonFunctions.js";
-import * as dragForms from "./dragForms.js";
 
 
 function insertSelectAlunos() {
@@ -17,9 +16,7 @@ function insertSelectAlunos() {
       }</option>`;
     });
     document.querySelector("#main_select_aluno").innerHTML = selectAluno;
-    //insere options do select no "select_aluno_add_aula"
-    document.querySelector("#select_aluno_add_aula").innerHTML = selectAluno;
-    //insere options do select no "select_aluno_add_curso"
+  
   });
 };
 
@@ -38,21 +35,6 @@ export function onload(){
 
   dbAlunoHistFunc.alunoHistCursosRealTimeDB("RA01", alunoContent.insertAlunoContent);
   
-  formAddAula.navAddFormsDisplayEvent();
-  //FORMS
-  formAddAula.eventFormsAdd();
-  formAddAula.eventSelectAlunoAddAula();
-  commonFunc.AddEventBtnCloseForm();
-
-  //Carrega a lista de cursos do primeiro aluno quando inciado
-  //no formulário form_add_aulas
-  formAddAula.insertSelectCursosAddAula("RA01");
-  
-   
-
-  
-  //TODO: gerando erro ao carregar
-  // formAddAluno.validaSelectOptionsAddAluno();
 }
 
 

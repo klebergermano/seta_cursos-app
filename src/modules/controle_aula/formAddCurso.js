@@ -31,17 +31,11 @@ commonFunc.changeCSSDisplay('#block_screen', 'block')
 
 function insertOptionsInSelectAlunoCurso(form){
   let select = form.querySelector('#select_aluno');
-  
   let mainSelect = document.querySelector('#main_select_aluno');
-
-
-
   select.innerHTML = mainSelect.innerHTML;
   select.selectedIndex = mainSelect.selectedIndex;
   select.setAttribute('disabled', true);
-
   validaSelectOptionsAddCurso(form)
-  commonFunc.changeCSSDisplay('#block_screen', 'none')
 
 }
 //=====================================================================================

@@ -69,8 +69,6 @@ async function createNavCursosAluno(RA) {
 
   function navCursosClick(e) {
     let idCurso = e.target.dataset.active;
-    setSelectedAluno()
-    setSelectedCusoInAddCurso(idCurso)
     //Remove a classe "active" dos elementos a.
     removeActiveClassNavCursosElement();
     //Mostra o curso pelo id do menu clicado.

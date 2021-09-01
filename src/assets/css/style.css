@@ -486,7 +486,6 @@ dialog {
 }
 
 #form_add_aula {
-  display: none;
   transition: all 2s;
   background: #fff;
 }
@@ -494,7 +493,7 @@ dialog {
   display: flex;
   max-width: 100%;
 }
-#form_add_aula #aula_numero option[disabled=true] {
+#form_add_aula #select_aula option[disabled=true] {
   background: #eec;
 }
 
