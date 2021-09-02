@@ -1,25 +1,28 @@
-import * as formAddAulas from "./formAddAulas.js";
+import * as formAddAula from "./formAddAula.js";
 import * as commonFunc from "../common/commonFunctions.js";
 import * as dateFunc from "../common/dateFunc.js";
 //TODO:-----------------------------EDIT Aulas------------------------------------
-export function showEditAula(e) {
-    let formAddAula = document.querySelector("#form_add_aula");
-    //Insere as informações da aula em "#form_add_aula".
-    insertInfoInputsFormAddAula(e, formAddAula);
-    //Adiciona a classe edit_form no formulário.
-    formAddAula.classList.add("edit_form");
-    insertTextElementsEditAula();
-    //chama todas as funções de edição no formulário "#form_add_aula".
-    setEditAulaInfoInFormAddAula(formAddAula);
-    eventSubmitBtnEditAula()
-    function eventSubmitBtnEditAula(){
-      let btnSubmit = document.querySelector('#form_add_aula').querySelector('input[type="submit"]');
-    btnSubmit.addEventListener('click', (e)=>{
-     
-    })
-    }
-    
-  }
+export function insertFormEditAulaHTML(eventClick){
+  let form = commonFunc.insertElementHTML('#page_content',
+  './components/controle_aula/formAddAula.html');
+
+  form.then((formRes)=>{
+    formAddAula.eventsFormAddAula(formRes);
+    eventsFormEditAula(eventClick)
+  });
+}
+
+function eventsFormEditAula(eventClick){
+let form = document.querySelector('#form_add_aula');
+ //Insere as informações da aula em "#form_add_aula".
+ insertInfoInputsFormAddAula(form, eventClick);
+ //Adiciona a classe edit_form no formulário.
+ form.classList.add("edit_form");
+ insertTextElementsEditAula();
+ //chama todas as funções de edição no formulário "#form_add_aula".
+ //setEditAulaInfoInFormAddAula(form);
+}
+
 
   function insertTextElementsEditAula(){
     let h3 = document.querySelector('#form_add_aula').querySelectorAll('h3')[0];
@@ -51,27 +54,38 @@ export function showEditAula(e) {
     disableSelectsInFormAddAula(formAddAula)
   }
 
-  function insertInfoInputsFormAddAula(e, formAddAula){
-    let aulaInfo = getInfoInputsFormAddAula(e);
+  function insertInfoInputsFormAddAula(formAddAula, eventClick){
+  console.log(eventClick.target.closest('.aulas'));
+
+    let aulaInfo = getInfoInputsFormAddAula(eventClick);
+    console.log(aulaInfo);
     formAddAula.querySelector("#tema").value = aulaInfo.tema;
     formAddAula.querySelector("#horario").value = aulaInfo.horario;
     formAddAula.querySelector("#data").value = aulaInfo.data;
     formAddAula.querySelector("#detalhes").value = aulaInfo.detalhes;
-    let bimestres = formAddAula.querySelector('#select_bimestre_add_aluno');
-    let selectAulas = formAddAula.querySelector('#aula_numero');
+    let bimestres = formAddAula.querySelector('#select_bimestre');
+    let selectAulas = formAddAula.querySelector('#select_aula');
+
+    bimestres.setAttribute('disabled', true);
     for(let i = 0; i <= selectAulas.options.length -1; i++){
       if(selectAulas.options[i].value === aulaInfo.aula){
         selectAulas.selectedIndex = i;
       }
     }
     for(let k = 0; k <= bimestres.options.length -1; k++){
-      if(commonFunc.stringToID(bimestres.options[k].value) === aulaInfo.bimestre){
+      if(bimestres.options[k].value === aulaInfo.bimestre){
         bimestres.selectedIndex = k;
+        console.log('ok');
+      }else{
+        console.log(bimestres.options[k].value,'----------', aulaInfo.bimestre);
+
       }
     }
 }
-  function getInfoInputsFormAddAula(e){
-   let aula = e.target.closest('.aulas');
+  function getInfoInputsFormAddAula(eventClick){
+
+   let aula = eventClick.target.closest('.aulas');
+
    let aulaInfo = {}
    aulaInfo.bimestre = aula.dataset.bimestre;
    aulaInfo.aula = aula.querySelectorAll('.aula_numero')[0].textContent;
@@ -89,12 +103,11 @@ export function showEditAula(e) {
     btn_close.addEventListener('click', (e)=>{
       removeFormEditAula(formAddAula)
     btn_close.classList.remove('close_form_edit');
-    formAddAulas.resetFormAddAula(formAddAula);
-   
+    formAddAula.resetFormAddAula(formAddAula);
     });
   }
 
-  export function removeFormEditAula(){
+ function removeFormEditAula(){
     let formAddAula = document.querySelector('#form_add_aula');
     if(formAddAula.classList.contains('edit_form')){
       let btn_close = formAddAula.querySelectorAll(".close_form_edit")[0];

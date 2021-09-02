@@ -1,37 +1,40 @@
-import * as insertAulasCursosFunc from "./InsertAulasCursosFunc.js";
-import * as formAddAulas from "./formAddAulas.js";
+import * as alunoContent from "./alunoContent.js";
 
+import * as formAddAula from "./formAddAula.js";
 import * as dbAlunoHistFunc from "../common/dbAlunoHistoricoFunc.js";
-import * as formAddCursos from "./formAddCursos.js";
-import * as formAddAlunos from "./formAddAlunos.js";
+import * as formAddCursos from "./formAddCurso.js";
+import * as formAddAluno from "./formAddAluno.js";
 import * as commonFunc from "../common/commonFunctions.js";
-import * as dragForms from "./dragForms.js";
+
+
+function insertSelectAlunos() {
+  db.collection("aluno_historico").onSnapshot((snap) => {
+    let selectAluno = ``;
+    snap.forEach((item) => {
+      selectAluno += `<option value='${item.id}'>${item.id} - ${
+        item.data().nome
+      }</option>`;
+    });
+    document.querySelector("#main_select_aluno").innerHTML = selectAluno;
+  
+  });
+};
+
 
 //TODO: Arrumar ordem de execução das funções
 export function onload(){
-  
-  insertAulasCursosFunc.eventInputSelectAluno();
-  dbAlunoHistFunc.dbRealTimeAlunoHistCursos("RA01", insertAulasCursosFunc.insertContentAlunoCurso);
-  formAddAulas.navAddFormsDisplayEvent();
-  //FORMS
-  formAddAulas.eventFormsAdd();
-  formAddAulas.eventSelectAlunoAddAula();
+ insertSelectAlunos();
+ document.querySelector('#main_select_aluno').addEventListener('input', (e)=>{
+   alunoContent.eventsAlunoContent();
+ });
 
-  commonFunc.AddEventBtnCloseForm();
+  //events FormAddAluno.js
+  document.querySelector('#btn_add_aluno').addEventListener('click', (e)=>{
+    formAddAluno.insertFormAddAlunoHTML();
+  });
 
-  //Carrega a lista de cursos do primeiro aluno quando inciado
-  //no formulário form_add_aulas
-  formAddAulas.insertSelectCursosAddAula("RA01");
+  dbAlunoHistFunc.alunoHistCursosRealTimeDB("RA01", alunoContent.insertAlunoContent);
   
-  //Aluno
-  formAddAlunos.insertOptionsAddAlunoRA();
-  
-   
-  //Curso
-  formAddCursos.eventSelectAlunoAddCurso();
-  
-  //TODO: gerando erro ao carregar
-  // formAddAlunos.validaSelectOptionsAddAluno();
 }
 
 
