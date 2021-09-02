@@ -18,7 +18,6 @@ export function eventDeleteCurso(){
     .collection("cursos")
     .doc(aulaInfoDelete.curso)
     .delete()
-   
 }
 
 export function eventsDeletarAula(){

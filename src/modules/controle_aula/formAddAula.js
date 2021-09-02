@@ -3,37 +3,26 @@ import * as dbAlunoHistFunc from "../common/dbAlunoHistoricoFunc.js";
 import * as formAddAluno from "./formAddAluno.js";
 import * as formEditAulas from "./formEditAula.js";
 
-
-export function insertFormAddAulaHTML() {
+export async function insertFormAddAulaHTML() {
   commonFunc.insertElementHTML('#page_content',
     './components/controle_aula/formAddAula.html', eventsFormAddAula);
 }
 
-//TODO: Refatorar funções //
-
- function eventsFormAddAula(form) {
-
-
-
+ export function eventsFormAddAula(form) {
   form.querySelector('.btn_close_form').addEventListener('click', (e) => {
     commonFunc.removeElementChild('#page_content', '#form_add_aula', () => {
       commonFunc.changeCSSDisplay('#block_screen', 'none')
     });
   })
-
   form.addEventListener("submit", (e) => {
     submitformAddAula(e);
    });
-
   //Bloqueia o fundo com o "#block_screen".
   commonFunc.changeCSSDisplay('#block_screen', 'block')
-
   //Copia as opções do "#main_select_aluno" e insere no select_aluno
   insertOptionsInSelectAluno(form)
-
   //insere as opções de curso e seta o selecionado.
   insertOptionsInSelectCurso(form)
-
   form.querySelector('#select_bimestre').addEventListener('change', (e) => {
     form.querySelector('#select_aula').removeAttribute('disabled');
     validaSelectAula(form)
@@ -144,7 +133,6 @@ function blocoAddAula(dados) {
   return aula;
 }
 
-
 function submitformAddAula(e) {
   e.preventDefault();
   let form = e.target;
@@ -173,7 +161,6 @@ function submitformAddAula(e) {
     }).catch((error) => console.error("Error writing document: ", error));
 }
 
-
 function getKeysAulas(RA, idCurso, bimestre) {
   let aluno = dbAlunoHistFunc.getAlunoHistCursosDB(RA);
   let keysAulas = [];
@@ -190,7 +177,6 @@ function getKeysAulas(RA, idCurso, bimestre) {
   }).then(() => {
     return keysAulas;
   }).catch((err) => { console.log(err) });
-
   return keys;
 }
 

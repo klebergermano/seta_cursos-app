@@ -863,17 +863,17 @@ input:disabled {
 #controle_aula #aluno_content .bg_bimestres .bimestres .btn_deletar_aula svg {
   z-index: 0;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .btn_edit_aulas {
+#controle_aula #aluno_content .bg_bimestres .bimestres .btn_edit_aula {
   float: right;
   padding: 3px;
   margin-top: 5px;
   cursor: pointer;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .btn_edit_aulas:hover {
+#controle_aula #aluno_content .bg_bimestres .bimestres .btn_edit_aula:hover {
   background: #f9f0f0;
   color: #245da7;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .btn_edit_aulas:active {
+#controle_aula #aluno_content .bg_bimestres .bimestres .btn_edit_aula:active {
   background: #f9f0f0;
   color: #1b467d;
 }
