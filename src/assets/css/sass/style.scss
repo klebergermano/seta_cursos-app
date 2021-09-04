@@ -102,6 +102,131 @@ aside#bg_main_menu_lateral{
     }
   }
 }
+#block_screen_msg{
+  position: absolute;
+  min-height: 100vh;
+  width:100%;
+  left:0%;
+  top:0%;
+  bottom:0px;
+  background:#22222270;
+  z-index: 5;
+
+  div{
+ 
+  }
+}
+
+.btn_close{
+  right:0px;
+  top:0px;
+  padding: 5px 10px;
+  position:absolute;
+  cursor:pointer;
+
+  &:hover{
+    background:rgb(221, 79, 79);
+  color:#fff;
+  }
+}
+  
+
+.confirm_box{
+
+  background: #fff;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top:10%;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: wrap;
+  width:400px; height:auto;
+  min-height: 80px;
+  padding:20px;
+  font-size:18px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 2px #33333370;
+  border:1px solid #ccc;
+
+  p{width:100%;  padding: 10px; margin-bottom:10px;
+  border-bottom:1px solid #ccc;}
+  .btn_deletar{
+    background:rgb(230, 61, 61);
+    color:#fff;
+    &:hover{
+      background:red;
+    }
+  }
+  .btn_cancelar{
+    background: #ccc;
+    &:hover{
+      background:#ddd;
+    }
+  }
+  button{
+    border:$border-set-default;
+    padding:5px 10px;
+    margin:5px;
+    cursor: pointer;
+  }
+}
+.show_message{
+  display: flex;
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+  color:rgb(61, 94, 59);
+}
+.temp_msg{
+  background: #fff;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+    left: 0;
+    right: 0;
+  top:10%;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width:400px; height:auto;
+  height: 80px;
+  padding:40px;
+  font-size:18px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 2px #33333370;
+  border:1px solid #ccc;
+
+}
+.default_temp_msg{
+  color:#333;
+
+}
+.red_temp_msg{
+  color:rgb(190, 34, 34);
+  border-color: rgb(173, 31, 31);
+  background: rgb(248, 248, 248);
+}
+.green_temp_msg{
+  color:green;
+  border-color: rgb(51, 155, 68);
+  background: rgb(247, 252, 245);
+
+}
+.blue_temp_msg{
+  color:rgb(43, 75, 163);
+  border-color: rgb(51, 70, 155);
+  background: rgb(235, 241, 245);
+
+}
+
  #page_content{
    grid-area: cp;
    max-width: 1300px;

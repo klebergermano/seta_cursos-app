@@ -6,6 +6,8 @@ export function removeElementChild(parentElementID, childElementID, callback){
      callback();
  }
 
+
+
 export function insertElementHTML(target, pathElementHTML, callback){
   let targetElement = document.querySelector(target);
  let insertedElement = fetch(pathElementHTML)
@@ -89,14 +91,63 @@ export function parenteDisplayAndBlockScreenNone(e) {
   e.target.parentElement.style.display = "none";
   changeCSSDisplay("#block_screen", "none");
 }
-//TODO: mudar função de mensagem para uma função independende que tenha sua própria estrutura
-//usado para mostrar mensagem após um submit
-export function showMessage(targetID, message, callback) {
-  let previousHTML = document.getElementById(targetID).innerHTML;
-  document.getElementById(
-    targetID
-  ).innerHTML = `<div class='show_message'>${message}</div>`;
 
+function closeConfirmBox(e){
+  let confirmBox = e.target.closest('.confirm_box')
+  parent = confirmBox.parentElement;
+  parent.removeChild(confirmBox);
+};
+export function confirmBoxDelete(target, msg,  callback){
+  let elementTarget = document.querySelector(target);
+  let msgBox = document.createElement('div');
+  msgBox.className='confirm_box confirm_box_deletar';
+  msgBox.innerHTML = `<span class='btn_close'>X</span><p>${msg}</p>
+  <button class='btn btn_deletar'>Deletar</button><button class='btn btn_cancelar' button>Cancelar</button>`;
+  msgBox.querySelector('.btn_deletar').addEventListener('click', (e)=>{
+   callback();
+  document.querySelector('#block_screen').style.display = 'none';
+    });
+  msgBox.querySelector('.btn_cancelar').addEventListener('click', (e)=>{
+    closeConfirmBox(e)
+  document.querySelector('#block_screen').style.display = 'none';
+    });
+  msgBox.querySelector('.btn_close').addEventListener('click', (e)=>{
+    closeConfirmBox(e)
+  document.querySelector('#block_screen').style.display = 'none';
+    });
+  elementTarget.appendChild(msgBox);
+  document.querySelector('#block_screen').style.display = 'block';
+}
+
+
+
+export function showTemporaryMessage
+(target, msg, duration = 2000, style = "default", blockScreen = false, callback){
+let elementTarget = document.querySelector(target);
+let divMessage = document.createElement('div');
+if(blockScreen){
+  divMessage.id='block_screen_msg';
+  divMessage.innerHTML = `<div class='temp_msg'><p>${msg}</p></div>`;
+  console.log('yeap');
+}else{
+  console.log('nop');
+  divMessage.className='temp_msg';
+  divMessage.innerHTML = `<p>${msg}</p>`;
+}
+
+elementTarget.appendChild(divMessage);
+setTimeout(()=>{
+  elementTarget.removeChild(divMessage)
+}, duration);
+
+divMessage.classList.add(style+'_temp_msg');
+
+if(callback) callback();
+
+}
+export function insertMessage(targetID, message, callback) {
+  document.getElementById(targetID).innerHTML = 
+  `<div class='show_message'>${message}</div>`;
   //restaura a função de fechar do formulário
     if(callback){callback()}
 }
@@ -107,6 +158,17 @@ export function blockSubmitForm(form) {
 export function removeblockSubmitForm(form) {
   form.querySelector("input[type='submit']").removeAttribute("disabled");
 }
+export function showMessage(targetID, message, callback) {
+  let previousHTML = document.getElementById(targetID).innerHTML;
+  document.getElementById(
+    targetID
+  ).innerHTML = `<div class='show_message'>${message}</div>`;
+
+  //restaura a função de fechar do formulário
+    if(callback){callback()}
+}
+
+
 
 
 export function getReverseObjectKeys(obj) {

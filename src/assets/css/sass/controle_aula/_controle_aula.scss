@@ -16,16 +16,13 @@
     color:#444;
   }
 
-
   #form_select_aluno {
-   //background: #333;
-   //border: $border-set-default;
     width: 100%;
     height: auto;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding-bottom:20px;
     label{
       background:#fff;
@@ -33,25 +30,22 @@
       padding: 10px;
       border: 1px solid #444;
       border-right:0px;
-    
-
     }
 
     .div_input {
-    display:flex;
+      background:#f90;
+      display:flex;
       float: left;
       justify-content: center;
       select{
-    padding: 10px;
-    border: 1px solid #444;
-
-
-        font-weight: bold;
-        font-size:16px;
-      }
+          padding: 10px;
+          border: 1px solid #444;
+          font-weight: bold;
+          font-size:16px;
+        }
     }
     button {
-      float: right;
+      float: left;
       margin:0px;
       margin-left:10px;
       padding:14px;
@@ -65,14 +59,14 @@
     border-radius: 5px 5px 0px 0px;
     border: $border-set-default;
     overflow: hidden;
-    
+    position:relative;
+ 
   nav.nav_cursos_aluno {
       background-color: #fff;
       border-bottom:$border-set-default;
       display:flex;
       justify-content: flex-end;
       align-items: center;
-  
 
       ul {
         position: relative;
@@ -121,8 +115,6 @@
             }
             &:active{
               background:#f6f6e0;
-  
-              
             }
           }
           .active{
@@ -152,10 +144,8 @@
 
       }
       &:hover{
-      background: #ffe;
-
+       background: #ffe;
       }
-
     }
 
     .bg_curso{
@@ -219,17 +209,18 @@
     
       }
       .btn_deletar_curso{
-        border-color:rgb(54, 27, 27);
-  background:rgb(230, 62, 62);
-  color:#fff;
-  &:hover{
-    background: rgb(252, 70, 70);
-  }
+        border-radius:5px;
+        border-color:rgb(151, 23, 23);
+        background:rgb(230, 62, 62);
+        color:#fff;
+        &:hover{
+          background: rgb(252, 70, 70);
+        }
       }
       .btn_add_aula{
        
        position: initial;
-       margin-right:10px;
+       margin-left:10px;
         svg{ width:auto; height: auto; margin-bottom:-2px}
         &:hover{
           background: #fff

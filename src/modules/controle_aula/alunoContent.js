@@ -19,21 +19,17 @@ function getRAfromMainSelectAluno() {
 
 export function insertAlunoContent(RA, snapshotChange) {
   let nomeCurso = snapshotChange[0].doc.data().curso;
-
   dbAlunoHistFunc.getAlunoHistCursosDB(RA)
     .then((alunoCursosDB) => {
           let alunoContentHTML = createAlunoContentHTML(alunoCursosDB, RA);
           document.querySelector("#aluno_content").innerHTML = alunoContentHTML;
-    
           navCursosAluno.insertNavCursosInBGCursos(RA, nomeCurso)
-
           eventsAulas()
           deleteFunc.eventDeleteCurso();
     }).then(()=>{
       eventBtnAddAula();
     })
 }
-
 function eventBtnAddAula(){
   document.querySelectorAll(".btn_add_aula").forEach((item) => {
     item.addEventListener("click", () => {
@@ -41,9 +37,6 @@ function eventBtnAddAula(){
     })
   });
 }
-
-
-
 
 function createBgCursoMainStructureHTML(curso_nome_bd, RA) {
   if (curso_nome_bd) {
@@ -71,17 +64,17 @@ function createBgCursoMainStructureHTML(curso_nome_bd, RA) {
   }
 }
 
-function createAlunoContentHTML(alunoDataFromDB, alunoInfoGeral) {
+function createAlunoContentHTML(alunoDataFromDB, RA) {
   let alunoContentHTML = "";
   alunoDataFromDB.forEach((resCursoDB) => {
     if (typeof resCursoDB.data !== "undefined") { resCursoDB = resCursoDB.data(); }
     else { resCursoDB = resCursoDB.doc.data(); }
 
-    let bgCursoMainStructure = createBgCursoMainStructureHTML(resCursoDB.curso, alunoInfoGeral);
+    let bgCursoMainStructure = createBgCursoMainStructureHTML(resCursoDB.curso, RA);
     if (checkIfBimestresIsEmpty(resCursoDB.bimestres)) {
       alunoContentHTML += createBgCursosInnerContent(bgCursoMainStructure, resCursoDB);
     } else {
-      bgCursoMainStructure.querySelector('#curso_content').innerHTML = cursoVazioHTML(alunoInfoGeral.RA, resCursoDB.curso);
+      bgCursoMainStructure.querySelector('#curso_content').innerHTML = cursoVazioHTML(RA, resCursoDB.curso);
       alunoContentHTML += bgCursoMainStructure.innerHTML;
     }
   });
@@ -92,9 +85,11 @@ function cursoVazioHTML(RA, curso) {
   return `
   <div class='bg_info_delete_curso'>
       <p>
-      Esse curso não possui nenhuma aula adicionada.
+      Esse curso não possui aulas adicionadas.
     </p> 
       <div class='bg_btn_deletar_curso'>
+    <button data-aluno_ra='${RA}' data-delete_curso='${curso}' class='btn_deletar_curso'>Deletar Curso</button>
+
       <button class="btn_add_aula" id="btn_add_aula" title='Adicionar Aula' type="button">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-plus" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"></path>
@@ -103,7 +98,6 @@ function cursoVazioHTML(RA, curso) {
       </svg>
      Adicionar Aula
     </button>
-    <button data-aluno_ra='${RA}' data-delete_curso='${curso}' class='btn_deletar_curso'>Deletar Curso</button>
       </div>
       </div>
   `

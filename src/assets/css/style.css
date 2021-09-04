@@ -579,7 +579,7 @@ input:disabled {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding-bottom: 20px;
 }
 #controle_aula #form_select_aluno label {
@@ -590,6 +590,7 @@ input:disabled {
   border-right: 0px;
 }
 #controle_aula #form_select_aluno .div_input {
+  background: #f90;
   display: flex;
   float: left;
   justify-content: center;
@@ -601,7 +602,7 @@ input:disabled {
   font-size: 16px;
 }
 #controle_aula #form_select_aluno button {
-  float: right;
+  float: left;
   margin: 0px;
   margin-left: 10px;
   padding: 14px;
@@ -614,6 +615,7 @@ input:disabled {
   border-radius: 5px 5px 0px 0px;
   border: 1px solid #ccc;
   overflow: hidden;
+  position: relative;
 }
 #controle_aula #aluno_content nav.nav_cursos_aluno {
   background-color: #fff;
@@ -755,7 +757,8 @@ input:disabled {
   cursor: pointer;
 }
 #controle_aula #aluno_content .bg_info_delete_curso .btn_deletar_curso {
-  border-color: #361b1b;
+  border-radius: 5px;
+  border-color: #971717;
   background: #e63e3e;
   color: #fff;
 }
@@ -764,7 +767,7 @@ input:disabled {
 }
 #controle_aula #aluno_content .bg_info_delete_curso .btn_add_aula {
   position: initial;
-  margin-right: 10px;
+  margin-left: 10px;
 }
 #controle_aula #aluno_content .bg_info_delete_curso .btn_add_aula svg {
   width: auto;
@@ -993,6 +996,130 @@ aside#bg_main_menu_lateral nav ul li a {
 aside#bg_main_menu_lateral nav ul li a:hover {
   color: #80ace4;
   background: #333;
+}
+
+#block_screen_msg {
+  position: absolute;
+  min-height: 100vh;
+  width: 100%;
+  left: 0%;
+  top: 0%;
+  bottom: 0px;
+  background: #22222270;
+  z-index: 5;
+}
+.btn_close {
+  right: 0px;
+  top: 0px;
+  padding: 5px 10px;
+  position: absolute;
+  cursor: pointer;
+}
+.btn_close:hover {
+  background: #dd4f4f;
+  color: #fff;
+}
+
+.confirm_box {
+  background: #fff;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 10%;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: wrap;
+  width: 400px;
+  height: auto;
+  min-height: 80px;
+  padding: 20px;
+  font-size: 18px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 2px #33333370;
+  border: 1px solid #ccc;
+}
+.confirm_box p {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+}
+.confirm_box .btn_deletar {
+  background: #e63d3d;
+  color: #fff;
+}
+.confirm_box .btn_deletar:hover {
+  background: red;
+}
+.confirm_box .btn_cancelar {
+  background: #ccc;
+}
+.confirm_box .btn_cancelar:hover {
+  background: #ddd;
+}
+.confirm_box button {
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.show_message {
+  display: flex;
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+  color: #3d5e3b;
+}
+
+.temp_msg {
+  background: #fff;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 10%;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 400px;
+  height: auto;
+  height: 80px;
+  padding: 40px;
+  font-size: 18px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 2px #33333370;
+  border: 1px solid #ccc;
+}
+
+.default_temp_msg {
+  color: #333;
+}
+
+.red_temp_msg {
+  color: #be2222;
+  border-color: #ad1f1f;
+  background: #f8f8f8;
+}
+
+.green_temp_msg {
+  color: green;
+  border-color: #339b44;
+  background: #f7fcf5;
+}
+
+.blue_temp_msg {
+  color: #2b4ba3;
+  border-color: #33469b;
+  background: #ebf1f5;
 }
 
 #page_content {

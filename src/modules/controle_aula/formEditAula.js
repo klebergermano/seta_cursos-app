@@ -13,6 +13,7 @@ export function insertFormEditAulaHTML(eventClick){
 }
 
 function eventsFormEditAula(eventClick){
+
 let form = document.querySelector('#form_add_aula');
  //Insere as informações da aula em "#form_add_aula".
  insertInfoInputsFormAddAula(form, eventClick);
