@@ -47,9 +47,7 @@ function getInfoDeleteAula(item){
     aulaInfoDelete.bimestre = aula.dataset.bimestre;
     commonFunc.confirmBoxDelete('#aluno_content', "Tem certeza que deseja deletar essa aula? <br/> <span style='color:#dd0000'>Essa ação não podera ser desfeita!</span>", ()=>{
     deleteDbAula(aulaInfoDelete)
-
     });
-
 }
 
 

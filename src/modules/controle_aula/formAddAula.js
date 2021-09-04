@@ -27,8 +27,21 @@ export async function insertFormAddAulaHTML() {
     form.querySelector('#select_aula').removeAttribute('disabled');
     validaSelectAula(form)
   });;
+  displayAlunoCursoNome(form)
 }
+function displayAlunoCursoNome(form){
+  setTimeout(()=>{
+    let selectAluno = form.querySelector('#select_aluno');
+    let selectCurso = form.querySelector('#select_curso');
+    let aluno = selectAluno.options[selectAluno.selectedIndex].innerHTML;
+    let curso = selectCurso.options[selectCurso.selectedIndex].innerHTML;
+    console.log(aluno);
+  form.querySelector('#aluno_nome').innerHTML = '<span>Aluno: </span>'+aluno;
+  form.querySelector('#curso_nome').innerHTML = '<span>Curso: </span>'+curso;
+  }, 100)
 
+
+}
 function insertOptionsInSelectAluno(form) {
   let select = form.querySelector('#select_aluno');
   let mainSelect = document.querySelector('#main_select_aluno');

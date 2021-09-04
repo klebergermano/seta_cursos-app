@@ -493,6 +493,24 @@ dialog {
   display: flex;
   max-width: 100%;
 }
+#form_add_aula #aluno_nome, #form_add_aula #curso_nome {
+  margin-top: 10px;
+  padding: 10px 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  font-weight: bold;
+  width: 50%;
+}
+#form_add_aula #aluno_nome span, #form_add_aula #curso_nome span {
+  font-weight: normal;
+  padding: 5px;
+}
+#form_add_aula #div_select_aluno {
+  display: none;
+}
+#form_add_aula #div_select_curso {
+  display: none;
+}
 #form_add_aula #select_aula option[disabled=true] {
   background: #eec;
 }

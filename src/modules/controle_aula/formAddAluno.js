@@ -29,7 +29,10 @@ function eventsFormAddAluno(){
   commonFunc.changeCSSDisplay('#block_screen', 'block');
   //Insere as os RAs ja cadastrados como opções do datalist.
   insertOptionsAddAlunoRA()
+  
 }
+
+
 
 //Função de validação do valor inserido no campoo RA, 
 //caso esse valor ja exista bloqueia a inserção.

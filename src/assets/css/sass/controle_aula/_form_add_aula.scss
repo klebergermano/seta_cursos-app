@@ -51,7 +51,26 @@ background:#fff;
         input{
         }
     }
+    #aluno_nome, #curso_nome{
+      margin-top:10px;
+      padding:10px 10px;
+      font-size: 16px;
+      border:1px solid #ccc;
+      font-weight: bold;
+      width:50%;
 
+      span{
+      font-weight: normal;
+
+        padding:5px;
+      }
+    }
+#div_select_aluno{
+  display:none;
+}
+#div_select_curso{
+  display:none;
+}
     #select_aula{
       option[disabled=true]{
         background:#eec;
