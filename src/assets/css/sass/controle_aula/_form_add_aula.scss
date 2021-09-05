@@ -42,14 +42,33 @@ dialog{
   }
 }
 #form_add_aula{
-transition: all 2s;
-background:#fff;
+  transition: all 2s;
+  border:2px solid lighten($primary-color, 10%);
+  box-shadow: 0px 1px 1px #222;
+  height:auto;
+  div{
+    min-height:35px;
+    margin-top:10px;
+    padding:0px;
+    display: flex;
+    justify-content: center;
+    select{ display: block;
+    flex-grow: 1;}
+    input{flex-grow: 1;}
+  }
+  #div_detalhes{
+    min-height: 50px;
+  }
+  #div_tema, #div_detalhes{
+    width:100%;
+    flex-grow: 1;
+  }
+
+   background:#fff;
 
     #data_hora{
         display:flex; 
         max-width: 100%;
-        input{
-        }
     }
     #aluno_nome, #curso_nome{
       margin-top:10px;
@@ -58,24 +77,23 @@ background:#fff;
       border:1px solid #ccc;
       font-weight: bold;
       width:50%;
-
       span{
       font-weight: normal;
 
-        padding:5px;
+        padding:5px 5px 5px 0px;
       }
     }
-#div_select_aluno{
-  display:none;
-}
-#div_select_curso{
-  display:none;
-}
-    #select_aula{
-      option[disabled=true]{
-        background:#eec;
-      }
+    #div_select_aluno{
+      display:none;
     }
+    #div_select_curso{
+      display:none;
+    }
+        #select_aula{
+          option[disabled=true]{
+            background:#eec;
+          }
+        }
 
 }
 .edit_form{

@@ -22,7 +22,6 @@
     <div>
       <label>Bimestres</label>
       <select required id='select_bimestre'>
-       
         <option value='' disabled  selected>Selecione o Bimestre</option>
            <option value='bimestre 1'>Bimestre 1</option>
            <option value='bimestre 2'>Bimestre 2</option>
@@ -56,12 +55,26 @@
   
     </select>
     </div>
-  
+
     <div id="data_hora">
-      <label>Data:</label><input required id="data" type="date" /> <label>Horário:</label
-      ><input id="horario" />
+      <label>Data:</label>
+      <input required id="data" type="date" /> <label>Horário:</label>
+      <input id="horario" list='horario_list'>
+      <datalist id='horario_list'>
+        <option value='08h às 10h'/>
+        <option value='09h às 11h'/>
+        <option value='10h às 12h'/>
+        <option value='11h às 13h'/>
+        <option value='12h às 14h'/>
+        <option value='13h às 15h'/>
+        <option value='14h às 16h'/>
+        <option value='15h às 17h'/>
+        <option value='18h às 19h'/>
+        <option value='19h às 21h'/>
+      </datalist>
+    
     </div>
-    <div><label>Tema:</label><input  required  id="tema" type="text" /></div>
-    <div><label>Detalhes:</label><textarea  required  id="detalhes"></textarea></div>
+    <div id='div_tema'><label>Tema:</label><input  required  id="tema" type="text" /></div>
+    <div id='div_detalhes'><label>Detalhes:</label><textarea  required  id="detalhes"></textarea></div>
     <input type="submit" value="Salvar" />
   </form>

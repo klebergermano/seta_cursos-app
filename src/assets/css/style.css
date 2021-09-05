@@ -403,7 +403,7 @@ dialog {
   flex-wrap: wrap;
   border-radius: 3px;
   border-color: #ccc;
-  padding: 20px;
+  padding: 40px;
   max-width: 600px;
   margin: 20px auto;
   background: #fff;
@@ -457,7 +457,9 @@ dialog {
   display: block;
   clear: both;
   width: 50%;
-  margin: 20px auto;
+  min-height: 40px;
+  margin: auto;
+  margin-top: 30px;
 }
 .forms input[type=submit]:hover {
   background: #2969bc;
@@ -487,7 +489,31 @@ dialog {
 
 #form_add_aula {
   transition: all 2s;
+  border: 2px solid #2d74d1;
+  box-shadow: 0px 1px 1px #222;
+  height: auto;
   background: #fff;
+}
+#form_add_aula div {
+  min-height: 35px;
+  margin-top: 10px;
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+}
+#form_add_aula div select {
+  display: block;
+  flex-grow: 1;
+}
+#form_add_aula div input {
+  flex-grow: 1;
+}
+#form_add_aula #div_detalhes {
+  min-height: 50px;
+}
+#form_add_aula #div_tema, #form_add_aula #div_detalhes {
+  width: 100%;
+  flex-grow: 1;
 }
 #form_add_aula #data_hora {
   display: flex;
@@ -503,7 +529,7 @@ dialog {
 }
 #form_add_aula #aluno_nome span, #form_add_aula #curso_nome span {
   font-weight: normal;
-  padding: 5px;
+  padding: 5px 5px 5px 0px;
 }
 #form_add_aula #div_select_aluno {
   display: none;
