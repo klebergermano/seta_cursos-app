@@ -31,12 +31,12 @@ function importHTML(target, htmlSRC, scriptSRC){
     let childs = document.querySelector('#main_menu_lateral').querySelectorAll("a");
     childs.forEach((item) => {
       item.addEventListener("click", (e) => {
-         let scriptSRC = './modules/'+ e.target.dataset.script_src + '/index.js'; 
+         let scriptSRC = './components/'+ e.target.dataset.script_src + '/js/index.js'; 
         let htmlSRC = './components/'+ e.target.dataset.path + '/index.html'; 
         importHTML('#page_content', htmlSRC, scriptSRC);
       });
     });
 
 //Carrega a primeira página
-importHTML('#page_content', './components/controle_aula/index.html',"./modules/controle_aula/index.js" )
+importHTML('#page_content', './components/controle_aula/index.html',"./components/controle_aula/js/index.js" )
 
