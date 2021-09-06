@@ -272,6 +272,7 @@
           
         }
         
+
         .aulas {
           position:relative;
           margin-top: 10px;
@@ -279,13 +280,16 @@
           max-width:300px;
           background: #ffffff;
           height: 80px;
-       border: 1px solid rgb(70, 108, 179);
+          border: 1px solid rgb(70, 108, 179);
           overflow: hidden;
           transition: height 0.5s;
           box-shadow: 0px 1px 1px rgb(156, 156, 156);
           font-size: 13px;
           padding: 5px 10px 10px 10px;
 
+          .status{
+            text-transform: capitalize;
+          }
       
           .aula_detalhes{
             margin-top:10px;
@@ -313,6 +317,23 @@
           }
      
         }
+
+        .aula_concluida{
+          background: #fff;
+
+        }
+        .aula_falta{
+          background: #fee;
+          border-color: rgb(163, 68, 68);
+
+        }
+        .aula_remarcada{
+          background: rgb(229, 229, 241);
+          border-color: rgb(106, 117, 128);
+
+
+        }
+
         .open_aula {
           height: 260px;
         }

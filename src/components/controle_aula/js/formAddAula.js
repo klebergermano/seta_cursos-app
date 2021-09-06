@@ -26,16 +26,36 @@ export async function insertFormAddAulaHTML() {
   form.querySelector('#select_bimestre').addEventListener('change', (e) => {
     form.querySelector('#select_aula').removeAttribute('disabled');
     validaSelectAula(form)
-  });;
+  });
   displayAlunoCursoNome(form)
+  eventClickBtnStatus(form)
 }
+
+function eventClickBtnStatus(form){
+  let btns = form.querySelectorAll('label');
+  btns.forEach((item)=>{
+    item.addEventListener('click', ()=>{
+  removeClassActivedBtnStatus();
+    if(item.querySelector('input').checked === true){
+    item.classList.add('actived_'+item.id);
+    }
+    });
+  });
+}
+
+function removeClassActivedBtnStatus(){
+  let btns = document.querySelectorAll('label');
+  btns.forEach((item)=>{
+      item.className = '';
+  });
+}
+
 function displayAlunoCursoNome(form){
   setTimeout(()=>{
     let selectAluno = form.querySelector('#select_aluno');
     let selectCurso = form.querySelector('#select_curso');
     let aluno = selectAluno.options[selectAluno.selectedIndex].innerHTML;
     let curso = selectCurso.options[selectCurso.selectedIndex].innerHTML;
-    console.log(aluno);
   form.querySelector('#aluno_nome').innerHTML = '<span>Aluno: </span>'+aluno;
   form.querySelector('#curso_nome').innerHTML = '<span>Curso: </span>'+curso;
   }, 100)
@@ -133,9 +153,11 @@ function blockSelectOptionsAddAulas(RA, curso, bimestre) {
 }
 
 function blocoAddAula(dados) {
+  console.log(dados);
   let aula = {
     [dados.select_bimestre.value]: {
       [dados.select_aula.value]: {
+        status: dados.status.value,
         tema: dados.tema.value,
         data: dados.data.value,
         horario: dados.horario.value,

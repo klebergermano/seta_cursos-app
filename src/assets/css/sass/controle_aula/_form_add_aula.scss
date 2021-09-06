@@ -48,7 +48,7 @@ dialog{
   height:auto;
   div{
     min-height:35px;
-    margin-top:10px;
+    margin-top:15px;
     padding:0px;
     display: flex;
     justify-content: center;
@@ -56,6 +56,7 @@ dialog{
     flex-grow: 1;}
     input{flex-grow: 1;}
   }
+
   #div_detalhes{
     min-height: 50px;
   }
@@ -93,6 +94,64 @@ dialog{
           option[disabled=true]{
             background:#eec;
           }
+        }
+
+        #div_status_aula{
+          label{ 
+            position: relative;
+            border:1px solid #999;
+            background:#f0f0f0;
+            padding: 5px 10px 5px 10px;
+            user-select: none;
+            cursor:pointer; 
+            input{
+              flex-shrink: 1;
+              flex-grow: 0;
+
+              -webkit-appearance: none;
+              -moz-appearance: none;
+              appearance: none;
+            
+              width: 8px !important;
+              height: 8px !important;
+              min-width: 8px !important;
+              min-height: 8px !important;
+            border-radius: 50%;
+              border: 2px solid #999;
+              transition: 0.2s all linear;
+              margin-right: 5px;
+              position: relative;
+              top: 1px;
+              border: 1px solid rgb(201, 201, 201);
+            }
+            input:checked {
+              background: #4082c0;
+            }
+            &:hover{
+              background:#ddd;
+            }
+          }
+          
+          .actived_label_aula_concluida{
+            background:#cec !important;
+            input:checked {
+              background: #40c071;
+            }
+          }
+          .actived_label_aula_com_falta{
+            background:#fcc !important;
+            input:checked {
+              background: #c0405c;
+            }
+          }
+          .actived_label_aula_remarcada{
+            background:#cde !important;
+            input:checked {
+              background: #4082c0;
+            }
+          }
+         
+         
         }
 
 }

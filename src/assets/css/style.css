@@ -496,7 +496,7 @@ dialog {
 }
 #form_add_aula div {
   min-height: 35px;
-  margin-top: 10px;
+  margin-top: 15px;
   padding: 0px;
   display: flex;
   justify-content: center;
@@ -539,6 +539,56 @@ dialog {
 }
 #form_add_aula #select_aula option[disabled=true] {
   background: #eec;
+}
+#form_add_aula #div_status_aula label {
+  position: relative;
+  border: 1px solid #999;
+  background: #f0f0f0;
+  padding: 5px 10px 5px 10px;
+  user-select: none;
+  cursor: pointer;
+}
+#form_add_aula #div_status_aula label input {
+  flex-shrink: 1;
+  flex-grow: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 8px !important;
+  height: 8px !important;
+  min-width: 8px !important;
+  min-height: 8px !important;
+  border-radius: 50%;
+  border: 2px solid #999;
+  transition: 0.2s all linear;
+  margin-right: 5px;
+  position: relative;
+  top: 1px;
+  border: 1px solid #c9c9c9;
+}
+#form_add_aula #div_status_aula label input:checked {
+  background: #4082c0;
+}
+#form_add_aula #div_status_aula label:hover {
+  background: #ddd;
+}
+#form_add_aula #div_status_aula .actived_label_aula_concluida {
+  background: #cec !important;
+}
+#form_add_aula #div_status_aula .actived_label_aula_concluida input:checked {
+  background: #40c071;
+}
+#form_add_aula #div_status_aula .actived_label_aula_com_falta {
+  background: #fcc !important;
+}
+#form_add_aula #div_status_aula .actived_label_aula_com_falta input:checked {
+  background: #c0405c;
+}
+#form_add_aula #div_status_aula .actived_label_aula_remarcada {
+  background: #cde !important;
+}
+#form_add_aula #div_status_aula .actived_label_aula_remarcada input:checked {
+  background: #4082c0;
 }
 
 .edit_form {
@@ -872,6 +922,9 @@ input:disabled {
   font-size: 13px;
   padding: 5px 10px 10px 10px;
 }
+#controle_aula #aluno_content .bg_bimestres .bimestres .aulas .status {
+  text-transform: capitalize;
+}
 #controle_aula #aluno_content .bg_bimestres .bimestres .aulas .aula_detalhes {
   margin-top: 10px;
   border: 1px solid #999;
@@ -890,6 +943,17 @@ input:disabled {
   max-height: 14px;
   margin-bottom: -2px;
   color: #444;
+}
+#controle_aula #aluno_content .bg_bimestres .bimestres .aula_concluida {
+  background: #fff;
+}
+#controle_aula #aluno_content .bg_bimestres .bimestres .aula_falta {
+  background: #fee;
+  border-color: #a34444;
+}
+#controle_aula #aluno_content .bg_bimestres .bimestres .aula_remarcada {
+  background: #e5e5f1;
+  border-color: #6a7580;
 }
 #controle_aula #aluno_content .bg_bimestres .bimestres .open_aula {
   height: 260px;
