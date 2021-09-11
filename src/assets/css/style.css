@@ -515,9 +515,12 @@ dialog {
   width: 100%;
   flex-grow: 1;
 }
-#form_add_aula #data_hora {
+#form_add_aula #div_data_hora {
   display: flex;
   max-width: 100%;
+}
+#form_add_aula #select_categoria {
+  display: none;
 }
 #form_add_aula #aluno_nome, #form_add_aula #curso_nome {
   margin-top: 10px;
@@ -649,8 +652,12 @@ dialog {
   text-decoration: none;
 }
 
-input:disabled {
+input[type=submit]:disabled {
   background: #999 !important;
+}
+
+input:disabled, textarea:disabled {
+  background: #ddd !important;
 }
 
 #controle_aula {
@@ -784,6 +791,11 @@ input:disabled {
 #controle_aula #aluno_content .btn_add_aula:hover {
   background: #ffe;
 }
+#controle_aula #aluno_content .btn_extra {
+  cursor: pointer;
+  padding: 5px;
+  margin-bottom: 10px;
+}
 #controle_aula #aluno_content .bg_curso {
   position: relative;
   background: #fff;
@@ -890,6 +902,26 @@ input:disabled {
   margin-bottom: 10px;
   box-shadow: 0px 1px 1px #999;
 }
+#controle_aula #aluno_content .bg_bimestres .bimestres .resumo_bimestre {
+  background: #fff;
+  width: 100%;
+  display: grid;
+  grid-gap: 1px;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 10px;
+}
+#controle_aula #aluno_content .bg_bimestres .bimestres .resumo_bimestre p {
+  width: auto;
+  padding: 5px;
+  box-shadow: 0px 0px 0px 1px #ccc;
+}
+#controle_aula #aluno_content .bg_bimestres .bimestres .resumo_bimestre span {
+  font-weight: bold;
+}
+#controle_aula #aluno_content .bg_bimestres .bimestres .resumo_bimestre .feedback {
+  grid-column: 1/4;
+  width: 100%;
+}
 #controle_aula #aluno_content .bg_bimestres .bimestres h2 {
   font-weight: normal;
   flex-basis: 100%;
@@ -906,11 +938,22 @@ input:disabled {
   width: 24%;
   min-width: 200px;
   flex-grow: 1;
-  margin: 0.5%;
+  border: 1px solid #ccc;
+}
+#controle_aula #aluno_content .bg_bimestres .bimestres .column_reposicao {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background: #dad3df;
+}
+#controle_aula #aluno_content .bg_bimestres .bimestres .column_reposicao .aulas {
+  width: auto;
+  flex-grow: 1;
+  flex-shrink: 1;
 }
 #controle_aula #aluno_content .bg_bimestres .bimestres .aulas {
   position: relative;
-  margin-top: 10px;
+  margin: 10px;
   width: auto;
   max-width: 300px;
   background: #ffffff;
@@ -954,6 +997,19 @@ input:disabled {
 #controle_aula #aluno_content .bg_bimestres .bimestres .aula_remarcada {
   background: #e5e5f1;
   border-color: #6a7580;
+}
+#controle_aula #aluno_content .bg_bimestres .bimestres [data-aula_categoria=reposição] {
+  background: #ddd4f5 !important;
+  border: 1px solid #666;
+}
+#controle_aula #aluno_content .bg_bimestres .bimestres [data-aula_categoria="ponto extra"] {
+  background: #ecfcb4 !important;
+  border: 1px solid #666;
+  height: 30px;
+  max-height: 180px !important;
+}
+#controle_aula #aluno_content .bg_bimestres .bimestres [data-aula_categoria="ponto extra"] .aula_detalhes {
+  height: 80px;
 }
 #controle_aula #aluno_content .bg_bimestres .bimestres .open_aula {
   height: 260px;

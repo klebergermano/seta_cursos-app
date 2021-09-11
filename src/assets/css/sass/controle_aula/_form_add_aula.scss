@@ -25,7 +25,6 @@ dialog{
     padding: 5px 10px;
     position:absolute;
     cursor:pointer;
-
     &:hover{
       background:rgb(221, 79, 79);
     color:#fff;
@@ -67,10 +66,11 @@ dialog{
 
    background:#fff;
 
-    #data_hora{
+    #div_data_hora{
         display:flex; 
         max-width: 100%;
     }
+    #select_categoria{display:none;}
     #aluno_nome, #curso_nome{
       margin-top:10px;
       padding:10px 10px;
@@ -88,7 +88,7 @@ dialog{
       display:none;
     }
     #div_select_curso{
-      display:none;
+      display: none;
     }
         #select_aula{
           option[disabled=true]{
@@ -221,7 +221,10 @@ div{
     text-decoration: none;
   }
 }
-input:disabled{
-  
+
+  input[type=submit]:disabled {
   background:#999 !important;
+}
+  input:disabled, textarea:disabled {
+  background:#ddd !important;
 }

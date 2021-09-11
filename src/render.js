@@ -38,5 +38,5 @@ function importHTML(target, htmlSRC, scriptSRC){
     });
 
 //Carrega a primeira página
-importHTML('#page_content', './components/home/index.html',"./components/home/js/index.js" )
+importHTML('#page_content', './components/controle_aula/index.html',"./components/controle_aula/js/index.js" )
 

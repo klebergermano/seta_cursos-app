@@ -21,7 +21,6 @@ function insertSelectAlunos() {
 };
 
 export function onload(){
-  //commonFunc.confirmBoxDelete('#controle_aula', "Tem certeza que deseja deletar?");
  insertSelectAlunos();
  document.querySelector('#main_select_aluno').addEventListener('input', (e)=>{
    alunoContent.eventsAlunoContent();

@@ -6,7 +6,7 @@
       <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
     </svg> Adicionar Aula</h3>
   <div id='div_status_aula'>
-    <label class='actived_label_aula_concluida' id='label_aula_concluida'><input checked  id='aula_concluida' type='radio' name='status' value='concluida'>Aula Concluida</label>
+    <label class='actived_label_aula_concluida' id='label_aula_concluida'><input checked  id='aula_concluida' type='radio' name='status' value='concluida'>Concluida</label>
     <label class='' id='label_aula_com_falta'><input id='aula_com_falta' type='radio' name='status' value='falta'>Falta</label>
     <label class='' id='label_aula_remarcada'><input id='aula_remarcada'type='radio' name='status' value='remarcada'>Remarcada</label>
   </div>
@@ -16,14 +16,20 @@
             <option></option>
         </select>
   </div>
+
   <p id='aluno_nome'></p>
   <p id='curso_nome'></p>
+  <select id='select_categoria'>
+    <option value='comum'>Comum</option>
+    <option value='reposição'>Reposição</option>
+    <option value='reforço' >Reforço</option>
+  </select>
     <div id='div_select_curso'><label>Curso:</label>
       <select id='select_curso'>
         <option></option>
         </select>
       </div>
-    <div>
+    <div id='div_select_bimestre'>
       <label>Bimestres</label>
       <select required id='select_bimestre'>
         <option value='' disabled  selected>Selecione o Bimestre</option>
@@ -34,7 +40,8 @@
            <option value='bimestre 5'>Bimestre 5</option>
            <option value='bimestre 6'>Bimestre 6</option>
       </select>
-  
+  </div>
+  <div id='div_select_aula'>
       <label>Aulas Nº:</label>
       <select required id='select_aula' disabled>
         <option value='' disabled selected>Selecione a Aula</option>
@@ -53,14 +60,16 @@
         <option value="aula 13">Aula 13</option>
         <option value="aula 14">Aula 14</option>
         <option value="aula 15">Aula 15</option>
-        <option value="aula 16">Aula 16</option>
+        <option value="aula 16">Aula 16 - Prova</option>
   
     </select>
     </div>
 
-    <div id="data_hora">
+    <div id="div_data_hora">
       <label>Data:</label>
-      <input required id="data" type="date" /> <label>Horário:</label>
+      <input required id="data" type="date" /> 
+      <div id='div_horario'>
+        <label>Horário:</label>
       <input id="horario" list='horario_list'>
       <datalist id='horario_list'>
         <option value='08h às 10h'/>
@@ -74,7 +83,7 @@
         <option value='18h às 19h'/>
         <option value='19h às 21h'/>
       </datalist>
-    
+    </div>
     </div>
     <div id='div_tema'><label>Tema:</label><input  required  id="tema" type="text" /></div>
     <div id='div_detalhes'><label>Detalhes:</label><textarea  required  id="detalhes"></textarea></div>

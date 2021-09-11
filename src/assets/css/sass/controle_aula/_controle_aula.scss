@@ -147,6 +147,11 @@
        background: #ffe;
       }
     }
+    .btn_extra{
+      cursor: pointer;
+      padding:5px;
+      margin-bottom:10px;
+    }
 
     .bg_curso{
       position: relative;
@@ -226,7 +231,8 @@
           background: #fff
         }
       }
-
+      
+ 
     }
     .bg_bimestres {
      // border: $border-set-default;
@@ -250,7 +256,27 @@
         box-shadow: 0px 1px 1px #999;
 
        // border: 1px solid #f90;
+.resumo_bimestre{
+      background:#fff;
+      width:100%;
+      display: grid;
+      grid-gap: 1px;
+      grid-template-columns: 1fr 1fr 1fr;
+      padding:10px;
 
+      p{
+        width:auto;
+        padding:5px;
+        box-shadow: 0px 0px 0px 1px #ccc;  
+      }
+      span{
+        font-weight: bold;
+      }
+        .feedback{
+          grid-column: 1 / 4; 
+          width:100%;
+        }
+     }
         h2 {
           font-weight: normal;
           flex-basis: 100%;
@@ -262,20 +288,23 @@
           padding-bottom:10px !important;
           border-bottom:1px solid #ccc;
           color:rgb(77, 77, 77);
-          
         }
         .columns {
           width: 24%;
           min-width: 200px;
           flex-grow: 1;
-          margin:0.5%;
-          
+          border:$border-set-default;
         }
-        
-
+        .column_reposicao{
+          display:flex;
+          flex-direction: row;
+          flex-wrap: wrap; 
+          background: rgb(218, 211, 223);
+          .aulas{width:auto; flex-grow:1; flex-shrink: 1;}
+        }
         .aulas {
           position:relative;
-          margin-top: 10px;
+          margin:10px;
           width: auto;
           max-width:300px;
           background: #ffffff;
@@ -286,38 +315,28 @@
           box-shadow: 0px 1px 1px rgb(156, 156, 156);
           font-size: 13px;
           padding: 5px 10px 10px 10px;
-
           .status{
             text-transform: capitalize;
           }
-      
           .aula_detalhes{
             margin-top:10px;
             border:1px solid #999;
             overflow-y: scroll;
             height:145px;
             padding:5px;
-
           }
-       
           .aula_numero{
             text-transform: capitalize;
             color: darken($primary-color, 20%);
-     
           }
           .aula_data{
             padding: 5px 0px;
             svg{max-height:14px; margin-bottom:-2px;
             color:$text-color}
             .aula_data_info{
-       
             }
-       
-
           }
-     
         }
-
         .aula_concluida{
           background: #fff;
 
@@ -330,10 +349,20 @@
         .aula_remarcada{
           background: rgb(229, 229, 241);
           border-color: rgb(106, 117, 128);
-
-
         }
-
+        [data-aula_categoria="reposição"]{
+          background:rgb(221, 212, 245) !important;
+          border:1px solid #666;
+        }
+        [data-aula_categoria="ponto extra"]{
+          background:rgb(236, 252, 180) !important;
+          border:1px solid #666;
+          height:30px;
+          max-height: 180px !important;
+          .aula_detalhes{
+            height:80px;
+          }
+        }
         .open_aula {
           height: 260px;
         }
