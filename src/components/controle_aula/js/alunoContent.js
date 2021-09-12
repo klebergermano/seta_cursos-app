@@ -20,10 +20,12 @@ function getRAfromMainSelectAluno() {
   return RA;
 }
 
+
 export function insertAlunoContent(RA, snapshotChange) {
   let nomeCurso = snapshotChange[0].doc.data().curso;
   dbAlunoHistFunc.getAlunoHistCursosDB(RA)
     .then((alunoCursosDB) => {
+    
           let alunoContentHTML = createAlunoContentHTML(alunoCursosDB, RA);
           document.querySelector("#aluno_content").innerHTML = alunoContentHTML;
           navCursosAluno.insertNavCursosInBGCursos(RA, nomeCurso)
@@ -33,7 +35,6 @@ export function insertAlunoContent(RA, snapshotChange) {
       eventBtnAddAula();
       eventBtnAddReposicaoAula()
       eventBtnAddPontoExtra()
-
     })
 }
 function eventBtnAddAula(){
@@ -58,6 +59,8 @@ function eventBtnAddPontoExtra(){
   });
 }
 
+
+
 function createBgCursoMainStructureHTML(curso_nome_bd, RA) {
   if (curso_nome_bd) {
     let id_curso = commonFunc.stringToID(curso_nome_bd);
@@ -65,6 +68,8 @@ function createBgCursoMainStructureHTML(curso_nome_bd, RA) {
     bgCursoHTML.id = id_curso;
     bgCursoHTML.setAttribute('data-aluno_ra', RA);
     bgCursoHTML.setAttribute('data-curso', curso_nome_bd);
+  
+    
     bgCursoHTML.innerHTML = `<nav class='nav_cursos_aluno'></nav>
     <div class='bg_curso' id='${id_curso}' data-aluno_ra='${RA}' data-curso='${curso_nome_bd}'>
        <h3 class='title_curso_nome ${id_curso}'>${curso_nome_bd}</h3>
@@ -86,11 +91,38 @@ function createBgCursoMainStructureHTML(curso_nome_bd, RA) {
   }
 }
 
+export function resumoBimestreBD(curso){
+  let bimestresKeys = commonFunc.getReverseObjectKeys(curso.bimestres);
+  let resumoBimestres = {}; 
+
+  for(let i = 0; i < bimestresKeys.length; i++){
+    resumoBimestres[bimestresKeys[i]] = {}
+    let bimestre = curso.bimestres[bimestresKeys[i]];
+    let aulasKeys = commonFunc.getReverseObjectKeys(bimestre);
+
+    function resPontosExtras(){
+      let pontosExtras = 0;
+      for(let j = 0; j < aulasKeys.length; j++){
+      if(aulasKeys[j].includes("ponto extra")){
+        pontosExtras ++; 
+      }
+      }
+      return pontosExtras
+    }
+
+    resumoBimestres[bimestresKeys[i]].pontosExtras = resPontosExtras(); 
+  }
+  return resumoBimestres;
+
+}
+
 function createAlunoContentHTML(alunoDataFromDB, RA) {
   let alunoContentHTML = "";
   alunoDataFromDB.forEach((resCursoDB) => {
     if (typeof resCursoDB.data !== "undefined") { resCursoDB = resCursoDB.data(); }
     else { resCursoDB = resCursoDB.doc.data(); }
+    
+    //let resumoBimestre = resumoBimestreBD(resCursoDB);
 
     let bgCursoMainStructure = createBgCursoMainStructureHTML(resCursoDB.curso, RA);
     if (checkIfBimestresIsEmpty(resCursoDB.bimestres)) {
@@ -125,27 +157,35 @@ function cursoVazioHTML(RA, curso) {
   `
 }
 
-function createBgCursosInnerContent(bgCursoHTML, cursoDB) {
-  let divCursoContent = bgCursoHTML.querySelector("#curso_content");
-  let divBgBimestres = document.createElement('div');
-  divBgBimestres.className = 'bg_bimestres';
+function createResumoBimestreHTML(cursoDB, bimestreKey){
+  let resBimestre = resumoBimestreBD(cursoDB);
+      resBimestre = resBimestre[bimestreKey];
+
   let divResumo = document.createElement('div');
   divResumo.className = 'resumo_bimestre'
   divResumo.innerHTML = `
-  <p class='a_concluidas' >Aulas Comcluidas: <span>12</span></p>
-  <p class='a_falta'>Aulas Falta: <span>2<span></p>
-  <p class='a_remarcadas'>Aulas Remarcadas: <span>1</span></p>
-  <p class='nota_prova'>Nota Prova: <span>8,00</span></p>
-  <p>Pontos Extras: <span>0</span></p>
-  <p>Nota Final: <span>9</span></p>
+  <p class='a_concluidas' >Aulas Concluidas: <span></span></p>
+  <p class='a_falta'>Aulas Falta: <span><span></p>
+  <p class='a_remarcadas'>Aulas Remarcadas: <span></span></p>
+  <p class='nota_prova'>Nota Prova: <span></span></p>
+  <p class='pontos_extras'>Pontos Extras: <span class='pontos_extras_value'>${resBimestre.pontosExtras}</span></p>
+  <p>Nota Final: <span></span></p>
   <div class='feedback'>
   <p>Feedback: 
   Lorem Ipsum Doneck auhudf asdfhusfuhsska hufasdf.
   </p>
   </div>
   `
+  return divResumo;
+}
 
+function createBgCursosInnerContent(bgCursoHTML, cursoDB) {
 
+  let divCursoContent = bgCursoHTML.querySelector("#curso_content");
+  let divBgBimestres = document.createElement('div');
+  divBgBimestres.className = 'bg_bimestres';
+
+ 
   // Pega as keys reordenadas do obj res.bimestres e usa no para criar o for, eles também 
   //são utilizadas com o index do for para carregar os dados ex.: "b_sortedKeys[i]"
   let bimSortedKeys = commonFunc.getReverseObjectKeys(cursoDB.bimestres);
@@ -198,7 +238,13 @@ function createBgCursosInnerContent(bgCursoHTML, cursoDB) {
       contentColumns.appendChild(divColumn); 
     }
     divBimestre.appendChild(titleBimestre); // Adiciona o título do bimestre
-    divBimestre.appendChild(divResumo);
+    //----------------------Resumo
+    let divResumo = createResumoBimestreHTML(cursoDB, bimSortedKeys[i]);
+    console.log(divResumo)
+    //divResumo.querySelector(".pontos_extras_value").innerHTML =  resumoBimestre[bimSortedKeys[i]].pontosExtras;
+        divBimestre.appendChild(divResumo);
+    //-----------------------------
+    
     divBimestre.innerHTML += contentColumns.innerHTML; //Adiciona o conteúdo do bimestre
     if(divColumnReposicao.innerHTML !== ""){
       divBimestre.appendChild(divColumnReposicao); //Adiciona o conteúdo do bimestre
@@ -206,7 +252,6 @@ function createBgCursosInnerContent(bgCursoHTML, cursoDB) {
     if(divColumnPontosExtras.innerHTML !== ""){
       divBimestre.appendChild(divColumnPontosExtras); //Adiciona o conteúdo do bimestre
     }
-
     divBgBimestres.appendChild(divBimestre); //Adiciona o bimestre no .bg_bimestres
     
     divCursoContent.appendChild(divBgBimestres); //Adiciona o '.bg_bimestres' em '#curso_content'
@@ -223,7 +268,7 @@ function createHTMLPontoExtra(aulaDados, n_aula, n_bimestre) {
  
   let block = `
     <div id='${id_bimestre}_${id_aula}' data-bimestre='${n_bimestre}' 
-    data-aula='${n_aula}'  class="aulas aula_${aulaDados.status}" data-aula_categoria="${aulaDados.categoria}">
+    data-aula='${n_aula}' class="aulas aula_${aulaDados.status}" data-aula_categoria="${aulaDados.categoria}">
      <span class='btn_open_close_aulas'>
      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
      <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
@@ -234,15 +279,7 @@ function createHTMLPontoExtra(aulaDados, n_aula, n_bimestre) {
      <p>
      <span class='aula_numero'>${n_aula}</span> </p>
   
-     <div class='aula_data'>
-      <p>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
-            <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
-            <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-          </svg> <span class='aula_data_info'>${dateFunc.changeDateToDislayText(aulaDados.data)}</span>  
-       
-       </p>
-     </div>
+
       <div class='aula_detalhes'>
           <p>
           <span class='aula_detalhes_info'>${aulaDados.descricao}</span>
@@ -254,12 +291,6 @@ function createHTMLPontoExtra(aulaDados, n_aula, n_bimestre) {
         <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
       </svg>
      </span>
-  <span class=' btn_edit_aula'>
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-  </svg>
-  </span>
   </div>
   `;
   return block;

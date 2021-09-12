@@ -28,28 +28,7 @@ function eventsFormAddPontoExtra(form){
   displayAlunoCursoNome(form)
   removeFiledFormAddAula(form)
 }
-function countPontosExtras(form){
-  let RA = form.select_aluno.value;
-  let bimestre = form.select_bimestre.value;
-    let curso = form.select_curso.value;
- let resPontosExtras = db
-  .collection("aluno_historico")
-  .doc(RA)
-  .collection("cursos")
-  .doc(curso).get()
-  .then((res)=>{
-    let bimestreRes = res.data().bimestres[bimestre];
-    let countPontoExtra = 1;
-    for(let item in bimestreRes){
-      if(item.includes("ponto extra")){
-        console.log('item:', item);
-        countPontoExtra ++;
-      }
-    }
-    return "ponto extra #" +  Math.ceil(Math.random() * 1000000);;
-  });
-  return resPontosExtras;
-}
+
 function removeFiledFormAddAula(form){
   form.querySelector("h3").textContent = "Adicionar Ponto Extra";
   form.querySelector("#select_aula").removeAttribute("required");
@@ -74,11 +53,10 @@ function displayAlunoCursoNome(form){
 function submitformAddPontoExtra(e) {
   e.preventDefault();
   let form = e.target;
- let countPonto = countPontosExtras(form)
   let RA = form.select_aluno.value;
   let aulaHistorico;
-  let pontoExtra = "ponto extra #" +  Math.ceil(Math.random() * 1000000);;
-
+ // let pontoExtra = "ponto extra #" +  Math.ceil(Math.random() * 1000000);;
+  let pontoExtra = "ponto extra " + form.data.value;
   aulaHistorico = db
     .collection("aluno_historico")
     .doc(RA)
@@ -90,7 +68,7 @@ function submitformAddPontoExtra(e) {
           [form.select_bimestre.value]:{
               [pontoExtra]:{
                categoria: 'ponto extra',
-               data: form.data,
+               data: form.data.value,
                descricao: form.detalhes.value
               }
           }

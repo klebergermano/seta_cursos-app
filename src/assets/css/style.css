@@ -515,9 +515,8 @@ dialog {
   width: 100%;
   flex-grow: 1;
 }
-#form_add_aula #div_data_hora {
-  display: flex;
-  max-width: 100%;
+#form_add_aula #div_data, #form_add_aula #div_horario {
+  max-width: 50%;
 }
 #form_add_aula #select_categoria {
   display: none;
@@ -536,6 +535,9 @@ dialog {
 }
 #form_add_aula #div_select_aluno {
   display: none;
+}
+#form_add_aula #div_select_bimestre {
+  max-width: 50%;
 }
 #form_add_aula #div_select_curso {
   display: none;
@@ -791,10 +793,33 @@ input:disabled, textarea:disabled {
 #controle_aula #aluno_content .btn_add_aula:hover {
   background: #ffe;
 }
+#controle_aula #aluno_content .btn_add_aula:active {
+  box-shadow: inset 0px 0px 3px #111;
+}
 #controle_aula #aluno_content .btn_extra {
   cursor: pointer;
-  padding: 5px;
+  padding: 5px 10px;
   margin-bottom: 10px;
+  border: 1px solid #333;
+  border-radius: 3px;
+}
+#controle_aula #aluno_content .btn_extra:active {
+  background: #fff;
+  box-shadow: inset 0px 0px 2px #111;
+}
+#controle_aula #aluno_content .btn_add_reposicao {
+  color: #8971cc;
+  border-color: #8971cc;
+}
+#controle_aula #aluno_content .btn_add_reposicao:hover {
+  background: #e7e7ff;
+}
+#controle_aula #aluno_content .btn_add_ponto_extra {
+  color: #779214;
+  border-color: #779214;
+}
+#controle_aula #aluno_content .btn_add_ponto_extra:hover {
+  background: #edffcf;
 }
 #controle_aula #aluno_content .bg_curso {
   position: relative;
@@ -951,6 +976,18 @@ input:disabled, textarea:disabled {
   flex-grow: 1;
   flex-shrink: 1;
 }
+#controle_aula #aluno_content .bg_bimestres .bimestres .column_pontos_extras {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background: #f2f8f3;
+}
+#controle_aula #aluno_content .bg_bimestres .bimestres .column_pontos_extras .aulas {
+  width: auto;
+  flex-grow: 1;
+  flex-shrink: 1;
+  max-width: 250px;
+}
 #controle_aula #aluno_content .bg_bimestres .bimestres .aulas {
   position: relative;
   margin: 10px;
@@ -1009,7 +1046,7 @@ input:disabled, textarea:disabled {
   max-height: 180px !important;
 }
 #controle_aula #aluno_content .bg_bimestres .bimestres [data-aula_categoria="ponto extra"] .aula_detalhes {
-  height: 80px;
+  height: 110px;
 }
 #controle_aula #aluno_content .bg_bimestres .bimestres .open_aula {
   height: 260px;

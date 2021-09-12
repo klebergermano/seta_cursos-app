@@ -140,17 +140,42 @@
       color:$primary-color;
       padding:5px 10px 8px 10px;
       svg{
-     height:25px; width:auto;
-
+         height:25px; width:auto;
       }
       &:hover{
        background: #ffe;
       }
+      &:active{
+        box-shadow: inset 0px 0px 3px #111;
+      }
     }
     .btn_extra{
       cursor: pointer;
-      padding:5px;
+      padding:5px 10px;
       margin-bottom:10px;
+      border:1px solid #333;
+      border-radius: 3px;
+  
+      &:active{
+        background: #fff;
+        box-shadow: inset 0px 0px 2px #111;
+      }
+
+    }
+    .btn_add_reposicao{
+      color: #8971cc;
+      border-color: #8971cc;
+      &:hover{
+        background:#e7e7ff
+      }
+    }
+    .btn_add_ponto_extra{
+      color:#779214;
+      border-color: #779214;
+      &:hover{
+        background:#edffcf
+      }
+    
     }
 
     .bg_curso{
@@ -230,6 +255,7 @@
         &:hover{
           background: #fff
         }
+        
       }
       
  
@@ -299,8 +325,16 @@
           display:flex;
           flex-direction: row;
           flex-wrap: wrap; 
-          background: rgb(218, 211, 223);
+          background: #dad3df;
           .aulas{width:auto; flex-grow:1; flex-shrink: 1;}
+        }
+        .column_pontos_extras{ 
+          display:flex;
+          flex-direction: row;
+          flex-wrap: wrap; 
+          background: #f2f8f3;
+          .aulas{width:auto; flex-grow:1; flex-shrink: 1;
+          max-width: 250px;}
         }
         .aulas {
           position:relative;
@@ -351,16 +385,16 @@
           border-color: rgb(106, 117, 128);
         }
         [data-aula_categoria="reposição"]{
-          background:rgb(221, 212, 245) !important;
+          background:#ddd4f5 !important;
           border:1px solid #666;
         }
         [data-aula_categoria="ponto extra"]{
-          background:rgb(236, 252, 180) !important;
+          background:#ecfcb4 !important;
           border:1px solid #666;
           height:30px;
           max-height: 180px !important;
           .aula_detalhes{
-            height:80px;
+            height:110px;
           }
         }
         .open_aula {
