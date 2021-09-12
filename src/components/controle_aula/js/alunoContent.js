@@ -1,9 +1,12 @@
-import * as commonFunc from "../common/commonFunctions.js";
-import * as dbAlunoHistFunc from "../common/dbAlunoHistoricoFunc.js";
+import * as commonFunc from "../../js_common/commonFunctions.js";
+import * as dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
+import * as dateFunc from "../../js_common/dateFunc.js";
+
 import * as navCursosAluno from "./navCursosAluno.js";
 import * as formEditAula from "./formEditAula.js";
 import * as formAddAula from "./formAddAula.js";
-import * as dateFunc from "../common/dateFunc.js";
+import * as formAddReposicaoAula from "./formAddReposicaoAula.js";
+import * as formAddPontoExtra from "./formAddPontoExtra.js";
 import * as deleteFunc from "./deleteFunc.js";
 
 export function eventsAlunoContent() {
@@ -17,23 +20,23 @@ function getRAfromMainSelectAluno() {
   return RA;
 }
 
+
 export function insertAlunoContent(RA, snapshotChange) {
   let nomeCurso = snapshotChange[0].doc.data().curso;
-
   dbAlunoHistFunc.getAlunoHistCursosDB(RA)
     .then((alunoCursosDB) => {
+    
           let alunoContentHTML = createAlunoContentHTML(alunoCursosDB, RA);
           document.querySelector("#aluno_content").innerHTML = alunoContentHTML;
-    
           navCursosAluno.insertNavCursosInBGCursos(RA, nomeCurso)
-
           eventsAulas()
           deleteFunc.eventDeleteCurso();
     }).then(()=>{
       eventBtnAddAula();
+      eventBtnAddReposicaoAula()
+      eventBtnAddPontoExtra()
     })
 }
-
 function eventBtnAddAula(){
   document.querySelectorAll(".btn_add_aula").forEach((item) => {
     item.addEventListener("click", () => {
@@ -41,7 +44,20 @@ function eventBtnAddAula(){
     })
   });
 }
-
+function eventBtnAddReposicaoAula(){
+  document.querySelectorAll(".btn_add_reposicao").forEach((item) => {
+    item.addEventListener("click", () => {
+      formAddReposicaoAula.insertFormReposicaoAula();
+    })
+  });
+}
+function eventBtnAddPontoExtra(){
+  document.querySelectorAll(".btn_add_ponto_extra").forEach((item) => {
+    item.addEventListener("click", () => {
+      formAddPontoExtra.insertFormAddPontoExtra();
+    })
+  });
+}
 
 
 
@@ -52,6 +68,8 @@ function createBgCursoMainStructureHTML(curso_nome_bd, RA) {
     bgCursoHTML.id = id_curso;
     bgCursoHTML.setAttribute('data-aluno_ra', RA);
     bgCursoHTML.setAttribute('data-curso', curso_nome_bd);
+  
+    
     bgCursoHTML.innerHTML = `<nav class='nav_cursos_aluno'></nav>
     <div class='bg_curso' id='${id_curso}' data-aluno_ra='${RA}' data-curso='${curso_nome_bd}'>
        <h3 class='title_curso_nome ${id_curso}'>${curso_nome_bd}</h3>
@@ -63,6 +81,8 @@ function createBgCursoMainStructureHTML(curso_nome_bd, RA) {
           <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"></path>
         </svg> &nbsp; Aula
       </button>
+      <button class='btn btn_extra btn_add_reposicao' id='btn_add_reposicao'>+ Reposição de Aula</button>
+      <button class='btn btn_extra btn_add_ponto_extra' id='btn_add_ponto_extra'>+ Pontos Extras</button>
       </div>
     </div>`;
     return bgCursoHTML;
@@ -71,17 +91,44 @@ function createBgCursoMainStructureHTML(curso_nome_bd, RA) {
   }
 }
 
-function createAlunoContentHTML(alunoDataFromDB, alunoInfoGeral) {
+export function resumoBimestreBD(curso){
+  let bimestresKeys = commonFunc.getReverseObjectKeys(curso.bimestres);
+  let resumoBimestres = {}; 
+
+  for(let i = 0; i < bimestresKeys.length; i++){
+    resumoBimestres[bimestresKeys[i]] = {}
+    let bimestre = curso.bimestres[bimestresKeys[i]];
+    let aulasKeys = commonFunc.getReverseObjectKeys(bimestre);
+
+    function resPontosExtras(){
+      let pontosExtras = 0;
+      for(let j = 0; j < aulasKeys.length; j++){
+      if(aulasKeys[j].includes("ponto extra")){
+        pontosExtras ++; 
+      }
+      }
+      return pontosExtras
+    }
+
+    resumoBimestres[bimestresKeys[i]].pontosExtras = resPontosExtras(); 
+  }
+  return resumoBimestres;
+
+}
+
+function createAlunoContentHTML(alunoDataFromDB, RA) {
   let alunoContentHTML = "";
   alunoDataFromDB.forEach((resCursoDB) => {
     if (typeof resCursoDB.data !== "undefined") { resCursoDB = resCursoDB.data(); }
     else { resCursoDB = resCursoDB.doc.data(); }
+    
+    //let resumoBimestre = resumoBimestreBD(resCursoDB);
 
-    let bgCursoMainStructure = createBgCursoMainStructureHTML(resCursoDB.curso, alunoInfoGeral);
+    let bgCursoMainStructure = createBgCursoMainStructureHTML(resCursoDB.curso, RA);
     if (checkIfBimestresIsEmpty(resCursoDB.bimestres)) {
       alunoContentHTML += createBgCursosInnerContent(bgCursoMainStructure, resCursoDB);
     } else {
-      bgCursoMainStructure.querySelector('#curso_content').innerHTML = cursoVazioHTML(alunoInfoGeral.RA, resCursoDB.curso);
+      bgCursoMainStructure.querySelector('#curso_content').innerHTML = cursoVazioHTML(RA, resCursoDB.curso);
       alunoContentHTML += bgCursoMainStructure.innerHTML;
     }
   });
@@ -92,9 +139,11 @@ function cursoVazioHTML(RA, curso) {
   return `
   <div class='bg_info_delete_curso'>
       <p>
-      Esse curso não possui nenhuma aula adicionada.
+      Esse curso não possui aulas adicionadas.
     </p> 
       <div class='bg_btn_deletar_curso'>
+    <button data-aluno_ra='${RA}' data-delete_curso='${curso}' class='btn_deletar_curso'>Deletar Curso</button>
+
       <button class="btn_add_aula" id="btn_add_aula" title='Adicionar Aula' type="button">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-plus" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"></path>
@@ -103,17 +152,40 @@ function cursoVazioHTML(RA, curso) {
       </svg>
      Adicionar Aula
     </button>
-    <button data-aluno_ra='${RA}' data-delete_curso='${curso}' class='btn_deletar_curso'>Deletar Curso</button>
       </div>
       </div>
   `
 }
 
+function createResumoBimestreHTML(cursoDB, bimestreKey){
+  let resBimestre = resumoBimestreBD(cursoDB);
+      resBimestre = resBimestre[bimestreKey];
+
+  let divResumo = document.createElement('div');
+  divResumo.className = 'resumo_bimestre'
+  divResumo.innerHTML = `
+  <p class='a_concluidas' >Aulas Concluidas: <span></span></p>
+  <p class='a_falta'>Aulas Falta: <span><span></p>
+  <p class='a_remarcadas'>Aulas Remarcadas: <span></span></p>
+  <p class='nota_prova'>Nota Prova: <span></span></p>
+  <p class='pontos_extras'>Pontos Extras: <span class='pontos_extras_value'>${resBimestre.pontosExtras}</span></p>
+  <p>Nota Final: <span></span></p>
+  <div class='feedback'>
+  <p>Feedback: 
+  Lorem Ipsum Doneck auhudf asdfhusfuhsska hufasdf.
+  </p>
+  </div>
+  `
+  return divResumo;
+}
+
 function createBgCursosInnerContent(bgCursoHTML, cursoDB) {
+
   let divCursoContent = bgCursoHTML.querySelector("#curso_content");
   let divBgBimestres = document.createElement('div');
   divBgBimestres.className = 'bg_bimestres';
 
+ 
   // Pega as keys reordenadas do obj res.bimestres e usa no para criar o for, eles também 
   //são utilizadas com o index do for para carregar os dados ex.: "b_sortedKeys[i]"
   let bimSortedKeys = commonFunc.getReverseObjectKeys(cursoDB.bimestres);
@@ -122,20 +194,35 @@ function createBgCursosInnerContent(bgCursoHTML, cursoDB) {
     let aulaSortedKeys = commonFunc.getReverseObjectKeys(cursoDB.bimestres[bimSortedKeys[i]]);
     let divBimestre = document.createElement('div');  //cria a div '.bimestres'
     divBimestre.className = 'bimestres';
+    
     let titleBimestre = document.createElement('h2');//cria o título do bimestre
     titleBimestre.textContent = bimSortedKeys[i];
 
     let contentColumns = document.createElement('div');
     let divColumn = document.createElement('div');
     divColumn.className = 'columns';
-    let columnsContent = ''; //número de bimestres
+    //Div Reposição
+    let divColumnReposicao = document.createElement('div');
+    divColumnReposicao.className = 'columns column_reposicao';
+    //Div Ponto Extra
+    let divColumnPontosExtras = document.createElement('div');
+    divColumnPontosExtras.className = 'columns column_pontos_extras';
     let counter = 1;
+
     for (let j = 0; j < aulaSortedKeys.length; j++) {
       //Usa as keys dos dois 'fors', a do bimestre "ex: bimestres_1" e a key da aula "ex: aula_3" para gerar o bloco aula
+     
       let aula = cursoDB.bimestres[bimSortedKeys[i]][aulaSortedKeys[j]];
+      if(aula.categoria === "reposição"){
+        divColumnReposicao.innerHTML += createHTMLAula(aula, aulaSortedKeys[j], bimSortedKeys[i]);
+      }
+      else if(aula.categoria && aula.categoria.includes('ponto extra')){
+        divColumnPontosExtras.innerHTML += createHTMLPontoExtra(aula, aulaSortedKeys[j], bimSortedKeys[i]);
+      }
+      else{
       //----------------------------------------------------------------------------------------
-      if (counter <= 4) {
-        divColumn.innerHTML += createHTMLAula(aula, aulaSortedKeys[j], bimSortedKeys[i]);
+        if (counter <= 4) {
+          divColumn.innerHTML += createHTMLAula(aula, aulaSortedKeys[j], bimSortedKeys[i]);
         if (counter === 4) {
           contentColumns.appendChild(divColumn);
           divColumn = document.createElement('div');
@@ -145,28 +232,43 @@ function createBgCursosInnerContent(bgCursoHTML, cursoDB) {
         }
         counter++;
       }
-
+    }
     } //--------------------------end for Aulas
-    if (counter > 1) { contentColumns.appendChild(divColumn); }
+    if (counter > 1) { 
+      contentColumns.appendChild(divColumn); 
+    }
     divBimestre.appendChild(titleBimestre); // Adiciona o título do bimestre
+    //----------------------Resumo
+    let divResumo = createResumoBimestreHTML(cursoDB, bimSortedKeys[i]);
+    console.log(divResumo)
+    //divResumo.querySelector(".pontos_extras_value").innerHTML =  resumoBimestre[bimSortedKeys[i]].pontosExtras;
+        divBimestre.appendChild(divResumo);
+    //-----------------------------
+    
     divBimestre.innerHTML += contentColumns.innerHTML; //Adiciona o conteúdo do bimestre
+    if(divColumnReposicao.innerHTML !== ""){
+      divBimestre.appendChild(divColumnReposicao); //Adiciona o conteúdo do bimestre
+    }
+    if(divColumnPontosExtras.innerHTML !== ""){
+      divBimestre.appendChild(divColumnPontosExtras); //Adiciona o conteúdo do bimestre
+    }
     divBgBimestres.appendChild(divBimestre); //Adiciona o bimestre no .bg_bimestres
+    
     divCursoContent.appendChild(divBgBimestres); //Adiciona o '.bg_bimestres' em '#curso_content'
   }//------------------------------------------------END FOR Bimestres
 
   return bgCursoHTML.innerHTML;
 }
 
-
-function createHTMLAula(aulaDados, n_aula, n_bimestre) {
+function createHTMLPontoExtra(aulaDados, n_aula, n_bimestre) {
   //substitui espaços em branco pelo underscore e passa para minúsculas as letras
   let id_aula = commonFunc.stringToID(n_aula);
-
   //let id_bimestre = n_bimestre.replace(/\s+/g, "_").toLowerCase();
   let id_bimestre = commonFunc.stringToID(n_bimestre);
+ 
   let block = `
     <div id='${id_bimestre}_${id_aula}' data-bimestre='${n_bimestre}' 
-    data-aula='${n_aula}'  class="aulas aula_feita">
+    data-aula='${n_aula}' class="aulas aula_${aulaDados.status}" data-aula_categoria="${aulaDados.categoria}">
      <span class='btn_open_close_aulas'>
      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
      <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
@@ -175,7 +277,43 @@ function createHTMLAula(aulaDados, n_aula, n_bimestre) {
      <div class='menu_top_block_aulas'>
      </div>
      <p>
-     <span class='aula_numero'>${n_aula}</span></p>
+     <span class='aula_numero'>${n_aula}</span> </p>
+  
+
+      <div class='aula_detalhes'>
+          <p>
+          <span class='aula_detalhes_info'>${aulaDados.descricao}</span>
+          </p>
+      </div>
+     <span class='btn_deletar_aula'>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+      </svg>
+     </span>
+  </div>
+  `;
+  return block;
+}
+
+function createHTMLAula(aulaDados, n_aula, n_bimestre) {
+  //substitui espaços em branco pelo underscore e passa para minúsculas as letras
+  let id_aula = commonFunc.stringToID(n_aula);
+  //let id_bimestre = n_bimestre.replace(/\s+/g, "_").toLowerCase();
+  let id_bimestre = commonFunc.stringToID(n_bimestre);
+ 
+  let block = `
+    <div id='${id_bimestre}_${id_aula}' data-bimestre='${n_bimestre}' 
+    data-aula='${n_aula}'  class="aulas aula_${aulaDados.status}" data-aula_categoria="${aulaDados.categoria}">
+     <span class='btn_open_close_aulas'>
+     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+     <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+     </svg>
+     </span>
+     <div class='menu_top_block_aulas'>
+     </div>
+     <p>
+     <span class='aula_numero'>${n_aula}</span> - <span class='status'>${aulaDados.status}<span></p>
      <p>
      <span class='aula_tema'>Tema:<span class='aula_tema_info'>${aulaDados.tema}</span></span>
      </p>

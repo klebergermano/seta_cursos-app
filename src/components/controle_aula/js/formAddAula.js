@@ -1,5 +1,5 @@
-import * as commonFunc from "../common/commonFunctions.js";
-import * as dbAlunoHistFunc from "../common/dbAlunoHistoricoFunc.js";
+import * as commonFunc from "../../js_common/commonFunctions.js";
+import * as dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
 import * as formAddAluno from "./formAddAluno.js";
 import * as formEditAulas from "./formEditAula.js";
 
@@ -7,7 +7,6 @@ export async function insertFormAddAulaHTML() {
   commonFunc.insertElementHTML('#page_content',
     './components/controle_aula/formAddAula.html', eventsFormAddAula);
 }
-
  export function eventsFormAddAula(form) {
   form.querySelector('.btn_close_form').addEventListener('click', (e) => {
     commonFunc.removeElementChild('#page_content', '#form_add_aula', () => {
@@ -15,21 +14,68 @@ export async function insertFormAddAulaHTML() {
     });
   })
   form.addEventListener("submit", (e) => {
-    submitformAddAula(e);
-   });
+    submitformAddAula(e);  
+  });
   //Bloqueia o fundo com o "#block_screen".
   commonFunc.changeCSSDisplay('#block_screen', 'block')
   //Copia as opções do "#main_select_aluno" e insere no select_aluno
   insertOptionsInSelectAluno(form)
   //insere as opções de curso e seta o selecionado.
-  insertOptionsInSelectCurso(form)
+  insertOptionSelectCurso(form)
   form.querySelector('#select_bimestre').addEventListener('change', (e) => {
     form.querySelector('#select_aula').removeAttribute('disabled');
     validaSelectAula(form)
-  });;
+  });
+  displayAlunoCursoNome(form)
+  eventClickBtnStatus(form)
 }
 
-function insertOptionsInSelectAluno(form) {
+function eventClickBtnStatus(form){
+  let btns = form.querySelector('#div_status_aula').querySelectorAll('label');;
+  btns.forEach((item)=>{
+    item.addEventListener('click', ()=>{
+    setClassBtnStatus(form)
+    });
+  });
+}
+
+export function setClassBtnStatus(form){
+  removeClassActivedBtnStatus();
+  let btns = form.querySelector('#div_status_aula').querySelectorAll('label');
+  btns.forEach((item)=>{
+    if(item.querySelector('input').checked === true){
+      item.classList.add('actived_'+item.id);
+      let tema = form.querySelector("#tema");
+      let detalhes = form.querySelector("#detalhes");
+      if(item.querySelector('input').value !== 'concluida'){
+        tema.setAttribute('disabled', true); tema.value = "";
+       detalhes.setAttribute('disabled', true); detalhes.value = "";
+      }else{
+        tema.removeAttribute('disabled');
+        detalhes.removeAttribute('disabled');
+      }
+      }
+  });
+}
+
+function removeClassActivedBtnStatus(){
+  let btns = document.querySelectorAll('label');
+  btns.forEach((item)=>{
+      item.className = '';
+  });
+}
+
+function displayAlunoCursoNome(form){
+  setTimeout(()=>{
+    let selectAluno = form.querySelector('#select_aluno');
+    let selectCurso = form.querySelector('#select_curso');
+    let aluno = selectAluno.options[selectAluno.selectedIndex].innerHTML;
+    let curso = selectCurso.options[selectCurso.selectedIndex].innerHTML;
+  form.querySelector('#aluno_nome').innerHTML = '<span>Aluno: </span>'+aluno;
+  form.querySelector('#curso_nome').innerHTML = '<span>Curso: </span>'+curso;
+  }, 100)
+}
+export function insertOptionsInSelectAluno(form) {
   let select = form.querySelector('#select_aluno');
   let mainSelect = document.querySelector('#main_select_aluno');
   select.innerHTML = mainSelect.innerHTML;
@@ -37,13 +83,28 @@ function insertOptionsInSelectAluno(form) {
   select.setAttribute('disabled', true);
 }
 
+export  async function insertOptionSelectCurso(form){
+  let select = form.querySelector('#select_curso');
+  let option = ``;
+let bg_curso = document.querySelectorAll(".bg_curso");
+let navCursos = document.querySelector('.nav_cursos_aluno');
+let activeCurso = navCursos.querySelector('.active').dataset.active;
+bg_curso.forEach((curso)=>{
+    if (commonFunc.stringToID(curso.dataset.curso) === activeCurso) {
+     select.innerHTML = `<option value='${curso.dataset.curso}' selected>${curso.dataset.curso}</option>`
+    }
+})
+}
+
 //Seta as opções de cursos em select_curso_add_aluno;
-function insertOptionsInSelectCurso(form) {
+export async function XXXXXinsertOptionsInSelectCurso(form){
+  insertOptionSelectCurso(form)
+
   let select = form.querySelector('#select_aluno');
   let RA = select.options[select.selectedIndex].value;
-  let aluno = dbAlunoHistFunc.getAlunoHistCursosDB(RA);
   let option = ``;
-  aluno.then((res) => {
+  let aluno = dbAlunoHistFunc.getAlunoHistCursosDB(RA);
+   aluno.then((res) => {
     res.forEach((item) => {
       option += `<option value='${item.data().curso}'>${item.data().curso}</option>`;
     });
@@ -53,6 +114,7 @@ function insertOptionsInSelectCurso(form) {
     }).then(() => {
       setSelectedInCurso(form)
     })
+   
 }
 function setSelectedInCurso(form) {
   let navCursos = document.querySelector('.nav_cursos_aluno');
@@ -73,12 +135,10 @@ function validaSelectAula(form) {
 }
 
 function getInfoFormAddAula(form) {
-  console.log(form);
   let infoAddAula = {};
   let selectAluno = form.querySelector("#select_aluno");
 
   let RA = selectAluno.options[selectAluno.selectedIndex].value;
-  console.log(RA);
 
   let selectCurso = form.querySelector("#select_curso");
   let curso = selectCurso.options[
@@ -123,6 +183,8 @@ function blocoAddAula(dados) {
   let aula = {
     [dados.select_bimestre.value]: {
       [dados.select_aula.value]: {
+        categoria: dados.select_categoria.value,
+        status: dados.status.value,
         tema: dados.tema.value,
         data: dados.data.value,
         horario: dados.horario.value,

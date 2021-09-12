@@ -1,23 +1,31 @@
+import * as commonFunc from "../../js_common/commonFunctions.js";
+import * as navCursosAluno from "./navCursosAluno.js";
 
 export function eventDeleteCurso(){
     let btn_deletar_curso = document.querySelectorAll('.btn_deletar_curso');
     btn_deletar_curso.forEach((item)=>{
         item.addEventListener('click', (e)=>{
+        commonFunc.confirmBoxDelete('#aluno_content', "Tem certeza que deseja deletar?", ()=>{
             deleteCurso(e.target)
+        });
+       
+        
         });
     })
 }
  function deleteCurso(btn){
-     console.log(btn);
     let aulaInfoDelete = {};
     aulaInfoDelete.RA = btn.dataset.aluno_ra;
     aulaInfoDelete.curso =  btn.dataset.delete_curso;
-    console.log(aulaInfoDelete);
      db.collection("aluno_historico")
     .doc(aulaInfoDelete.RA)
     .collection("cursos")
     .doc(aulaInfoDelete.curso)
-    .delete()
+    .delete().then(()=>{
+        navCursosAluno.displayFirstCursoAluno();
+    }).then(()=>{
+        commonFunc.  changeCSSDisplay("#block_screen", "none");
+    })
 }
 
 export function eventsDeletarAula(){
@@ -37,13 +45,9 @@ function getInfoDeleteAula(item){
     aulaInfoDelete.curso = bg_curso.dataset.curso;
     aulaInfoDelete.aula = aula.dataset.aula;
     aulaInfoDelete.bimestre = aula.dataset.bimestre;
-    /*
-    if(confirm(`Tem certeza de que deseja deletar do ${aulaInfoDelete.bimestre.toUpperCase()} a ${aulaInfoDelete.aula.toUpperCase()}? 
-Essa ação não poderá ser desfeita!`)){
-    }
-    */
+    commonFunc.confirmBoxDelete('#aluno_content', "Tem certeza que deseja deletar essa aula? <br/> <span style='color:#dd0000'>Essa ação não podera ser desfeita!</span>", ()=>{
     deleteDbAula(aulaInfoDelete)
-
+    });
 }
 
 

@@ -1,5 +1,5 @@
-import * as dbAlunoHistFunc from "../common/dbAlunoHistoricoFunc.js";
-import * as commonFunc from "../common/commonFunctions.js";
+import * as dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
+import * as commonFunc from "../../js_common/commonFunctions.js";
 
 export function insertFormAddCursoHTML(){
   commonFunc.insertElementHTML('#page_content', 
@@ -7,12 +7,10 @@ export function insertFormAddCursoHTML(){
 }
 
 function eventsFormAddCurso(form) {
-
   form.querySelector("#select_aluno")
   .addEventListener("input", (e) => {
     validaSelectOptionsAddCurso(form);
   });
-  
   form.querySelector('.btn_close_form').addEventListener('click', (e)=>{ 
     commonFunc.removeElementChild('#page_content', '#form_add_curso',()=>{
     commonFunc.changeCSSDisplay('#block_screen', 'none')
@@ -20,7 +18,6 @@ function eventsFormAddCurso(form) {
   })
   //Copia as opções do "#main_select_aluno" e insere no select_aluno
   insertOptionsInSelectAlunoCurso(form)
-
   form.addEventListener("submit", (e) => {
     submitformAddCurso(e);
    });

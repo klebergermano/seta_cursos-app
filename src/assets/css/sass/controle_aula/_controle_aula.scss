@@ -16,16 +16,13 @@
     color:#444;
   }
 
-
   #form_select_aluno {
-   //background: #333;
-   //border: $border-set-default;
     width: 100%;
     height: auto;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding-bottom:20px;
     label{
       background:#fff;
@@ -33,25 +30,22 @@
       padding: 10px;
       border: 1px solid #444;
       border-right:0px;
-    
-
     }
 
     .div_input {
-    display:flex;
+      background:#f90;
+      display:flex;
       float: left;
       justify-content: center;
       select{
-    padding: 10px;
-    border: 1px solid #444;
-
-
-        font-weight: bold;
-        font-size:16px;
-      }
+          padding: 10px;
+          border: 1px solid #444;
+          font-weight: bold;
+          font-size:16px;
+        }
     }
     button {
-      float: right;
+      float: left;
       margin:0px;
       margin-left:10px;
       padding:14px;
@@ -65,14 +59,14 @@
     border-radius: 5px 5px 0px 0px;
     border: $border-set-default;
     overflow: hidden;
-    
+    position:relative;
+ 
   nav.nav_cursos_aluno {
       background-color: #fff;
       border-bottom:$border-set-default;
       display:flex;
       justify-content: flex-end;
       align-items: center;
-  
 
       ul {
         position: relative;
@@ -121,8 +115,6 @@
             }
             &:active{
               background:#f6f6e0;
-  
-              
             }
           }
           .active{
@@ -148,14 +140,42 @@
       color:$primary-color;
       padding:5px 10px 8px 10px;
       svg{
-     height:25px; width:auto;
-
+         height:25px; width:auto;
       }
       &:hover{
-      background: #ffe;
-
+       background: #ffe;
+      }
+      &:active{
+        box-shadow: inset 0px 0px 3px #111;
+      }
+    }
+    .btn_extra{
+      cursor: pointer;
+      padding:5px 10px;
+      margin-bottom:10px;
+      border:1px solid #333;
+      border-radius: 3px;
+  
+      &:active{
+        background: #fff;
+        box-shadow: inset 0px 0px 2px #111;
       }
 
+    }
+    .btn_add_reposicao{
+      color: #8971cc;
+      border-color: #8971cc;
+      &:hover{
+        background:#e7e7ff
+      }
+    }
+    .btn_add_ponto_extra{
+      color:#779214;
+      border-color: #779214;
+      &:hover{
+        background:#edffcf
+      }
+    
     }
 
     .bg_curso{
@@ -219,23 +239,26 @@
     
       }
       .btn_deletar_curso{
-        border-color:rgb(54, 27, 27);
-  background:rgb(230, 62, 62);
-  color:#fff;
-  &:hover{
-    background: rgb(252, 70, 70);
-  }
+        border-radius:5px;
+        border-color:rgb(151, 23, 23);
+        background:rgb(230, 62, 62);
+        color:#fff;
+        &:hover{
+          background: rgb(252, 70, 70);
+        }
       }
       .btn_add_aula{
        
        position: initial;
-       margin-right:10px;
+       margin-left:10px;
         svg{ width:auto; height: auto; margin-bottom:-2px}
         &:hover{
           background: #fff
         }
+        
       }
-
+      
+ 
     }
     .bg_bimestres {
      // border: $border-set-default;
@@ -259,7 +282,27 @@
         box-shadow: 0px 1px 1px #999;
 
        // border: 1px solid #f90;
+.resumo_bimestre{
+      background:#fff;
+      width:100%;
+      display: grid;
+      grid-gap: 1px;
+      grid-template-columns: 1fr 1fr 1fr;
+      padding:10px;
 
+      p{
+        width:auto;
+        padding:5px;
+        box-shadow: 0px 0px 0px 1px #ccc;  
+      }
+      span{
+        font-weight: bold;
+      }
+        .feedback{
+          grid-column: 1 / 4; 
+          width:100%;
+        }
+     }
         h2 {
           font-weight: normal;
           flex-basis: 100%;
@@ -271,56 +314,88 @@
           padding-bottom:10px !important;
           border-bottom:1px solid #ccc;
           color:rgb(77, 77, 77);
-          
         }
         .columns {
           width: 24%;
           min-width: 200px;
           flex-grow: 1;
-          margin:0.5%;
-          
+          border:$border-set-default;
         }
-        
+        .column_reposicao{
+          display:flex;
+          flex-direction: row;
+          flex-wrap: wrap; 
+          background: #dad3df;
+          .aulas{width:auto; flex-grow:1; flex-shrink: 1;}
+        }
+        .column_pontos_extras{ 
+          display:flex;
+          flex-direction: row;
+          flex-wrap: wrap; 
+          background: #f2f8f3;
+          .aulas{width:auto; flex-grow:1; flex-shrink: 1;
+          max-width: 250px;}
+        }
         .aulas {
           position:relative;
-          margin-top: 10px;
+          margin:10px;
           width: auto;
           max-width:300px;
           background: #ffffff;
           height: 80px;
-       border: 1px solid rgb(70, 108, 179);
+          border: 1px solid rgb(70, 108, 179);
           overflow: hidden;
           transition: height 0.5s;
           box-shadow: 0px 1px 1px rgb(156, 156, 156);
           font-size: 13px;
           padding: 5px 10px 10px 10px;
-
-      
+          .status{
+            text-transform: capitalize;
+          }
           .aula_detalhes{
             margin-top:10px;
             border:1px solid #999;
             overflow-y: scroll;
             height:145px;
             padding:5px;
-
           }
-       
           .aula_numero{
             text-transform: capitalize;
             color: darken($primary-color, 20%);
-     
           }
           .aula_data{
             padding: 5px 0px;
             svg{max-height:14px; margin-bottom:-2px;
             color:$text-color}
             .aula_data_info{
-       
             }
-       
-
           }
-     
+        }
+        .aula_concluida{
+          background: #fff;
+
+        }
+        .aula_falta{
+          background: #fee;
+          border-color: rgb(163, 68, 68);
+
+        }
+        .aula_remarcada{
+          background: rgb(229, 229, 241);
+          border-color: rgb(106, 117, 128);
+        }
+        [data-aula_categoria="reposição"]{
+          background:#ddd4f5 !important;
+          border:1px solid #666;
+        }
+        [data-aula_categoria="ponto extra"]{
+          background:#ecfcb4 !important;
+          border:1px solid #666;
+          height:30px;
+          max-height: 180px !important;
+          .aula_detalhes{
+            height:110px;
+          }
         }
         .open_aula {
           height: 260px;

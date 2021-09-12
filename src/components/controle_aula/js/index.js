@@ -1,10 +1,11 @@
 import * as alunoContent from "./alunoContent.js";
 
 import * as formAddAula from "./formAddAula.js";
-import * as dbAlunoHistFunc from "../common/dbAlunoHistoricoFunc.js";
+import * as dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
+import * as commonFunc from "../../js_common/commonFunctions.js";
+
 import * as formAddCursos from "./formAddCurso.js";
 import * as formAddAluno from "./formAddAluno.js";
-import * as commonFunc from "../common/commonFunctions.js";
 
 
 function insertSelectAlunos() {
@@ -16,12 +17,9 @@ function insertSelectAlunos() {
       }</option>`;
     });
     document.querySelector("#main_select_aluno").innerHTML = selectAluno;
-  
   });
 };
 
-
-//TODO: Arrumar ordem de execução das funções
 export function onload(){
  insertSelectAlunos();
  document.querySelector('#main_select_aluno').addEventListener('input', (e)=>{

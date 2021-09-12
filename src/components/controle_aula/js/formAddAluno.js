@@ -1,5 +1,5 @@
-import * as commonFunc from "../common/commonFunctions.js";
-import * as  dbAlunoHistFunc from "../common/dbAlunoHistoricoFunc.js";
+import * as commonFunc from "../../js_common/commonFunctions.js";
+import * as  dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
 
 export function insertFormAddAlunoHTML(){
   commonFunc.insertElementHTML('#page_content',
@@ -29,7 +29,10 @@ function eventsFormAddAluno(){
   commonFunc.changeCSSDisplay('#block_screen', 'block');
   //Insere as os RAs ja cadastrados como opções do datalist.
   insertOptionsAddAlunoRA()
+  
 }
+
+
 
 //Função de validação do valor inserido no campoo RA, 
 //caso esse valor ja exista bloqueia a inserção.

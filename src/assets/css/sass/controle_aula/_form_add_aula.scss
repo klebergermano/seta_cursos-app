@@ -6,7 +6,6 @@ dialog{
 #bg_forms_add{
   overflow: hidden;
 }
-
 .forms{
   @include form_flex;
   border: $border-set-default;
@@ -18,14 +17,12 @@ dialog{
   background: #fff;
   transform: scale(1);
   box-shadow: 0px 1px 2px #666;
-
   .btn_close_form{
     right:0px;
     top:0px;
     padding: 5px 10px;
     position:absolute;
     cursor:pointer;
-
     &:hover{
       background:rgb(221, 79, 79);
     color:#fff;
@@ -42,21 +39,116 @@ dialog{
   }
 }
 #form_add_aula{
-transition: all 2s;
-background:#fff;
-
-    #data_hora{
-        display:flex; 
-        max-width: 100%;
-        input{
-        }
+  transition: all 2s;
+  border:2px solid lighten($primary-color, 10%);
+  box-shadow: 0px 1px 1px #222;
+  height:auto;
+  div{
+    min-height:35px;
+    margin-top:15px;
+    padding:0px;
+    display: flex;
+    justify-content: center;
+    select{ display: block;
+    flex-grow: 1;}
+    input{flex-grow: 1;}
+  }
+  #div_detalhes{
+    min-height: 50px;
+  }
+  #div_tema, #div_detalhes{
+    width:100%;
+    flex-grow: 1;
+  }
+   background:#fff;
+    #div_data, #div_horario{
+      max-width: 50%;
     }
+    #select_categoria{display:none;}
+    #aluno_nome, #curso_nome{
+      margin-top:10px;
+      padding:10px 10px;
+      font-size: 16px;
+      border:1px solid #ccc;
+      font-weight: bold;
+      width:50%;
+      span{
+      font-weight: normal;
 
-    #select_aula{
-      option[disabled=true]{
-        background:#eec;
+        padding:5px 5px 5px 0px;
       }
     }
+    #div_select_aluno{
+      display:none;
+    }
+    #div_select_bimestre{
+      max-width: 50%;
+    }
+    #div_select_curso{
+      display: none;
+    }
+        #select_aula{
+          option[disabled=true]{
+            background:#eec;
+          }
+        }
+
+        #div_status_aula{
+          label{ 
+            position: relative;
+            border:1px solid #999;
+            background:#f0f0f0;
+            padding: 5px 10px 5px 10px;
+            user-select: none;
+            cursor:pointer; 
+            input{
+              flex-shrink: 1;
+              flex-grow: 0;
+              -webkit-appearance: none;
+              -moz-appearance: none;
+              appearance: none;
+            
+              width: 8px !important;
+              height: 8px !important;
+              min-width: 8px !important;
+              min-height: 8px !important;
+            border-radius: 50%;
+              border: 2px solid #999;
+              transition: 0.2s all linear;
+              margin-right: 5px;
+              position: relative;
+              top: 1px;
+              border: 1px solid rgb(201, 201, 201);
+            }
+            input:checked {
+              background: #4082c0;
+            }
+            &:hover{
+              background:#ddd;
+            }
+          }
+          
+          .actived_label_aula_concluida{
+            background:#cec !important;
+            input:checked {
+              background: #40c071;
+            }
+          }
+          .actived_label_aula_com_falta{
+            background:#fcc !important;
+            input:checked {
+              background: #c0405c;
+            }
+          }
+          .actived_label_aula_remarcada{
+            background:#cde !important;
+            input:checked {
+              background: #4082c0;
+            }
+          }
+         
+         
+        }
 
 }
 .edit_form{
@@ -125,7 +217,10 @@ div{
     text-decoration: none;
   }
 }
-input:disabled{
-  
+
+  input[type=submit]:disabled {
   background:#999 !important;
+}
+  input:disabled, textarea:disabled {
+  background:#ddd !important;
 }

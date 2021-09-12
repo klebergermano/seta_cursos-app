@@ -1,6 +1,6 @@
 import * as formAddAula from "./formAddAula.js";
-import * as commonFunc from "../common/commonFunctions.js";
-import * as dateFunc from "../common/dateFunc.js";
+import * as commonFunc from "../../js_common/commonFunctions.js";
+import * as dateFunc from "../../js_common/dateFunc.js";
 //TODO:-----------------------------EDIT Aulas------------------------------------
 export function insertFormEditAulaHTML(eventClick){
   let form = commonFunc.insertElementHTML('#page_content',
@@ -13,6 +13,7 @@ export function insertFormEditAulaHTML(eventClick){
 }
 
 function eventsFormEditAula(eventClick){
+
 let form = document.querySelector('#form_add_aula');
  //Insere as informações da aula em "#form_add_aula".
  insertInfoInputsFormAddAula(form, eventClick);
@@ -23,6 +24,18 @@ let form = document.querySelector('#form_add_aula');
  //setEditAulaInfoInFormAddAula(form);
 }
 
+function setCheckedStatusAula(form, aulaInfo){
+  let status = document.getElementsByName("status");
+  status.forEach((item)=>{
+    if(item.value === aulaInfo.status){
+      item.checked = true;
+      
+    }else{
+      item.removeAttribute('checked');
+    }
+    formAddAula.setClassBtnStatus(form)
+  });
+}
 
   function insertTextElementsEditAula(){
     let h3 = document.querySelector('#form_add_aula').querySelectorAll('h3')[0];
@@ -45,26 +58,20 @@ let form = document.querySelector('#form_add_aula');
     h3.innerHTML= svgAddAula + "Adicionar Aula";
   }
 
-  function setEditAulaInfoInFormAddAula(formAddAula){
-    //Mostra o formulário "#form_add_aula" e o bloqueio de tela "#block_screen".
-    displayFormEditAula()
-    //adiciona o event listener no botão de fechar o formulário.
-    addEventListenerCloseForm(formAddAula)
-   //disable de selects in #form_add_aula
-    disableSelectsInFormAddAula(formAddAula)
-  }
+
 
   function insertInfoInputsFormAddAula(formAddAula, eventClick){
-  console.log(eventClick.target.closest('.aulas'));
-
     let aulaInfo = getInfoInputsFormAddAula(eventClick);
-    console.log(aulaInfo);
+    
+    setCheckedStatusAula(formAddAula, aulaInfo)
+
     formAddAula.querySelector("#tema").value = aulaInfo.tema;
     formAddAula.querySelector("#horario").value = aulaInfo.horario;
     formAddAula.querySelector("#data").value = aulaInfo.data;
     formAddAula.querySelector("#detalhes").value = aulaInfo.detalhes;
     let bimestres = formAddAula.querySelector('#select_bimestre');
     let selectAulas = formAddAula.querySelector('#select_aula');
+
 
     bimestres.setAttribute('disabled', true);
     for(let i = 0; i <= selectAulas.options.length -1; i++){
@@ -75,10 +82,6 @@ let form = document.querySelector('#form_add_aula');
     for(let k = 0; k <= bimestres.options.length -1; k++){
       if(bimestres.options[k].value === aulaInfo.bimestre){
         bimestres.selectedIndex = k;
-        console.log('ok');
-      }else{
-        console.log(bimestres.options[k].value,'----------', aulaInfo.bimestre);
-
       }
     }
 }
@@ -89,6 +92,7 @@ let form = document.querySelector('#form_add_aula');
    let aulaInfo = {}
    aulaInfo.bimestre = aula.dataset.bimestre;
    aulaInfo.aula = aula.querySelectorAll('.aula_numero')[0].textContent;
+   aulaInfo.status = aula.querySelectorAll('.status')[0].textContent;
    aulaInfo.tema = aula.querySelectorAll('.aula_tema_info')[0].textContent;
    aulaInfo.horario = aula.querySelectorAll('.aula_horario_info')[0].textContent;
    let newDate = dateFunc.changeDateTextToYYYYMMDD(aula.querySelectorAll('.aula_data_info')[0].textContent);
