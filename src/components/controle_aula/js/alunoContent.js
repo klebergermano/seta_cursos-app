@@ -101,7 +101,7 @@ export function resumoBimestreBD(curso){
       let concluidas = 0;
       let faltas = 0;
       let remarcadas = 0;
-      let nota_prova = 0;
+      let notaProva = 0;
 
 
       for(let j = 0; j < aulasKeys.length; j++){
@@ -109,7 +109,7 @@ export function resumoBimestreBD(curso){
        let aulaCategoria =  curso.bimestres[bimestresKeys[i]][aulasKeys[j]].categoria;
 
     if(aulaCategoria === "prova"){
-      nota_prova  = curso.bimestres[bimestresKeys[i]][aulasKeys[j]].nota;
+      notaProva  = curso.bimestres[bimestresKeys[i]][aulasKeys[j]].nota;
      }
        
      if(aulaStatus === "concluida"){
@@ -132,7 +132,12 @@ export function resumoBimestreBD(curso){
     resumoBimestres[bimestresKeys[i]].remarcadas = remarcadas; 
     resumoBimestres[bimestresKeys[i]].pontosExtras = pontosExtras; 
     resumoBimestres[bimestresKeys[i]].reposicao = reposicao; 
-    resumoBimestres[bimestresKeys[i]].nota_prova = nota_prova; 
+    resumoBimestres[bimestresKeys[i]].notaProva = notaProva; 
+    let notaFinal = parseFloat(notaProva) + pontosExtras;
+    if(notaFinal > 10) notaFinal = 10;
+    resumoBimestres[bimestresKeys[i]].notaFinal =  notaFinal;
+
+    console.log();
   }
   return resumoBimestres;
 
@@ -190,12 +195,14 @@ function createResumoBimestreHTML(cursoDB, bimestreKey){
   <p class='a_remarcadas'>Remarcadas: <span class='remarcadas_value'>${resBimestre.remarcadas}</span></p>
   <p class='a_reposicao_feita'>Reposições Feitas: <span class='reposicao_value'>${resBimestre.reposicao}<span></p>
   <p class='pontos_extras'>Pontos Extras: <span class='pontos_extras_value'>${resBimestre.pontosExtras}</span></p>
-  <p class='nota_prova'>Nota Prova: <span>${resBimestre.nota_prova}</span></p>
-  <p>Nota Final: <span></span></p>
+  <p class='nota_prova'>Nota Prova: <span>${resBimestre.notaProva}</span></p>
+  <p>Nota Final: <span>${resBimestre.notaFinal}</span></p>
   <div class='feedback'>
-  <p>Feedback: 
-  Lorem Ipsum Doneck auhudf asdfhusfuhsska hufasdf.
+    <p>Observação bimestral sobre o aluno: 
+    Lorem Ipsum Doneck auhudf asdfhusfuhsska hufasdf.
   </p>
+  <button class='btn' id='btn_feedback_bimestral'>Feedback</button>
+
   </div>
   `
   return divResumo;

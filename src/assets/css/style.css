@@ -1099,7 +1099,7 @@ input:disabled, textarea:disabled {
   height: 110px;
 }
 #controle_aula #aluno_content .bg_bimestres .bimestres [data-aula_categoria=prova] {
-  background: #acc6ff !important;
+  background: #d8e4fd !important;
 }
 #controle_aula #aluno_content .bg_bimestres .bimestres [data-aula_categoria=prova] .aula_detalhes {
   height: 110px;
