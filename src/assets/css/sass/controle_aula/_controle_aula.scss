@@ -325,8 +325,7 @@
           display:flex;
           flex-direction: row;
           flex-wrap: wrap; 
-          background: #dad3df;
-          .aulas{width:auto; flex-grow:1; flex-shrink: 1;}
+          
         }
         .column_pontos_extras{ 
           display:flex;
@@ -381,18 +380,25 @@
 
         }
         .aula_remarcada{
-          background: rgb(229, 229, 241);
+          background: #ddd;
           border-color: rgb(106, 117, 128);
         }
         [data-aula_categoria="reposição"]{
-          background:#ddd4f5 !important;
+          background:#f3eeff !important;
           border:1px solid #666;
+          width:auto; flex-grow:1; flex-shrink: 1;
         }
         [data-aula_categoria="ponto extra"]{
           background:#ecfcb4 !important;
           border:1px solid #666;
           height:30px;
           max-height: 180px !important;
+          .aula_detalhes{
+            height:110px;
+          }
+        }
+        [data-aula_categoria="prova"]{
+          background:#acc6ff !important;
           .aula_detalhes{
             height:110px;
           }

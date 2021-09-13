@@ -23,6 +23,8 @@
     <option value='comum'>Comum</option>
     <option value='reposição'>Reposição</option>
     <option value='reforço' >Reforço</option>
+    <option value='prova'>Prova</option>
+
   </select>
     <div id='div_select_curso'><label>Curso:</label>
       <select id='select_curso'>
@@ -69,7 +71,6 @@
       <label>Data:</label>
       <input required id="data" type="date" /> 
     </div>
-
       <div id='div_horario'>
         <label>Horário:</label>
       <input id="horario" list='horario_list'>
@@ -86,7 +87,21 @@
         <option value='19h às 21h'/>
       </datalist>
     </div>
-    <div id='div_tema'><label>Tema:</label><input  required  id="tema" type="text" /></div>
+    <div id='div_tema'><label>Tema:</label><input required  id="tema" type="text" /></div>
+    <div id='bg_prova_inputs'>
+      <div id='div_nota_prova'>
+        <label>Nota:</label>
+        <input id='nota_prova' type='number' />
+      </div>
+      <div id='div_numero_questoes'>
+        <label>Nº de Questões</label>
+        <input id='numero_questoes' type='number' />
+      </div>
+      <div id='div_obs_prova'>
+        <label >Obs.:</label>
+        <textarea id='obs_prova'></textarea>
+      </div>
+    </div>
     <div id='div_detalhes'><label>Detalhes:</label><textarea  required  id="detalhes"></textarea></div>
     <input type="submit" value="Salvar" />
   </form>

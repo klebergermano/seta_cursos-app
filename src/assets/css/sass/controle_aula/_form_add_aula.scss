@@ -53,6 +53,7 @@ dialog{
     flex-grow: 1;}
     input{flex-grow: 1;}
   }
+ 
   #div_detalhes{
     min-height: 50px;
   }
@@ -146,9 +147,42 @@ dialog{
               background: #4082c0;
             }
           }
-         
-         
         }
+        #bg_prova_inputs{
+        width:100%;
+        max-height:auto;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        padding:5px;
+        background: #dcdde7 ;
+        display: none;
+
+        div{max-width: auto; min-width: auto;
+         
+       }
+        label{min-width: 50px; max-width: auto; width: auto; font-size: 14px;
+       max-height: 30px; border-right:0px;
+       border: 1px solid #bbb;
+       border-right:0px;
+        
+      }
+     
+        input, textarea{min-width: auto; height:30px; max-height: auto;
+           min-height:30px;
+          border: 1px solid #ccc;
+          }
+        textarea{
+          min-width: 120px;
+          flex-shrink: 0;
+        }
+        #div_nota_prova{ width: auto; flex-shrink: 1;
+        min-width: auto; input{max-width: 50px; }}
+        #div_numero_questoes{label{width: 120px;} input{max-width: 50px; }}
+      #div_obs_prova{ flex-grow: 1;}
+        }
+               
 
 }
 .edit_form{

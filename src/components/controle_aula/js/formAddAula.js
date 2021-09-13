@@ -28,6 +28,7 @@ export async function insertFormAddAulaHTML() {
   });
   displayAlunoCursoNome(form)
   eventClickBtnStatus(form)
+  setInputsProva(form)
 }
 
 function eventClickBtnStatus(form){
@@ -37,6 +38,33 @@ function eventClickBtnStatus(form){
     setClassBtnStatus(form)
     });
   });
+}
+
+function setInputsProva(form){
+let selectAula = form.querySelector("#select_aula");
+let selectCategoria = form.querySelector("#select_categoria");
+
+selectAula.addEventListener('change', (e)=>{
+  if(e.target.value === "aula 16"){
+    form.querySelector("#bg_prova_inputs").style.display = "flex";
+    form.querySelector("#div_detalhes").style.display = "none";
+    form.querySelector("#nota_prova").setAttribute("required", true);
+    form.querySelector("#numero_questoes").setAttribute("required", true);
+    form.querySelector("#obs_prova").setAttribute("required", true);
+    form.querySelector("#detalhes").removeAttribute("required");
+    selectCategoria.selectedIndex = 3;
+
+  }else{
+    selectCategoria.selectedIndex = 0;
+    form.querySelector("#div_detalhes").style.display = "flex";
+    form.querySelector("#bg_prova_inputs").style.display = "none";
+    form.querySelector("#nota_prova").removeAttribute("required");
+    form.querySelector("#numero_questoes").removeAttribute("required");
+    form.querySelector("#obs_prova").removeAttribute("required");
+    form.querySelector("#detalhes").setAttribute("required", true);
+
+  }
+})
 }
 
 export function setClassBtnStatus(form){
@@ -180,18 +208,37 @@ function blockSelectOptionsAddAulas(RA, curso, bimestre) {
 }
 
 function blocoAddAula(dados) {
-  let aula = {
-    [dados.select_bimestre.value]: {
-      [dados.select_aula.value]: {
-        categoria: dados.select_categoria.value,
-        status: dados.status.value,
-        tema: dados.tema.value,
-        data: dados.data.value,
-        horario: dados.horario.value,
-        detalhes: dados.detalhes.value,
+  let aula = {};
+  if( dados.select_categoria.value === "prova"){
+    aula = {
+      [dados.select_bimestre.value]: {
+        [dados.select_aula.value]: {
+          categoria: dados.select_categoria.value,
+          status: dados.status.value,
+          tema: dados.tema.value,
+          data: dados.data.value,
+          horario: dados.horario.value,
+          nota: dados.nota_prova.value,
+          numero_questoes: dados.numero_questoes.value,
+          observacao: dados.obs_prova.value,
+        },
       },
-    },
-  };
+    };
+  }else{
+    aula = {
+      [dados.select_bimestre.value]: {
+        [dados.select_aula.value]: {
+          categoria: dados.select_categoria.value,
+          status: dados.status.value,
+          tema: dados.tema.value,
+          data: dados.data.value,
+          horario: dados.horario.value,
+          detalhes: dados.detalhes.value,
+        },
+      },
+    };
+  }
+
   return aula;
 }
 
