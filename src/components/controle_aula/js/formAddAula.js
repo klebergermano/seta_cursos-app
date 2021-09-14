@@ -61,10 +61,11 @@ selectAula.addEventListener('change', (e)=>{
     form.querySelector("#numero_questoes").removeAttribute("required");
     form.querySelector("#obs_prova").removeAttribute("required");
     form.querySelector("#detalhes").setAttribute("required", true);
-
   }
 })
 }
+
+
 
 export function setClassBtnStatus(form){
   removeClassActivedBtnStatus();

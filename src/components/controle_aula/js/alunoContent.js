@@ -217,20 +217,24 @@ function createResumoBimestreHTML(cursoDB, bimestreKey){
   let divResumo = document.createElement('div');
   divResumo.className = 'resumo_bimestre'
   divResumo.innerHTML = `
+  <div class='row'>
   <p class='a_concluidas' >Aulas Concluidas: <span class='values concluidas_value'>${resBimestre.concluidas}</span></p>
   <p class='a_falta'>Faltas: <span class='values faltas_value'>${resBimestre.faltas}<span></p>
   <p class='a_remarcadas'>Remarcadas: <span class='values remarcadas_value'>${resBimestre.remarcadas}</span></p>
+  
   <p class='a_reposicao_feita'>Reposições Feitas: <span class='values reposicao_value'>${resBimestre.reposicao}<span></p>
   <p class='pontos_extras'>Pontos Extras: <span class='values pontos_extras_value'>${resBimestre.pontosExtras}</span></p>
   <p class='nota_prova'>Nota Prova: <span class='values nota_prova_value'>${resBimestre.notaProva}</span></p>
   <p>Nota Final: <span class='values nota_final_value'>${resBimestre.notaFinal}</span></p>
+  </div>
+  <div class='row'>
   <div class='feedback_bimestral'>
-  <span class='label'>
-  Observação bimestral sobre o aluno:
-  </span>
-  <p class='feedback_value'>${resBimestre.feedbackBimestral}
-  </p>
-  <button class='btn btn_add_feedback_bimestral'>Feedback</button>
+      <span class='label'>
+      Observação bimestral sobre o aluno:
+     </span>
+      <p class='feedback_value'>${resBimestre.feedbackBimestral}</p>
+      <button class='btn btn_add_feedback_bimestral'>Feedback</button>
+    <div>
   </div>
   `
   return divResumo;
@@ -270,8 +274,9 @@ function createBgCursosInnerContent(bgCursoHTML, cursoDB) {
 
     for (let j = 0; j < aulaSortedKeys.length; j++) {
       //Usa as keys dos dois 'fors', a do bimestre "ex: bimestres_1" e a key da aula "ex: aula_3" para gerar o bloco aula
-     
       let aula = cursoDB.bimestres[bimSortedKeys[i]][aulaSortedKeys[j]];
+      if(aula.categoria === "feedback bimestral"){
+      }else
       if(aula.categoria === "reposição"){
         divColumnReposicao.innerHTML += createHTMLAula(aula, aulaSortedKeys[j], bimSortedKeys[i]);
       }
@@ -343,8 +348,6 @@ function createHTMLPontoExtra(aulaDados, n_aula, n_bimestre) {
      </div>
      <p>
      <span class='aula_numero'>${n_aula}</span> </p>
-  
-
       <div class='aula_detalhes'>
           <p>
           <span class='aula_detalhes_info'>${aulaDados.descricao}</span>
@@ -377,11 +380,21 @@ function createHTMLProva(aulaDados, n_aula, n_bimestre) {
      </span>
      <div class='menu_top_block_aulas'>
      </div>
+
+          
      <p>
-     <span class='aula_numero'>${n_aula}</span> - <span class='status'>${aulaDados.status}<span></p>
+     <span class='aula_numero'>${n_aula}</span> - <span class='status'>${aulaDados.categoria} - ${aulaDados.status}<span></p>
      <p>
+     <p>
+     <span class='aula_tema'>Nota: <span class='aula_nota_prova'>${aulaDados.nota}</span></span>
+     </p>
+     
+     <p>
+     <span class='aula_tema'>Número de Questões: <span class='aula_numero_questoes'>${aulaDados.numero_questoes}</span></span>
+     </p>
      <span class='aula_tema'>Tema:<span class='aula_tema_info'>${aulaDados.tema}</span></span>
      </p>
+   
      <div class='aula_data'>
       <p>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
