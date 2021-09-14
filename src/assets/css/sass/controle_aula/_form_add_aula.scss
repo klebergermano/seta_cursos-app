@@ -30,6 +30,38 @@ dialog{
   }
 
 }
+
+.forms{
+  #aluno_nome, #curso_nome, #bimestre_nome{
+    margin-top:10px;
+    padding:10px 10px;
+    font-size: 16px;
+    border:1px solid #ccc;
+    font-weight: bold;
+    width:50%;
+    span{
+    font-weight: normal;
+
+      padding:5px 5px 5px 0px;
+    }
+  }
+}
+#form_add_feedback_bimestral{
+  #div_select_aluno, #div_select_curso, #div_select_bimestre{
+    display:none;
+  }
+  #aluno_nome, #curso_nome, #bimestre_nome{
+    width:auto !important;
+    max-width: 100% !important;
+    flex-grow: 1;
+    }
+    #div_observacao{
+      margin-top:10px;
+      padding:0px;
+      flex-grow: 1;
+      min-width: 100%;
+    }
+}
 #form_add_curso{
   select > option:disabled{
     background:#ffc;
@@ -66,19 +98,7 @@ dialog{
       max-width: 50%;
     }
     #select_categoria{display:none;}
-    #aluno_nome, #curso_nome{
-      margin-top:10px;
-      padding:10px 10px;
-      font-size: 16px;
-      border:1px solid #ccc;
-      font-weight: bold;
-      width:50%;
-      span{
-      font-weight: normal;
 
-        padding:5px 5px 5px 0px;
-      }
-    }
     #div_select_aluno{
       display:none;
     }
@@ -210,7 +230,6 @@ dialog{
     height   : 100%;
     content  :' ';
 }
- 
 }
 
 #btn_novo_aluno{

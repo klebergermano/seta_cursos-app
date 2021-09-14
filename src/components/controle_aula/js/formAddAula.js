@@ -26,7 +26,6 @@ export async function insertFormAddAulaHTML() {
     form.querySelector('#select_aula').removeAttribute('disabled');
     validaSelectAula(form)
   });
-  displayAlunoCursoNome(form)
   eventClickBtnStatus(form)
   setInputsProva(form)
 }
@@ -93,22 +92,13 @@ function removeClassActivedBtnStatus(){
   });
 }
 
-function displayAlunoCursoNome(form){
-  setTimeout(()=>{
-    let selectAluno = form.querySelector('#select_aluno');
-    let selectCurso = form.querySelector('#select_curso');
-    let aluno = selectAluno.options[selectAluno.selectedIndex].innerHTML;
-    let curso = selectCurso.options[selectCurso.selectedIndex].innerHTML;
-  form.querySelector('#aluno_nome').innerHTML = '<span>Aluno: </span>'+aluno;
-  form.querySelector('#curso_nome').innerHTML = '<span>Curso: </span>'+curso;
-  }, 100)
-}
 export function insertOptionsInSelectAluno(form) {
   let select = form.querySelector('#select_aluno');
   let mainSelect = document.querySelector('#main_select_aluno');
   select.innerHTML = mainSelect.innerHTML;
   select.selectedIndex = mainSelect.selectedIndex;
   select.setAttribute('disabled', true);
+ form.querySelector('#aluno_nome').innerHTML = '<span>Aluno: </span>'+  select.options[select.selectedIndex].textContent;
 }
 
 export  async function insertOptionSelectCurso(form){
@@ -122,39 +112,10 @@ bg_curso.forEach((curso)=>{
      select.innerHTML = `<option value='${curso.dataset.curso}' selected>${curso.dataset.curso}</option>`
     }
 })
+  form.querySelector('#curso_nome').innerHTML = '<span>Curso: </span>'+select.options[select.selectedIndex].textContent;
 }
 
-//Seta as opções de cursos em select_curso_add_aluno;
-export async function XXXXXinsertOptionsInSelectCurso(form){
-  insertOptionSelectCurso(form)
 
-  let select = form.querySelector('#select_aluno');
-  let RA = select.options[select.selectedIndex].value;
-  let option = ``;
-  let aluno = dbAlunoHistFunc.getAlunoHistCursosDB(RA);
-   aluno.then((res) => {
-    res.forEach((item) => {
-      option += `<option value='${item.data().curso}'>${item.data().curso}</option>`;
-    });
-  })
-    .then(() => {
-      form.querySelector("#select_curso").innerHTML = option;
-    }).then(() => {
-      setSelectedInCurso(form)
-    })
-   
-}
-function setSelectedInCurso(form) {
-  let navCursos = document.querySelector('.nav_cursos_aluno');
-  let activeCurso = navCursos.querySelector('.active').dataset.active;
-  let select = form.querySelector('#select_curso');
-  select.setAttribute('disabled', true);
-  for (let i = 0; i <= select.options.length - 1; i++) {
-    if (commonFunc.stringToID(select.options[i].value) === activeCurso) {
-      select.options[i].setAttribute('selected', true);
-    };
-  }
-}
 
 function validaSelectAula(form) {
   let infoAula;

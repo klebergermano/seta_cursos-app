@@ -7,6 +7,7 @@ import * as formEditAula from "./formEditAula.js";
 import * as formAddAula from "./formAddAula.js";
 import * as formAddReposicaoAula from "./formAddReposicaoAula.js";
 import * as formAddPontoExtra from "./formAddPontoExtra.js";
+import * as formAddFeedbackBimestral from "./formAddFeedbackBimestral.js";
 import * as deleteFunc from "./deleteFunc.js";
 
 export function eventsAlunoContent() {
@@ -24,16 +25,17 @@ export function insertAlunoContent(RA, snapshotChange) {
   let nomeCurso = snapshotChange[0].doc.data().curso;
   dbAlunoHistFunc.getAlunoHistCursosDB(RA)
     .then((alunoCursosDB) => {
-    
           let alunoContentHTML = createAlunoContentHTML(alunoCursosDB, RA);
           document.querySelector("#aluno_content").innerHTML = alunoContentHTML;
           navCursosAluno.insertNavCursosInBGCursos(RA, nomeCurso)
-          eventsAulas()
-          deleteFunc.eventDeleteCurso();
+       
     }).then(()=>{
+      eventsAulas()
+      deleteFunc.eventDeleteCurso();
       eventBtnAddAula();
       eventBtnAddReposicaoAula()
       eventBtnAddPontoExtra()
+      eventBtnAddFeedbackBimestral();
     })
 }
 function eventBtnAddAula(){
@@ -50,10 +52,19 @@ function eventBtnAddReposicaoAula(){
     })
   });
 }
+
 function eventBtnAddPontoExtra(){
   document.querySelectorAll(".btn_add_ponto_extra").forEach((item) => {
     item.addEventListener("click", () => {
       formAddPontoExtra.insertFormAddPontoExtra();
+    })
+  });
+}
+
+function eventBtnAddFeedbackBimestral(){
+  document.querySelectorAll(".btn_add_feedback_bimestral").forEach((item) => {
+    item.addEventListener("click", (e) => {
+      formAddFeedbackBimestral.insertFormAddFeedbackBimestral(e);
     })
   });
 }
@@ -91,6 +102,14 @@ function createBgCursoMainStructureHTML(curso_nome_bd, RA) {
 export function resumoBimestreBD(curso){
   let bimestresKeys = commonFunc.getReverseObjectKeys(curso.bimestres);
   let resumoBimestres = {}; 
+  let fd =  db.collection("aluno_historico").doc('RA01')
+  .collection('cursos').doc('Excel Avançado').get();
+
+fd.then((res)=>{
+ // console.log(res.data().bimestres["bimestre 1"])
+})
+
+
   for(let i = 0; i < bimestresKeys.length; i++){
     resumoBimestres[bimestresKeys[i]] = {}
     let bimestre = curso.bimestres[bimestresKeys[i]];
@@ -102,12 +121,19 @@ export function resumoBimestreBD(curso){
       let faltas = 0;
       let remarcadas = 0;
       let notaProva = 0;
+      let feedbackBimestral = '';
+
+
 
 
       for(let j = 0; j < aulasKeys.length; j++){
        let aulaStatus =  curso.bimestres[bimestresKeys[i]][aulasKeys[j]].status;
        let aulaCategoria =  curso.bimestres[bimestresKeys[i]][aulasKeys[j]].categoria;
 
+       if(aulaCategoria === "feedback bimestral"){
+        feedbackBimestral = curso.bimestres[bimestresKeys[i]][aulasKeys[j]].observacao;
+       
+       }
     if(aulaCategoria === "prova"){
       notaProva  = curso.bimestres[bimestresKeys[i]][aulasKeys[j]].nota;
      }
@@ -133,6 +159,7 @@ export function resumoBimestreBD(curso){
     resumoBimestres[bimestresKeys[i]].pontosExtras = pontosExtras; 
     resumoBimestres[bimestresKeys[i]].reposicao = reposicao; 
     resumoBimestres[bimestresKeys[i]].notaProva = notaProva; 
+    resumoBimestres[bimestresKeys[i]].feedbackBimestral = feedbackBimestral; 
     let notaFinal = parseFloat(notaProva) + pontosExtras;
     if(notaFinal > 10) notaFinal = 10;
     resumoBimestres[bimestresKeys[i]].notaFinal =  notaFinal;
@@ -190,19 +217,20 @@ function createResumoBimestreHTML(cursoDB, bimestreKey){
   let divResumo = document.createElement('div');
   divResumo.className = 'resumo_bimestre'
   divResumo.innerHTML = `
-  <p class='a_concluidas' >Aulas Concluidas: <span class='concluidas_value'>${resBimestre.concluidas}</span></p>
-  <p class='a_falta'>Faltas: <span class='faltas_value'>${resBimestre.faltas}<span></p>
-  <p class='a_remarcadas'>Remarcadas: <span class='remarcadas_value'>${resBimestre.remarcadas}</span></p>
-  <p class='a_reposicao_feita'>Reposições Feitas: <span class='reposicao_value'>${resBimestre.reposicao}<span></p>
-  <p class='pontos_extras'>Pontos Extras: <span class='pontos_extras_value'>${resBimestre.pontosExtras}</span></p>
-  <p class='nota_prova'>Nota Prova: <span>${resBimestre.notaProva}</span></p>
-  <p>Nota Final: <span>${resBimestre.notaFinal}</span></p>
-  <div class='feedback'>
-    <p>Observação bimestral sobre o aluno: 
-    Lorem Ipsum Doneck auhudf asdfhusfuhsska hufasdf.
+  <p class='a_concluidas' >Aulas Concluidas: <span class='values concluidas_value'>${resBimestre.concluidas}</span></p>
+  <p class='a_falta'>Faltas: <span class='values faltas_value'>${resBimestre.faltas}<span></p>
+  <p class='a_remarcadas'>Remarcadas: <span class='values remarcadas_value'>${resBimestre.remarcadas}</span></p>
+  <p class='a_reposicao_feita'>Reposições Feitas: <span class='values reposicao_value'>${resBimestre.reposicao}<span></p>
+  <p class='pontos_extras'>Pontos Extras: <span class='values pontos_extras_value'>${resBimestre.pontosExtras}</span></p>
+  <p class='nota_prova'>Nota Prova: <span class='values nota_prova_value'>${resBimestre.notaProva}</span></p>
+  <p>Nota Final: <span class='values nota_final_value'>${resBimestre.notaFinal}</span></p>
+  <div class='feedback_bimestral'>
+  <span class='label'>
+  Observação bimestral sobre o aluno:
+  </span>
+  <p class='feedback_value'>${resBimestre.feedbackBimestral}
   </p>
-  <button class='btn' id='btn_feedback_bimestral'>Feedback</button>
-
+  <button class='btn btn_add_feedback_bimestral'>Feedback</button>
   </div>
   `
   return divResumo;
@@ -223,6 +251,7 @@ function createBgCursosInnerContent(bgCursoHTML, cursoDB) {
     let aulaSortedKeys = commonFunc.getReverseObjectKeys(cursoDB.bimestres[bimSortedKeys[i]]);
     let divBimestre = document.createElement('div');  //cria a div '.bimestres'
     divBimestre.className = 'bimestres';
+    divBimestre.setAttribute('data-bimestre', bimSortedKeys[i] );
     let titleBimestre = document.createElement('h2');//cria o título do bimestre
     titleBimestre.textContent = bimSortedKeys[i];
     let contentColumns = document.createElement('div');
