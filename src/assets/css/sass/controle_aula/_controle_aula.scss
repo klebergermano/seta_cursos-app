@@ -288,8 +288,6 @@
       display:flex;
       flex-wrap: wrap;
 
-      padding:10px;
-      border:$border-set-default;
     .row{
       min-width:100%;
       display:flex;
@@ -317,7 +315,8 @@
     }
       .feedback_bimestral{
         padding:10px;
-        margin-top:10px;
+        margin-top:5px;
+        margin-bottom:10px;
         grid-column: 1 / 4;
         min-width:100%;
         border:1px solid #ccc;
