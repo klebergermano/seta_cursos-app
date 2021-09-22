@@ -104,7 +104,6 @@ export function resumoBimestreBD(curso){
   let resumoBimestres = {}; 
   let fd =  db.collection("aluno_historico").doc('RA01')
   .collection('cursos').doc('Excel Avançado').get();
-
 fd.then((res)=>{
  // console.log(res.data().bimestres["bimestre 1"])
 })
