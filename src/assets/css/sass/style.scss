@@ -10,7 +10,7 @@
   width:100%; 
   min-height: 100vh;
   position: absolute;
-  background-color: #33333350;
+  background-color: #11111170;
   z-index: 1;
   bottom:0px;
   top:0px;
@@ -23,17 +23,24 @@ p{
 }
 a {
   cursor: pointer;
-}
+} 
+
+svg{ margin-bottom:-2px; margin: 0px 2px -2px 2px;}
 body {
-  background: #f0f0f0;
+ background:#ccc;
+
+  background: #ddd url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm380-16-x_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=d0c544f028f2405b219eb997cb580e21") ; 
+ background-size: 100% auto ;
   font-family: $font-stack;
   position:relative;
 }
 header {
-  background: #051e34;
+  grid-area: header;
+  background: #333;
+  border-bottom:2px solid #ccc;
   width: 100%;
   #header_center {
-    height: 55px;
+    height: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -41,39 +48,197 @@ header {
     padding: 0px $padding-heavy;
     max-width: $container-width;
 
-    figure {
-      width: auto;
-      height: 20px;
+
+  }
+}
+
+#app{
+  max-width: 100%;
+  margin: 0 auto;
+  display: grid;
+grid-template-columns: 250px 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+  'aside header header header header header header header'
+  'aside  cp     cp     cp     cp     cp     cp     cp'
+  'aside  footer footer footer footer footer footer footer';
+}
+
+aside#bg_main_menu_lateral{
+  
+    figure#bg_logo {
+      padding:20px;
+      max-width: 100%;
+     height:auto;
       overflow:hidden;
-      display: block;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
       img {
-        max-width: 100%;
+        max-width: 150px;
         max-height: 100%;
+        
       }
     }
-    nav {
-      ul li {
-        display: inline;
-        a {
-          padding: 13px 15px;
-          color: #fafafa;
-          height: auto;
-          font-size: 14px;
-          &:hover {
-            color: lighten($primary-color, 30%);
-            border-bottom: 4px solid lighten($primary-color, 20%);
-          }
+  grid-area: aside; 
+  background:#222;
+  nav {
+    margin-top:40px;
+    ul li {
+      clear:both;
+      a {
+        padding: 13px 15px;
+        color: #fafafa;
+        height: auto;
+        font-size: 14px;
+        width:100%;
+        display: block;
+
+        &:hover {
+          color: lighten($primary-color, 30%);
+          background:#333;
         }
       }
     }
   }
 }
-.container{
-  max-width: $container-width;
-  margin: 0 auto;
-}
-.components{
-  padding:0px 40px;
+#block_screen_msg{
+  position: absolute;
+  min-height: 100vh;
+  width:100%;
+  left:0%;
+  top:0%;
+  bottom:0px;
+  background:#22222270;
+  z-index: 5;
+
+  div{
+ 
+  }
 }
 
+.btn_close{
+  right:0px;
+  top:0px;
+  padding: 5px 10px;
+  position:absolute;
+  cursor:pointer;
+
+  &:hover{
+    background:rgb(221, 79, 79);
+  color:#fff;
+  }
+}
+  
+
+.confirm_box{
+
+  background: #fff;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top:10%;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: wrap;
+  width:400px; height:auto;
+  min-height: 80px;
+  padding:20px;
+  font-size:18px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 2px #33333370;
+  border:1px solid #ccc;
+
+  p{width:100%;  padding: 10px; margin-bottom:10px;
+  border-bottom:1px solid #ccc;}
+  .btn_deletar{
+    background:rgb(230, 61, 61);
+    color:#fff;
+    &:hover{
+      background:red;
+    }
+  }
+  .btn_cancelar{
+    background: #ccc;
+    &:hover{
+      background:#ddd;
+    }
+  }
+  button{
+    border:$border-set-default;
+    padding:5px 10px;
+    margin:5px;
+    cursor: pointer;
+  }
+}
+.show_message{
+  display: flex;
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+  color:rgb(61, 94, 59);
+}
+.temp_msg{
+  background: #fff;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+    left: 0;
+    right: 0;
+  top:10%;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width:400px; height:auto;
+  height: 80px;
+  padding:40px;
+  font-size:18px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 2px #33333370;
+  border:1px solid #ccc;
+
+}
+.default_temp_msg{
+  color:#333;
+
+}
+.red_temp_msg{
+  color:rgb(190, 34, 34);
+  border-color: rgb(173, 31, 31);
+  background: rgb(248, 248, 248);
+}
+.green_temp_msg{
+  color:green;
+  border-color: rgb(51, 155, 68);
+  background: rgb(247, 252, 245);
+
+}
+.blue_temp_msg{
+  color:rgb(43, 75, 163);
+  border-color: rgb(51, 70, 155);
+  background: rgb(235, 241, 245);
+
+}
+
+ #page_content{
+   grid-area: cp;
+   max-width: 1300px;
+   min-height:100vh;
+   margin:0px 60px 0px 60px;
+ }
+
+
+
+footer{
+  grid-area: footer;
+  height:50px;
+  background:#111;
+}
 

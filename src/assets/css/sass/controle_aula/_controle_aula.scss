@@ -6,74 +6,101 @@
   overflow: hidden;
   h1 {
     color: $title-color-dark;
-    text-align: left;
-    font-size:20px; 
+    text-align: center;
+    font-size:24px; 
+    margin-top:40px;
+    margin-bottom:40px;
     color: $text-color;
     width:100%;
+    text-transform: uppercase;
+    color:#444;
   }
 
-
   #form_select_aluno {
-  //  background: #fff;
-   // border: $border-set-default;
-   margin-bottom:20px;
     width: 100%;
     height: auto;
-    padding: 5px 0px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
+    padding-bottom:20px;
     label{
       background:#fff;
-      border:$border-set-default;
       display: block;
-      padding:6px;
-
+      padding: 10px;
+      border: 1px solid #444;
+      border-right:0px;
     }
+
     .div_input {
- 
-    display:flex;
+      background:#f90;
+      display:flex;
       float: left;
       justify-content: center;
+      select{
+          padding: 10px;
+          border: 1px solid #444;
+          font-weight: bold;
+          font-size:16px;
+        }
     }
     button {
-      float: right;
+      float: left;
       margin:0px;
       margin-left:10px;
+      padding:14px;
+      svg{
+        margin-bottom:-2px;
+        margin-right:5px;
+      }
     }
   }
-  #bg_cursos {
-    
-  nav.nav_cursos_aluno {
+  #aluno_content {
+    border-radius: 5px 5px 0px 0px;
+    border: $border-set-default;
+    overflow: hidden;
+    position:relative;
  
+  nav.nav_cursos_aluno {
       background-color: #fff;
-      border: $border-set-default;
-      border-bottom:0px;
+      border-bottom:$border-set-default;
       display:flex;
-      justify-content: space-between;
-      span{
-        font-weight: bold;
-        margin-top:10px;
-        display: block;
-        margin-bottom: 0px;
-        font-size:18px;
-        margin-left:20px;
-        text-transform: uppercase;
+      justify-content: flex-end;
+      align-items: center;
 
-      }
       ul {
+        position: relative;
         overflow:hidden;
-        display:block;
-        float: right;
         display: flex;
+        justify-content: flex-end;
+        width:100%;
+        .btn_add_curso{
+
+          border: 1px solid $primary-color;
+          padding:5px 20px;
+          cursor:pointer;
+          background:$primary-color;
+          color:#fff;
+          display: flex;
+          align-items: center;
+  
+          svg{
+             max-width: 100px;
+             max-height: 100px;
+             height:25px;
+             width:auto;
+          }
+          &:hover{
+            background:lighten($primary-color, 5%);
+          }
+        }
 
         li {
           list-style: none;
-          padding:10px 0px;
+          padding:15px 0px;
           
           a {
-            padding: 10px 20px 10px 20px;
+            padding: 15px 20px 16px 20px;
             background: #fff;
             border: $border-set-default;
             border-top:0px;
@@ -84,73 +111,156 @@
 
             user-select: none;
             &:hover{
-            background:#f8f8f8;
-            color: #333;
-
-
-            //  color: $primary-color;
+    
             }
             &:active{
-              background:#f0f0f0;
+              background:#f6f6e0;
             }
           }
           .active{
-            background:#dddede;
-            //color: #fff;
-            border:0px;
-&:hover{
- background:#dddede;
- // color:#fff;
-
-}
+            background:#ffe;
+            color: #333;
+              &:hover{
+           //  background:#dddede;
+              // color:#fff;
+              }
           }
         }
       }
     }
+    .btn_add_aula{
+     top:17px;
+     right:15px;
+     border-radius:5px ;
+      position: absolute;
+      border:1px solid $primary-color;
+      display: flex;
+      align-items: center;
+      background:#eee;
+      color:$primary-color;
+      padding:5px 10px 8px 10px;
+      svg{
+         height:25px; width:auto;
+      }
+      &:hover{
+       background: #ffe;
+      }
+      &:active{
+        box-shadow: inset 0px 0px 3px #111;
+      }
+    }
+    .btn_extra{
+      cursor: pointer;
+      padding:5px 10px;
+      margin-bottom:10px;
+      border:1px solid #333;
+      border-radius: 3px;
+  
+      &:active{
+        background: #fff;
+        box-shadow: inset 0px 0px 2px #111;
+      }
+
+    }
+    .btn_add_reposicao{
+      color: #8971cc;
+      border-color: #8971cc;
+      &:hover{
+        background:#e7e7ff
+      }
+    }
+    .btn_add_ponto_extra{
+      color:#779214;
+      border-color: #779214;
+      &:hover{
+        background:#edffcf
+      }
+    
+    }
+
     .bg_curso{
+      position: relative;
       background:#fff;
-      padding:10px; 
-      border:$border-set-default;
-      h3{ padding:10px;}
+      background:#ddd;
+      padding:20px; 
+      padding-top:0px;
       display:none;
+
+      h3{ height:80px; display: flex; align-items: center; justify-content: center;}
     }
     .title_aluno_info{
       span{float:left; margin:0px !important;}
       .title_info_ra{
         font-weight: normal;
       }
-    
     } 
-    .title{
-      text-transform: uppercase;
-      font-weight: bold;
-
-      display:flex;
+      h3.title_curso_nome{ padding:30px;
       font-size:18px;
-      justify-content: center;
-      padding: 10px 0px 20px;
-      flex-grow: 1;
-      span{ padding:0px 5px;}
+      text-align: center;
+      width:100%;
+      text-transform: uppercase;
+    }
    
-   
-      span[class*="web"]{
+      h3[class*="web"]{
         color:rgb(32, 97, 134);
       }
-      span[class*="inglês"]{
+      h3[class*="inglês"]{
         color:red;
       }
-
    //excel
-      span[class*="excel"]{ 
-        color:green;
+      h3[class*="excel"]{ 
+        color:rgb(38, 148, 38)
       }
    //informática
-      span[class^="informática"], span[class*="informática"]{ 
+      h3[class^="informática"], h3[class*="informática"]{ 
         color:blue !important;
       }
+    .bg_info_delete_curso{
+      width:100%; 
+      height:auto; padding:20px;
+      display: flex;
+      justify-content: center;
+      flex-wrap:wrap;
+      overflow: hidden;
+      background:#ffd;
+      align-items: center;
+      p{
+        display: block;
+        width:100%;
+        text-align: center;
+        padding:10px;
+      }
+      button{ height:30px; margin: 0 auto;
+        display: block;
+        float:left;
+        border:1px solid;
+        padding:5px 10px;
+        cursor: pointer;
+    
+      }
+      .btn_deletar_curso{
+        border-radius:5px;
+        border-color:rgb(151, 23, 23);
+        background:rgb(230, 62, 62);
+        color:#fff;
+        &:hover{
+          background: rgb(252, 70, 70);
+        }
+      }
+      .btn_add_aula{
+       
+       position: initial;
+       margin-left:10px;
+        svg{ width:auto; height: auto; margin-bottom:-2px}
+        &:hover{
+          background: #fff
+        }
+        
+      }
+      
+ 
     }
     .bg_bimestres {
-      background: #fff;
      // border: $border-set-default;
       width: 100%;
       min-height: 300px;
@@ -160,72 +270,195 @@
 
       .bimestres {
         min-width: 100%;
-        padding: 10px;
+        padding: 20px 10px;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         align-items: flex-start;
         justify-content: space-around;
-        border: $border-set-default;
+        //border: $border-set-default;
+        background:#eee;
+        margin-bottom:10px;
+        box-shadow: 0px 1px 1px #999;
+
        // border: 1px solid #f90;
+  .resumo_bimestre{
+      width:100%;
+      grid-gap: 1px;
+      display:flex;
+      flex-wrap: wrap;
+
+    .row{
+      min-width:100%;
+      display:flex;
+      flex-wrap: wrap;
+
+      p{
+        min-width: 150px;
+        flex-grow: 1;
+        width:auto;
+        padding:5px;
+        box-shadow: 0px 0px 0px 1px #ccc;  
+        background:#fafafa;
+
+      }
+      .label{
+        width:100%;
+        flex-grow: 1;
+        font-size:14px;
+      }
+      span.values{
+        font-weight: bold;
+      }
+       
+
+    }
+      .feedback_bimestral{
+        padding:10px;
+        margin-top:5px;
+        margin-bottom:10px;
+        grid-column: 1 / 4;
+        min-width:100%;
+        border:1px solid #ccc;
+        display: flex;
+        flex-wrap: wrap;
+        flex: 100% 50% 50%;
+        align-items: center;
+        justify-content: space-between;
+        background:#fafafa;
+    
+        p{ padding:5px;
+        flex-grow: 1;
+
+        }
+        .feedback_value{
+          min-height:30px;
+        }
+        .btn_add_feedback_bimestral{
+          max-height: 35px;
+          border:1px solid $primary-color;
+          padding: 5px 10px;
+          color:$primary-color;
+          background: #fff;
+          border-radius: 5px;
+          cursor: pointer;
+          margin:  10px 5px;
+          float:right;
+          &:hover{
+            background: #ffe;
+          }
+        }
+      }
+   
+  }
 
         h2 {
           font-weight: normal;
           flex-basis: 100%;
-          height: 20px;
           font-size:18px;
           color:$text-color;
-          
+          text-transform: capitalize;
+          margin-top:-10px;
+          margin-bottom:10px;
+          padding-bottom:10px !important;
+          border-bottom:1px solid #ccc;
+          color:rgb(77, 77, 77);
         }
         .columns {
-          width: 25%;
+          width: 24%;
           min-width: 200px;
           flex-grow: 1;
+          border:$border-set-default;
+        }
+        .column_reposicao{
+          display:flex;
+          flex-direction: row;
+          flex-wrap: wrap; 
+          
+        }
+        .column_pontos_extras{ 
+          display:flex;
+          flex-direction: row;
+          flex-wrap: wrap; 
+          background: #f2f8f3;
+          .aulas{width:auto; flex-grow:1; flex-shrink: 1;
+          max-width: 250px;}
         }
         
         .aulas {
           position:relative;
-          margin-top: 10px;
+          margin:10px;
           width: auto;
           max-width:300px;
-          background: #ffc;
-          height: 55px;
-          border: 1px solid #ccc;
+          background: #ffffff;
+          height: 80px;
+          border: 1px solid rgb(70, 108, 179);
           overflow: hidden;
           transition: height 0.5s;
-          box-shadow: 0px 1px 0px #ccc;
+          box-shadow: 0px 1px 1px rgb(156, 156, 156);
           font-size: 13px;
-          padding: 5px;
-
-      
+          padding: 5px 10px 10px 10px;
+          .status{
+            text-transform: capitalize;
+          }
           .aula_detalhes{
             margin-top:10px;
             border:1px solid #999;
             overflow-y: scroll;
             height:145px;
             padding:5px;
-       
-
           }
-       
           .aula_numero{
             text-transform: capitalize;
-            color:#000;
-     
+            color: darken($primary-color, 20%);
           }
           .aula_data{
             padding: 5px 0px;
             svg{max-height:14px; margin-bottom:-2px;
             color:$text-color}
-
+            .aula_data_info{
+            }
           }
-     
+        }
+        .aula_concluida{
+          background: #fff;
+
+        }
+        .aula_falta{
+          background: #fee;
+          border-color: rgb(163, 68, 68);
+
+        }
+        .aula_remarcada{
+          background: #ddd;
+          border-color: rgb(106, 117, 128);
+        }
+        [data-aula_categoria="reposição"]{
+          background:#f3eeff !important;
+          border:1px solid #666;
+          width:auto; flex-grow:1; flex-shrink: 1;
+        }
+        [data-aula_categoria="ponto extra"]{
+          background:#ecfcb4 !important;
+          border:1px solid #666;
+          height:30px;
+          max-height: 180px !important;
+          .aula_detalhes{
+            height:110px;
+          }
+        }
+        [data-aula_categoria="prova"]{
+          background:#d8e4fd !important;
+          .aula_detalhes{
+            height:110px;
+          }
         }
         .open_aula {
-          height: 240px;
+          height: 260px;
         }
   
          .btn_deletar_aula{
+           z-index: 2;
            cursor:pointer;
            float:left;
            padding:3px;
@@ -237,8 +470,10 @@
            color:rgb(219, 30, 30);
 
            }
+           svg{ z-index: 0;}
+           
          }
-         .btn_edit_aulas{
+         .btn_edit_aula{
            float:right;
            padding:3px; 
            margin-top:5px;
@@ -261,7 +496,7 @@
          right:0px;
          top:0px;
           font-size:16px;
-          background:#dda; 
+          background: $primary-color; 
           text-align: center;
           height:22px;
           width:30px;
@@ -271,6 +506,7 @@
           border-radius:0px 0px 0px 3px;
           svg{
             margin-top:1px;
+            color:#fff;
           }
           
           &:active{

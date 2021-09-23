@@ -25,7 +25,7 @@ async function ImportHtmlUsingNav(navName, target) {
       ImportHtml2(
         `./components/${e.target.dataset.path}/index.html`,
         target,
-        `./modules/${e.target.dataset.script_src}/index.js`
+        `./components/${e.target.dataset.path}/js/index.js`,
       );
     });
   });
