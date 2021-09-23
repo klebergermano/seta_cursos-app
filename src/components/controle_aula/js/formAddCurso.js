@@ -1,3 +1,6 @@
+const {setDoc,  doc} = require("firebase/firestore") 
+import {db} from "../../js_common/variablesDB.js";
+
 import * as dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
 import * as commonFunc from "../../js_common/commonFunctions.js";
 
@@ -35,8 +38,7 @@ function insertOptionsInSelectAlunoCurso(form){
   validaSelectOptionsAddCurso(form)
 
 }
-//=====================================================================================
-//------------------------------------ADD CURSOS---------------------------------------
+
 function validaSelectOptionsAddCurso(form) {
     let selectAluno = form.querySelector("#select_aluno");
     let RA = selectAluno.options[selectAluno.selectedIndex].value;
@@ -75,38 +77,22 @@ function validaSelectOptionsAddCurso(form) {
       }
     }
   }
-
   function submitformAddCurso(e) {
     e.preventDefault();
     let form = e.target;
-
     let RA = form.select_aluno.value;
-    let alunoHistorico = db.collection("aluno_historico");
-    alunoHistorico
-      .doc(RA)
-      .collection("cursos")
-      .doc(form.select_curso.value)
-      .set(
-        {
-          curso: form.select_curso.value,
-          bimestres: {
-          },
-        },
-        { merge: true }
-      )
-      //Remove conteúdo do formulário e acrescenta a mensagem
-      .then(() =>
+    let curso = form.select_curso.value; 
+    setDoc(doc(db, 'aluno_historico', RA, 'cursos', curso),
+    { curso: form.select_curso.value,
+      bimestres: {},
+    }).then(() =>{
         commonFunc.showMessage("form_add_curso", "Curso adicionado com sucesso!")
-      )
-      //tira o diplay do formulário e block_screen
-      .then(() => {
         setTimeout(() => {
           commonFunc.removeElementChild('#page_content', '#form_add_curso',()=>{
           commonFunc.changeCSSDisplay('#block_screen', 'none')
         });
-        }, 2000);
-      })
-  
-      .catch((error) => console.error("Error writing document: ", error));
+        }, 1000);
+      }).catch((error) => console.error("Erro ao adicionar curso: ", error));;
   }
+
 

@@ -126,7 +126,6 @@ function setCheckedStatusAula(form, aulaInfo){
    aulaInfo.data = newDate;
    aulaInfo.detalhes = aula.querySelectorAll('.aula_detalhes_info')[0]?.textContent;
 
-
    return aulaInfo;
   }
 

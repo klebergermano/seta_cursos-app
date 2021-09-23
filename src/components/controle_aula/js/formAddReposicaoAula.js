@@ -1,3 +1,5 @@
+
+
 import * as formAddAula from "./formAddAula.js";
 import * as commonFunc from "../../js_common/commonFunctions.js";
 import * as dateFunc from "../../js_common/dateFunc.js";
@@ -39,6 +41,4 @@ selectAula.innerHTML = `
 <option value='reposição da aula 15'>Reposição da Aula 15</option>
 <option value='reposição da aula 16'>Reposição da Aula 16</option>
 `;
-
-
 }
