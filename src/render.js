@@ -1,18 +1,42 @@
-//Funções Globais
-//const ImportHtml = require("./modules/common/ImportHtml.js");
-//const ImportHtmlUsingNav = require("./modules/common/ImportHtmlUsingNav.js");
+const {initializeApp} = require("firebase/app") 
+const {getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword} =  require("firebase/auth");
+const {getFirestore, collection, getDocs, doc, getDoc} = require("firebase/firestore") 
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCQ0IIED6S4yHGwd4iePApe3IDmrVW6-Cs",
+  authDomain: "seta-cursos-app.firebaseapp.com",
+  projectId: "seta-cursos-app",
+  storageBucket: "seta-cursos-app.appspot.com",
+  messagingSenderId: "604551662801",
+  appId: "1:604551662801:web:617516e76e3f23ce35c9f0",
+  measurementId: "G-MB10BFHBQ0"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+let email = "kleber_lsgermano@hotmail.com";
+let password = "teste123";
+const db = getFirestore(app);
 
 
+//LOGIN USER
+
+signInWithEmailAndPassword(auth, email, password)
+.then((userCredential) => {
+  // Signed in 
+  const user = userCredential.user;
+  console.log('logado', user);
+  // ...
+})
+.catch((error) => {
+  const errorCode = error.code;
+  const errorMessage = error.message;
+console.log(errorCode, errorMessage);
+
+});
+//----------
 
 
-
-//js módulos
-
-//Load Homepage
-//ImportHtml("./components/controle_aula/index.html", "#content_page", "./modules/controle_aula/index.js");
-
-//Carrega navegação do menu
-//ImportHtmlUsingNav("#main_menu_lateral", "#content_page");
 
 function importHTML(target, htmlSRC, scriptSRC){
   let element = document.querySelector(target);
@@ -26,7 +50,6 @@ function importHTML(target, htmlSRC, scriptSRC){
     });
   })
 }
-
 
     let childs = document.querySelector('#main_menu_lateral').querySelectorAll("a");
     childs.forEach((item) => {

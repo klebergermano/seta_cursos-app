@@ -8,7 +8,7 @@ export function removeElementChild(parentElementID, childElementID, callback){
 
 
 
-export function insertElementHTML(target, pathElementHTML, callback){
+export function insertElementHTML(target, pathElementHTML,  callback, event){
   let targetElement = document.querySelector(target);
  let insertedElement = fetch(pathElementHTML)
   .then((res)=> res.text())
@@ -21,12 +21,13 @@ export function insertElementHTML(target, pathElementHTML, callback){
    return htmlElement;
   }).then((htmlElement)=>{
 
-    if(callback) callback(htmlElement);
+    if(callback) callback(htmlElement, event);
+
     return htmlElement;
   })
   .catch((err)=> console.log(err));
 
-return insertedElement;
+    return insertedElement;
 
 } 
 

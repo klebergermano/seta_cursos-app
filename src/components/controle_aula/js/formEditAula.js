@@ -9,8 +9,13 @@ export function insertFormEditAulaHTML(eventClick){
   form.then((formRes)=>{
     formAddAula.eventsFormAddAula(formRes);
     eventsFormEditAula(eventClick)
+    console.log(formRes.select_categoria.value)
+    if(formRes.select_categoria.value === 'prova'){
+      showInputsProva(formRes)
+    }
   });
 }
+
 
 function eventsFormEditAula(eventClick){
 
@@ -22,6 +27,15 @@ let form = document.querySelector('#form_add_aula');
  insertTextElementsEditAula();
  //chama todas as funções de edição no formulário "#form_add_aula".
  //setEditAulaInfoInFormAddAula(form);
+}
+
+function showInputsProva(form){
+  form.querySelector("#bg_prova_inputs").style.display = "flex";
+    form.querySelector("#div_detalhes").style.display = "none";
+    form.querySelector("#nota_prova").setAttribute("required", true);
+    form.querySelector("#numero_questoes").setAttribute("required", true);
+    form.querySelector("#obs_prova").setAttribute("required", true);
+    form.querySelector("#detalhes").removeAttribute("required");
 }
 
 function setCheckedStatusAula(form, aulaInfo){
@@ -36,7 +50,6 @@ function setCheckedStatusAula(form, aulaInfo){
     formAddAula.setClassBtnStatus(form)
   });
 }
-
   function insertTextElementsEditAula(){
     let h3 = document.querySelector('#form_add_aula').querySelectorAll('h3')[0];
     let btnSubmit = document.querySelector('#form_add_aula').querySelector('input[type="submit"]');
@@ -58,12 +71,17 @@ function setCheckedStatusAula(form, aulaInfo){
     h3.innerHTML= svgAddAula + "Adicionar Aula";
   }
 
-
-
   function insertInfoInputsFormAddAula(formAddAula, eventClick){
     let aulaInfo = getInfoInputsFormAddAula(eventClick);
     
     setCheckedStatusAula(formAddAula, aulaInfo)
+
+    let aulaCategoria = formAddAula.querySelector("#select_categoria");
+    aulaCategoria.value = aulaInfo.categoria;
+    
+   formAddAula.querySelector("#nota_prova").value = aulaInfo.nota_prova;
+   formAddAula.querySelector("#numero_questoes").value = aulaInfo.numero_questoes;
+   formAddAula.querySelector("#obs_prova").value = aulaInfo.observacao;
 
     formAddAula.querySelector("#tema").value = aulaInfo.tema;
     formAddAula.querySelector("#horario").value = aulaInfo.horario;
@@ -90,61 +108,27 @@ function setCheckedStatusAula(form, aulaInfo){
    let aula = eventClick.target.closest('.aulas');
 
    let aulaInfo = {}
+   aulaInfo.categoria = aula.dataset.aula_categoria;
+   
+   if(aulaInfo.categoria === "prova"){
+
+   aulaInfo.nota_prova = aula.querySelectorAll('.aula_nota_prova')[0]?.textContent;
+   aulaInfo.numero_questoes = aula.querySelectorAll('.aula_numero_questoes')[0]?.textContent;
+   aulaInfo.observacao = aula.querySelectorAll('.aula_detalhes_info')[0]?.textContent;
+   }
+
    aulaInfo.bimestre = aula.dataset.bimestre;
-   aulaInfo.aula = aula.querySelectorAll('.aula_numero')[0].textContent;
-   aulaInfo.status = aula.querySelectorAll('.status')[0].textContent;
-   aulaInfo.tema = aula.querySelectorAll('.aula_tema_info')[0].textContent;
-   aulaInfo.horario = aula.querySelectorAll('.aula_horario_info')[0].textContent;
-   let newDate = dateFunc.changeDateTextToYYYYMMDD(aula.querySelectorAll('.aula_data_info')[0].textContent);
+   aulaInfo.aula = aula.querySelectorAll('.aula_numero')[0]?.textContent;
+   aulaInfo.status = aula.querySelectorAll('.status')[0]?.textContent;
+   aulaInfo.tema = aula.querySelectorAll('.aula_tema_info')[0]?.textContent;
+   aulaInfo.horario = aula.querySelectorAll('.aula_horario_info')[0]?.textContent;
+   let newDate = dateFunc.changeDateTextToYYYYMMDD(aula.querySelectorAll('.aula_data_info')[0]?.textContent);
    aulaInfo.data = newDate;
-   aulaInfo.detalhes = aula.querySelectorAll('.aula_detalhes_info')[0].textContent;
+   aulaInfo.detalhes = aula.querySelectorAll('.aula_detalhes_info')[0]?.textContent;
+
    return aulaInfo;
   }
 
-  function addEventListenerCloseForm(formAddAula){
-    let btn_close = formAddAula.querySelectorAll(".close_form")[0];
-    btn_close.classList.add('close_form_edit');
-    btn_close.addEventListener('click', (e)=>{
-      removeFormEditAula(formAddAula)
-    btn_close.classList.remove('close_form_edit');
-    formAddAula.resetFormAddAula(formAddAula);
-    });
-  }
+ 
 
- function removeFormEditAula(){
-    let formAddAula = document.querySelector('#form_add_aula');
-    if(formAddAula.classList.contains('edit_form')){
-      let btn_close = formAddAula.querySelectorAll(".close_form_edit")[0];
-      btn_close.classList.remove('close_form_edit');
-      removeClassEditForm(formAddAula);
-      enableSelectsInFormAddAula(formAddAula);
-      removeTextElementsEditAula()
-    }
-
-  }
-
-
-  function displayFormEditAula(){
-    commonFunc.changeCSSDisplay("#form_add_aula", "block");
-    commonFunc.changeCSSDisplay("#block_screen", "block");
-  }
-
-  function disableSelectsInFormAddAula(formAddAula){
-    let select = formAddAula.querySelectorAll("select");
-    select.forEach((item) => {
-      item.setAttribute("disabled", true);
-    });
-  }
-
- //Reabilita os selectes do formulário "#form_add_aula"
-  function enableSelectsInFormAddAula(formAddAula){
-    formAddAula.querySelectorAll("select")
-    .forEach((item) => {
-      item.removeAttribute("disabled");
-    });
-  }
-  //Remove a classe ".edit_form" do formulário "#form_add_aula"
-  function removeClassEditForm(addForm){
-    addForm.classList.remove("edit_form");
-  }
 

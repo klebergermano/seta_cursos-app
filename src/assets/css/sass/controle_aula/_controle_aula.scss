@@ -282,27 +282,76 @@
         box-shadow: 0px 1px 1px #999;
 
        // border: 1px solid #f90;
-.resumo_bimestre{
-      background:#fff;
+  .resumo_bimestre{
       width:100%;
-      display: grid;
       grid-gap: 1px;
-      grid-template-columns: 1fr 1fr 1fr;
-      padding:10px;
+      display:flex;
+      flex-wrap: wrap;
+
+    .row{
+      min-width:100%;
+      display:flex;
+      flex-wrap: wrap;
 
       p{
+        min-width: 150px;
+        flex-grow: 1;
         width:auto;
         padding:5px;
         box-shadow: 0px 0px 0px 1px #ccc;  
+        background:#fafafa;
+
       }
-      span{
+      .label{
+        width:100%;
+        flex-grow: 1;
+        font-size:14px;
+      }
+      span.values{
         font-weight: bold;
       }
-        .feedback{
-          grid-column: 1 / 4; 
-          width:100%;
+       
+
+    }
+      .feedback_bimestral{
+        padding:10px;
+        margin-top:5px;
+        margin-bottom:10px;
+        grid-column: 1 / 4;
+        min-width:100%;
+        border:1px solid #ccc;
+        display: flex;
+        flex-wrap: wrap;
+        flex: 100% 50% 50%;
+        align-items: center;
+        justify-content: space-between;
+        background:#fafafa;
+    
+        p{ padding:5px;
+        flex-grow: 1;
+
         }
-     }
+        .feedback_value{
+          min-height:30px;
+        }
+        .btn_add_feedback_bimestral{
+          max-height: 35px;
+          border:1px solid $primary-color;
+          padding: 5px 10px;
+          color:$primary-color;
+          background: #fff;
+          border-radius: 5px;
+          cursor: pointer;
+          margin:  10px 5px;
+          float:right;
+          &:hover{
+            background: #ffe;
+          }
+        }
+      }
+   
+  }
+
         h2 {
           font-weight: normal;
           flex-basis: 100%;
@@ -325,8 +374,7 @@
           display:flex;
           flex-direction: row;
           flex-wrap: wrap; 
-          background: #dad3df;
-          .aulas{width:auto; flex-grow:1; flex-shrink: 1;}
+          
         }
         .column_pontos_extras{ 
           display:flex;
@@ -336,6 +384,7 @@
           .aulas{width:auto; flex-grow:1; flex-shrink: 1;
           max-width: 250px;}
         }
+        
         .aulas {
           position:relative;
           margin:10px;
@@ -381,18 +430,25 @@
 
         }
         .aula_remarcada{
-          background: rgb(229, 229, 241);
+          background: #ddd;
           border-color: rgb(106, 117, 128);
         }
         [data-aula_categoria="reposição"]{
-          background:#ddd4f5 !important;
+          background:#f3eeff !important;
           border:1px solid #666;
+          width:auto; flex-grow:1; flex-shrink: 1;
         }
         [data-aula_categoria="ponto extra"]{
           background:#ecfcb4 !important;
           border:1px solid #666;
           height:30px;
           max-height: 180px !important;
+          .aula_detalhes{
+            height:110px;
+          }
+        }
+        [data-aula_categoria="prova"]{
+          background:#d8e4fd !important;
           .aula_detalhes{
             height:110px;
           }
