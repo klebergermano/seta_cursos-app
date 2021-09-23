@@ -1,3 +1,7 @@
+
+const {setDoc, collection, getDocs, doc, getDoc, onSnapshot } = require("firebase/firestore") 
+import {db} from "../../js_common/variablesDB.js";
+
 import * as commonFunc from "../../js_common/commonFunctions.js";
 import * as  dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
 
@@ -78,35 +82,27 @@ function validaSelectOptionsAddAluno(e) {
   }
 
   //Salva o aluno no banco de dados.
-  function formAddAluno(e) {
-    e.preventDefault();
+  async function formAddAluno(e) {
     let form = e.target;
-    let alunoHistorico = db.collection("aluno_historico");
-    alunoHistorico
-      .doc(form.add_aluno_ra.value)
-      .collection("cursos")
-      .doc(form.curso_nome.value)
-      .set({
-        curso: form.curso_nome.value,
-        bimestres: {
-        },
-      })
-      .then(() => {
-        alunoHistorico
-          .doc(form.add_aluno_ra.value)
-          .set({ nome: form.nome.value }, { merge: true });
-      })
-      //Remove conteúdo do formulário e acrescenta a mensagem.
-      .then(() =>
-        commonFunc.showMessage("form_add_aluno", "Aluno salvo com sucesso!")
-      )
-      //tira o diplay do formulário e block_screen.
-      .then(() => {
-        setTimeout(() => {
-          e.target.style.display = "none";
-          commonFunc.changeCSSDisplay("#block_screen", "none");
-        }, 500);
-      })
-      .catch((error) => console.error("Error writing document: ", error));
+    e.preventDefault();
+     setDoc(doc(db, "aluno_historico", form.add_aluno_ra.value, "cursos", form.curso_nome.value),
+    { curso: form.curso_nome.value,
+      bimestres: {}
+    }).then(()=>{
+      setDoc(doc(db, "aluno_historico", form.add_aluno_ra.value), 
+      { nome: form.nome.value}, { merge: true}); 
+    }).then(()=>{
+      commonFunc.showMessage("form_add_aluno", "Aluno salvo com sucesso!");
+      setTimeout(() => {
+        commonFunc.removeElementChild('#page_content', '#form_add_aluno',()=>{
+          commonFunc.changeCSSDisplay('#block_screen', 'none')
+        });
+      }, 800);
+
+    }).catch((error) => console.error("Error writing document: ", error));
+     
   }
+
+
+
     

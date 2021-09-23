@@ -43,12 +43,11 @@ export function onload(){
  document.querySelector('#main_select_aluno').addEventListener('input', (e)=>{
    alunoContent.eventsAlunoContent();
  });
- /*
+
   //events FormAddAluno.js
   document.querySelector('#btn_add_aluno').addEventListener('click', (e)=>{
     formAddAluno.insertFormAddAlunoHTML();
   });
- */
   dbAlunoHistFunc.alunoHistCursosRealTimeDB("RA01", alunoContent.insertAlunoContent);
  
 }

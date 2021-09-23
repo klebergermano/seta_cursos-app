@@ -1,3 +1,4 @@
+/*
 const {initializeApp} = require("firebase/app") 
 const {getFirestore, collection, getDocs, doc, getDoc, onSnapshot } = require("firebase/firestore") 
 const firebaseConfig = {
@@ -12,43 +13,43 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+*/
 
+
+const {collection, getDocs, doc, getDoc, onSnapshot } = require("firebase/firestore") 
+import {db} from "./variablesDB.js";
 //---------------
 export function alunoHistCursosRealTimeDB(RA, callback) {
-  console.log(RA);
   onSnapshot(
     collection(db, 'aluno_historico', RA, 'cursos'), 
     (snapshot)=>{
     callback(RA, snapshot.docChanges());
-
   });
 }
 
-
-export function alunoHistCursosRealTimeDBXXXXXX(RA, callback) {
-    db.collection("aluno_historico")
-    .doc(RA)
-    .collection("cursos")
-    .onSnapshot((snapshot) => {
-        callback(RA, snapshot.docChanges());
-    });
-  }
-
- 
-  
 export function getAlunosListRA() {
-    let alunosList = db.collection("aluno_historico").get();
-    let IDs = [];
-    let alunoListRA = alunosList.then((res) => {
-      res.forEach((item) => {
-        IDs.push(item.id);
-      });
-      return IDs.reverse();
-    });
-    return alunoListRA;
-  }
+let alunosList = getDocs(collection(db, 'aluno_historico'));
+let IDs = [];
+let alunoListRA = alunosList.then((list)=>{
+  list.forEach((item)=>{
+    IDs.push(item.id);
 
-  export async function getAlunoInfoGeral(RA) {
+  });
+  return IDs.reverse();
+
+});
+return alunoListRA;
+
+}
+
+  export function getAlunoHistCursosDB(RA) {
+let alunoHistorico = getDocs(collection(db, 'aluno_historico', RA, 'cursos'));
+return alunoHistorico;
+  }
+  
+
+  
+  async function getAlunoInfoGeral(RA) {
     let alunoInfo = await db
       .collection("aluno_historico")
       .doc(RA)
@@ -58,21 +59,5 @@ export function getAlunosListRA() {
       });
     alunoInfo.RA = RA;
     return alunoInfo;
-  }
-  
-  export function getAlunoHistCursosDB(RA) {
-let alunoHistorico = getDocs(collection(db, 'aluno_historico', RA, 'cursos'));
-return alunoHistorico;
-  }
-  
-
-export function getAlunoHistCursosDBXXXXXXXXXXXXXX(RA) {
-    let alunoHistorico = db
-      .collection("aluno_historico")
-      .doc(RA)
-      .collection("cursos")
-      .get();
-  
-    return alunoHistorico;
   }
   

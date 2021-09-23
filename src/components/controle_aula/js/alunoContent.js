@@ -1,3 +1,4 @@
+
 import * as commonFunc from "../../js_common/commonFunctions.js";
 import * as dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
 import * as dateFunc from "../../js_common/dateFunc.js";
@@ -102,12 +103,6 @@ function createBgCursoMainStructureHTML(curso_nome_bd, RA) {
 export function resumoBimestreBD(curso){
   let bimestresKeys = commonFunc.getReverseObjectKeys(curso.bimestres);
   let resumoBimestres = {}; 
-  let fd =  db.collection("aluno_historico").doc('RA01')
-  .collection('cursos').doc('Excel Avançado').get();
-fd.then((res)=>{
- // console.log(res.data().bimestres["bimestre 1"])
-})
-
 
   for(let i = 0; i < bimestresKeys.length; i++){
     resumoBimestres[bimestresKeys[i]] = {}
@@ -121,9 +116,6 @@ fd.then((res)=>{
       let remarcadas = 0;
       let notaProva = 0;
       let feedbackBimestral = '';
-
-
-
 
       for(let j = 0; j < aulasKeys.length; j++){
        let aulaStatus =  curso.bimestres[bimestresKeys[i]][aulasKeys[j]].status;
