@@ -1,3 +1,7 @@
+const {deleteDoc, doc, updateDoc, deleteField, getDocs, getDoc, collection} = require("firebase/firestore") 
+import {db} from "../../js_common/variablesDB.js";
+
+
 import * as commonFunc from "../../js_common/commonFunctions.js";
 import * as navCursosAluno from "./navCursosAluno.js";
 
@@ -8,25 +12,10 @@ export function eventDeleteCurso(){
         commonFunc.confirmBoxDelete('#aluno_content', "Tem certeza que deseja deletar?", ()=>{
             deleteCurso(e.target)
         });
-       
-        
         });
     })
 }
- function deleteCurso(btn){
-    let aulaInfoDelete = {};
-    aulaInfoDelete.RA = btn.dataset.aluno_ra;
-    aulaInfoDelete.curso =  btn.dataset.delete_curso;
-     db.collection("aluno_historico")
-    .doc(aulaInfoDelete.RA)
-    .collection("cursos")
-    .doc(aulaInfoDelete.curso)
-    .delete().then(()=>{
-        navCursosAluno.displayFirstCursoAluno();
-    }).then(()=>{
-        commonFunc.  changeCSSDisplay("#block_screen", "none");
-    })
-}
+
 
 export function eventsDeletarAula(){
     let btn = document.querySelectorAll('.btn_deletar_aula');
@@ -50,51 +39,58 @@ function getInfoDeleteAula(item){
     });
 }
 
-
-function deleteDbAula(aulaInfoDelete){
-    let bimestre = aulaInfoDelete.bimestre;
-    let aula = aulaInfoDelete.aula;
-    let string = `bimestres.${bimestre}.${aula}`;
-    let deleteQuery = {};
-    deleteQuery[string] = firebase.firestore.FieldValue.delete();
-
-    let delAula = db.collection("aluno_historico")
-    .doc(aulaInfoDelete.RA)
-    .collection("cursos")
-    .doc(aulaInfoDelete.curso)
-    .update(deleteQuery);
-    delAula.then(()=>{
-        checkIfBimestreIsEmptyToDelete(aulaInfoDelete)
-    });
-}
-
-
 function checkIfBimestreIsEmptyToDelete(aulaInfoDelete){
-
-    let bimestres = db.collection("aluno_historico")
-    .doc(aulaInfoDelete.RA)
-    .collection("cursos")
-    .doc(aulaInfoDelete.curso)
-    .get('bimestres');
-    bimestres.then((res)=>{
+    let RA = aulaInfoDelete.RA; 
+    let curso = aulaInfoDelete.curso; 
+    let docCurso = getDoc(doc(db, 'aluno_historico', RA, 'cursos', curso));
+    docCurso.then((res)=>{
         let bimestre = res.data().bimestres[aulaInfoDelete.bimestre];
         let keys = Object.keys(bimestre);
-            if(keys.length <= 0){
-                deleteBimestre(aulaInfoDelete);
-            }
+        if(keys.length <= 0){
+            deleteBimestre(aulaInfoDelete);
+            console.log('vazio');
+        }else{
+            console.log('cheio');
+
+        }
+       
+    })
+}
+
+function deleteCurso(btn){
+
+    let RA = btn.dataset.aluno_ra;
+    let curso =  btn.dataset.delete_curso;
+    deleteDoc(doc(db, 'aluno_historico', RA, 'cursos', curso))
+    .then(()=>{
+        navCursosAluno.displayFirstCursoAluno();
+    }).then(()=>{
+        commonFunc.  changeCSSDisplay("#block_screen", "none");
     });
 }
 
 function deleteBimestre(aulaInfoDelete){
-
+    let RA = aulaInfoDelete.RA;
+    let curso = aulaInfoDelete.curso;
     let bimestre = aulaInfoDelete.bimestre;
     let string = `bimestres.${bimestre}`;
     let deleteQuery = {};
-    deleteQuery[string] = firebase.firestore.FieldValue.delete();
-    db.collection("aluno_historico")
-    .doc(aulaInfoDelete.RA)
-    .collection("cursos")
-    .doc(aulaInfoDelete.curso)
-    .update(deleteQuery);
+    deleteQuery[string] = deleteField();
+    const docAula = doc(db, 'aluno_historico', RA, 'cursos', curso);
+    updateDoc(docAula, deleteQuery)
+}
+
+function deleteDbAula(aulaInfoDelete){
+    let bimestre = aulaInfoDelete.bimestre;
+    let RA = aulaInfoDelete.RA;
+    let aula = aulaInfoDelete.aula;
+    let curso = aulaInfoDelete.curso; 
+    let string = `bimestres.${bimestre}.${aula}`;
+    let deleteQuery = {};
+    deleteQuery[string] = deleteField();
+    const docAula = doc(db, 'aluno_historico', RA, 'cursos', curso);
+    updateDoc(docAula, deleteQuery).then(()=>{
+        checkIfBimestreIsEmptyToDelete(aulaInfoDelete)
+    });;
 }
 

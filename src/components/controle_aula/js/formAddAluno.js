@@ -1,5 +1,5 @@
 
-const {setDoc, collection, getDocs, doc, getDoc, onSnapshot } = require("firebase/firestore") 
+const {setDoc,  doc} = require("firebase/firestore") 
 import {db} from "../../js_common/variablesDB.js";
 
 import * as commonFunc from "../../js_common/commonFunctions.js";
@@ -26,7 +26,7 @@ function eventsFormAddAluno(){
   });   
 
  form.addEventListener("submit", (e) => {
-    formAddAluno(e);
+    submitFormAddAluno(e);
   });
 
   //Mostra a tela de bloqueio de fundo "block_screen".
@@ -82,7 +82,7 @@ function validaSelectOptionsAddAluno(e) {
   }
 
   //Salva o aluno no banco de dados.
-  async function formAddAluno(e) {
+  async function submitFormAddAluno(e) {
     let form = e.target;
     e.preventDefault();
      setDoc(doc(db, "aluno_historico", form.add_aluno_ra.value, "cursos", form.curso_nome.value),
@@ -97,10 +97,8 @@ function validaSelectOptionsAddAluno(e) {
         commonFunc.removeElementChild('#page_content', '#form_add_aluno',()=>{
           commonFunc.changeCSSDisplay('#block_screen', 'none')
         });
-      }, 800);
-
+      }, 1000);
     }).catch((error) => console.error("Error writing document: ", error));
-     
   }
 
 

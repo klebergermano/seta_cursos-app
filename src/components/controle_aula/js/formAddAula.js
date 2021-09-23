@@ -1,3 +1,6 @@
+const {setDoc, collection, getDocs, doc, getDoc, onSnapshot } = require("firebase/firestore") 
+import {db} from "../../js_common/variablesDB.js";
+
 import * as commonFunc from "../../js_common/commonFunctions.js";
 import * as dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
 import * as formAddAluno from "./formAddAluno.js";
@@ -14,7 +17,7 @@ export async function insertFormAddAulaHTML() {
     });
   })
   form.addEventListener("submit", (e) => {
-    submitformAddAula(e);  
+    submitFormAddAula(e);  
   });
   //Bloqueia o fundo com o "#block_screen".
   commonFunc.changeCSSDisplay('#block_screen', 'block')
@@ -204,34 +207,6 @@ function blocoAddAula(dados) {
   return aula;
 }
 
-function submitformAddAula(e) {
-  e.preventDefault();
-  let form = e.target;
-  let RA = form.select_aluno.value;
-  let aulaHistorico;
-  aulaHistorico = db
-    .collection("aluno_historico")
-    .doc(RA)
-    .collection("cursos")
-    .doc(form.select_curso.value)
-    .set(
-      {
-        bimestres: blocoAddAula(form)
-      },
-      { merge: true }
-    )
-    .then(() =>
-      commonFunc.showMessage("form_add_aula", "Aula adicionada com sucesso!")
-    )
-    .then(() => {
-      setTimeout(() => {
-        commonFunc.removeElementChild('#page_content', '#form_add_aula',()=>{
-          commonFunc.changeCSSDisplay('#block_screen', 'none')
-        });
-      }, 1500);
-    }).catch((error) => console.error("Error writing document: ", error));
-}
-
 function getKeysAulas(RA, idCurso, bimestre) {
   let aluno = dbAlunoHistFunc.getAlunoHistCursosDB(RA);
   let keysAulas = [];
@@ -251,5 +226,22 @@ function getKeysAulas(RA, idCurso, bimestre) {
   return keys;
 }
 
-
+function submitFormAddAula(e) {
+  e.preventDefault();
+  let form = e.target;
+  let RA = form.select_aluno.value;
+  let curso =  form.select_curso.value;
+  setDoc(doc(db, 'aluno_historico', RA, 'cursos', curso),
+        {bimestres: blocoAddAula(form)},
+        { merge: true }
+  )
+.then(()=>{
+  commonFunc.showMessage("form_add_aula", "Aula adicionada com sucesso!")
+  setTimeout(() => {
+    commonFunc.removeElementChild('#page_content', '#form_add_aula',()=>{
+      commonFunc.changeCSSDisplay('#block_screen', 'none')
+    });
+  }, 1500);
+}).catch((error) => console.error("Erro ao adicionar aula:", error));
+}
 
