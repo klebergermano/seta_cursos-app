@@ -1,42 +1,48 @@
 @use 'variables' as *;
 @use 'functions' as *; 
 
-%btn{
-    display:block;
-    border-radius: 2px;
-    padding: 8px 20px;
+.btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    padding: 10px 15px;
     margin:5px;
     border:0px;
     cursor:pointer;
- 
+       
+    svg {
+        max-width: 100px;
+        max-height: 100px;
+        height: auto;
+        width: 20px;
+    }
+    
 }
 
-@mixin btn{
-    display:block;
-    border-radius: 2px;
-    padding: 8px 20px;
-    margin:5px;
-    border:0px;
-    cursor:pointer;
-    background:#f90;
- 
+.btn-default{
+    @extend .btn;
+   @include set-background-text-color(#f0f0f0);
+   border:1px solid #666;
+
 }
 
-@mixin btn-primary{
-    @extend %btn;
-    @include set-background-text-color($primary-color);
+.btn-default-delete{
+    @extend .btn;
+   @include set-background-text-color(#e03737);
+   border:1px solid rgb(82, 4, 4);
+   &:hover {
+    background: rgb(252, 70, 70);
 }
 
-@mixin btn-secondary{
-    @extend %btn;
-    @include set-background-text-color($secondary-color);
 }
 
 .btn-primary{
-    @extend %btn;
+    @extend .btn;
    @include set-background-text-color($primary-color);
+   
 }
 .btn-secondary{
-    @extend %btn;
+    @extend .btn;
     @include set-background-text-color($primary-color);
 }

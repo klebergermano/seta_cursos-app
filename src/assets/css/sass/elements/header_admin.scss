@@ -1,0 +1,17 @@
+@use '../abstracts/' as *;
+
+#header_admin {
+    grid-area: header;
+    background: #333;
+    border-bottom:2px solid #ccc;
+    width: 100%;
+    #header_center {
+      height: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0px auto;
+      padding: 0px $padding-heavy;
+      max-width: $container-width;
+    }
+  }

@@ -6,8 +6,8 @@ inputs{
   @include inputs;
 }
 
-@mixin form_flex(){
-display:flex;
+ .form_flex{
+   display:flex;
    flex-wrap: wrap;
    border-radius: $border-radius;
    border-color: $border-color-medium;
@@ -15,6 +15,7 @@ display:flex;
   max-width: 600px;
   margin: 20px auto;
   background:#fff;
+  transition: all 2s;
   h3{
     flex-basis:100%;
     text-align: center;
@@ -32,7 +33,6 @@ display:flex;
        min-width:85px;
        background:#f0f0f0;
        padding:5px 10px;
-
      }
      input, textarea{
        width:auto;
@@ -44,19 +44,15 @@ display:flex;
        border: $border-set-default;
         padding: $padding-extra-light;
         color: $text-color; 
-    
      }
-     
-   
    }
    input[type=submit]{
-       @include btn-primary;
+       @extend .btn-primary;
        display: block;
        clear:both;
        width:50%;
        min-height: 40px;
        margin: auto ;
        margin-top:30px
-}
-
+  }
 }

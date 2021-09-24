@@ -1,6 +1,6 @@
 @use '../abstracts/' as *;
 
-aside#bg_main_menu_lateral{
+#bg_main_menu_lateral_admin{
   
     figure#bg_logo {
       padding:20px;
@@ -14,12 +14,11 @@ aside#bg_main_menu_lateral{
       img {
         max-width: 150px;
         max-height: 100%;
-        
       }
     }
   grid-area: aside; 
   background:#222;
-  nav {
+  nav{
     margin-top:40px;
     ul li {
       clear:both;

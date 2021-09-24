@@ -1,0 +1,8 @@
+#form_add_curso{
+    select > option:disabled{
+      background:#ffc;
+    }
+    select > option:first-child{
+      background:#f0f0f0;
+    }
+  }

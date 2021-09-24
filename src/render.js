@@ -50,8 +50,7 @@ function importHTML(target, htmlSRC, scriptSRC){
     });
   })
 }
-
-    let childs = document.querySelector('#main_menu_lateral').querySelectorAll("a");
+    let childs = document.querySelector('#nav_main_menu_lateral_admin').querySelectorAll("a");
     childs.forEach((item) => {
       item.addEventListener("click", (e) => {
          let scriptSRC = './components/'+ e.target.dataset.script_src + '/js/index.js'; 
