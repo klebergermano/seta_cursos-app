@@ -1,14 +1,11 @@
-
-
-@use "../abstracts" as *; 
+@use "../abstracts" as *;
 
 nav.nav_cursos_aluno {
     @extend .nav_flex;
     background-color: #fff;
     border-bottom: $border-set-default;
-    height:50px;
+    height: 50px;
     ul {
-     
         li {
             padding: 16px 0px 0px 0px;
             a {
@@ -20,7 +17,6 @@ nav.nav_cursos_aluno {
                 color: #333;
                 font-size: 14px;
                 text-transform: uppercase;
-               
                 &:active {
                     background: #f6f6e0;
                 }
@@ -44,7 +40,7 @@ nav.nav_cursos_aluno {
 
     .btn_add_curso {
         @extend .btn-primary;
-    
+
         svg {
             max-width: 100px;
             max-height: 100px;
@@ -55,7 +51,7 @@ nav.nav_cursos_aluno {
             background: lighten($primary-color, 5%);
         }
     }
-    
+
     .btn_add_aula {
         @extend .btn-default;
         border-color: $primary-color;
@@ -77,7 +73,7 @@ nav.nav_cursos_aluno {
 
     .btn_add_reposicao {
         @extend .btn-default;
-        float:left;
+        float: left;
         color: #8971cc;
         border-color: #8971cc;
         &:hover {
@@ -86,7 +82,7 @@ nav.nav_cursos_aluno {
     }
     .btn_add_ponto_extra {
         @extend .btn-default;
-        float:left;
+        float: left;
         color: #779214;
         border-color: #779214;
         &:hover {
@@ -108,15 +104,7 @@ nav.nav_cursos_aluno {
             justify-content: center;
         }
     }
-    .title_aluno_info {
-        span {
-            float: left;
-            margin: 0px !important;
-        }
-        .title_info_ra {
-            font-weight: normal;
-        }
-    }
+
     h3.title_curso_nome {
         padding: $padding-medium;
         font-size: 18px;
@@ -160,7 +148,7 @@ nav.nav_cursos_aluno {
             float: left;
         }
         .btn_deletar_curso {
-           @extend .btn-default-delete;
+            @extend .btn-default-delete;
         }
         .btn_add_aula {
             position: initial;
@@ -191,11 +179,9 @@ nav.nav_cursos_aluno {
             flex-wrap: wrap;
             align-items: flex-start;
             justify-content: space-around;
-            //border: $border-set-default;
             background: #eee;
             margin-bottom: 10px;
             box-shadow: 0px 1px 1px #999;
-            // border: 1px solid #f90;
             .resumo_bimestre {
                 width: 100%;
                 grid-gap: 1px;
@@ -209,7 +195,7 @@ nav.nav_cursos_aluno {
                         min-width: 150px;
                         flex-grow: 1;
                         width: auto;
-                        padding: 5px;
+                        padding: $padding-light;
                         box-shadow: 0px 0px 0px 1px #ccc;
                         background: #fafafa;
                     }
@@ -223,7 +209,7 @@ nav.nav_cursos_aluno {
                     }
                 }
                 .feedback_bimestral {
-                    padding: 10px;
+                    padding: $padding-light;
                     margin-top: 5px;
                     margin-bottom: 10px;
                     grid-column: 1 / 4;
@@ -237,7 +223,7 @@ nav.nav_cursos_aluno {
                     background: #fafafa;
 
                     p {
-                        padding: 5px;
+                        padding: $padding-extra-light;
                         flex-grow: 1;
                     }
                     .feedback_value {
@@ -259,7 +245,7 @@ nav.nav_cursos_aluno {
                     }
                 }
             }
-
+            /*h2 bimestre title*/
             h2 {
                 font-weight: normal;
                 flex-basis: 100%;
@@ -317,7 +303,7 @@ nav.nav_cursos_aluno {
                     border: 1px solid #999;
                     overflow-y: scroll;
                     height: 145px;
-                    padding: 5px;
+                    padding: $padding-extra-light;
                 }
                 .aula_numero {
                     text-transform: capitalize;
@@ -399,7 +385,6 @@ nav.nav_cursos_aluno {
                     color: darken($primary-color, 10%);
                 }
             }
-
             .btn_open_close_aulas {
                 cursor: pointer;
                 position: absolute;

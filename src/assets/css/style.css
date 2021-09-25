@@ -788,13 +788,6 @@ nav.nav_cursos_aluno ul li .active {
   align-items: center;
   justify-content: center;
 }
-#aluno_content .title_aluno_info span {
-  float: left;
-  margin: 0px !important;
-}
-#aluno_content .title_aluno_info .title_info_ra {
-  font-weight: normal;
-}
 #aluno_content h3.title_curso_nome {
   padding: 20px;
   font-size: 18px;
@@ -865,6 +858,7 @@ nav.nav_cursos_aluno ul li .active {
   background: #eee;
   margin-bottom: 10px;
   box-shadow: 0px 1px 1px #999;
+  /*h2 bimestre title*/
 }
 #aluno_content .bg_bimestres .bimestres .resumo_bimestre {
   width: 100%;
@@ -881,7 +875,7 @@ nav.nav_cursos_aluno ul li .active {
   min-width: 150px;
   flex-grow: 1;
   width: auto;
-  padding: 5px;
+  padding: 10px;
   box-shadow: 0px 0px 0px 1px #ccc;
   background: #fafafa;
 }
@@ -1116,7 +1110,7 @@ dialog {
 }
 .forms #aluno_nome, .forms #curso_nome, .forms #bimestre_nome {
   margin-top: 10px;
-  padding: 10px 10px;
+  padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
   font-weight: bold;
@@ -1134,22 +1128,22 @@ dialog {
   display: none;
 }
 
-#nav_forms_add {
-  background: #f90;
-  padding: 5px;
-  display: flex;
-}
-#nav_forms_add li {
-  list-style: none;
-  margin: 3px;
-}
-#nav_forms_add a {
-  padding: 5px;
-  color: #245da7;
-  background: #ddd;
-  text-decoration: none;
-}
+/*
+  #nav_forms_add{
+    padding:5px;
+    display:flex;
+    li{list-style: none;
+      margin:3px;
+    }
+    a{
+      padding:$padding-extra-light;
+      color: $primary-color;
+      background: #f90;
+      text-decoration: none;
+    }
+  }
 
+*/
 input[type=submit]:disabled {
   background: #999 !important;
 }
