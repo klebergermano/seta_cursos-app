@@ -3,7 +3,28 @@ $container-width: 1200px;
 //Colors
 $primary-color: #245da7;
 $secondary-color: #ed1860;
+$secondary-color: #ed1860;
 
+$white-color-tone: #fff; 
+$yellow-light-color: #f6f6e0; 
+
+$red-light-color: #fee;
+$red-color-tone: #db1e1e;
+
+$green-color-tone:#40c071;
+
+$grey-extra-light-color:#fafafa;
+$grey-light-color:#f0f0f0;
+$grey-color:#ccc;
+$grey-dark-color:#999;
+$grey-heavy-dark-color:#666;
+
+$reposicao-color: #8971cc;
+$ponto-extra-color: #779214;
+
+$disabled-light-color: #ddd;
+$shadow-color: #222;
+$shadow-set-default: 0px 1px 1px $shadow-color;
 //Text
 $text-color: #444;
 
@@ -16,8 +37,7 @@ $title-color-light: #f0f0f0;
 
 //Borders
 $border-color-medium: #ccc;
-$border-color-dark: #333;
-$border-color-light: #f0f0f0;
+
 $border-set-default: 1px solid $border-color-medium;
 $border-radius: 3px;
 

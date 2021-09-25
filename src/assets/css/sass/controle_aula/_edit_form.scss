@@ -1,6 +1,8 @@
+@use "../abstracts" as *;
+
 .edit_form{
-    background:#ffffff !important;
-    border:2px solid rgb(106, 138, 207);
+    background: $white-color-tone !important;
+    border:2px solid $primary-color;
     div{
       label{
         background:transparent !important;
@@ -13,7 +15,7 @@
     }
     .disabled { 
       position : relative; 
-      color    : grey;
+      color    : $disabled-light-color;
   }
   .disabled:after {
       position :absolute;

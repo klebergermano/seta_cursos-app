@@ -106,19 +106,8 @@ grid-template-columns: 250px 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 
   p{width:100%;  padding: 10px; margin-bottom:10px;
   border-bottom:1px solid #ccc;}
-  .btn_deletar{
-    background:rgb(230, 61, 61);
-    color:#fff;
-    &:hover{
-      background:red;
-    }
-  }
-  .btn_cancelar{
-    background: #ccc;
-    &:hover{
-      background:#ddd;
-    }
-  }
+
+  
   button{
     border:$border-set-default;
     padding:5px 10px;

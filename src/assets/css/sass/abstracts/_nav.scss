@@ -20,3 +20,32 @@
         }
     }
 }
+
+@mixin nav_flex($btn_background, $hilight_color, $color){
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    ul{
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+        li{
+            list-style: none;
+            a{
+                user-select: none;
+                background:$btn_background; 
+                color: $color;
+                &:hover{
+                    background: lighten($btn_background, 10%); 
+                }
+                &:active{
+                    background: darken($btn_background, 10%); 
+
+                };
+            }
+        }
+    }
+
+}

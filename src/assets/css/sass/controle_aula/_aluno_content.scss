@@ -2,7 +2,7 @@
 
 nav.nav_cursos_aluno {
     @extend .nav_flex;
-    background-color: #fff;
+    background-color: $white-color-tone;
     border-bottom: $border-set-default;
     height: 50px;
     ul {
@@ -10,7 +10,7 @@ nav.nav_cursos_aluno {
             padding: 16px 0px 0px 0px;
             a {
                 padding: 15px 20px 16px 20px;
-                background: #fff;
+                background:  $white-color-tone;
                 border: $border-set-default;
                 border-top: 0px;
                 border-bottom: 0px;
@@ -18,16 +18,12 @@ nav.nav_cursos_aluno {
                 font-size: 14px;
                 text-transform: uppercase;
                 &:active {
-                    background: #f6f6e0;
+                    background: $yellow-light-color;
                 }
             }
             .active {
-                background: #ffe;
+                background: $yellow-light-color;
                 color: #333;
-                &:hover {
-                    //  background:#dddede;
-                    // color:#fff;
-                }
             }
         }
     }
@@ -64,7 +60,7 @@ nav.nav_cursos_aluno {
             width: auto;
         }
         &:hover {
-            background: #ffe;
+            background: $yellow-light-color;
         }
         &:active {
             box-shadow: inset 0px 0px 3px #111;
@@ -74,26 +70,29 @@ nav.nav_cursos_aluno {
     .btn_add_reposicao {
         @extend .btn-default;
         float: left;
-        color: #8971cc;
-        border-color: #8971cc;
+        color: $reposicao-color;
+        border-color: $reposicao-color;
         &:hover {
-            background: #e7e7ff;
+            //background: #e7e7ff;
+            background: lighten($reposicao-color, 30%);
         }
     }
     .btn_add_ponto_extra {
         @extend .btn-default;
         float: left;
-        color: #779214;
-        border-color: #779214;
+        color: $ponto-extra-color;
+        border-color: $ponto-extra-color;
         &:hover {
-            background: #edffcf;
+           // background: #edffcf;
+            background: lighten($ponto-extra-color, 55%);
+
         }
     }
 
     .bg_curso {
         position: relative;
-        background: #fff;
-        background: #ddd;
+        background: $white-color-tone;
+        background: $disabled-light-color;
         padding: $padding-medium;
         padding-top: 0px;
         display: none;
@@ -136,7 +135,7 @@ nav.nav_cursos_aluno {
         justify-content: center;
         flex-wrap: wrap;
         overflow: hidden;
-        background: #ffd;
+        background: $yellow-light-color;
         align-items: center;
         p {
             display: block;
@@ -159,7 +158,7 @@ nav.nav_cursos_aluno {
                 margin-bottom: -2px;
             }
             &:hover {
-                background: #fff;
+                background: $white-color-tone;
             }
         }
     }
@@ -197,7 +196,7 @@ nav.nav_cursos_aluno {
                         width: auto;
                         padding: $padding-light;
                         box-shadow: 0px 0px 0px 1px #ccc;
-                        background: #fafafa;
+                        background: $grey-extra-light-color;
                     }
                     .label {
                         width: 100%;
@@ -220,7 +219,7 @@ nav.nav_cursos_aluno {
                     flex: 100% 50% 50%;
                     align-items: center;
                     justify-content: space-between;
-                    background: #fafafa;
+                    background: $grey-extra-light-color;
 
                     p {
                         padding: $padding-extra-light;
@@ -234,13 +233,13 @@ nav.nav_cursos_aluno {
                         border: 1px solid $primary-color;
                         padding: 5px 10px;
                         color: $primary-color;
-                        background: #fff;
+                        background: $white-color-tone;
                         border-radius: 5px;
                         cursor: pointer;
                         margin: 10px 5px;
                         float: right;
                         &:hover {
-                            background: #ffe;
+                            background: $yellow-light-color;
                         }
                     }
                 }
@@ -273,7 +272,7 @@ nav.nav_cursos_aluno {
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
-                background: #f2f8f3;
+                background: lighten($ponto-extra-color, 60%);
                 .aulas {
                     width: auto;
                     flex-grow: 1;
@@ -284,10 +283,10 @@ nav.nav_cursos_aluno {
 
             .aulas {
                 position: relative;
-                margin: 10px;
+                margin: 10px 20px;
                 width: auto;
                 max-width: 300px;
-                background: #ffffff;
+                background: $white-color-tone;
                 height: 80px;
                 border: 1px solid rgb(70, 108, 179);
                 overflow: hidden;
@@ -319,26 +318,26 @@ nav.nav_cursos_aluno {
                 }
             }
             .aula_concluida {
-                background: #fff;
+                background: $white-color-tone;
             }
             .aula_falta {
-                background: #fee;
-                border-color: rgb(163, 68, 68);
+                background: $red-light-color;
+                border-color: darken($red-light-color, 20%)
             }
             .aula_remarcada {
-                background: #ddd;
-                border-color: rgb(106, 117, 128);
+                background: $disabled-light-color;
+                border-color: darken($disabled-light-color, 30%);
             }
             [data-aula_categoria="reposição"] {
-                background: #f3eeff !important;
-                border: 1px solid #666;
+                background: lighten($reposicao-color, 30%) !important;
+                border: 1px solid $reposicao-color;
                 width: auto;
                 flex-grow: 1;
                 flex-shrink: 1;
             }
             [data-aula_categoria="ponto extra"] {
-                background: #ecfcb4 !important;
-                border: 1px solid #666;
+                background: lighten($ponto-extra-color, 50%) !important;
+                border: 1px solid $grey-heavy-dark-color;
                 height: 30px;
                 max-height: 180px !important;
                 .aula_detalhes {
@@ -346,7 +345,7 @@ nav.nav_cursos_aluno {
                 }
             }
             [data-aula_categoria="prova"] {
-                background: #d8e4fd !important;
+                background: lighten($primary-color, 50%) !important;
                 .aula_detalhes {
                     height: 110px;
                 }
@@ -354,7 +353,6 @@ nav.nav_cursos_aluno {
             .open_aula {
                 height: 260px;
             }
-
             .btn_deletar_aula {
                 z-index: 2;
                 cursor: pointer;
@@ -364,8 +362,8 @@ nav.nav_cursos_aluno {
                 font-size: 12px;
                 color: $text-color;
                 &:hover {
-                    background: #f9f0f0;
-                    color: rgb(219, 30, 30);
+                    background: $red-light-color;
+                    color: $red-color-tone;
                 }
                 svg {
                     z-index: 0;
@@ -377,11 +375,10 @@ nav.nav_cursos_aluno {
                 margin-top: 5px;
                 cursor: pointer;
                 &:hover {
-                    background: #f9f0f0;
+                    background: $grey-extra-light-color;
                     color: $primary-color;
                 }
                 &:active {
-                    background: #f9f0f0;
                     color: darken($primary-color, 10%);
                 }
             }
@@ -405,7 +402,7 @@ nav.nav_cursos_aluno {
                 }
 
                 &:active {
-                    background: #aa9;
+                    background: lighten($primary-color, 15%);
                     user-select: none;
                 }
             }
