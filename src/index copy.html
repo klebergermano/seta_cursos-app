@@ -1,16 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>SETA CURSOS APP</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-firestore.js"></script>
+  </head>
+  <body>
+    <div id="block_screen"></div>
 
-    <div id='adminContent'>
+    <div id="app" >
       <header>
         <div id="header_center">
-         
         </div>
       </header>
-      <aside id='bg_main_menu_lateral'>
+      <aside id='bg_main_menu_lateral_admin'>
           
         <figure id='bg_logo'>
           <img src="./assets/img/logo.png" />
         </figure>
-          <nav id='main_menu_lateral'>
+          <nav id='nav_main_menu_lateral_admin'>
             <ul>
 
               <li><a data-path="home" data-script_src="home">
@@ -25,7 +36,8 @@
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-folder-fill" viewBox="0 0 16 16">
                     <path d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3zm-8.322.12C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139z"/>
                   </svg>
-                  Controle de Aula</a>
+                  Controle de Aula</a
+                >
               </li>
               <li>
                 
@@ -48,4 +60,32 @@
       </aside>
       <div id='page_content'></div>
       <footer></footer>
-    </div>
+    </div><!--APP-->
+   
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+     <!--
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-analytics.js"></script>
+    <script>
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      var firebaseConfig = {
+        apiKey: "AIzaSyCQ0IIED6S4yHGwd4iePApe3IDmrVW6-Cs",
+        authDomain: "seta-cursos-app.firebaseapp.com",
+        projectId: "seta-cursos-app",
+        storageBucket: "seta-cursos-app.appspot.com",
+        messagingSenderId: "604551662801",
+        appId: "1:604551662801:web:617516e76e3f23ce35c9f0",
+        measurementId: "G-MB10BFHBQ0",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+      const db = firebase.firestore();
+      db.settings({ timestampsInSanpshots: true });
+    </script>
+    -->
+    <script type="module" src="./render.js" defer ></script>
+  </body>
+</html>

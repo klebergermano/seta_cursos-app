@@ -1,10 +1,13 @@
 @use 'base';
 @use 'abstracts' as *;
-@use 'controle_aula';
-
-
 @use 'elements/header_admin.scss';
 @use 'elements/main_menu_lateral_admin.scss';
+
+@use 'controle_aula';
+@use 'login';
+
+
+
 
 //Components
 //Controle Aula
@@ -32,15 +35,17 @@ a {
 svg{ margin-bottom:-2px; margin: 0px 2px -2px 2px;}
 body {
  background:#ccc;
-
-  background: #ddd url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm380-16-x_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=d0c544f028f2405b219eb997cb580e21") ; 
- background-size: 100% auto ;
+  //background: #ddd url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm380-16-x_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=d0c544f028f2405b219eb997cb580e21") ; 
+ //background-size: 100% auto ;
   font-family: $font-stack;
   position:relative;
 }
 
 
-#app{
+#adminContent{
+  background: #ddd url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm380-16-x_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=d0c544f028f2405b219eb997cb580e21") ; 
+ background-size: 100% auto ;
+  
   max-width: 100%;
   margin: 0 auto;
   display: grid;
@@ -106,8 +111,19 @@ grid-template-columns: 250px 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 
   p{width:100%;  padding: 10px; margin-bottom:10px;
   border-bottom:1px solid #ccc;}
-
-  
+  .btn_deletar{
+    background:rgb(230, 61, 61);
+    color:#fff;
+    &:hover{
+      background:red;
+    }
+  }
+  .btn_cancelar{
+    background: #ccc;
+    &:hover{
+      background:#ddd;
+    }
+  }
   button{
     border:$border-set-default;
     padding:5px 10px;

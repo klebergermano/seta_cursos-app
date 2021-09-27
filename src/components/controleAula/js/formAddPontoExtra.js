@@ -1,5 +1,8 @@
-const {setDoc,  doc} = require("firebase/firestore") 
-import {db} from "../../js_common/variablesDB.js";
+
+import {firebaseApp} from "../../dbConfig/firebaseApp.js";
+const {getFirestore, setDoc,  doc} = require("firebase/firestore") 
+const db = getFirestore(firebaseApp);
+
 
 import * as formAddAula from "./formAddAula.js";
 import * as commonFunc from "../../js_common/commonFunctions.js";
@@ -9,9 +12,11 @@ import * as dateFunc from "../../js_common/dateFunc.js";
 
 export function insertFormAddPontoExtra(){
     let form = commonFunc.insertElementHTML('#page_content',
-    './components/controle_aula/formAddAula.html');
+    './components/controleAula/formAddAula.html');
     form.then((form)=>{
       eventsFormAddPontoExtra(form)
+      commonFunc.changeCSSDisplay('#block_screen', 'block')
+
     });
   }
   

@@ -1,5 +1,8 @@
-const {setDoc,  doc} = require("firebase/firestore") 
-import {db} from "../../js_common/variablesDB.js";
+
+
+import {firebaseApp} from "../../dbConfig/firebaseApp.js";
+const {getFirestore, setDoc,  doc} = require("firebase/firestore") 
+const db = getFirestore(firebaseApp);
 
 import * as commonFunc from "../../js_common/commonFunctions.js";
 import * as formAddAula from "./formAddAula.js";
@@ -7,7 +10,7 @@ import * as formAddAula from "./formAddAula.js";
 export function insertFormAddFeedbackBimestral(e){
 
     commonFunc.insertElementHTML('#page_content',
-    './components/controle_aula/formAddFeedbackBimestral.html', eventsFormAddFeedbackBimestral, e);
+    './components/controleAula/formAddFeedbackBimestral.html', eventsFormAddFeedbackBimestral, e);
 }
 
 function eventsFormAddFeedbackBimestral(form, event){

@@ -2,10 +2,10 @@
 
 #header_admin {
     grid-area: header;
-    background: #333;
+    background: $primary-color;
     border-bottom:2px solid #ccc;
     width: 100%;
-    #header_center {
+    #header_admin_center {
       height: 50px;
       display: flex;
       justify-content: space-between;

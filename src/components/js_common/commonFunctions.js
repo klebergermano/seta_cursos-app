@@ -7,6 +7,19 @@ export function removeElementChild(parentElementID, childElementID, callback){
  }
 
 
+ 
+export function importHTMLWithScript(target, htmlSRC, scriptSRC){
+  let element = document.querySelector(target);
+  fetch(htmlSRC)
+  .then((res)=> res.text())
+  .then((html)=>{
+    element.innerHTML = html;
+    import(scriptSRC)
+    .then((module)=>{
+      module.onload();
+    });
+  })
+}
 
 export function insertElementHTML(target, pathElementHTML,  callback, event){
   let targetElement = document.querySelector(target);
