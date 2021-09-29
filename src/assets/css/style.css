@@ -506,22 +506,96 @@ inputs, .input-primary {
 }
 
 #header_admin {
+  z-index: 3;
   grid-area: header;
   background: #245da7;
-  border-bottom: 2px solid #ccc;
+  background: #f0f0f0;
+  position: fixed;
+  border-bottom: 1px solid #666;
   width: 100%;
 }
 #header_admin #header_admin_center {
-  height: 50px;
+  height: 60px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   margin: 0px auto;
   padding: 0px 40px;
-  max-width: 1200px;
+  max-width: 100%;
+}
+#header_admin #header_admin_center #login_info {
+  display: flex;
+  align-items: center;
+  color: #333;
+}
+#header_admin #header_admin_center #login_info #user_info {
+  margin-right: 30px;
+  border-right: 1px dotted #ccc;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  width: auto;
+}
+#header_admin #header_admin_center #login_info #user_info #user_icon {
+  overflow: hidden;
+  margin: 5px;
+  margin-right: 10px;
+  border-radius: 50%;
+  display: flex;
+  width: 35px;
+  height: 35px;
+  flex-shrink: 0;
+  background: #111;
+}
+#header_admin #header_admin_center #login_info #user_info #user_icon img {
+  width: 100%;
+  height: auto;
+  background: #ccc;
+}
+#header_admin #header_admin_center #login_info #user_info #user_icon svg {
+  max-width: auto;
+  max-height: auto;
+  width: 100%;
+  height: auto;
+  color: #fff;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+}
+#header_admin #header_admin_center #login_info #user_info #bg_username {
+  flex-shrink: 1;
+  width: auto;
+  align-items: center;
+}
+#header_admin #header_admin_center #login_info #user_info #bg_username #username {
+  display: block;
+  clear: both;
+  width: 100%;
+  padding-bottom: -2px;
+}
+#header_admin #header_admin_center #login_info #user_info #bg_username #user_categoria {
+  font-size: 12px;
+  color: #999;
+}
+#header_admin #header_admin_center #logout_user {
+  color: #444;
+  background: transparent;
+  padding: 5px 10px;
+  cursor: pointer;
+  border: 1px solid #999;
+  border-radius: 5px;
+  font-size: 14px;
+}
+#header_admin #header_admin_center #logout_user:hover {
+  color: #245da7;
+  background: #fff;
+}
+#header_admin #header_admin_center #logout_user:active {
+  background: #eee;
 }
 
 #bg_main_menu_lateral_admin {
+  z-index: 4;
   grid-area: aside;
   background: #222;
 }
@@ -1219,7 +1293,7 @@ dialog {
   right: 0px;
   left: 0px;
   top: 25%;
-  z-index: 2;
+  z-index: 5;
   box-shadow: 0px 1px 2px #666;
 }
 .forms .btn_close_form {
@@ -1580,8 +1654,9 @@ body {
 }
 
 #page_content {
+  padding-top: 80px;
   grid-area: cp;
-  max-width: 1300px;
+  max-width: 100%;
   min-height: 100vh;
   margin: 0px 60px 0px 60px;
 }
