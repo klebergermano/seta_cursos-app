@@ -1,11 +1,8 @@
 import * as commonFunc from "../../js_common/commonFunctions.js";
-
 import {firebaseApp} from "../../dbConfig/firebaseApp.js";
 const {getAuth, signInWithEmailAndPassword,  onAuthStateChanged } =  require("firebase/auth");
 
 const auth = getAuth(firebaseApp);
-
-import * as commonFunctions from "../../js_common/commonFunctions.js"
 var TESTE =  'TESTE';
 
 console.log(TESTE);
@@ -44,7 +41,7 @@ export function onload(){
         // Signed in 
         const user = userCredential.user;
         console.log('logado', user.email);
-        commonFunctions.importHTMLWithScript('#app', './appContent/adminContent.html', "../../appContent/adminContent.js" );
+        commonFunc.importHTMLWithScript('#app', './appContent/adminContent/index.html', "../../appContent/adminContent/js/index.js" );
         
         // ...
         })

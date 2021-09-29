@@ -2,7 +2,7 @@
 @use 'abstracts' as *;
 @use 'elements/header_admin.scss';
 @use 'elements/main_menu_lateral_admin.scss';
-
+@use 'cursos_info';
 @use 'controle_aula';
 @use 'login';
 
@@ -18,7 +18,7 @@
   min-height: 100vh;
   position: absolute;
   background-color: #11111170;
-  z-index: 1;
+  z-index: 5;
   bottom:0px;
   top:0px;
   display:none;

@@ -1,7 +1,7 @@
-import * as commonFunc from "../components/js_common/commonFunctions.js";
+import * as commonFunc from "../../../components/js_common/commonFunctions.js";
 
 //----------------------------------------------------
-import {firebaseApp} from "../components/dbConfig/firebaseApp.js";
+import {firebaseApp} from "../../../components/dbConfig/firebaseApp.js";
 const {getAuth, signOut, signInWithEmailAndPassword,  onAuthStateChanged, updateProfile } =  require("firebase/auth");
 const {getFirestore, doc, getDoc} = require("firebase/firestore") 
 const db = getFirestore(firebaseApp);
@@ -68,7 +68,7 @@ function importHTML(target, htmlSRC, scriptSRC){
  
   function setLoginInfo(userCompleteInfo){
 
-    let userInfo = userCompleteInfo;
+   let userInfo = userCompleteInfo;
    document.querySelector("#username").textContent = userCompleteInfo.username;
    document.querySelector("#user_icon_img").src = '../src/assets/img/userIcon/'+userCompleteInfo.photoURL;
    document.querySelector("#user_privilegio").textContent = userCompleteInfo.privilegio;
