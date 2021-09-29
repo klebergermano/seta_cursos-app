@@ -573,8 +573,8 @@ inputs, .input-primary {
   width: 100%;
   padding-bottom: -2px;
 }
-#header_admin #header_admin_center #login_info #user_info #bg_username #user_categoria {
-  font-size: 12px;
+#header_admin #header_admin_center #login_info #user_info #bg_username #user_privilegio {
+  font-size: 14px;
   color: #999;
 }
 #header_admin #header_admin_center #logout_user {

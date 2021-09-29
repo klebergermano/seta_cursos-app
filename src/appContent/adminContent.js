@@ -3,19 +3,14 @@ import * as commonFunc from "../components/js_common/commonFunctions.js";
 //----------------------------------------------------
 import {firebaseApp} from "../components/dbConfig/firebaseApp.js";
 const {getAuth, signOut, signInWithEmailAndPassword,  onAuthStateChanged, updateProfile } =  require("firebase/auth");
-
+const {getFirestore, doc, getDoc} = require("firebase/firestore") 
+const db = getFirestore(firebaseApp);
 const auth = getAuth(firebaseApp);
-
-
-
 function updateUserFirebase(){
-
   let userInfo = {
     name: "Kleber Germano",
     photoURL: "kleberGermano.jpg",
     }
-
-    
     const auth = getAuth(firebaseApp);
     updateProfile(auth.currentUser, {
         displayName: userInfo.name, 
@@ -27,23 +22,33 @@ function updateUserFirebase(){
         // An error occurred
         // ...
       });
-
 }
-function createNewUserFirebase(user){
+ function getUserCompleteInfo(currentUser){
 
+  let userInfo = getDoc(doc(db, "users",  currentUser.uid))
+  .then((res)=>{
+    let userInfo = {
+      username: currentUser.displayName,
+      email: currentUser.email,
+      photoURL: currentUser.photoURL,
+      privilegio: res.data()["privilégio"]
+    }
+    return userInfo; 
+  });
+  return userInfo;
+  }
+function createNewUserFirebase(user){
     const auth = getAuth(firebaseApp);
     signInWithEmailAndPassword(auth, user.email, user.password)
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-    
         // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
       });
-    
 }
 
 //------------------------------------------------------
@@ -61,17 +66,22 @@ function importHTML(target, htmlSRC, scriptSRC){
     })
   }
  
-  function setLoginInfo(auth){
-    let userInfo = auth.currentUser;
-let username = userInfo.displayName; 
-   document.querySelector("#username").textContent = username;
-   document.querySelector("#user_icon_img").src = '../src/assets/img/userIcon/'+userInfo.photoURL;
+  function setLoginInfo(userCompleteInfo){
+
+    let userInfo = userCompleteInfo;
+   document.querySelector("#username").textContent = userCompleteInfo.username;
+   document.querySelector("#user_icon_img").src = '../src/assets/img/userIcon/'+userCompleteInfo.photoURL;
+   document.querySelector("#user_privilegio").textContent = userCompleteInfo.privilegio;
  
   }
 
 export function onload(){
+    getUserCompleteInfo(auth.currentUser)
+    .then((userCompleteInfo)=>{
+      console.log(userCompleteInfo);
+      setLoginInfo(userCompleteInfo)
+    })
   //updateUserFirebase()
-    setLoginInfo(auth)
 
   document.querySelector("#logout_user").addEventListener('click', ()=>{
     signOut(auth).then(() => {
