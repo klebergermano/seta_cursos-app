@@ -1,279 +1,166 @@
-@use "../abstracts" as *; 
-dialog{
-  margin: 0 auto;
-  padding: 20px;
-}
-#bg_forms_add{
-  overflow: hidden;
-}
-.forms{
-  @include form_flex;
-  border: $border-set-default;
-  position:fixed;
-  right: 0px; left:0px;
-  top: 25%; 
-  z-index: 2;
-  transition: all 2s;
-  background: #fff;
-  transform: scale(1);
-  box-shadow: 0px 1px 2px #666;
-  .btn_close_form{
-    right:0px;
-    top:0px;
-    padding: 5px 10px;
-    position:absolute;
-    cursor:pointer;
-    &:hover{
-      background:rgb(221, 79, 79);
-    color:#fff;
-    }
-  }
+@use "../abstracts" as *;
 
-}
-
-.forms{
-  #aluno_nome, #curso_nome, #bimestre_nome{
-    margin-top:10px;
-    padding:10px 10px;
-    font-size: 16px;
-    border:1px solid #ccc;
-    font-weight: bold;
-    width:50%;
-    span{
-    font-weight: normal;
-
-      padding:5px 5px 5px 0px;
-    }
-  }
-}
-#form_add_feedback_bimestral{
-  #div_select_aluno, #div_select_curso, #div_select_bimestre{
-    display:none;
-  }
-  #aluno_nome, #curso_nome, #bimestre_nome{
-    width:auto !important;
-    max-width: 100% !important;
-    flex-grow: 1;
-    }
-    #div_observacao{
-      margin-top:10px;
-      padding:0px;
-      flex-grow: 1;
-      min-width: 100%;
-    }
-}
-#form_add_curso{
-  select > option:disabled{
-    background:#ffc;
-  }
-  select > option:first-child{
-    background:#f0f0f0;
-  }
-}
-#form_add_aula{
-  transition: all 2s;
-  border:2px solid lighten($primary-color, 10%);
-  box-shadow: 0px 1px 1px #222;
-  height:auto;
-  div{
-    min-height:35px;
-    margin-top:15px;
-    padding:0px;
+#form_add_aula {
+  border: 2px solid lighten($primary-color, 10%);
+  box-shadow: $shadow-set-default;
+  height: auto;
+  div {
+    min-height: 35px;
+    margin-top: 15px;
+    padding: 0px;
     display: flex;
     justify-content: center;
-    select{ display: block;
-    flex-grow: 1;}
-    input{flex-grow: 1;}
+    select {
+      display: block;
+      flex-grow: 1;
+    }
+    input {
+      flex-grow: 1;
+    }
   }
- 
-  #div_detalhes{
+
+  #div_detalhes {
     min-height: 50px;
   }
-  #div_tema, #div_detalhes{
-    width:100%;
+  #div_tema,
+  #div_detalhes {
+    width: 100%;
     flex-grow: 1;
   }
-   background:#fff;
-    #div_data, #div_horario{
-      max-width: 50%;
-    }
-    #select_categoria{display:none;}
+  background: $white-color-tone;
+  #div_data,
+  #div_horario {
+    max-width: 50%;
+  }
+  #select_categoria {
+    display: none;
+  }
 
-    #div_select_aluno{
-      display:none;
+  #div_select_aluno {
+    display: none;
+  }
+  #div_select_bimestre {
+    max-width: 50%;
+  }
+  #div_select_curso {
+    display: none;
+  }
+  #select_aula {
+    option[disabled="true"] {
+      background: $yellow-light-color;
     }
-    #div_select_bimestre{
-      max-width: 50%;
-    }
-    #div_select_curso{
-      display: none;
-    }
-        #select_aula{
-          option[disabled=true]{
-            background:#eec;
-          }
-        }
+  }
 
-        #div_status_aula{
-          label{ 
-            position: relative;
-            border:1px solid #999;
-            background:#f0f0f0;
-            padding: 5px 10px 5px 10px;
-            user-select: none;
-            cursor:pointer; 
-            input{
-              flex-shrink: 1;
-              flex-grow: 0;
-              -webkit-appearance: none;
-              -moz-appearance: none;
-              appearance: none;
-            
-              width: 8px !important;
-              height: 8px !important;
-              min-width: 8px !important;
-              min-height: 8px !important;
-            border-radius: 50%;
-              border: 2px solid #999;
-              transition: 0.2s all linear;
-              margin-right: 5px;
-              position: relative;
-              top: 1px;
-              border: 1px solid rgb(201, 201, 201);
-            }
-            input:checked {
-              background: #4082c0;
-            }
-            &:hover{
-              background:#ddd;
-            }
-          }
-          
-          .actived_label_aula_concluida{
-            background:#cec !important;
-            input:checked {
-              background: #40c071;
-            }
-          }
-          .actived_label_aula_com_falta{
-            background:#fcc !important;
-            input:checked {
-              background: #c0405c;
-            }
-          }
-          .actived_label_aula_remarcada{
-            background:#cde !important;
-            input:checked {
-              background: #4082c0;
-            }
-          }
-        }
-        #bg_prova_inputs{
-        width:100%;
-        max-height:auto;
-        height: auto;
-        display: flex;
-        flex-direction: row;
-        justify-content: start;
-        padding:5px;
-        background: #dcdde7 ;
-        display: none;
+  #div_status_aula {
+    label {
+      position: relative;
+      border: 1px solid $grey-dark-color;
+      background: $grey-light-color;
+      padding: 5px 10px 5px 10px;
+      user-select: none;
+      cursor: pointer;
+      input {
+        flex-shrink: 1;
+        flex-grow: 0;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
 
-        div{max-width: auto; min-width: auto;
-         
-       }
-        label{min-width: 50px; max-width: auto; width: auto; font-size: 14px;
-       max-height: 30px; border-right:0px;
-       border: 1px solid #bbb;
-       border-right:0px;
-        
+        width: 8px !important;
+        height: 8px !important;
+        min-width: 8px !important;
+        min-height: 8px !important;
+        border-radius: 50%;
+        border: 2px solid #999;
+        transition: 0.2s all linear;
+        margin-right: 5px;
+        position: relative;
+        top: 1px;
+        border: 1px solid $grey-color;
       }
-     
-        input, textarea{min-width: auto; height:30px; max-height: auto;
-           min-height:30px;
-          border: 1px solid #ccc;
-          }
-        textarea{
-          min-width: 120px;
-          flex-shrink: 0;
-        }
-        #div_nota_prova{ width: auto; flex-shrink: 1;
-        min-width: auto; input{max-width: 50px; }}
-        #div_numero_questoes{label{width: 120px;} input{max-width: 50px; }}
-      #div_obs_prova{ flex-grow: 1;}
-        }
-               
-
-}
-.edit_form{
-  background:#ffffff !important;
-  border:2px solid rgb(106, 138, 207);
-  div{
-    label{
-      background:transparent !important;
-      
+      input:checked {
+        background: $primary-color;
+      }
+      &:hover {
+        background: $grey-color;
+      }
     }
-    input, select, textarea{
-      background:transparent;
-      border:1px solid rgb(170, 148, 115)
+
+    .actived_label_aula_concluida {
+      background: #cec !important;
+      input:checked {
+        background: #40c071;
+      }
+    }
+    .actived_label_aula_com_falta {
+      background: #fcc !important;
+      input:checked {
+        background: $red-light-color;
+      }
+    }
+    .actived_label_aula_remarcada {
+      background: #cde !important;
+      input:checked {
+        background: $disabled-light-color;
+      }
     }
   }
-  .disabled { 
-    position : relative; 
-    color    : grey;
-}
-.disabled:after {
-    position :absolute;
-    left     : 0;
-    top      : 0;
-    width    : 100%;
-    height   : 100%;
-    content  :' ';
-}
-}
+  #bg_prova_inputs {
+    width: 100%;
+    max-height: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    padding: 5px;
+    background: #dcdde7;
+    display: none;
 
-#btn_novo_aluno{
-  float:right;
-  flex-basis: 100%;
-  clear:both;
-  display:none;
-}
-#form_add_aluno{
- #add_aluno_ra{
-   text-transform: uppercase;
- }
- .blocked{
-   border: 1px solid red;
-   background:rgb(250, 211, 211);
- }
+    div {
+      max-width: auto;
+      min-width: auto;
+    }
+    label {
+      min-width: 50px;
+      max-width: auto;
+      width: auto;
+      font-size: 14px;
+      max-height: 30px;
+      border-right: 0px;
+      border: 1px solid #bbb;
+      border-right: 0px;
+    }
 
-div{
-  #ra{
-    max-width: 20px;
-    flex-shrink:1;
+    input,
+    textarea {
+      min-width: auto;
+      height: 30px;
+      max-height: auto;
+      min-height: 30px;
+      border: 1px solid #ccc;
+    }
+    textarea {
+      min-width: 120px;
+      flex-shrink: 0;
+    }
+    #div_nota_prova {
+      width: auto;
+      flex-shrink: 1;
+      min-width: auto;
+      input {
+        max-width: 50px;
+      }
+    }
+    #div_numero_questoes {
+      label {
+        width: 120px;
+      }
+      input {
+        max-width: 50px;
+      }
+    }
+    #div_obs_prova {
+      flex-grow: 1;
+    }
   }
-}
-
-
-}
-
-#nav_forms_add{
-  padding:5px;
-  display:flex;
-  li{list-style: none;
-    margin:3px;
-  }
-  a{
-    padding:$padding-extra-light;
-    color: $primary-color;
-    background: #ddd;
-    text-decoration: none;
-  }
-}
-
-  input[type=submit]:disabled {
-  background:#999 !important;
-}
-  input:disabled, textarea:disabled {
-  background:#ddd !important;
 }

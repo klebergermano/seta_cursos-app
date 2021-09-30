@@ -1,6 +1,8 @@
-const {deleteDoc, doc, updateDoc, deleteField, getDocs, getDoc, collection} = require("firebase/firestore") 
-import {db} from "../../js_common/variablesDB.js";
 
+
+import {firebaseApp} from "../../dbConfig/firebaseApp.js";
+const {getFirestore,  doc, deleteDoc,  updateDoc, deleteField, getDoc} = require("firebase/firestore") 
+const db = getFirestore(firebaseApp);
 
 import * as commonFunc from "../../js_common/commonFunctions.js";
 import * as navCursosAluno from "./navCursosAluno.js";
