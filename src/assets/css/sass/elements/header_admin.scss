@@ -1,0 +1,92 @@
+@use '../abstracts/' as *;
+
+#header_admin {
+  z-index: 3;
+    grid-area: header;
+    background: $primary-color;
+    background: #f0f0f0;
+    position: fixed;
+    border-bottom:1px solid #666;
+    width: 100%;
+    #header_admin_center {
+      height: 60px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin: 0px auto;
+      padding: 0px $padding-heavy;
+      max-width: 100%;
+      #login_info{
+        display:flex;
+        align-items: center;
+        color:#333;
+        #user_info{
+          margin-right:30px;
+          border-right:1px dotted #ccc;
+          display: flex;
+          align-items: center;
+          padding:5px 10px;
+          width: auto;
+          #user_icon{
+            overflow: hidden;
+            margin:5px;
+            margin-right:10px;
+            border-radius: 50%; 
+            display: flex;
+            
+            width:35px;
+           height:35px;
+            flex-shrink: 0;
+            background:#111;
+            img{
+              width: 100%;
+              height:auto;
+              background:#ccc;
+            }
+            svg{
+              max-width: auto;
+              max-height: auto;
+              width:100%;
+              height:auto;
+              color:#fff;
+              flex-grow: 1;
+              align-items: center;
+              justify-content: center;
+            }
+          }
+          #bg_username{
+            flex-shrink: 1;
+            width:auto;
+            align-items: center;
+            #username{
+              display:block;
+              clear:both;
+              width:100%;
+              padding-bottom:-2px;
+            }
+            #user_privilegio{
+              font-size:14px; color:#999;
+            }
+          }
+        }
+      }
+      #logout_user{
+        color:#444;
+        background: transparent;
+        padding:5px 10px;
+        cursor: pointer;
+        border:1px solid #999;
+        border-radius: 5px;
+        font-size: 14px;
+        &:hover{
+          color:$primary-color;
+          background:#fff;
+          
+        }
+        &:active{
+          background:#eee;
+        }
+      }
+    
+    }
+  }

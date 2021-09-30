@@ -2,7 +2,6 @@
 import * as commonFunc from "../../js_common/commonFunctions.js";
 import * as dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
 import * as dateFunc from "../../js_common/dateFunc.js";
-
 import * as navCursosAluno from "./navCursosAluno.js";
 import * as formEditAula from "./formEditAula.js";
 import * as formAddAula from "./formAddAula.js";
@@ -10,6 +9,8 @@ import * as formAddReposicaoAula from "./formAddReposicaoAula.js";
 import * as formAddPontoExtra from "./formAddPontoExtra.js";
 import * as formAddFeedbackBimestral from "./formAddFeedbackBimestral.js";
 import * as deleteFunc from "./deleteFunc.js";
+
+
 
 export function eventsAlunoContent() {
   let RA = getRAfromMainSelectAluno();
@@ -21,6 +22,9 @@ function getRAfromMainSelectAluno() {
   let RA = select.options[select.selectedIndex].value;
   return RA;
 }
+
+
+
 
 export function insertAlunoContent(RA, snapshotChange) {
   let nomeCurso = snapshotChange[0].doc.data().curso;
@@ -37,7 +41,15 @@ export function insertAlunoContent(RA, snapshotChange) {
       eventBtnAddReposicaoAula()
       eventBtnAddPontoExtra()
       eventBtnAddFeedbackBimestral();
-    })
+    }).then(()=>{
+      let spiner = document.querySelector('.spinner');
+      if(spiner){
+        document.querySelector('#page_content').removeChild(spiner);
+      }
+    }).then(()=>{
+  document.querySelector("#controle_aula").style.opacity="1";
+
+    });
 }
 function eventBtnAddAula(){
   document.querySelectorAll(".btn_add_aula").forEach((item) => {

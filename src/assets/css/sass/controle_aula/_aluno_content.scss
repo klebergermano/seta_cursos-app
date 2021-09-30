@@ -1,0 +1,467 @@
+@use "../abstracts" as *;
+
+@keyframes spinner-line-fade-more {
+    0%, 100% {
+      opacity: 0; /* minimum opacity */
+    }
+    1% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes spinner-line-fade-quick {
+    0%, 39%, 100% {
+      opacity: 0.25; /* minimum opacity */
+    }
+    40% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes spinner-line-fade-default {
+    0%, 100% {
+      opacity: 0.22; /* minimum opacity */
+    }
+    1% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes spinner-line-shrink {
+    0%, 25%, 100% {
+      /* minimum scale and opacity */
+      transform: scale(0.5);
+      opacity: 0.25;
+    }
+    26% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+.load_element{
+   width:100px;
+   height:100px;
+   position: fixed;
+   top:50%; left:50%;
+   margin:auto;
+   z-index: 5;
+   background:#f90;
+   border-radius: 50%;
+}
+
+#page_content{
+    position: relative;
+}
+
+nav.nav_cursos_aluno {
+    @extend .nav_flex;
+    background-color: $white-color-tone;
+    border-bottom: $border-set-default;
+    height: 50px;
+    ul {
+        li {
+            padding: 16px 0px 0px 0px;
+            a {
+                padding: 15px 20px 16px 20px;
+                background:  $white-color-tone;
+                border: $border-set-default;
+                border-top: 0px;
+                border-bottom: 0px;
+                color: #333;
+                font-size: 14px;
+                text-transform: uppercase;
+                &:active {
+                    background: $yellow-light-color;
+                }
+            }
+            .active {
+                background: $yellow-light-color;
+                color: #333;
+            }
+        }
+    }
+}
+#aluno_content {
+    border-radius: 5px 5px 0px 0px;
+    border: $border-set-default;
+    overflow: hidden;
+    position: relative;
+
+    .btn_add_curso {
+        @extend .btn-primary;
+
+        svg {
+            max-width: 100px;
+            max-height: 100px;
+            height: 25px;
+            width: auto;
+        }
+        &:hover {
+            background: lighten($primary-color, 5%);
+        }
+    }
+
+    .btn_add_aula {
+        @extend .btn-default;
+        border-color: $primary-color;
+        color: $primary-color;
+        top: 17px;
+        right: 15px;
+        position: absolute;
+        svg {
+            height: 25px;
+            width: auto;
+        }
+        &:hover {
+            background: $yellow-light-color;
+        }
+        &:active {
+            box-shadow: inset 0px 0px 3px #111;
+        }
+    }
+
+    .btn_add_reposicao {
+        margin-bottom:20px;
+        @extend .btn-default;
+        float: left;
+        color: $reposicao-color;
+        border-color: $reposicao-color;
+        &:hover {
+            //background: #e7e7ff;
+            background: lighten($reposicao-color, 30%);
+        }
+    }
+    .btn_add_ponto_extra {
+        margin-bottom:20px;
+        @extend .btn-default;
+        float: left;
+        color: $ponto-extra-color;
+        border-color: $ponto-extra-color;
+        &:hover {
+           // background: #edffcf;
+            background: lighten($ponto-extra-color, 55%);
+
+        }
+    }
+
+    .bg_curso {
+        position: relative;
+        background: $white-color-tone;
+        background: $disabled-light-color;
+        padding: $padding-medium;
+        padding-top: 0px;
+        display: none;
+        h3 {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    h3.title_curso_nome {
+        padding: $padding-medium;
+        font-size: 18px;
+        text-align: center;
+        width: 100%;
+        text-transform: uppercase;
+    }
+
+    h3[class*="web"] {
+        color: rgb(32, 97, 134);
+    }
+    h3[class*="inglês"] {
+        color: red;
+    }
+    //excel
+    h3[class*="excel"] {
+        color: rgb(38, 148, 38);
+    }
+    //informática
+    h3[class^="informática"],
+    h3[class*="informática"] {
+        color: blue !important;
+    }
+    .bg_info_delete_curso {
+        width: 100%;
+        height: auto;
+        padding: $padding-medium;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        overflow: hidden;
+        background: $yellow-light-color;
+        align-items: center;
+        p {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: $padding-light;
+        }
+        button {
+            float: left;
+        }
+        .btn_deletar_curso {
+            @extend .btn-default-delete;
+        }
+        .btn_add_aula {
+            position: initial;
+            margin-left: 10px;
+            svg {
+                width: auto;
+                height: auto;
+                margin-bottom: -2px;
+            }
+            &:hover {
+                background: $white-color-tone;
+            }
+        }
+    }
+    .bg_bimestres {
+        // border: $border-set-default;
+        width: 100%;
+        min-height: 300px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .bimestres {
+            min-width: 100%;
+            padding: 20px 10px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            justify-content: space-around;
+            background: #eee;
+            margin-bottom: 10px;
+            box-shadow: 0px 1px 1px #999;
+            .resumo_bimestre {
+                width: 100%;
+                grid-gap: 1px;
+                display: flex;
+                flex-wrap: wrap;
+                .row {
+                    min-width: 100%;
+                    display: flex;
+                    flex-wrap: wrap;
+                    p {
+                        min-width: 150px;
+                        flex-grow: 1;
+                        width: auto;
+                        padding: $padding-light;
+                        box-shadow: 0px 0px 0px 1px #ccc;
+                        background: $grey-extra-light-color;
+                    }
+                    .label {
+                        width: 100%;
+                        flex-grow: 1;
+                        font-size: 14px;
+                    }
+                    span.values {
+                        font-weight: bold;
+                    }
+                }
+                .feedback_bimestral {
+                    padding: $padding-light;
+                    margin-top: 5px;
+                    margin-bottom: 10px;
+                    grid-column: 1 / 4;
+                    min-width: 100%;
+                    border: 1px solid #ccc;
+                    display: flex;
+                    flex-wrap: wrap;
+                    flex: 100% 50% 50%;
+                    align-items: center;
+                    justify-content: space-between;
+                    background: $grey-extra-light-color;
+
+                    p {
+                        padding: $padding-extra-light;
+                        flex-grow: 1;
+                    }
+                    .feedback_value {
+                        min-height: 30px;
+                    }
+                    .btn_add_feedback_bimestral {
+                        max-height: 35px;
+                        border: 1px solid $primary-color;
+                        padding: 5px 10px;
+                        color: $primary-color;
+                        background: $white-color-tone;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        margin: 10px 5px;
+                        float: right;
+                        &:hover {
+                            background: $yellow-light-color;
+                        }
+                    }
+                }
+            }
+            /*h2 bimestre title*/
+            h2 {
+                font-weight: normal;
+                flex-basis: 100%;
+                font-size: 18px;
+                color: $text-color;
+                text-transform: capitalize;
+                margin-top: -10px;
+                margin-bottom: 10px;
+                padding-bottom: 10px !important;
+                border-bottom: 1px solid #ccc;
+                color: rgb(77, 77, 77);
+            }
+            .columns {
+                width: 24%;
+                min-width: 200px;
+                flex-grow: 1;
+                border: $border-set-default;
+            }
+            .column_reposicao {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .column_pontos_extras {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                background: lighten($ponto-extra-color, 60%);
+                .aulas {
+                    width: auto;
+                    flex-grow: 1;
+                    flex-shrink: 1;
+                    max-width: 250px;
+                }
+            }
+
+            .aulas {
+                position: relative;
+                margin: 10px 20px;
+                width: auto;
+                max-width: 300px;
+                background: $white-color-tone;
+                height: 80px;
+                border: 1px solid rgb(70, 108, 179);
+                overflow: hidden;
+                transition: height 0.5s;
+                box-shadow: 0px 1px 1px rgb(156, 156, 156);
+                font-size: 13px;
+                padding: 5px 10px 10px 10px;
+                .status {
+                    text-transform: capitalize;
+                }
+                .aula_detalhes {
+                    margin-top: 10px;
+                    border: 1px solid #999;
+                    overflow-y: scroll;
+                    height: 145px;
+                    padding: $padding-extra-light;
+                }
+                .aula_numero {
+                    text-transform: capitalize;
+                    color: darken($primary-color, 20%);
+                }
+                .aula_data {
+                    padding: 5px 0px;
+                    svg {
+                        max-height: 14px;
+                        margin-bottom: -2px;
+                        color: $text-color;
+                    }
+                }
+            }
+            .aula_concluida {
+                background: $white-color-tone;
+            }
+            .aula_falta {
+                background: $red-light-color;
+                border-color: darken($red-light-color, 20%)
+            }
+            .aula_remarcada {
+                background: $disabled-light-color;
+                border-color: darken($disabled-light-color, 30%);
+            }
+            [data-aula_categoria="reposição"] {
+                background: lighten($reposicao-color, 30%) !important;
+                border: 1px solid $reposicao-color;
+                width: auto;
+                flex-grow: 1;
+                flex-shrink: 1;
+            }
+            [data-aula_categoria="ponto extra"] {
+                background: lighten($ponto-extra-color, 50%) !important;
+                border: 1px solid $grey-heavy-dark-color;
+                height: 30px;
+                max-height: 180px !important;
+                .aula_detalhes {
+                    height: 110px;
+                }
+            }
+            [data-aula_categoria="prova"] {
+                background: lighten($primary-color, 50%) !important;
+                .aula_detalhes {
+                    height: 110px;
+                }
+            }
+            .open_aula {
+                height: 260px;
+            }
+            .btn_deletar_aula {
+                z-index: 2;
+                cursor: pointer;
+                float: left;
+                padding: 3px;
+                margin-top: 5px;
+                font-size: 12px;
+                color: $text-color;
+                &:hover {
+                    background: $red-light-color;
+                    color: $red-color-tone;
+                }
+                svg {
+                    z-index: 0;
+                }
+            }
+            .btn_edit_aula {
+                float: right;
+                padding: 3px;
+                margin-top: 5px;
+                cursor: pointer;
+                &:hover {
+                    background: $grey-extra-light-color;
+                    color: $primary-color;
+                }
+                &:active {
+                    color: darken($primary-color, 10%);
+                }
+            }
+            .btn_open_close_aulas {
+                cursor: pointer;
+                position: absolute;
+                right: 0px;
+                top: 0px;
+                font-size: 16px;
+                background: $primary-color;
+                text-align: center;
+                height: 22px;
+                width: 30px;
+                padding: 2px;
+                color: $text-color;
+                font-stretch: expanded;
+                border-radius: 0px 0px 0px 3px;
+                svg {
+                    margin-top: 1px;
+                    color: #fff;
+                }
+
+                &:active {
+                    background: lighten($primary-color, 15%);
+                    user-select: none;
+                }
+            }
+        }
+    }
+}

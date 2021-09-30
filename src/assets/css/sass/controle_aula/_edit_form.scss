@@ -1,0 +1,29 @@
+@use "../abstracts" as *;
+
+.edit_form{
+    background: $white-color-tone !important;
+    border:2px solid $primary-color;
+    div{
+      label{
+        background:transparent !important;
+        
+      }
+      input, select, textarea{
+        background:transparent;
+        border:1px solid rgb(170, 148, 115)
+      }
+    }
+    .disabled { 
+      position : relative; 
+      color    : $disabled-light-color;
+  }
+  .disabled:after {
+      position :absolute;
+      left     : 0;
+      top      : 0;
+      width    : 100%;
+      height   : 100%;
+      content  :' ';
+  }
+  }
+  
