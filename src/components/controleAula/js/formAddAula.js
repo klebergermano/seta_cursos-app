@@ -1,5 +1,8 @@
-const {setDoc, collection, getDocs, doc, getDoc, onSnapshot } = require("firebase/firestore") 
-import {db} from "../../js_common/variablesDB.js";
+import {firebaseApp} from "../../dbConfig/firebaseApp.js";
+const {getFirestore, setDoc,  doc} = require("firebase/firestore") 
+const db = getFirestore(firebaseApp);
+
+
 
 import * as commonFunc from "../../js_common/commonFunctions.js";
 import * as dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
@@ -8,7 +11,7 @@ import * as formEditAulas from "./formEditAula.js";
 
 export async function insertFormAddAulaHTML() {
   commonFunc.insertElementHTML('#page_content',
-    './components/controle_aula/formAddAula.html', eventsFormAddAula);
+    './components/controleAula/formAddAula.html', eventsFormAddAula);
 }
  export function eventsFormAddAula(form) {
   form.querySelector('.btn_close_form').addEventListener('click', (e) => {

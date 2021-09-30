@@ -4,7 +4,7 @@ import * as dateFunc from "../../js_common/dateFunc.js";
 //TODO:-----------------------------EDIT Aulas------------------------------------
 export function insertFormEditAulaHTML(eventClick){
   let form = commonFunc.insertElementHTML('#page_content',
-  './components/controle_aula/formAddAula.html');
+  './components/controleAula/formAddAula.html');
 
   form.then((formRes)=>{
     formAddAula.eventsFormAddAula(formRes);

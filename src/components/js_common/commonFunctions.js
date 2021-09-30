@@ -7,6 +7,19 @@ export function removeElementChild(parentElementID, childElementID, callback){
  }
 
 
+ 
+export function importHTMLWithScript(target, htmlSRC, scriptSRC){
+  let element = document.querySelector(target);
+  fetch(htmlSRC)
+  .then((res)=> res.text())
+  .then((html)=>{
+    element.innerHTML = html;
+    import(scriptSRC)
+    .then((module)=>{
+      module.onload();
+    });
+  })
+}
 
 export function insertElementHTML(target, pathElementHTML,  callback, event){
   let targetElement = document.querySelector(target);
@@ -103,12 +116,12 @@ export function confirmBoxDelete(target, msg,  callback){
   let msgBox = document.createElement('div');
   msgBox.className='confirm_box confirm_box_deletar';
   msgBox.innerHTML = `<span class='btn_close'>X</span><p>${msg}</p>
-  <button class='btn btn_deletar'>Deletar</button><button class='btn btn_cancelar' button>Cancelar</button>`;
-  msgBox.querySelector('.btn_deletar').addEventListener('click', (e)=>{
+  <button class='btn-default-delete'>Deletar</button><button class='btn-default-cancel' button>Cancelar</button>`;
+  msgBox.querySelector('.btn-default-delete').addEventListener('click', (e)=>{
    callback();
   document.querySelector('#block_screen').style.display = 'none';
     });
-  msgBox.querySelector('.btn_cancelar').addEventListener('click', (e)=>{
+  msgBox.querySelector('.btn-default-cancel').addEventListener('click', (e)=>{
     closeConfirmBox(e)
   document.querySelector('#block_screen').style.display = 'none';
     });

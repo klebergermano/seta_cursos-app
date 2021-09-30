@@ -1,0 +1,21 @@
+@use "../abstracts" as *;
+
+#form_add_aluno{
+    #add_aluno_ra{
+      text-transform: uppercase;
+    }
+    .blocked{
+      border: 1px solid $red-color-tone;
+      background: $red-light-color;
+    }
+   
+   div{
+
+     #ra{
+       max-width: 20px;
+       flex-shrink:1;
+     }
+   }
+   
+   
+   }

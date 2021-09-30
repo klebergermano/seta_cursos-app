@@ -1,12 +1,13 @@
-const {setDoc,  doc} = require("firebase/firestore") 
-import {db} from "../../js_common/variablesDB.js";
+import {firebaseApp} from "../../dbConfig/firebaseApp.js";
+const {getFirestore, setDoc,  doc} = require("firebase/firestore") 
+const db = getFirestore(firebaseApp);
 
 import * as dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
 import * as commonFunc from "../../js_common/commonFunctions.js";
 
 export function insertFormAddCursoHTML(){
   commonFunc.insertElementHTML('#page_content', 
-  './components/controle_aula/formAddCurso.html', eventsFormAddCurso);
+  './components/controleAula/formAddCurso.html', eventsFormAddCurso);
 }
 
 function eventsFormAddCurso(form) {

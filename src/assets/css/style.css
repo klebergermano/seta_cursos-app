@@ -349,23 +349,60 @@ template {
   display: none;
 }
 
-.forms input[type=submit], .btn-secondary, .btn-primary {
-  display: block;
-  border-radius: 2px;
-  padding: 8px 20px;
+.btn, .btn-secondary, .btn-primary, #aluno_content .btn_add_curso, .form_flex input[type=submit], .forms input[type=submit], .btn-default-delete, #aluno_content .bg_info_delete_curso .btn_deletar_curso, .btn-default, #page_login #login_content #form_login input[type=submit], #aluno_content .btn_add_aula, #aluno_content .btn_add_reposicao, #aluno_content .btn_add_ponto_extra {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  padding: 10px 15px;
   margin: 5px;
   border: 0px;
   cursor: pointer;
 }
+.btn svg, .btn-secondary svg, .btn-primary svg, #aluno_content .btn_add_curso svg, .form_flex input[type=submit] svg, .forms input[type=submit] svg, .btn-default-delete svg, #aluno_content .bg_info_delete_curso .btn_deletar_curso svg, .btn-default svg, #page_login #login_content #form_login input[type=submit] svg, #aluno_content .btn_add_aula svg, #aluno_content .btn_add_reposicao svg, #aluno_content .btn_add_ponto_extra svg {
+  max-width: 100px;
+  max-height: 100px;
+  height: auto;
+  width: 20px;
+}
 
-.btn-primary {
+.btn-default, #page_login #login_content #form_login input[type=submit], #aluno_content .btn_add_aula, #aluno_content .btn_add_reposicao, #aluno_content .btn_add_ponto_extra {
+  background: #f0f0f0;
+  color: #333;
+  border: 1px solid #666;
+}
+.btn-default:hover, #page_login #login_content #form_login input[type=submit]:hover, #aluno_content .btn_add_aula:hover, #aluno_content .btn_add_reposicao:hover, #aluno_content .btn_add_ponto_extra:hover {
+  background: #fdfdfd;
+}
+.btn-default:active, #page_login #login_content #form_login input[type=submit]:active, #aluno_content .btn_add_aula:active, #aluno_content .btn_add_reposicao:active, #aluno_content .btn_add_ponto_extra:active {
+  background: #e3e3e3;
+  box-shadow: inset 0px 1px 3px #bdbdbd;
+}
+
+.btn-default-delete, #aluno_content .bg_info_delete_curso .btn_deletar_curso {
+  background: #e03737;
+  color: #fafafa;
+  border: 1px solid #520404;
+}
+.btn-default-delete:hover, #aluno_content .bg_info_delete_curso .btn_deletar_curso:hover {
+  background: #e34d4d;
+}
+.btn-default-delete:active, #aluno_content .bg_info_delete_curso .btn_deletar_curso:active {
+  background: #db2222;
+  box-shadow: inset 0px 1px 3px #991818;
+}
+.btn-default-delete:hover, #aluno_content .bg_info_delete_curso .btn_deletar_curso:hover {
+  background: #fc4646;
+}
+
+.btn-primary, #aluno_content .btn_add_curso, .form_flex input[type=submit], .forms input[type=submit] {
   background: #245da7;
   color: #fafafa;
 }
-.btn-primary:hover {
+.btn-primary:hover, #aluno_content .btn_add_curso:hover, .form_flex input[type=submit]:hover, .forms input[type=submit]:hover {
   background: #2969bc;
 }
-.btn-primary:active {
+.btn-primary:active, #aluno_content .btn_add_curso:active, .form_flex input[type=submit]:active, .forms input[type=submit]:active {
   background: #1f5192;
   box-shadow: inset 0px 1px 3px #122e53;
 }
@@ -382,6 +419,13 @@ template {
   box-shadow: inset 0px 1px 3px #122e53;
 }
 
+.btn-default-cancel {
+  background: #ccc;
+}
+.btn-default-cancel:hover {
+  background: #ddd;
+}
+
 inputs, .input-primary {
   border: 1px solid #ccc;
   padding: 5px;
@@ -389,16 +433,7 @@ inputs, .input-primary {
   color: #444;
 }
 
-dialog {
-  margin: 0 auto;
-  padding: 20px;
-}
-
-#bg_forms_add {
-  overflow: hidden;
-}
-
-.forms {
+.form_flex, .forms {
   display: flex;
   flex-wrap: wrap;
   border-radius: 3px;
@@ -407,40 +442,31 @@ dialog {
   max-width: 600px;
   margin: 20px auto;
   background: #fff;
-  border: 1px solid #ccc;
-  position: fixed;
-  right: 0px;
-  left: 0px;
-  top: 25%;
-  z-index: 2;
   transition: all 2s;
-  background: #fff;
-  transform: scale(1);
-  box-shadow: 0px 1px 2px #666;
 }
-.forms h3 {
+.form_flex h3, .forms h3 {
   flex-basis: 100%;
   text-align: center;
   margin-bottom: 10px;
 }
-.forms h3 svg {
+.form_flex h3 svg, .forms h3 svg {
   margin-bottom: -1px;
   margin-right: 2px;
 }
-.forms div {
+.form_flex div, .forms div {
   display: flex;
   padding: 5px;
   flex-grow: 1;
   max-width: 100%;
 }
-.forms div label {
+.form_flex div label, .forms div label {
   display: flex;
   align-items: center;
   min-width: 85px;
   background: #f0f0f0;
   padding: 5px 10px;
 }
-.forms div input, .forms div textarea {
+.form_flex div input, .forms div input, .form_flex div textarea, .forms div textarea {
   width: auto;
   max-width: 500px;
   min-width: 100px;
@@ -451,9 +477,7 @@ dialog {
   padding: 5px;
   color: #444;
 }
-.forms input[type=submit] {
-  background: #245da7;
-  color: #fafafa;
+.form_flex input[type=submit], .forms input[type=submit] {
   display: block;
   clear: both;
   width: 50%;
@@ -461,62 +485,193 @@ dialog {
   margin: auto;
   margin-top: 30px;
 }
-.forms input[type=submit]:hover {
-  background: #2969bc;
+
+.nav_flex, nav.nav_cursos_aluno {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
-.forms input[type=submit]:active {
-  background: #1f5192;
-  box-shadow: inset 0px 1px 3px #122e53;
+.nav_flex ul, nav.nav_cursos_aluno ul {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
 }
-.forms .btn_close_form {
-  right: 0px;
-  top: 0px;
+.nav_flex ul li, nav.nav_cursos_aluno ul li {
+  list-style: none;
+}
+.nav_flex ul li a, nav.nav_cursos_aluno ul li a {
+  user-select: none;
+}
+
+#header_admin {
+  z-index: 3;
+  grid-area: header;
+  background: #245da7;
+  background: #f0f0f0;
+  position: fixed;
+  border-bottom: 1px solid #666;
+  width: 100%;
+}
+#header_admin #header_admin_center {
+  height: 60px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0px auto;
+  padding: 0px 40px;
+  max-width: 100%;
+}
+#header_admin #header_admin_center #login_info {
+  display: flex;
+  align-items: center;
+  color: #333;
+}
+#header_admin #header_admin_center #login_info #user_info {
+  margin-right: 30px;
+  border-right: 1px dotted #ccc;
+  display: flex;
+  align-items: center;
   padding: 5px 10px;
-  position: absolute;
-  cursor: pointer;
+  width: auto;
 }
-.forms .btn_close_form:hover {
-  background: #dd4f4f;
+#header_admin #header_admin_center #login_info #user_info #user_icon {
+  overflow: hidden;
+  margin: 5px;
+  margin-right: 10px;
+  border-radius: 50%;
+  display: flex;
+  width: 35px;
+  height: 35px;
+  flex-shrink: 0;
+  background: #111;
+}
+#header_admin #header_admin_center #login_info #user_info #user_icon img {
+  width: 100%;
+  height: auto;
+  background: #ccc;
+}
+#header_admin #header_admin_center #login_info #user_info #user_icon svg {
+  max-width: auto;
+  max-height: auto;
+  width: 100%;
+  height: auto;
   color: #fff;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+}
+#header_admin #header_admin_center #login_info #user_info #bg_username {
+  flex-shrink: 1;
+  width: auto;
+  align-items: center;
+}
+#header_admin #header_admin_center #login_info #user_info #bg_username #username {
+  display: block;
+  clear: both;
+  width: 100%;
+  padding-bottom: -2px;
+}
+#header_admin #header_admin_center #login_info #user_info #bg_username #user_privilegio {
+  font-size: 14px;
+  color: #999;
+}
+#header_admin #header_admin_center #logout_user {
+  color: #444;
+  background: transparent;
+  padding: 5px 10px;
+  cursor: pointer;
+  border: 1px solid #999;
+  border-radius: 5px;
+  font-size: 14px;
+}
+#header_admin #header_admin_center #logout_user:hover {
+  color: #245da7;
+  background: #fff;
+}
+#header_admin #header_admin_center #logout_user:active {
+  background: #eee;
 }
 
-.forms #aluno_nome, .forms #curso_nome, .forms #bimestre_nome {
-  margin-top: 10px;
-  padding: 10px 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  font-weight: bold;
-  width: 50%;
+#bg_main_menu_lateral_admin {
+  z-index: 4;
+  grid-area: aside;
+  background: #222;
 }
-.forms #aluno_nome span, .forms #curso_nome span, .forms #bimestre_nome span {
-  font-weight: normal;
-  padding: 5px 5px 5px 0px;
+#bg_main_menu_lateral_admin figure#bg_logo {
+  padding: 20px;
+  max-width: 100%;
+  height: auto;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#bg_main_menu_lateral_admin figure#bg_logo img {
+  max-width: 150px;
+  max-height: 100%;
+}
+#bg_main_menu_lateral_admin nav {
+  margin-top: 40px;
+}
+#bg_main_menu_lateral_admin nav ul li {
+  clear: both;
+}
+#bg_main_menu_lateral_admin nav ul li a {
+  padding: 13px 15px;
+  color: #fafafa;
+  height: auto;
+  font-size: 14px;
+  width: 100%;
+  display: block;
+}
+#bg_main_menu_lateral_admin nav ul li a:hover {
+  color: #80ace4;
+  background: #333;
 }
 
-#form_add_feedback_bimestral #div_select_aluno, #form_add_feedback_bimestral #div_select_curso, #form_add_feedback_bimestral #div_select_bimestre {
+#cursos_info h1 {
+  text-align: center;
+  padding-bottom: 20px;
+}
+#cursos_info .page_content {
+  padding-bottom: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, auto));
+  gap: 20px;
+}
+#cursos_info .page_content .curso_content {
+  padding: 20px;
+  border: 1px solid #333;
+  border-radius: 5px;
+  background: #e0e0e0;
+}
+#cursos_info .page_content .curso_content h2 {
+  margin-bottom: 20px;
+}
+#cursos_info .page_content .curso_content .categoria {
   display: none;
 }
-#form_add_feedback_bimestral #aluno_nome, #form_add_feedback_bimestral #curso_nome, #form_add_feedback_bimestral #bimestre_nome {
-  width: auto !important;
-  max-width: 100% !important;
-  flex-grow: 1;
+#cursos_info .page_content .curso_content .modulos {
+  margin-bottom: 20px;
 }
-#form_add_feedback_bimestral #div_observacao {
+#cursos_info .page_content .curso_content .modulos h3 {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+#cursos_info .page_content .curso_content .modulos ul li {
+  margin-left: 20px;
+}
+#cursos_info .page_content .curso_content .div_valor, #cursos_info .page_content .curso_content .div_duracao {
   margin-top: 10px;
-  padding: 0px;
-  flex-grow: 1;
-  min-width: 100%;
+  font-size: 20px !important;
 }
-
-#form_add_curso select > option:disabled {
-  background: #ffc;
-}
-#form_add_curso select > option:first-child {
-  background: #f0f0f0;
+#cursos_info .page_content .curso_content .div_valor p, #cursos_info .page_content .curso_content .div_duracao p {
+  font-weight: bold;
 }
 
 #form_add_aula {
-  transition: all 2s;
   border: 2px solid #2d74d1;
   box-shadow: 0px 1px 1px #222;
   height: auto;
@@ -539,11 +694,13 @@ dialog {
 #form_add_aula #div_detalhes {
   min-height: 50px;
 }
-#form_add_aula #div_tema, #form_add_aula #div_detalhes {
+#form_add_aula #div_tema,
+#form_add_aula #div_detalhes {
   width: 100%;
   flex-grow: 1;
 }
-#form_add_aula #div_data, #form_add_aula #div_horario {
+#form_add_aula #div_data,
+#form_add_aula #div_horario {
   max-width: 50%;
 }
 #form_add_aula #select_categoria {
@@ -559,7 +716,7 @@ dialog {
   display: none;
 }
 #form_add_aula #select_aula option[disabled=true] {
-  background: #eec;
+  background: #f6f6e0;
 }
 #form_add_aula #div_status_aula label {
   position: relative;
@@ -585,13 +742,13 @@ dialog {
   margin-right: 5px;
   position: relative;
   top: 1px;
-  border: 1px solid #c9c9c9;
+  border: 1px solid #ccc;
 }
 #form_add_aula #div_status_aula label input:checked {
-  background: #4082c0;
+  background: #245da7;
 }
 #form_add_aula #div_status_aula label:hover {
-  background: #ddd;
+  background: #ccc;
 }
 #form_add_aula #div_status_aula .actived_label_aula_concluida {
   background: #cec !important;
@@ -603,13 +760,13 @@ dialog {
   background: #fcc !important;
 }
 #form_add_aula #div_status_aula .actived_label_aula_com_falta input:checked {
-  background: #c0405c;
+  background: #fee;
 }
 #form_add_aula #div_status_aula .actived_label_aula_remarcada {
   background: #cde !important;
 }
 #form_add_aula #div_status_aula .actived_label_aula_remarcada input:checked {
-  background: #4082c0;
+  background: #ddd;
 }
 #form_add_aula #bg_prova_inputs {
   width: 100%;
@@ -636,7 +793,8 @@ dialog {
   border: 1px solid #bbb;
   border-right: 0px;
 }
-#form_add_aula #bg_prova_inputs input, #form_add_aula #bg_prova_inputs textarea {
+#form_add_aula #bg_prova_inputs input,
+#form_add_aula #bg_prova_inputs textarea {
   min-width: auto;
   height: 30px;
   max-height: auto;
@@ -665,74 +823,11 @@ dialog {
   flex-grow: 1;
 }
 
-.edit_form {
-  background: #ffffff !important;
-  border: 2px solid #6a8acf;
-}
-.edit_form div label {
-  background: transparent !important;
-}
-.edit_form div input, .edit_form div select, .edit_form div textarea {
-  background: transparent;
-  border: 1px solid #aa9473;
-}
-.edit_form .disabled {
-  position: relative;
-  color: grey;
-}
-.edit_form .disabled:after {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  content: " ";
-}
-
-#btn_novo_aluno {
-  float: right;
-  flex-basis: 100%;
-  clear: both;
-  display: none;
-}
-
-#form_add_aluno #add_aluno_ra {
-  text-transform: uppercase;
-}
-#form_add_aluno .blocked {
-  border: 1px solid red;
-  background: #fad3d3;
-}
-#form_add_aluno div #ra {
-  max-width: 20px;
-  flex-shrink: 1;
-}
-
-#nav_forms_add {
-  padding: 5px;
-  display: flex;
-}
-#nav_forms_add li {
-  list-style: none;
-  margin: 3px;
-}
-#nav_forms_add a {
-  padding: 5px;
-  color: #245da7;
-  background: #ddd;
-  text-decoration: none;
-}
-
-input[type=submit]:disabled {
-  background: #999 !important;
-}
-
-input:disabled, textarea:disabled {
-  background: #ddd !important;
-}
-
 #controle_aula {
+  position: relative;
+  opacity: 0;
   overflow: hidden;
+  transition: all 0.5s;
 }
 #controle_aula h1 {
   color: #333;
@@ -751,7 +846,7 @@ input:disabled, textarea:disabled {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   padding-bottom: 20px;
 }
 #controle_aula #form_select_aluno label {
@@ -762,16 +857,23 @@ input:disabled, textarea:disabled {
   border-right: 0px;
 }
 #controle_aula #form_select_aluno .div_input {
-  background: #f90;
   display: flex;
   float: left;
-  justify-content: center;
+  justify-content: flex-start;
+  flex-grow: 1;
 }
 #controle_aula #form_select_aluno .div_input select {
   padding: 10px;
   border: 1px solid #444;
   font-weight: bold;
   font-size: 16px;
+  flex-grow: 1;
+  max-width: 500px;
+}
+#controle_aula #form_select_aluno .div_input select:focus {
+  outline: 0;
+  border-color: #245da7;
+  background: #ffe;
 }
 #controle_aula #form_select_aluno button {
   float: left;
@@ -783,49 +885,70 @@ input:disabled, textarea:disabled {
   margin-bottom: -2px;
   margin-right: 5px;
 }
-#controle_aula #aluno_content {
-  border-radius: 5px 5px 0px 0px;
-  border: 1px solid #ccc;
-  overflow: hidden;
+
+@keyframes spinner-line-fade-more {
+  0%, 100% {
+    opacity: 0;
+    /* minimum opacity */
+  }
+  1% {
+    opacity: 1;
+  }
+}
+@keyframes spinner-line-fade-quick {
+  0%, 39%, 100% {
+    opacity: 0.25;
+    /* minimum opacity */
+  }
+  40% {
+    opacity: 1;
+  }
+}
+@keyframes spinner-line-fade-default {
+  0%, 100% {
+    opacity: 0.22;
+    /* minimum opacity */
+  }
+  1% {
+    opacity: 1;
+  }
+}
+@keyframes spinner-line-shrink {
+  0%, 25%, 100% {
+    /* minimum scale and opacity */
+    transform: scale(0.5);
+    opacity: 0.25;
+  }
+  26% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.load_element {
+  width: 100px;
+  height: 100px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: auto;
+  z-index: 5;
+  background: #f90;
+  border-radius: 50%;
+}
+
+#page_content {
   position: relative;
 }
-#controle_aula #aluno_content nav.nav_cursos_aluno {
+
+nav.nav_cursos_aluno {
   background-color: #fff;
   border-bottom: 1px solid #ccc;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  height: 50px;
 }
-#controle_aula #aluno_content nav.nav_cursos_aluno ul {
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
+nav.nav_cursos_aluno ul li {
+  padding: 16px 0px 0px 0px;
 }
-#controle_aula #aluno_content nav.nav_cursos_aluno ul .btn_add_curso {
-  border: 1px solid #245da7;
-  padding: 5px 20px;
-  cursor: pointer;
-  background: #245da7;
-  color: #fff;
-  display: flex;
-  align-items: center;
-}
-#controle_aula #aluno_content nav.nav_cursos_aluno ul .btn_add_curso svg {
-  max-width: 100px;
-  max-height: 100px;
-  height: 25px;
-  width: auto;
-}
-#controle_aula #aluno_content nav.nav_cursos_aluno ul .btn_add_curso:hover {
-  background: #2969bc;
-}
-#controle_aula #aluno_content nav.nav_cursos_aluno ul li {
-  list-style: none;
-  padding: 15px 0px;
-}
-#controle_aula #aluno_content nav.nav_cursos_aluno ul li a {
+nav.nav_cursos_aluno ul li a {
   padding: 15px 20px 16px 20px;
   background: #fff;
   border: 1px solid #ccc;
@@ -834,63 +957,66 @@ input:disabled, textarea:disabled {
   color: #333;
   font-size: 14px;
   text-transform: uppercase;
-  user-select: none;
 }
-#controle_aula #aluno_content nav.nav_cursos_aluno ul li a:active {
+nav.nav_cursos_aluno ul li a:active {
   background: #f6f6e0;
 }
-#controle_aula #aluno_content nav.nav_cursos_aluno ul li .active {
-  background: #ffe;
+nav.nav_cursos_aluno ul li .active {
+  background: #f6f6e0;
   color: #333;
 }
-#controle_aula #aluno_content .btn_add_aula {
-  top: 17px;
-  right: 15px;
-  border-radius: 5px;
-  position: absolute;
-  border: 1px solid #245da7;
-  display: flex;
-  align-items: center;
-  background: #eee;
-  color: #245da7;
-  padding: 5px 10px 8px 10px;
+
+#aluno_content {
+  border-radius: 5px 5px 0px 0px;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  position: relative;
 }
-#controle_aula #aluno_content .btn_add_aula svg {
+#aluno_content .btn_add_curso svg {
+  max-width: 100px;
+  max-height: 100px;
   height: 25px;
   width: auto;
 }
-#controle_aula #aluno_content .btn_add_aula:hover {
-  background: #ffe;
+#aluno_content .btn_add_curso:hover {
+  background: #2969bc;
 }
-#controle_aula #aluno_content .btn_add_aula:active {
+#aluno_content .btn_add_aula {
+  border-color: #245da7;
+  color: #245da7;
+  top: 17px;
+  right: 15px;
+  position: absolute;
+}
+#aluno_content .btn_add_aula svg {
+  height: 25px;
+  width: auto;
+}
+#aluno_content .btn_add_aula:hover {
+  background: #f6f6e0;
+}
+#aluno_content .btn_add_aula:active {
   box-shadow: inset 0px 0px 3px #111;
 }
-#controle_aula #aluno_content .btn_extra {
-  cursor: pointer;
-  padding: 5px 10px;
-  margin-bottom: 10px;
-  border: 1px solid #333;
-  border-radius: 3px;
-}
-#controle_aula #aluno_content .btn_extra:active {
-  background: #fff;
-  box-shadow: inset 0px 0px 2px #111;
-}
-#controle_aula #aluno_content .btn_add_reposicao {
+#aluno_content .btn_add_reposicao {
+  margin-bottom: 20px;
+  float: left;
   color: #8971cc;
   border-color: #8971cc;
 }
-#controle_aula #aluno_content .btn_add_reposicao:hover {
-  background: #e7e7ff;
+#aluno_content .btn_add_reposicao:hover {
+  background: #e7e2f4;
 }
-#controle_aula #aluno_content .btn_add_ponto_extra {
+#aluno_content .btn_add_ponto_extra {
+  margin-bottom: 20px;
+  float: left;
   color: #779214;
   border-color: #779214;
 }
-#controle_aula #aluno_content .btn_add_ponto_extra:hover {
-  background: #edffcf;
+#aluno_content .btn_add_ponto_extra:hover {
+  background: #edf7c7;
 }
-#controle_aula #aluno_content .bg_curso {
+#aluno_content .bg_curso {
   position: relative;
   background: #fff;
   background: #ddd;
@@ -898,39 +1024,33 @@ input:disabled, textarea:disabled {
   padding-top: 0px;
   display: none;
 }
-#controle_aula #aluno_content .bg_curso h3 {
+#aluno_content .bg_curso h3 {
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-#controle_aula #aluno_content .title_aluno_info span {
-  float: left;
-  margin: 0px !important;
-}
-#controle_aula #aluno_content .title_aluno_info .title_info_ra {
-  font-weight: normal;
-}
-#controle_aula #aluno_content h3.title_curso_nome {
-  padding: 30px;
+#aluno_content h3.title_curso_nome {
+  padding: 20px;
   font-size: 18px;
   text-align: center;
   width: 100%;
   text-transform: uppercase;
 }
-#controle_aula #aluno_content h3[class*=web] {
+#aluno_content h3[class*=web] {
   color: #206186;
 }
-#controle_aula #aluno_content h3[class*=inglês] {
+#aluno_content h3[class*=inglês] {
   color: red;
 }
-#controle_aula #aluno_content h3[class*=excel] {
+#aluno_content h3[class*=excel] {
   color: #269426;
 }
-#controle_aula #aluno_content h3[class^=informática], #controle_aula #aluno_content h3[class*=informática] {
+#aluno_content h3[class^=informática],
+#aluno_content h3[class*=informática] {
   color: blue !important;
 }
-#controle_aula #aluno_content .bg_info_delete_curso {
+#aluno_content .bg_info_delete_curso {
   width: 100%;
   height: auto;
   padding: 20px;
@@ -938,53 +1058,38 @@ input:disabled, textarea:disabled {
   justify-content: center;
   flex-wrap: wrap;
   overflow: hidden;
-  background: #ffd;
+  background: #f6f6e0;
   align-items: center;
 }
-#controle_aula #aluno_content .bg_info_delete_curso p {
+#aluno_content .bg_info_delete_curso p {
   display: block;
   width: 100%;
   text-align: center;
   padding: 10px;
 }
-#controle_aula #aluno_content .bg_info_delete_curso button {
-  height: 30px;
-  margin: 0 auto;
-  display: block;
+#aluno_content .bg_info_delete_curso button {
   float: left;
-  border: 1px solid;
-  padding: 5px 10px;
-  cursor: pointer;
 }
-#controle_aula #aluno_content .bg_info_delete_curso .btn_deletar_curso {
-  border-radius: 5px;
-  border-color: #971717;
-  background: #e63e3e;
-  color: #fff;
-}
-#controle_aula #aluno_content .bg_info_delete_curso .btn_deletar_curso:hover {
-  background: #fc4646;
-}
-#controle_aula #aluno_content .bg_info_delete_curso .btn_add_aula {
+#aluno_content .bg_info_delete_curso .btn_add_aula {
   position: initial;
   margin-left: 10px;
 }
-#controle_aula #aluno_content .bg_info_delete_curso .btn_add_aula svg {
+#aluno_content .bg_info_delete_curso .btn_add_aula svg {
   width: auto;
   height: auto;
   margin-bottom: -2px;
 }
-#controle_aula #aluno_content .bg_info_delete_curso .btn_add_aula:hover {
+#aluno_content .bg_info_delete_curso .btn_add_aula:hover {
   background: #fff;
 }
-#controle_aula #aluno_content .bg_bimestres {
+#aluno_content .bg_bimestres {
   width: 100%;
   min-height: 300px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres {
+#aluno_content .bg_bimestres .bimestres {
   min-width: 100%;
   padding: 20px 10px;
   display: flex;
@@ -995,35 +1100,36 @@ input:disabled, textarea:disabled {
   background: #eee;
   margin-bottom: 10px;
   box-shadow: 0px 1px 1px #999;
+  /*h2 bimestre title*/
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .resumo_bimestre {
+#aluno_content .bg_bimestres .bimestres .resumo_bimestre {
   width: 100%;
   grid-gap: 1px;
   display: flex;
   flex-wrap: wrap;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .resumo_bimestre .row {
+#aluno_content .bg_bimestres .bimestres .resumo_bimestre .row {
   min-width: 100%;
   display: flex;
   flex-wrap: wrap;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .resumo_bimestre .row p {
+#aluno_content .bg_bimestres .bimestres .resumo_bimestre .row p {
   min-width: 150px;
   flex-grow: 1;
   width: auto;
-  padding: 5px;
+  padding: 10px;
   box-shadow: 0px 0px 0px 1px #ccc;
   background: #fafafa;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .resumo_bimestre .row .label {
+#aluno_content .bg_bimestres .bimestres .resumo_bimestre .row .label {
   width: 100%;
   flex-grow: 1;
   font-size: 14px;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .resumo_bimestre .row span.values {
+#aluno_content .bg_bimestres .bimestres .resumo_bimestre .row span.values {
   font-weight: bold;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .resumo_bimestre .feedback_bimestral {
+#aluno_content .bg_bimestres .bimestres .resumo_bimestre .feedback_bimestral {
   padding: 10px;
   margin-top: 5px;
   margin-bottom: 10px;
@@ -1037,14 +1143,14 @@ input:disabled, textarea:disabled {
   justify-content: space-between;
   background: #fafafa;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .resumo_bimestre .feedback_bimestral p {
+#aluno_content .bg_bimestres .bimestres .resumo_bimestre .feedback_bimestral p {
   padding: 5px;
   flex-grow: 1;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .resumo_bimestre .feedback_bimestral .feedback_value {
+#aluno_content .bg_bimestres .bimestres .resumo_bimestre .feedback_bimestral .feedback_value {
   min-height: 30px;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .resumo_bimestre .feedback_bimestral .btn_add_feedback_bimestral {
+#aluno_content .bg_bimestres .bimestres .resumo_bimestre .feedback_bimestral .btn_add_feedback_bimestral {
   max-height: 35px;
   border: 1px solid #245da7;
   padding: 5px 10px;
@@ -1055,10 +1161,10 @@ input:disabled, textarea:disabled {
   margin: 10px 5px;
   float: right;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .resumo_bimestre .feedback_bimestral .btn_add_feedback_bimestral:hover {
-  background: #ffe;
+#aluno_content .bg_bimestres .bimestres .resumo_bimestre .feedback_bimestral .btn_add_feedback_bimestral:hover {
+  background: #f6f6e0;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres h2 {
+#aluno_content .bg_bimestres .bimestres h2 {
   font-weight: normal;
   flex-basis: 100%;
   font-size: 18px;
@@ -1070,35 +1176,35 @@ input:disabled, textarea:disabled {
   border-bottom: 1px solid #ccc;
   color: #4d4d4d;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .columns {
+#aluno_content .bg_bimestres .bimestres .columns {
   width: 24%;
   min-width: 200px;
   flex-grow: 1;
   border: 1px solid #ccc;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .column_reposicao {
+#aluno_content .bg_bimestres .bimestres .column_reposicao {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .column_pontos_extras {
+#aluno_content .bg_bimestres .bimestres .column_pontos_extras {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  background: #f2f8f3;
+  background: #f4fade;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .column_pontos_extras .aulas {
+#aluno_content .bg_bimestres .bimestres .column_pontos_extras .aulas {
   width: auto;
   flex-grow: 1;
   flex-shrink: 1;
   max-width: 250px;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .aulas {
+#aluno_content .bg_bimestres .bimestres .aulas {
   position: relative;
-  margin: 10px;
+  margin: 10px 20px;
   width: auto;
   max-width: 300px;
-  background: #ffffff;
+  background: #fff;
   height: 80px;
   border: 1px solid #466cb3;
   overflow: hidden;
@@ -1107,65 +1213,65 @@ input:disabled, textarea:disabled {
   font-size: 13px;
   padding: 5px 10px 10px 10px;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .aulas .status {
+#aluno_content .bg_bimestres .bimestres .aulas .status {
   text-transform: capitalize;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .aulas .aula_detalhes {
+#aluno_content .bg_bimestres .bimestres .aulas .aula_detalhes {
   margin-top: 10px;
   border: 1px solid #999;
   overflow-y: scroll;
   height: 145px;
   padding: 5px;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .aulas .aula_numero {
+#aluno_content .bg_bimestres .bimestres .aulas .aula_numero {
   text-transform: capitalize;
   color: #122e53;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .aulas .aula_data {
+#aluno_content .bg_bimestres .bimestres .aulas .aula_data {
   padding: 5px 0px;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .aulas .aula_data svg {
+#aluno_content .bg_bimestres .bimestres .aulas .aula_data svg {
   max-height: 14px;
   margin-bottom: -2px;
   color: #444;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .aula_concluida {
+#aluno_content .bg_bimestres .bimestres .aula_concluida {
   background: #fff;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .aula_falta {
+#aluno_content .bg_bimestres .bimestres .aula_falta {
   background: #fee;
-  border-color: #a34444;
+  border-color: #ff8888;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .aula_remarcada {
+#aluno_content .bg_bimestres .bimestres .aula_remarcada {
   background: #ddd;
-  border-color: #6a7580;
+  border-color: #919191;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres [data-aula_categoria=reposição] {
-  background: #f3eeff !important;
-  border: 1px solid #666;
+#aluno_content .bg_bimestres .bimestres [data-aula_categoria=reposição] {
+  background: #e7e2f4 !important;
+  border: 1px solid #8971cc;
   width: auto;
   flex-grow: 1;
   flex-shrink: 1;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres [data-aula_categoria="ponto extra"] {
-  background: #ecfcb4 !important;
+#aluno_content .bg_bimestres .bimestres [data-aula_categoria="ponto extra"] {
+  background: #e6f4b1 !important;
   border: 1px solid #666;
   height: 30px;
   max-height: 180px !important;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres [data-aula_categoria="ponto extra"] .aula_detalhes {
+#aluno_content .bg_bimestres .bimestres [data-aula_categoria="ponto extra"] .aula_detalhes {
   height: 110px;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres [data-aula_categoria=prova] {
-  background: #d8e4fd !important;
+#aluno_content .bg_bimestres .bimestres [data-aula_categoria=prova] {
+  background: #d4e3f6 !important;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres [data-aula_categoria=prova] .aula_detalhes {
+#aluno_content .bg_bimestres .bimestres [data-aula_categoria=prova] .aula_detalhes {
   height: 110px;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .open_aula {
+#aluno_content .bg_bimestres .bimestres .open_aula {
   height: 260px;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .btn_deletar_aula {
+#aluno_content .bg_bimestres .bimestres .btn_deletar_aula {
   z-index: 2;
   cursor: pointer;
   float: left;
@@ -1174,28 +1280,27 @@ input:disabled, textarea:disabled {
   font-size: 12px;
   color: #444;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .btn_deletar_aula:hover {
-  background: #f9f0f0;
+#aluno_content .bg_bimestres .bimestres .btn_deletar_aula:hover {
+  background: #fee;
   color: #db1e1e;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .btn_deletar_aula svg {
+#aluno_content .bg_bimestres .bimestres .btn_deletar_aula svg {
   z-index: 0;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .btn_edit_aula {
+#aluno_content .bg_bimestres .bimestres .btn_edit_aula {
   float: right;
   padding: 3px;
   margin-top: 5px;
   cursor: pointer;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .btn_edit_aula:hover {
-  background: #f9f0f0;
+#aluno_content .bg_bimestres .bimestres .btn_edit_aula:hover {
+  background: #fafafa;
   color: #245da7;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .btn_edit_aula:active {
-  background: #f9f0f0;
+#aluno_content .bg_bimestres .bimestres .btn_edit_aula:active {
   color: #1b467d;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .btn_open_close_aulas {
+#aluno_content .bg_bimestres .bimestres .btn_open_close_aulas {
   cursor: pointer;
   position: absolute;
   right: 0px;
@@ -1210,13 +1315,218 @@ input:disabled, textarea:disabled {
   font-stretch: expanded;
   border-radius: 0px 0px 0px 3px;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .btn_open_close_aulas svg {
+#aluno_content .bg_bimestres .bimestres .btn_open_close_aulas svg {
   margin-top: 1px;
   color: #fff;
 }
-#controle_aula #aluno_content .bg_bimestres .bimestres .btn_open_close_aulas:active {
-  background: #aa9;
+#aluno_content .bg_bimestres .bimestres .btn_open_close_aulas:active {
+  background: #4182d6;
   user-select: none;
+}
+
+dialog {
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.forms {
+  border: 1px solid #ccc;
+  position: fixed;
+  right: 0px;
+  left: 0px;
+  top: 25%;
+  z-index: 5;
+  box-shadow: 0px 1px 2px #666;
+}
+.forms .btn_close_form {
+  right: 0px;
+  top: 0px;
+  padding: 5px 10px;
+  position: absolute;
+  cursor: pointer;
+}
+.forms .btn_close_form:hover {
+  background: #dd4f4f;
+  color: #fff;
+}
+.forms #aluno_nome, .forms #curso_nome, .forms #bimestre_nome {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  font-weight: bold;
+  width: 50%;
+}
+.forms #aluno_nome span, .forms #curso_nome span, .forms #bimestre_nome span {
+  font-weight: normal;
+  padding: 5px 5px 5px 0px;
+}
+
+#btn_novo_aluno {
+  float: right;
+  flex-basis: 100%;
+  clear: both;
+  display: none;
+}
+
+/*
+  #nav_forms_add{
+    padding:5px;
+    display:flex;
+    li{list-style: none;
+      margin:3px;
+    }
+    a{
+      padding:$padding-extra-light;
+      color: $primary-color;
+      background: #f90;
+      text-decoration: none;
+    }
+  }
+
+*/
+input[type=submit]:disabled {
+  background: #999 !important;
+}
+
+input:disabled, textarea:disabled {
+  background: #ddd !important;
+}
+
+#form_add_aluno #add_aluno_ra {
+  text-transform: uppercase;
+}
+#form_add_aluno .blocked {
+  border: 1px solid #db1e1e;
+  background: #fee;
+}
+#form_add_aluno div #ra {
+  max-width: 20px;
+  flex-shrink: 1;
+}
+
+#form_add_curso select > option:disabled {
+  background: #ffc;
+}
+#form_add_curso select > option:first-child {
+  background: #f0f0f0;
+}
+
+#form_add_feedback_bimestral #div_select_aluno, #form_add_feedback_bimestral #div_select_curso, #form_add_feedback_bimestral #div_select_bimestre {
+  display: none;
+}
+#form_add_feedback_bimestral #aluno_nome, #form_add_feedback_bimestral #curso_nome, #form_add_feedback_bimestral #bimestre_nome {
+  width: auto !important;
+  max-width: 100% !important;
+  flex-grow: 1;
+}
+#form_add_feedback_bimestral #div_observacao {
+  margin-top: 10px;
+  padding: 0px;
+  flex-grow: 1;
+  min-width: 100%;
+}
+
+.edit_form {
+  background: #fff !important;
+  border: 2px solid #245da7;
+}
+.edit_form div label {
+  background: transparent !important;
+}
+.edit_form div input, .edit_form div select, .edit_form div textarea {
+  background: transparent;
+  border: 1px solid #aa9473;
+}
+.edit_form .disabled {
+  position: relative;
+  color: #ddd;
+}
+.edit_form .disabled:after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  content: " ";
+}
+
+#page_login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100%;
+  min-height: 100vh;
+  background: url("../img/background-login.jpg") no-repeat;
+  background-size: cover;
+}
+#page_login #login_content {
+  max-width: 400px;
+  margin-top: -15%;
+}
+#page_login #login_content #login_logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+#page_login #login_content #login_logo figure img {
+  max-width: 100%;
+}
+#page_login #login_content #form_login {
+  max-width: 400px;
+  min-height: 250px;
+  background: #ffffff66;
+  border-radius: 5px;
+  padding: 40px 30px;
+}
+#page_login #login_content #form_login h3 {
+  text-align: center;
+  padding-bottom: 10px;
+  color: #122e53;
+}
+#page_login #login_content #form_login div {
+  margin: auto;
+  border: 1px solid #444;
+  overflow: hidden;
+  border-radius: 3px;
+  display: flex;
+  margin-top: 20px;
+  max-width: 250px;
+}
+#page_login #login_content #form_login div:focus {
+  border-color: #f90 !important;
+  color: #f90 !important;
+}
+#page_login #login_content #form_login div label {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  justify-content: center;
+  background: #17335e;
+  width: 40px;
+  border: 0px;
+}
+#page_login #login_content #form_login div input {
+  border-radius: 0px;
+  flex-grow: 1;
+  padding: 10px;
+  border: 0px;
+  border: 1px solid #bbbbc4;
+  background-color: #bbbbc4;
+}
+#page_login #login_content #form_login div input:focus {
+  outline: 0px;
+  border-color: #245da7;
+}
+#page_login #login_content #form_login input[type=submit] {
+  width: 50%;
+  max-width: 50%;
+  margin: 30px auto 0px auto;
+  color: #fff;
+  background: #17335e;
+}
+#page_login #login_content #form_login input[type=submit]:hover {
+  background: #214987;
 }
 
 #block_screen {
@@ -1224,7 +1534,7 @@ input:disabled, textarea:disabled {
   min-height: 100vh;
   position: absolute;
   background-color: #11111170;
-  z-index: 1;
+  z-index: 5;
   bottom: 0px;
   top: 0px;
   display: none;
@@ -1247,70 +1557,18 @@ svg {
 
 body {
   background: #ccc;
-  background: #ddd url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm380-16-x_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=d0c544f028f2405b219eb997cb580e21");
-  background-size: 100% auto;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   position: relative;
 }
 
-header {
-  grid-area: header;
-  background: #333;
-  border-bottom: 2px solid #ccc;
-  width: 100%;
-}
-header #header_center {
-  height: 50px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0px auto;
-  padding: 0px 40px;
-  max-width: 1200px;
-}
-
-#app {
+#adminContent {
+  background: #ddd url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm380-16-x_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=d0c544f028f2405b219eb997cb580e21");
+  background-size: 100% auto;
   max-width: 100%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 250px 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-areas: "aside header header header header header header header" "aside  cp     cp     cp     cp     cp     cp     cp" "aside  footer footer footer footer footer footer footer";
-}
-
-aside#bg_main_menu_lateral {
-  grid-area: aside;
-  background: #222;
-}
-aside#bg_main_menu_lateral figure#bg_logo {
-  padding: 20px;
-  max-width: 100%;
-  height: auto;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-aside#bg_main_menu_lateral figure#bg_logo img {
-  max-width: 150px;
-  max-height: 100%;
-}
-aside#bg_main_menu_lateral nav {
-  margin-top: 40px;
-}
-aside#bg_main_menu_lateral nav ul li {
-  clear: both;
-}
-aside#bg_main_menu_lateral nav ul li a {
-  padding: 13px 15px;
-  color: #fafafa;
-  height: auto;
-  font-size: 14px;
-  width: 100%;
-  display: block;
-}
-aside#bg_main_menu_lateral nav ul li a:hover {
-  color: #80ace4;
-  background: #333;
 }
 
 #block_screen_msg {
@@ -1438,8 +1696,9 @@ aside#bg_main_menu_lateral nav ul li a:hover {
 }
 
 #page_content {
+  padding-top: 80px;
   grid-area: cp;
-  max-width: 1300px;
+  max-width: 100%;
   min-height: 100vh;
   margin: 0px 60px 0px 60px;
 }
