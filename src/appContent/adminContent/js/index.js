@@ -1,7 +1,7 @@
-import * as commonFunc from "../components/js_common/commonFunctions.js";
+import * as commonFunc from "../../../components/js_common/commonFunctions.js";
 
 //----------------------------------------------------
-import {firebaseApp} from "../components/dbConfig/firebaseApp.js";
+import {firebaseApp} from "../../../components/dbConfig/firebaseApp.js";
 const {getAuth, signOut, signInWithEmailAndPassword,  onAuthStateChanged, updateProfile } =  require("firebase/auth");
 const {getFirestore, doc, getDoc} = require("firebase/firestore") 
 const db = getFirestore(firebaseApp);
@@ -68,11 +68,10 @@ function importHTML(target, htmlSRC, scriptSRC){
  
   function setLoginInfo(userCompleteInfo){
 
-    let userInfo = userCompleteInfo;
+   let userInfo = userCompleteInfo;
    document.querySelector("#username").textContent = userCompleteInfo.username;
    document.querySelector("#user_icon_img").src = '../src/assets/img/userIcon/'+userCompleteInfo.photoURL;
    document.querySelector("#user_privilegio").textContent = userCompleteInfo.privilegio;
- 
   }
 
 export function onload(){
@@ -93,16 +92,15 @@ export function onload(){
     });
   })
 
-
-
   commonFunc.importHTMLWithScript('#page_content', "./components/home/index.html", "../home/js/index.js");
 
 
 let childs = document.querySelector('#nav_main_menu_lateral_admin').querySelectorAll("a");
 childs.forEach((item) => {
   item.addEventListener("click", (e) => {
-     let scriptSRC = '../components/'+ e.target.dataset.script_src + '/js/index.js'; 
     let htmlSRC = '../src/components/'+ e.target.dataset.path + '/index.html'; 
+    let scriptSRC = '../../../components/'+ e.target.dataset.script_src + '/js/index.js'; 
+
     importHTML('#page_content', htmlSRC, scriptSRC);
   });
 });

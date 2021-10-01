@@ -122,6 +122,7 @@ nav.nav_cursos_aluno {
     }
 
     .btn_add_reposicao {
+        margin-bottom:20px;
         @extend .btn-default;
         float: left;
         color: $reposicao-color;
@@ -132,6 +133,7 @@ nav.nav_cursos_aluno {
         }
     }
     .btn_add_ponto_extra {
+        margin-bottom:20px;
         @extend .btn-default;
         float: left;
         color: $ponto-extra-color;

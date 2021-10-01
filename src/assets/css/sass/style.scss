@@ -2,11 +2,10 @@
 @use 'abstracts' as *;
 @use 'elements/header_admin.scss';
 @use 'elements/main_menu_lateral_admin.scss';
-
+@use 'cursos_info';
 @use 'controle_aula';
+@use 'gerador_contrato';
 @use 'login';
-
-
 
 
 //Components
@@ -18,7 +17,7 @@
   min-height: 100vh;
   position: absolute;
   background-color: #11111170;
-  z-index: 1;
+  z-index: 5;
   bottom:0px;
   top:0px;
   display:none;
@@ -41,6 +40,7 @@ body {
   position:relative;
 }
 
+h1{text-align: center;}
 
 #adminContent{
   background: #ddd url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm380-16-x_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=d0c544f028f2405b219eb997cb580e21") ; 
