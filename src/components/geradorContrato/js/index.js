@@ -1,3 +1,4 @@
+
 const { ipcRenderer } = require("electron");
 const VMasker = require("vanilla-masker");
 
