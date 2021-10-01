@@ -1,6 +1,9 @@
-const { app, BrowserWindow } = require('electron');
-
-const path = require('path');
+const { app, BrowserWindow, Menu, ipcMain, globalShortcut, Tray, dialog} = require("electron");
+const pdf = require("html-pdf");
+const fs = require("fs");
+const path = require("path");
+const downloadPath = app.getPath("downloads");
+const TemplateContrato = require("./components/geradorContrato/js/TemplateContrato.js");
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -48,3 +51,57 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+
+
+
+//create PDF
+function createPDF(data) {
+  const templateContrato = TemplateContrato(data); // create template from the form inputs
+  return new Promise((resolve, reject) => {
+    pdf
+      .create(templateContrato)
+      .toFile(path.join(__dirname, "result.pdf"), (err, res) => {
+        if (err) reject();
+        else resolve(res);
+      });
+  });
+}
+
+ipcMain.handle("submit", async (event, data_info) => {
+  const novoPDF = createPDF(data_info); // call the createPDF function
+  console.log(data_info);
+  return novoPDF
+    .then((pdf) => {
+      // Read the file
+      let filename = `${data_info.resp_nome}-${data_info.curso_nome}-CONTRATO.pdf`;
+      filename = filename.toUpperCase();
+      let oldpath = `${__dirname}/result.pdf`;
+      let newpath = `${downloadPath}/${filename}`;
+
+      fs.readFile(oldpath, function (err, data) {
+        if (err) throw err;
+        console.log("File read!");
+
+        // Write the file
+        fs.writeFile(newpath, data, function (err) {
+          if (err) throw err;
+          console.log("File written!");
+          dialog.showMessageBoxSync({
+            type: "info",
+            title: "SETA CURSOS - Contrato",
+            message: `Contrato gerado com sucesso em: ${downloadPath}`,
+          });
+        });
+        // Delete the file
+        fs.unlink(oldpath, function (err) {
+          if (err) throw err;
+          console.log("File deleted!");
+        });
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      return false;
+    });
+});
+
