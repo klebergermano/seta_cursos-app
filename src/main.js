@@ -1,9 +1,14 @@
-const { app, BrowserWindow, Menu, ipcMain, globalShortcut, Tray, dialog} = require("electron");
+
+const { app, BrowserWindow, Menu, ipcMain, globalShortcut, Tray, dialog } = require("electron");
+
 const pdf = require("html-pdf");
 const fs = require("fs");
 const path = require("path");
 const downloadPath = app.getPath("downloads");
 const TemplateContrato = require("./components/geradorContrato/js/TemplateContrato.js");
+
+const TemplateHistoricoAluno = require("./components/controleAula/js/TemplateHistoricoAluno.js");
+
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -14,9 +19,9 @@ const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 1470,
     height: 800,
-    webPreferences:{
+    webPreferences: {
       nodeIntegration: true,
-      contextIsolation:false
+      contextIsolation: false
     }
   });
 
@@ -54,6 +59,68 @@ app.on('activate', () => {
 
 
 
+//-------------------------------------------------------------------------------------//
+//-----------------------------------------ALUNO HISTORICO PDF ------------------------//
+//-------------------------------------------------------------------------------------//
+
+
+
+function createPDFHistoricoAluno(docAlunoHistorico) {
+  var options = { 
+    "format": "A4",
+    "base": "file:///D:/#KG/seta_cursos-app/src/assets/"
+    
+    }
+
+  const templateHistorico = TemplateHistoricoAluno(docAlunoHistorico); // create template from the form inputs
+  return new Promise((resolve, reject) => {
+    pdf
+      .create(templateHistorico, options)
+      .toFile(path.join(__dirname, "hitoricoAluno.pdf"), (err, res) => {
+        if (err) reject();
+        else resolve(res);
+      });
+  });
+}
+
+
+ipcMain.handle("baixarHistoricoAluno", async (event, docAlunoHistorico) => {
+
+  let novoPDF = createPDFHistoricoAluno(docAlunoHistorico); // call the createPDF function
+
+  novoPDF.then((pdf) => {
+    // Read the file
+    let filename = `historicoAluno.pdf`;
+    filename = filename.toUpperCase();
+    let oldpath = `${__dirname}/hitoricoAluno.pdf`;
+    let newpath = `${downloadPath}/${filename}`;
+    fs.readFile(oldpath, function (err, data) {
+      if (err) throw err;
+      console.log("File read!");
+
+      // Write the file
+      fs.writeFile(newpath, data, function (err) {
+        if (err) throw err;
+        console.log("File written!");
+        dialog.showMessageBoxSync({
+          type: "info",
+          title: "SETA CURSOS - Histórico de Aluno",
+          message: `Historico do Aluno salvo com sucesso em: ${downloadPath}`,
+        });
+      });
+      // Delete the file
+      fs.unlink(oldpath, function (err) {
+        if (err) throw err;
+        console.log("File deleted!");
+      });
+    });
+  })
+});
+
+//-------------------------------------------------------------------------------------//
+//---------------------------------------- CONTRATO PDF -------------------------------//
+//-------------------------------------------------------------------------------------//
+
 //create PDF
 function createPDF(data) {
   const templateContrato = TemplateContrato(data); // create template from the form inputs
@@ -66,10 +133,10 @@ function createPDF(data) {
       });
   });
 }
-
 ipcMain.handle("submit", async (event, data_info) => {
+
   const novoPDF = createPDF(data_info); // call the createPDF function
-  console.log(data_info);
+
   return novoPDF
     .then((pdf) => {
       // Read the file
