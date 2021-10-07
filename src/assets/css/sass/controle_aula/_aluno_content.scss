@@ -101,17 +101,24 @@ nav.nav_cursos_aluno {
             background: lighten($primary-color, 5%);
         }
     }
+    .btn_baixar_historico{
+        position: absolute;
+        top:80px; right: 20px;
+    }
+    .btn_add{
+        @extend .btn-default;
+        margin-bottom:20px;
+        float: left;
+    }
 
     .btn_add_aula {
-        @extend .btn-default;
         border-color: $primary-color;
         color: $primary-color;
-        top: 17px;
-        right: 15px;
-        position: absolute;
         svg {
             height: 25px;
             width: auto;
+            margin-top:-5px;
+            margin-left:-5px;
         }
         &:hover {
             background: $yellow-light-color;
@@ -122,9 +129,6 @@ nav.nav_cursos_aluno {
     }
 
     .btn_add_reposicao {
-        margin-bottom:20px;
-        @extend .btn-default;
-        float: left;
         color: $reposicao-color;
         border-color: $reposicao-color;
         &:hover {
@@ -133,9 +137,6 @@ nav.nav_cursos_aluno {
         }
     }
     .btn_add_ponto_extra {
-        margin-bottom:20px;
-        @extend .btn-default;
-        float: left;
         color: $ponto-extra-color;
         border-color: $ponto-extra-color;
         &:hover {
