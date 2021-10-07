@@ -65,6 +65,7 @@ let loadinContrato = document.querySelector("#loading_contrato");
   formValues.curso_conclusao = f_conclusao;
 
   if (e.target.checkbox_resp_aluno.checked) {
+
     formValues.aluno_nome = "IDEM";
     formValues.aluno_end = "--//--";
     formValues.aluno_numero = "--//--";

@@ -1,10 +1,14 @@
+
 const { app, BrowserWindow, Menu, ipcMain, globalShortcut, Tray, dialog } = require("electron");
+
 const pdf = require("html-pdf");
 const fs = require("fs");
 const path = require("path");
 const downloadPath = app.getPath("downloads");
 const TemplateContrato = require("./components/geradorContrato/js/TemplateContrato.js");
+
 const TemplateHistoricoAluno = require("./components/controleAula/js/TemplateHistoricoAluno.js");
+
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -116,6 +120,7 @@ ipcMain.handle("baixarHistoricoAluno", async (event, docAlunoHistorico) => {
 //-------------------------------------------------------------------------------------//
 //---------------------------------------- CONTRATO PDF -------------------------------//
 //-------------------------------------------------------------------------------------//
+
 //create PDF
 function createPDF(data) {
   const templateContrato = TemplateContrato(data); // create template from the form inputs
@@ -131,6 +136,7 @@ function createPDF(data) {
 ipcMain.handle("submit", async (event, data_info) => {
 
   const novoPDF = createPDF(data_info); // call the createPDF function
+
   return novoPDF
     .then((pdf) => {
       // Read the file
