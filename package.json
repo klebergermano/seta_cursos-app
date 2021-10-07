@@ -49,11 +49,15 @@
     "@icons/material": "^0.4.1",
     "bootstrap-icons": "^1.5.0",
     "electron-squirrel-startup": "^1.0.0",
+    "file-saver": "^2.0.5",
     "firebase": "^9.1.0",
     "firebase-admin": "^9.11.1",
-    "spin.js": "^4.1.1",
-    "file-saver": "^2.0.5",
     "html-pdf": "^3.0.1",
+    "jsdom": "^17.0.0",
+    "spin.js": "^4.1.1",
+   
+   
+
     "vanilla-masker": "^1.2.0"
   },
   "devDependencies": {

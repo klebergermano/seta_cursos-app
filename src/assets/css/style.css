@@ -349,7 +349,7 @@ template {
   display: none;
 }
 
-.btn, .btn-secondary, .btn-primary, #aluno_content .btn_add_curso, .form_flex input[type=submit], .forms input[type=submit], .btn-default-delete, #aluno_content .bg_info_delete_curso .btn_deletar_curso, .btn-default, #page_login #login_content #form_login input[type=submit], #aluno_content .btn_add_aula, #aluno_content .btn_add_reposicao, #aluno_content .btn_add_ponto_extra {
+.btn, .btn-secondary, .btn-primary, #aluno_content .btn_add_curso, .form_flex input[type=submit], .forms input[type=submit], .btn-default-delete, #aluno_content .bg_info_delete_curso .btn_deletar_curso, .btn-default, #page_login #login_content #form_login input[type=submit], #aluno_content .btn_add {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -359,22 +359,22 @@ template {
   border: 0px;
   cursor: pointer;
 }
-.btn svg, .btn-secondary svg, .btn-primary svg, #aluno_content .btn_add_curso svg, .form_flex input[type=submit] svg, .forms input[type=submit] svg, .btn-default-delete svg, #aluno_content .bg_info_delete_curso .btn_deletar_curso svg, .btn-default svg, #page_login #login_content #form_login input[type=submit] svg, #aluno_content .btn_add_aula svg, #aluno_content .btn_add_reposicao svg, #aluno_content .btn_add_ponto_extra svg {
+.btn svg, .btn-secondary svg, .btn-primary svg, #aluno_content .btn_add_curso svg, .form_flex input[type=submit] svg, .forms input[type=submit] svg, .btn-default-delete svg, #aluno_content .bg_info_delete_curso .btn_deletar_curso svg, .btn-default svg, #page_login #login_content #form_login input[type=submit] svg, #aluno_content .btn_add svg {
   max-width: 100px;
   max-height: 100px;
   height: auto;
   width: 20px;
 }
 
-.btn-default, #page_login #login_content #form_login input[type=submit], #aluno_content .btn_add_aula, #aluno_content .btn_add_reposicao, #aluno_content .btn_add_ponto_extra {
+.btn-default, #page_login #login_content #form_login input[type=submit], #aluno_content .btn_add {
   background: #f0f0f0;
   color: #333;
   border: 1px solid #666;
 }
-.btn-default:hover, #page_login #login_content #form_login input[type=submit]:hover, #aluno_content .btn_add_aula:hover, #aluno_content .btn_add_reposicao:hover, #aluno_content .btn_add_ponto_extra:hover {
+.btn-default:hover, #page_login #login_content #form_login input[type=submit]:hover, #aluno_content .btn_add:hover {
   background: #fdfdfd;
 }
-.btn-default:active, #page_login #login_content #form_login input[type=submit]:active, #aluno_content .btn_add_aula:active, #aluno_content .btn_add_reposicao:active, #aluno_content .btn_add_ponto_extra:active {
+.btn-default:active, #page_login #login_content #form_login input[type=submit]:active, #aluno_content .btn_add:active {
   background: #e3e3e3;
   box-shadow: inset 0px 1px 3px #bdbdbd;
 }
@@ -981,16 +981,24 @@ nav.nav_cursos_aluno ul li .active {
 #aluno_content .btn_add_curso:hover {
   background: #2969bc;
 }
+#aluno_content .btn_baixar_historico {
+  position: absolute;
+  top: 80px;
+  right: 20px;
+}
+#aluno_content .btn_add {
+  margin-bottom: 20px;
+  float: left;
+}
 #aluno_content .btn_add_aula {
   border-color: #245da7;
   color: #245da7;
-  top: 17px;
-  right: 15px;
-  position: absolute;
 }
 #aluno_content .btn_add_aula svg {
   height: 25px;
   width: auto;
+  margin-top: -5px;
+  margin-left: -5px;
 }
 #aluno_content .btn_add_aula:hover {
   background: #f6f6e0;
@@ -999,8 +1007,6 @@ nav.nav_cursos_aluno ul li .active {
   box-shadow: inset 0px 0px 3px #111;
 }
 #aluno_content .btn_add_reposicao {
-  margin-bottom: 20px;
-  float: left;
   color: #8971cc;
   border-color: #8971cc;
 }
@@ -1008,8 +1014,6 @@ nav.nav_cursos_aluno ul li .active {
   background: #e7e2f4;
 }
 #aluno_content .btn_add_ponto_extra {
-  margin-bottom: 20px;
-  float: left;
   color: #779214;
   border-color: #779214;
 }
