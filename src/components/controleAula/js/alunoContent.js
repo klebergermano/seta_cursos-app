@@ -9,6 +9,8 @@ import * as formAddReposicaoAula from "./formAddReposicaoAula.js";
 import * as formAddPontoExtra from "./formAddPontoExtra.js";
 import * as formAddFeedbackBimestral from "./formAddFeedbackBimestral.js";
 import * as deleteFunc from "./deleteFunc.js";
+import { eventsBaixarHistorico } from "./baixarHistoricoAluno.js";
+import * as baixarHistoricoAluno  from "./baixarHistoricoAluno.js";
 
 
 
@@ -52,11 +54,20 @@ export function insertAlunoContent(RA, snapshotChange) {
     });
 }
 function eventBtnAddAula(){
+  document.querySelectorAll(".btn_baixar_historico").forEach((item) => {
+    item.addEventListener("click", () => {
+      baixarHistoricoAluno.eventsBaixarHistorico();
+    })
+  });
+
+  
   document.querySelectorAll(".btn_add_aula").forEach((item) => {
     item.addEventListener("click", () => {
       formAddAula.insertFormAddAulaHTML();
     })
   });
+
+
 }
 function eventBtnAddReposicaoAula(){
   document.querySelectorAll(".btn_add_reposicao").forEach((item) => {
@@ -95,15 +106,23 @@ function createBgCursoMainStructureHTML(curso_nome_bd, RA) {
     <div class='bg_curso' id='${id_curso}' data-aluno_ra='${RA}' data-curso='${curso_nome_bd}'>
        <h3 class='title_curso_nome ${id_curso}'>${curso_nome_bd}</h3>
         <div id='curso_content'>
-        <button class="btn_add_aula btn-primary" id="btn_add_aula" title='Adicionar Aula' type="button">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-plus" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"></path>
-          <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"></path>
-          <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"></path>
-        </svg> &nbsp; Aula
+
+
+        <button class="btn_add btn_baixar_historico" id="x" title='Baixar Histórico do Aluno' type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
+        <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"/>
+      </svg>
+        &nbsp; Baixar Histórico
       </button>
-      <button class='btn btn_extra btn_add_reposicao' id='btn_add_reposicao'>+ Reposição de Aula</button>
-      <button class='btn btn_extra btn_add_ponto_extra' id='btn_add_ponto_extra'>+ Pontos Extras</button>
+      <button class='btn_add btn_add_reposicao' id='btn_add_reposicao'>+ Reposição de Aula</button>
+      <button class='btn_add btn_add_ponto_extra' id='btn_add_ponto_extra'>+ Pontos Extras</button>
+      <button class="btn_add btn_add_aula" id="btn_add_aula" title='Adicionar Aula' type="button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-plus" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"></path>
+        <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"></path>
+        <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"></path>
+      </svg> &nbsp; Aula
+    </button>
       </div>
     </div>`;
     return bgCursoHTML;

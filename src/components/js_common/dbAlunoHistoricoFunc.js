@@ -35,16 +35,3 @@ return alunoHistorico;
   }
   
 
-  
-  async function getAlunoInfoGeral(RA) {
-    let alunoInfo = await db
-      .collection("aluno_historico")
-      .doc(RA)
-      .get()
-      .then((res) => {
-        return res.data();
-      });
-    alunoInfo.RA = RA;
-    return alunoInfo;
-  }
-  
