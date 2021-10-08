@@ -697,7 +697,7 @@ inputs, .input-primary {
 #form_add_aula #div_horario {
   max-width: 50%;
 }
-#form_add_aula #select_categoria {
+#form_add_aula #aula_categoria {
   display: none;
 }
 #form_add_aula #div_select_aluno {
