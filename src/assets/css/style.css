@@ -981,7 +981,7 @@ nav.nav_cursos_aluno ul li .active {
 #aluno_content .bg_btn_add {
   padding: 5px;
   margin-top: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
   width: 100%;
   background: #eee;
   box-shadow: 0px 1px 1px #aaa;
@@ -1035,9 +1035,8 @@ nav.nav_cursos_aluno ul li .active {
 }
 #aluno_content .bg_curso {
   position: relative;
-  background: #fff;
   background: #ddd;
-  padding: 20px;
+  padding: 40px;
   padding-top: 0px;
   display: none;
 }
@@ -1107,15 +1106,17 @@ nav.nav_cursos_aluno ul li .active {
   flex-wrap: wrap;
 }
 #aluno_content .bg_bimestres .bimestres {
+  position: relative;
   min-width: 100%;
-  padding: 20px 10px;
+  padding: 20px;
+  padding-top: 60px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-around;
   background: #eee;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
   box-shadow: 0px 1px 1px #999;
   /*h3 bimestre title*/
 }
@@ -1131,7 +1132,7 @@ nav.nav_cursos_aluno ul li .active {
   flex-wrap: wrap;
 }
 #aluno_content .bg_bimestres .bimestres .resumo_bimestre .row p {
-  min-width: 150px;
+  min-width: auto;
   flex-grow: 1;
   width: auto;
   padding: 10px;
@@ -1148,8 +1149,9 @@ nav.nav_cursos_aluno ul li .active {
 }
 #aluno_content .bg_bimestres .bimestres .resumo_bimestre .feedback_bimestral {
   padding: 10px;
+  padding-top: 20px;
   margin-top: 0px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   grid-column: 1/4;
   min-width: 100%;
   box-shadow: 0px 0px 0px 1px #ccc;
@@ -1166,6 +1168,7 @@ nav.nav_cursos_aluno ul li .active {
 }
 #aluno_content .bg_bimestres .bimestres .resumo_bimestre .feedback_bimestral .feedback_value {
   min-height: 30px;
+  box-shadow: 0px 0px 0px 1px #245da7;
 }
 #aluno_content .bg_bimestres .bimestres .resumo_bimestre .feedback_bimestral .btn_add_feedback_bimestral {
   max-height: 35px;
@@ -1182,21 +1185,23 @@ nav.nav_cursos_aluno ul li .active {
   background: #f6f6e0;
 }
 #aluno_content .bg_bimestres .bimestres h3 {
-  font-weight: normal;
-  flex-basis: 100%;
-  font-size: 18px;
+  position: absolute;
+  top: 0px;
+  background: #fff;
   color: #444;
+  font-weight: normal;
+  min-width: 100%;
+  font-size: 18px;
   text-transform: capitalize;
-  margin-top: 0px;
-  margin-bottom: 10px;
-  padding-bottom: 10px !important;
-  color: #4d4d4d;
+  padding: 10px;
 }
 #aluno_content .bg_bimestres .bimestres .columns {
   width: 24%;
   min-width: 200px;
   flex-grow: 1;
   border: 1px solid #ccc;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 #aluno_content .bg_bimestres .bimestres .column_reposicao {
   display: flex;

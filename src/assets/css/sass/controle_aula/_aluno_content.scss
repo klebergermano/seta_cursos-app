@@ -101,17 +101,18 @@ nav.nav_cursos_aluno {
             background: lighten($primary-color, 5%);
         }
     }
-.bg_btn_add{
-    padding:5px;
-    margin-top:20px;
-    margin-bottom:10px;
-    width:100%;
-    background:#eee;
-    box-shadow: 0px 1px 1px #aaa;
-    border-radius: 5px 5px 0px 0px;
-    overflow: hidden;
+        
+    .bg_btn_add{
+        padding:5px;
+        margin-top:20px;
+        margin-bottom:40px;
+        width:100%;
+        background:#eee;
+        box-shadow: 0px 1px 1px #aaa;
+        border-radius: 5px 5px 0px 0px;
+        overflow: hidden;
 
-}
+    }
     .btn_add{
         @extend .btn-default;
         background:#f0f0f0;
@@ -170,9 +171,8 @@ nav.nav_cursos_aluno {
 
     .bg_curso {
         position: relative;
-        background: $white-color-tone;
-        background: $disabled-light-color;
-        padding: $padding-medium;
+        background: #ddd;
+        padding: $padding-large;
         padding-top: 0px;
         display: none;
         h3 {
@@ -252,15 +252,17 @@ nav.nav_cursos_aluno {
         flex-wrap: wrap;
 
         .bimestres {
+            position: relative;
             min-width: 100%;
-            padding: 20px 10px;
+            padding: 20px;
+            padding-top:60px;
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
             align-items: flex-start;
             justify-content: space-around;
             background: #eee;
-            margin-bottom: 10px;
+            margin-bottom: 40px;
             box-shadow: 0px 1px 1px #999;
             .resumo_bimestre {
                 width: 100%;
@@ -272,7 +274,7 @@ nav.nav_cursos_aluno {
                     display: flex;
                     flex-wrap: wrap;
                     p {
-                        min-width: 150px;
+                        min-width: auto;
                         flex-grow: 1;
                         width: auto;
                         padding: $padding-light;
@@ -290,8 +292,9 @@ nav.nav_cursos_aluno {
                 }
                 .feedback_bimestral {
                     padding: $padding-light;
+                    padding-top:20px;
                     margin-top: 0px;
-                    margin-bottom: 10px;
+                    margin-bottom: 20px;
                     grid-column: 1 / 4;
                     min-width: 100%;
                     box-shadow: 0px 0px 0px 1px #ccc;
@@ -309,6 +312,8 @@ nav.nav_cursos_aluno {
                     }
                     .feedback_value {
                         min-height: 30px;
+                   box-shadow: 0px 0px 0px 1px $primary-color;
+
                     }
                     .btn_add_feedback_bimestral {
                         max-height: 35px;
@@ -328,21 +333,26 @@ nav.nav_cursos_aluno {
             }
             /*h3 bimestre title*/
             h3 {
+                position: absolute;
+                top:0px;
+                background: #fff;
+                color: #444;
+
                 font-weight: normal;
-                flex-basis: 100%;
+                min-width:100%;
                 font-size: 18px;
-                color: $text-color;
                 text-transform: capitalize;
-                margin-top: 0px;
-                margin-bottom: 10px;
-                padding-bottom: 10px !important;
-                color: rgb(77, 77, 77);
+                padding: 10px ;
+              
             }
             .columns {
                 width: 24%;
                 min-width: 200px;
                 flex-grow: 1;
                 border: $border-set-default;
+                padding-top:15px;
+                padding-bottom:15px;
+
             }
             .column_reposicao {
                 display: flex;
