@@ -121,6 +121,13 @@ nav.nav_cursos_aluno {
        // position: absolute;
        // top:20px; left: 20px;
         //background:transparent; color:#444;
+        &:hover {
+            background: #dfdfdf;
+        }
+        &:active{ background: #f8f8f8;
+            box-shadow: inset 0px 0px 2px #222;
+        
+        }
     }
 
     .btn_add_aula {
@@ -135,10 +142,11 @@ nav.nav_cursos_aluno {
             margin-left:-5px;
         }
         &:hover {
-            background: lighten($primary-color, 55%);
+            background: lighten($primary-color, 56%);
         }
         &:active {
-            box-shadow: inset 0px 0px 3px #111;
+            box-shadow: inset 0px 0px 2px #222;
+            background: #f8f8f8;
         }
     }
 
@@ -147,7 +155,7 @@ nav.nav_cursos_aluno {
         border-color: $reposicao-color;
         &:hover {
             //background: #e7e7ff;
-            background: lighten($reposicao-color, 30%);
+            background: lighten($reposicao-color, 33%);
         }
     }
     .btn_add_ponto_extra {
@@ -155,7 +163,7 @@ nav.nav_cursos_aluno {
         border-color: $ponto-extra-color;
         &:hover {
            // background: #edffcf;
-            background: lighten($ponto-extra-color, 60%);
+            background: lighten($ponto-extra-color, 64%);
 
         }
     }
@@ -268,7 +276,7 @@ nav.nav_cursos_aluno {
                         flex-grow: 1;
                         width: auto;
                         padding: $padding-light;
-                        box-shadow: 0px 0px 0px 1px #ccc;
+                       box-shadow: 0px 0px 0px 1px #ccc;
                         background: $grey-extra-light-color;
                     }
                     .label {
@@ -282,11 +290,12 @@ nav.nav_cursos_aluno {
                 }
                 .feedback_bimestral {
                     padding: $padding-light;
-                    margin-top: 5px;
+                    margin-top: 0px;
                     margin-bottom: 10px;
                     grid-column: 1 / 4;
                     min-width: 100%;
-                    border: 1px solid #ccc;
+                    box-shadow: 0px 0px 0px 1px #ccc;
+                   
                     display: flex;
                     flex-wrap: wrap;
                     flex: 100% 50% 50%;
@@ -317,17 +326,16 @@ nav.nav_cursos_aluno {
                     }
                 }
             }
-            /*h2 bimestre title*/
-            h2 {
+            /*h3 bimestre title*/
+            h3 {
                 font-weight: normal;
                 flex-basis: 100%;
                 font-size: 18px;
                 color: $text-color;
                 text-transform: capitalize;
-                margin-top: -10px;
+                margin-top: 0px;
                 margin-bottom: 10px;
                 padding-bottom: 10px !important;
-                border-bottom: 1px solid #ccc;
                 color: rgb(77, 77, 77);
             }
             .columns {

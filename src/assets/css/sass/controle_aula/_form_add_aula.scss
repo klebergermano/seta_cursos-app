@@ -3,21 +3,6 @@
 #form_add_aula {
   border: 2px solid lighten($primary-color, 10%);
   box-shadow: $shadow-set-default;
-  height: auto;
-  div {
-    min-height: 35px;
-    margin-top: 15px;
-    padding: 0px;
-    display: flex;
-    justify-content: center;
-    select {
-      display: block;
-      flex-grow: 1;
-    }
-    input {
-      flex-grow: 1;
-    }
-  }
 
   #div_detalhes {
     min-height: 50px;
@@ -113,8 +98,9 @@
     flex-direction: row;
     justify-content: start;
     padding: 5px;
-    background: #dcdde7;
+    background: #f0f0f0;
     display: none;
+    border: 1px solid $primary-color;
 
     div {
       max-width: auto;
@@ -133,6 +119,7 @@
 
     input,
     textarea {
+      background: #fff;
       min-width: auto;
       height: 30px;
       max-height: auto;
