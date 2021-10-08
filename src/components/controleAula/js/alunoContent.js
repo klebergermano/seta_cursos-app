@@ -107,7 +107,7 @@ function createBgCursoMainStructureHTML(curso_nome_bd, RA) {
        <h3 class='title_curso_nome ${id_curso}'>${curso_nome_bd}</h3>
         <div id='curso_content'>
 
-
+<div class='bg_btn_add'>
         <button class="btn_add btn_baixar_historico" id="x" title='Baixar Histórico do Aluno' type="button">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
         <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"/>
@@ -123,6 +123,8 @@ function createBgCursoMainStructureHTML(curso_nome_bd, RA) {
         <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"></path>
       </svg> &nbsp; Aula
     </button>
+</div>
+
       </div>
     </div>`;
     return bgCursoHTML;

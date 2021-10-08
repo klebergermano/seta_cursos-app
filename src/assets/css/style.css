@@ -981,18 +981,19 @@ nav.nav_cursos_aluno ul li .active {
 #aluno_content .btn_add_curso:hover {
   background: #2969bc;
 }
+#aluno_content .bg_btn_add {
+  padding: 5px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  width: 100%;
+  background: #eee;
+  box-shadow: 0px 1px 1px #aaa;
+  border-radius: 5px 5px 0px 0px;
+  overflow: hidden;
+}
 #aluno_content .btn_add {
   background: #f0f0f0;
-  margin-bottom: 30px;
-  margin-top: 40px;
   float: left;
-}
-#aluno_content .btn_baixar_historico {
-  position: absolute;
-  top: -20px;
-  left: 20px;
-  background: transparent;
-  color: #444;
 }
 #aluno_content .btn_add_aula {
   border-color: #245da7;
@@ -1036,7 +1037,6 @@ nav.nav_cursos_aluno ul li .active {
   display: none;
 }
 #aluno_content .bg_curso h3 {
-  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1046,6 +1046,7 @@ nav.nav_cursos_aluno ul li .active {
   font-size: 18px;
   text-align: center;
   width: 100%;
+  padding-top: 50px;
   text-transform: uppercase;
 }
 #aluno_content h3[class*=web] {

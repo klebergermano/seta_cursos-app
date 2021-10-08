@@ -101,18 +101,26 @@ nav.nav_cursos_aluno {
             background: lighten($primary-color, 5%);
         }
     }
+.bg_btn_add{
+    padding:5px;
+    margin-top:20px;
+    margin-bottom:10px;
+    width:100%;
+    background:#eee;
+    box-shadow: 0px 1px 1px #aaa;
+    border-radius: 5px 5px 0px 0px;
+    overflow: hidden;
 
+}
     .btn_add{
         @extend .btn-default;
         background:#f0f0f0;
-        margin-bottom:30px;
-        margin-top:40px;
         float: left;
     }
     .btn_baixar_historico{
-        position: absolute;
-        top:-20px; left: 20px;
-        background:transparent; color:#444;
+       // position: absolute;
+       // top:20px; left: 20px;
+        //background:transparent; color:#444;
     }
 
     .btn_add_aula {
@@ -160,7 +168,6 @@ nav.nav_cursos_aluno {
         padding-top: 0px;
         display: none;
         h3 {
-            height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -172,6 +179,9 @@ nav.nav_cursos_aluno {
         font-size: 18px;
         text-align: center;
         width: 100%;
+        padding-top: 50px;
+
+       
         text-transform: uppercase;
     }
 
