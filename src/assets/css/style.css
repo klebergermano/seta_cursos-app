@@ -1199,9 +1199,11 @@ nav.nav_cursos_aluno ul li .active {
   width: 24%;
   min-width: 200px;
   flex-grow: 1;
-  border: 1px solid #ccc;
+  background: #f8f8f8;
+  box-shadow: 0px 1px 2px #ccc;
   padding-top: 15px;
   padding-bottom: 15px;
+  margin-top: 1px;
 }
 #aluno_content .bg_bimestres .bimestres .column_reposicao {
   display: flex;
