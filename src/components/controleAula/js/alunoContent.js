@@ -55,8 +55,8 @@ export function insertAlunoContent(RA, snapshotChange) {
 }
 function eventBtnAddAula(){
   document.querySelectorAll(".btn_baixar_historico").forEach((item) => {
-    item.addEventListener("click", () => {
-      baixarHistoricoAluno.eventsBaixarHistorico();
+    item.addEventListener("click", (e) => {
+      baixarHistoricoAluno.eventsBaixarHistorico(e);
     })
   });
 
