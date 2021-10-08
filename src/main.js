@@ -6,7 +6,6 @@ const fs = require("fs");
 const path = require("path");
 const downloadPath = app.getPath("downloads");
 const TemplateContrato = require("./components/geradorContrato/js/TemplateContrato.js");
-
 const TemplateHistoricoAluno = require("./components/controleAula/js/TemplateHistoricoAluno.js");
 
 
@@ -57,12 +56,9 @@ app.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 
-
-
 //-------------------------------------------------------------------------------------//
 //-----------------------------------------ALUNO HISTORICO PDF ------------------------//
 //-------------------------------------------------------------------------------------//
-
 
 
 function createPDFHistoricoAluno(docAlunoHistorico) {
@@ -85,12 +81,15 @@ function createPDFHistoricoAluno(docAlunoHistorico) {
 
 
 ipcMain.handle("baixarHistoricoAluno", async (event, docAlunoHistorico) => {
+console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+console.log(docAlunoHistorico.nome);
+console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
 
   let novoPDF = createPDFHistoricoAluno(docAlunoHistorico); // call the createPDF function
 
   novoPDF.then((pdf) => {
     // Read the file
-    let filename = `historicoAluno.pdf`;
+    let filename = `${docAlunoHistorico.nome}_${docAlunoHistorico.curso}_historico.pdf`;
     filename = filename.toUpperCase();
     let oldpath = `${__dirname}/hitoricoAluno.pdf`;
     let newpath = `${downloadPath}/${filename}`;
