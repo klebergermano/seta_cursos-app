@@ -640,10 +640,6 @@ inputs, .input-primary {
   background: #333;
 }
 
-#cursos_info h1 {
-  text-align: center;
-  padding-bottom: 20px;
-}
 #cursos_info .page_content {
   padding-bottom: 20px;
   display: grid;
@@ -825,17 +821,6 @@ inputs, .input-primary {
   overflow: hidden;
   transition: all 0.5s;
 }
-#controle_aula h1 {
-  color: #333;
-  text-align: center;
-  font-size: 24px;
-  margin-top: 40px;
-  margin-bottom: 40px;
-  color: #444;
-  width: 100%;
-  text-transform: uppercase;
-  color: #444;
-}
 #controle_aula #form_select_aluno {
   width: 100%;
   height: auto;
@@ -931,10 +916,6 @@ inputs, .input-primary {
   z-index: 5;
   background: #f90;
   border-radius: 50%;
-}
-
-#page_content {
-  position: relative;
 }
 
 nav.nav_cursos_aluno {
@@ -1188,8 +1169,8 @@ nav.nav_cursos_aluno ul li .active {
   width: 24%;
   min-width: 200px;
   flex-grow: 1;
-  background: #f8f8f8;
-  box-shadow: 0px 1px 2px #ccc;
+  background: #eee;
+  box-shadow: 0px 0px 2px #aaa;
   padding-top: 15px;
   padding-bottom: 15px;
   margin-top: 1px;
@@ -1868,6 +1849,8 @@ option[disabled] {
 }
 
 #page_login {
+  opacity: 0;
+  transition: opacity 10s ease-in-out;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1945,6 +1928,20 @@ option[disabled] {
   background: #214987;
 }
 
+.components h1 {
+  color: #333;
+  text-align: center;
+  font-size: 24px;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  margin-bottom: 50px;
+  color: #444;
+  width: 100%;
+  text-transform: uppercase;
+  color: #245da7;
+  border-bottom: 2px solid #ed1860;
+}
+
 #block_screen {
   width: 100%;
   min-height: 100vh;
@@ -1991,6 +1988,20 @@ h1 {
   grid-template-areas: "aside header header header header header header header" "aside  cp     cp     cp     cp     cp     cp     cp" "aside  footer footer footer footer footer footer footer";
 }
 
+#page_content {
+  position: relative;
+  padding-top: 60px;
+  grid-area: cp;
+  max-width: 100%;
+  min-height: 100vh;
+  margin: 0px 60px 0px 60px;
+}
+
+@media (min-width: 1600px) {
+  #page_content {
+    margin: 0px 160px 0px 160px;
+  }
+}
 #block_screen_msg {
   position: absolute;
   min-height: 100vh;
@@ -2113,14 +2124,6 @@ h1 {
   color: #2b4ba3;
   border-color: #33469b;
   background: #ebf1f5;
-}
-
-#page_content {
-  padding-top: 80px;
-  grid-area: cp;
-  max-width: 100%;
-  min-height: 100vh;
-  margin: 0px 60px 0px 60px;
 }
 
 footer {

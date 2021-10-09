@@ -12,6 +12,22 @@
 //Controle Aula
 //Gerador Contrato
 
+.components{
+  h1 {
+    color: $title-color-dark;
+    text-align: center;
+    font-size:24px; 
+    padding-top:20px;
+    padding-bottom:30px;
+    margin-bottom:50px;
+    color: $text-color;
+    width:100%;
+    text-transform: uppercase;
+    color:$primary-color;
+    border-bottom:2px solid $secondary-color;
+  }
+}
+
 #block_screen{
   width:100%; 
   min-height: 100vh;
@@ -33,9 +49,7 @@ a {
 
 svg{ margin-bottom:-2px; margin: 0px 2px -2px 2px;}
 body {
- background:#ccc;
-  //background: #ddd url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm380-16-x_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=d0c544f028f2405b219eb997cb580e21") ; 
- //background-size: 100% auto ;
+  background:#ccc;
   font-family: $font-stack;
   position:relative;
 }
@@ -55,6 +69,21 @@ grid-template-columns: 250px 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   'aside  cp     cp     cp     cp     cp     cp     cp'
   'aside  footer footer footer footer footer footer footer';
 }
+#page_content{
+  position: relative;
+  padding-top:60px;
+  grid-area: cp;
+  max-width: 100%;
+  min-height:100vh;
+  margin:0px 60px 0px 60px;
+}
+@media(min-width:1600px){
+  #page_content{
+    margin:0px 160px 0px 160px;
+  
+  }
+}
+
 
 
 #block_screen_msg{
@@ -84,7 +113,6 @@ grid-template-columns: 250px 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   color:#fff;
   }
 }
-  
 
 .confirm_box{
 
@@ -181,14 +209,6 @@ grid-template-columns: 250px 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   background: rgb(235, 241, 245);
 
 }
-
- #page_content{
-   padding-top:80px;
-   grid-area: cp;
-   max-width: 100%;
-   min-height:100vh;
-   margin:0px 60px 0px 60px;
- }
 
 
 
