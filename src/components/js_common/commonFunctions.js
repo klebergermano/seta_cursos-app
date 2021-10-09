@@ -8,7 +8,7 @@ export function removeElementChild(parentElementID, childElementID, callback){
 
 
  
-export function importHTMLWithScript(target, htmlSRC, scriptSRC){
+export function importHTMLWithScript(target, htmlSRC, scriptSRC, callback){
   let element = document.querySelector(target);
   fetch(htmlSRC)
   .then((res)=> res.text())
@@ -18,6 +18,8 @@ export function importHTMLWithScript(target, htmlSRC, scriptSRC){
     .then((module)=>{
       module.onload();
     });
+  }).then(()=>{
+    if(callback) callback();
   })
 }
 

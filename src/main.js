@@ -81,9 +81,7 @@ function createPDFHistoricoAluno(docAlunoHistorico) {
 
 
 ipcMain.handle("baixarHistoricoAluno", async (event, docAlunoHistorico) => {
-console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
-console.log(docAlunoHistorico.nome);
-console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+
 
   let novoPDF = createPDFHistoricoAluno(docAlunoHistorico); // call the createPDF function
 

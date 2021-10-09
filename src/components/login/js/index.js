@@ -3,9 +3,7 @@ import {firebaseApp} from "../../dbConfig/firebaseApp.js";
 const {getAuth, signInWithEmailAndPassword,  onAuthStateChanged } =  require("firebase/auth");
 
 const auth = getAuth(firebaseApp);
-var TESTE =  'TESTE';
 
-console.log(TESTE);
 export function onload(){
     let form = document.querySelector('#form_login');
     form.addEventListener('submit', (e)=>{
@@ -42,7 +40,6 @@ export function onload(){
         const user = userCredential.user;
         console.log('logado', user.email);
         commonFunc.importHTMLWithScript('#app', './appContent/adminContent/index.html', "../../appContent/adminContent/js/index.js" );
-        
         // ...
         })
         .catch((error) => {

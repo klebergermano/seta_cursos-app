@@ -22,6 +22,7 @@ aulaStatus.style.display = 'none';
 let title = form.querySelector('h3');
 title.textContent = 'Adicionar Aula de Reposição'
 let selectAula = form.querySelector('#select_aula');
+
 selectAula.innerHTML = `
 <option value='' disabled selected>Selecione a Aula</option>
 <option value='reposição da aula 01'>Reposição da Aula 1</option>
@@ -51,11 +52,10 @@ selectAula.addEventListener('change', (e)=>{
     form.querySelector("#numero_questoes").setAttribute("required", true);
     form.querySelector("#obs_prova").setAttribute("required", true);
     form.querySelector("#detalhes").removeAttribute("required");
-    aula_categoria.value='reposição de prova';
+    aulaCategoria.value='reposição de prova';
 
   }else {
-    aula_categoria.value='reposição';
-
+    aulaCategoria.value='reposição';
     form.querySelector("#div_detalhes").style.display = "flex";
     form.querySelector("#bg_prova_inputs").style.display = "none";
     form.querySelector("#nota_prova").removeAttribute("required");
@@ -66,11 +66,3 @@ selectAula.addEventListener('change', (e)=>{
 })
 }
 
-function setInputsProva(form){
-  let selectAula = form.querySelector("#select_aula");
-  let aula_categoria = form.querySelector("#aula_categoria");
-  
-  selectAula.addEventListener('change', (e)=>{
-   
-  })
-  }
