@@ -5,8 +5,6 @@ export function removeElementChild(parentElementID, childElementID, callback){
      parent.removeChild(child);
      callback();
  }
-
-
  
 export function importHTMLWithScript(target, htmlSRC, scriptSRC, callback){
   let element = document.querySelector(target);
