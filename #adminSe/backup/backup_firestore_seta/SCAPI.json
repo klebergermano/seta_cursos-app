@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "seta-cursos-app",
+  "private_key_id": "16d07b5dad016a28be55548bf08e7e0d61362608",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCjJU43wRca3FpM\ndO+iviHD0ABExhygd7PjZjc3YxtwZtm9MUCuDiJNB7AOLVaPED2SIAvPkWYH3LE6\nR0UzH7libtu0Z80+S+OlM9R8VVjdmL2w9J0PZhsGfsiNQcdQfOT8jkVMSI0yxv7D\n1Z3t5/C9DpV29lxCdpQ9TOLIb+0Nh1Flktt1551yE52Zxmrk/527RzCYOPtJuYiY\nT+4S6r86zCbV9c8aSxBlaC8g0CUQKHBn4M2Tz3DDlhw1fz22ktuuWL/318rQKRkY\nd9dBPR7ymIE5wj4ZphIW9akVbg0Y3SYN1IiH7vimdKKVbotJ2ubxCgyTK2E/ZohG\ntVLIKLMbAgMBAAECggEAUTyexal68U+fESo7NzzYwFHfCF/j2k2wv/9iaEyL2b0F\nGC2hyOnVz6iP1Idj7ioGlrApYWrDtQ+CGoRpo0rdO3P7J8p2S1prmRQFbwHqlbFc\nZ3Rujr/nniTchWYnMt92AIJxZEpOMOYg7u/8S34uhF1yNIH5L8kvCJUz6d292vlm\nVXRGSsJ0YGquwk6+tger3++pHqbOjOzR1dqnLV/vkt+t+KEFYEz9RchZKB9ruyXi\nJ+gjDixZHU43f0fa3CgQu/urMPwNzOybpuAgS654Meat+ZCMSPHyJ8u8X5faZdW/\n2vOcynH48kGNRpLOThFbwhcWsxj2xfRxlNHo3by9UQKBgQDXJHF26ipKsbodFnfZ\nCfP3rVBN2fn/OdmxtkqhmzmVyT/MOlgxyNWGs3n0c4ZZ/R1I7hUn0fwzS4cI0znN\nvqshdfzV9suq5c8zhbQh2iOne+f1OWSuV1lZD8iA1qAO+G/aiP/rgQk6sL5MqmDT\nkevRozyqB/rEu48wGpUIXPJdiwKBgQDCIPJboU189vbFarq8ekg04NNiU68ohyJq\nUZiQJcDWBEQD5+TIFsIgBlmxuG9Z1OmjprI+I1LiBKgmoH8eTBBPFK6ej3dI8oKn\nP0502qhc3P9NAK3Ya6o6FEwpfHNQ3P0jSSb4FHV3Muaim2LXaHxGAxYudRYO3yrf\n3zB3Cs7SsQKBgFrsMuuvoPn6TI6YfUQDedC1tVeBhK8BkugRA09zG44bBFRaYAWC\nPAN2fFb8L85+M08sF1LB4tUG2WW4Zxh1uTsl8xm1+HMcNkou+mbIGwNgUTKI8+ze\nS4thKTqR+gj5o8P23Dl6Sh08ruAVrWAcrk3lr/Cn+KoGHkiVI2Dqbx9rAoGBAKbp\npxiL51FEEseJTgfSaBU3HelUJK2HC1s4zyFZpKUfQ8/L6hT0JHNeom5BM1Sc0UpJ\ngMYWnyQAdwfHRaUqJ3enQ8DHf/uzsAzXTMECZHJ7/fMaW19SqymG3DlrbMchS3G0\naxIwnRMhK9ayHdkyWG/mJYNKXu3oije08jnYjB3xAoGBANRF91TY5wiYZdBTzRYk\n+CZ8OvnWnC6jigddBh+p9GN+CAMbKe3sGnYOjNCpbOKH5QhzGH1wvvErJeIF7po1\nGBu7KTDw5OKZXyYK5CnSkxmXJjIRSe4AubixkIPKvwncE8BlDLCxwYejiyi19tHZ\nsXLDJbk2TU9qnyuZODd9Iief\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-gaimj@seta-cursos-app.iam.gserviceaccount.com",
+  "client_id": "115638823656981618692",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-gaimj%40seta-cursos-app.iam.gserviceaccount.com"
+}
