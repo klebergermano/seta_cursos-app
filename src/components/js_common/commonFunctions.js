@@ -59,13 +59,28 @@ export function addEventListenerInAllElements(targetElements, event, callback){
   });
 }
 
-  export function AddEventBtnCloseForm() {
+export function btnCloseForm(formID){
+  let form = document.getElementById(formID);
+  let parent = form.parentElement;
+  //Remove the parent form
+  form.querySelector('.btn_close_form').addEventListener('click', (e) => {
+    removeElementChild(`#${parent.id}`, `#${formID}`, () => {
+      changeCSSDisplay('#block_screen', 'none')
+    });
+  })
+
+}
+//TODO: conferir utilidade da função
+/*
+function AddEventBtnCloseForm() {
     document.querySelectorAll(".close_form").forEach((item) => {
       item.addEventListener("click", (e) => {
         parenteDisplayAndBlockScreenNone(e);
       });
     });
   }
+  */
+  //-------------------------------------
 export function setSelectedInASelectBasedOnRA(idSelectTarget, RA) {
   //Remove o select das options "select_aluno" e adiciona selected no item salvo
   let select = document.querySelector(idSelectTarget);

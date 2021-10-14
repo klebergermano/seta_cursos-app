@@ -2,19 +2,21 @@ import * as commonFunc from "../../../components/js_common/commonFunctions.js";
 
 //----------------------------------------------------
 import {firebaseApp} from "../../../components/dbConfig/firebaseApp.js";
-const {getAuth, signOut, signInWithEmailAndPassword,  onAuthStateChanged, updateUser, updateProfile, createUserWithEmailAndPassword } =  require("firebase/auth");
+const {getAuth, signOut, signInWithEmailAndPassword,  onAuthStateChanged,  updatePassword, updateProfile, createUserWithEmailAndPassword } =  require("firebase/auth");
 const {getFirestore, doc, getDoc, setDoc} = require("firebase/firestore") 
 const db = getFirestore(firebaseApp);
 const auth = getAuth(firebaseApp);
 
+//-------------------------------------------------------
 //createNewUser()
+//-------------------------------------------------------
 function createNewUser(){
-  let displayName = 'Bellatrix Lestrange';
-  let email = 'bela@examplo.com';
+  let displayName = 'ABellatrix Lestrange';
+  let email = '2@email.com';
   let password = '123456';
   let photoURL = 'atendenteDefault.png';
-  let privilege = 'antendente';
-  let level = '1';
+  let role = 'atendente';
+  let privilege = '1';
   createUserWithEmailAndPassword(auth, email, password)
   .then((currentUser)=>{
       currentUser.uid = currentUser.user.uid;
@@ -22,24 +24,37 @@ function createNewUser(){
       currentUser.name = displayName;
       currentUser.photoURL = photoURL;
       currentUser.privilege = privilege;
-      currentUser.level = level;
-    //  updateUser(currentUser)
+      currentUser.role = role;
     saveUserExtraInfo(currentUser) 
      
   }).catch(err => console.log(err))
 }
 
-
+//updatePasswordUser()
+function updatePasswordUser(){
+let newPassword = '123456'
+updatePassword(auth.currentUser, newPassword )
+.then(()=>{
+  console.log('Password atualizado com sucesso!')
+}).catch(erro => console.log(err));
+}
+//updateUser()
+function updateUser(){
+  updateProfile(auth.currentUser, {
+  
+  }).then(()=>{
+    console.log('Atualizado com sucesso');
+  }).catch(err => console.log(err));
+}
 
 function saveUserExtraInfo(user) {
-
 setDoc(doc(db, 'users', user.uid),
       {
         photoURL: user.photoURL,
         email: user.email,
         name: user.name,
         privilege: user.privilege,
-        level: user.level
+        role: user.role
       }
 
   ).catch((error) => console.error("Erro ao adicionar aula:", error));
@@ -54,7 +69,8 @@ setDoc(doc(db, 'users', user.uid),
       email: currentUser.email,
       username: res.data().name,
       photoURL: res.data().photoURL,
-      privilege: res.data()["privilege"]
+      privilege: res.data()["privilege"],
+      role: res.data()["role"]
     }
     return userInfo; 
   });
@@ -82,23 +98,21 @@ function importHTML(target, htmlSRC, scriptSRC){
    let imgUserIcon = document.createElement('img');
    imgUserIcon.setAttribute('src', `../src/assets/img/usersIcons/${userCompleteInfo.photoURL}`);
    document.querySelector("#user_icon").appendChild(imgUserIcon);
-   document.querySelector("#user_privilege").textContent = userCompleteInfo.privilege;
+   document.querySelector("#user_role").textContent = userCompleteInfo.role;
   }
 
 export function onload(){
 
-    getUserCompleteInfo(auth.currentUser)
+
+getUserCompleteInfo(auth.currentUser)
     .then((userCompleteInfo)=>{
       setLoginInfo(userCompleteInfo)
     })
-  //updateUserFirebase()
   document.querySelector("#logout_user").addEventListener('click', ()=>{
     signOut(auth).then(() => {
-      // Sign-out successful.
-     // commonFunc.importHTMLWithScript('#app', './components/login/index.html',"../login/js/index.js" )
-    //  console.log('Sign out');
+      
     }).catch((error) => {
-      // An error happened.
+    
     });
   })
 

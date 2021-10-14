@@ -1,9 +1,13 @@
 
 
+import * as commonFunc from "../../js_common/commonFunctions.js";
 import {firebaseApp} from "../../dbConfig/firebaseApp.js";
 const {getFirestore, collection, getDocs, doc, getDoc, onSnapshot } = require("firebase/firestore") 
 const db = getFirestore(firebaseApp);
 
+function insertFormAddUser(){
+    commonFunc.insertElementHTML('#bg_form_add_user', './components/users/formAddUser.html', eventsFormAddUser);
+}
 
 function insertUsersInfoInPage(){
     getUserList().then((res) => createTableUsersHTML(res)
@@ -11,6 +15,11 @@ function insertUsersInfoInPage(){
         document.querySelector('#users_content').appendChild(userHTML);
     })
 }
+
+function eventsFormAddUser(){
+    commonFunc.btnCloseForm('form_add_user');
+}
+
 
 function createTableUsersHTML (usersInfo){
 let tableUsersHTML = document.createElement('table'); 
@@ -55,5 +64,8 @@ function getUserList(){
    
 
 export function onload(){
+    document.querySelector('#btn_add_user').addEventListener('click', (e)=>{
+        insertFormAddUser()
+    })
     insertUsersInfoInPage()
 }
