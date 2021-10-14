@@ -9,7 +9,6 @@ import * as formAddReposicaoAula from "./formAddReposicaoAula.js";
 import * as formAddPontoExtra from "./formAddPontoExtra.js";
 import * as formAddFeedbackBimestral from "./formAddFeedbackBimestral.js";
 import * as deleteFunc from "./deleteFunc.js";
-import { eventsBaixarHistorico } from "./baixarHistoricoAluno.js";
 import * as baixarHistoricoAluno  from "./baixarHistoricoAluno.js";
 
 
