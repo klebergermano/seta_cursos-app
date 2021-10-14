@@ -1,5 +1,0 @@
-//Comando Reduzido //Salva no diretório atual
-firestore-export -a SCAPI.json -b backupPretty.json -p
-
-//Comando Verboso
-firestore-export  --accountCredentials C:\Users\Kleberus\Downloads\SCAPI.json --backupFile C:\Users\Kleberus\Downloads dataBackup.json -- prettyPrint
