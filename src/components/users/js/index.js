@@ -10,16 +10,17 @@ function insertFormAddUser(){
 }
 
 function insertUsersInfoInPage(){
-    getUserList().then((res) => createTableUsersHTML(res)
-    ).then((userHTML)=>{
-        document.querySelector('#users_content').appendChild(userHTML);
+    getUserList().then((res) => {
+        return createTableUsersHTML(res)
     })
+    .then((tableUsersHTML)=>{
+        document.querySelector('#users_content').appendChild(tableUsersHTML);
+    }).catch(err => console.log(err))
 }
 
 function eventsFormAddUser(){
     commonFunc.btnCloseForm('form_add_user');
 }
-
 
 function createTableUsersHTML (usersInfo){
 let tableUsersHTML = document.createElement('table'); 
@@ -37,6 +38,7 @@ tableUsersHTML.setAttribute('border', '1');
     </thead>
     <tbody></tbody>`;
     usersInfo.forEach((item)=>{
+      
         let user = item.data();
         let row = document.createElement('tr');
         row.className = 'usersRow';

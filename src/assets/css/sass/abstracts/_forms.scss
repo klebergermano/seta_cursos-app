@@ -6,7 +6,30 @@ inputs{
   @include inputs;
 }
 
+.forms{
+
+  border: $border-set-default;
+  position:fixed;
+  right: 0px; left:0px;
+  top: 25%; 
+  z-index: 5;
+
+  box-shadow: 0px 1px 2px #666;
+  .btn_close_form{
+    right:0px;
+    top:0px;
+    padding: 5px 10px;
+    position:absolute;
+    cursor:pointer;
+    &:hover{
+      background:rgb(221, 79, 79);
+    color:#fff;
+    }
+  }
+}
+
  .form_flex{
+   @extend .forms;
    display:flex;
    flex-wrap: wrap;
    border-radius: $border-radius;
@@ -21,7 +44,8 @@ inputs{
   h3{
     flex-basis:100%;
     text-align: center;
-    margin-bottom:10px;
+    margin-bottom:20px;
+    margin-top:-10px;
     svg{margin-bottom:-1px; margin-right:2px;}
   }
    div{
@@ -59,13 +83,19 @@ inputs{
     flex-grow: 1;
   }
  
+  .div_submit{
+    width:100%;
+  }
    input[type=submit]{
        @extend .btn-primary;
        display: block;
        clear:both;
-       width:50%;
-       min-height: 40px;
+       max-width:300px;
+       min-width: 50%;
+       min-height: 45px;
        margin: auto ;
-       margin-top:30px
+       margin-top:40px
   }
+
 }
+
