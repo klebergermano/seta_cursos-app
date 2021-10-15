@@ -1941,6 +1941,10 @@ option[disabled] {
   background: #214987;
 }
 
+#form_add_user #user_privilege {
+  width: 50px;
+}
+
 .nav_forms {
   margin-bottom: 20px;
   width: 100%;

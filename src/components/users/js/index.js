@@ -30,10 +30,10 @@ tableUsersHTML.setAttribute('border', '1');
     tableUsersHTML.innerHTML = `
     <thead> 
         <th>Foto</th>
-        <th>Name</th>
-        <th>Privilege</th>
+        <th>Nome</th>
         <th>Email</th>
-        <th>Level</th>
+        <th>Categoria</th>
+        <th>Privilégio</th>
 
     </thead>
     <tbody></tbody>`;
@@ -46,9 +46,10 @@ tableUsersHTML.setAttribute('border', '1');
         `
         <td class='usersTD user_foto'><img src='../src/assets/img/usersIcons/${user.photoURL}'/> </td>
         <td class='usersTD user_name'>${user.name}</td>
-        <td class='usersTD user_privilege'>${user.privilege}</td>
         <td class='usersTD user_email'>${user.email}</td>
-        <td class='usersTD user_level'>${user.level}</td>
+        <td class='usersTD user_level'>${user.role}</td>
+        <td class='usersTD user_privilege'>${user.privilege}</td>
+
         
         `
         row.innerHTML = rowContent;
