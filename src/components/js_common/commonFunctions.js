@@ -1,11 +1,4 @@
-//Remove o formulário do contente page
-export function removeElementChild(parentElementID, childElementID, callback){
-  let parent = document.querySelector(parentElementID);
-  let child = document.querySelector(childElementID);
-     parent.removeChild(child);
-     callback();
- }
- 
+
 export function importHTMLWithScript(target, htmlSRC, scriptSRC, callback){
   let element = document.querySelector(target);
   fetch(htmlSRC)
@@ -20,7 +13,14 @@ export function importHTMLWithScript(target, htmlSRC, scriptSRC, callback){
     if(callback) callback();
   })
 }
+export function removeBlockScreen(){
+  changeCSSDisplay('#block_screen', 'none')
 
+}
+export function displayBlockScreen(){
+  changeCSSDisplay('#block_screen', 'block')
+
+}
 export function insertElementHTML(target, pathElementHTML,  callback, event){
   let targetElement = document.querySelector(target);
  let insertedElement = fetch(pathElementHTML)
@@ -33,9 +33,7 @@ export function insertElementHTML(target, pathElementHTML,  callback, event){
 
    return htmlElement;
   }).then((htmlElement)=>{
-
     if(callback) callback(htmlElement, event);
-
     return htmlElement;
   })
   .catch((err)=> console.log(err));
@@ -59,17 +57,39 @@ export function addEventListenerInAllElements(targetElements, event, callback){
   });
 }
 
+export function defaultEventsAfterSubmitForm(formID, msg, timeout = 1500, callback){
+  showMessage(formID,  msg)
+  setTimeout(() => {
+    removeFormElement(formID);
+  },timeout);
+  if(callback) callback(); 
+};
+
+//Remove o formulário do contente page
+export function removeElement(childElementID, callback){
+  let child = document.querySelector(childElementID);
+  let parent = child.parentElement;
+     parent.removeChild(child);
+     callback();
+ }
+
+ export function removeFormElement(childElementID){
+
+  removeElement(childElementID, ()=>{
+    let blockScreen = document.querySelector("#block_screen");
+    if(blockScreen){ removeBlockScreen()}
+  })
+}
+ 
 export function btnCloseForm(formID){
-  let form = document.getElementById(formID);
-  let parent = form.parentElement;
+  let form = document.querySelector(formID);
   //Remove the parent form
   form.querySelector('.btn_close_form').addEventListener('click', (e) => {
-    removeElementChild(`#${parent.id}`, `#${formID}`, () => {
-      changeCSSDisplay('#block_screen', 'none')
-    });
-  })
+   removeFormElement(formID);
 
+  })
 }
+
 //TODO: conferir utilidade da função
 /*
 function AddEventBtnCloseForm() {
@@ -114,13 +134,14 @@ return id;
       });
   }
 
-  //Função usada para fechar os formulários e tirar o block screen da tela.
+/*TODO: conferir utilidade da funçaõ
+//Função usada para fechar os formulários e tirar o block screen da tela.
 export function parenteDisplayAndBlockScreenNone(e) {
   //Pega o elemento "parent" do event e set display none.
   e.target.parentElement.style.display = "none";
   changeCSSDisplay("#block_screen", "none");
 }
-
+*/
 function closeConfirmBox(e){
   let confirmBox = e.target.closest('.confirm_box')
   parent = confirmBox.parentElement;
@@ -147,7 +168,6 @@ export function confirmBoxDelete(target, msg,  callback){
   elementTarget.appendChild(msgBox);
   document.querySelector('#block_screen').style.display = 'block';
 }
-
 
 
 export function showTemporaryMessage
@@ -188,13 +208,8 @@ export function removeblockSubmitForm(form) {
   form.querySelector("input[type='submit']").removeAttribute("disabled");
 }
 export function showMessage(targetID, message, callback) {
-  let previousHTML = document.getElementById(targetID).innerHTML;
-  document.getElementById(
-    targetID
-  ).innerHTML = `<div class='show_message'>${message}</div>`;
-
-  //restaura a função de fechar do formulário
-    if(callback){callback()}
+  document.querySelector(targetID).innerHTML = `<div class='show_message'>${message}</div>`;
+    if(callback)callback()
 }
 
 

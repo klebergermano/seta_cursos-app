@@ -1,5 +1,6 @@
 @use "../abstracts" as *;
 @use "./form_add_user";
+@use "./form_reauth_user";
 .nav_forms {
   margin-bottom: 20px;
   width:100%; 

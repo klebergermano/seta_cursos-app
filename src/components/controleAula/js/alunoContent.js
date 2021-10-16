@@ -50,7 +50,7 @@ export function insertAlunoContent(RA, snapshotChange) {
     }).then(()=>{
   document.querySelector("#controle_aula").style.opacity="1";
 
-    });
+    }).catch((err) => console.log('Ocorreu um erro ao inserir o conteúdo do aluno:', err));
 }
 function eventBtnAddAula(){
   document.querySelectorAll(".btn_baixar_historico").forEach((item) => {
@@ -187,7 +187,6 @@ export function resumoBimestreBD(curso){
     if(notaFinal > 10) notaFinal = 10;
     resumoBimestres[bimestresKeys[i]].notaFinal =  notaFinal;
 
-    console.log();
   }
   return resumoBimestres;
 
@@ -332,7 +331,7 @@ function createBgCursosInnerContent(bgCursoHTML, cursoDB) {
     divBimestre.appendChild(titleBimestre); // Adiciona o título do bimestre
     //----------------------Resumo
     let divResumo = createResumoBimestreHTML(cursoDB, bimSortedKeys[i]);
-    console.log(divResumo)
+   
     //divResumo.querySelector(".pontos_extras_value").innerHTML =  resumoBimestre[bimSortedKeys[i]].pontosExtras;
         divBimestre.appendChild(divResumo);
     //-----------------------------

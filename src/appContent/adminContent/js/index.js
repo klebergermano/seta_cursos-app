@@ -2,63 +2,13 @@ import * as commonFunc from "../../../components/js_common/commonFunctions.js";
 
 //----------------------------------------------------
 import {firebaseApp} from "../../../components/dbConfig/firebaseApp.js";
-const {getAuth, signOut, signInWithEmailAndPassword,  onAuthStateChanged,  updatePassword, updateProfile, createUserWithEmailAndPassword } =  require("firebase/auth");
+const {getAuth, signOut } =  require("firebase/auth");
 const {getFirestore, doc, getDoc, setDoc} = require("firebase/firestore") 
 const db = getFirestore(firebaseApp);
 const auth = getAuth(firebaseApp);
+//-----------------------------------------------------
 
-//-------------------------------------------------------
-//createNewUser()
-//-------------------------------------------------------
-function createNewUser(){
-  let displayName = 'ABellatrix Lestrange';
-  let email = '2@email.com';
-  let password = '123456';
-  let photoURL = 'atendenteDefault.png';
-  let role = 'atendente';
-  let privilege = '1';
-  createUserWithEmailAndPassword(auth, email, password)
-  .then((currentUser)=>{
-      currentUser.uid = currentUser.user.uid;
-      currentUser.email = currentUser.user.email;
-      currentUser.name = displayName;
-      currentUser.photoURL = photoURL;
-      currentUser.privilege = privilege;
-      currentUser.role = role;
-    saveUserExtraInfo(currentUser) 
-     
-  }).catch(err => console.log(err))
-}
 
-//updatePasswordUser()
-function updatePasswordUser(){
-let newPassword = '123456'
-updatePassword(auth.currentUser, newPassword )
-.then(()=>{
-  console.log('Password atualizado com sucesso!')
-}).catch(erro => console.log(err));
-}
-//updateUser()
-function updateUser(){
-  updateProfile(auth.currentUser, {
-  
-  }).then(()=>{
-    console.log('Atualizado com sucesso');
-  }).catch(err => console.log(err));
-}
-
-function saveUserExtraInfo(user) {
-setDoc(doc(db, 'users', user.uid),
-      {
-        photoURL: user.photoURL,
-        email: user.email,
-        name: user.name,
-        privilege: user.privilege,
-        role: user.role
-      }
-
-  ).catch((error) => console.error("Erro ao adicionar aula:", error));
-}
 
  function getUserCompleteInfo(currentUser){
   let userInfo = getDoc(doc(db, "users",  currentUser.uid))

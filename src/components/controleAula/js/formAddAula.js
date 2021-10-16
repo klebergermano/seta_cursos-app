@@ -14,11 +14,7 @@ export async function insertFormAddAulaHTML() {
     './components/controleAula/formAddAula.html', eventsFormAddAula);
 }
  export function eventsFormAddAula(form) {
-  form.querySelector('.btn_close_form').addEventListener('click', (e) => {
-    commonFunc.removeElementChild('#page_content', '#form_add_aula', () => {
-      commonFunc.changeCSSDisplay('#block_screen', 'none')
-    });
-  })
+   commonFunc.btnCloseForm("#form_add_aula");
   form.addEventListener("submit", (e) => {
     submitFormAddAula(e);  
   });
@@ -239,12 +235,8 @@ function submitFormAddAula(e) {
         { merge: true }
   )
 .then(()=>{
-  commonFunc.showMessage("form_add_aula", "Aula adicionada com sucesso!")
-  setTimeout(() => {
-    commonFunc.removeElementChild('#page_content', '#form_add_aula',()=>{
-      commonFunc.changeCSSDisplay('#block_screen', 'none')
-    });
-  }, 1500);
+  commonFunc.defaultEventsAfterSubmitForm("#form_add_aula", "Aula adicionada com sucesso!")
+
 }).catch((error) => console.error("Erro ao adicionar aula:", error));
 }
 
