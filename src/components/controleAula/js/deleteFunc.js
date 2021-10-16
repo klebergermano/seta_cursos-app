@@ -50,13 +50,9 @@ function checkIfBimestreIsEmptyToDelete(aulaInfoDelete){
         let keys = Object.keys(bimestre);
         if(keys.length <= 0){
             deleteBimestre(aulaInfoDelete);
-            console.log('vazio');
-        }else{
-            console.log('cheio');
-
+           
         }
-       
-    })
+    }).catch((err)=> console.log(err));
 }
 
 function deleteCurso(btn){
@@ -68,7 +64,7 @@ function deleteCurso(btn){
         navCursosAluno.displayFirstCursoAluno();
     }).then(()=>{
         commonFunc.  changeCSSDisplay("#block_screen", "none");
-    });
+    }).catch((err)=> console.log(err));;
 }
 
 function deleteBimestre(aulaInfoDelete){
@@ -93,6 +89,6 @@ function deleteDbAula(aulaInfoDelete){
     const docAula = doc(db, 'aluno_historico', RA, 'cursos', curso);
     updateDoc(docAula, deleteQuery).then(()=>{
         checkIfBimestreIsEmptyToDelete(aulaInfoDelete)
-    });;
+    }).catch((err)=> console.log(err));
 }
 

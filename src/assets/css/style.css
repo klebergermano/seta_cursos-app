@@ -349,7 +349,7 @@ template {
   display: none;
 }
 
-.btn, .btn-secondary, .btn-primary, #aluno_content .btn_add_curso, .form_flex input[type=submit], .forms input[type=submit], .btn-default-delete, #aluno_content .bg_info_delete_curso .btn_deletar_curso, .btn-default, #page_login #login_content #form_login input[type=submit], #aluno_content .btn_add {
+.btn, .btn-secondary, .btn-primary, #aluno_content .btn_add_curso, .form_flex input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], .forms_controle_aula input[type=submit], .btn-default-delete, #aluno_content .bg_info_delete_curso .btn_deletar_curso, .btn-default, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], #aluno_content .btn_add {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -359,22 +359,22 @@ template {
   border: 0px;
   cursor: pointer;
 }
-.btn svg, .btn-secondary svg, .btn-primary svg, #aluno_content .btn_add_curso svg, .form_flex input[type=submit] svg, .forms input[type=submit] svg, .btn-default-delete svg, #aluno_content .bg_info_delete_curso .btn_deletar_curso svg, .btn-default svg, #page_login #login_content #form_login input[type=submit] svg, #aluno_content .btn_add svg {
+.btn svg, .btn-secondary svg, .btn-primary svg, #aluno_content .btn_add_curso svg, .form_flex input[type=submit] svg, #form_reauth_user input[type=submit] svg, #form_add_user input[type=submit] svg, .forms_controle_aula input[type=submit] svg, .btn-default-delete svg, #aluno_content .bg_info_delete_curso .btn_deletar_curso svg, .btn-default svg, .nav_forms ul li a svg, #page_login #login_content #form_login input[type=submit] svg, #aluno_content .btn_add svg {
   max-width: 100px;
   max-height: 100px;
   height: auto;
   width: 20px;
 }
 
-.btn-default, #page_login #login_content #form_login input[type=submit], #aluno_content .btn_add {
+.btn-default, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], #aluno_content .btn_add {
   background: #f0f0f0;
   color: #333;
   border: 1px solid #666;
 }
-.btn-default:hover, #page_login #login_content #form_login input[type=submit]:hover, #aluno_content .btn_add:hover {
+.btn-default:hover, .nav_forms ul li a:hover, #page_login #login_content #form_login input[type=submit]:hover, #aluno_content .btn_add:hover {
   background: #fdfdfd;
 }
-.btn-default:active, #page_login #login_content #form_login input[type=submit]:active, #aluno_content .btn_add:active {
+.btn-default:active, .nav_forms ul li a:active, #page_login #login_content #form_login input[type=submit]:active, #aluno_content .btn_add:active {
   background: #e3e3e3;
   box-shadow: inset 0px 1px 3px #bdbdbd;
 }
@@ -395,14 +395,14 @@ template {
   background: #fc4646;
 }
 
-.btn-primary, #aluno_content .btn_add_curso, .form_flex input[type=submit], .forms input[type=submit] {
+.btn-primary, #aluno_content .btn_add_curso, .form_flex input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], .forms_controle_aula input[type=submit] {
   background: #245da7;
   color: #fafafa;
 }
-.btn-primary:hover, #aluno_content .btn_add_curso:hover, .form_flex input[type=submit]:hover, .forms input[type=submit]:hover {
+.btn-primary:hover, #aluno_content .btn_add_curso:hover, .form_flex input[type=submit]:hover, #form_reauth_user input[type=submit]:hover, #form_add_user input[type=submit]:hover, .forms_controle_aula input[type=submit]:hover {
   background: #2969bc;
 }
-.btn-primary:active, #aluno_content .btn_add_curso:active, .form_flex input[type=submit]:active, .forms input[type=submit]:active {
+.btn-primary:active, #aluno_content .btn_add_curso:active, .form_flex input[type=submit]:active, #form_reauth_user input[type=submit]:active, #form_add_user input[type=submit]:active, .forms_controle_aula input[type=submit]:active {
   background: #1f5192;
   box-shadow: inset 0px 1px 3px #122e53;
 }
@@ -433,7 +433,28 @@ inputs, .input-primary {
   color: #444;
 }
 
-.form_flex, .forms {
+.forms, .form_flex, #form_reauth_user, #form_add_user, .forms_controle_aula {
+  border: 1px solid #ccc;
+  position: fixed;
+  right: 0px;
+  left: 0px;
+  top: 25%;
+  z-index: 5;
+  box-shadow: 0px 1px 2px #666;
+}
+.forms .btn_close_form, .form_flex .btn_close_form, #form_reauth_user .btn_close_form, #form_add_user .btn_close_form, .forms_controle_aula .btn_close_form {
+  right: 0px;
+  top: 0px;
+  padding: 5px 10px;
+  position: absolute;
+  cursor: pointer;
+}
+.forms .btn_close_form:hover, .form_flex .btn_close_form:hover, #form_reauth_user .btn_close_form:hover, #form_add_user .btn_close_form:hover, .forms_controle_aula .btn_close_form:hover {
+  background: #dd4f4f;
+  color: #fff;
+}
+
+.form_flex, #form_reauth_user, #form_add_user, .forms_controle_aula {
   display: flex;
   flex-wrap: wrap;
   border-radius: 3px;
@@ -445,16 +466,17 @@ inputs, .input-primary {
   background: #fff;
   transition: all 2s;
 }
-.form_flex h3, .forms h3 {
+.form_flex h3, #form_reauth_user h3, #form_add_user h3, .forms_controle_aula h3 {
   flex-basis: 100%;
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  margin-top: -10px;
 }
-.form_flex h3 svg, .forms h3 svg {
+.form_flex h3 svg, #form_reauth_user h3 svg, #form_add_user h3 svg, .forms_controle_aula h3 svg {
   margin-bottom: -1px;
   margin-right: 2px;
 }
-.form_flex div, .forms div {
+.form_flex div, #form_reauth_user div, #form_add_user div, .forms_controle_aula div {
   display: flex;
   padding: 5px;
   flex-grow: 1;
@@ -464,14 +486,14 @@ inputs, .input-primary {
   margin-top: 5px;
   justify-content: center;
 }
-.form_flex div label, .forms div label {
+.form_flex div label, #form_reauth_user div label, #form_add_user div label, .forms_controle_aula div label {
   display: flex;
   align-items: center;
   min-width: 85px;
   background: #f0f0f0;
   padding: 5px 10px;
 }
-.form_flex div input, .forms div input, .form_flex div textarea, .forms div textarea {
+.form_flex div input, #form_reauth_user div input, #form_add_user div input, .forms_controle_aula div input, .form_flex div textarea, #form_reauth_user div textarea, #form_add_user div textarea, .forms_controle_aula div textarea {
   width: auto;
   max-width: 500px;
   min-width: 100px;
@@ -482,17 +504,21 @@ inputs, .input-primary {
   padding: 5px;
   color: #444;
 }
-.form_flex select, .forms select {
+.form_flex select, #form_reauth_user select, #form_add_user select, .forms_controle_aula select {
   display: block;
   flex-grow: 1;
 }
-.form_flex input[type=submit], .forms input[type=submit] {
+.form_flex .div_submit, #form_reauth_user .div_submit, #form_add_user .div_submit, .forms_controle_aula .div_submit {
+  width: 100%;
+}
+.form_flex input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], .forms_controle_aula input[type=submit] {
   display: block;
   clear: both;
-  width: 50%;
-  min-height: 40px;
+  max-width: 300px;
+  min-width: 50%;
+  min-height: 45px;
   margin: auto;
-  margin-top: 30px;
+  margin-top: 40px;
 }
 
 .nav_flex, nav.nav_cursos_aluno {
@@ -512,6 +538,13 @@ inputs, .input-primary {
 }
 .nav_flex ul li a, nav.nav_cursos_aluno ul li a {
   user-select: none;
+}
+
+.tables {
+  display: none;
+  width: 100%;
+  border-collapse: collapse;
+  padding: 5px;
 }
 
 #header_admin {
@@ -582,7 +615,7 @@ inputs, .input-primary {
   width: 100%;
   padding-bottom: -2px;
 }
-#header_admin #header_admin_center #login_info #user_info #bg_username #user_privilege {
+#header_admin #header_admin_center #login_info #user_info #bg_username #user_role {
   font-size: 14px;
   color: #999;
 }
@@ -1322,27 +1355,7 @@ dialog {
   padding: 20px;
 }
 
-.forms {
-  border: 1px solid #ccc;
-  position: fixed;
-  right: 0px;
-  left: 0px;
-  top: 25%;
-  z-index: 5;
-  box-shadow: 0px 1px 2px #666;
-}
-.forms .btn_close_form {
-  right: 0px;
-  top: 0px;
-  padding: 5px 10px;
-  position: absolute;
-  cursor: pointer;
-}
-.forms .btn_close_form:hover {
-  background: #dd4f4f;
-  color: #fff;
-}
-.forms #aluno_nome, .forms #curso_nome, .forms #bimestre_nome {
+.forms_controle_aula #aluno_nome, .forms_controle_aula #curso_nome, .forms_controle_aula #bimestre_nome {
   margin-top: 10px;
   padding: 10px;
   font-size: 16px;
@@ -1350,7 +1363,7 @@ dialog {
   font-weight: bold;
   width: 50%;
 }
-.forms #aluno_nome span, .forms #curso_nome span, .forms #bimestre_nome span {
+.forms_controle_aula #aluno_nome span, .forms_controle_aula #curso_nome span, .forms_controle_aula #bimestre_nome span {
   font-weight: normal;
   padding: 5px 5px 5px 0px;
 }
@@ -1928,21 +1941,28 @@ option[disabled] {
   background: #214987;
 }
 
-.components h1 {
-  color: #333;
-  text-align: center;
-  font-size: 24px;
-  padding-top: 20px;
-  padding-bottom: 30px;
-  margin-bottom: 50px;
-  color: #444;
+#form_add_user #user_privilege {
+  width: 50px;
+}
+
+.nav_forms {
+  margin-bottom: 20px;
   width: 100%;
-  text-transform: uppercase;
-  color: #245da7;
-  border-bottom: 2px solid #ed1860;
+  display: flex;
+  justify-content: flex-end;
+}
+.nav_forms ul {
+  display: flex;
+}
+.nav_forms ul li {
+  list-style: none;
+}
+.nav_forms ul li a {
+  margin-right: 0px;
 }
 
 .table_info {
+  background: #f0f0f0;
   border-collapse: collapse;
   width: 100%;
 }
@@ -1962,6 +1982,24 @@ option[disabled] {
 #users_table_info .user_level {
   text-align: center;
   width: 20px;
+}
+
+#users_content {
+  padding: 1px;
+}
+
+.components h1 {
+  color: #333;
+  text-align: center;
+  font-size: 24px;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  margin-bottom: 50px;
+  color: #444;
+  width: 100%;
+  text-transform: uppercase;
+  color: #245da7;
+  border-bottom: 2px solid #ed1860;
 }
 
 #block_screen {

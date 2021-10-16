@@ -9,7 +9,6 @@ export function eventsBaixarHistorico(e){
   let mainSelectAluno = document.querySelector('#main_select_aluno');
   let bgCurso = e.target.closest('.bg_curso');
   let alunoNome = mainSelectAluno.options[mainSelectAluno.selectedIndex].textContent;
-  console.log(alunoNome);
   let curso = bgCurso.dataset.curso;
   let alunoInfo = {}; 
     alunoInfo.RA = mainSelectAluno.value;
@@ -31,7 +30,7 @@ function sendHistoricoAluno(alunoInfo) {
     }).then((res)=>{
         ipcRenderer.invoke("baixarHistoricoAluno", res);
         //teste(res)
-    });
+    }).catch((err)=> console.log('Ocorreu um erro ao enviar o Histórico do Aluno', err) );
 
 
 

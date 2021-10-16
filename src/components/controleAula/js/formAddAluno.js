@@ -16,12 +16,7 @@ export function insertFormAddAlunoHTML(){
 
 function eventsFormAddAluno(){
   let form = document.querySelector('#form_add_aluno');
-  form.querySelector('.btn_close_form').addEventListener('click', (e)=>{ 
-    commonFunc.removeElementChild('#page_content', '#form_add_aluno',()=>{
-    commonFunc.changeCSSDisplay('#block_screen', 'none')
-    } 
-    );
-  })
+commonFunc.btnCloseForm('#form_add_aluno');
 
   form.querySelector('#add_aluno_ra').addEventListener('input', (e)=>{
     validaSelectOptionsAddAluno(e);
@@ -94,13 +89,9 @@ function validaSelectOptionsAddAluno(e) {
       setDoc(doc(db, "aluno_historico", form.add_aluno_ra.value), 
       { nome: form.nome.value}, { merge: true}); 
     }).then(()=>{
-      commonFunc.showMessage("form_add_aluno", "Aluno salvo com sucesso!");
-      setTimeout(() => {
-        commonFunc.removeElementChild('#page_content', '#form_add_aluno',()=>{
-          commonFunc.changeCSSDisplay('#block_screen', 'none')
-        });
-      }, 1000);
-    }).catch((error) => console.error("Error writing document: ", error));
+      commonFunc.defaultEventsAfterSubmitForm("#form_add_aluno", "Aluno salvo com sucesso!");
+
+    }).catch((error) => console.error("Erro ao adicionar Aluno:", error));
   }
 
 
