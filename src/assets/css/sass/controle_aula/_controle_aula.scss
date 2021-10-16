@@ -7,17 +7,7 @@
   opacity: 0;
   overflow: hidden;
   transition: all 0.5s;
-  h1 {
-    color: $title-color-dark;
-    text-align: center;
-    font-size:24px; 
-    margin-top:40px;
-    margin-bottom:40px;
-    color: $text-color;
-    width:100%;
-    text-transform: uppercase;
-    color:#444;
-  }
+
 
   #form_select_aluno {
     width: 100%;
@@ -28,6 +18,8 @@
     justify-content: space-between;
     padding-bottom:20px;
     label{
+    border-radius: 3px 0px 0px 3px;
+
       background:#fff;
       display: block;
       padding: 10px;

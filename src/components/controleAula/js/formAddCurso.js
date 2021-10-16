@@ -15,11 +15,8 @@ function eventsFormAddCurso(form) {
   .addEventListener("input", (e) => {
     validaSelectOptionsAddCurso(form);
   });
-  form.querySelector('.btn_close_form').addEventListener('click', (e)=>{ 
-    commonFunc.removeElementChild('#page_content', '#form_add_curso',()=>{
-    commonFunc.changeCSSDisplay('#block_screen', 'none')
-    });
-  })
+  commonFunc.btnCloseForm("#form_add_curso");
+
   //Copia as opções do "#main_select_aluno" e insere no select_aluno
   insertOptionsInSelectAlunoCurso(form)
   form.addEventListener("submit", (e) => {
@@ -87,13 +84,8 @@ function validaSelectOptionsAddCurso(form) {
     { curso: form.select_curso.value,
       bimestres: {},
     }).then(() =>{
-        commonFunc.showMessage("form_add_curso", "Curso adicionado com sucesso!")
-        setTimeout(() => {
-          commonFunc.removeElementChild('#page_content', '#form_add_curso',()=>{
-          commonFunc.changeCSSDisplay('#block_screen', 'none')
-        });
-        }, 1000);
-      }).catch((error) => console.error("Erro ao adicionar curso: ", error));;
+      commonFunc.defaultEventsAfterSubmitForm("#form_add_curso", "Curso adicionado com sucesso!");
+     }).catch((error) => console.error("Erro ao adicionar curso: ", error));;
   }
 
 

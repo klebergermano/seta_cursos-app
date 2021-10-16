@@ -1,6 +1,8 @@
 @use "../abstracts" as *;
 
 #page_login{
+    opacity: 1;
+    transition: opacity 10s ease-in-out;
     display:flex;
     align-items: center;
     justify-content: center;

@@ -4,27 +4,9 @@ dialog{
     padding: $padding-medium;
   }
   
-.forms{
+  
+  .forms_controle_aula{
     @extend .form_flex;
-    border: $border-set-default;
-    position:fixed;
-    right: 0px; left:0px;
-    top: 25%; 
-    z-index: 5;
-  
-    box-shadow: 0px 1px 2px #666;
-    .btn_close_form{
-      right:0px;
-      top:0px;
-      padding: 5px 10px;
-      position:absolute;
-      cursor:pointer;
-      &:hover{
-        background:rgb(221, 79, 79);
-      color:#fff;
-      }
-    }
-  
     #aluno_nome, #curso_nome, #bimestre_nome{
       margin-top:10px;
       padding:$padding-light;
@@ -38,7 +20,6 @@ dialog{
       }
     }
   }
-  
 #btn_novo_aluno{
     float:right;
     flex-basis: 100%;

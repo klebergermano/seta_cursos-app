@@ -236,6 +236,7 @@ function TemplateHistoricoAluno(aluno) {
                     width:100%;
                     border-spacing: 5px;
                     border-radius: 5px; 
+                    table-layout: fixed;
                 }
                 .table_aulas{
                 min-height:18cm
@@ -264,6 +265,7 @@ function TemplateHistoricoAluno(aluno) {
                     padding-top:10px;
                 }
                 td {
+                    max-width:200px !important;
                     height:auto;
                     font-size: 11px;
                     width: 25%;

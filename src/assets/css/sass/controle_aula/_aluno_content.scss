@@ -50,9 +50,7 @@
    border-radius: 50%;
 }
 
-#page_content{
-    position: relative;
-}
+
 
 nav.nav_cursos_aluno {
     @extend .nav_flex;
@@ -101,60 +99,69 @@ nav.nav_cursos_aluno {
             background: lighten($primary-color, 5%);
         }
     }
-    .btn_baixar_historico{
-        position: absolute;
-        top:80px; right: 20px;
+        
+    .bg_btn_add{
+        padding:5px;
+        margin-top:20px;
+        margin-bottom:40px;
+        width:100%;
+        background:#eee;
+        box-shadow: 0px 1px 1px #aaa;
+        border-radius: 5px 5px 0px 0px;
+        overflow: hidden;
+
     }
     .btn_add{
         @extend .btn-default;
-        margin-bottom:20px;
+        background:#f0f0f0;
         float: left;
+        cursor: pointer;
+        &:hover {
+            background: #fff;
+            box-shadow: 0px 1px 1px #ccc;
+        }
+        &:active{ background: #f0f0f0;
+            box-shadow: inset 0px 0px 2px #222;
+        
+        }
+    }
+    .btn_baixar_historico{
+    
+      
     }
 
     .btn_add_aula {
         border-color: $primary-color;
         color: $primary-color;
+        padding-left:20px; padding-right:20px;
+        float:right;
         svg {
             height: 25px;
             width: auto;
             margin-top:-5px;
             margin-left:-5px;
         }
-        &:hover {
-            background: $yellow-light-color;
-        }
-        &:active {
-            box-shadow: inset 0px 0px 3px #111;
-        }
+    
     }
 
     .btn_add_reposicao {
         color: $reposicao-color;
         border-color: $reposicao-color;
-        &:hover {
-            //background: #e7e7ff;
-            background: lighten($reposicao-color, 30%);
-        }
+     
     }
     .btn_add_ponto_extra {
         color: $ponto-extra-color;
         border-color: $ponto-extra-color;
-        &:hover {
-           // background: #edffcf;
-            background: lighten($ponto-extra-color, 55%);
-
-        }
+     
     }
 
     .bg_curso {
         position: relative;
-        background: $white-color-tone;
-        background: $disabled-light-color;
-        padding: $padding-medium;
+        background: #ddd;
+        padding: $padding-large;
         padding-top: 0px;
         display: none;
         h3 {
-            height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -166,6 +173,9 @@ nav.nav_cursos_aluno {
         font-size: 18px;
         text-align: center;
         width: 100%;
+        padding-top: 50px;
+
+       
         text-transform: uppercase;
     }
 
@@ -228,15 +238,17 @@ nav.nav_cursos_aluno {
         flex-wrap: wrap;
 
         .bimestres {
+            position: relative;
             min-width: 100%;
-            padding: 20px 10px;
+            padding: 20px;
+            padding-top:60px;
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
             align-items: flex-start;
             justify-content: space-around;
             background: #eee;
-            margin-bottom: 10px;
+            margin-bottom: 40px;
             box-shadow: 0px 1px 1px #999;
             .resumo_bimestre {
                 width: 100%;
@@ -248,11 +260,11 @@ nav.nav_cursos_aluno {
                     display: flex;
                     flex-wrap: wrap;
                     p {
-                        min-width: 150px;
+                        min-width: auto;
                         flex-grow: 1;
                         width: auto;
                         padding: $padding-light;
-                        box-shadow: 0px 0px 0px 1px #ccc;
+                       box-shadow: 0px 0px 0px 1px #ccc;
                         background: $grey-extra-light-color;
                     }
                     .label {
@@ -266,11 +278,13 @@ nav.nav_cursos_aluno {
                 }
                 .feedback_bimestral {
                     padding: $padding-light;
-                    margin-top: 5px;
-                    margin-bottom: 10px;
+                    padding-top:20px;
+                    margin-top: 0px;
+                    margin-bottom: 20px;
                     grid-column: 1 / 4;
                     min-width: 100%;
-                    border: 1px solid #ccc;
+                    box-shadow: 0px 0px 0px 1px #ccc;
+                   
                     display: flex;
                     flex-wrap: wrap;
                     flex: 100% 50% 50%;
@@ -284,6 +298,8 @@ nav.nav_cursos_aluno {
                     }
                     .feedback_value {
                         min-height: 30px;
+                   box-shadow: 0px 0px 0px 1px $primary-color;
+
                     }
                     .btn_add_feedback_bimestral {
                         max-height: 35px;
@@ -301,24 +317,31 @@ nav.nav_cursos_aluno {
                     }
                 }
             }
-            /*h2 bimestre title*/
-            h2 {
+            /*h3 bimestre title*/
+            h3 {
+                position: absolute;
+                top:0px;
+                background: #fff;
+                color: #444;
+
                 font-weight: normal;
-                flex-basis: 100%;
+                min-width:100%;
                 font-size: 18px;
-                color: $text-color;
                 text-transform: capitalize;
-                margin-top: -10px;
-                margin-bottom: 10px;
-                padding-bottom: 10px !important;
-                border-bottom: 1px solid #ccc;
-                color: rgb(77, 77, 77);
+                padding: 10px ;
+              
             }
             .columns {
                 width: 24%;
                 min-width: 200px;
                 flex-grow: 1;
-                border: $border-set-default;
+              //  border: $border-set-default;
+              background: #eee;
+              box-shadow: 0px 0px 2px #aaa;
+                padding-top:15px;
+                padding-bottom:15px;
+                margin-top:1px;
+
             }
             .column_reposicao {
                 display: flex;

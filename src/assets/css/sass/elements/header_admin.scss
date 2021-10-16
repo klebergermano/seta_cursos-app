@@ -14,7 +14,7 @@
       justify-content: flex-end;
       align-items: center;
       margin: 0px auto;
-      padding: 0px $padding-heavy;
+      padding: 0px $padding-large;
       max-width: 100%;
       #login_info{
         display:flex;
@@ -64,7 +64,7 @@
               width:100%;
               padding-bottom:-2px;
             }
-            #user_privilegio{
+            #user_role{
               font-size:14px; color:#999;
             }
           }

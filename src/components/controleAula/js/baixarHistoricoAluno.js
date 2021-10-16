@@ -5,18 +5,22 @@ const {getFirestore, collection, getDocs, doc, getDoc, onSnapshot } = require("f
 
 const db = getFirestore(firebaseApp);
 
-export function eventsBaixarHistorico(){
-    sendHistoricoAluno()
+export function eventsBaixarHistorico(e){
+  let mainSelectAluno = document.querySelector('#main_select_aluno');
+  let bgCurso = e.target.closest('.bg_curso');
+  let alunoNome = mainSelectAluno.options[mainSelectAluno.selectedIndex].textContent;
+  let curso = bgCurso.dataset.curso;
+  let alunoInfo = {}; 
+    alunoInfo.RA = mainSelectAluno.value;
+    alunoInfo.curso = curso;
+    alunoInfo.nome = alunoNome;
+    sendHistoricoAluno(alunoInfo)
 }
 
 //Envia o objeto com as informações do formulário para a main stream index.js
-function sendHistoricoAluno() {
-    let alunoInfo = {}; 
-    alunoInfo.RA = 'RA01';
-    alunoInfo.curso = 'Excel Avançado';
-    alunoInfo.nome = 'Fulanilson de Tal da Silva';
-
-    let docAlunoHistorico = getDoc(doc(db, "aluno_historico",  'RA01', 'cursos', 'Excel Avançado'));
+function sendHistoricoAluno(alunoInfo) {
+  
+    let docAlunoHistorico = getDoc(doc(db, "aluno_historico",  alunoInfo.RA, 'cursos', alunoInfo.curso));
     docAlunoHistorico.then((resData)=>{
         let res = resData.data();
         res.RA = alunoInfo.RA;
@@ -24,29 +28,9 @@ function sendHistoricoAluno() {
         res.nome = alunoInfo.nome;
         return res;
     }).then((res)=>{
-        console.log(res);
         ipcRenderer.invoke("baixarHistoricoAluno", res);
         //teste(res)
-    });
-
-//----------------------------------------------
-function teste(data){
-    let result = new Promise((resolve, reject) => {
-        let res = ipcRenderer.invoke("baixarHistoricoAluno", "ALUNOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
-    
-       // loadinContrato.style.display = "block";
-        if (res) {
-          resolve(res);
-        } else {
-          reject();
-        }
-      });
-      
-      result.then(() => {
-       // loadinContrato.style.display = "none";
-      });
-        
-}
+    }).catch((err)=> console.log('Ocorreu um erro ao enviar o Histórico do Aluno', err) );
 
 
 

@@ -21,12 +21,8 @@ export function insertFormAddPontoExtra(){
   }
   
 function eventsFormAddPontoExtra(form){
+  commonFunc.btnCloseForm("#form_add_aula");
 
-  form.querySelector('.btn_close_form').addEventListener('click', (e) => {
-    commonFunc.removeElementChild('#page_content', '#form_add_aula', () => {
-      commonFunc.changeCSSDisplay('#block_screen', 'none')
-    });
-  })
   form.addEventListener("submit", (e) => {
     submitformAddPontoExtra(e);  
   });
@@ -119,12 +115,9 @@ function submitformAddPontoExtraXXXXX(e) {
       commonFunc.showMessage("form_add_aula", "Ponto Extra adicionado com sucesso!")
     )
     .then(() => {
-      setTimeout(() => {
-        commonFunc.removeElementChild('#page_content', '#form_add_aula',()=>{
-          commonFunc.changeCSSDisplay('#block_screen', 'none')
-        });
-      }, 1500);
-    }).catch((error) => console.error("Error writing document: ", error));
+      commonFunc.defaultEventsAfterSubmitForm("#form_add_aula");
+ 
+    }).catch((error) => console.error("Erro ao adicionar Ponto Extra: ", error));
 
 
 

@@ -14,11 +14,7 @@ export async function insertFormAddAulaHTML() {
     './components/controleAula/formAddAula.html', eventsFormAddAula);
 }
  export function eventsFormAddAula(form) {
-  form.querySelector('.btn_close_form').addEventListener('click', (e) => {
-    commonFunc.removeElementChild('#page_content', '#form_add_aula', () => {
-      commonFunc.changeCSSDisplay('#block_screen', 'none')
-    });
-  })
+   commonFunc.btnCloseForm("#form_add_aula");
   form.addEventListener("submit", (e) => {
     submitFormAddAula(e);  
   });
@@ -47,7 +43,7 @@ function eventClickBtnStatus(form){
 
 function setInputsProva(form){
 let selectAula = form.querySelector("#select_aula");
-let selectCategoria = form.querySelector("#select_categoria");
+let aula_categoria = form.querySelector("#aula_categoria");
 
 selectAula.addEventListener('change', (e)=>{
   if(e.target.value === "aula 16"){
@@ -57,10 +53,10 @@ selectAula.addEventListener('change', (e)=>{
     form.querySelector("#numero_questoes").setAttribute("required", true);
     form.querySelector("#obs_prova").setAttribute("required", true);
     form.querySelector("#detalhes").removeAttribute("required");
-    selectCategoria.selectedIndex = 3;
+    aula_categoria.value='prova'
 
-  }else{
-    selectCategoria.selectedIndex = 0;
+  }else {
+    aula_categoria.value = "comum"
     form.querySelector("#div_detalhes").style.display = "flex";
     form.querySelector("#bg_prova_inputs").style.display = "none";
     form.querySelector("#nota_prova").removeAttribute("required");
@@ -177,11 +173,11 @@ function blockSelectOptionsAddAulas(RA, curso, bimestre) {
 
 function blocoAddAula(dados) {
   let aula = {};
-  if( dados.select_categoria.value === "prova"){
+  if( dados.aula_categoria.value === "prova"){
     aula = {
       [dados.select_bimestre.value]: {
         [dados.select_aula.value]: {
-          categoria: dados.select_categoria.value,
+          categoria: dados.aula_categoria.value,
           status: dados.status.value,
           tema: dados.tema.value,
           data: dados.data.value,
@@ -196,7 +192,7 @@ function blocoAddAula(dados) {
     aula = {
       [dados.select_bimestre.value]: {
         [dados.select_aula.value]: {
-          categoria: dados.select_categoria.value,
+          categoria: dados.aula_categoria.value,
           status: dados.status.value,
           tema: dados.tema.value,
           data: dados.data.value,
@@ -239,12 +235,8 @@ function submitFormAddAula(e) {
         { merge: true }
   )
 .then(()=>{
-  commonFunc.showMessage("form_add_aula", "Aula adicionada com sucesso!")
-  setTimeout(() => {
-    commonFunc.removeElementChild('#page_content', '#form_add_aula',()=>{
-      commonFunc.changeCSSDisplay('#block_screen', 'none')
-    });
-  }, 1500);
+  commonFunc.defaultEventsAfterSubmitForm("#form_add_aula", "Aula adicionada com sucesso!")
+
 }).catch((error) => console.error("Erro ao adicionar aula:", error));
 }
 

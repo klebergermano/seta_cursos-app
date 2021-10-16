@@ -14,11 +14,7 @@ export function insertFormAddFeedbackBimestral(e){
 }
 
 function eventsFormAddFeedbackBimestral(form, event){
-    form.querySelector('.btn_close_form').addEventListener('click', (e) => {
-        commonFunc.removeElementChild('#page_content', '#form_add_feedback_bimestral', () => {
-          commonFunc.changeCSSDisplay('#block_screen', 'none')
-        });
-      })
+  commonFunc.btnCloseForm("form_add_feedback_bimestral");
 
       form.addEventListener("submit", (e) => {
         submitformAddFeedbackBimestral(e);  
@@ -55,12 +51,8 @@ function submitformAddFeedbackBimestral(e) {
     }
   },{ merge: true }
   ).then(() => {
+    commonFunc.defaultEventsAfterSubmitForm("#form_add_feedback_bimestral", "Feedback adicionado com sucesso!");
     commonFunc.showMessage("form_add_feedback_bimestral", "Feedback adicionado com sucesso!")
-    setTimeout(() => {
-      commonFunc.removeElementChild('#page_content', '#form_add_feedback_bimestral',()=>{
-        commonFunc.changeCSSDisplay('#block_screen', 'none')
-      });
-    }, 1500);
   }).catch((error) => console.error("Erro ao adicionar feedback: ", error));
 
 }
