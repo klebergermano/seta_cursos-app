@@ -1,0 +1,11 @@
+
+@use "../abstracts" as *;
+#form_config_perm{
+    @extend .form_flex; 
+
+    textarea{
+        width:100%;
+        min-height: 300px;
+    }
+    
+}

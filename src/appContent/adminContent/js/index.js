@@ -1,5 +1,6 @@
+import * as users from "../../../components/users/js/index.js";
 import * as commonFunc from "../../../components/js_common/commonFunctions.js";
-
+import {checkPermission} from "./checkPermission.js"
 //----------------------------------------------------
 import {firebaseApp} from "../../../components/dbConfig/firebaseApp.js";
 const {getAuth, signOut } =  require("firebase/auth");
@@ -10,10 +11,9 @@ const auth = getAuth(firebaseApp);
 
 
 
- function getUserCompleteInfo(currentUser){
+ function getUserCompleteInfoX(currentUser){
   let userInfo = getDoc(doc(db, "users",  currentUser.uid))
   .then((res)=>{
-    console.log('getUserCompleteInfo:', res);
 
     let userInfo = {
       email: currentUser.email,
@@ -52,9 +52,9 @@ function importHTML(target, htmlSRC, scriptSRC){
   }
 
 export function onload(){
+  checkPermission(auth);
 
-
-getUserCompleteInfo(auth.currentUser)
+users.getUserCompleteInfo(auth.currentUser)
     .then((userCompleteInfo)=>{
       setLoginInfo(userCompleteInfo)
     })
