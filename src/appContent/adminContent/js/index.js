@@ -1,6 +1,6 @@
 import * as users from "../../../components/users/js/index.js";
 import * as commonFunc from "../../../components/js_common/commonFunctions.js";
-import {checkPermission} from "./checkPermission.js"
+import {checkRolePermission} from "./checkPermission.js"
 //----------------------------------------------------
 import {firebaseApp} from "../../../components/dbConfig/firebaseApp.js";
 const {getAuth, signOut } =  require("firebase/auth");
@@ -52,7 +52,7 @@ function importHTML(target, htmlSRC, scriptSRC){
   }
 
 export function onload(){
-  checkPermission(auth);
+  checkRolePermission(auth);
 
 users.getUserCompleteInfo(auth.currentUser)
     .then((userCompleteInfo)=>{
