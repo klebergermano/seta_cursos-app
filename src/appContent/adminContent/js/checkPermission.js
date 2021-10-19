@@ -5,20 +5,39 @@ import * as permissionsFunc from "../../../components/users/js/permissions.js";
 
 
 
-export function checkPermission(auth){
-  
+export function checkRolePermission(auth){
     let currentUser = auth.currentUser;
     removeUnauthorizedElement(currentUser)
 }
 
-
-
 function removeUnauthorizedElement(currentUser){
+    users.getUserCompleteInfo(currentUser)
+     .then((userInfo)=>{
+         let userRole = userInfo.role;
+     permissionsFunc.getRolePermission(userRole)
+     .then((permissions)=>{
+         let userPermission = permissions.data();
+         let authElements = document.querySelectorAll('*[data-auth]');
+        authElements.forEach((item)=>{
+            let itemDataAuth = item.dataset.auth;
+            if(!userPermission[itemDataAuth]){
+                console.log('removed!', item.dataset.auth );
+                removeElement(item)
+            }           
+        })
+ 
+         });
+     })
+   
+ }
+
+function removeUnauthorizedElementXX(currentUser){
    users.getUserCompleteInfo(currentUser)
     .then((userInfo)=>{
         let role = userInfo.role;
     permissionsFunc.getPermissions().then((permissions)=>{
-        console.log(permissions.data());
+
+        console.log('PERMISSIONS', permissions);
         let userPermission = permissions.data()[role];
         let authElements = document.querySelectorAll('*[data-auth]');
        authElements.forEach((item)=>{
