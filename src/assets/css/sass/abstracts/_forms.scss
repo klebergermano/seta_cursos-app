@@ -26,6 +26,12 @@ inputs{
     color:#fff;
     }
   }
+  input, textarea, select{
+    &:focus{
+      outline: 2px solid lighten($primary-color, 20%);
+      outline-offset: -2px;
+    }
+  }
 }
 
  .form_flex{
@@ -42,11 +48,12 @@ inputs{
   background:#fff;
   transition: all 2s;
   h3{
+    text-transform: uppercase;
     flex-basis:100%;
     text-align: center;
-    margin-bottom:20px;
-    margin-top:-10px;
-    svg{margin-bottom:-1px; margin-right:2px;}
+    margin-bottom:30px;
+    margin-top:-5px;
+    svg{margin-bottom:-5px; margin-right:2px; height:25px;  width:auto;}
   }
    div{
      display:flex;
