@@ -82,11 +82,11 @@ function validaSelectOptionsAddAluno(e) {
   async function submitFormAddAluno(e) {
     let form = e.target;
     e.preventDefault();
-     setDoc(doc(db, "aluno_historico", form.add_aluno_ra.value, "cursos", form.curso_nome.value),
+     setDoc(doc(db, "alunato", form.add_aluno_ra.value, "cursos", form.curso_nome.value),
     { curso: form.curso_nome.value,
       bimestres: {}
     }).then(()=>{
-      setDoc(doc(db, "aluno_historico", form.add_aluno_ra.value), 
+      setDoc(doc(db, "alunato", form.add_aluno_ra.value), 
       { nome: form.nome.value}, { merge: true}); 
     }).then(()=>{
       commonFunc.defaultEventsAfterSubmitForm("#form_add_aluno", "Aluno salvo com sucesso!");

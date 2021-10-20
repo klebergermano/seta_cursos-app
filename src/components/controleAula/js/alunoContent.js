@@ -25,13 +25,15 @@ function getRAfromMainSelectAluno() {
 }
 
 
-
-
 export function insertAlunoContent(RA, snapshotChange) {
   let nomeCurso = snapshotChange[0].doc.data().curso;
   dbAlunoHistFunc.getAlunoHistCursosDB(RA)
     .then((alunoCursosDB) => {
+
+   
           let alunoContentHTML = createAlunoContentHTML(alunoCursosDB, RA);
+       
+         
           document.querySelector("#aluno_content").innerHTML = alunoContentHTML;
           navCursosAluno.insertNavCursosInBGCursos(RA, nomeCurso)
        
@@ -93,6 +95,8 @@ function eventBtnAddFeedbackBimestral(){
 }
 
 function createBgCursoMainStructureHTML(curso_nome_bd, RA) {
+ 
+
   if (curso_nome_bd) {
     let id_curso = commonFunc.stringToID(curso_nome_bd);
     let bgCursoHTML = document.createElement("div");
@@ -194,12 +198,16 @@ export function resumoBimestreBD(curso){
 
 function createAlunoContentHTML(alunoDataFromDB, RA) {
   let alunoContentHTML = "";
+
+
   alunoDataFromDB.forEach((resCursoDB) => {
     if (typeof resCursoDB.data !== "undefined") { resCursoDB = resCursoDB.data(); }
     else { resCursoDB = resCursoDB.doc.data(); }
     
+
     //let resumoBimestre = resumoBimestreBD(resCursoDB);
     let bgCursoMainStructure = createBgCursoMainStructureHTML(resCursoDB.curso, RA);
+
     if (checkIfBimestresIsEmpty(resCursoDB.bimestres)) {
       alunoContentHTML += createBgCursosInnerContent(bgCursoMainStructure, resCursoDB);
     } else {
@@ -207,6 +215,8 @@ function createAlunoContentHTML(alunoDataFromDB, RA) {
       alunoContentHTML += bgCursoMainStructure.innerHTML;
     }
   });
+
+
   return alunoContentHTML;
 }
 

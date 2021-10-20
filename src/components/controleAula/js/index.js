@@ -14,7 +14,7 @@ import * as formAddAluno from "./formAddAluno.js";
 
 async function insertSelectAlunos(){
  onSnapshot(
-    collection(db, "aluno_historico"),
+    collection(db, "alunato"),
     (snap) => {
       let selectAluno = ``;
       snap.forEach((doc) => {

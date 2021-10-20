@@ -44,7 +44,7 @@ function getInfoDeleteAula(item){
 function checkIfBimestreIsEmptyToDelete(aulaInfoDelete){
     let RA = aulaInfoDelete.RA; 
     let curso = aulaInfoDelete.curso; 
-    let docCurso = getDoc(doc(db, 'aluno_historico', RA, 'cursos', curso));
+    let docCurso = getDoc(doc(db, 'alunato', RA, 'cursos', curso));
     docCurso.then((res)=>{
         let bimestre = res.data().bimestres[aulaInfoDelete.bimestre];
         let keys = Object.keys(bimestre);
@@ -59,7 +59,7 @@ function deleteCurso(btn){
 
     let RA = btn.dataset.aluno_ra;
     let curso =  btn.dataset.delete_curso;
-    deleteDoc(doc(db, 'aluno_historico', RA, 'cursos', curso))
+    deleteDoc(doc(db, 'alunato', RA, 'cursos', curso))
     .then(()=>{
         navCursosAluno.displayFirstCursoAluno();
     }).then(()=>{
@@ -74,7 +74,7 @@ function deleteBimestre(aulaInfoDelete){
     let string = `bimestres.${bimestre}`;
     let deleteQuery = {};
     deleteQuery[string] = deleteField();
-    const docAula = doc(db, 'aluno_historico', RA, 'cursos', curso);
+    const docAula = doc(db, 'alunato', RA, 'cursos', curso);
     updateDoc(docAula, deleteQuery)
 }
 
@@ -86,7 +86,7 @@ function deleteDbAula(aulaInfoDelete){
     let string = `bimestres.${bimestre}.${aula}`;
     let deleteQuery = {};
     deleteQuery[string] = deleteField();
-    const docAula = doc(db, 'aluno_historico', RA, 'cursos', curso);
+    const docAula = doc(db, 'alunato', RA, 'cursos', curso);
     updateDoc(docAula, deleteQuery).then(()=>{
         checkIfBimestreIsEmptyToDelete(aulaInfoDelete)
     }).catch((err)=> console.log(err));

@@ -230,7 +230,7 @@ function submitFormAddAula(e) {
   let form = e.target;
   let RA = form.select_aluno.value;
   let curso =  form.select_curso.value;
-  setDoc(doc(db, 'aluno_historico', RA, 'cursos', curso),
+  setDoc(doc(db, 'alunato', RA, 'cursos', curso),
         {bimestres: blocoAddAula(form)},
         { merge: true }
   )
