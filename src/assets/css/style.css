@@ -1382,47 +1382,12 @@ dialog {
   display: none;
 }
 
-/*
-  #nav_forms_add{
-    padding:5px;
-    display:flex;
-    li{list-style: none;
-      margin:3px;
-    }
-    a{
-      padding:$padding-extra-light;
-      color: $primary-color;
-      background: #f90;
-      text-decoration: none;
-    }
-  }
-
-*/
 input[type=submit]:disabled {
   background: #999 !important;
 }
 
 input:disabled, textarea:disabled {
   background: #ddd !important;
-}
-
-#form_add_aluno #add_aluno_ra {
-  text-transform: uppercase;
-}
-#form_add_aluno .blocked {
-  border: 1px solid #db1e1e;
-  background: #fee;
-}
-#form_add_aluno div {
-  display: flex;
-}
-#form_add_aluno div #ra {
-  max-width: 20px;
-  flex-shrink: 1;
-}
-#form_add_aluno div select {
-  padding: 0px !important;
-  margin-top: 0px !important;
 }
 
 #form_add_curso select > option:disabled {

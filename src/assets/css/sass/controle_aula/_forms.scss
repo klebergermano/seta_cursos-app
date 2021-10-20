@@ -26,22 +26,7 @@ dialog{
     clear:both;
     display:none;
   }
-  /*
-  #nav_forms_add{
-    padding:5px;
-    display:flex;
-    li{list-style: none;
-      margin:3px;
-    }
-    a{
-      padding:$padding-extra-light;
-      color: $primary-color;
-      background: #f90;
-      text-decoration: none;
-    }
-  }
-  
-*/
+
    
     input[type=submit]:disabled {
     background:#999 !important;

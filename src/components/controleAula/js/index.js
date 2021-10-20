@@ -81,10 +81,7 @@ export function onload(){
     alunoContent.eventsAlunoContent();
   });
 
-  //events FormAddAluno.js
-  document.querySelector('#btn_add_aluno').addEventListener('click', (e)=>{
-    formAddAluno.insertFormAddAlunoHTML();
-  });
+
 
  
 }

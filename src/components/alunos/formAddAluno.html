@@ -1,0 +1,34 @@
+<form id="form_add_aluno" class="forms_controle_aula">
+    <span class="btn_close_form">X</span>
+    <h3><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+      <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+      <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+    </svg> Adicionar Aluno</h3>
+    <div>
+      <label for="nome">Aluno:</label><input required id="nome" type="text" placeholder='Digite o nome do aluno' />
+      <label for="add_aluno_ra">RA:</label>
+      <input required id="add_aluno_ra" type="text" list="add_aluno_datalist_ra"/>
+  <datalist id='add_aluno_datalist_ra'>
+    <option></option>
+  </datalist>
+    </div>
+    <div>
+      <label><span class='required'>&nbsp;&nbsp; *</span> Curso:</label> 
+      <select required id='curso_nome'>
+        <option selected="true" disabled value=''>Selecione o Curso</option>
+        <option class='informatica' data-abreviation='IFK' value='Informática KIDS'>Informática KIDS</option>
+        <option class='informatica' data-abreviation='IFC' value='Informática Completo'>Informática Completo</option>
+        <option class='informatica' data-abreviation='IFPRO' value='Informática Profissional'>Informática Profissional</option>
+        <option class='informatica' data-abreviation='IFP' value='Informática Prática'>Informática Prática</option>
+        <option class='ingles' data-abreviation='IGK' value='Inglês KIDS'>Inglês KIDS</option>
+        <option class='ingles' data-abreviation='IGPT' value='Inglês Pre-teen'>Inglês Pre-teen</option>
+        <option class='ingles' data-abreviation='IGB' value='Inglês Básico'>Inglês Básico</option>
+        <option class='ingles' data-abreviation='IGI' value='Inglês Intermediário'>Inglês Intermediário</option>
+        <option class='ingles' data-abreviation='IGA' value='Inglês Avançado'>Inglês Avançado</option>
+        <option class='excel' data-abreviation='EXA' value='Excel Avançado'>Excel Avançado</option>
+        <option class='web' data-abreviation='DWB' value='Desenvolvimento Web'>Desenvolvimento Web</option>
+        <option class='bd' data-abreviation='BDBMYSQL' value='Banco de Dados Básico(MySQL)'>Banco de Dados Básico MySQL</option>
+      </select>
+    </div>
+    <input type="submit" value="Salvar" />
+  </form>
