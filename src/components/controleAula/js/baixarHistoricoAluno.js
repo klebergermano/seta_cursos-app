@@ -20,7 +20,7 @@ export function eventsBaixarHistorico(e){
 //Envia o objeto com as informações do formulário para a main stream index.js
 function sendHistoricoAluno(alunoInfo) {
   
-    let docAlunoHistorico = getDoc(doc(db, "aluno_historico",  alunoInfo.RA, 'cursos', alunoInfo.curso));
+    let docAlunoHistorico = getDoc(doc(db, "alunato",  alunoInfo.RA, 'cursos', alunoInfo.curso));
     docAlunoHistorico.then((resData)=>{
         let res = resData.data();
         res.RA = alunoInfo.RA;

@@ -8,14 +8,14 @@ export const db = getFirestore(firebaseApp);
 //---------------
 export function alunoHistCursosRealTimeDB(RA, callback) {
   onSnapshot(
-    collection(db, 'aluno_historico', RA, 'cursos'), 
+    collection(db, 'alunato', RA, 'cursos'), 
     (snapshot)=>{
     callback(RA, snapshot.docChanges());
   });
 }
 
 export function getAlunosListRA() {
-let alunosList = getDocs(collection(db, 'aluno_historico'));
+let alunosList = getDocs(collection(db, 'alunato'));
 let IDs = [];
 let alunoListRA = alunosList.then((list)=>{
   list.forEach((item)=>{
@@ -30,7 +30,7 @@ return alunoListRA;
 }
 
   export function getAlunoHistCursosDB(RA) {
-let alunoHistorico = getDocs(collection(db, 'aluno_historico', RA, 'cursos'));
+let alunoHistorico = getDocs(collection(db, 'alunato', RA, 'cursos'));
 return alunoHistorico;
   }
   

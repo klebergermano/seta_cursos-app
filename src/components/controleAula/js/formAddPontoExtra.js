@@ -61,7 +61,7 @@ function submitformAddPontoExtra(e) {
   let RA = form.select_aluno.value;
   let curso = form.select_curso.value;
   let pontoExtra = "ponto extra " + form.data.value;
-  setDoc(doc(db, 'aluno_historico', RA, 'cursos', curso),
+  setDoc(doc(db, 'alunato', RA, 'cursos', curso),
     {
       bimestres: {
         [form.select_bimestre.value]:{
@@ -93,7 +93,7 @@ function submitformAddPontoExtraXXXXX(e) {
  // let pontoExtra = "ponto extra #" +  Math.ceil(Math.random() * 1000000);;
   let pontoExtra = "ponto extra " + form.data.value;
   aulaHistorico = db
-    .collection("aluno_historico")
+    .collection("alunato")
     .doc(RA)
     .collection("cursos")
     .doc(form.select_curso.value)
