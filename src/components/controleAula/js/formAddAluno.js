@@ -87,7 +87,26 @@ function validaSelectOptionsAddAluno(e) {
       bimestres: {}
     }).then(()=>{
       setDoc(doc(db, "alunato", form.add_aluno_ra.value), 
-      { nome: form.nome.value}, { merge: true}); 
+     { 
+       aluno: {
+        nome: form.nome.value, 
+        rg: "",
+        email: "",
+        end: "",
+        bairro: "",
+        cep: "",
+        data_nasc: "",
+        genero: "",
+        cadastrado: "0000-00-00",
+        obs:"",
+       },
+       
+    
+    }, 
+     { merge: true}
+     ); 
+
+     // { nome: form.nome.value}, { merge: true}); 
     }).then(()=>{
       commonFunc.defaultEventsAfterSubmitForm("#form_add_aluno", "Aluno salvo com sucesso!");
 
