@@ -1,0 +1,185 @@
+@use '../abstracts/' as *;
+#fieldset_curso {
+    margin: 5px;
+    height: auto;
+    width: 100%;
+    border: 1px solid #466592;
+    padding: 20px;
+    .row {
+        display: flex;
+        gap: 10px;
+        flex-shrink: 1;
+        padding: 5px;
+        min-height: 40px;
+        clear: both;
+
+        .div_input {
+            flex-grow: 1;
+            flex-shrink: 1;
+            display: flex;
+            flex-direction: row;
+
+            &:first-child {
+                label {
+                    text-align: left;
+                }
+            }
+
+            label {
+                color: #555;
+                padding: 0 0 0 10px;
+                background: #dddde3;
+                width: 100px;
+                max-width: 100px;
+                display: flex;
+                align-items: center;
+            }
+            input {
+                width: 75px;
+            }
+
+            textarea {
+                width: 100%;
+            }
+        }
+        #div_curso_modulos {
+            textarea {
+                min-height: 70px;
+                color: #445;
+                font-size: 13px;
+            }
+        }
+        #curso_valor,
+        #curso_desconto,
+        #curso_total {
+            font-size: 16px;
+        }
+        #curso_total {
+            color: green;
+        }
+        #curso_desconto {
+            color: red;
+        }
+
+        #div_curso_inicio,
+        #div_curso_data {
+            label {
+                width: 40%;
+                max-width: 50%;
+            }
+            input {
+                width: 60%;
+            }
+        }
+        #div_curso_obs {
+            margin-top: 5px;
+            #curso_obs {
+                min-height: 60px !important;
+                padding: 5px;
+            }
+        }
+    }
+    #div_curso_combo {
+margin: 5px; 
+        background: #dddde3;
+        padding: 10px 15px;
+        position: relative !important;
+        user-select: none;
+     
+        #div_combo_textarea {
+            #combo_textarea {
+                background: #fff;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                margin: 10px 0 0;
+                padding: 5px;
+                width: 100%;
+                height: auto;
+                transition: height 0.7s, padding 0.7s, opacity 0.7s, margin 0.7s;
+            }
+        }
+
+        #label_check_combo {
+            display: block;
+            z-index: 9;
+            top: 20px;
+            left: 10px;
+            position: absolute;
+            background: #334;
+            color: #fff;
+            padding: 10px;
+            cursor: pointer;
+            user-select: none;
+            width: 26%;
+            transition: left 0.5s;
+            text-align: center;
+            &:active {
+                background: darken($secondary-color, 10%);
+            }
+            input {
+                float: right;
+                display: none;
+            }
+        }
+        .check_combo_checked {
+            background: #ed1860 !important;
+        }
+        .check_combo_checked {
+            &::after {
+                content: "\2713";
+            }
+        }
+
+        #div_combo_curso_1 {
+            input {
+                pointer-events: none;
+                background: #f0f0f0;
+                color: #f0f0f0;
+            }
+        }
+        #div_combo_curso_2 {
+            select {
+                color: #fff;
+            }
+        }
+
+        #div_combo_curso_1,
+        #div_combo_curso_2 {
+            width: 35%;
+            float: right;
+            opacity: 0.5;
+            transition: opacity 1s;
+
+            input,
+            select {
+                pointer-events: none;
+                width: 100%;
+                user-select: none;
+            }
+        }
+    }
+
+} // fieldset_cursos
+
+// Select colorido dos cursos
+select {
+    width: 100%;
+    .informatica {
+        color: $primary-color;
+    }
+    .web {
+        color: #1111ff;
+    }
+    .ingles {
+        color: rgb(207, 6, 117);
+    }
+    .excel {
+        color: green;
+    }
+    .bd {
+        color: rgb(173, 89, 58);
+    }
+    .re {
+        color: rgb(112, 46, 112);
+    }
+}
