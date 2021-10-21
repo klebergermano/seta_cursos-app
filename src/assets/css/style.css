@@ -547,11 +547,25 @@ inputs, .input-primary {
   user-select: none;
 }
 
-.tables {
-  display: none;
+.tables, .table_info, #users_table_info {
   width: 100%;
   border-collapse: collapse;
   padding: 5px;
+}
+.tables th, .table_info th, #users_table_info th, .tables td, .table_info td, #users_table_info td {
+  padding: 5px 10px;
+}
+.tables th, .table_info th, #users_table_info th {
+  background: #245da7;
+  color: #f0f0f0;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+.table_info, #users_table_info {
+  background: #f0f0f0;
+  border-collapse: collapse;
+  width: 100%;
 }
 
 #header_admin {
@@ -1936,16 +1950,6 @@ option[disabled] {
 }
 .nav_forms ul li a {
   margin-right: 0px;
-}
-
-.table_info {
-  background: #f0f0f0;
-  border-collapse: collapse;
-  width: 100%;
-}
-.table_info th, .table_info td {
-  padding: 5px;
-  vertical-align: middle;
 }
 
 #users_table_info .user_foto {
