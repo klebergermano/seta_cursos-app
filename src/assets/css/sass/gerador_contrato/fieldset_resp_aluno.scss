@@ -23,7 +23,7 @@
 #fieldset_aluno {
     display: block;
     height: 260px;
-    border-color: #d1a296;
+    border-color: lighten($secondary-color, 10%) !important;
     transition: height 1s, padding 1s, opacity 0.8s;
     opacity: 1;
 
@@ -38,10 +38,13 @@
         left: 0;
         background: rgba(0, 0, 0, 0.1);
     }
+
+    #aluno_parentesco{max-width:150px}
 }
 
 #fieldset_resp {
-
+  
+    border-color: lighten($primary-color, 10%) !important;
     div {
         #btn_marcar_resp_aluno {
             @extend .btn;

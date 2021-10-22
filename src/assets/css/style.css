@@ -1465,7 +1465,7 @@ input:disabled, textarea:disabled {
 #fieldset_aluno {
   display: block;
   height: 260px;
-  border-color: #d1a296;
+  border-color: #f14781 !important;
   transition: height 1s, padding 1s, opacity 0.8s;
   opacity: 1;
 }
@@ -1478,7 +1478,13 @@ input:disabled, textarea:disabled {
   left: 0;
   background: rgba(0, 0, 0, 0.1);
 }
+#fieldset_aluno #aluno_parentesco {
+  max-width: 150px;
+}
 
+#fieldset_resp {
+  border-color: #2d74d1 !important;
+}
 #fieldset_resp div #btn_marcar_resp_aluno {
   border: 1px solid #444;
   background: #f0f0f0;
@@ -1710,7 +1716,7 @@ select .re {
   background: #f8f8f8;
   position: relative;
   padding: 40px;
-  width: 100%;
+  width: 900px;
   max-width: 100%;
   margin: 20px auto;
   display: block;
@@ -1720,8 +1726,9 @@ select .re {
   overflow: hidden;
 }
 #form_contrato .fieldset {
+  transition: all 1s;
   max-width: 100%;
-  margin: 5px 20px;
+  margin: 10px 20px;
   border: 1px solid #aaa;
   padding: 20px;
   height: auto;
