@@ -39,26 +39,29 @@
             padding: 5px 0px;
             label {
                 flex: 1;
-                max-width: 50px;
-                padding:0px 10px;
+                max-width: 60px;
+                padding:0px 10px 0px 15px;
                 
                 background: #ddd;
                 height:35px;
                 display: flex;
                 align-items: center;
-                
+                flex-grow: 1;
             }
-
-      
-           
-          
             input,
             select,
             textarea {
+                display: block;
                height:35px;
                 padding: 5px;
                 border: 1px solid #aaa;
+                font-size:16px;
                 flex-grow: 1;
+                flex-shrink: 1;
+                &:focus{
+                    outline: 2px solid lighten($primary-color, 20%);
+                    outline-offset: -2px;
+                }
             }
             textarea {
               resize: vertical;

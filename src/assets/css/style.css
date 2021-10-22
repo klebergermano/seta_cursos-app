@@ -349,7 +349,7 @@ template {
   display: none;
 }
 
-.btn, .btn-secondary, .btn-primary, #aluno_content .btn_add_curso, .form_flex input[type=submit], #form_add_entrada_caixa input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], .forms_controle_aula input[type=submit], .btn-default-delete, #aluno_content .bg_info_delete_curso .btn_deletar_curso, .btn-default, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], #aluno_content .btn_add {
+.btn, #fieldset_resp div #btn_marcar_resp_aluno, .btn-secondary, .btn-primary, #aluno_content .btn_add_curso, .form_flex input[type=submit], #form_add_entrada_caixa input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], .forms_controle_aula input[type=submit], .btn-default-delete, #aluno_content .bg_info_delete_curso .btn_deletar_curso, .btn-default, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], #aluno_content .btn_add {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -359,7 +359,7 @@ template {
   border: 0px;
   cursor: pointer;
 }
-.btn svg, .btn-secondary svg, .btn-primary svg, #aluno_content .btn_add_curso svg, .form_flex input[type=submit] svg, #form_add_entrada_caixa input[type=submit] svg, #form_config_perm input[type=submit] svg, #form_reauth_user input[type=submit] svg, #form_add_user input[type=submit] svg, .forms_controle_aula input[type=submit] svg, .btn-default-delete svg, #aluno_content .bg_info_delete_curso .btn_deletar_curso svg, .btn-default svg, .nav_forms ul li a svg, #page_login #login_content #form_login input[type=submit] svg, #aluno_content .btn_add svg {
+.btn svg, #fieldset_resp div #btn_marcar_resp_aluno svg, .btn-secondary svg, .btn-primary svg, #aluno_content .btn_add_curso svg, .form_flex input[type=submit] svg, #form_add_entrada_caixa input[type=submit] svg, #form_config_perm input[type=submit] svg, #form_reauth_user input[type=submit] svg, #form_add_user input[type=submit] svg, .forms_controle_aula input[type=submit] svg, .btn-default-delete svg, #aluno_content .bg_info_delete_curso .btn_deletar_curso svg, .btn-default svg, .nav_forms ul li a svg, #page_login #login_content #form_login input[type=submit] svg, #aluno_content .btn_add svg {
   max-width: 100px;
   max-height: 100px;
   height: auto;
@@ -1450,18 +1450,14 @@ input:disabled, textarea:disabled {
   content: " ";
 }
 
-#fieldset_aluno {
-  position: relative;
-  overflow: hidden;
-}
-#fieldset_aluno .label_numero {
+#fieldset_resp .label_numero, #fieldset_aluno .label_numero {
   max-width: 45px !important;
   padding-left: 20px;
 }
-#fieldset_aluno .end_numero {
+#fieldset_resp .end_numero, #fieldset_aluno .end_numero {
   max-width: 60px !important;
 }
-#fieldset_aluno #label_parentesco {
+#fieldset_resp #label_parentesco, #fieldset_aluno #label_parentesco {
   max-width: 100px !important;
   padding-left: 20px;
 }
@@ -1483,24 +1479,29 @@ input:disabled, textarea:disabled {
   background: rgba(0, 0, 0, 0.1);
 }
 
-#fieldset_resp #div_resp_nome div label {
-  user-select: none;
+#fieldset_resp div #btn_marcar_resp_aluno {
+  border: 1px solid #444;
+  background: #f0f0f0;
   margin: 0 0 0 10px;
-  padding: 6px 5px 6px 12px;
   max-width: 250px !important;
-  cursor: pointer;
-  background: #334;
-  color: #fff;
+  color: #333;
 }
-#fieldset_resp #div_resp_nome div label:active {
-  background: #1f5192;
+#fieldset_resp div #btn_marcar_resp_aluno input {
+  display: none;
 }
-#fieldset_resp #div_resp_nome div label input {
-  float: right;
-  margin: 2px 5px 0 7px;
+#fieldset_resp div #btn_marcar_resp_aluno:hover {
+  background: #fff;
 }
-#fieldset_resp #div_resp_nome .active {
-  background: #2969bc;
+#fieldset_resp div #btn_marcar_resp_aluno:active {
+  background: #2662af !important;
+  color: #fff !important;
+}
+#fieldset_resp div .active {
+  background: #2969bc !important;
+  color: #fff !important;
+}
+#fieldset_resp div .active:hover {
+  background: #2d74d1 !important;
 }
 
 #fieldset_curso {
@@ -1737,20 +1738,30 @@ select .re {
 }
 #form_contrato .fieldset .div_input label {
   flex: 1;
-  max-width: 50px;
-  padding: 0px 10px;
+  max-width: 60px;
+  padding: 0px 10px 0px 15px;
   background: #ddd;
   height: 35px;
   display: flex;
   align-items: center;
+  flex-grow: 1;
 }
 #form_contrato .fieldset .div_input input,
 #form_contrato .fieldset .div_input select,
 #form_contrato .fieldset .div_input textarea {
+  display: block;
   height: 35px;
   padding: 5px;
   border: 1px solid #aaa;
+  font-size: 16px;
   flex-grow: 1;
+  flex-shrink: 1;
+}
+#form_contrato .fieldset .div_input input:focus,
+#form_contrato .fieldset .div_input select:focus,
+#form_contrato .fieldset .div_input textarea:focus {
+  outline: 2px solid #5690db;
+  outline-offset: -2px;
 }
 #form_contrato .fieldset .div_input textarea {
   resize: vertical;

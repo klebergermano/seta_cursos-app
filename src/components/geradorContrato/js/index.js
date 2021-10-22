@@ -23,15 +23,22 @@ let cursosSelect2 = document.querySelector("#combo_curso_2");
 
 //Remove e reinsere o aluno usando css transition em ".aluno_off"
 function checkboxRespAluno(e) {
+  
+  let btn_marcar_resp_aluno = document.querySelector("#btn_marcar_resp_aluno")
 let fieldset_aluno = document.querySelector("#fieldset_aluno");
   e.target.parentElement.classList.toggle("active");
   if (e.target.parentElement.classList.contains("active")) {
+    btn_marcar_resp_aluno.classList.add('btn_ativo');
+    btn_marcar_resp_aluno.querySelector('span').innerHTML = "Marcado como aluno(a) &#10003";
     fieldset_aluno.classList.add("aluno_off");
     //Insere o valor "IDEM" no nome do aluno
     setAttribute("#aluno_nome", 'style', "color: #fff");
     setAttribute("#aluno_nome", 'value', "IDEM");
     removeAttribute("#aluno_nome", 'required');
   } else {
+    btn_marcar_resp_aluno.classList.remove('btn_ativo');
+    btn_marcar_resp_aluno.querySelector('span').textContent = "Marcar como aluno(a)";
+
     fieldset_aluno.classList.remove("aluno_off");
     //Remove o valor "IDEM" no nome do aluno
     setAttribute("#aluno_nome", 'style', "color:#333");
@@ -107,7 +114,7 @@ form.addEventListener("submit", sendForm);
 
 //input Resp Aluno
 document
-  .querySelector("#label_checkbox_resp_aluno")
+  .querySelector("#btn_marcar_resp_aluno")
   .addEventListener("input", checkboxRespAluno);
 
 //Button Checkbox Combo

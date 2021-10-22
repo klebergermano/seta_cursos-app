@@ -3,13 +3,9 @@
 #fieldset_resp{
     
 }
-#fieldset_aluno {
+#fieldset_resp, #fieldset_aluno {
 
-    position: relative;
-    overflow: hidden;
-    .div_input {
-      
-    }
+   
     .label_numero {
         max-width: 45px !important;
         padding-left: 20px;
@@ -45,29 +41,37 @@
 }
 
 #fieldset_resp {
-    #div_resp_nome {
-        div {
-            label {
-                user-select: none;
-                margin: 0 0 0 10px;
-                padding: 6px 5px 6px 12px;
-                max-width: 250px !important;
-                cursor: pointer;
-                background: #334;
-                color: #fff;
 
-                &:active {
-                    background: darken($primary-color, 5%);
-                }
-                input {
-                    float: right;
-                    margin: 2px 5px 0 7px;
-                }
+    div {
+        #btn_marcar_resp_aluno {
+            @extend .btn;
+            border:1px solid #444;
+            background:#f0f0f0;
+            margin: 0 0 0 10px;
+            max-width: 250px !important;
+            input {
+                display:none;
             }
+            color:#333;
+            &:hover{
+                background: #fff;
+            }
+            &:active{
+                background: lighten($primary-color, 2%) !important;
+                color:#fff !important;
+            }
+          
+          
         }
         .active {
-            background: lighten($primary-color, 5%);
+            background: lighten($primary-color, 5%) !important;
+            color:#fff !important;
+            &:hover{
+            background: lighten($primary-color, 10%) !important;
+                
+            }
         }
+    
     }
-
+  
 }
