@@ -1,11 +1,8 @@
 @use '../abstracts/' as *;
 
-#fieldset_resp{
-    
-}
-#fieldset_resp, #fieldset_aluno {
-
-   
+#fieldset_resp {}
+#fieldset_resp,
+#fieldset_aluno {
     .label_numero {
         max-width: 45px !important;
         padding-left: 20px;
@@ -18,7 +15,6 @@
         padding-left: 20px;
     }
 }
-
 
 #fieldset_aluno {
     display: block;
@@ -38,43 +34,43 @@
         left: 0;
         background: rgba(0, 0, 0, 0.1);
     }
-
-    #aluno_parentesco{max-width:150px}
+    #aluno_parentesco {
+        max-width: 150px
+    }
 }
-
 #fieldset_resp {
-  
+
     border-color: lighten($primary-color, 10%) !important;
     div {
         #btn_marcar_resp_aluno {
             @extend .btn;
-            border:1px solid #444;
-            background:#f0f0f0;
+            border: 1px solid #444;
+            background: #f0f0f0;
             margin: 0 0 0 10px;
             max-width: 250px !important;
             input {
-                display:none;
+                display: none;
             }
-            color:#333;
-            &:hover{
+            color: #333;
+            &:hover {
                 background: #fff;
             }
-            &:active{
+            &:active {
                 background: lighten($primary-color, 2%) !important;
-                color:#fff !important;
+                color: #fff !important;
             }
-          
-          
+
+
         }
         .active {
             background: lighten($primary-color, 5%) !important;
-            color:#fff !important;
-            &:hover{
-            background: lighten($primary-color, 10%) !important;
-                
+            color: #fff !important;
+            &:hover {
+                background: lighten($primary-color, 10%) !important;
+
             }
         }
-    
+
     }
-  
+
 }

@@ -349,7 +349,7 @@ template {
   display: none;
 }
 
-.btn, #fieldset_resp div #btn_marcar_resp_aluno, .btn-secondary, .btn-primary, #aluno_content .btn_add_curso, .form_flex input[type=submit], #form_add_entrada_caixa input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], .forms_controle_aula input[type=submit], .btn-default-delete, #aluno_content .bg_info_delete_curso .btn_deletar_curso, .btn-default, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], #aluno_content .btn_add {
+.btn, #fieldset_resp div #btn_marcar_resp_aluno, .btn-secondary, .btn-primary, #aluno_content .btn_add_curso, .form_flex input[type=submit], #form_add_entrada_caixa input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], .forms_controle_aula input[type=submit], .btn-default-delete, #aluno_content .bg_info_delete_curso .btn_deletar_curso, .btn-default, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo, #aluno_content .btn_add {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -359,22 +359,22 @@ template {
   border: 0px;
   cursor: pointer;
 }
-.btn svg, #fieldset_resp div #btn_marcar_resp_aluno svg, .btn-secondary svg, .btn-primary svg, #aluno_content .btn_add_curso svg, .form_flex input[type=submit] svg, #form_add_entrada_caixa input[type=submit] svg, #form_config_perm input[type=submit] svg, #form_reauth_user input[type=submit] svg, #form_add_user input[type=submit] svg, .forms_controle_aula input[type=submit] svg, .btn-default-delete svg, #aluno_content .bg_info_delete_curso .btn_deletar_curso svg, .btn-default svg, .nav_forms ul li a svg, #page_login #login_content #form_login input[type=submit] svg, #aluno_content .btn_add svg {
+.btn svg, #fieldset_resp div #btn_marcar_resp_aluno svg, .btn-secondary svg, .btn-primary svg, #aluno_content .btn_add_curso svg, .form_flex input[type=submit] svg, #form_add_entrada_caixa input[type=submit] svg, #form_config_perm input[type=submit] svg, #form_reauth_user input[type=submit] svg, #form_add_user input[type=submit] svg, .forms_controle_aula input[type=submit] svg, .btn-default-delete svg, #aluno_content .bg_info_delete_curso .btn_deletar_curso svg, .btn-default svg, .nav_forms ul li a svg, #page_login #login_content #form_login input[type=submit] svg, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo svg, #aluno_content .btn_add svg {
   max-width: 100px;
   max-height: 100px;
   height: auto;
   width: 20px;
 }
 
-.btn-default, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], #aluno_content .btn_add {
+.btn-default, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo, #aluno_content .btn_add {
   background: #f0f0f0;
   color: #333;
   border: 1px solid #666;
 }
-.btn-default:hover, .nav_forms ul li a:hover, #page_login #login_content #form_login input[type=submit]:hover, #aluno_content .btn_add:hover {
+.btn-default:hover, .nav_forms ul li a:hover, #page_login #login_content #form_login input[type=submit]:hover, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo:hover, #aluno_content .btn_add:hover {
   background: #fdfdfd;
 }
-.btn-default:active, .nav_forms ul li a:active, #page_login #login_content #form_login input[type=submit]:active, #aluno_content .btn_add:active {
+.btn-default:active, .nav_forms ul li a:active, #page_login #login_content #form_login input[type=submit]:active, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo:active, #aluno_content .btn_add:active {
   background: #e3e3e3;
   box-shadow: inset 0px 1px 3px #bdbdbd;
 }
@@ -1450,14 +1450,17 @@ input:disabled, textarea:disabled {
   content: " ";
 }
 
-#fieldset_resp .label_numero, #fieldset_aluno .label_numero {
+#fieldset_resp .label_numero,
+#fieldset_aluno .label_numero {
   max-width: 45px !important;
   padding-left: 20px;
 }
-#fieldset_resp .end_numero, #fieldset_aluno .end_numero {
+#fieldset_resp .end_numero,
+#fieldset_aluno .end_numero {
   max-width: 60px !important;
 }
-#fieldset_resp #label_parentesco, #fieldset_aluno #label_parentesco {
+#fieldset_resp #label_parentesco,
+#fieldset_aluno #label_parentesco {
   max-width: 100px !important;
   padding-left: 20px;
 }
@@ -1511,48 +1514,151 @@ input:disabled, textarea:disabled {
 }
 
 #fieldset_curso {
-  margin: 5px;
-  height: auto;
+  border-color: #466592 !important;
+  /*
+  #div_curso_combo {
+      margin: 5px;
+      background: #dddde3;
+      padding: 10px 15px;
+      position: relative !important;
+      user-select: none;
+
+      #div_combo_textarea {
+          #combo_textarea {
+              background: #fff;
+              border: 1px solid #ccc;
+              border-radius: 3px;
+              margin: 10px 0 0;
+              padding: 5px;
+              width: 100%;
+              height: auto;
+              transition: height 0.7s, padding 0.7s, opacity 0.7s, margin 0.7s;
+          }
+      }
+
+      #label_check_combo {
+          display: block;
+          z-index: 9;
+          top: 20px;
+          left: 10px;
+          position: absolute;
+          background: #334;
+          color: #fff;
+          padding: 10px;
+          cursor: pointer;
+          user-select: none;
+          width: 26%;
+          transition: left 0.5s;
+          text-align: center;
+          &:active {
+              background: darken($secondary-color, 10%);
+          }
+          input {
+              float: right;
+              display: none;
+          }
+      }
+      .check_combo_checked {
+          background: #ed1860 !important;
+      }
+      .check_combo_checked {
+          &::after {
+              content: "\2713";
+          }
+      }
+
+      #div_combo_curso_1 {
+          input {
+              pointer-events: none;
+              background: #f0f0f0;
+              color: #f0f0f0;
+          }
+      }
+      #div_combo_curso_2 {
+          select {
+              color: #fff;
+          }
+      }
+
+      #div_combo_curso_1,
+      #div_combo_curso_2 {
+          width: 35%;
+          float: right;
+          opacity: 0.5;
+          transition: opacity 1s;
+
+          input,
+          select {
+              pointer-events: none;
+              width: 100%;
+              user-select: none;
+          }
+      }
+  }*/
+}
+#fieldset_curso #div_curso_nome,
+#fieldset_curso #div_curso_modulos {
   width: 100%;
-  border: 1px solid #466592;
-  padding: 20px;
+}
+#fieldset_curso #div_curso_nome textarea,
+#fieldset_curso #div_curso_modulos textarea {
+  min-height: 80px;
 }
 #fieldset_curso .row {
+  width: 100%;
   display: flex;
-  gap: 10px;
-  flex-shrink: 1;
-  padding: 5px;
-  min-height: 40px;
-  clear: both;
 }
-#fieldset_curso .row .div_input {
+#fieldset_curso .row div {
+  flex-shrink: 1;
   flex-grow: 1;
-  flex-shrink: 1;
+  margin-right: 5px;
   display: flex;
-  flex-direction: row;
+  padding: 5px 0;
 }
-#fieldset_curso .row .div_input:first-child label {
+#fieldset_curso .row div:first-child label {
   text-align: left;
 }
-#fieldset_curso .row .div_input label {
-  color: #555;
-  padding: 0 0 0 10px;
-  background: #dddde3;
-  width: 100px;
-  max-width: 100px;
-  display: flex;
-  align-items: center;
-}
-#fieldset_curso .row .div_input input {
-  width: 75px;
-}
-#fieldset_curso .row .div_input textarea {
-  width: 100%;
+#fieldset_curso .row div label {
+  min-width: 100px;
+  max-width: 60px;
 }
 #fieldset_curso .row #div_curso_modulos textarea {
   min-height: 70px;
   color: #445;
   font-size: 13px;
+}
+#fieldset_curso .row #div_curso_vencimento label,
+#fieldset_curso .row #div_curso_duracao label,
+#fieldset_curso .row #div_curso_parcelas label,
+#fieldset_curso .row #div_curso_valor label,
+#fieldset_curso .row #div_curso_desconto label,
+#fieldset_curso .row #div_curso_total label {
+  width: 40%;
+  max-width: 50%;
+}
+#fieldset_curso .row #div_curso_vencimento input,
+#fieldset_curso .row #div_curso_duracao input,
+#fieldset_curso .row #div_curso_parcelas input,
+#fieldset_curso .row #div_curso_valor input,
+#fieldset_curso .row #div_curso_desconto input,
+#fieldset_curso .row #div_curso_total input {
+  width: 60%;
+}
+#fieldset_curso .row #div_curso_inicio,
+#fieldset_curso .row #div_curso_data {
+  flex-shrink: 1;
+  max-width: 50% !important;
+}
+#fieldset_curso .row #div_curso_inicio label,
+#fieldset_curso .row #div_curso_data label {
+  width: 40%;
+  max-width: 50%;
+  min-width: auto;
+}
+#fieldset_curso .row #div_curso_inicio input,
+#fieldset_curso .row #div_curso_data input {
+  width: 60%;
+  min-width: auto;
 }
 #fieldset_curso .row #curso_valor,
 #fieldset_curso .row #curso_desconto,
@@ -1565,15 +1671,6 @@ input:disabled, textarea:disabled {
 #fieldset_curso .row #curso_desconto {
   color: red;
 }
-#fieldset_curso .row #div_curso_inicio label,
-#fieldset_curso .row #div_curso_data label {
-  width: 40%;
-  max-width: 50%;
-}
-#fieldset_curso .row #div_curso_inicio input,
-#fieldset_curso .row #div_curso_data input {
-  width: 60%;
-}
 #fieldset_curso .row #div_curso_obs {
   margin-top: 5px;
 }
@@ -1582,72 +1679,48 @@ input:disabled, textarea:disabled {
   padding: 5px;
 }
 #fieldset_curso #div_curso_combo {
-  margin: 5px;
-  background: #dddde3;
-  padding: 10px 15px;
-  position: relative !important;
-  user-select: none;
+  padding: 10px;
+  max-width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
 }
-#fieldset_curso #div_curso_combo #div_combo_textarea #combo_textarea {
+#fieldset_curso #div_curso_combo .row_combo {
+  min-width: 100%;
+  display: flex;
+}
+#fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo {
+  transition: all 0.5s;
+}
+#fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo input {
+  display: none;
+}
+#fieldset_curso #div_curso_combo .row_combo .div_input_combo .check_combo_checked {
+  background: #ed1860 !important;
+  color: #fff !important;
+}
+#fieldset_curso #div_curso_combo .row_combo #div_combo_curso_1 label, #fieldset_curso #div_curso_combo .row_combo #div_combo_curso_2 label {
+  background: transparent;
+  height: 20px;
+  width: 100%;
+  display: flex;
+}
+#fieldset_curso #div_curso_combo .row_combo #combo_textarea {
+  transition: all 1s;
   background: #fff;
   border: 1px solid #ccc;
   border-radius: 3px;
   margin: 10px 0 0;
   padding: 5px;
-  width: 100%;
   height: auto;
-  transition: height 0.7s, padding 0.7s, opacity 0.7s, margin 0.7s;
 }
-#fieldset_curso #div_curso_combo #label_check_combo {
-  display: block;
-  z-index: 9;
-  top: 20px;
-  left: 10px;
-  position: absolute;
-  background: #334;
-  color: #fff;
-  padding: 10px;
-  cursor: pointer;
-  user-select: none;
-  width: 26%;
-  transition: left 0.5s;
-  text-align: center;
-}
-#fieldset_curso #div_curso_combo #label_check_combo:active {
-  background: #c30f4c;
-}
-#fieldset_curso #div_curso_combo #label_check_combo input {
-  float: right;
-  display: none;
-}
-#fieldset_curso #div_curso_combo .check_combo_checked {
-  background: #ed1860 !important;
-}
-#fieldset_curso #div_curso_combo .check_combo_checked::after {
-  content: "✓";
-}
-#fieldset_curso #div_curso_combo #div_combo_curso_1 input {
-  pointer-events: none;
-  background: #f0f0f0;
-  color: #f0f0f0;
-}
-#fieldset_curso #div_curso_combo #div_combo_curso_2 select {
-  color: #fff;
-}
-#fieldset_curso #div_curso_combo #div_combo_curso_1,
-#fieldset_curso #div_curso_combo #div_combo_curso_2 {
-  width: 35%;
-  float: right;
-  opacity: 0.5;
-  transition: opacity 1s;
-}
-#fieldset_curso #div_curso_combo #div_combo_curso_1 input,
-#fieldset_curso #div_curso_combo #div_combo_curso_1 select,
-#fieldset_curso #div_curso_combo #div_combo_curso_2 input,
-#fieldset_curso #div_curso_combo #div_combo_curso_2 select {
-  pointer-events: none;
+#fieldset_curso #div_curso_combo .row_combo #div_curso_obs {
+  margin-top: 10px;
   width: 100%;
-  user-select: none;
+}
+#fieldset_curso #div_curso_combo .row_combo #div_curso_obs textarea {
+  min-width: 100% !important;
+  min-height: 80px;
 }
 
 select {
@@ -1735,55 +1808,52 @@ select .re {
   display: flex;
   flex-wrap: wrap;
 }
-#form_contrato .fieldset .div_input {
-  overflow: hidden;
-  margin: 0;
-  display: flex;
-  min-width: 50%;
-  justify-content: flex-end;
-  padding: 5px 0px;
+#form_contrato .fieldset div {
+  margin-right: 5px;
 }
-#form_contrato .fieldset .div_input label {
-  flex: 1;
-  max-width: 60px;
-  padding: 0px 10px 0px 15px;
-  background: #ddd;
-  height: 35px;
+#form_contrato .fieldset label {
   display: flex;
-  align-items: center;
+  border-radius: 3px 0 0 3px;
+  flex-shrink: 1;
   flex-grow: 1;
+  padding: 0 10px 0 15px;
+  background: #ddd;
+  height: auto;
+  align-items: center;
+  max-width: 100px;
 }
-#form_contrato .fieldset .div_input input,
-#form_contrato .fieldset .div_input select,
-#form_contrato .fieldset .div_input textarea {
-  display: block;
+#form_contrato .fieldset input,
+#form_contrato .fieldset select,
+#form_contrato .fieldset textarea {
+  min-width: auto !important;
+  border-radius: 0 3px 3px 0;
   height: 35px;
   padding: 5px;
-  border: 1px solid #aaa;
+  border: 1px solid #ccc;
   font-size: 16px;
   flex-grow: 1;
   flex-shrink: 1;
+  resize: vertical;
 }
-#form_contrato .fieldset .div_input input:focus,
-#form_contrato .fieldset .div_input select:focus,
-#form_contrato .fieldset .div_input textarea:focus {
+#form_contrato .fieldset input:focus,
+#form_contrato .fieldset select:focus,
+#form_contrato .fieldset textarea:focus {
   outline: 2px solid #5690db;
   outline-offset: -2px;
 }
-#form_contrato .fieldset .div_input textarea {
-  resize: vertical;
+#form_contrato .fieldset .div_input {
+  margin: 0 5px 0 0;
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  justify-content: flex-end;
+  padding: 5px 0;
 }
 #form_contrato #div_resp_nome,
 #form_contrato #div_resp_end,
 #form_contrato #div_aluno_nome,
 #form_contrato #div_aluno_end {
   width: 100% !important;
-}
-#form_contrato #div_resp_nome label,
-#form_contrato #div_resp_end label,
-#form_contrato #div_aluno_nome label,
-#form_contrato #div_aluno_end label {
-  max-width: 100px;
 }
 #form_contrato .aluno_off {
   height: 2px !important;
