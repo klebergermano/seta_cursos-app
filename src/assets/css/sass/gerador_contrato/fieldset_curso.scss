@@ -1,0 +1,255 @@
+@use '../abstracts/' as *;
+#fieldset_curso {
+    border-color: #466592 !important;
+
+    #div_curso_nome,
+    #div_curso_modulos {
+        width: 100%;
+        textarea {
+            min-height: 80px;
+        };
+    }
+    .row {
+        width: 100%;
+        display: flex;
+        div {
+            flex-shrink: 1;
+            flex-grow: 1;
+            margin-right: 5px;
+            display: flex;
+            padding: 5px 0;
+            &:first-child {
+                label {
+                    text-align: left;
+                }
+            }
+            label {
+                min-width: 100px;
+                max-width: 60px;
+            }
+
+        }
+
+
+        #div_curso_modulos {
+            textarea {
+                min-height: 70px;
+                color: #445;
+                font-size: 13px;
+            }
+        }
+        #div_curso_vencimento,
+        #div_curso_duracao,
+        #div_curso_parcelas,
+        #div_curso_valor,
+        #div_curso_desconto,
+        #div_curso_total {
+
+            label {
+                width: 40%;
+                max-width: 50%;
+            }
+            input {
+                width: 60%;
+            }
+        }
+
+        #div_curso_inicio,
+        #div_curso_data {
+            flex-shrink: 1;
+            max-width:50% !important;
+
+            label {
+                width: 40%;
+                max-width: 50%;
+min-width: auto;
+            }
+            input {
+                width: 60%;
+min-width: auto;
+
+            }
+        }
+
+        #curso_valor,
+        #curso_desconto,
+        #curso_total {
+            font-size: 16px;
+        }
+        #curso_total {
+            color: green;
+        }
+        #curso_desconto {
+            color: red;
+        }
+
+
+        #div_curso_obs {
+            margin-top: 5px;
+            #curso_obs {
+                min-height: 60px !important;
+                padding: 5px;
+            }
+        }
+
+    }
+    #div_curso_combo{
+        padding:10px;
+        max-width: 100%;
+        height:auto;
+        display: flex;
+        flex-wrap: wrap;
+    .row_combo{
+        min-width: 100%;
+        display: flex;
+        .div_input_combo{
+      
+          
+            #label_check_combo{
+                transition: all 0.5s;
+                @extend .btn-default;
+                input{
+                    display:none;
+                }
+            }
+            .check_combo_checked{
+                background: $secondary-color !important;
+                color:#fff !important;
+            }
+        }
+        #div_combo_curso_1, #div_combo_curso_2{
+            label{
+                background: transparent;
+                height:20px;
+                width:100%;
+                display: flex;
+            }
+
+        }
+        #combo_textarea{
+            transition: all 1s;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin: 10px 0 0;
+            padding: 5px;
+            height:auto;
+        }
+
+        #div_curso_obs{
+            margin-top:10px;
+            width: 100%;
+            textarea{
+                min-width:100% !important;
+                min-height: 80px;
+            
+            }
+        }
+
+    }
+ }
+    /*
+    #div_curso_combo {
+        margin: 5px;
+        background: #dddde3;
+        padding: 10px 15px;
+        position: relative !important;
+        user-select: none;
+
+        #div_combo_textarea {
+            #combo_textarea {
+                background: #fff;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                margin: 10px 0 0;
+                padding: 5px;
+                width: 100%;
+                height: auto;
+                transition: height 0.7s, padding 0.7s, opacity 0.7s, margin 0.7s;
+            }
+        }
+
+        #label_check_combo {
+            display: block;
+            z-index: 9;
+            top: 20px;
+            left: 10px;
+            position: absolute;
+            background: #334;
+            color: #fff;
+            padding: 10px;
+            cursor: pointer;
+            user-select: none;
+            width: 26%;
+            transition: left 0.5s;
+            text-align: center;
+            &:active {
+                background: darken($secondary-color, 10%);
+            }
+            input {
+                float: right;
+                display: none;
+            }
+        }
+        .check_combo_checked {
+            background: #ed1860 !important;
+        }
+        .check_combo_checked {
+            &::after {
+                content: "\2713";
+            }
+        }
+
+        #div_combo_curso_1 {
+            input {
+                pointer-events: none;
+                background: #f0f0f0;
+                color: #f0f0f0;
+            }
+        }
+        #div_combo_curso_2 {
+            select {
+                color: #fff;
+            }
+        }
+
+        #div_combo_curso_1,
+        #div_combo_curso_2 {
+            width: 35%;
+            float: right;
+            opacity: 0.5;
+            transition: opacity 1s;
+
+            input,
+            select {
+                pointer-events: none;
+                width: 100%;
+                user-select: none;
+            }
+        }
+    }*/
+
+} // fieldset_cursos
+
+// Select colorido dos cursos
+select {
+    width: 100%;
+    .informatica {
+        color: $primary-color;
+    }
+    .web {
+        color: #1111ff;
+    }
+    .ingles {
+        color: rgb(207, 6, 117);
+    }
+    .excel {
+        color: green;
+    }
+    .bd {
+        color: rgb(173, 89, 58);
+    }
+    .re {
+        color: rgb(112, 46, 112);
+    }
+}

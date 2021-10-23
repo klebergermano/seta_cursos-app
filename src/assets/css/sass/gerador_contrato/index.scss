@@ -1,440 +1,132 @@
+@use '../abstracts/' as *;
+@use './fieldset_resp_aluno.scss' as *;
+@use './fieldset_curso.scss' as *;
+@use './loading_contrato.scss' as *;
+
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
-
-.version{ display: none; position:absolute; color:#999; font-size:14px; bottom: 10px;
-text-align: center; width:100%;}
-$primary-color: #154fa5;
-$secondary-color: #ed1860;
-
-
-
 #form_contrato {
-  box-shadow: 0px 1px 3px #666;;
-  background: #f8f8f8;
-  position: relative;
-  padding: 40px;
-  width: 100%;
-  max-width: 800px;
-  margin: 20px auto 20px auto;
-  display: block;
-  height: auto;
-  font-size: 14px;
-  color: #333;
-  overflow: hidden;
-
-  fieldset {
-    border: 0px solid #ddd;
-    margin: 5px;
-    margin-bottom: 20px;
-    border: 1px solid #aaa;
-    padding: 20px;
-    width: 100%;
-    height: auto;
-  }
-  
-  label {
-    padding: 6px 0px 0px 6px;
-  }
-
-  input {
-    border-radius: 0px 3px 3px 0px;
-    border: 1px solid #aaa;
-    padding: 6px;
-  }
-  select{
-    padding: 5px;
-
-  }
-
-  textarea {
-    resize: vertical;
-  }
-
-  #fieldset_resp,
-  #fieldset_aluno {
-    label {
-      display: block;
-      float: left;
-      flex: 1;
-      max-width: 50px;
-    }
-
-    input {
-      display: block;
-      flex: 2;
-    }
-
+    display: flex;
+    box-shadow: 0 1px 3px #666;
+    background: #f8f8f8;
     position: relative;
-    overflow: hidden;
-    .div_input {
-      padding: 6px 10px;
-      width: 50%;
-      float: left;
-      overflow: hidden;
-      border-radius: 5px;
-      display: flex;
-      justify-content: flex-end;
-    }
-    .label_numero {
-      max-width: 45px !important;
-      padding-left: 20px;
-    }
-    .end_numero {
-      max-width: 60px !important;
-    }
-    #label_parentesco {
-      max-width: 100px !important;
-      padding-left: 20px;
-    }
-  }
-
-  #fieldset_resp {
-    border-radius: 3px;
-  }
-
-  #fieldset_aluno {
+    padding: 40px;
+    width: 900px;
+    max-width: 100%;
+    margin: 20px auto;
     display: block;
-    height: 260px;
-    border-color: #d1a296;
-    transition: height 1s, padding 1s, opacity 0.8s;
-    opacity: 1;
-  }
-
-  .aluno_off {
-    height: 2px !important;
-    padding: 0px;
-    opacity: 0 !important;
-    margin-bottom: 0px;
-  }
-  .display_off {
-    height: 1px !important;
-    padding: 0px;
-    opacity: 0 !important;
-    margin: 0px 0px -10px 0px !important;
-  }
-  /*-------------------CURSO FIELDS--------------*/
-
-  #fieldset_curso {
-    margin: 5px;
     height: auto;
-    width: 100%;
-    border: 1px solid #466592;
-    padding: 20px;
-
-    .row {
-      display: flex;
-      gap: 10px;
-      flex-shrink: 1;
-      padding: 5px;
-      min-height: 40px;
-      clear: both;
-
-      .div_input {
-        flex-grow: 1;
-        flex-shrink: 1;
-        display: flex;
-        flex-direction: row;
-
-        &:first-child {
-          label {
-            text-align: left;
-          }
-        }
-
-        label {
-          color: #555;
-          padding: 0px 0px 0px 10px;
-          background: #dddde3;
-          width: 100px;
-          max-width: 100px;
-          display: flex;
-          align-items: center;
-        }
-        input {
-          width: 75px;
-        }
-   
-        textarea {
-          width: 100%;
-        }
-      }
-      #div_curso_modulos {
-        textarea {
-          min-height: 70px;
-          color: #445;
-          font-size: 13px;
-        }
-      }
-      #curso_valor,
-      #curso_desconto,
-      #curso_total {
-        font-size: 16px;
-      }
-      #curso_total {
-        color: green;
-      }
-      #curso_desconto {
-        color: red;
-      }
-
-      #div_curso_inicio,
-      #div_curso_data {
-        label {
-          width: 40%;
-          max-width: 50%;
-        }
-        input {
-          width: 60%;
-        }
-      }
-      #div_curso_obs{
-        margin-top:5px;
-  #curso_obs{
-           min-height:60px !important; padding:5px;
-          }
-      }
-        
-    }
-
-    #div_curso_combo {
-
-      margin-top: 5px;
-      margin-right:5px;
-      margin-left:5px;
-
-      background: #dddde3;
-      padding: 10px;
-      padding-bottom: 15px;
-      overflow: hidden;
-      position: relative !important;
-          user-select:none;
-
-      select,
-      input {
-        height: 30px;
-
-      }
-
-      #div_combo_textarea {
-        #combo_textarea {
-          background: #fff;
-          border: 1px solid #ccc;
-          border-radius: 3px;
-          margin: 10px 0px 0px 0px;
-          padding: 5px;
-          width: 100%;
-          height: auto;
-          transition: height 0.7s, padding 0.7s, opacity 0.7s, margin 0.7s;
-        }
-      }
-
-      #label_check_combo {
-        display: block;
-        z-index: 9;
-        top: 20px;
-        left: 10px;
-        position: absolute;
-        background: #334;
-        color: #fff;
-        padding: 10px;
-        cursor: pointer;
-        user-select: none;
-        width: 26%;
-        transition: left 0.5s;
-        text-align: center;
-
-
-        &:active {
-          background: darken($secondary-color, 10%);
-        }
-
-        input {
-          float: right;
-          display: none;
-        }
-      }
-      .check_combo_checked {
-        background: #ed1860 !important;
-      }
-      .check_combo_checked {
-        &::after {
-          content: "\2713";
-        }
-      }
-
-      #div_combo_curso_1 {
-        input {
-          pointer-events: none;
-          background: #f0f0f0;
-          color:#f0f0f0;
-        }
-      }
-       #div_combo_curso_2{
-        select{
- color:#fff;
-        }
-       }
-
-      #div_combo_curso_1,
-      #div_combo_curso_2 {
-        width: 35%;
-        float: right;
-        opacity: 0.5;
-        transition: opacity 1s;
-
-        input,
-        select {
-          pointer-events: none;
-          width: 100%;
-          user-select:none;
-        }
-      }
-    }
-
-  }
-
-
-  //----------------------------------------------------------------------------//
-  //-----------------------------------------------------------------------------//
-
-  #div_resp_nome,
-  #div_resp_end,
-  #div_aluno_nome,
-  #div_aluno_end {
-    width: 100% !important;
-    label {
-      max-width: 100px;
-    }
-  }
-
-  #div_resp_nome {
-    div {
-      overflow: hidden;
-      label {
-        user-select: none;
-        margin: 0 0 0 10px;
-        padding: 6px 5px 6px 12px;
-        max-width: 250px !important;
-        cursor: pointer;
-        background: #334;
-        color: #fff;
-        border-radius: 0px 4px 4px 0px;
-        &:hover {
-          // background:lighten($primary-color, 5%);
-        }
-        &:active {
-          background: darken($primary-color, 5%);
-        }
-        input {
-          float: right;
-          margin: 2px 5px 0px 7px;
-        }
-      }
-    }
-    .active {
-      background: lighten($primary-color, 5%);
-    }
-  }
-
-  #block_aluno {
-    display: none;
-    width: 100%;
-    min-height: 300px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.1);
-  }
-
-  #btn_salvar {
-    float: right;
-margin-right:0px;
-    margin-top: 40px;
-    background: $primary-color;
-    color: #fff;
-    border: 0px;
-    padding: 15px 30px;
-    cursor: pointer;
-    &:hover {
-      background: lighten($primary-color, 10%);
-    }
-    &:active {
-      background: darken($primary-color, 5%);
-    }
-  }
-}
-#loading_contrato {
-  display: none;
-  z-index: 5;
-  top: -20px;
-  left: -50px;
-  width: 120%;
-  height: 1200px;
-
-  position: absolute;
-  background: rgba(80, 80, 90, 0.2);
-  h3 {
     font-size: 14px;
-    background: $primary-color;
-    width: 30%;
-    color: #fff;
-    text-align: center;
-    left: 35%;
+    color: #333;
+    overflow: hidden;
+    .fieldset {
+        transition: all 1s;
+        max-width: 100%;
+        margin: 10px 20px;
+        border: 1px solid #aaa;
+        padding: 20px;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
 
-    position: fixed;
-    padding: 20px 0px;
-    position: absolute;
-    top: 30%;
-    img {
-      width: 45px;
-      height: auto;
-      margin: 0 20px 0px 20px;
-      float: left;
+        div {
+            margin-right: 5px;
+        }
+        label {
+            display: flex;
+            border-radius: 3px 0 0 3px;
+            flex-shrink: 1;
+            flex-grow: 1;
+            padding: 0 10px 0 15px;
+            background: #ddd;
+            height: auto;
+            align-items: center;
+            max-width: 100px;
+        }
+        input,
+        select,
+        textarea {
+            min-width: auto !important;
+            border-radius: 0 3px 3px 0;
+            height: 35px;
+            padding: 5px;
+            border: $border-set-default;
+            font-size: 16px;
+            flex-grow: 1;
+            flex-shrink: 1;
+            resize: vertical;
+            &:focus {
+                outline: 2px solid lighten($primary-color, 20%);
+                outline-offset: -2px;
+            }
+
+        }
+
+        .div_input {
+            margin: 0 5px 0 0;
+            display: flex;
+            flex-grow: 1;
+            flex-shrink: 1;
+            justify-content: flex-end;
+            padding: 5px 0;
+
+        }
     }
-    span {
-      margin-top: 15px;
-      margin-right: 20px;
-      display: block;
+
+    // Campos com 100% width
+    #div_resp_nome,
+    #div_resp_end,
+    #div_aluno_nome,
+    #div_aluno_end {
+        width: 100% !important;
     }
-  }
+
+    .aluno_off {
+        height: 2px !important;
+        padding: 0;
+        opacity: 0 !important;
+        margin-bottom: 0;
+    }
+    .display_off {
+        height: 1px !important;
+        padding: 0 !important;
+        opacity: 0 !important;
+        margin: 0 0 -10px !important;
+    }
+
+    #btn_salvar {
+        float: right;
+        margin-right: 0;
+        margin-top: 40px;
+        background: $primary-color;
+        color: #fff;
+        border: 0;
+        padding: 15px 30px;
+        cursor: pointer;
+        &:hover {
+            background: lighten($primary-color, 10%);
+        }
+        &:active {
+            background: darken($primary-color, 5%);
+        }
+    }
 }
 
 .red {
-  color: red !important;
+    color: red !important;
 }
 .green {
-  color: green !important;
+    color: green !important;
 }
 
-select {
-  width: 100%;
-  .informatica {
-    color: $primary-color;
-  }
-    .web {
-    color: #1111ff;
-  }
-  .ingles {
-    color: rgb(207, 6, 117);
-  }
-  .excel {
-    color: green;
-  }
-  .bd {
-    color: rgb(173, 89, 58);
-  }
-  .re {
-    color: rgb(112, 46, 112);
-  }
+
+option[disabled] {
+    color: #ccc !important;
 }
 
-option[disabled]{
-  color:#ccc !important;
-}
-
-.required{
-  color:red;
-  margin-left:-10px;
-  margin-right:5px;
+.required {
+    color: red;
+    margin-left: -10px;
+    margin-right: 5px;
 }
