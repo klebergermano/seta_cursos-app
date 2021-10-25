@@ -18,6 +18,7 @@
 
 #fieldset_aluno {
     display: block;
+    overflow: hidden;
     height: 260px;
     border-color: lighten($secondary-color, 10%) !important;
     transition: height 1s, padding 1s, opacity 0.8s;
@@ -37,8 +38,11 @@
     #aluno_parentesco {
         max-width: 150px
     }
+
+ 
 }
 #fieldset_resp {
+  
 
     border-color: lighten($primary-color, 10%) !important;
     div {
@@ -71,7 +75,13 @@
 
             }
         }
+     
 
     }
 
+  
+
+}
+#div_resp_tel, #div_aluno_tel{
+    max-width: 50%;
 }

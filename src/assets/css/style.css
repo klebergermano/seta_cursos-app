@@ -1467,6 +1467,7 @@ input:disabled, textarea:disabled {
 
 #fieldset_aluno {
   display: block;
+  overflow: hidden;
   height: 260px;
   border-color: #f14781 !important;
   transition: height 1s, padding 1s, opacity 0.8s;
@@ -1512,6 +1513,10 @@ input:disabled, textarea:disabled {
 }
 #fieldset_resp div .active:hover {
   background: #2d74d1 !important;
+}
+
+#div_resp_tel, #div_aluno_tel {
+  max-width: 50%;
 }
 
 #fieldset_curso {
