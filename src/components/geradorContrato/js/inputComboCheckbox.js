@@ -30,9 +30,7 @@ let combo_textarea = document.querySelector("#combo_textarea");
 combo_textarea.style.zIndex = "0";
 
     if (e.target.checked) {
-combo_textarea.style.zIndex = "0";
-   
-
+      combo_textarea.style.zIndex = "0";
       combo_textarea.classList.remove("display_off");
       comboCurso2.parentElement.style.opacity = "1";
       comboCurso1.parentElement.style.opacity = "1";
@@ -42,10 +40,7 @@ combo_textarea.style.zIndex = "0";
       setAttribute('#combo_curso_2', 'required', true);
       insertComboTextarea();
     } else {
-combo_textarea.style.zIndex = "1";
-
-
-
+      combo_textarea.style.zIndex = "1";
       combo_textarea.classList.add("display_off");
       comboCurso1.parentElement.style.opacity = "0.5";
       comboCurso2.parentElement.style.opacity = "0.5";

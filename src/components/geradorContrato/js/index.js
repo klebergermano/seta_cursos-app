@@ -1,5 +1,4 @@
 
-const { ipcRenderer } = require("electron");
 const VMasker = require("vanilla-masker");
 
 import inputComboCheckbox from "./inputComboCheckbox.js";
@@ -9,7 +8,7 @@ import insertInputDateValue from "./insertInputDateValue.js";
 import removeAttribute from "./removeAttribute.js";
 import insertInputValorTotal from "./insertInputValorTotal.js";
 import setAttribute from "./setAttribute.js";
-
+import * as formAddContrato from "./formAddContrato.js";
 
 
 function setCurso() {
@@ -46,57 +45,7 @@ let fieldset_aluno = document.querySelector("#fieldset_aluno");
     setAttribute("#aluno_nome", 'required', true);
   }
 }
-//Envia o objeto com as informações do formulário para a main stream index.js
-function sendForm(e) {
-  let comboTextarea = document.querySelector("#combo_textarea");
 
-let loadinContrato = document.querySelector("#loading_contrato");
-
-  e.preventDefault();
-  let conclusao = new Date(e.target.curso_inicio.value);
-  conclusao.setMonth(
-    conclusao.getMonth() + parseInt(e.target.curso_duracao.value)
-  );
-  let dia = String(conclusao.getDate() + 1).padStart(2, "0");
-  let mes = String(conclusao.getMonth() + 1).padStart(2, "0");
-  let ano = String(conclusao.getFullYear()).padStart(2, "0");
-  let f_conclusao = ano + "-" + mes + "-" + dia;
-
-  const formData = [...e.target];
-  let formValues = {};
-  formData.forEach((element) => {
-    formValues[`${element.id}`] = element.value;
-  });
-
-  formValues.curso_combo = comboTextarea.innerHTML;
-  formValues.curso_conclusao = f_conclusao;
-
-  if (e.target.checkbox_resp_aluno.checked) {
-
-    formValues.aluno_nome = "IDEM";
-    formValues.aluno_end = "--//--";
-    formValues.aluno_numero = "--//--";
-    formValues.aluno_parentesco = "--//--";
-    formValues.aluno_bairro = "--//--";
-    formValues.aluno_cep = "--//--";
-    formValues.aluno_rg = "--//--";
-    formValues.aluno_cel = "--//--";
-    formValues.aluno_tel = "--//--";
-  }
-  let result = new Promise((resolve, reject) => {
-    let res = ipcRenderer.invoke("submit", formValues);
-
-    loadinContrato.style.display = "block";
-    if (res) {
-      resolve(res);
-    } else {
-      reject();
-    }
-  });
-  result.then(() => {
-    loadinContrato.style.display = "none";
-  });
-}
 
 export function onload(){
   setCurso() 
@@ -110,7 +59,9 @@ let vencimento = document.querySelector("#curso_vencimento");
 
 
 //Listeners
-form.addEventListener("submit", sendForm);
+form.addEventListener("submit", (e)=>{
+  formAddContrato.submitFormContrato(e)
+});
 
 //input Resp Aluno
 document

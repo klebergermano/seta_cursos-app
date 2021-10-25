@@ -1,8 +1,10 @@
 @use '../abstracts/' as *;
 
-#fieldset_resp {}
+
 #fieldset_resp,
 #fieldset_aluno {
+position:relative;
+    padding-top:70px !important;
     .label_numero {
         max-width: 45px !important;
         padding-left: 20px;
@@ -35,18 +37,26 @@
         left: 0;
         background: rgba(0, 0, 0, 0.1);
     }
-    #aluno_parentesco {
-        max-width: 150px
+    #div_aluno_parentesco{
+        position:absolute;
+        top:20px; right: 25px;
+        #aluno_parentesco {
+            max-width: 150px;
+        }
     }
+  
 
  
 }
 #fieldset_resp {
-  
+
 
     border-color: lighten($primary-color, 10%) !important;
     div {
         #btn_marcar_resp_aluno {
+            top:15px; right:25px;
+            position:absolute;
+            clear: both;
             transition: all 0.5s;
             @extend .btn;
             border: 1px solid #444;
@@ -84,4 +94,12 @@
 }
 #div_resp_tel, #div_aluno_tel{
     max-width: 50%;
+}
+
+#div_resp_obs, #div_aluno_obs{
+    min-width: 100%;
+}
+
+#div_resp_genero, #div_aluno_genero{
+   max-width: 160px;
 }

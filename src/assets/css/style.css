@@ -1450,6 +1450,11 @@ input:disabled, textarea:disabled {
   content: " ";
 }
 
+#fieldset_resp,
+#fieldset_aluno {
+  position: relative;
+  padding-top: 70px !important;
+}
 #fieldset_resp .label_numero,
 #fieldset_aluno .label_numero {
   max-width: 45px !important;
@@ -1482,7 +1487,12 @@ input:disabled, textarea:disabled {
   left: 0;
   background: rgba(0, 0, 0, 0.1);
 }
-#fieldset_aluno #aluno_parentesco {
+#fieldset_aluno #div_aluno_parentesco {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+}
+#fieldset_aluno #div_aluno_parentesco #aluno_parentesco {
   max-width: 150px;
 }
 
@@ -1490,6 +1500,10 @@ input:disabled, textarea:disabled {
   border-color: #2d74d1 !important;
 }
 #fieldset_resp div #btn_marcar_resp_aluno {
+  top: 15px;
+  right: 25px;
+  position: absolute;
+  clear: both;
   transition: all 0.5s;
   border: 1px solid #444;
   background: #f0f0f0;
@@ -1517,6 +1531,14 @@ input:disabled, textarea:disabled {
 
 #div_resp_tel, #div_aluno_tel {
   max-width: 50%;
+}
+
+#div_resp_obs, #div_aluno_obs {
+  min-width: 100%;
+}
+
+#div_resp_genero, #div_aluno_genero {
+  max-width: 160px;
 }
 
 #fieldset_curso {
@@ -1785,9 +1807,7 @@ select .re {
   justify-content: flex-end;
   padding: 5px 0;
 }
-#form_contrato #div_resp_nome,
 #form_contrato #div_resp_end,
-#form_contrato #div_aluno_nome,
 #form_contrato #div_aluno_end {
   width: 100% !important;
 }

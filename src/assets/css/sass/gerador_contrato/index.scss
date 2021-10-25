@@ -29,9 +29,9 @@
         height: auto;
         display: flex;
         flex-wrap: wrap;
- & > div{
-padding-bottom:10px;
- }
+        & > div{
+                padding-bottom:10px;
+        }
         div {
             
         }
@@ -77,9 +77,9 @@ padding-bottom:10px;
     }
 
     // Campos com 100% width
-    #div_resp_nome,
+    
     #div_resp_end,
-    #div_aluno_nome,
+
     #div_aluno_end {
         width: 100% !important;
     }
