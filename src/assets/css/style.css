@@ -427,14 +427,14 @@ template {
 }
 
 inputs, .input-primary {
-  border: 1px solid #ccc;
+  border: 1px solid #aaa;
   padding: 5px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   color: #444;
 }
 
 .forms, .form_flex, #form_add_entrada_caixa, #form_config_perm, #form_reauth_user, #form_add_user, .forms_controle_aula {
-  border: 1px solid #ccc;
+  border: 1px solid #aaa;
   position: fixed;
   right: 0px;
   left: 0px;
@@ -462,7 +462,7 @@ inputs, .input-primary {
   display: flex;
   flex-wrap: wrap;
   border-radius: 3px;
-  border-color: #ccc;
+  border-color: #aaa;
   padding: 40px;
   max-width: 600px;
   margin: 20px auto;
@@ -507,7 +507,7 @@ inputs, .input-primary {
   flex-shrink: 1;
   flex-grow: 1;
   display: block;
-  border: 1px solid #ccc;
+  border: 1px solid #aaa;
   padding: 5px;
   color: #444;
 }
@@ -974,7 +974,7 @@ inputs, .input-primary {
 
 nav.nav_cursos_aluno {
   background-color: #fff;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #aaa;
   height: 50px;
 }
 nav.nav_cursos_aluno ul li {
@@ -983,7 +983,7 @@ nav.nav_cursos_aluno ul li {
 nav.nav_cursos_aluno ul li a {
   padding: 15px 20px 16px 20px;
   background: #fff;
-  border: 1px solid #ccc;
+  border: 1px solid #aaa;
   border-top: 0px;
   border-bottom: 0px;
   color: #333;
@@ -1000,7 +1000,7 @@ nav.nav_cursos_aluno ul li .active {
 
 #aluno_content {
   border-radius: 5px 5px 0px 0px;
-  border: 1px solid #ccc;
+  border: 1px solid #aaa;
   overflow: hidden;
   position: relative;
 }
@@ -1489,6 +1489,7 @@ input:disabled, textarea:disabled {
   border-color: #2d74d1 !important;
 }
 #fieldset_resp div #btn_marcar_resp_aluno {
+  transition: all 0.5s;
   border: 1px solid #444;
   background: #f0f0f0;
   margin: 0 0 0 10px;
@@ -1515,86 +1516,6 @@ input:disabled, textarea:disabled {
 
 #fieldset_curso {
   border-color: #466592 !important;
-  /*
-  #div_curso_combo {
-      margin: 5px;
-      background: #dddde3;
-      padding: 10px 15px;
-      position: relative !important;
-      user-select: none;
-
-      #div_combo_textarea {
-          #combo_textarea {
-              background: #fff;
-              border: 1px solid #ccc;
-              border-radius: 3px;
-              margin: 10px 0 0;
-              padding: 5px;
-              width: 100%;
-              height: auto;
-              transition: height 0.7s, padding 0.7s, opacity 0.7s, margin 0.7s;
-          }
-      }
-
-      #label_check_combo {
-          display: block;
-          z-index: 9;
-          top: 20px;
-          left: 10px;
-          position: absolute;
-          background: #334;
-          color: #fff;
-          padding: 10px;
-          cursor: pointer;
-          user-select: none;
-          width: 26%;
-          transition: left 0.5s;
-          text-align: center;
-          &:active {
-              background: darken($secondary-color, 10%);
-          }
-          input {
-              float: right;
-              display: none;
-          }
-      }
-      .check_combo_checked {
-          background: #ed1860 !important;
-      }
-      .check_combo_checked {
-          &::after {
-              content: "\2713";
-          }
-      }
-
-      #div_combo_curso_1 {
-          input {
-              pointer-events: none;
-              background: #f0f0f0;
-              color: #f0f0f0;
-          }
-      }
-      #div_combo_curso_2 {
-          select {
-              color: #fff;
-          }
-      }
-
-      #div_combo_curso_1,
-      #div_combo_curso_2 {
-          width: 35%;
-          float: right;
-          opacity: 0.5;
-          transition: opacity 1s;
-
-          input,
-          select {
-              pointer-events: none;
-              width: 100%;
-              user-select: none;
-          }
-      }
-  }*/
 }
 #fieldset_curso #div_curso_nome,
 #fieldset_curso #div_curso_modulos {
@@ -1602,6 +1523,7 @@ input:disabled, textarea:disabled {
 }
 #fieldset_curso #div_curso_nome textarea,
 #fieldset_curso #div_curso_modulos textarea {
+  font-size: 14px;
   min-height: 80px;
 }
 #fieldset_curso .row {
@@ -1621,11 +1543,6 @@ input:disabled, textarea:disabled {
 #fieldset_curso .row div label {
   min-width: 100px;
   max-width: 60px;
-}
-#fieldset_curso .row #div_curso_modulos textarea {
-  min-height: 70px;
-  color: #445;
-  font-size: 13px;
 }
 #fieldset_curso .row #div_curso_vencimento label,
 #fieldset_curso .row #div_curso_duracao label,
@@ -1679,6 +1596,7 @@ input:disabled, textarea:disabled {
   padding: 5px;
 }
 #fieldset_curso #div_curso_combo {
+  background: #ddd;
   padding: 10px;
   max-width: 100%;
   height: auto;
@@ -1688,9 +1606,13 @@ input:disabled, textarea:disabled {
 #fieldset_curso #div_curso_combo .row_combo {
   min-width: 100%;
   display: flex;
+  justify-content: space-between;
 }
 #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo {
   transition: all 0.5s;
+  padding: 20px 0px;
+  margin-left: 0px;
+  min-width: 150px;
 }
 #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo input {
   display: none;
@@ -1698,6 +1620,14 @@ input:disabled, textarea:disabled {
 #fieldset_curso #div_curso_combo .row_combo .div_input_combo .check_combo_checked {
   background: #ed1860 !important;
   color: #fff !important;
+}
+#fieldset_curso #div_curso_combo .row_combo #div_combo_curso_1 input {
+  color: transparent;
+  width: 100%;
+}
+#fieldset_curso #div_curso_combo .row_combo #div_combo_curso_1, #fieldset_curso #div_curso_combo .row_combo #div_combo_curso_2 {
+  flex-grow: 1;
+  flex-shrink: 1;
 }
 #fieldset_curso #div_curso_combo .row_combo #div_combo_curso_1 label, #fieldset_curso #div_curso_combo .row_combo #div_combo_curso_2 label {
   background: transparent;
@@ -1710,16 +1640,17 @@ input:disabled, textarea:disabled {
   background: #fff;
   border: 1px solid #ccc;
   border-radius: 3px;
-  margin: 10px 0 0;
+  margin: 0px !important;
   padding: 5px;
   height: auto;
 }
-#fieldset_curso #div_curso_combo .row_combo #div_curso_obs {
+#fieldset_curso #div_curso_obs {
   margin-top: 10px;
   width: 100%;
+  display: flex;
 }
-#fieldset_curso #div_curso_combo .row_combo #div_curso_obs textarea {
-  min-width: 100% !important;
+#fieldset_curso #div_curso_obs textarea {
+  min-width: 80% !important;
   min-height: 80px;
 }
 
@@ -1808,8 +1739,8 @@ select .re {
   display: flex;
   flex-wrap: wrap;
 }
-#form_contrato .fieldset div {
-  margin-right: 5px;
+#form_contrato .fieldset > div {
+  padding-bottom: 10px;
 }
 #form_contrato .fieldset label {
   display: flex;
@@ -1817,7 +1748,7 @@ select .re {
   flex-shrink: 1;
   flex-grow: 1;
   padding: 0 10px 0 15px;
-  background: #ddd;
+  background: #e9e9e9;
   height: auto;
   align-items: center;
   max-width: 100px;
@@ -1827,9 +1758,9 @@ select .re {
 #form_contrato .fieldset textarea {
   min-width: auto !important;
   border-radius: 0 3px 3px 0;
-  height: 35px;
+  min-height: 35px;
   padding: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid #aaa;
   font-size: 16px;
   flex-grow: 1;
   flex-shrink: 1;
@@ -1862,6 +1793,7 @@ select .re {
   margin-bottom: 0;
 }
 #form_contrato .display_off {
+  overflow: hidden;
   height: 1px !important;
   padding: 0 !important;
   opacity: 0 !important;
@@ -2200,7 +2132,7 @@ h1 {
   background: #ddd;
 }
 .confirm_box button {
-  border: 1px solid #ccc;
+  border: 1px solid #aaa;
   padding: 5px 10px;
   margin: 5px;
   cursor: pointer;
