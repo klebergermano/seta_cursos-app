@@ -43,6 +43,7 @@
     border-color: lighten($primary-color, 10%) !important;
     div {
         #btn_marcar_resp_aluno {
+            transition: all 0.5s;
             @extend .btn;
             border: 1px solid #444;
             background: #f0f0f0;

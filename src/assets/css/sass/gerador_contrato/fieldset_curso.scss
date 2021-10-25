@@ -6,6 +6,7 @@
     #div_curso_modulos {
         width: 100%;
         textarea {
+            font-size: 14px;
             min-height: 80px;
         };
     }
@@ -31,13 +32,6 @@
         }
 
 
-        #div_curso_modulos {
-            textarea {
-                min-height: 70px;
-                color: #445;
-                font-size: 13px;
-            }
-        }
         #div_curso_vencimento,
         #div_curso_duracao,
         #div_curso_parcelas,
@@ -94,20 +88,24 @@ min-width: auto;
 
     }
     #div_curso_combo{
+        background:#ddd;
         padding:10px;
         max-width: 100%;
         height:auto;
         display: flex;
+        
         flex-wrap: wrap;
     .row_combo{
         min-width: 100%;
         display: flex;
+        justify-content: space-between;
         .div_input_combo{
-      
-          
             #label_check_combo{
                 transition: all 0.5s;
                 @extend .btn-default;
+                padding:20px 0px;
+                margin-left:0px;
+                min-width: 150px;
                 input{
                     display:none;
                 }
@@ -117,7 +115,17 @@ min-width: auto;
                 color:#fff !important;
             }
         }
+        #div_combo_curso_1{
+
+            input{
+                color:transparent;
+                width:100%;
+                
+            }
+        }
         #div_combo_curso_1, #div_combo_curso_2{
+            flex-grow: 1;
+            flex-shrink: 1;
             label{
                 background: transparent;
                 height:20px;
@@ -131,103 +139,29 @@ min-width: auto;
             background: #fff;
             border: 1px solid #ccc;
             border-radius: 3px;
-            margin: 10px 0 0;
+            margin: 0px !important;
             padding: 5px;
             height:auto;
         }
 
-        #div_curso_obs{
-            margin-top:10px;
-            width: 100%;
-            textarea{
-                min-width:100% !important;
-                min-height: 80px;
-            
-            }
-        }
+    
 
     }
+
  }
-    /*
-    #div_curso_combo {
-        margin: 5px;
-        background: #dddde3;
-        padding: 10px 15px;
-        position: relative !important;
-        user-select: none;
 
-        #div_combo_textarea {
-            #combo_textarea {
-                background: #fff;
-                border: 1px solid #ccc;
-                border-radius: 3px;
-                margin: 10px 0 0;
-                padding: 5px;
-                width: 100%;
-                height: auto;
-                transition: height 0.7s, padding 0.7s, opacity 0.7s, margin 0.7s;
-            }
-        }
-
-        #label_check_combo {
-            display: block;
-            z-index: 9;
-            top: 20px;
-            left: 10px;
-            position: absolute;
-            background: #334;
-            color: #fff;
-            padding: 10px;
-            cursor: pointer;
-            user-select: none;
-            width: 26%;
-            transition: left 0.5s;
-            text-align: center;
-            &:active {
-                background: darken($secondary-color, 10%);
-            }
-            input {
-                float: right;
-                display: none;
-            }
-        }
-        .check_combo_checked {
-            background: #ed1860 !important;
-        }
-        .check_combo_checked {
-            &::after {
-                content: "\2713";
-            }
-        }
-
-        #div_combo_curso_1 {
-            input {
-                pointer-events: none;
-                background: #f0f0f0;
-                color: #f0f0f0;
-            }
-        }
-        #div_combo_curso_2 {
-            select {
-                color: #fff;
-            }
-        }
-
-        #div_combo_curso_1,
-        #div_combo_curso_2 {
-            width: 35%;
-            float: right;
-            opacity: 0.5;
-            transition: opacity 1s;
-
-            input,
-            select {
-                pointer-events: none;
-                width: 100%;
-                user-select: none;
-            }
-        }
-    }*/
+ 
+ #div_curso_obs{
+    margin-top:10px;
+    width: 100%;
+    display: flex;
+    textarea{
+        min-width:80% !important;
+        min-height: 80px;
+    
+    }
+}
+    
 
 } // fieldset_cursos
 
