@@ -20,10 +20,11 @@
       </div>
       <div class='div_input' id='div_resp_genero'>
         <label><span class='required'>*</span>Genero: </label> 
-        <select>
+        <select id='resp_genero' required>
+          <option value='' selected disabled></option>
           <option value='M'>M</option>
           <option value='F'>F</option>
-          <option value='OUTRO'>Outro</option>
+          <option value='OUTRO'>OUTRO</option>
         </select>
       </div>
       <div class='div_input' id='div_resp_end'> <label><span class='required'>*</span>Endereço: </label> <input required
@@ -59,7 +60,7 @@
     <!--fieldset resp-->
     <div class='fieldset' id='fieldset_aluno'>
       <div class='div_input' id='div_aluno_parentesco'>
-        <label id='label_parentesco'>Parentesco: </label> 
+        <label id='label_parentesco'>Parentesco c/ o Responsável: </label> 
           <select id='aluno_parentesco'>
           <option value="" selected="true" disabled="disabled"></option>
           <option value="Filho(a)">Filho(a)</option>
@@ -77,10 +78,11 @@
       </div>
       <div class='div_input' id='div_aluno_genero'>
         <label><span class='required'>*</span>Genero: </label> 
-        <select>
+        <select id='aluno_genero' required>
+          <option value='' selected disabled></option>
           <option value='M'>M</option>
           <option value='F'>F</option>
-          <option value='OUTRO'>Outro</option>
+          <option value='OUTRO'>OUTRO</option>
         </select>
       </div>
 

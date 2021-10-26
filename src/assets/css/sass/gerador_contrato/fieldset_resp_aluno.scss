@@ -4,7 +4,6 @@
 #fieldset_resp,
 #fieldset_aluno {
 position:relative;
-    padding-top:70px !important;
     .label_numero {
         max-width: 45px !important;
         padding-left: 20px;
@@ -12,10 +11,7 @@ position:relative;
     .end_numero {
         max-width: 60px !important;
     }
-    #label_parentesco {
-        max-width: 100px !important;
-        padding-left: 20px;
-    }
+  
 }
 
 #fieldset_aluno {
@@ -26,7 +22,11 @@ position:relative;
     transition: height 1s, padding 1s, opacity 0.8s;
     opacity: 1;
 
-
+div{
+    label{
+        background: #e6cdc5;
+    }
+}
     // bloqueia o input aluno nome;
     #block_aluno {
         display: none;
@@ -38,10 +38,15 @@ position:relative;
         background: rgba(0, 0, 0, 0.1);
     }
     #div_aluno_parentesco{
-        position:absolute;
-        top:20px; right: 25px;
+        width:100%;
+        #label_parentesco {
+            max-width: 350px !important;
+            width:350px;
+            padding-left: 20px;
+            flex-grow: 1;
+        }
         #aluno_parentesco {
-            max-width: 150px;
+            max-width: auto;
         }
     }
   
@@ -49,10 +54,15 @@ position:relative;
  
 }
 #fieldset_resp {
+    padding-top:70px !important;
 
 
     border-color: lighten($primary-color, 10%) !important;
     div {
+        margin-bottom:20px;
+       label{
+           background: #cdd3df;
+       }
         #btn_marcar_resp_aluno {
             top:15px; right:25px;
             position:absolute;
@@ -63,6 +73,8 @@ position:relative;
             background: #f0f0f0;
             margin: 0 0 0 10px;
             max-width: 250px !important;
+            min-width: 180px;
+
             input {
                 display: none;
             }
@@ -92,9 +104,7 @@ position:relative;
   
 
 }
-#div_resp_tel, #div_aluno_tel{
-    max-width: 50%;
-}
+
 
 #div_resp_obs, #div_aluno_obs{
     min-width: 100%;

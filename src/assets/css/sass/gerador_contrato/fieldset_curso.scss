@@ -1,6 +1,16 @@
 @use '../abstracts/' as *;
 #fieldset_curso {
-    border-color: #466592 !important;
+    border-color: #444 !important;
+   // border-color: #27b67a !important;
+   div{
+    label{
+        background: #ccc;
+    }
+}
+
+    & > div{
+        padding: 6px 0px
+    }
 
     #div_curso_nome,
     #div_curso_modulos {
@@ -88,8 +98,9 @@
 
     }
     #div_curso_combo{
-        background:#ddd;
+        background:#ccc;
         padding:10px;
+        margin: 10px 0px;
         max-width: 100%;
         height:auto;
         display: flex;
