@@ -1,6 +1,15 @@
 @use '../abstracts/' as *;
 #fieldset_curso {
-    border-color: #466592 !important;
+    border-color: #454 !important;
+   // border-color: #27b67a !important;
+   div{
+    label{
+        background: #d3ddd3;
+    }
+}
+    & > div{
+        padding: 6px 0px
+    }
 
     #div_curso_nome,
     #div_curso_modulos {
@@ -56,11 +65,11 @@
             label {
                 width: 40%;
                 max-width: 50%;
-min-width: auto;
+                min-width: auto;
             }
             input {
                 width: 60%;
-min-width: auto;
+                min-width: auto;
 
             }
         }
@@ -88,8 +97,10 @@ min-width: auto;
 
     }
     #div_curso_combo{
-        background:#ddd;
+        background:#d3ddd3;
+        //ddd7d3
         padding:10px;
+        margin: 10px 0px;
         max-width: 100%;
         height:auto;
         display: flex;
@@ -114,6 +125,7 @@ min-width: auto;
                 background: $secondary-color !important;
                 color:#fff !important;
             }
+
         }
         #div_combo_curso_1{
 

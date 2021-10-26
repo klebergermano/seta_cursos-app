@@ -427,14 +427,14 @@ template {
 }
 
 inputs, .input-primary {
-  border: 1px solid #aaa;
+  border: 1px solid #999;
   padding: 5px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   color: #444;
 }
 
 .forms, .form_flex, #form_add_entrada_caixa, #form_config_perm, #form_reauth_user, #form_add_user, .forms_controle_aula {
-  border: 1px solid #aaa;
+  border: 1px solid #999;
   position: fixed;
   right: 0px;
   left: 0px;
@@ -462,7 +462,7 @@ inputs, .input-primary {
   display: flex;
   flex-wrap: wrap;
   border-radius: 3px;
-  border-color: #aaa;
+  border-color: #999;
   padding: 40px;
   max-width: 600px;
   margin: 20px auto;
@@ -507,7 +507,7 @@ inputs, .input-primary {
   flex-shrink: 1;
   flex-grow: 1;
   display: block;
-  border: 1px solid #aaa;
+  border: 1px solid #999;
   padding: 5px;
   color: #444;
 }
@@ -974,7 +974,7 @@ inputs, .input-primary {
 
 nav.nav_cursos_aluno {
   background-color: #fff;
-  border-bottom: 1px solid #aaa;
+  border-bottom: 1px solid #999;
   height: 50px;
 }
 nav.nav_cursos_aluno ul li {
@@ -983,7 +983,7 @@ nav.nav_cursos_aluno ul li {
 nav.nav_cursos_aluno ul li a {
   padding: 15px 20px 16px 20px;
   background: #fff;
-  border: 1px solid #aaa;
+  border: 1px solid #999;
   border-top: 0px;
   border-bottom: 0px;
   color: #333;
@@ -1000,7 +1000,7 @@ nav.nav_cursos_aluno ul li .active {
 
 #aluno_content {
   border-radius: 5px 5px 0px 0px;
-  border: 1px solid #aaa;
+  border: 1px solid #999;
   overflow: hidden;
   position: relative;
 }
@@ -1450,6 +1450,10 @@ input:disabled, textarea:disabled {
   content: " ";
 }
 
+#fieldset_resp,
+#fieldset_aluno {
+  position: relative;
+}
 #fieldset_resp .label_numero,
 #fieldset_aluno .label_numero {
   max-width: 45px !important;
@@ -1459,18 +1463,17 @@ input:disabled, textarea:disabled {
 #fieldset_aluno .end_numero {
   max-width: 60px !important;
 }
-#fieldset_resp #label_parentesco,
-#fieldset_aluno #label_parentesco {
-  max-width: 100px !important;
-  padding-left: 20px;
-}
 
 #fieldset_aluno {
   display: block;
+  overflow: hidden;
   height: 260px;
   border-color: #f14781 !important;
   transition: height 1s, padding 1s, opacity 0.8s;
   opacity: 1;
+}
+#fieldset_aluno div label {
+  background: #ddd7d3;
 }
 #fieldset_aluno #block_aluno {
   display: none;
@@ -1481,19 +1484,40 @@ input:disabled, textarea:disabled {
   left: 0;
   background: rgba(0, 0, 0, 0.1);
 }
-#fieldset_aluno #aluno_parentesco {
-  max-width: 150px;
+#fieldset_aluno #div_aluno_parentesco {
+  width: 100%;
+}
+#fieldset_aluno #div_aluno_parentesco #label_parentesco {
+  max-width: 350px !important;
+  width: 350px;
+  padding-left: 20px;
+  flex-grow: 1;
+}
+#fieldset_aluno #div_aluno_parentesco #aluno_parentesco {
+  max-width: auto;
 }
 
 #fieldset_resp {
+  padding-top: 70px !important;
   border-color: #2d74d1 !important;
 }
+#fieldset_resp div {
+  margin-bottom: 20px;
+}
+#fieldset_resp div label {
+  background: #d3d7dd;
+}
 #fieldset_resp div #btn_marcar_resp_aluno {
+  top: 20px;
+  right: 35px;
+  position: absolute;
+  clear: both;
   transition: all 0.5s;
   border: 1px solid #444;
   background: #f0f0f0;
   margin: 0 0 0 10px;
   max-width: 250px !important;
+  min-width: 180px;
   color: #333;
 }
 #fieldset_resp div #btn_marcar_resp_aluno input {
@@ -1514,8 +1538,22 @@ input:disabled, textarea:disabled {
   background: #2d74d1 !important;
 }
 
+#div_resp_obs, #div_aluno_obs {
+  min-width: 100%;
+}
+
+#div_resp_genero, #div_aluno_genero {
+  max-width: 160px;
+}
+
 #fieldset_curso {
-  border-color: #466592 !important;
+  border-color: #454 !important;
+}
+#fieldset_curso div label {
+  background: #d3ddd3;
+}
+#fieldset_curso > div {
+  padding: 6px 0px;
 }
 #fieldset_curso #div_curso_nome,
 #fieldset_curso #div_curso_modulos {
@@ -1596,8 +1634,9 @@ input:disabled, textarea:disabled {
   padding: 5px;
 }
 #fieldset_curso #div_curso_combo {
-  background: #ddd;
+  background: #d3ddd3;
   padding: 10px;
+  margin: 10px 0px;
   max-width: 100%;
   height: auto;
   display: flex;
@@ -1734,13 +1773,10 @@ select .re {
   max-width: 100%;
   margin: 10px 20px;
   border: 1px solid #aaa;
-  padding: 20px;
+  padding: 20px 30px;
   height: auto;
   display: flex;
   flex-wrap: wrap;
-}
-#form_contrato .fieldset > div {
-  padding-bottom: 10px;
 }
 #form_contrato .fieldset label {
   display: flex;
@@ -1748,10 +1784,10 @@ select .re {
   flex-shrink: 1;
   flex-grow: 1;
   padding: 0 10px 0 15px;
-  background: #e9e9e9;
   height: auto;
   align-items: center;
   max-width: 100px;
+  min-width: 100px;
 }
 #form_contrato .fieldset input,
 #form_contrato .fieldset select,
@@ -1760,7 +1796,7 @@ select .re {
   border-radius: 0 3px 3px 0;
   min-height: 35px;
   padding: 5px;
-  border: 1px solid #aaa;
+  border: 1px solid #999;
   font-size: 16px;
   flex-grow: 1;
   flex-shrink: 1;
@@ -1773,16 +1809,14 @@ select .re {
   outline-offset: -2px;
 }
 #form_contrato .fieldset .div_input {
-  margin: 0 5px 0 0;
+  margin: 0 5px 3px 0;
   display: flex;
   flex-grow: 1;
   flex-shrink: 1;
   justify-content: flex-end;
-  padding: 5px 0;
+  padding: 6px 0;
 }
-#form_contrato #div_resp_nome,
 #form_contrato #div_resp_end,
-#form_contrato #div_aluno_nome,
 #form_contrato #div_aluno_end {
   width: 100% !important;
 }
@@ -2132,7 +2166,7 @@ h1 {
   background: #ddd;
 }
 .confirm_box button {
-  border: 1px solid #aaa;
+  border: 1px solid #999;
   padding: 5px 10px;
   margin: 5px;
   cursor: pointer;

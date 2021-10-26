@@ -1,5 +1,4 @@
 
-const { ipcRenderer } = require("electron");
 const VMasker = require("vanilla-masker");
 
 import inputComboCheckbox from "./inputComboCheckbox.js";
@@ -9,7 +8,7 @@ import insertInputDateValue from "./insertInputDateValue.js";
 import removeAttribute from "./removeAttribute.js";
 import insertInputValorTotal from "./insertInputValorTotal.js";
 import setAttribute from "./setAttribute.js";
-
+import * as formAddContrato from "./formAddContrato.js";
 
 
 function setCurso() {
@@ -25,7 +24,7 @@ let cursosSelect2 = document.querySelector("#combo_curso_2");
 function checkboxRespAluno(e) {
   
   let btn_marcar_resp_aluno = document.querySelector("#btn_marcar_resp_aluno")
-let fieldset_aluno = document.querySelector("#fieldset_aluno");
+  let fieldset_aluno = document.querySelector("#fieldset_aluno");
   e.target.parentElement.classList.toggle("active");
   if (e.target.parentElement.classList.contains("active")) {
     btn_marcar_resp_aluno.classList.add('btn_ativo');
@@ -35,6 +34,8 @@ let fieldset_aluno = document.querySelector("#fieldset_aluno");
     setAttribute("#aluno_nome", 'style', "color: #fff");
     setAttribute("#aluno_nome", 'value', "IDEM");
     removeAttribute("#aluno_nome", 'required');
+    removeAttribute("#aluno_parentesco", 'required');
+    removeAttribute("#aluno_genero", 'required');
   } else {
     btn_marcar_resp_aluno.classList.remove('btn_ativo');
     btn_marcar_resp_aluno.querySelector('span').textContent = "Marcar como aluno(a)";
@@ -44,59 +45,11 @@ let fieldset_aluno = document.querySelector("#fieldset_aluno");
     setAttribute("#aluno_nome", 'style', "color:#333");
     setAttribute("#aluno_nome", 'value', "");
     setAttribute("#aluno_nome", 'required', true);
+    setAttribute("#aluno_parentesco", 'required', true);
+    setAttribute("#aluno_genero", 'required', true);
   }
 }
-//Envia o objeto com as informações do formulário para a main stream index.js
-function sendForm(e) {
-  let comboTextarea = document.querySelector("#combo_textarea");
 
-let loadinContrato = document.querySelector("#loading_contrato");
-
-  e.preventDefault();
-  let conclusao = new Date(e.target.curso_inicio.value);
-  conclusao.setMonth(
-    conclusao.getMonth() + parseInt(e.target.curso_duracao.value)
-  );
-  let dia = String(conclusao.getDate() + 1).padStart(2, "0");
-  let mes = String(conclusao.getMonth() + 1).padStart(2, "0");
-  let ano = String(conclusao.getFullYear()).padStart(2, "0");
-  let f_conclusao = ano + "-" + mes + "-" + dia;
-
-  const formData = [...e.target];
-  let formValues = {};
-  formData.forEach((element) => {
-    formValues[`${element.id}`] = element.value;
-  });
-
-  formValues.curso_combo = comboTextarea.innerHTML;
-  formValues.curso_conclusao = f_conclusao;
-
-  if (e.target.checkbox_resp_aluno.checked) {
-
-    formValues.aluno_nome = "IDEM";
-    formValues.aluno_end = "--//--";
-    formValues.aluno_numero = "--//--";
-    formValues.aluno_parentesco = "--//--";
-    formValues.aluno_bairro = "--//--";
-    formValues.aluno_cep = "--//--";
-    formValues.aluno_rg = "--//--";
-    formValues.aluno_cel = "--//--";
-    formValues.aluno_tel = "--//--";
-  }
-  let result = new Promise((resolve, reject) => {
-    let res = ipcRenderer.invoke("submit", formValues);
-
-    loadinContrato.style.display = "block";
-    if (res) {
-      resolve(res);
-    } else {
-      reject();
-    }
-  });
-  result.then(() => {
-    loadinContrato.style.display = "none";
-  });
-}
 
 export function onload(){
   setCurso() 
@@ -110,7 +63,9 @@ let vencimento = document.querySelector("#curso_vencimento");
 
 
 //Listeners
-form.addEventListener("submit", sendForm);
+form.addEventListener("submit", (e)=>{
+  formAddContrato.submitFormContrato(e)
+});
 
 //input Resp Aluno
 document

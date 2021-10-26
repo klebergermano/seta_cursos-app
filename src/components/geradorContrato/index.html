@@ -5,17 +5,27 @@
   <div id='loading_contrato'>
     <h3><img src='./assets/img/loading.gif' /> <span>Gerando Contrato ...</span> </h3>
   </div>
-
   <form id="form_contrato">
     <!-------------------------Fieldset Responsável----------------------->
     <div class='fieldset' id='fieldset_resp'>
-      <div class='div_input' id='div_resp_nome'> <label><span class='required'>*</span>Responsável: </label> <input
-          required id="resp_nome" type="text" />
-        <div id='div_btn_marcar_resp_aluno'>
-          <label id='btn_marcar_resp_aluno' for='checkbox_resp_aluno'>
-            <span>Marcar como Aluno(a)</span>
-            <input type='checkbox' id='checkbox_resp_aluno'> </label>
-        </div>
+      <div id='div_btn_marcar_resp_aluno'>
+        <label id='btn_marcar_resp_aluno' for='checkbox_resp_aluno'>
+        <span>Marcar como Aluno(a)</span>
+        <input type='checkbox' id='checkbox_resp_aluno'> 
+      </label>
+    </div>
+      <div class='div_input' id='div_resp_nome'>
+        <label><span class='required'>*</span>Responsável: </label> 
+        <input required id="resp_nome" type="text"/>
+      </div>
+      <div class='div_input' id='div_resp_genero'>
+        <label><span class='required'>*</span>Genero: </label> 
+        <select id='resp_genero' required>
+          <option value='' selected disabled></option>
+          <option value='M'>M</option>
+          <option value='F'>F</option>
+          <option value='OUTRO'>OUTRO</option>
+        </select>
       </div>
       <div class='div_input' id='div_resp_end'> <label><span class='required'>*</span>Endereço: </label> <input required
           id="resp_end" type="text" /> &nbsp;  <label class='label_numero'><span class='required'>*</span>Nº: </label> <input
@@ -28,14 +38,29 @@
           id="resp_cpf" type="text" /> </div>
       <div class='div_input' id='div_resp_rg'><label><span class='required'>*</span>RG: </label> <input required
           id="resp_rg" type="text" /> </div>
-      <div class='div_input' id='div_resp_cel'><label>Cel.: </label> <input id="resp_cel" type="text" /></div>
-      <div class='div_input' id='div_resp_tel'><label>Tel.: </label> <input id="resp_tel" type="text" /></div>
-    </div>
 
+          <div class='div_input' id='div_resp_data_nasc'>
+            <label>Data Nasc.: </label> 
+            <input id="resp_data_nasc" type="date" />
+          </div>   
+      <div class='div_input' id='div_resp_cel'><label>Cel.: </label> <input id="resp_cel" type="text" /></div>
+      
+      <div class='div_input' id='div_resp_tel'>
+        <label>Tel.: </label> <input id="resp_tel" type="text" />
+      </div>
+      <div class='div_input' id='div_resp_email'>
+        <label>Email: </label> <input id="resp_email" type="text" />
+      </div>
+   
+      <div class='div_input' id='div_resp_obs'>
+        <label>Obs.: </label> 
+        <textarea id='resp_obs'></textarea>
+      </div>
+    </div>
+    <!--fieldset resp-->
     <div class='fieldset' id='fieldset_aluno'>
-      <div class='div_input' id='div_aluno_nome'>
-        <div id='block_aluno'></div> <label><span class='required'>*</span>Aluno(a): </label> <input required
-          id="aluno_nome" type="text" /> &nbsp; <label id='label_parentesco'>Parentesco: </label> 
+      <div class='div_input' id='div_aluno_parentesco'>
+        <label id='label_parentesco'>Parentesco c/ o Responsável: </label> 
           <select id='aluno_parentesco'>
           <option value="" selected="true" disabled="disabled"></option>
           <option value="Filho(a)">Filho(a)</option>
@@ -46,15 +71,41 @@
           <option value="Responsável Legal">Responsável Legal</option>
         </select>
       </div>
+      <div class='div_input' id='div_aluno_nome'>
+        <div id='block_aluno'></div> 
+        <label><span class='required'>*</span>Aluno(a): </label> 
+        <input required id="aluno_nome" type="text" /> &nbsp; 
+      </div>
+      <div class='div_input' id='div_aluno_genero'>
+        <label><span class='required'>*</span>Genero: </label> 
+        <select id='aluno_genero' required>
+          <option value='' selected disabled></option>
+          <option value='M'>M</option>
+          <option value='F'>F</option>
+          <option value='OUTRO'>OUTRO</option>
+        </select>
+      </div>
+
       <div class='div_input' id='div_aluno_end'> <label>Endereço: </label> <input id="aluno_end" type="text" /> &nbsp; <label
           class='label_numero'>Nº: </label> <input class="end_numero" id='aluno_numero' type="text" /> </div>
       <div class='div_input' id='div_aluno_bairro'><label>Bairro: </label> <input id="aluno_bairro" type="text" />
       </div>
       <div class='div_input' id='div_aluno_cep'><label>CEP: </label> <input id="aluno_cep" type="text" /></div>
       <div class='div_input' id='div_aluno_rg'><label>RG: </label> <input id="aluno_rg" type="text" /></div>
+      <div class='div_input' id='div_aluno_data_nasc'>
+        <label>Data Nasc.: </label> 
+        <input id="aluno_data_nasc" type="date" />
+      </div>
       <div class='div_input' id='div_aluno_cel'><label>Cel.: </label> <input id="aluno_cel" type="text" /></div>
       <div class='div_input' id='div_aluno_tel'><label>Tel.: </label> <input id="aluno_tel" type="text" /></div>
-    </div>
+      <div class='div_input' id='div_aluno_email'>
+        <label>Email: </label> <input id="aluno_email" type="text" />
+      </div>
+      <div class='div_input' id='div_aluno_obs'>
+        <label>Obs.: </label> 
+        <textarea id='aluno_obs'></textarea>
+      </div>
+     </div>
     <!--div fieldset-->
     <!------------------------------ FIELDSET CURSO------------------------------->
     <div class='fieldset' id='fieldset_curso'>
@@ -145,7 +196,7 @@
   <textarea id='curso_obs' placeholder="Descontos e outros detalhes aqui..."></textarea>
 
  </div>
-
+</div>
     
       <!--div fieldset-->
       <button id='btn_salvar' type="submit">Salvar Contrato</button>
