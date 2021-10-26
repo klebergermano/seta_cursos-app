@@ -12,7 +12,24 @@ function converteData(data) {
   let f_data = dia + "/" + mes + "/" + ano;
   return f_data;
 }
-const TemplateContrato =(data)=>{
+const TemplateContrato = (data)=>{
+  console.log('********************************');
+  console.log(data);
+  console.log('********************************');
+
+  if (data.checkbox_resp_aluno) {
+    data.aluno_nome = "(IDEM)";
+    data.aluno_end = "(IDEM)";
+    data.aluno_numero = "(IDEM)";
+    data.aluno_parentesco = "(IDEM)";
+    data.aluno_bairro = "(IDEM)";
+    data.aluno_cep = "(IDEM)";
+    data.aluno_rg = "(IDEM)";
+    data.aluno_data_nasc = "(IDEM)";
+    data.aluno_cel = "(IDEM)";
+    data.aluno_tel = "(IDEM)";
+    data.aluno_obs = "(IDEM)";
+  }
 let curso;
 switch(true){
 
@@ -21,6 +38,12 @@ break;
 case (/Inglês/gmi).test(data.curso_nome) : curso = 'Inglês'
 break;
 case (/Excel/gmi).test(data.curso_nome) : curso = 'Excel'
+break; 
+case (/Web/gmi).test(data.curso_nome) : curso = 'Desenvolvimento Web'
+break; 
+case (/Administra/gmi).test(data.curso_nome) : curso = 'Administração'
+break; 
+case (/Espanhol/gmi).test(data.curso_nome) : curso = 'Espanhol'
 break; 
 case (/Banco/gmi).test(data.curso_nome) : curso = 'Banco de Dados'
 break; 

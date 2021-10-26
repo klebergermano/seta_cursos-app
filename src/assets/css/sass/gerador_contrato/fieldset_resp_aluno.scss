@@ -24,7 +24,8 @@ position:relative;
 
 div{
     label{
-        background: #e6cdc5;
+       // background: #d3d7dd;
+        background: #ddd7d3;
     }
 }
     // bloqueia o input aluno nome;
@@ -55,16 +56,14 @@ div{
 }
 #fieldset_resp {
     padding-top:70px !important;
-
-
     border-color: lighten($primary-color, 10%) !important;
     div {
         margin-bottom:20px;
        label{
-           background: #cdd3df;
+           background: #d3d7dd;
        }
         #btn_marcar_resp_aluno {
-            top:15px; right:25px;
+            top:20px; right:35px;
             position:absolute;
             clear: both;
             transition: all 0.5s;

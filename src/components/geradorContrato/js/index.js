@@ -24,7 +24,7 @@ let cursosSelect2 = document.querySelector("#combo_curso_2");
 function checkboxRespAluno(e) {
   
   let btn_marcar_resp_aluno = document.querySelector("#btn_marcar_resp_aluno")
-let fieldset_aluno = document.querySelector("#fieldset_aluno");
+  let fieldset_aluno = document.querySelector("#fieldset_aluno");
   e.target.parentElement.classList.toggle("active");
   if (e.target.parentElement.classList.contains("active")) {
     btn_marcar_resp_aluno.classList.add('btn_ativo');
@@ -34,6 +34,8 @@ let fieldset_aluno = document.querySelector("#fieldset_aluno");
     setAttribute("#aluno_nome", 'style', "color: #fff");
     setAttribute("#aluno_nome", 'value', "IDEM");
     removeAttribute("#aluno_nome", 'required');
+    removeAttribute("#aluno_parentesco", 'required');
+    removeAttribute("#aluno_genero", 'required');
   } else {
     btn_marcar_resp_aluno.classList.remove('btn_ativo');
     btn_marcar_resp_aluno.querySelector('span').textContent = "Marcar como aluno(a)";
@@ -43,6 +45,8 @@ let fieldset_aluno = document.querySelector("#fieldset_aluno");
     setAttribute("#aluno_nome", 'style', "color:#333");
     setAttribute("#aluno_nome", 'value', "");
     setAttribute("#aluno_nome", 'required', true);
+    setAttribute("#aluno_parentesco", 'required', true);
+    setAttribute("#aluno_genero", 'required', true);
   }
 }
 

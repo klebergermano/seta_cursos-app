@@ -1,13 +1,12 @@
 @use '../abstracts/' as *;
 #fieldset_curso {
-    border-color: #444 !important;
+    border-color: #454 !important;
    // border-color: #27b67a !important;
    div{
     label{
-        background: #ccc;
+        background: #d3ddd3;
     }
 }
-
     & > div{
         padding: 6px 0px
     }
@@ -98,7 +97,8 @@
 
     }
     #div_curso_combo{
-        background:#ccc;
+        background:#d3ddd3;
+        //ddd7d3
         padding:10px;
         margin: 10px 0px;
         max-width: 100%;

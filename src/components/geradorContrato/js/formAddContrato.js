@@ -6,13 +6,9 @@ const db = getFirestore(firebaseApp);
 
 import * as commonFunc from "../../js_common/commonFunctions.js";
 
-export function eventsFormAddContrato(){
-
-}
 
 export function submitFormContrato(e){
     e.preventDefault();
-
 
 let form  = document.querySelector('#form_contrato');
 let formInfo = createFormInfo(e);
@@ -91,6 +87,23 @@ function createFormInfo(e){
   
     //Caso o Aluno seja o próprio responsável seta os valores como --/--
     if (e.target.checkbox_resp_aluno.checked) {
+      formInfo.checkbox_resp_aluno = true;
+      formInfo.aluno_nome = formInfo.resp_nome;
+      formInfo.aluno_end = formInfo.resp_end;
+      formInfo.aluno_numero = formInfo.resp_numero;
+      formInfo.aluno_parentesco = "(IDEM)";
+      formInfo.aluno_bairro = formInfo.resp_bairro;
+      formInfo.aluno_cep = formInfo.resp_cep;
+      formInfo.aluno_rg = formInfo.resp_rg;
+      formInfo.aluno_data_nasc = formInfo.resp_data_nasc;
+      formInfo.aluno_cel = formInfo.resp_cel;
+      formInfo.aluno_tel = formInfo.resp_tel;
+      formInfo.aluno_obs = formInfo.resp_obs;
+    }else{
+      formInfo.checkbox_resp_aluno = false;
+    }
+    /*
+    if (e.target.checkbox_resp_aluno.checked) {
       formInfo.aluno_nome = "(IDEM)";
       formInfo.aluno_end = "(IDEM)";
       formInfo.aluno_numero = "(IDEM)";
@@ -103,6 +116,7 @@ function createFormInfo(e){
       formInfo.aluno_tel = "(IDEM)";
       formInfo.aluno_obs = "(IDEM)";
     }
+    */
     return formInfo;
 }
 

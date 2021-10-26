@@ -1473,7 +1473,7 @@ input:disabled, textarea:disabled {
   opacity: 1;
 }
 #fieldset_aluno div label {
-  background: #e6cdc5;
+  background: #ddd7d3;
 }
 #fieldset_aluno #block_aluno {
   display: none;
@@ -1505,11 +1505,11 @@ input:disabled, textarea:disabled {
   margin-bottom: 20px;
 }
 #fieldset_resp div label {
-  background: #cdd3df;
+  background: #d3d7dd;
 }
 #fieldset_resp div #btn_marcar_resp_aluno {
-  top: 15px;
-  right: 25px;
+  top: 20px;
+  right: 35px;
   position: absolute;
   clear: both;
   transition: all 0.5s;
@@ -1547,10 +1547,10 @@ input:disabled, textarea:disabled {
 }
 
 #fieldset_curso {
-  border-color: #444 !important;
+  border-color: #454 !important;
 }
 #fieldset_curso div label {
-  background: #ccc;
+  background: #d3ddd3;
 }
 #fieldset_curso > div {
   padding: 6px 0px;
@@ -1634,7 +1634,7 @@ input:disabled, textarea:disabled {
   padding: 5px;
 }
 #fieldset_curso #div_curso_combo {
-  background: #ccc;
+  background: #d3ddd3;
   padding: 10px;
   margin: 10px 0px;
   max-width: 100%;
@@ -1773,7 +1773,7 @@ select .re {
   max-width: 100%;
   margin: 10px 20px;
   border: 1px solid #aaa;
-  padding: 30px;
+  padding: 20px 30px;
   height: auto;
   display: flex;
   flex-wrap: wrap;
