@@ -1792,7 +1792,7 @@ select .re {
 }
 #bg_div_id_contrato #div_id_contrato input[readonly=true] {
   border: 1px solid #245da7;
-  background: #a0b6cd;
+  background: #c3cad3;
 }
 
 * {

@@ -1,4 +1,4 @@
-function RemoveAttribute(inputName, attributeName){
+function removeAttributeFromElement(inputName, attributeName){
    document.querySelector(inputName).removeAttribute(attributeName);
 }
-export default RemoveAttribute;
+export default removeAttributeFromElement;

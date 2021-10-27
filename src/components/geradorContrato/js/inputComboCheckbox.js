@@ -1,7 +1,7 @@
 //Insere as informações dos cursos nos inputs baseado em qual curso for selecionado.
 import insertComboTextarea from "./insertComboTextarea.js";
 import setAttribute from "./setAttribute.js";
-import removeAttribute from "./setAttribute.js";
+import removeAttributeFromElement from "./removeAttribute.js";
 
 
 
@@ -47,7 +47,7 @@ combo_textarea.style.zIndex = "0";
       comboCurso1.style.color = "transparent";
       comboCurso2.style.color = "transparent";
       comboCurso2.style["pointer-events"] = "none";
-      removeAttribute('#combo_curso_2', 'required');
+      removeAttributeFromElement('#combo_curso_2', 'required');
     }
   }
   
