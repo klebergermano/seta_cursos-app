@@ -61,8 +61,11 @@ div{
         margin-bottom:20px;
        label{
            background: #d3d7dd;
+
        }
         #btn_marcar_resp_aluno {
+        user-select: none;
+
             top:20px; right:35px;
             position:absolute;
             clear: both;

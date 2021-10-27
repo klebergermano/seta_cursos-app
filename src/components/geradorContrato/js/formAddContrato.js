@@ -1,5 +1,4 @@
 const { ipcRenderer } = require("electron");
-
 import {firebaseApp} from "../../dbConfig/firebaseApp.js";
 const {getFirestore, setDoc,  doc} = require("firebase/firestore") 
 const db = getFirestore(firebaseApp);
@@ -10,11 +9,10 @@ import * as commonFunc from "../../js_common/commonFunctions.js";
 export function submitFormContrato(e){
     e.preventDefault();
 
-let form  = document.querySelector('#form_contrato');
 let formInfo = createFormInfo(e);
 console.log(formInfo);
 
-setDoc(doc(db, "contratos", '01'), 
+setDoc(doc(db, "contratos", formInfo.id_contrato), 
 { 
   resp_info: {
    nome: formInfo.resp_nome, 

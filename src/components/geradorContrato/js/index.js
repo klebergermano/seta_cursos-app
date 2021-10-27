@@ -1,4 +1,8 @@
 
+import {firebaseApp} from "../../dbConfig/firebaseApp.js";
+const {getFirestore, setDoc, getDocs, doc} = require("firebase/firestore") 
+const db = getFirestore(firebaseApp);
+
 const VMasker = require("vanilla-masker");
 
 import inputComboCheckbox from "./inputComboCheckbox.js";
@@ -9,6 +13,7 @@ import removeAttribute from "./removeAttribute.js";
 import insertInputValorTotal from "./insertInputValorTotal.js";
 import setAttribute from "./setAttribute.js";
 import * as formAddContrato from "./formAddContrato.js";
+import * as geradorIdContrato from "./geradorIdContrato.js";
 
 
 function setCurso() {
@@ -52,6 +57,7 @@ function checkboxRespAluno(e) {
 
 
 export function onload(){
+
   setCurso() 
 
 //variáveis
@@ -85,10 +91,14 @@ document
 document
   .querySelector("#combo_curso_2")
   .addEventListener("input", insertComboTextarea);
+document.querySelector('#checkbox_id_automatico_contrato')
+.addEventListener('click', geradorIdContrato.toggleIdAutomaticoContrato);
+
 
 valor.addEventListener("input", insertInputValorTotal);
 desconto.addEventListener("input", insertInputValorTotal);
 desconto.addEventListener("change", insertComboTextarea);
+
 
 //Mascaras
 VMasker(valor).maskMoney();
@@ -105,5 +115,9 @@ insertInputDateValue(new Date(), "#curso_data_contrato");
 insertInputDateValue(new Date(), "#curso_inicio");
 //Insere a dia atual como como possível dia de vencimento do curso.
 vencimento.value = String(new Date().getDate()).padStart(2, "0");
-    
+
+geradorIdContrato.maskInputIdContrato();
+
+
+
 }
