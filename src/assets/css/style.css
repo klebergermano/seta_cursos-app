@@ -1752,7 +1752,7 @@ select .re {
 
 #bg_div_id_contrato {
   display: flex;
-  margin: 0px 20px 10px 20px;
+  margin: 0 20px 10px;
   border: 1px solid #111;
   background: #eee;
   padding: 10px;
@@ -1762,6 +1762,9 @@ select .re {
   align-items: center;
   background: #fff;
   padding: 10px 20px;
+}
+#bg_div_id_contrato .input_invalido {
+  background: #f1c0c0 !important;
 }
 #bg_div_id_contrato #label_id_contrato_automatico {
   transition: all 0.5s;
@@ -1775,7 +1778,6 @@ select .re {
 #bg_div_id_contrato .active {
   max-width: 350px;
   width: 350px;
-  transition: all 1s;
   background: #245da7 !important;
   color: #fff !important;
 }
@@ -1783,8 +1785,11 @@ select .re {
   display: flex;
 }
 #bg_div_id_contrato #div_id_contrato input {
+  border: 1px solid #999;
+  transition: all 0.2s;
   padding: 5px;
   font-size: 18px;
+  background: #fff;
 }
 #bg_div_id_contrato #div_id_contrato input:focus {
   outline: 2px solid #245da7;
