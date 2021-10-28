@@ -349,7 +349,7 @@ template {
   display: none;
 }
 
-.btn, #fieldset_resp div #btn_marcar_resp_aluno, .btn-secondary, .btn-primary, .forms_fixed input[type=submit], #form_add_aluno input[type=submit], #aluno_content .btn_add_curso, .form_flex input[type=submit], #form_add_entrada_caixa input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], .forms_controle_aula input[type=submit], .btn-default-delete, #aluno_content .bg_info_delete_curso .btn_deletar_curso, .btn-default, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], #div_id_aluno #label_id_automatico_aluno, .forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox, #bg_div_id_contrato #label_id_automatico_contrato, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo, #aluno_content .btn_add, menu.submenu_page ul li a {
+.btn, #fieldset_resp div #btn_marcar_resp_aluno, .btn-secondary, .btn-primary, .forms_fixed input[type=submit], #form_add_aluno input[type=submit], #aluno_content .btn_add_curso, .form_flex input[type=submit], #form_add_entrada_caixa input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], .forms_controle_aula input[type=submit], .btn-default-delete, #aluno_content .bg_info_delete_curso .btn_deletar_curso, .btn-default, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], #div_ra_aluno #label_ra_automatico_aluno, .forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox, #bg_div_id_contrato #label_id_automatico_contrato, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo, #aluno_content .btn_add, menu.submenu_page ul li a {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -359,22 +359,22 @@ template {
   border: 0px;
   cursor: pointer;
 }
-.btn svg, #fieldset_resp div #btn_marcar_resp_aluno svg, .btn-secondary svg, .btn-primary svg, .forms_fixed input[type=submit] svg, #form_add_aluno input[type=submit] svg, #aluno_content .btn_add_curso svg, .form_flex input[type=submit] svg, #form_add_entrada_caixa input[type=submit] svg, #form_config_perm input[type=submit] svg, #form_reauth_user input[type=submit] svg, #form_add_user input[type=submit] svg, .forms_controle_aula input[type=submit] svg, .btn-default-delete svg, #aluno_content .bg_info_delete_curso .btn_deletar_curso svg, .btn-default svg, .nav_forms ul li a svg, #page_login #login_content #form_login input[type=submit] svg, #div_id_aluno #label_id_automatico_aluno svg, .forms_fixed .label_btn_checkbox svg, #form_add_aluno .label_btn_checkbox svg, #bg_div_id_contrato #label_id_automatico_contrato svg, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo svg, #aluno_content .btn_add svg, menu.submenu_page ul li a svg {
+.btn svg, #fieldset_resp div #btn_marcar_resp_aluno svg, .btn-secondary svg, .btn-primary svg, .forms_fixed input[type=submit] svg, #form_add_aluno input[type=submit] svg, #aluno_content .btn_add_curso svg, .form_flex input[type=submit] svg, #form_add_entrada_caixa input[type=submit] svg, #form_config_perm input[type=submit] svg, #form_reauth_user input[type=submit] svg, #form_add_user input[type=submit] svg, .forms_controle_aula input[type=submit] svg, .btn-default-delete svg, #aluno_content .bg_info_delete_curso .btn_deletar_curso svg, .btn-default svg, .nav_forms ul li a svg, #page_login #login_content #form_login input[type=submit] svg, #div_ra_aluno #label_ra_automatico_aluno svg, .forms_fixed .label_btn_checkbox svg, #form_add_aluno .label_btn_checkbox svg, #bg_div_id_contrato #label_id_automatico_contrato svg, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo svg, #aluno_content .btn_add svg, menu.submenu_page ul li a svg {
   max-width: 100px;
   max-height: 100px;
   height: auto;
   width: 20px;
 }
 
-.btn-default, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], #div_id_aluno #label_id_automatico_aluno, .forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox, #bg_div_id_contrato #label_id_automatico_contrato, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo, #aluno_content .btn_add, menu.submenu_page ul li a {
+.btn-default, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], #div_ra_aluno #label_ra_automatico_aluno, .forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox, #bg_div_id_contrato #label_id_automatico_contrato, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo, #aluno_content .btn_add, menu.submenu_page ul li a {
   background: #f0f0f0;
   color: #333;
   border: 1px solid #666;
 }
-.btn-default:hover, .nav_forms ul li a:hover, #page_login #login_content #form_login input[type=submit]:hover, #div_id_aluno #label_id_automatico_aluno:hover, .forms_fixed .label_btn_checkbox:hover, #form_add_aluno .label_btn_checkbox:hover, #bg_div_id_contrato #label_id_automatico_contrato:hover, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo:hover, #aluno_content .btn_add:hover, menu.submenu_page ul li a:hover {
+.btn-default:hover, .nav_forms ul li a:hover, #page_login #login_content #form_login input[type=submit]:hover, #div_ra_aluno #label_ra_automatico_aluno:hover, .forms_fixed .label_btn_checkbox:hover, #form_add_aluno .label_btn_checkbox:hover, #bg_div_id_contrato #label_id_automatico_contrato:hover, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo:hover, #aluno_content .btn_add:hover, menu.submenu_page ul li a:hover {
   background: #fdfdfd;
 }
-.btn-default:active, .nav_forms ul li a:active, #page_login #login_content #form_login input[type=submit]:active, #div_id_aluno #label_id_automatico_aluno:active, .forms_fixed .label_btn_checkbox:active, #form_add_aluno .label_btn_checkbox:active, #bg_div_id_contrato #label_id_automatico_contrato:active, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo:active, #aluno_content .btn_add:active, menu.submenu_page ul li a:active {
+.btn-default:active, .nav_forms ul li a:active, #page_login #login_content #form_login input[type=submit]:active, #div_ra_aluno #label_ra_automatico_aluno:active, .forms_fixed .label_btn_checkbox:active, #form_add_aluno .label_btn_checkbox:active, #bg_div_id_contrato #label_id_automatico_contrato:active, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo:active, #aluno_content .btn_add:active, menu.submenu_page ul li a:active {
   background: #e3e3e3;
   box-shadow: inset 0px 1px 3px #bdbdbd;
 }
@@ -2046,8 +2046,10 @@ option[disabled] {
   margin-top: 0px !important;
 }
 
-#div_id_aluno {
+#div_ra_aluno {
+  width: 100%;
   display: flex;
+  justify-content: flex-start !important;
   flex-shrink: 1;
   flex-grow: 1;
   margin: 20px 10px;
@@ -2055,13 +2057,14 @@ option[disabled] {
   background: #eee;
   padding: 10px !important;
 }
-#div_id_aluno label {
+#div_ra_aluno label {
   display: flex;
   align-items: center;
   background: #fff;
   padding: 10px 20px;
 }
-#div_id_aluno input {
+#div_ra_aluno input {
+  max-width: 300px;
   flex-shrink: 1;
   border: 1px solid #999;
   transition: all 0.2s;
@@ -2069,28 +2072,28 @@ option[disabled] {
   font-size: 18px;
   background: #fff;
 }
-#div_id_aluno input:focus {
+#div_ra_aluno input:focus {
   outline: 2px solid #245da7;
   outline-offset: -2px;
 }
-#div_id_aluno input[readonly=true] {
+#div_ra_aluno input[readonly=true] {
   border: 1px solid #245da7;
   background: #c3cad3;
 }
-#div_id_aluno .input_invalido {
+#div_ra_aluno .input_invalido {
   background: #f1c0c0 !important;
 }
-#div_id_aluno #label_id_automatico_aluno {
-  margin-right: 10px;
+#div_ra_aluno #label_ra_automatico_aluno {
+  margin-left: 0px;
   transition: all 0.5s;
-  max-width: 200px;
-  width: 200px;
+  max-width: 220px;
+  min-width: 180px;
   user-select: none;
 }
-#div_id_aluno #label_id_automatico_aluno #checkbox_id_automatico_aluno {
+#div_ra_aluno #label_ra_automatico_aluno #checkbox_id_automatico_aluno {
   display: none;
 }
-#div_id_aluno .active {
+#div_ra_aluno .active {
   max-width: 350px;
   width: 350px;
   background: #245da7 !important;

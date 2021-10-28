@@ -16,15 +16,12 @@ export function insertFormAddAlunoHTML(){
 
 function eventsFormAddAluno(){
   let form = document.querySelector('#form_add_aluno');
-
   alunoRA.eventsAlunoRA();
-
- form.addEventListener("submit", (e) => {
-    submitFormAddAluno(e);
+  form.addEventListener("submit", (e) => {
+      submitFormAddAluno(e);
   });
 
-  //Insere as os RAs ja cadastrados como opções do datalist.
-  insertOptionsAddAlunoRA()
+
   
 }
 

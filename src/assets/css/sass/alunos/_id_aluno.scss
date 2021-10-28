@@ -1,6 +1,8 @@
 @use '../abstracts/' as *;
-#div_id_aluno {
+#div_ra_aluno {
+    width: 100%;
     display: flex;
+    justify-content: flex-start !important;
     flex-shrink: 1;
     flex-grow: 1;
     margin: 20px 10px;
@@ -14,6 +16,7 @@
         padding: 10px 20px;
     }
     input {
+        max-width: 300px;
         flex-shrink: 1;
         border: $border-set-default;
         transition: all 0.2s;
@@ -35,12 +38,12 @@
         background: #f1c0c0 !important;
     }
 
-    #label_id_automatico_aluno {
-        margin-right:10px;
+    #label_ra_automatico_aluno {
+        margin-left:0px;
         transition: all 0.5s;
         @extend .btn-default;
-        max-width: 200px;
-        width: 200px;
+        max-width: 220px;
+        min-width: 180px;
         user-select: none;
 
         #checkbox_id_automatico_aluno {
