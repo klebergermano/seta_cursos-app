@@ -1,10 +1,11 @@
 @use 'base';
 @use 'abstracts' as *;
-@use 'elements/header_admin.scss';
-@use 'elements/main_menu_lateral_admin.scss';
+
+@use 'elements';
 @use 'cursos_info';
 @use 'controle_aula';
 @use 'gerador_contrato';
+@use 'alunos';
 @use 'login';
 @use 'users';
 @use 'fluxo_caixa';

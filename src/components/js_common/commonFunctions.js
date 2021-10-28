@@ -19,9 +19,8 @@ export function removeBlockScreen(){
 }
 export function displayBlockScreen(){
   changeCSSDisplay('#block_screen', 'block')
-
 }
-export function insertElementHTML(target, pathElementHTML,  callback, event){
+export function insertElementHTML(target, pathElementHTML,  callback, event, cleanTargetElement = false){
   let targetElement = document.querySelector(target);
  let insertedElement = fetch(pathElementHTML)
   .then((res)=> res.text())
@@ -29,8 +28,12 @@ export function insertElementHTML(target, pathElementHTML,  callback, event){
        return new DOMParser().parseFromString(htmlString, 'text/html').body.firstElementChild;
   })
   .then((htmlElement)=>{
-    targetElement.appendChild(htmlElement);
+    if(cleanTargetElement){
+      console.log("Limpo");
+      targetElement.innerHTML = '';
 
+    }   
+    targetElement.appendChild(htmlElement);
    return htmlElement;
   }).then((htmlElement)=>{
     if(callback) callback(htmlElement, event);

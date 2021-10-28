@@ -8,13 +8,15 @@ import * as commonFunc from "../../js_common/commonFunctions.js";
 import * as  dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
 
 export function insertFormAddAlunoHTML(){
-  commonFunc.insertElementHTML('#alunos_submenu_content',
-  './components/alunos/formAddAluno.html', eventsFormAddAluno, null, true
+  commonFunc.insertElementHTML('#page_content',
+  './components/controleAula/formAddAluno.html',
+  eventsFormAddAluno
   );
 }
 
 function eventsFormAddAluno(){
   let form = document.querySelector('#form_add_aluno');
+commonFunc.btnCloseForm('#form_add_aluno');
 
   form.querySelector('#add_aluno_ra').addEventListener('input', (e)=>{
     validaSelectOptionsAddAluno(e);
@@ -24,10 +26,14 @@ function eventsFormAddAluno(){
     submitFormAddAluno(e);
   });
 
+  //Mostra a tela de bloqueio de fundo "block_screen".
+  commonFunc.changeCSSDisplay('#block_screen', 'block');
   //Insere as os RAs ja cadastrados como opções do datalist.
   insertOptionsAddAlunoRA()
   
 }
+
+
 
 //Função de validação do valor inserido no campoo RA, 
 //caso esse valor ja exista bloqueia a inserção.
