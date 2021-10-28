@@ -1,0 +1,56 @@
+@use '../abstracts/' as *;
+#bg_div_id_aluno {
+    display: flex;
+    margin: 0 20px 10px;
+    border: 1px solid #111;
+    background: #eee;
+    padding: 10px;
+    label {
+        display: flex;
+        align-items: center;
+        background: #fff;
+        padding: 10px 20px;
+    }
+
+    .input_invalido {
+        background: #f1c0c0 !important;
+    }
+
+    #label_id_automatico_aluno {
+        transition: all 0.5s;
+        @extend .btn-default;
+        max-width: 300px;
+        width: 200px;
+        user-select: none;
+
+        #checkbox_id_automatico_aluno {
+            display: none;
+        }
+
+    }
+    .active {
+        max-width: 350px;
+        width: 350px;
+        background: $primary-color !important;
+        color: #fff !important;
+    }
+    #div_id_aluno {
+        display: flex;
+        input {
+            border:$border-set-default;
+            transition: all 0.2s;
+            padding: 5px;
+            font-size: 18px;
+            background:#fff;
+            &:focus {
+                outline: 2px solid $primary-color;
+                outline-offset: -2px;
+            }
+        }
+        input[readonly="true"] {
+            border: 1px solid $primary-color;
+            background: #c3cad3;
+        }
+    }
+
+}
