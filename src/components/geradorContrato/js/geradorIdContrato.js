@@ -17,7 +17,7 @@ export function eventsIdContrato() {
     //Garante que o id tera 5 digitos aplicando padStart.
     id_contrato.addEventListener('change', () => {
         maskValueIdContrato()
-        validaInputIdContrato()
+        checkInputIdContrato()
     });
 
 }
@@ -29,6 +29,7 @@ function toggleIdAutomaticoContrato() {
         labelCheckbox.classList.add('active');
         labelCheckbox.querySelector('span').innerHTML = "ID Automático Gerado &#10003;";
         setIdAutomaticoContrato();
+        validateInputIdContrato();
     } else {
         labelCheckbox.classList.remove('active');
         labelCheckbox.querySelector('span').innerHTML = "Gerar ID Automático";
@@ -36,7 +37,7 @@ function toggleIdAutomaticoContrato() {
     }
 }
 
-function validaInputIdContrato() {
+function checkInputIdContrato() {
     let idInputValue = document.querySelector("#id_contrato").value;
     getIdContratos()
         .then((idContratos) => {
@@ -46,7 +47,6 @@ function validaInputIdContrato() {
                    valida = false;
                 }
             })
-  
             if(!valida) invalidateInputIdContrato();
             else validateInputIdContrato();
 

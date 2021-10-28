@@ -1,18 +1,25 @@
-<form id="form_add_aluno" class="forms_controle_aula">
-    <span class="btn_close_form">X</span>
+<form id="form_add_aluno" >
     <h3><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
       <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
       <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
     </svg> Adicionar Aluno</h3>
-    <div>
-      <label for="nome">Aluno:</label><input required id="nome" type="text" placeholder='Digite o nome do aluno' />
-      <label for="add_aluno_ra">RA:</label>
-      <input required id="add_aluno_ra" type="text" list="add_aluno_datalist_ra"/>
-  <datalist id='add_aluno_datalist_ra'>
-    <option></option>
-  </datalist>
-    </div>
-    <div>
+    <fieldset class='fieldset'>
+
+      <div id='bg_div_id_aluno'>
+        <label id='label_id_automatico_aluno' class='label_btn_checkbox'>
+          <span>Gerar ID Automático</span>
+          <input id='checkbox_id_automatico_aluno' type='checkbox'>
+        </label>
+        <label for="add_aluno_ra">RAs:</label>
+        <input required id="add_aluno_ra" type="text" list="add_aluno_datalist_ra"/>
+        <datalist id='add_aluno_datalist_ra'>
+          <option></option>
+        </datalist>
+      </div><!--bg_div_id_aluno-->
+      <div>
+        <label for="nome">Aluno:</label><input required id="nome" type="text" placeholder='Digite o nome do aluno' />
+      </div>
+        <div>
       <label><span class='required'>&nbsp;&nbsp; *</span> Curso:</label> 
       <select required id='curso_nome'>
         <option selected="true" disabled value=''>Selecione o Curso</option>
@@ -30,6 +37,7 @@
         <option class='bd' data-abreviation='BDBMYSQL' value='Banco de Dados Básico(MySQL)'>Banco de Dados Básico MySQL</option>
       </select>
     </div>
+  </fieldset>
     
     <input type="submit" value="Salvar" />
   </form>

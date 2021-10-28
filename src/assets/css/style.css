@@ -349,7 +349,7 @@ template {
   display: none;
 }
 
-.btn, #fieldset_resp div #btn_marcar_resp_aluno, .btn-secondary, .btn-primary, #aluno_content .btn_add_curso, .form_flex input[type=submit], #form_add_entrada_caixa input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], .forms_controle_aula input[type=submit], .btn-default-delete, #aluno_content .bg_info_delete_curso .btn_deletar_curso, .btn-default, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], #bg_div_id_contrato #label_id_contrato_automatico, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo, #aluno_content .btn_add {
+.btn, #fieldset_resp div #btn_marcar_resp_aluno, .btn-secondary, .btn-primary, .forms_fixed input[type=submit], #form_add_aluno input[type=submit], #aluno_content .btn_add_curso, .form_flex input[type=submit], #form_add_entrada_caixa input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], .forms_controle_aula input[type=submit], .btn-default-delete, #aluno_content .bg_info_delete_curso .btn_deletar_curso, .btn-default, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], .forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox, #bg_div_id_contrato #label_id_automatico_contrato, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo, #aluno_content .btn_add, menu.submenu_page ul li a {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -359,22 +359,22 @@ template {
   border: 0px;
   cursor: pointer;
 }
-.btn svg, #fieldset_resp div #btn_marcar_resp_aluno svg, .btn-secondary svg, .btn-primary svg, #aluno_content .btn_add_curso svg, .form_flex input[type=submit] svg, #form_add_entrada_caixa input[type=submit] svg, #form_config_perm input[type=submit] svg, #form_reauth_user input[type=submit] svg, #form_add_user input[type=submit] svg, .forms_controle_aula input[type=submit] svg, .btn-default-delete svg, #aluno_content .bg_info_delete_curso .btn_deletar_curso svg, .btn-default svg, .nav_forms ul li a svg, #page_login #login_content #form_login input[type=submit] svg, #bg_div_id_contrato #label_id_contrato_automatico svg, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo svg, #aluno_content .btn_add svg {
+.btn svg, #fieldset_resp div #btn_marcar_resp_aluno svg, .btn-secondary svg, .btn-primary svg, .forms_fixed input[type=submit] svg, #form_add_aluno input[type=submit] svg, #aluno_content .btn_add_curso svg, .form_flex input[type=submit] svg, #form_add_entrada_caixa input[type=submit] svg, #form_config_perm input[type=submit] svg, #form_reauth_user input[type=submit] svg, #form_add_user input[type=submit] svg, .forms_controle_aula input[type=submit] svg, .btn-default-delete svg, #aluno_content .bg_info_delete_curso .btn_deletar_curso svg, .btn-default svg, .nav_forms ul li a svg, #page_login #login_content #form_login input[type=submit] svg, .forms_fixed .label_btn_checkbox svg, #form_add_aluno .label_btn_checkbox svg, #bg_div_id_contrato #label_id_automatico_contrato svg, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo svg, #aluno_content .btn_add svg, menu.submenu_page ul li a svg {
   max-width: 100px;
   max-height: 100px;
   height: auto;
   width: 20px;
 }
 
-.btn-default, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], #bg_div_id_contrato #label_id_contrato_automatico, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo, #aluno_content .btn_add {
+.btn-default, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], .forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox, #bg_div_id_contrato #label_id_automatico_contrato, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo, #aluno_content .btn_add, menu.submenu_page ul li a {
   background: #f0f0f0;
   color: #333;
   border: 1px solid #666;
 }
-.btn-default:hover, .nav_forms ul li a:hover, #page_login #login_content #form_login input[type=submit]:hover, #bg_div_id_contrato #label_id_contrato_automatico:hover, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo:hover, #aluno_content .btn_add:hover {
+.btn-default:hover, .nav_forms ul li a:hover, #page_login #login_content #form_login input[type=submit]:hover, .forms_fixed .label_btn_checkbox:hover, #form_add_aluno .label_btn_checkbox:hover, #bg_div_id_contrato #label_id_automatico_contrato:hover, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo:hover, #aluno_content .btn_add:hover, menu.submenu_page ul li a:hover {
   background: #fdfdfd;
 }
-.btn-default:active, .nav_forms ul li a:active, #page_login #login_content #form_login input[type=submit]:active, #bg_div_id_contrato #label_id_contrato_automatico:active, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo:active, #aluno_content .btn_add:active {
+.btn-default:active, .nav_forms ul li a:active, #page_login #login_content #form_login input[type=submit]:active, .forms_fixed .label_btn_checkbox:active, #form_add_aluno .label_btn_checkbox:active, #bg_div_id_contrato #label_id_automatico_contrato:active, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo:active, #aluno_content .btn_add:active, menu.submenu_page ul li a:active {
   background: #e3e3e3;
   box-shadow: inset 0px 1px 3px #bdbdbd;
 }
@@ -395,14 +395,14 @@ template {
   background: #fc4646;
 }
 
-.btn-primary, #aluno_content .btn_add_curso, .form_flex input[type=submit], #form_add_entrada_caixa input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], .forms_controle_aula input[type=submit] {
+.btn-primary, .forms_fixed input[type=submit], #form_add_aluno input[type=submit], #aluno_content .btn_add_curso, .form_flex input[type=submit], #form_add_entrada_caixa input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], .forms_controle_aula input[type=submit] {
   background: #245da7;
   color: #fafafa;
 }
-.btn-primary:hover, #aluno_content .btn_add_curso:hover, .form_flex input[type=submit]:hover, #form_add_entrada_caixa input[type=submit]:hover, #form_config_perm input[type=submit]:hover, #form_reauth_user input[type=submit]:hover, #form_add_user input[type=submit]:hover, .forms_controle_aula input[type=submit]:hover {
+.btn-primary:hover, .forms_fixed input[type=submit]:hover, #form_add_aluno input[type=submit]:hover, #aluno_content .btn_add_curso:hover, .form_flex input[type=submit]:hover, #form_add_entrada_caixa input[type=submit]:hover, #form_config_perm input[type=submit]:hover, #form_reauth_user input[type=submit]:hover, #form_add_user input[type=submit]:hover, .forms_controle_aula input[type=submit]:hover {
   background: #2969bc;
 }
-.btn-primary:active, #aluno_content .btn_add_curso:active, .form_flex input[type=submit]:active, #form_add_entrada_caixa input[type=submit]:active, #form_config_perm input[type=submit]:active, #form_reauth_user input[type=submit]:active, #form_add_user input[type=submit]:active, .forms_controle_aula input[type=submit]:active {
+.btn-primary:active, .forms_fixed input[type=submit]:active, #form_add_aluno input[type=submit]:active, #aluno_content .btn_add_curso:active, .form_flex input[type=submit]:active, #form_add_entrada_caixa input[type=submit]:active, #form_config_perm input[type=submit]:active, #form_reauth_user input[type=submit]:active, #form_add_user input[type=submit]:active, .forms_controle_aula input[type=submit]:active {
   background: #1f5192;
   box-shadow: inset 0px 1px 3px #122e53;
 }
@@ -692,6 +692,28 @@ inputs, .input-primary {
 #bg_main_menu_lateral_admin nav ul li a:hover {
   color: #80ace4;
   background: #333;
+}
+
+menu.submenu_page {
+  padding: 5px 5px;
+  background: #ddd;
+  border-radius: 3px 3px 0px 0px;
+  margin-bottom: 20px;
+  width: 100%;
+  border-bottom: 1px solid #333;
+  display: flex;
+}
+menu.submenu_page ul {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+menu.submenu_page ul li {
+  display: block;
+  list-style: none;
+}
+menu.submenu_page ul li a {
+  text-decoration: none;
 }
 
 #cursos_info .page_content {
@@ -1766,13 +1788,13 @@ select .re {
 #bg_div_id_contrato .input_invalido {
   background: #f1c0c0 !important;
 }
-#bg_div_id_contrato #label_id_contrato_automatico {
+#bg_div_id_contrato #label_id_automatico_contrato {
   transition: all 0.5s;
   max-width: 300px;
   width: 200px;
   user-select: none;
 }
-#bg_div_id_contrato #label_id_contrato_automatico #checkbox_id_automatico_contrato {
+#bg_div_id_contrato #label_id_automatico_contrato #checkbox_id_automatico_contrato {
   display: none;
 }
 #bg_div_id_contrato .active {
@@ -1917,6 +1939,111 @@ option[disabled] {
   color: red;
   margin-left: -10px;
   margin-right: 5px;
+}
+
+.forms_fixed, #form_add_aluno {
+  box-shadow: 0 1px 3px #666;
+  background: #f8f8f8;
+  position: relative;
+  padding: 40px;
+  width: 100%;
+  margin: 20px auto;
+  height: auto;
+  font-size: 14px;
+  overflow: hidden;
+}
+.forms_fixed h3, #form_add_aluno h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.forms_fixed .fieldset, #form_add_aluno .fieldset {
+  transition: all 1s;
+  max-width: 100%;
+  margin: 10px 20px;
+  border: 1px solid #aaa;
+  padding: 20px 30px;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+.forms_fixed .fieldset > div, #form_add_aluno .fieldset > div {
+  margin: 0 5px 3px 0;
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  justify-content: flex-end;
+  padding: 6px 0;
+}
+.forms_fixed .fieldset label, #form_add_aluno .fieldset label {
+  background: #ddd;
+  display: flex;
+  border-radius: 3px 0 0 3px;
+  flex-shrink: 1;
+  flex-grow: 1;
+  padding: 0 10px 0 15px;
+  height: auto;
+  align-items: center;
+  max-width: 100px;
+  min-width: 100px;
+}
+.forms_fixed .fieldset input, #form_add_aluno .fieldset input,
+.forms_fixed .fieldset select,
+#form_add_aluno .fieldset select,
+.forms_fixed .fieldset textarea,
+#form_add_aluno .fieldset textarea {
+  min-width: auto !important;
+  border-radius: 0 3px 3px 0;
+  min-height: 35px;
+  padding: 5px;
+  border: 1px solid #999;
+  font-size: 16px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  resize: vertical;
+}
+.forms_fixed .fieldset input:focus, #form_add_aluno .fieldset input:focus,
+.forms_fixed .fieldset select:focus,
+#form_add_aluno .fieldset select:focus,
+.forms_fixed .fieldset textarea:focus,
+#form_add_aluno .fieldset textarea:focus {
+  outline: 2px solid #5690db;
+  outline-offset: -2px;
+}
+.forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox {
+  transition: all 0.3s;
+  max-width: 300px;
+  width: 200px;
+  user-select: none;
+}
+.forms_fixed .label_btn_checkbox input, #form_add_aluno .label_btn_checkbox input {
+  display: none;
+}
+.forms_fixed .actived_label_btn_checkbox, #form_add_aluno .actived_label_btn_checkbox {
+  background: #245da7;
+  color: #fff;
+}
+.forms_fixed input[type=submit], #form_add_aluno input[type=submit] {
+  width: 250px;
+  margin: 0 auto;
+}
+
+#form_add_aluno #add_aluno_ra {
+  text-transform: uppercase;
+}
+#form_add_aluno .blocked {
+  border: 1px solid #db1e1e;
+  background: #fee;
+}
+#form_add_aluno div {
+  display: flex;
+}
+#form_add_aluno div #ra {
+  max-width: 20px;
+  flex-shrink: 1;
+}
+#form_add_aluno div select {
+  padding: 0px !important;
+  margin-top: 0px !important;
 }
 
 #page_login {
