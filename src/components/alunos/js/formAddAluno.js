@@ -6,6 +6,7 @@ const db = getFirestore(firebaseApp);
 
 import * as commonFunc from "../../js_common/commonFunctions.js";
 import * as  dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
+import * as  alunoRA from "../../alunos/js/alunoRA.js";
 
 export function insertFormAddAlunoHTML(){
   commonFunc.insertElementHTML('#alunos_submenu_content',
@@ -16,9 +17,7 @@ export function insertFormAddAlunoHTML(){
 function eventsFormAddAluno(){
   let form = document.querySelector('#form_add_aluno');
 
-  form.querySelector('#add_aluno_ra').addEventListener('input', (e)=>{
-    validaSelectOptionsAddAluno(e);
-  });   
+  alunoRA.eventsAlunoRA();
 
  form.addEventListener("submit", (e) => {
     submitFormAddAluno(e);
