@@ -8,12 +8,15 @@
   <form id="form_contrato">
     <div id='bg_div_id_contrato'>
     <label id='label_id_contrato_automatico'>
-      <span>Gerar ID Automática</span>
+      <span>Gerar ID Automático</span>
       <input id='checkbox_id_automatico_contrato' type='checkbox'>
     </label>
     <div id='div_id_contrato'>
     <label>ID Contrato:</label>
-    <input id='id_contrato' maxlength="5" required type='text' />
+    <input id='id_contrato' maxlength="5" required type='text' list="list_id_contrato"/>
+    <datalist id='list_id_contrato'>
+      <option></option>
+    </datalist>
      </div>
   </input>
   </div>
@@ -143,8 +146,6 @@
      
         <div  class='div_input' id='div_curso_modulos'> <label id='label_curso_modulos'>Módulos: </label> 
           <textarea id="curso_modulos" spellcheck="false"></textarea></div>
-   
-
       <div class='row'>
         <div  id='div_curso_duracao'> <label>D. Meses: </label> <input id="curso_duracao" type="number" /> </div>
         <div  id='div_curso_parcelas'> <label>Parcelas: </label> <input id="curso_parcelas"

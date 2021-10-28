@@ -9,7 +9,7 @@ import inputComboCheckbox from "./inputComboCheckbox.js";
 import insertComboTextarea from "./insertComboTextarea.js";
 import insertCursoInfo from "./insertCursoInfo.js";
 import insertInputDateValue from "./insertInputDateValue.js";
-import removeAttribute from "./removeAttribute.js";
+import removeAttributeFromElement from "./removeAttribute.js";
 import insertInputValorTotal from "./insertInputValorTotal.js";
 import setAttribute from "./setAttribute.js";
 import * as formAddContrato from "./formAddContrato.js";
@@ -38,9 +38,9 @@ function checkboxRespAluno(e) {
     //Insere o valor "IDEM" no nome do aluno
     setAttribute("#aluno_nome", 'style', "color: #fff");
     setAttribute("#aluno_nome", 'value', "IDEM");
-    removeAttribute("#aluno_nome", 'required');
-    removeAttribute("#aluno_parentesco", 'required');
-    removeAttribute("#aluno_genero", 'required');
+    removeAttributeFromElement("#aluno_nome", 'required');
+    removeAttributeFromElement("#aluno_parentesco", 'required');
+    removeAttributeFromElement("#aluno_genero", 'required');
   } else {
     btn_marcar_resp_aluno.classList.remove('btn_ativo');
     btn_marcar_resp_aluno.querySelector('span').textContent = "Marcar como aluno(a)";
@@ -91,9 +91,7 @@ document
 document
   .querySelector("#combo_curso_2")
   .addEventListener("input", insertComboTextarea);
-document.querySelector('#checkbox_id_automatico_contrato')
-.addEventListener('click', geradorIdContrato.toggleIdAutomaticoContrato);
-
+ 
 
 valor.addEventListener("input", insertInputValorTotal);
 desconto.addEventListener("input", insertInputValorTotal);
@@ -116,8 +114,7 @@ insertInputDateValue(new Date(), "#curso_inicio");
 //Insere a dia atual como como possível dia de vencimento do curso.
 vencimento.value = String(new Date().getDate()).padStart(2, "0");
 
-geradorIdContrato.maskInputIdContrato();
-
+geradorIdContrato.eventsIdContrato();
 
 
 }
