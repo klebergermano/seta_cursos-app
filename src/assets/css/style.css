@@ -2026,6 +2026,9 @@ option[disabled] {
   width: 250px;
   margin: 0 auto;
 }
+.forms_fixed input[readonly=true], #form_add_aluno input[readonly=true] {
+  background: #ddd;
+}
 
 #form_add_aluno #add_aluno_ra {
   text-transform: uppercase;

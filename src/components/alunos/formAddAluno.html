@@ -16,27 +16,30 @@
         </datalist>
       </div><!--bg_div_id_aluno-->
       <div>
-        <label for="nome">Aluno:</label><input required id="nome" type="text" placeholder='Digite o nome do aluno' />
+        <label>Contrato: </label>
+        <select id='select_contrato' required>
+          <option></option>
+        </select>
       </div>
+ 
+
         <div>
-      <label><span class='required'>&nbsp;&nbsp; *</span> Curso:</label> 
-      <select required id='curso_nome'>
-        <option selected="true" disabled value=''>Selecione o Curso</option>
-        <option class='informatica' data-abreviation='IFK' value='Informática KIDS'>Informática KIDS</option>
-        <option class='informatica' data-abreviation='IFC' value='Informática Completo'>Informática Completo</option>
-        <option class='informatica' data-abreviation='IFPRO' value='Informática Profissional'>Informática Profissional</option>
-        <option class='informatica' data-abreviation='IFP' value='Informática Prática'>Informática Prática</option>
-        <option class='ingles' data-abreviation='IGK' value='Inglês KIDS'>Inglês KIDS</option>
-        <option class='ingles' data-abreviation='IGPT' value='Inglês Pre-teen'>Inglês Pre-teen</option>
-        <option class='ingles' data-abreviation='IGB' value='Inglês Básico'>Inglês Básico</option>
-        <option class='ingles' data-abreviation='IGI' value='Inglês Intermediário'>Inglês Intermediário</option>
-        <option class='ingles' data-abreviation='IGA' value='Inglês Avançado'>Inglês Avançado</option>
-        <option class='excel' data-abreviation='EXA' value='Excel Avançado'>Excel Avançado</option>
-        <option class='web' data-abreviation='DWB' value='Desenvolvimento Web'>Desenvolvimento Web</option>
-        <option class='bd' data-abreviation='BDBMYSQL' value='Banco de Dados Básico(MySQL)'>Banco de Dados Básico MySQL</option>
-      </select>
-    </div>
-  </fieldset>
+          <label for="nome">Aluno:</label><input   readonly='true' required id="nome" type="text" placeholder='Digite o nome do aluno'/>
+        </div>
+  
+        <div>
+          <label><span class='required'>&nbsp;&nbsp; *</span>Responsável:</label> 
+         <input type='text' id='responsavel_nome' readonly='true'/>
+        </div>
+
+
+        <div>
+          <label><span class='required'>&nbsp;&nbsp; *</span> Curso:</label> 
+         <input type='text' id='curso_nome'  readonly='true'/>
+        </div>
+      </fieldset>
+
+
     
     <input type="submit" value="Salvar" />
   </form>

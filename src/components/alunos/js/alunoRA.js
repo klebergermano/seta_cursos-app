@@ -4,11 +4,10 @@ const { getFirestore, setDoc, getDocs, doc, collection } = require("firebase/fir
 const db = getFirestore(firebaseApp);
 
 //TODO: REFATORAR FUNÇÕES
-
 export function eventsAlunoRA() {
     let alunoRA = document.querySelector("#aluno_ra");
     document.querySelector('#checkbox_ra_automatico_aluno')
-        .addEventListener('click', ()=>{
+        .addEventListener('click', () => {
             toggleRAAutomaticoAluno()
         });
     insertOptionslistAlunoRA();
@@ -21,7 +20,7 @@ export function eventsAlunoRA() {
 
     //Garante que o id tera 5 digitos aplicando padStart.
     alunoRA.addEventListener('change', () => {
-       maskValueAlunoRA()
+        maskValueAlunoRA()
         checkInputRAAluno()
     });
 
@@ -46,28 +45,28 @@ function checkInputRAAluno() {
     let alunoRA = document.querySelector("#aluno_ra").value;
     getAlunosRA()
         .then((RAAlunos) => {
-            let valida = true; 
-          RAAlunos.forEach((RAAluno) => {
+            let valida = true;
+            RAAlunos.forEach((RAAluno) => {
                 if (RAAluno === alunoRA || alunoRA === "RA0000") {
-                   valida = false;
+                    valida = false;
                 }
             })
-            if(!valida) invalidateInputRAAluno();
+            if (!valida) invalidateInputRAAluno();
             else validateInputRAAluno();
 
         });
 }
 
-function invalidateInputRAAluno(){
+function invalidateInputRAAluno() {
     let idInput = document.querySelector("#aluno_ra");
     idInput.setCustomValidity("RA em uso ou inválido");
     idInput.classList.add('input_invalido');
-} 
-function validateInputRAAluno(){
+}
+function validateInputRAAluno() {
     let RAALuno = document.querySelector("#aluno_ra");
     RAALuno.classList.remove('input_invalido');
     RAALuno.setCustomValidity("");
-} 
+}
 function insertOptionslistAlunoRA() {
     let listalunosRA = document.querySelector("#aluno_datalist_ra");
     getAlunosRA()
@@ -78,12 +77,11 @@ function insertOptionslistAlunoRA() {
             });
             listalunosRA.innerHTML = options;
         });
-
 }
 
 function setAlunoRAAutomatico() {
     let InputAlunoRA = document.querySelector('#aluno_ra');
-         InputAlunoRA.setAttribute('readonly', true);
+    InputAlunoRA.setAttribute('readonly', true);
 
     let alunosRA = getAlunosRA();
     alunosRA.then((res) => {

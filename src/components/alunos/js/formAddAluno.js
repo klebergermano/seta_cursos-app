@@ -1,12 +1,13 @@
-
-
-import {firebaseApp} from "../../dbConfig/firebaseApp.js";
-const {getFirestore, setDoc,  doc} = require("firebase/firestore") 
-const db = getFirestore(firebaseApp);
-
+//------------------------------------------------------------------------
+//Components
 import * as commonFunc from "../../js_common/commonFunctions.js";
 import * as  dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
 import * as  alunoRA from "../../alunos/js/alunoRA.js";
+//Firebase
+import {firebaseApp} from "../../dbConfig/firebaseApp.js";
+const {getFirestore, setDoc,  doc, collection, getDocs} = require("firebase/firestore") 
+const db = getFirestore(firebaseApp);
+//-------------------------------------------------------------------------
 
 export function insertFormAddAlunoHTML(){
   commonFunc.insertElementHTML('#alunos_submenu_content',
@@ -17,56 +18,32 @@ export function insertFormAddAlunoHTML(){
 function eventsFormAddAluno(){
   let form = document.querySelector('#form_add_aluno');
   alunoRA.eventsAlunoRA();
+
   form.addEventListener("submit", (e) => {
       submitFormAddAluno(e);
   });
-
-
-  
+  insertSelectOptionsContratos()
 }
+async function insertSelectOptionsContratos(){
+  const selectContrato = document.querySelector("#form_add_aluno").querySelector("#select_contrato");
+    let contratosList = await getContratos();
+    let optionsSelect = "<option value='' disabled selected>Selectione um contrato</option>"; 
+        contratosList.forEach((contrato)=>{
 
-//Função de validação do valor inserido no campoo RA, 
-//caso esse valor ja exista bloqueia a inserção.
-function validaSelectOptionsAddAluno(e) {
-  let form = document.querySelector("#form_add_aluno");
-      let inputRA = e.target.value;
-      let listAlunoRA = dbAlunoHistFunc.getAlunosListRA();
-      let valida = listAlunoRA.then((listRA) => {
-        for (let i = 0; i <= listRA.length - 1; i++) {
-          if (inputRA.toUpperCase() === listRA[i]) {
-           
-            e.target.classList.add("blocked");
-            commonFunc.blockSubmitForm(form);
-            return false;
-          } else {
-            commonFunc.removeblockSubmitForm(form);
-            e.target.classList.remove("blocked");
-          }
-        }
-      });
-      return valida;
+          optionsSelect += `<option value='${contrato.id}'>${contrato.id} - ${contrato.data().resp_info.nome}</option>`; 
+        });
+        selectContrato.innerHTML = optionsSelect;
+  
   }
 
-  //Insere os RAs dos alunos como opção do datalist.
-  function insertOptionsAddAlunoRA() {
-    let dataList = document.querySelector("#add_aluno_datalist_ra");
-    let options = createOptionsRA();
-    options.then((res) => {
-      dataList.innerHTML = res;
-    })
+  function insertInfoContrato(){
+    
+
   }
-//cria as options com o valor dos RAs dos alunos.
-  function createOptionsRA() {
-    let array = "";
-    let listAlunoRA = dbAlunoHistFunc.getAlunosListRA();
-    let options = listAlunoRA.then((listRA) => {
-      listRA.forEach((list) => {
-        array += `<option value='${list}' />`;
-      });
-      return array;
-    });
-    return options;
-  }
+function getContratos(){
+  const contratos = getDocs(collection(db, 'contratos'))
+ return contratos;
+}
 
   //Salva o aluno no banco de dados.
   async function submitFormAddAluno(e) {

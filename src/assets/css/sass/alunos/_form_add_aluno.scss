@@ -33,6 +33,7 @@
           justify-content: flex-end;
           padding: 6px 0;
         }
+        
      
         label {
           background: #ddd;
@@ -64,6 +65,7 @@
             }
 
         }
+
     
         .div_input {
           
@@ -90,6 +92,11 @@
       width:250px; 
       margin: 0 auto;
     }
+
+    input[readonly='true'] {
+      background: #ddd ;
+      
+  }
 
 }
 
