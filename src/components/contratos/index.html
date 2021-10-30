@@ -6,11 +6,8 @@
     <h3><img src='./assets/img/loading.gif' /> <span>Gerando Contrato ...</span> </h3>
   </div>
   <form id="form_contrato">
-    <div id='bg_div_id_contrato'>
-      <label id='label_id_automatico_contrato'>
-        <span>Gerar ID Automático</span>
-        <input id='checkbox_id_automatico_contrato' type='checkbox'>
-      </label>
+    <div id='bg_div_id_contrato' class='fieldset'>
+
        <div id='div_id_contrato'>
          <label>ID Contrato:</label>
           <input id='id_contrato' maxlength="5" required type='text' list="list_id_contrato"/>
@@ -18,6 +15,10 @@
             <option></option>
           </datalist>
         </div><!--div_id_contrato-->
+        <label id='label_id_automatico_contrato'>
+          <span>Gerar ID Automático</span>
+          <input id='checkbox_id_automatico_contrato' type='checkbox'>
+        </label>
     </div><!--bg_div_id_contrato-->
      <!-------------------------Fieldset Responsável----------------------->
     <div class='fieldset' id='fieldset_resp'>
@@ -42,7 +43,7 @@
       </div>
       <div class='div_input' id='div_resp_end'> <label><span class='required'>*</span>Endereço: </label> <input required
           id="resp_end" type="text" /> &nbsp;  <label class='label_numero'><span class='required'>*</span>Nº: </label> <input
-          required class="end_numero" id='resp_numero' type="text" /> </div>
+          required class="end_numero" id='resp_end_numero' type="text" /> </div>
       <div class='div_input' id='div_resp_bairro'><label><span class='required'>*</span>Bairro: </label> <input required
           id="resp_bairro" type="text" /> </div>
       <div class='div_input' id='div_resp_cep'><label><span class='required'>*</span>CEP: </label> <input required
@@ -64,11 +65,7 @@
       <div class='div_input' id='div_resp_email'>
         <label>Email: </label> <input id="resp_email" type="text" />
       </div>
-   
-      <div class='div_input' id='div_resp_obs'>
-        <label>Obs.: </label> 
-        <textarea id='resp_obs'></textarea>
-      </div>
+
     </div>
     <!--fieldset resp-->
     <div class='fieldset' id='fieldset_aluno'>
@@ -100,7 +97,7 @@
       </div>
 
       <div class='div_input' id='div_aluno_end'> <label>Endereço: </label> <input id="aluno_end" type="text" /> &nbsp; <label
-          class='label_numero'>Nº: </label> <input class="end_numero" id='aluno_numero' type="text" /> </div>
+          class='label_numero'>Nº: </label> <input class="end_numero" id='aluno_end_numero' type="text" /> </div>
       <div class='div_input' id='div_aluno_bairro'><label>Bairro: </label> <input id="aluno_bairro" type="text" />
       </div>
       <div class='div_input' id='div_aluno_cep'><label>CEP: </label> <input id="aluno_cep" type="text" /></div>
@@ -114,10 +111,7 @@
       <div class='div_input' id='div_aluno_email'>
         <label>Email: </label> <input id="aluno_email" type="text" />
       </div>
-      <div class='div_input' id='div_aluno_obs'>
-        <label>Obs.: </label> 
-        <textarea id='aluno_obs'></textarea>
-      </div>
+
      </div>
     <!--div fieldset-->
     <!------------------------------ FIELDSET CURSO------------------------------->

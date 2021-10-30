@@ -34,8 +34,7 @@ async function insertSelectOptionsContratos(){
     let contratosList = await getContratos();
     let optionsSelect = "<option value='' disabled selected>Selectione um contrato</option>"; 
         contratosList.forEach((contrato)=>{
-
-          optionsSelect += `<option value='${contrato.id}'>${contrato.id} - ${contrato.data().resp_info.nome}</option>`; 
+          optionsSelect += `<option value='${contrato.id}'>${contrato.id} - <b>${contrato.data().resp_info.nome} (${contrato.data().curso_info.nome})</option>`; 
         });
         selectContrato.innerHTML = optionsSelect;
   }
@@ -47,16 +46,27 @@ async function insertSelectOptionsContratos(){
     const formAddAluno =  document.querySelector("#form_add_aluno");
     getContratoInfo(IDContrato).then((res)=>{
       let contrato = res.data();
-      formAddAluno.querySelector("#resp_nome").value = contrato.resp_info.nome;
+      //Curso
       formAddAluno.querySelector("#curso_nome").value = contrato.curso_info.nome;
+      //Aluno
       formAddAluno.querySelector("#aluno_nome").value = contrato.aluno_info.nome;
-      formAddAluno.querySelector("#aluno_email").value = contrato.aluno_info.email;
       formAddAluno.querySelector("#aluno_end").value = contrato.aluno_info.end;
       formAddAluno.querySelector("#aluno_end_numero").value = contrato.aluno_info.end_numero;
+      formAddAluno.querySelector("#aluno_cel").value = contrato.aluno_info.cel;
+      formAddAluno.querySelector("#aluno_tel").value = contrato.aluno_info.tel;
+      formAddAluno.querySelector("#aluno_email").value = contrato.aluno_info.email;
       formAddAluno.querySelector("#aluno_bairro").value = contrato.aluno_info.bairro;
       formAddAluno.querySelector("#aluno_cep").value = contrato.aluno_info.cep;
       formAddAluno.querySelector("#aluno_genero").value = contrato.aluno_info.genero;
       formAddAluno.querySelector("#aluno_obs").value = contrato.aluno_info.obs;
+      //Resp
+      formAddAluno.querySelector("#resp_nome").value = contrato.resp_info.nome;
+      formAddAluno.querySelector("#resp_rg").value = contrato.resp_info.rg;
+      formAddAluno.querySelector("#resp_cpf").value = contrato.resp_info.cpf;
+      formAddAluno.querySelector("#resp_tel").value = contrato.resp_info.tel;
+      formAddAluno.querySelector("#resp_cel").value = contrato.resp_info.cel;
+      formAddAluno.querySelector("#resp_email").value = contrato.resp_info.email;
+
     })
   
   }
@@ -96,12 +106,25 @@ function getContratoInfo(IDContrato){
         data_nasc: form.aluno_data_nasc.value,
         genero: form.aluno_genero.value,
         obs:"",
-        meta_info:{
-          created: "0000-00-00",
-          modified: "0000-00-00"
+        metadata:{
+          created: new Date(),
+          modified: new Date()
         }
        },
-      
+       responsavel:{
+        ra: RA, 
+        nome: form.resp_nome.value, 
+        rg: form.resp_rg.value,
+        cpf: form.resp_cpf.value,
+        email: form.resp_cpf.value,
+        cel: form.resp_cel.value,
+        tel: form.resp_tel.value,
+        metadata:{
+          created: new Date(),
+          modified: new Date()
+        }
+       }
+ 
     },
      { merge: true}
      ); 

@@ -24,19 +24,21 @@ setDoc(doc(db, "contratos", formInfo.id_contrato),
    cep: formInfo.resp_cep,
    data_nasc: formInfo.resp_data_nasc,
    genero: formInfo.resp_genero,
-   obs:formInfo.resp_obs,
+  
   },
   aluno_info: {
     nome: formInfo.aluno_nome, 
     rg: formInfo.aluno_rg,
     email: formInfo.aluno_email,
+    email: formInfo.aluno_cel,
+    email: formInfo.aluno_tel,
     end: formInfo.aluno_end,
     end_numero: formInfo.aluno_end_numero,
     bairro: formInfo.aluno_bairro ,
     cep: formInfo.aluno_cep,
     data_nasc: formInfo.aluno_data_nasc,
     genero: formInfo.aluno_genero,
-    obs:formInfo.aluno_obs,
+   
   },
 
   curso_info: {

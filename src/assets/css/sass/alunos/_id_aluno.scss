@@ -2,14 +2,13 @@
 #div_ra_aluno {
     width: 100%;
     display: flex;
-    justify-content: flex-end !important;
+    justify-content: flex-start !important;
     flex-shrink: 1;
     flex-grow: 1;
     label {
         display: flex;
         max-height: auto;
         align-items: center;
-        background: #fff;
         padding: 10px 20px;
     }
     input {
@@ -37,9 +36,9 @@
 
     #label_ra_automatico_aluno {
         margin:0px;
-        margin-left:0px;
+        margin-left:10px;
         transition: all 0.5s;
-       border-radius:0px 3px 3px 0px;
+        border-radius: 3px;
         max-width: 220px;
         min-width: 180px;
         user-select: none;

@@ -23,61 +23,97 @@
         </select>
       </div>  
       </fieldset>
+    <fieldset>
+      <div>
+        <label> Curso:</label> 
+       <input type='text' id='curso_nome'  readonly='true'/>
+      </div>
+    </fieldset>
       <fieldset>
-        <div>
-          <label><span class='required'>&nbsp;&nbsp; *</span>Responsável:</label> 
-         <input type='text' id='resp_nome' readonly='true'/>
-        </div>
-        <div>
-          <label><span class='required'>&nbsp;&nbsp; *</span> Curso:</label> 
-         <input type='text' id='curso_nome'  readonly='true'/>
-        </div>
+    
+     
         <hr/>
-        <div>
+        <div class='div_input_readonly'>
           <label for="aluno_nome">Aluno:</label>
           <input   readonly='true' id="aluno_nome" type="text" placeholder=''/>
+            <label for="aluno_genero">Genero.:</label>
+            <input   readonly='true'id="aluno_genero" type="text" placeholder=''/>
         </div>
-        <div>
-          <label for="aluno_rg">RG:</label>
-          <input   readonly='true' id="aluno_rg" type="text" placeholder=''/>
-        </div>
+    
+    
       
-        <div>
-          <label for="aluno_email">Email:</label>
-          <input   readonly='true' id="aluno_email" type="email" placeholder=''/>
-        </div>
-        <div>
+        <div class='div_input_readonly'>
           <label for="aluno_end">End.:</label>
           <input   readonly='true' id="aluno_end" type="text" placeholder=''/>
+            <label for="aluno_end_numero">Numero.:</label>
+            <input   readonly='true' id="aluno_end_numero" type="text" placeholder=''/>
         </div>
-        <div>
-          <label for="aluno_end_numero">Numero.:</label>
-          <input   readonly='true' id="aluno_end_numero" type="text" placeholder=''/>
-        </div>
-        <div>
+        <div class='div_input_readonly'>
           <label for="aluno_bairro">Bairro:</label>
           <input   readonly='true' id="aluno_bairro" type="text" placeholder=''/>
         </div>
-        <div>
+        <div class='div_input_readonly'>
+          <label for="aluno_rg">RG:</label>
+          <input   readonly='true' id="aluno_rg" type="text" placeholder=''/>
+        </div>
+        <div class='div_input_readonly'>
           <label for="aluno_cep">CEP:</label>
           <input   readonly='true' id="aluno_cep" type="text" placeholder=''/>
         </div>
-        <div>
+        <div class='div_input_readonly'>
           <label for="aluno_data_nasc">Data Nasc.:</label>
           <input   readonly='true' id="aluno_data_nasc" type="date" placeholder=''/>
         </div>
-        <div>
-          <label for="aluno_genero">Genero.:</label>
-          <input   readonly='true'id="aluno_genero" type="text" placeholder=''/>
+        <div class='div_input_readonly'>
+          <label for="aluno_email">Cel.:</label>
+          <input   readonly='true' id="aluno_cel" type="text" placeholder=''/>
         </div>
-        <div>
-          <label for="aluno_obs">Obs.:</label>
-        <textarea  readonly='true' id="aluno_obs" type="text" placeholder=''></textarea>
-        
+        <div class='div_input_readonly'>
+          <label for="aluno_tel">Tel.:</label>
+          <input   readonly='true' id="aluno_tel" type="text" placeholder=''/>
+        </div>
+        <div class='div_input_readonly'>
+          <label for="aluno_email">Email:</label>
+          <input   readonly='true' id="aluno_email" type="email" placeholder=''/>
+        </div>
+   
+  
+      </fieldset>
+
+      <fieldset>
+      
+         <div class='div_input_readonly'>
+          <label>Responsável:</label> 
+         <input type='text' id='resp_nome' readonly='true'/>
+        </div>
+         <div class='div_input_readonly'>
+          <label>RG:</label> 
+         <input type='text' id='resp_rg' readonly='true'/>
+        </div>
+         <div class='div_input_readonly'>
+          <label>CPF:</label> 
+         <input type='text' id='resp_cpf' readonly='true'/>
+        </div>
+         <div class='div_input_readonly'>
+          <label>Cel:</label> 
+         <input type='text' id='resp_cel' readonly='true'/>
+        </div>
+         <div class='div_input_readonly'>
+          <label>Tel:</label> 
+         <input type='text' id='resp_tel' readonly='true'/>
+        </div>
+         <div class='div_input_readonly'>
+          <label>Email:</label> 
+         <input type='text' id='resp_email' readonly='true'/>
         </div>
       </fieldset>
 
-
+      <fieldset>
+       <div>
+        <label for="aluno_obs">Obs.:</label>
+      <textarea id="aluno_obs" type="text" placeholder=''></textarea>
+      </div>
+    </fieldset>
     
     <input type="submit" value="Salvar" />
   </form>

@@ -1772,26 +1772,18 @@ select .re {
   display: block;
 }
 
-#bg_div_id_contrato {
-  display: flex;
-  margin: 0 20px 10px;
-  border: 1px solid #111;
-  background: #eee;
-  padding: 10px;
-}
 #bg_div_id_contrato label {
-  display: flex;
-  align-items: center;
-  background: #fff;
-  padding: 10px 20px;
+  background: #ddd;
 }
 #bg_div_id_contrato .input_invalido {
   background: #f1c0c0 !important;
 }
 #bg_div_id_contrato #label_id_automatico_contrato {
+  margin: 0px;
+  margin-left: 20px;
   transition: all 0.5s;
-  max-width: 300px;
-  width: 200px;
+  max-width: 250px;
+  width: 180px;
   user-select: none;
 }
 #bg_div_id_contrato #label_id_automatico_contrato #checkbox_id_automatico_contrato {
@@ -2017,6 +2009,14 @@ option[disabled] {
   outline: 2px solid #5690db;
   outline-offset: -2px;
 }
+.forms_fixed fieldset #aluno_genero, #form_add_aluno fieldset #aluno_genero, .forms_fixed fieldset #aluno_end_numero, #form_add_aluno fieldset #aluno_end_numero, .forms_fixed .fieldset #aluno_genero, #form_add_aluno .fieldset #aluno_genero, .forms_fixed .fieldset #aluno_end_numero, #form_add_aluno .fieldset #aluno_end_numero {
+  max-width: 80px !important;
+  min-width: none;
+}
+.forms_fixed fieldset .div_input_readonly, #form_add_aluno fieldset .div_input_readonly, .forms_fixed .fieldset .div_input_readonly, #form_add_aluno .fieldset .div_input_readonly {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
 .forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox {
   transition: all 0.3s;
   max-width: 300px;
@@ -2035,7 +2035,8 @@ option[disabled] {
   margin: 0 auto;
 }
 .forms_fixed input[readonly=true], #form_add_aluno input[readonly=true] {
-  background: #ddd;
+  background: #eee;
+  border: 1px solid #ddd;
 }
 
 #form_add_aluno #div_select_contrato {
@@ -2063,7 +2064,7 @@ option[disabled] {
 #div_ra_aluno {
   width: 100%;
   display: flex;
-  justify-content: flex-end !important;
+  justify-content: flex-start !important;
   flex-shrink: 1;
   flex-grow: 1;
 }
@@ -2071,7 +2072,6 @@ option[disabled] {
   display: flex;
   max-height: auto;
   align-items: center;
-  background: #fff;
   padding: 10px 20px;
 }
 #div_ra_aluno input {
@@ -2096,9 +2096,9 @@ option[disabled] {
 }
 #div_ra_aluno #label_ra_automatico_aluno {
   margin: 0px;
-  margin-left: 0px;
+  margin-left: 10px;
   transition: all 0.5s;
-  border-radius: 0px 3px 3px 0px;
+  border-radius: 3px;
   max-width: 220px;
   min-width: 180px;
   user-select: none;

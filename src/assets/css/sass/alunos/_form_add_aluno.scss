@@ -66,8 +66,14 @@
 
         }
 
+        #aluno_genero, #aluno_end_numero{
+          max-width:80px !important;
+          min-width: none;
+        }
     
-        .div_input {
+        .div_input_readonly{
+          margin-bottom: 0px;
+          padding-bottom: 0px;
           
        
 
@@ -94,9 +100,12 @@
     }
 
     input[readonly='true'] {
-      background: #ddd ;
+      background: #eee ;
+      border:1px solid #ddd;
       
   }
+
+
 
 }
 
