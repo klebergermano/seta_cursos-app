@@ -56,11 +56,11 @@ setDoc(doc(db, "contratos", formInfo.id_contrato),
     desconto_combo: formInfo.curso_combo,
     obs: formInfo.curso_obs
    },
-   meta_info:{
+   metadata:{
      status: "associacão pendente",
      aluno_associado: "",
-     created: "0000-00-00",
-     modified: "0000-00-00"
+     created: new Date(),
+     modified: new Date()
    }
 
 }, 
