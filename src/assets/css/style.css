@@ -1956,7 +1956,7 @@ option[disabled] {
   text-align: center;
   margin-bottom: 20px;
 }
-.forms_fixed .fieldset, #form_add_aluno .fieldset {
+.forms_fixed fieldset, #form_add_aluno fieldset, .forms_fixed .fieldset, #form_add_aluno .fieldset {
   transition: all 1s;
   max-width: 100%;
   margin: 10px 20px;
@@ -1966,7 +1966,7 @@ option[disabled] {
   display: flex;
   flex-wrap: wrap;
 }
-.forms_fixed .fieldset > div, #form_add_aluno .fieldset > div {
+.forms_fixed fieldset > div, #form_add_aluno fieldset > div, .forms_fixed .fieldset > div, #form_add_aluno .fieldset > div {
   margin: 0 5px 3px 0;
   display: flex;
   flex-grow: 1;
@@ -1974,7 +1974,7 @@ option[disabled] {
   justify-content: flex-end;
   padding: 6px 0;
 }
-.forms_fixed .fieldset label, #form_add_aluno .fieldset label {
+.forms_fixed fieldset label, #form_add_aluno fieldset label, .forms_fixed .fieldset label, #form_add_aluno .fieldset label {
   background: #ddd;
   display: flex;
   border-radius: 3px 0 0 3px;
@@ -1986,7 +1986,11 @@ option[disabled] {
   max-width: 100px;
   min-width: 100px;
 }
-.forms_fixed .fieldset input, #form_add_aluno .fieldset input,
+.forms_fixed fieldset input, #form_add_aluno fieldset input,
+.forms_fixed fieldset select,
+#form_add_aluno fieldset select,
+.forms_fixed fieldset textarea,
+#form_add_aluno fieldset textarea, .forms_fixed .fieldset input, #form_add_aluno .fieldset input,
 .forms_fixed .fieldset select,
 #form_add_aluno .fieldset select,
 .forms_fixed .fieldset textarea,
@@ -2001,13 +2005,25 @@ option[disabled] {
   flex-shrink: 1;
   resize: vertical;
 }
-.forms_fixed .fieldset input:focus, #form_add_aluno .fieldset input:focus,
+.forms_fixed fieldset input:focus, #form_add_aluno fieldset input:focus,
+.forms_fixed fieldset select:focus,
+#form_add_aluno fieldset select:focus,
+.forms_fixed fieldset textarea:focus,
+#form_add_aluno fieldset textarea:focus, .forms_fixed .fieldset input:focus, #form_add_aluno .fieldset input:focus,
 .forms_fixed .fieldset select:focus,
 #form_add_aluno .fieldset select:focus,
 .forms_fixed .fieldset textarea:focus,
 #form_add_aluno .fieldset textarea:focus {
   outline: 2px solid #5690db;
   outline-offset: -2px;
+}
+.forms_fixed fieldset #aluno_genero, #form_add_aluno fieldset #aluno_genero, .forms_fixed fieldset #aluno_end_numero, #form_add_aluno fieldset #aluno_end_numero, .forms_fixed .fieldset #aluno_genero, #form_add_aluno .fieldset #aluno_genero, .forms_fixed .fieldset #aluno_end_numero, #form_add_aluno .fieldset #aluno_end_numero {
+  max-width: 80px !important;
+  min-width: none;
+}
+.forms_fixed fieldset .div_input_readonly, #form_add_aluno fieldset .div_input_readonly, .forms_fixed .fieldset .div_input_readonly, #form_add_aluno .fieldset .div_input_readonly {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
 }
 .forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox {
   transition: all 0.3s;
@@ -2026,7 +2042,14 @@ option[disabled] {
   width: 250px;
   margin: 0 auto;
 }
+.forms_fixed input[readonly=true], #form_add_aluno input[readonly=true] {
+  background: #eee;
+  border: 1px solid #ddd;
+}
 
+#form_add_aluno #div_select_contrato {
+  width: 100%;
+}
 #form_add_aluno #add_aluno_ra {
   text-transform: uppercase;
 }
