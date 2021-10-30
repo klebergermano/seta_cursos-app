@@ -1772,26 +1772,18 @@ select .re {
   display: block;
 }
 
-#bg_div_id_contrato {
-  display: flex;
-  margin: 0 20px 10px;
-  border: 1px solid #111;
-  background: #eee;
-  padding: 10px;
-}
 #bg_div_id_contrato label {
-  display: flex;
-  align-items: center;
-  background: #fff;
-  padding: 10px 20px;
+  background: #ddd;
 }
 #bg_div_id_contrato .input_invalido {
   background: #f1c0c0 !important;
 }
 #bg_div_id_contrato #label_id_automatico_contrato {
+  margin: 0px;
+  margin-left: 20px;
   transition: all 0.5s;
-  max-width: 300px;
-  width: 200px;
+  max-width: 250px;
+  width: 180px;
   user-select: none;
 }
 #bg_div_id_contrato #label_id_automatico_contrato #checkbox_id_automatico_contrato {
@@ -2067,6 +2059,58 @@ option[disabled] {
 #form_add_aluno div select {
   padding: 0px !important;
   margin-top: 0px !important;
+}
+
+#div_ra_aluno {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start !important;
+  flex-shrink: 1;
+  flex-grow: 1;
+}
+#div_ra_aluno label {
+  display: flex;
+  max-height: auto;
+  align-items: center;
+  padding: 10px 20px;
+}
+#div_ra_aluno input {
+  max-width: 300px;
+  flex-shrink: 1;
+  border: 1px solid #999;
+  transition: all 0.2s;
+  padding: 5px;
+  font-size: 18px;
+  background: #fff;
+}
+#div_ra_aluno input:focus {
+  outline: 2px solid #245da7;
+  outline-offset: -2px;
+}
+#div_ra_aluno input[readonly=true] {
+  border: 1px solid #245da7;
+  background: #c3cad3;
+}
+#div_ra_aluno .input_invalido {
+  background: #f1c0c0 !important;
+}
+#div_ra_aluno #label_ra_automatico_aluno {
+  margin: 0px;
+  margin-left: 10px;
+  transition: all 0.5s;
+  border-radius: 3px;
+  max-width: 220px;
+  min-width: 180px;
+  user-select: none;
+}
+#div_ra_aluno #label_ra_automatico_aluno #checkbox_id_automatico_aluno {
+  display: none;
+}
+#div_ra_aluno .active {
+  max-width: 350px;
+  width: 350px;
+  background: #245da7 !important;
+  color: #fff !important;
 }
 
 #page_login {

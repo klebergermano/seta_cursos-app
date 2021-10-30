@@ -20,7 +20,7 @@ const TemplateContrato = (data)=>{
   if (data.checkbox_resp_aluno) {
     data.aluno_nome = "(IDEM)";
     data.aluno_end = "(IDEM)";
-    data.aluno_numero = "(IDEM)";
+    data.aluno_end_numero = "(IDEM)";
     data.aluno_parentesco = "(IDEM)";
     data.aluno_bairro = "(IDEM)";
     data.aluno_cep = "(IDEM)";
@@ -187,14 +187,14 @@ p{
   portador do R.G.:&nbsp;<em>${replaceToNonBreakSpaceHifen(data.resp_rg)}</em>,
   e CPF:&nbsp;<em>${replaceToNonBreakSpaceHifen(data.resp_cpf)}</em>,
   residente e domiciliado&nbsp;</span> em:&nbsp;<em>${data.resp_end}</em>, 
-  número:&nbsp;<em>${replaceToNonBreakSpaceHifen(data.resp_numero)}</em>, 
+  número:&nbsp;<em>${replaceToNonBreakSpaceHifen(data.resp_end_numero)}</em>, 
   bairro:&nbsp;<em>${replaceToNonBreakSpaceHifen(data.resp_bairro)}</em>, 
   CEP:&nbsp;<em>${replaceToNonBreakSpaceHifen(data.resp_cep)}</em>, na Cidade de São Paulo, no Estado de São Paulo; 
   responsável pelo <b>ALUNO(a):</b>&nbsp;<em>${data.aluno_nome}</em>, 
   que possui vínculo parental de: <em>${data.aluno_parentesco}</em>, 
  portador do R.G.:&nbsp;<em>${data.aluno_rg}</em>, 
  residente e domiciliado em:&nbsp;<em>${data.aluno_end}</em>,
- número:&nbsp;<em>${replaceToNonBreakSpaceHifen(data.aluno_numero)}</em>, 
+ número:&nbsp;<em>${replaceToNonBreakSpaceHifen(data.aluno_end_numero)}</em>, 
  bairro:&nbsp;<em>${replaceToNonBreakSpaceHifen(data.aluno_bairro)}</em>, 
  CEP:&nbsp;<em>${replaceToNonBreakSpaceHifen(data.aluno_cep)}</em>,
 na Cidade de São Paulo, no Estado de São Paulo.
@@ -401,7 +401,7 @@ Cláusula 20ª. Não se incluem neste contrato os serviços de reforço e recicl
   <p>
    Nome:<em>${ data.resp_nome}</em>
   </p>
-  <p> Endereço:<em>${ data.resp_end}, nº ${ data.resp_numero}</em>
+  <p> Endereço:<em>${ data.resp_end}, nº ${ data.resp_end_numero}</em>
   </p>
   <p> Bairro:<em>${ data.resp_bairro}</em>
    CEP:<em>${ data.resp_cep}</em>
@@ -421,7 +421,7 @@ Cláusula 20ª. Não se incluem neste contrato os serviços de reforço e recicl
     Nome:<em>${ data.aluno_nome}</em>
     Parentesco:<em>${ data.aluno_parentesco}</em>
     </p>
-    <p>Endereço:<em>${ data.aluno_end}, nº ${ data.aluno_numero}</em>
+    <p>Endereço:<em>${ data.aluno_end}, nº ${ data.aluno_end_numero}</em>
     </p>
     <p>Bairro:<em>${ data.aluno_bairro}</em>
     CEP:<em>${ data.aluno_cep}</em>

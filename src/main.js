@@ -5,7 +5,7 @@ const pdf = require("html-pdf");
 const fs = require("fs");
 const path = require("path");
 const downloadPath = app.getPath("downloads");
-const TemplateContrato = require("./components/geradorContrato/js/TemplateContrato.js");
+const TemplateContrato = require("./components/contratos/js/TemplateContrato.js");
 const TemplateHistoricoAluno = require("./components/controleAula/js/TemplateHistoricoAluno.js");
 
 

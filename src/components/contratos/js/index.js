@@ -1,10 +1,6 @@
 
-import {firebaseApp} from "../../dbConfig/firebaseApp.js";
-const {getFirestore, setDoc, getDocs, doc} = require("firebase/firestore") 
-const db = getFirestore(firebaseApp);
-
-const VMasker = require("vanilla-masker");
-
+//-----------------------------------------------------------------------
+//Components
 import inputComboCheckbox from "./inputComboCheckbox.js";
 import insertComboTextarea from "./insertComboTextarea.js";
 import insertCursoInfo from "./insertCursoInfo.js";
@@ -13,11 +9,16 @@ import removeAttributeFromElement from "./removeAttribute.js";
 import insertInputValorTotal from "./insertInputValorTotal.js";
 import setAttribute from "./setAttribute.js";
 import * as formAddContrato from "./formAddContrato.js";
-import * as geradorIdContrato from "./geradorIdContrato.js";
-
+import * as geradorIDContrato from "./geradorIDContrato.js";
+//Firebase
+import {firebaseApp} from "../../dbConfig/firebaseApp.js";
+const {getFirestore, setDoc, getDocs, doc} = require("firebase/firestore") 
+const db = getFirestore(firebaseApp);
+//Others libraries
+const VMasker = require("vanilla-masker");
+//-------------------------------------------------------------------------
 
 function setCurso() {
-
 let cursosSelect1 = document.querySelector("#curso_nome");
 let cursosSelect2 = document.querySelector("#combo_curso_2");
 
@@ -114,7 +115,7 @@ insertInputDateValue(new Date(), "#curso_inicio");
 //Insere a dia atual como como possível dia de vencimento do curso.
 vencimento.value = String(new Date().getDate()).padStart(2, "0");
 
-geradorIdContrato.eventsIdContrato();
+geradorIDContrato.eventsIDContrato();
 
 
 }
