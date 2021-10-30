@@ -5,38 +5,75 @@
     </svg> Adicionar Aluno</h3>
     <fieldset class='fieldset'>
       <div id='div_ra_aluno'>
-        <label id='label_ra_automatico_aluno' class='label_btn_checkbox'>
-          <span>Gerar ID Automático</span>
-          <input id='checkbox_ra_automatico_aluno' type='checkbox'>
-        </label>
-        <label for="aluno_ra">RA:</label>
+  
+        <label for="aluno_new_ra">Aluno RA:</label>
         <input required id="aluno_ra" type="text" list="aluno_datalist_ra"/>
         <datalist id='aluno_datalist_ra'>
           <option></option>
         </datalist>
+        <label id='label_ra_automatico_aluno' class='label_btn_checkbox'>
+          <span>Gerar ID Automático</span>
+          <input id='checkbox_ra_automatico_aluno' type='checkbox'>
+        </label>
       </div><!--bg_div_id_aluno-->
-      <div>
+      <div  id='div_select_contrato'>
         <label>Contrato: </label>
         <select id='select_contrato' required>
           <option></option>
         </select>
-      </div>
- 
-
-        <div>
-          <label for="nome">Aluno:</label>
-          <input   readonly='true' required id="aluno_nome" type="text" placeholder='Digite o nome do aluno'/>
-        </div>
-  
+      </div>  
+      </fieldset>
+      <fieldset>
         <div>
           <label><span class='required'>&nbsp;&nbsp; *</span>Responsável:</label> 
          <input type='text' id='resp_nome' readonly='true'/>
         </div>
-
-
         <div>
           <label><span class='required'>&nbsp;&nbsp; *</span> Curso:</label> 
          <input type='text' id='curso_nome'  readonly='true'/>
+        </div>
+        <hr/>
+        <div>
+          <label for="aluno_nome">Aluno:</label>
+          <input   readonly='true' id="aluno_nome" type="text" placeholder=''/>
+        </div>
+        <div>
+          <label for="aluno_rg">RG:</label>
+          <input   readonly='true' id="aluno_rg" type="text" placeholder=''/>
+        </div>
+      
+        <div>
+          <label for="aluno_email">Email:</label>
+          <input   readonly='true' id="aluno_email" type="email" placeholder=''/>
+        </div>
+        <div>
+          <label for="aluno_end">End.:</label>
+          <input   readonly='true' id="aluno_end" type="text" placeholder=''/>
+        </div>
+        <div>
+          <label for="aluno_end_numero">Numero.:</label>
+          <input   readonly='true' id="aluno_end_numero" type="text" placeholder=''/>
+        </div>
+        <div>
+          <label for="aluno_bairro">Bairro:</label>
+          <input   readonly='true' id="aluno_bairro" type="text" placeholder=''/>
+        </div>
+        <div>
+          <label for="aluno_cep">CEP:</label>
+          <input   readonly='true' id="aluno_cep" type="text" placeholder=''/>
+        </div>
+        <div>
+          <label for="aluno_data_nasc">Data Nasc.:</label>
+          <input   readonly='true' id="aluno_data_nasc" type="date" placeholder=''/>
+        </div>
+        <div>
+          <label for="aluno_genero">Genero.:</label>
+          <input   readonly='true'id="aluno_genero" type="text" placeholder=''/>
+        </div>
+        <div>
+          <label for="aluno_obs">Obs.:</label>
+        <textarea  readonly='true' id="aluno_obs" type="text" placeholder=''></textarea>
+        
         </div>
       </fieldset>
 

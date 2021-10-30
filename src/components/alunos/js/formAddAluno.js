@@ -45,13 +45,18 @@ async function insertSelectOptionsContratos(){
     let IDContrato = e.target.value;
   
     const formAddAluno =  document.querySelector("#form_add_aluno");
-    const alunoNomeInput = formAddAluno.querySelector("#aluno_nome");
-    const respNomeInput = formAddAluno.querySelector("#resp_nome");
-    const cursoNomeInput = formAddAluno.querySelector("#curso_nome");
     getContratoInfo(IDContrato).then((res)=>{
-      alunoNomeInput.value = res.data().aluno_info.nome;
-      respNomeInput.value = res.data().resp_info.nome;
-      cursoNomeInput.value = res.data().curso_info.nome;
+      let contrato = res.data();
+      formAddAluno.querySelector("#resp_nome").value = contrato.resp_info.nome;
+      formAddAluno.querySelector("#curso_nome").value = contrato.curso_info.nome;
+      formAddAluno.querySelector("#aluno_nome").value = contrato.aluno_info.nome;
+      formAddAluno.querySelector("#aluno_email").value = contrato.aluno_info.email;
+      formAddAluno.querySelector("#aluno_end").value = contrato.aluno_info.end;
+      formAddAluno.querySelector("#aluno_end_numero").value = contrato.aluno_info.end_numero;
+      formAddAluno.querySelector("#aluno_bairro").value = contrato.aluno_info.bairro;
+      formAddAluno.querySelector("#aluno_cep").value = contrato.aluno_info.cep;
+      formAddAluno.querySelector("#aluno_genero").value = contrato.aluno_info.genero;
+      formAddAluno.querySelector("#aluno_obs").value = contrato.aluno_info.obs;
     })
   
   }
@@ -82,28 +87,21 @@ function getContratoInfo(IDContrato){
        aluno: {
         ra: RA, 
         nome: form.aluno_nome.value, 
-        rg: "",
-        email: "",
-        end: "",
-        bairro: "",
-        cep: "",
-        data_nasc: "",
-        genero: "",
-        cadastrado: "0000-00-00",
+        rg: form.aluno_rg.value,
+        email: form.aluno_email.value,
+        end: form.aluno_end.value,
+        end_numero: form.aluno_end_numero.value,
+        bairro: form.aluno_bairro.value,
+        cep: form.aluno_cep.value,
+        data_nasc: form.aluno_data_nasc.value,
+        genero: form.aluno_genero.value,
         obs:"",
+        meta_info:{
+          created: "0000-00-00",
+          modified: "0000-00-00"
+        }
        },
-       responsavel:{
-        nome: form.resp_nome.value, 
-        rg: "",
-        email: "",
-        end: "",
-        bairro: "",
-        cep: "",
-        data_nasc: "",
-        genero: "",
-        cadastrado: "0000-00-00",
-        obs:"",
-       }
+      
     },
      { merge: true}
      ); 

@@ -2,15 +2,12 @@
 #div_ra_aluno {
     width: 100%;
     display: flex;
-    justify-content: flex-start !important;
+    justify-content: flex-end !important;
     flex-shrink: 1;
     flex-grow: 1;
-    margin: 20px 10px;
-    border: 1px solid #111;
-    background: #eee;
-    padding:10px !important; 
     label {
         display: flex;
+        max-height: auto;
         align-items: center;
         background: #fff;
         padding: 10px 20px;
@@ -39,9 +36,10 @@
     }
 
     #label_ra_automatico_aluno {
+        margin:0px;
         margin-left:0px;
         transition: all 0.5s;
-        @extend .btn-default;
+       border-radius:0px 3px 3px 0px;
         max-width: 220px;
         min-width: 180px;
         user-select: none;

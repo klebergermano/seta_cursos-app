@@ -18,23 +18,25 @@ setDoc(doc(db, "contratos", formInfo.id_contrato),
    nome: formInfo.resp_nome, 
    rg: formInfo.resp_rg,
    email: formInfo.resp_email,
-   end: formInfo.resp_end +', '+ formInfo.resp_numero,
+   end: formInfo.resp_end,
+   end_numero: formInfo.resp_end_numero,
    bairro: formInfo.resp_bairro ,
    cep: formInfo.resp_cep,
    data_nasc: formInfo.resp_data_nasc,
    genero: formInfo.resp_genero,
-   resp_obs:formInfo.resp_obs,
+   obs:formInfo.resp_obs,
   },
   aluno_info: {
     nome: formInfo.aluno_nome, 
     rg: formInfo.aluno_rg,
     email: formInfo.aluno_email,
-    end: formInfo.aluno_end +', '+ formInfo.aluno_numero,
+    end: formInfo.aluno_end,
+    end_numero: formInfo.aluno_end_numero,
     bairro: formInfo.aluno_bairro ,
     cep: formInfo.aluno_cep,
     data_nasc: formInfo.aluno_data_nasc,
     genero: formInfo.aluno_genero,
-    aluno_obs:formInfo.aluno_obs,
+    obs:formInfo.aluno_obs,
   },
 
   curso_info: {
@@ -50,8 +52,14 @@ setDoc(doc(db, "contratos", formInfo.id_contrato),
     inicio: formInfo.curso_inicio,
     data_contrato: formInfo.curso_data_contrato,
     desconto_combo: formInfo.curso_combo,
-    curso_obs: formInfo.curso_obs
+    obs: formInfo.curso_obs
    },
+   meta_info:{
+     status: "associacão pendente",
+     aluno_associado: "",
+     created: "0000-00-00",
+     modified: "0000-00-00"
+   }
 
 }, 
 { merge: true}

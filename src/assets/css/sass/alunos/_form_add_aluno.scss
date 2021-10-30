@@ -15,7 +15,7 @@
       margin-bottom: 20px;
     }
 
-    .fieldset {
+    fieldset, .fieldset {
         transition: all 1s;
         max-width: 100%;
         margin: 10px 20px;
@@ -103,6 +103,9 @@
 #form_add_aluno{
   @extend .forms_fixed;
  
+  #div_select_contrato{
+    width:100%;
+  }
     #add_aluno_ra{
       text-transform: uppercase;
     }
