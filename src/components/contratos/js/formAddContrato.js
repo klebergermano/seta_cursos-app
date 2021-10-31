@@ -61,7 +61,7 @@ setDoc(doc(db, "contratos", formInfo.id_contrato),
      aluno_associado: "",
      created: new Date(),
      modified: new Date()
-   }
+   } 
 
 }, 
 { merge: true}
