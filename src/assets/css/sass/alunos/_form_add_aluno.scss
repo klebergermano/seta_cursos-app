@@ -15,7 +15,7 @@
       margin-bottom: 20px;
     }
 
-    .fieldset {
+    fieldset, .fieldset {
         transition: all 1s;
         max-width: 100%;
         margin: 10px 20px;
@@ -33,6 +33,7 @@
           justify-content: flex-end;
           padding: 6px 0;
         }
+        
      
         label {
           background: #ddd;
@@ -64,8 +65,15 @@
             }
 
         }
+
+        #aluno_genero, #aluno_end_numero{
+          max-width:80px !important;
+          min-width: none;
+        }
     
-        .div_input {
+        .div_input_readonly{
+          margin-bottom: 0px;
+          padding-bottom: 0px;
           
        
 
@@ -91,11 +99,22 @@
       margin: 0 auto;
     }
 
+    input[readonly='true'] {
+      background: #eee ;
+      border:1px solid #ddd;
+      
+  }
+
+
+
 }
 
 #form_add_aluno{
   @extend .forms_fixed;
  
+  #div_select_contrato{
+    width:100%;
+  }
     #add_aluno_ra{
       text-transform: uppercase;
     }

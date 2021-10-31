@@ -1772,26 +1772,18 @@ select .re {
   display: block;
 }
 
-#bg_div_id_contrato {
-  display: flex;
-  margin: 0 20px 10px;
-  border: 1px solid #111;
-  background: #eee;
-  padding: 10px;
-}
 #bg_div_id_contrato label {
-  display: flex;
-  align-items: center;
-  background: #fff;
-  padding: 10px 20px;
+  background: #ddd;
 }
 #bg_div_id_contrato .input_invalido {
   background: #f1c0c0 !important;
 }
 #bg_div_id_contrato #label_id_automatico_contrato {
+  margin: 0px;
+  margin-left: 20px;
   transition: all 0.5s;
-  max-width: 300px;
-  width: 200px;
+  max-width: 250px;
+  width: 180px;
   user-select: none;
 }
 #bg_div_id_contrato #label_id_automatico_contrato #checkbox_id_automatico_contrato {
@@ -1956,7 +1948,7 @@ option[disabled] {
   text-align: center;
   margin-bottom: 20px;
 }
-.forms_fixed .fieldset, #form_add_aluno .fieldset {
+.forms_fixed fieldset, #form_add_aluno fieldset, .forms_fixed .fieldset, #form_add_aluno .fieldset {
   transition: all 1s;
   max-width: 100%;
   margin: 10px 20px;
@@ -1966,7 +1958,7 @@ option[disabled] {
   display: flex;
   flex-wrap: wrap;
 }
-.forms_fixed .fieldset > div, #form_add_aluno .fieldset > div {
+.forms_fixed fieldset > div, #form_add_aluno fieldset > div, .forms_fixed .fieldset > div, #form_add_aluno .fieldset > div {
   margin: 0 5px 3px 0;
   display: flex;
   flex-grow: 1;
@@ -1974,7 +1966,7 @@ option[disabled] {
   justify-content: flex-end;
   padding: 6px 0;
 }
-.forms_fixed .fieldset label, #form_add_aluno .fieldset label {
+.forms_fixed fieldset label, #form_add_aluno fieldset label, .forms_fixed .fieldset label, #form_add_aluno .fieldset label {
   background: #ddd;
   display: flex;
   border-radius: 3px 0 0 3px;
@@ -1986,7 +1978,11 @@ option[disabled] {
   max-width: 100px;
   min-width: 100px;
 }
-.forms_fixed .fieldset input, #form_add_aluno .fieldset input,
+.forms_fixed fieldset input, #form_add_aluno fieldset input,
+.forms_fixed fieldset select,
+#form_add_aluno fieldset select,
+.forms_fixed fieldset textarea,
+#form_add_aluno fieldset textarea, .forms_fixed .fieldset input, #form_add_aluno .fieldset input,
 .forms_fixed .fieldset select,
 #form_add_aluno .fieldset select,
 .forms_fixed .fieldset textarea,
@@ -2001,13 +1997,25 @@ option[disabled] {
   flex-shrink: 1;
   resize: vertical;
 }
-.forms_fixed .fieldset input:focus, #form_add_aluno .fieldset input:focus,
+.forms_fixed fieldset input:focus, #form_add_aluno fieldset input:focus,
+.forms_fixed fieldset select:focus,
+#form_add_aluno fieldset select:focus,
+.forms_fixed fieldset textarea:focus,
+#form_add_aluno fieldset textarea:focus, .forms_fixed .fieldset input:focus, #form_add_aluno .fieldset input:focus,
 .forms_fixed .fieldset select:focus,
 #form_add_aluno .fieldset select:focus,
 .forms_fixed .fieldset textarea:focus,
 #form_add_aluno .fieldset textarea:focus {
   outline: 2px solid #5690db;
   outline-offset: -2px;
+}
+.forms_fixed fieldset #aluno_genero, #form_add_aluno fieldset #aluno_genero, .forms_fixed fieldset #aluno_end_numero, #form_add_aluno fieldset #aluno_end_numero, .forms_fixed .fieldset #aluno_genero, #form_add_aluno .fieldset #aluno_genero, .forms_fixed .fieldset #aluno_end_numero, #form_add_aluno .fieldset #aluno_end_numero {
+  max-width: 80px !important;
+  min-width: none;
+}
+.forms_fixed fieldset .div_input_readonly, #form_add_aluno fieldset .div_input_readonly, .forms_fixed .fieldset .div_input_readonly, #form_add_aluno .fieldset .div_input_readonly {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
 }
 .forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox {
   transition: all 0.3s;
@@ -2026,7 +2034,14 @@ option[disabled] {
   width: 250px;
   margin: 0 auto;
 }
+.forms_fixed input[readonly=true], #form_add_aluno input[readonly=true] {
+  background: #eee;
+  border: 1px solid #ddd;
+}
 
+#form_add_aluno #div_select_contrato {
+  width: 100%;
+}
 #form_add_aluno #add_aluno_ra {
   text-transform: uppercase;
 }
@@ -2044,6 +2059,58 @@ option[disabled] {
 #form_add_aluno div select {
   padding: 0px !important;
   margin-top: 0px !important;
+}
+
+#div_ra_aluno {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start !important;
+  flex-shrink: 1;
+  flex-grow: 1;
+}
+#div_ra_aluno label {
+  display: flex;
+  max-height: auto;
+  align-items: center;
+  padding: 10px 20px;
+}
+#div_ra_aluno input {
+  max-width: 300px;
+  flex-shrink: 1;
+  border: 1px solid #999;
+  transition: all 0.2s;
+  padding: 5px;
+  font-size: 18px;
+  background: #fff;
+}
+#div_ra_aluno input:focus {
+  outline: 2px solid #245da7;
+  outline-offset: -2px;
+}
+#div_ra_aluno input[readonly=true] {
+  border: 1px solid #245da7;
+  background: #c3cad3;
+}
+#div_ra_aluno .input_invalido {
+  background: #f1c0c0 !important;
+}
+#div_ra_aluno #label_ra_automatico_aluno {
+  margin: 0px;
+  margin-left: 10px;
+  transition: all 0.5s;
+  border-radius: 3px;
+  max-width: 220px;
+  min-width: 180px;
+  user-select: none;
+}
+#div_ra_aluno #label_ra_automatico_aluno #checkbox_id_automatico_aluno {
+  display: none;
+}
+#div_ra_aluno .active {
+  max-width: 350px;
+  width: 350px;
+  background: #245da7 !important;
+  color: #fff !important;
 }
 
 #page_login {

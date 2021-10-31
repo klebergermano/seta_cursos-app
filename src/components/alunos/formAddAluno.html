@@ -4,40 +4,116 @@
       <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
     </svg> Adicionar Aluno</h3>
     <fieldset class='fieldset'>
-
-      <div id='bg_div_id_aluno'>
-        <label id='label_id_automatico_aluno' class='label_btn_checkbox'>
-          <span>Gerar ID Automático</span>
-          <input id='checkbox_id_automatico_aluno' type='checkbox'>
-        </label>
-        <label for="add_aluno_ra">RAs:</label>
-        <input required id="add_aluno_ra" type="text" list="add_aluno_datalist_ra"/>
-        <datalist id='add_aluno_datalist_ra'>
+      <div id='div_ra_aluno'>
+  
+        <label for="aluno_new_ra">Aluno RA:</label>
+        <input required id="aluno_ra" type="text" list="aluno_datalist_ra"/>
+        <datalist id='aluno_datalist_ra'>
           <option></option>
         </datalist>
+        <label id='label_ra_automatico_aluno' class='label_btn_checkbox'>
+          <span>Gerar ID Automático</span>
+          <input id='checkbox_ra_automatico_aluno' type='checkbox'>
+        </label>
       </div><!--bg_div_id_aluno-->
+      <div  id='div_select_contrato'>
+        <label>Contrato: </label>
+        <select id='select_contrato' required>
+          <option></option>
+        </select>
+      </div>  
+      </fieldset>
+    <fieldset>
       <div>
-        <label for="nome">Aluno:</label><input required id="nome" type="text" placeholder='Digite o nome do aluno' />
+        <label> Curso:</label> 
+       <input type='text' id='curso_nome'  readonly='true'/>
       </div>
-        <div>
-      <label><span class='required'>&nbsp;&nbsp; *</span> Curso:</label> 
-      <select required id='curso_nome'>
-        <option selected="true" disabled value=''>Selecione o Curso</option>
-        <option class='informatica' data-abreviation='IFK' value='Informática KIDS'>Informática KIDS</option>
-        <option class='informatica' data-abreviation='IFC' value='Informática Completo'>Informática Completo</option>
-        <option class='informatica' data-abreviation='IFPRO' value='Informática Profissional'>Informática Profissional</option>
-        <option class='informatica' data-abreviation='IFP' value='Informática Prática'>Informática Prática</option>
-        <option class='ingles' data-abreviation='IGK' value='Inglês KIDS'>Inglês KIDS</option>
-        <option class='ingles' data-abreviation='IGPT' value='Inglês Pre-teen'>Inglês Pre-teen</option>
-        <option class='ingles' data-abreviation='IGB' value='Inglês Básico'>Inglês Básico</option>
-        <option class='ingles' data-abreviation='IGI' value='Inglês Intermediário'>Inglês Intermediário</option>
-        <option class='ingles' data-abreviation='IGA' value='Inglês Avançado'>Inglês Avançado</option>
-        <option class='excel' data-abreviation='EXA' value='Excel Avançado'>Excel Avançado</option>
-        <option class='web' data-abreviation='DWB' value='Desenvolvimento Web'>Desenvolvimento Web</option>
-        <option class='bd' data-abreviation='BDBMYSQL' value='Banco de Dados Básico(MySQL)'>Banco de Dados Básico MySQL</option>
-      </select>
-    </div>
-  </fieldset>
+    </fieldset>
+      <fieldset>
+    
+     
+        <hr/>
+        <div class='div_input_readonly'>
+          <label for="aluno_nome">Aluno:</label>
+          <input   readonly='true' id="aluno_nome" type="text" placeholder=''/>
+            <label for="aluno_genero">Genero.:</label>
+            <input   readonly='true'id="aluno_genero" type="text" placeholder=''/>
+        </div>
+    
+    
+      
+        <div class='div_input_readonly'>
+          <label for="aluno_end">End.:</label>
+          <input   readonly='true' id="aluno_end" type="text" placeholder=''/>
+            <label for="aluno_end_numero">Numero.:</label>
+            <input   readonly='true' id="aluno_end_numero" type="text" placeholder=''/>
+        </div>
+        <div class='div_input_readonly'>
+          <label for="aluno_bairro">Bairro:</label>
+          <input   readonly='true' id="aluno_bairro" type="text" placeholder=''/>
+        </div>
+        <div class='div_input_readonly'>
+          <label for="aluno_rg">RG:</label>
+          <input   readonly='true' id="aluno_rg" type="text" placeholder=''/>
+        </div>
+        <div class='div_input_readonly'>
+          <label for="aluno_cep">CEP:</label>
+          <input   readonly='true' id="aluno_cep" type="text" placeholder=''/>
+        </div>
+        <div class='div_input_readonly'>
+          <label for="aluno_data_nasc">Data Nasc.:</label>
+          <input   readonly='true' id="aluno_data_nasc" type="date" placeholder=''/>
+        </div>
+        <div class='div_input_readonly'>
+          <label for="aluno_email">Cel.:</label>
+          <input   readonly='true' id="aluno_cel" type="text" placeholder=''/>
+        </div>
+        <div class='div_input_readonly'>
+          <label for="aluno_tel">Tel.:</label>
+          <input   readonly='true' id="aluno_tel" type="text" placeholder=''/>
+        </div>
+        <div class='div_input_readonly'>
+          <label for="aluno_email">Email:</label>
+          <input   readonly='true' id="aluno_email" type="email" placeholder=''/>
+        </div>
+   
+  
+      </fieldset>
+
+      <fieldset>
+      
+         <div class='div_input_readonly'>
+          <label>Responsável:</label> 
+         <input type='text' id='resp_nome' readonly='true'/>
+        </div>
+         <div class='div_input_readonly'>
+          <label>RG:</label> 
+         <input type='text' id='resp_rg' readonly='true'/>
+        </div>
+         <div class='div_input_readonly'>
+          <label>CPF:</label> 
+         <input type='text' id='resp_cpf' readonly='true'/>
+        </div>
+         <div class='div_input_readonly'>
+          <label>Cel:</label> 
+         <input type='text' id='resp_cel' readonly='true'/>
+        </div>
+         <div class='div_input_readonly'>
+          <label>Tel:</label> 
+         <input type='text' id='resp_tel' readonly='true'/>
+        </div>
+         <div class='div_input_readonly'>
+          <label>Email:</label> 
+         <input type='text' id='resp_email' readonly='true'/>
+        </div>
+      </fieldset>
+
+      <fieldset>
+       <div>
+        <label for="aluno_obs">Obs.:</label>
+      <textarea id="aluno_obs" type="text" placeholder=''></textarea>
+      </div>
+    </fieldset>
     
     <input type="submit" value="Salvar" />
   </form>
