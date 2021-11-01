@@ -50,15 +50,16 @@ async function insertSelectOptionsContratos(){
       formAddAluno.querySelector("#curso_nome").value = contrato.curso_info.nome;
       //Aluno
       formAddAluno.querySelector("#aluno_nome").value = contrato.aluno_info.nome;
+      formAddAluno.querySelector("#aluno_genero").value = contrato.aluno_info.genero;
       formAddAluno.querySelector("#aluno_end").value = contrato.aluno_info.end;
       formAddAluno.querySelector("#aluno_end_numero").value = contrato.aluno_info.end_numero;
+      formAddAluno.querySelector("#aluno_bairro").value = contrato.aluno_info.bairro;
+      formAddAluno.querySelector("#aluno_cep").value = contrato.aluno_info.cep;
+      formAddAluno.querySelector("#aluno_rg").value = contrato.aluno_info.rg;
       formAddAluno.querySelector("#aluno_cel").value = contrato.aluno_info.cel;
       formAddAluno.querySelector("#aluno_tel").value = contrato.aluno_info.tel;
       formAddAluno.querySelector("#aluno_email").value = contrato.aluno_info.email;
-      formAddAluno.querySelector("#aluno_bairro").value = contrato.aluno_info.bairro;
-      formAddAluno.querySelector("#aluno_cep").value = contrato.aluno_info.cep;
-      formAddAluno.querySelector("#aluno_genero").value = contrato.aluno_info.genero;
-      formAddAluno.querySelector("#aluno_obs").value = contrato.aluno_info.obs;
+    
       //Resp
       formAddAluno.querySelector("#resp_nome").value = contrato.resp_info.nome;
       formAddAluno.querySelector("#resp_rg").value = contrato.resp_info.rg;
@@ -105,7 +106,7 @@ function getContratoInfo(IDContrato){
         cep: form.aluno_cep.value,
         data_nasc: form.aluno_data_nasc.value,
         genero: form.aluno_genero.value,
-        obs:"",
+        obs:  form.aluno_obs.value,
         metadata:{
           created: new Date(),
           modified: new Date()
