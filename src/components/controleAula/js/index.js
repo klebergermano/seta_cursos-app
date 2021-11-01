@@ -73,7 +73,7 @@ function removeLoad(){
 
 export function onload(){
   displayLoad()
-  dbAlunoHistFunc.alunoHistCursosRealTimeDB("RA01", alunoContent.insertAlunoContent);
+  dbAlunoHistFunc.alunoHistCursosRealTimeDB("RA0012", alunoContent.insertAlunoContent);
 
   insertSelectAlunos();
   
