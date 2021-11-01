@@ -1,0 +1,209 @@
+<div class='components' id='gerador_contrato'>
+    <div id='loading_contrato'>
+      <h3><img src='./assets/img/loading.gif' /> <span>Gerando Contrato ...</span> </h3>
+    </div>
+    <form id="form_add_contrato">
+      <h3>Adicionar Contrato</h3>
+
+      <div id='bg_div_id_contrato' class='fieldset'>
+  
+         <div id='div_id_contrato'>
+           <label>ID Contrato:</label>
+            <input id='id_contrato' maxlength="5" required type='text' list="list_id_contrato"/>
+            <datalist id='list_id_contrato'>
+              <option></option>
+            </datalist>
+          </div><!--div_id_contrato-->
+          <label id='label_id_automatico_contrato'>
+            <span>Gerar ID Automático</span>
+            <input id='checkbox_id_automatico_contrato' type='checkbox'>
+          </label>
+      </div><!--bg_div_id_contrato-->
+       <!-------------------------Fieldset Responsável----------------------->
+      <div class='fieldset' id='fieldset_resp'>
+        <div id='div_btn_marcar_resp_aluno'>
+          <label id='btn_marcar_resp_aluno' for='checkbox_resp_aluno'>
+          <span>Marcar como Aluno(a)</span>
+          <input type='checkbox' id='checkbox_resp_aluno'> 
+        </label>
+      </div>
+        <div class='div_input' id='div_resp_nome'>
+          <label><span class='required'>*</span>Responsável: </label> 
+          <input required id="resp_nome" type="text"/>
+        </div>
+        <div class='div_input' id='div_resp_genero'>
+          <label><span class='required'>*</span>Genero: </label> 
+          <select id='resp_genero' required>
+            <option value='' selected disabled></option>
+            <option value='M'>M</option>
+            <option value='F'>F</option>
+            <option value='OUTRO'>OUTRO</option>
+          </select>
+        </div>
+        <div class='div_input' id='div_resp_end'> <label><span class='required'>*</span>Endereço: </label> <input required
+            id="resp_end" type="text" /> &nbsp;  <label class='label_numero'><span class='required'>*</span>Nº: </label> <input
+            required class="end_numero" id='resp_end_numero' type="text" /> </div>
+        <div class='div_input' id='div_resp_bairro'><label><span class='required'>*</span>Bairro: </label> <input required
+            id="resp_bairro" type="text" /> </div>
+        <div class='div_input' id='div_resp_cep'><label><span class='required'>*</span>CEP: </label> <input required
+            id="resp_cep" type="text" /> </div>
+        <div class='div_input' id='div_resp_cpf'> <label><span class='required'>*</span>CPF: </label> <input required
+            id="resp_cpf" type="text" /> </div>
+        <div class='div_input' id='div_resp_rg'><label><span class='required'>*</span>RG: </label> <input required
+            id="resp_rg" type="text" /> </div>
+  
+            <div class='div_input' id='div_resp_data_nasc'>
+              <label>Data Nasc.: </label> 
+              <input id="resp_data_nasc" type="date" />
+            </div>   
+        <div class='div_input' id='div_resp_cel'><label>Cel.: </label> <input id="resp_cel" type="text" /></div>
+        
+        <div class='div_input' id='div_resp_tel'>
+          <label>Tel.: </label> <input id="resp_tel" type="text" />
+        </div>
+        <div class='div_input' id='div_resp_email'>
+          <label>Email: </label> <input id="resp_email" type="text" />
+        </div>
+  
+      </div>
+      <!--fieldset resp-->
+      <div class='fieldset' id='fieldset_aluno'>
+        <div class='div_input' id='div_aluno_parentesco'>
+          <label id='label_parentesco'>Parentesco c/ o Responsável: </label> 
+            <select id='aluno_parentesco'>
+            <option value="" selected="true" disabled="disabled"></option>
+            <option value="Filho(a)">Filho(a)</option>
+            <option value="Irmão(a)">Irmão(a)</option>
+            <option value="Sobrinho(a)">Sobrinho(a)</option>
+            <option value="Neto(a)">Neto(a)</option>
+            <option value="Entiado(a)">Entiado(a)</option>
+            <option value="Responsável Legal">Responsável Legal</option>
+          </select>
+        </div>
+        <div class='div_input' id='div_aluno_nome'>
+          <div id='block_aluno'></div> 
+          <label><span class='required'>*</span>Aluno(a): </label> 
+          <input required id="aluno_nome" type="text" /> &nbsp; 
+        </div>
+        <div class='div_input' id='div_aluno_genero'>
+          <label><span class='required'>*</span>Genero: </label> 
+          <select id='aluno_genero' required>
+            <option value='' selected disabled></option>
+            <option value='M'>M</option>
+            <option value='F'>F</option>
+            <option value='OUTRO'>OUTRO</option>
+          </select>
+        </div>
+  
+        <div class='div_input' id='div_aluno_end'> <label>Endereço: </label> <input id="aluno_end" type="text" /> &nbsp; <label
+            class='label_numero'>Nº: </label> <input class="end_numero" id='aluno_end_numero' type="text" /> </div>
+        <div class='div_input' id='div_aluno_bairro'><label>Bairro: </label> <input id="aluno_bairro" type="text" />
+        </div>
+        <div class='div_input' id='div_aluno_cep'><label>CEP: </label> <input id="aluno_cep" type="text" /></div>
+        <div class='div_input' id='div_aluno_rg'><label>RG: </label> <input id="aluno_rg" type="text" /></div>
+        <div class='div_input' id='div_aluno_data_nasc'>
+          <label>Data Nasc.: </label> 
+          <input id="aluno_data_nasc" type="date" />
+        </div>
+        <div class='div_input' id='div_aluno_cel'><label>Cel.: </label> <input id="aluno_cel" type="text" /></div>
+        <div class='div_input' id='div_aluno_tel'><label>Tel.: </label> <input id="aluno_tel" type="text" /></div>
+        <div class='div_input' id='div_aluno_email'>
+          <label>Email: </label> <input id="aluno_email" type="text" />
+        </div>
+  
+       </div>
+      <!--div fieldset-->
+      <!------------------------------ FIELDSET CURSO------------------------------->
+      <div class='fieldset' id='fieldset_curso'>
+          <div  class='div_input'id='div_curso_nome'> <label><span class='required'>&nbsp;&nbsp;
+                *</span> Curso: </label>
+            <select required id='curso_nome'>
+              <option selected="true" disabled="disabled"></option>
+              <option class='informatica' name='IFK' value='Informática KIDS'>Informática KIDS</option>
+              <option class='informatica' name='IFC' value='Informática Completo'>Informática Completo</option>
+              <option class='informatica' name='IFPRO' value='Informática Profissional'>Informática Profissional
+              </option>
+              <option class='informatica' name='IFP' value='Informática Prática'>Informática Prática</option>
+              <option class='ingles' name='IGK' value='Inglês KIDS'>Inglês KIDS</option>
+              <option class='ingles' name='IGPT' value='Inglês Pre-teen'>Inglês Pre-teen</option>
+              <option class='ingles' name='IGB' value='Inglês Básico'>Inglês Básico</option>
+              <option class='ingles' name='IGI' value='Inglês Intermediário'>Inglês Intermediário</option>
+              <option class='ingles' name='IGA' value='Inglês Avançado'>Inglês Avançado</option>
+              <option class='excel' name='EXA' value='Excel Avançado'>Excel Avançado</option>
+              <option class='web' name='DWB' value='Desenvolvimento Web'>Desenvolvimento Web</option>
+              <option class='bd' name='BDBMYSQL' value='Banco de Dados Básico(MySQL)'>Banco de Dados Básico MySQL
+              </option>
+            </select>
+          </div>
+       
+          <div  class='div_input' id='div_curso_modulos'> <label id='label_curso_modulos'>Módulos: </label> 
+            <textarea id="curso_modulos" spellcheck="false"></textarea></div>
+        <div class='row'>
+          <div  id='div_curso_duracao'> <label>D. Meses: </label> <input id="curso_duracao" type="number" /> </div>
+          <div  id='div_curso_parcelas'> <label>Parcelas: </label> <input id="curso_parcelas"
+              type="number" /> </div>
+          <div  id='div_curso_vencimento'> 
+            <label>Dia Venc.: </label> <input id="curso_vencimento" type="number" /> </div>
+        </div>
+        <!--row-->
+        <div class='row'>
+          <div  id='div_curso_valor'> <label>Valor R$: </label> <input id="curso_valor" type="text"
+              value='0,00' /> </div>
+          <div  id='div_curso_desconto'> <label for='curso_desconto'> Desc. R$: </label> <input
+              id="curso_desconto" type="text" value='0,00' /> </div>
+          <div  id='div_curso_total'> <label>Total R$: </label> <input id="curso_total" type="text"
+              value='0,00' /> </div>
+        </div>
+        <!--row-->
+        <div class='row'>
+        
+          <div  id='div_curso_inicio'> <label>Data de Início: </label> <input id="curso_inicio"
+              type="date" /> </div>
+          <div  id='div_curso_data'> <label>Data Contrato: </label> <input id="curso_data_contrato"
+              type="date" /> </div>
+        </div>
+        <!--row-->
+        <div class='div_input' id='div_curso_combo'>
+            <div class='row_combo'>
+              <div class='div_input_combo'>
+                <label id='label_check_combo' for='check_combo'>
+                  <span>+ Desconto Combo</span>
+                  <input id='check_combo' type='checkbox' value='false' />
+                </label>
+              </div>
+              <div class='div_input_combo' id='div_combo_curso_1'>
+                <label>Curso 1: </label>
+                <input id='combo_curso_1' disabled='disabled' type='text' value='' />
+              </div>
+              <div class='div_input_combo' id='div_combo_curso_2'>
+                <label>Curso 2: </label>
+                <select id='combo_curso_2' disabled>
+                  <!--Recebe os valores de curso_nome via função em render-->
+                </select>
+              </div>
+            
+             </div>
+        <!--row-->
+        <div class='row_combo'>
+          <div id='div_combo_textarea'>
+            <div contenteditable="true" class='display_off' spellcheck="false" id='combo_textarea'>
+            </div>
+          </div>
+        </div><!--row-->
+        <div class='row_combo'>
+        
+          </div>
+  </div>
+  <!--row-->
+  <div class='div_input' id='div_curso_obs'>
+    <label>Observações: </label>
+    <textarea id='curso_obs' placeholder="Descontos e outros detalhes aqui..."></textarea>
+  
+   </div>
+  </div>
+      
+        <!--div fieldset-->
+        <button id='btn_salvar' type="submit">Salvar Contrato</button>
+    </form>
+  </div>
+  <!--pagina-->

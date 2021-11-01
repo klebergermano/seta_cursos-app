@@ -568,6 +568,28 @@ inputs, .input-primary {
   width: 100%;
 }
 
+menu.submenu_page {
+  padding: 5px 5px;
+  background: #ddd;
+  border-radius: 3px 3px 0px 0px;
+  margin-bottom: 20px;
+  width: 100%;
+  border-bottom: 1px solid #333;
+  display: flex;
+}
+menu.submenu_page ul {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+menu.submenu_page ul li {
+  display: block;
+  list-style: none;
+}
+menu.submenu_page ul li a {
+  text-decoration: none;
+}
+
 #header_admin {
   z-index: 3;
   grid-area: header;
@@ -692,28 +714,6 @@ inputs, .input-primary {
 #bg_main_menu_lateral_admin nav ul li a:hover {
   color: #80ace4;
   background: #333;
-}
-
-menu.submenu_page {
-  padding: 5px 5px;
-  background: #ddd;
-  border-radius: 3px 3px 0px 0px;
-  margin-bottom: 20px;
-  width: 100%;
-  border-bottom: 1px solid #333;
-  display: flex;
-}
-menu.submenu_page ul {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-}
-menu.submenu_page ul li {
-  display: block;
-  list-style: none;
-}
-menu.submenu_page ul li a {
-  text-decoration: none;
 }
 
 #cursos_info .page_content {
@@ -1818,7 +1818,7 @@ select .re {
   box-sizing: border-box;
 }
 
-#form_contrato {
+#form_add_contrato {
   display: flex;
   box-shadow: 0 1px 3px #666;
   background: #f8f8f8;
@@ -1833,7 +1833,7 @@ select .re {
   color: #333;
   overflow: hidden;
 }
-#form_contrato .fieldset {
+#form_add_contrato .fieldset {
   transition: all 1s;
   max-width: 100%;
   margin: 10px 20px;
@@ -1843,7 +1843,7 @@ select .re {
   display: flex;
   flex-wrap: wrap;
 }
-#form_contrato .fieldset label {
+#form_add_contrato .fieldset label {
   display: flex;
   border-radius: 3px 0 0 3px;
   flex-shrink: 1;
@@ -1854,9 +1854,9 @@ select .re {
   max-width: 100px;
   min-width: 100px;
 }
-#form_contrato .fieldset input,
-#form_contrato .fieldset select,
-#form_contrato .fieldset textarea {
+#form_add_contrato .fieldset input,
+#form_add_contrato .fieldset select,
+#form_add_contrato .fieldset textarea {
   min-width: auto !important;
   border-radius: 0 3px 3px 0;
   min-height: 35px;
@@ -1867,13 +1867,13 @@ select .re {
   flex-shrink: 1;
   resize: vertical;
 }
-#form_contrato .fieldset input:focus,
-#form_contrato .fieldset select:focus,
-#form_contrato .fieldset textarea:focus {
+#form_add_contrato .fieldset input:focus,
+#form_add_contrato .fieldset select:focus,
+#form_add_contrato .fieldset textarea:focus {
   outline: 2px solid #5690db;
   outline-offset: -2px;
 }
-#form_contrato .fieldset .div_input {
+#form_add_contrato .fieldset .div_input {
   margin: 0 5px 3px 0;
   display: flex;
   flex-grow: 1;
@@ -1881,24 +1881,24 @@ select .re {
   justify-content: flex-end;
   padding: 6px 0;
 }
-#form_contrato #div_resp_end,
-#form_contrato #div_aluno_end {
+#form_add_contrato #div_resp_end,
+#form_add_contrato #div_aluno_end {
   width: 100% !important;
 }
-#form_contrato .aluno_off {
+#form_add_contrato .aluno_off {
   height: 2px !important;
   padding: 0;
   opacity: 0 !important;
   margin-bottom: 0;
 }
-#form_contrato .display_off {
+#form_add_contrato .display_off {
   overflow: hidden;
   height: 1px !important;
   padding: 0 !important;
   opacity: 0 !important;
   margin: 0 0 -10px !important;
 }
-#form_contrato #btn_salvar {
+#form_add_contrato #btn_salvar {
   float: right;
   margin-right: 0;
   margin-top: 40px;
@@ -1908,10 +1908,10 @@ select .re {
   padding: 15px 30px;
   cursor: pointer;
 }
-#form_contrato #btn_salvar:hover {
+#form_add_contrato #btn_salvar:hover {
   background: #2d74d1;
 }
-#form_contrato #btn_salvar:active {
+#form_add_contrato #btn_salvar:active {
   background: #1f5192;
 }
 
@@ -1943,10 +1943,6 @@ option[disabled] {
   height: auto;
   font-size: 14px;
   overflow: hidden;
-}
-.forms_fixed h3, #form_add_aluno h3 {
-  text-align: center;
-  margin-bottom: 20px;
 }
 .forms_fixed fieldset, #form_add_aluno fieldset, .forms_fixed .fieldset, #form_add_aluno .fieldset {
   transition: all 1s;
@@ -2346,6 +2342,10 @@ h1 {
     margin: 0px 160px 0px 160px;
   }
 }
+.components h3 {
+  text-align: center;
+}
+
 #block_screen_msg {
   position: absolute;
   min-height: 100vh;
