@@ -62,6 +62,13 @@ async function insertSelectOptionsContratos(){
     
       //Resp
       formAddAluno.querySelector("#resp_nome").value = contrato.resp_info.nome;
+      formAddAluno.querySelector("#resp_genero").value = contrato.resp_info.genero;
+      formAddAluno.querySelector("#resp_end").value = contrato.resp_info.end;
+      formAddAluno.querySelector("#resp_end_numero").value = contrato.resp_info.end_numero;
+      formAddAluno.querySelector("#resp_bairro").value = contrato.resp_info.bairro;
+      formAddAluno.querySelector("#resp_cep").value = contrato.resp_info.cep;
+      formAddAluno.querySelector("#resp_data_nasc").value = contrato.resp_info.data_nasc;
+
       formAddAluno.querySelector("#resp_rg").value = contrato.resp_info.rg;
       formAddAluno.querySelector("#resp_cpf").value = contrato.resp_info.cpf;
       formAddAluno.querySelector("#resp_tel").value = contrato.resp_info.tel;
@@ -115,6 +122,12 @@ function getContratoInfo(IDContrato){
        responsavel:{
         ra: RA, 
         nome: form.resp_nome.value, 
+        genero: form.resp_genero.value, 
+        end: form.resp_end.value, 
+        end_numero: form.resp_end_numero.value, 
+        bairro: form.resp_bairro.value, 
+        cep: form.resp_cep.value, 
+        data_nasc: form.resp_data_nasc.value, 
         rg: form.resp_rg.value,
         cpf: form.resp_cpf.value,
         email: form.resp_cpf.value,
