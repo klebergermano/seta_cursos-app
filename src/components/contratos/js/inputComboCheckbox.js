@@ -32,22 +32,24 @@ combo_textarea.style.zIndex = "0";
     if (e.target.checked) {
       combo_textarea.style.zIndex = "0";
       combo_textarea.classList.remove("display_off");
-      comboCurso2.parentElement.style.opacity = "1";
-      comboCurso1.parentElement.style.opacity = "1";
+      
       comboCurso1.style.color = "#444";
       comboCurso2.style.color = "#444";
       comboCurso2.style["pointer-events"] = "auto";
       setAttribute('#combo_curso_2', 'required', true);
       insertComboTextarea();
+    removeAttributeFromElement('#combo_curso_2', 'disabled');
+
+
     } else {
       combo_textarea.style.zIndex = "1";
       combo_textarea.classList.add("display_off");
-      comboCurso1.parentElement.style.opacity = "0.5";
-      comboCurso2.parentElement.style.opacity = "0.5";
+      
       comboCurso1.style.color = "transparent";
       comboCurso2.style.color = "transparent";
       comboCurso2.style["pointer-events"] = "none";
       removeAttributeFromElement('#combo_curso_2', 'required');
+setAttribute("#combo_curso_2", "disabled", true);
     }
   }
   
