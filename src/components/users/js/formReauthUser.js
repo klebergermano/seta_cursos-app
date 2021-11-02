@@ -8,7 +8,7 @@ const auth = getAuth(firebaseApp);
 
 
 export function insertFormReauthUser(){
-    commonFunc.insertElementHTML('#bg_form_add_user', './components/users/formReauthUser.html', eventsFormReauthUser);
+    commonFunc.insertElementHTML('#page_users', './components/users/formReauthUser.html', eventsFormReauthUser);
     commonFunc.displayBlockScreen();
 }
 

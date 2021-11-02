@@ -16,6 +16,65 @@
 //Controle Aula
 //Gerador Contrato
 
+@keyframes spinner-line-fade-more {
+  0%, 100% {
+    opacity: 0; /* minimum opacity */
+  }
+  1% {
+    opacity: 1;
+  }
+}
+
+@keyframes spinner-line-fade-quick {
+  0%, 39%, 100% {
+    opacity: 0.25; /* minimum opacity */
+  }
+  40% {
+    opacity: 1;
+  }
+}
+
+@keyframes spinner-line-fade-default {
+  0%, 100% {
+    opacity: 0.22; /* minimum opacity */
+  }
+  1% {
+    opacity: 1;
+  }
+}
+
+@keyframes spinner-line-shrink {
+  0%, 25%, 100% {
+    /* minimum scale and opacity */
+    transform: scale(0.5);
+    opacity: 0.25;
+  }
+  26% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.load_element{
+ width:100px;
+ height:100px;
+ position: fixed;
+ top:50%; left:50%;
+ margin:auto;
+ z-index: 5;
+ border-radius: 50%;
+}
+#block_screen{
+  width:100%; 
+  min-height: 100vh;
+  position: absolute;
+  background-color: #11111140;
+  z-index: 4;
+  bottom:0px;
+  top:0px;
+  display:none;
+}
+
 .components{
   h1 {
     color: $title-color-dark;
@@ -32,16 +91,7 @@
   }
 }
 
-#block_screen{
-  width:100%; 
-  min-height: 100vh;
-  position: absolute;
-  background-color: #11111170;
-  z-index: 5;
-  bottom:0px;
-  top:0px;
-  display:none;
-}
+
 p{
   line-height: 18px;
   font-size:14px;

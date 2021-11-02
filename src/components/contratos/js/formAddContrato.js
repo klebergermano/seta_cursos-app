@@ -231,13 +231,12 @@ function createFormInfo(e){
     }else{
       formInfo.checkbox_resp_aluno = false;
     }
-
     return formInfo;
 }
 
 //Envia o objeto com as informações do formulário para a main stream index.js
 function submitFormContratoPDF(e) {
-  commonFunc.displaySpinnerLoad("#page_content");
+  commonFunc.displaySpinnerLoad("#page_content", true);
    let formValues = createFormInfo(e);
   //  let loadinContrato = document.querySelector("#loading_contrato");
     let result = new Promise((resolve, reject) => {
@@ -252,6 +251,5 @@ function submitFormContratoPDF(e) {
     result.then(() => {
       //loadinContrato.style.display = "none";
       commonFunc.removeSpinnerLoad("#page_content");
-
     });
   }
