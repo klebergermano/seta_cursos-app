@@ -8,7 +8,7 @@ const db = getFirestore(firebaseApp);
 
 
 export function insertFormConfigPerm(){
-    commonFunc.insertElementHTML('#bg_form_add_user', './components/users/formConfigPerm.html', ()=>{
+    commonFunc.insertElementHTML('#page_users', './components/users/formConfigPerm.html', ()=>{
         eventsFormConfigPerm()
 
     });

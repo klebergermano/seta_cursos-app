@@ -185,11 +185,9 @@ setDoc(doc(db, "contratos", formInfo.id_contrato),
      created: new Date(),
      modified: new Date()
    } 
-
 }, 
 { merge: true}
 ); 
-
     submitFormContratoPDF(e)
 }
 
@@ -233,27 +231,12 @@ function createFormInfo(e){
     }else{
       formInfo.checkbox_resp_aluno = false;
     }
-    /*
-    if (e.target.checkbox_resp_aluno.checked) {
-      formInfo.aluno_nome = "(IDEM)";
-      formInfo.aluno_end = "(IDEM)";
-      formInfo.aluno_numero = "(IDEM)";
-      formInfo.aluno_parentesco = "(IDEM)";
-      formInfo.aluno_bairro = "(IDEM)";
-      formInfo.aluno_cep = "(IDEM)";
-      formInfo.aluno_rg = "(IDEM)";
-      formInfo.aluno_data_nasc = "(IDEM)";
-      formInfo.aluno_cel = "(IDEM)";
-      formInfo.aluno_tel = "(IDEM)";
-      formInfo.aluno_obs = "(IDEM)";
-    }
-    */
     return formInfo;
 }
 
 //Envia o objeto com as informações do formulário para a main stream index.js
 function submitFormContratoPDF(e) {
-  commonFunc.displaySpinnerLoad("#page_content");
+  commonFunc.displaySpinnerLoad("#page_content", true);
    let formValues = createFormInfo(e);
   //  let loadinContrato = document.querySelector("#loading_contrato");
     let result = new Promise((resolve, reject) => {
@@ -268,6 +251,5 @@ function submitFormContratoPDF(e) {
     result.then(() => {
       //loadinContrato.style.display = "none";
       commonFunc.removeSpinnerLoad("#page_content");
-
     });
   }

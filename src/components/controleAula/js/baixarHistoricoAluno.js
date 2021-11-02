@@ -23,7 +23,7 @@ export function eventsBaixarHistorico(e) {
 
 //Envia o objeto com as informações do formulário para a main stream index.js
 async function sendHistoricoAluno(alunoInfo) {
-  commonFunc.displaySpinnerLoad("#page_content");
+  commonFunc.displaySpinnerLoad("#page_content", true);
   let docAlunoHistorico = getDoc(doc(db, "alunato", alunoInfo.RA, 'cursos', alunoInfo.curso));
   docAlunoHistorico.then((resData) => {
     let res = resData.data();
@@ -43,5 +43,4 @@ async function sendHistoricoAluno(alunoInfo) {
     }, 1500)
   })
     .catch((err) => console.log('Ocorreu um erro ao enviar o Histórico do Aluno', err));
-
 }//-------------//rs

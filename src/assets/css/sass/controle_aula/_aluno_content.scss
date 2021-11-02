@@ -1,53 +1,5 @@
 @use "../abstracts" as *;
 
-@keyframes spinner-line-fade-more {
-    0%, 100% {
-      opacity: 0; /* minimum opacity */
-    }
-    1% {
-      opacity: 1;
-    }
-  }
-  
-  @keyframes spinner-line-fade-quick {
-    0%, 39%, 100% {
-      opacity: 0.25; /* minimum opacity */
-    }
-    40% {
-      opacity: 1;
-    }
-  }
-  
-  @keyframes spinner-line-fade-default {
-    0%, 100% {
-      opacity: 0.22; /* minimum opacity */
-    }
-    1% {
-      opacity: 1;
-    }
-  }
-  
-  @keyframes spinner-line-shrink {
-    0%, 25%, 100% {
-      /* minimum scale and opacity */
-      transform: scale(0.5);
-      opacity: 0.25;
-    }
-    26% {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-  
-.load_element{
-   width:100px;
-   height:100px;
-   position: fixed;
-   top:50%; left:50%;
-   margin:auto;
-   z-index: 5;
-   border-radius: 50%;
-}
 
 nav.nav_cursos_aluno {
     @extend .nav_flex;

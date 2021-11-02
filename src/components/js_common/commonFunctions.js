@@ -32,7 +32,6 @@ export function insertElementHTML(target, pathElementHTML,  callback, event, cle
     if(cleanTargetElement){
       console.log("Limpo");
       targetElement.innerHTML = '';
-
     }   
     targetElement.appendChild(htmlElement);
    return htmlElement;
@@ -96,8 +95,8 @@ export function btnCloseForm(formID){
 //----------------------SPIN JS---------------------------------------
 
 
-export function displaySpinnerLoad(idTarget){
-  
+export function displaySpinnerLoad(idTarget, blockScreen = false){
+  if(blockScreen) displayBlockScreen();
 var opts = {
   lines: 13, // The number of lines to draw
   length: 38, // The length of each line
@@ -124,6 +123,7 @@ var spinner = new Spinner(opts).spin(target);
 }
 
 export function removeSpinnerLoad(idTarget){
+  removeBlockScreen();
   let spiner = document.querySelector('.spinner');
   document.querySelector(idTarget).removeChild(spiner);
 }
