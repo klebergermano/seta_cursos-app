@@ -26,6 +26,9 @@ function getRAfromMainSelectAluno() {
 
 
 export function insertAlunoContent(RA, snapshotChange) {
+  console.log('----------', snapshotChange);
+  console.log('----------');
+
   let nomeCurso = snapshotChange[0].doc.data().curso;
   dbAlunoHistFunc.getAlunoHistCursosDB(RA)
     .then((alunoCursosDB) => {

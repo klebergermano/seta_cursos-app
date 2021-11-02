@@ -46,11 +46,8 @@
    top:50%; left:50%;
    margin:auto;
    z-index: 5;
-   background:#f90;
    border-radius: 50%;
 }
-
-
 
 nav.nav_cursos_aluno {
     @extend .nav_flex;
