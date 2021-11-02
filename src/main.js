@@ -1,4 +1,5 @@
 
+
 const { app, BrowserWindow, Menu, ipcMain, globalShortcut, Tray, dialog } = require("electron");
 
 const pdf = require("html-pdf");
@@ -65,7 +66,6 @@ function createPDFHistoricoAluno(docAlunoHistorico) {
   var options = { 
     "format": "A4",
     "base": "file:///D:/#KG/seta_cursos-app/src/assets/"
-    
     }
 
   const templateHistorico = TemplateHistoricoAluno(docAlunoHistorico); // create template from the form inputs
@@ -79,9 +79,7 @@ function createPDFHistoricoAluno(docAlunoHistorico) {
   });
 }
 
-
 ipcMain.handle("baixarHistoricoAluno", async (event, docAlunoHistorico) => {
-
 
   let novoPDF = createPDFHistoricoAluno(docAlunoHistorico); // call the createPDF function
 
@@ -131,9 +129,7 @@ function createPDF(data) {
   });
 }
 ipcMain.handle("submit", async (event, data_info) => {
-
   const novoPDF = createPDF(data_info); // call the createPDF function
-
   return novoPDF
     .then((pdf) => {
       // Read the file
@@ -145,7 +141,6 @@ ipcMain.handle("submit", async (event, data_info) => {
       fs.readFile(oldpath, function (err, data) {
         if (err) throw err;
         console.log("File read!");
-
         // Write the file
         fs.writeFile(newpath, data, function (err) {
           if (err) throw err;
@@ -155,17 +150,22 @@ ipcMain.handle("submit", async (event, data_info) => {
             title: "SETA CURSOS - Contrato",
             message: `Contrato gerado com sucesso em: ${downloadPath}`,
           });
+          return true;
         });
         // Delete the file
         fs.unlink(oldpath, function (err) {
           if (err) throw err;
           console.log("File deleted!");
         });
+      return true;
+
       });
+      return true;
     })
     .catch((err) => {
       console.log(err);
       return false;
     });
+    
 });
 

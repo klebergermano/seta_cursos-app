@@ -253,13 +253,12 @@ function createFormInfo(e){
 
 //Envia o objeto com as informações do formulário para a main stream index.js
 function submitFormContratoPDF(e) {
+  commonFunc.displaySpinnerLoad("#page_content");
    let formValues = createFormInfo(e);
-    let loadinContrato = document.querySelector("#loading_contrato");
-
+  //  let loadinContrato = document.querySelector("#loading_contrato");
     let result = new Promise((resolve, reject) => {
       let res = ipcRenderer.invoke("submit", formValues);
-  
-      loadinContrato.style.display = "block";
+      //loadinContrato.style.display = "block";
       if (res) {
         resolve(res);
       } else {
@@ -267,6 +266,8 @@ function submitFormContratoPDF(e) {
       }
     });
     result.then(() => {
-      loadinContrato.style.display = "none";
+      //loadinContrato.style.display = "none";
+      commonFunc.removeSpinnerLoad("#page_content");
+
     });
   }
