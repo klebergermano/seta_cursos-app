@@ -8,7 +8,7 @@ const db = getFirestore(firebaseApp);
         return contratosList;
     }
 
-    export function insertContratosInfoTable(){
+    export async function insertContratosInfoTable(){
         getContratosList().then((res) => {
             return createTableContratosHTML(res)
         })
