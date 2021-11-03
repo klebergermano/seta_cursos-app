@@ -5,30 +5,38 @@
             <path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z"/>
           </svg> 
         Entrada de Caixa</h3>
-    <span class="btn_close_form">X</span>
+<fieldset>
+   <!--Hidden Inputs-->
+   <input  type='hidden' id='ra'/>
+   <input  type='hidden' id='aluno'/>
+<!------------->
+<div  class='div_inputs div_n_lanc'>
+    <label>Nº Lanc.: </label>
+    <input readonly='true' type='text' id='valor_total'
+    value='C0062F01'/>
+</div>
 
-    <div class='div_data'>
-        <label>Data: </label>
-        <input  type='Date' id='date'/>
-    </div>
-    <div  class='div_aluno'>
+  
+    <div  class='div_inputs div_aluno'>
         <label>Aluno</label>
-        <select>
-            <option>RA01 - Fulano de Tal</option>
-            <option>RA02 - Ciclano da Silva</option>
-            <option>RA03 - Beltranilson de Seila Onde</option>
+        <select id='aluno_select'>
+            <option value='RA0001'>RA0001 - Fulano de Tal</option>
+            <option value='RA0002'>RA0002 - Ciclano da Silva</option>
+            <option value='RA0003'>RA0003 - Beltranilson de Seila Onde</option>
         </select>
     </div>
-    <div  class='div_curso'>
+ 
+ 
+    <div  class='div_inputs div_curso'>
         <label>Curso</label>
-        <select>
+        <select id='curso'>
             <option>Excel Avançado</option>
             <option>Informática Completo</option>
         </select>
     </div>
-    <div  class='div_parcela'>
+    <div class='div_inputs div_parcela'>
         <label>Parcela</label>
-        <select>
+        <select id='parcela'>
             <option>Parcela 1</option>
             <option>Parcela 2</option>
             <option>Parcela 3</option>
@@ -45,28 +53,54 @@
             <option>Parcela 14</option>
             <option>Parcela 15</option>
             <option>Parcela 16</option>
-        
         </select>
     </div>
-    <div  class='div_forma_pag'>
+    <div class='div_inputs div_resp'>
+        <label>Resp.: </label>
+        <input  type='text' readonly='true' id='resp'/>
+    </div>
+
+    <div class='div_inputs div_vencimento'>
+        <label>Vencimento: </label>
+        <input  readonly='true' type='Date' id='vencimento'/>
+    </div>
+ 
+    <div  class='div_inputs div_valor'>
+        <label>Valor: </label>
+        <input  readonly='true' type='text' id='valor'/>
+    </div>
+    <div  class='div_inputs div_desconto'>
+        <label>Desc.: </label>
+        <input  type='text' id='desconto'/>
+    </div>
+    <div  class='div_inputs div_valor_total'>
+        <label>Valor Total: </label>
+        <input  type='text' id='valor_total'/>
+    </div>
+
+ 
+    <div  class='div_inputs div_forma_pag'>
         <label>Forma de Pag.</label>
-        <select>
+        <select id='forma_pag'>
             <option>Dinheiro</option>
             <option>Débito</option>
             <option>Crédito</option>
             <option>PIX</option>
         </select>
     </div>
- 
-    <div  class='div_valor'>
-        <label>Valor: </label>
-        <input type='text' id='valor'/>
-    </div>
-    <div  class='div_descricao'>
-        <label>Observação </label>
-        <input  type='text' id='descricao'/>
-    </div>
 
-    <div class='div_submit'><input type='submit' value="Salvar"/></div>
+
+        <div class='div_inputs  div_data'>
+        <label>Data: </label>
+        <input  type='Date' id='data'/>
+    </div>
+    <div  class='div_inputs div_obs'>
+        <label>Obs.: </label>
+        <textarea id='obs'></textarea>
+    </div>
+</fieldset>
+    <div class='div_inputs div_submit'>
+        <input type='submit' value="Salvar Pagamento"/>
+    </div>
 
 </form>

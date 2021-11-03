@@ -13,8 +13,8 @@ const db = getFirestore(firebaseApp);
             return createTableUsersHTML(res)
         })
         .then((tableUsersHTML)=>{
-            document.querySelector('#users_submenu_content').innerHTML = ""; 
-            document.querySelector('#users_submenu_content').appendChild(tableUsersHTML);
+            document.querySelector('#users_sub_content').innerHTML = ""; 
+            document.querySelector('#users_sub_content').appendChild(tableUsersHTML);
         })
         .catch(err => console.log(err))
     }
