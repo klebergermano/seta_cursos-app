@@ -3,27 +3,27 @@
 
 import * as commonFunc from "../../js_common/commonFunctions.js";
 //----------------------------------------------------
-import { firebaseApp } from "../../../components/dbConfig/firebaseApp.js"
+import { firebaseApp } from "../../dbConfig/firebaseApp.js"
 const { getFirestore, doc, setDoc } = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
 //------------------------------------------------------
 
-export function insertFormEntradaCaixa(){
-commonFunc.insertElementHTML("#fluxo_caixa_content", "./components/fluxoCaixa/formAddEntradaCaixa.html", eventsFormEntradaCaixa, null, true)
+export function insertFormPagMensalidade(){
+commonFunc.insertElementHTML("#fluxo_caixa_content", "./components/fluxoCaixa/formAddPagMensalidade.html", eventsFormPagMensalidade, null, true)
 }
 
-function eventsFormEntradaCaixa() {
+function eventsFormPagMensalidade() {
     commonFunc.btnCloseForm('#form_add_user');
-    let form = document.querySelector('#form_add_entrada_caixa');
+    let form = document.querySelector('#form_add_pag_mensalidade');
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        submitFormAddEntradaCaixa(form)
+        submitFormAddPagMensalidade(form)
     });
 }
 
 
 
-function submitFormAddEntradaCaixa(form){
+function submitFormAddPagMensalidade(form){
     let ano = '2021';
     let mes = 'janeiro';
     let id = '01';

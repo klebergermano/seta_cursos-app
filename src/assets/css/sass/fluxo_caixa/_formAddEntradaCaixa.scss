@@ -68,11 +68,12 @@ input[readonly='true']{
     .div_submit{
         width:100%; 
         background:#ddd;
-        padding:20px;
+        padding: 40px 20px;
         border:0px;
         box-shadow: 0px 0px 0px 0px #666;
         input[type='submit']{
-            @extend .btn-default;
+            margin: 0 auto;
+            @extend .btn-primary;
             min-width: 30%;
             min-width: 300px;
         }

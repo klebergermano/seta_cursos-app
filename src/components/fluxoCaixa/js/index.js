@@ -1,8 +1,8 @@
-import * as formAddEntradaCaixa from "./formAddEntradaCaixa.js"
+import * as formAddPagMensalidade from "./formAddPagMensalidade.js"
 export function onload(){
     document.querySelector("#btn_form_entrada_caixa").addEventListener('click', ()=>{
-        formAddEntradaCaixa.insertFormEntradaCaixa();
+        formAddPagMensalidade.insertFormPagMensalidade();
     });
-    formAddEntradaCaixa.insertFormEntradaCaixa();
+    formAddPagMensalidade.insertFormPagMensalidade();
 
 }
