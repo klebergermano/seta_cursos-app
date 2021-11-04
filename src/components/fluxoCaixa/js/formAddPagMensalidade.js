@@ -13,49 +13,54 @@ commonFunc.insertElementHTML("#fluxo_caixa_content", "./components/fluxoCaixa/fo
 }
 
 function eventsFormPagMensalidade() {
-    commonFunc.btnCloseForm('#form_add_user');
-    let form = document.querySelector('#form_add_pag_mensalidade');
-    form.addEventListener('submit', (e) => {
+   
+    document.querySelector('#form_add_pag_mensalidade').addEventListener('submit', (e) => {
         e.preventDefault();
-        submitFormAddPagMensalidade(form)
+       submitFormAddPagMensalidade(e)
     });
 }
 
 
 
-function submitFormAddPagMensalidade(form){
+function submitFormAddPagMensalidade(e){
+  e.preventDefault();
+  let form = document.querySelector('#form_add_pag_mensalidade');
+
     let ano = '2021';
     let mes = 'janeiro';
-    let id = '01';
+    let id = '02';
  
       setDoc(doc(db, "fluxo_caixa", ano), 
      { 
-       aluno: {
-        data: form.data.value, 
-        ra: form.ra.value, 
-        resp: form.resp.value, 
-        aluno: form.aluno_nome.value, 
-        curso: form.curso_nome.value,
-
-        parcela: form.parcela.value,
-        vencimento: form.vencimento.value,
-        form_pag: form.form_pag.value,
-
-        valor: form.valor.value,
-        desconto: form.desconto.value,
-        valor_total: form.valor_total.value,
-        
-        n_lanc: form.n_lanc.value,
-        obs: form.obs.value,
-        metadata:{
-          created: new Date(),
-          modified: new Date()
-        }
-       }
+       [mes]: {
+         [id] : {
+            id: id,
+            categoria: "pag_mensalidade",
+            data: form.data.value, 
+            ra: form.ra.value, 
+            resp: form.resp.value, 
+            aluno: form.aluno.value, 
+            curso: form.curso.value,
+            parcela: form.parcela.value,
+            vencimento: form.vencimento.value,
+            form_pag: form.forma_pag.value,
+            valor: form.valor.value,
+            desconto: form.desconto.value,
+            valor_total: form.valor_total.value,
+            n_lanc: form.n_lanc.value,
+            obs: form.obs.value,
+            metadata:{
+              created: new Date(),
+              modified: new Date()
+            }
+         }
+      }
 
  
     },
      { merge: true}
-     ); 
+     ).then(()=>{
+      commonFunc.defaultEventsAfterSubmitFixedForm("#form_add_pag_mensalidade", "Pagamento adicionado com sucesso!");
+     }); 
 
 }

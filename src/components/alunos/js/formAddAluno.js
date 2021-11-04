@@ -145,7 +145,7 @@ function getContratoInfo(IDContrato){
 
      // { nome: form.nome.value}, { merge: true}); 
     }).then(()=>{
-      commonFunc.defaultEventsAfterSubmitForm("#form_add_aluno", "Aluno salvo com sucesso!");
+      commonFunc.defaultEventsAfterSubmitFixedForm("#alunos_submenu_content", "Aluno salvo com sucesso!");
 
     }).catch((error) => console.error("Erro ao adicionar Aluno:", error));
   }
