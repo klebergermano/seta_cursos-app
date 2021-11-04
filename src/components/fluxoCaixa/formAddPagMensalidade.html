@@ -1,0 +1,106 @@
+<form id='form_add_pag_mensalidade' >
+    <h3>
+        + <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash" viewBox="0 0 16 16">
+            <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+            <path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z"/>
+          </svg> 
+        Entrada de Caixa</h3>
+<fieldset>
+   <!--Hidden Inputs-->
+   <input  type='hidden' id='ra'/>
+   <input  type='hidden' id='aluno'/>
+<!------------->
+<div  class='div_inputs div_n_lanc'>
+    <label>Nº Lanc.: </label>
+    <input readonly='true' type='text' id='n_lanc'
+    value='C0062F01'/>
+</div>
+
+  
+    <div  class='div_inputs div_aluno'>
+        <label>Aluno</label>
+        <select id='aluno_select'>
+            <option value='RA0001'>RA0001 - Fulano de Tal</option>
+            <option value='RA0002'>RA0002 - Ciclano da Silva</option>
+            <option value='RA0003'>RA0003 - Beltranilson de Seila Onde</option>
+        </select>
+    </div>
+ 
+ 
+    <div  class='div_inputs div_curso'>
+        <label>Curso</label>
+        <select id='curso'>
+            <option>Excel Avançado</option>
+            <option>Informática Completo</option>
+        </select>
+    </div>
+    <div class='div_inputs div_parcela'>
+        <label>Parcela</label>
+        <select id='parcela'>
+            <option>Parcela 1</option>
+            <option>Parcela 2</option>
+            <option>Parcela 3</option>
+            <option>Parcela 4</option>
+            <option>Parcela 5</option>
+            <option>Parcela 6</option>
+            <option>Parcela 7</option>
+            <option>Parcela 8</option>
+            <option>Parcela 9</option>
+            <option>Parcela 10</option>
+            <option>Parcela 11</option>
+            <option>Parcela 12</option>
+            <option>Parcela 13</option>
+            <option>Parcela 14</option>
+            <option>Parcela 15</option>
+            <option>Parcela 16</option>
+        </select>
+    </div>
+    <div class='div_inputs div_resp'>
+        <label>Resp.: </label>
+        <input  type='text' readonly='true' id='resp'/>
+    </div>
+
+    <div class='div_inputs div_vencimento'>
+        <label>Vencimento: </label>
+        <input  readonly='true' type='Date' id='vencimento'/>
+    </div>
+ 
+    <div  class='div_inputs div_valor'>
+        <label>Valor: </label>
+        <input  readonly='true' type='text' id='valor'/>
+    </div>
+    <div  class='div_inputs div_desconto'>
+        <label>Desc.: </label>
+        <input  type='text' id='desconto'/>
+    </div>
+    <div  class='div_inputs div_valor_total'>
+        <label>Valor Total: </label>
+        <input  type='text' id='valor_total'/>
+    </div>
+
+ 
+    <div  class='div_inputs div_forma_pag'>
+        <label>Forma de Pag.</label>
+        <select id='forma_pag'>
+            <option>Dinheiro</option>
+            <option>Débito</option>
+            <option>Crédito</option>
+            <option>PIX</option>
+        </select>
+    </div>
+
+
+        <div class='div_inputs  div_data'>
+        <label>Data: </label>
+        <input  type='Date' id='data'/>
+    </div>
+    <div  class='div_inputs div_obs'>
+        <label>Obs.: </label>
+        <textarea id='obs'></textarea>
+    </div>
+</fieldset>
+    <div class='div_inputs div_submit'>
+        <input type='submit' value="Salvar Pagamento"/>
+    </div>
+
+</form>

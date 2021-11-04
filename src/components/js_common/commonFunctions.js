@@ -68,6 +68,11 @@ export function defaultEventsAfterSubmitForm(formID, msg, timeout = 1500, callba
   if(callback) callback(); 
 };
 
+export function defaultEventsAfterSubmitFixedForm(formID, msg, callback){
+  showFixedMessage(formID,  msg)
+  if(callback) callback(); 
+};
+
 //Remove o formulário do contente page
 export function removeElement(childElementID, callback){
   let child = document.querySelector(childElementID);
@@ -163,14 +168,7 @@ return id;
       });
   }
 
-/*TODO: conferir utilidade da funçaõ
-//Função usada para fechar os formulários e tirar o block screen da tela.
-export function parenteDisplayAndBlockScreenNone(e) {
-  //Pega o elemento "parent" do event e set display none.
-  e.target.parentElement.style.display = "none";
-  changeCSSDisplay("#block_screen", "none");
-}
-*/
+
 function closeConfirmBox(e){
   let confirmBox = e.target.closest('.confirm_box')
   parent = confirmBox.parentElement;
@@ -238,6 +236,10 @@ export function removeblockSubmitForm(form) {
 }
 export function showMessage(targetID, message, callback) {
   document.querySelector(targetID).innerHTML = `<div class='show_message'>${message}</div>`;
+    if(callback)callback()
+}
+export function showFixedMessage(targetID, message, callback) {
+  document.querySelector(targetID).innerHTML = `<div class='show_fixed_message'>${message}</div>`;
     if(callback)callback()
 }
 

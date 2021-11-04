@@ -9,7 +9,6 @@ import * as usersInfoTable from "./usersInfoTable.js";
 const {getFirestore, collection, getDocs, doc,  getDoc } = require("firebase/firestore") 
 const db = getFirestore(firebaseApp);
 
-
 export function getUserCompleteInfo(currentUser){
     let userInfo = getDoc(doc(db, "users",  currentUser.uid))
     .then((res)=>{
@@ -26,12 +25,9 @@ export function getUserCompleteInfo(currentUser){
      return userInfo;
     }
 
-  
-
 export function onload(){
     document.querySelector('#btn_users_info_table').addEventListener('click', (e)=>{
-  usersInfoTable.insertUsersInfoTable();
-   
+      usersInfoTable.insertUsersInfoTable();
     })
     document.querySelector('#btn_add_user').addEventListener('click', (e)=>{
       formReauthUser.insertFormReauthUser();

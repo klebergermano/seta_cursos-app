@@ -98,7 +98,29 @@ function getContratoInfo(IDContrato){
    
      setDoc(doc(db, "alunato", RA, "cursos", form.curso_nome.value),
     { curso: form.curso_nome.value,
-      bimestres: {}
+      bimestres: {},
+      curso_info:{
+
+      },
+      resp_info:{
+        ra: RA, 
+        nome: form.resp_nome.value, 
+        genero: form.resp_genero.value, 
+        end: form.resp_end.value, 
+        end_numero: form.resp_end_numero.value, 
+        bairro: form.resp_bairro.value, 
+        cep: form.resp_cep.value, 
+        data_nasc: form.resp_data_nasc.value, 
+        rg: form.resp_rg.value,
+        cpf: form.resp_cpf.value,
+        email: form.resp_cpf.value,
+        cel: form.resp_cel.value,
+        tel: form.resp_tel.value,
+        metadata:{
+          created: new Date(),
+          modified: new Date()
+        }
+       }
     }).then(()=>{
       setDoc(doc(db, "alunato", RA), 
      { 
@@ -119,25 +141,7 @@ function getContratoInfo(IDContrato){
           modified: new Date()
         }
        },
-       responsavel:{
-        ra: RA, 
-        nome: form.resp_nome.value, 
-        genero: form.resp_genero.value, 
-        end: form.resp_end.value, 
-        end_numero: form.resp_end_numero.value, 
-        bairro: form.resp_bairro.value, 
-        cep: form.resp_cep.value, 
-        data_nasc: form.resp_data_nasc.value, 
-        rg: form.resp_rg.value,
-        cpf: form.resp_cpf.value,
-        email: form.resp_cpf.value,
-        cel: form.resp_cel.value,
-        tel: form.resp_tel.value,
-        metadata:{
-          created: new Date(),
-          modified: new Date()
-        }
-       }
+       
  
     },
      { merge: true}
@@ -145,7 +149,7 @@ function getContratoInfo(IDContrato){
 
      // { nome: form.nome.value}, { merge: true}); 
     }).then(()=>{
-      commonFunc.defaultEventsAfterSubmitForm("#form_add_aluno", "Aluno salvo com sucesso!");
+      commonFunc.defaultEventsAfterSubmitFixedForm("#alunos_submenu_content", "Aluno salvo com sucesso!");
 
     }).catch((error) => console.error("Erro ao adicionar Aluno:", error));
   }
