@@ -30,7 +30,7 @@ async function insertSelectAlunos(){
 
 export function onload(){
   commonFunc.displaySpinnerLoad("#page_content")
-  dbAlunoHistFunc.alunoHistCursosRealTimeDB("RA0012", alunoContent.insertAlunoContent);
+  dbAlunoHistFunc.alunoHistCursosRealTimeDB("RA0001", alunoContent.insertAlunoContent);
   insertSelectAlunos();
   document.querySelector('#main_select_aluno').addEventListener('input', (e)=>{
     alunoContent.eventsAlunoContent();

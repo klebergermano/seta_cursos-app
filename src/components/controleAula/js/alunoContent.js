@@ -26,10 +26,11 @@ function getRAfromMainSelectAluno() {
 
 
 export function insertAlunoContent(RA, snapshotChange) {
-  console.log('----------', snapshotChange);
-  console.log('----------');
 
-  let nomeCurso = snapshotChange[0].doc.data().curso;
+
+  let nomeCurso = snapshotChange[0].doc.data().curso_info.nome;
+  console.log('Nome do curso:', nomeCurso);
+  console.log(nomeCurso);
   dbAlunoHistFunc.getAlunoHistCursosDB(RA)
     .then((alunoCursosDB) => {
 
@@ -98,7 +99,7 @@ function eventBtnAddFeedbackBimestral(){
 }
 
 function createBgCursoMainStructureHTML(curso_nome_bd, RA) {
- 
+  console.log('cn:', curso_nome_bd)
 
   if (curso_nome_bd) {
     let id_curso = commonFunc.stringToID(curso_nome_bd);
@@ -209,12 +210,12 @@ function createAlunoContentHTML(alunoDataFromDB, RA) {
     
 
     //let resumoBimestre = resumoBimestreBD(resCursoDB);
-    let bgCursoMainStructure = createBgCursoMainStructureHTML(resCursoDB.curso, RA);
+    let bgCursoMainStructure = createBgCursoMainStructureHTML(resCursoDB.curso_info.nome, RA);
 
     if (checkIfBimestresIsEmpty(resCursoDB.bimestres)) {
       alunoContentHTML += createBgCursosInnerContent(bgCursoMainStructure, resCursoDB);
     } else {
-      bgCursoMainStructure.querySelector('#curso_content').innerHTML = cursoVazioHTML(RA, resCursoDB.curso);
+      bgCursoMainStructure.querySelector('#curso_content').innerHTML = cursoVazioHTML(RA, resCursoDB.curso_info.nome);
       alunoContentHTML += bgCursoMainStructure.innerHTML;
     }
   });

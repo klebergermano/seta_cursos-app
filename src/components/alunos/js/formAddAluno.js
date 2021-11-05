@@ -46,8 +46,7 @@ async function insertSelectOptionsContratos(){
     const formAddAluno =  document.querySelector("#form_add_aluno");
     getContratoInfo(IDContrato).then((res)=>{
       let contrato = res.data();
-      //Curso
-      formAddAluno.querySelector("#curso_nome").value = contrato.curso_info.nome;
+
       //Aluno
       formAddAluno.querySelector("#aluno_nome").value = contrato.aluno_info.nome;
       formAddAluno.querySelector("#aluno_genero").value = contrato.aluno_info.genero;
@@ -68,12 +67,25 @@ async function insertSelectOptionsContratos(){
       formAddAluno.querySelector("#resp_bairro").value = contrato.resp_info.bairro;
       formAddAluno.querySelector("#resp_cep").value = contrato.resp_info.cep;
       formAddAluno.querySelector("#resp_data_nasc").value = contrato.resp_info.data_nasc;
-
       formAddAluno.querySelector("#resp_rg").value = contrato.resp_info.rg;
       formAddAluno.querySelector("#resp_cpf").value = contrato.resp_info.cpf;
       formAddAluno.querySelector("#resp_tel").value = contrato.resp_info.tel;
       formAddAluno.querySelector("#resp_cel").value = contrato.resp_info.cel;
       formAddAluno.querySelector("#resp_email").value = contrato.resp_info.email;
+      
+      //Curso
+      formAddAluno.querySelector("#curso_nome").value = contrato.curso_info.nome;
+      formAddAluno.querySelector("#curso_duracao").value = contrato.curso_info.duracao;
+      formAddAluno.querySelector("#curso_parcelas").value = contrato.curso_info.parcelas;
+      formAddAluno.querySelector("#curso_vencimento").value = contrato.curso_info.vencimento;
+      formAddAluno.querySelector("#curso_valor_mes").value = contrato.curso_info.valor_mes;
+      formAddAluno.querySelector("#curso_desconto_mes").value = contrato.curso_info.desconto_mes;
+      formAddAluno.querySelector("#curso_valor_total_mes").value = contrato.curso_info.valor_total_mes;
+      formAddAluno.querySelector("#curso_inicio").value = contrato.curso_info.inicio;
+      formAddAluno.querySelector("#curso_data_contrato").value = contrato.curso_info.data_contrato;
+      formAddAluno.querySelector("#curso_desconto_combo").value = contrato.curso_info.desconto_combo;
+      formAddAluno.querySelector("#curso_modulos").value = contrato.curso_info.modulos;
+      formAddAluno.querySelector("#curso_obs").value = contrato.curso_info.obs;
 
     })
   
@@ -89,18 +101,97 @@ function getContratoInfo(IDContrato){
   const contratos = getDocs(collection(db, 'contratos'))
  return contratos;
 }
+//------------------------------------------------------------------------------------
+function addDateMonth(num_mes, date) {
+  let i = num_mes;
+  let vencimento_data = date; //formato deve ser o mesmo do DB  "yyyy-mm-dd" ex: "2020-01-02"
+  vencimento_data = vencimento_data.split("-");
+  let dia_split = vencimento_data[2];
+  let mes_split = vencimento_data[1];
+  let ano_split = vencimento_data[0];
+  let mes_futuro = parseInt(mes_split) + i;
+  mes_split = mes_futuro;
+  if (mes_split > 12) {
+    mes_split = mes_split - 12;
+    ano_split = parseInt(ano_split) + 1;
+  }
+  if (dia_split > "28" && mes_split == "2") {
+    dia_split = "28";
+  } else if (dia_split > "30") {
+    switch (mes_split) {
+      case 4:
+        dia_split = "30";
+        break;
+      case 6:
+        dia_split = "30";
+        break;
+      case 9:
+        dia_split = "30";
+        break;
+      case 11:
+        dia_split = "30";
+        break;
+    }
+  }
+  let data_final =
+    ano_split +
+    "-" +
+    (parseInt(mes_split) + "").padStart(2, "0") +
+    "-" +
+    (parseInt(dia_split) + "").padStart(2, "0");
+
+  return data_final;
+}
+
+function setDateDay(data_inicio, vencimento) {
+  let d = new Date(data_inicio + ", 00:00:00");
+  let year = d.getFullYear();
+  let month = (d.getMonth() + 1).toString().padStart(2, "0");
+  let day = vencimento.toString().padStart(2, "0");
+  let newDate = `${year}-${month}-${day}`;
+  return newDate;
+}
+
+function createParcelas(data_inicio, vencimento) {
+  let data_vencimento = setDateDay(data_inicio, vencimento);
+  let num_parcelas = 12;
+  let parcelas = {};
+  for (let i = 0; i < num_parcelas; i++) {
+    let p_vencimento = addDateMonth(i, data_vencimento);
+    parcelas[i + 1] = {
+      status: "pendente",
+      vencimento: p_vencimento
+    };
+  }
+  return parcelas;
+}
+
+
+
+//-----------------------------------------------
 
   //Salva o aluno no banco de dados.
   async function submitFormAddAluno(e) {
     e.preventDefault();
     let form = e.target;
     let RA = (form.aluno_ra.value).toUpperCase()
-   
+
      setDoc(doc(db, "alunato", RA, "cursos", form.curso_nome.value),
-    { curso: form.curso_nome.value,
+    { 
       bimestres: {},
       curso_info:{
-
+        nome: form.curso_nome.value, 
+        duracao: form.curso_duracao.value, 
+        vencimento: form.curso_vencimento.value, 
+        parcelas: createParcelas(form.curso_inicio.value, form.curso_vencimento.value),
+        valor_mes: form.curso_valor_mes.value, 
+        desconto_mes: form.curso_desconto_mes.value, 
+        valor_total_mes: form.curso_valor_total_mes.value, 
+        inicio: form.curso_inicio.value, 
+        data_contrato: form.curso_data_contrato.value, 
+        desconto_combo: form.curso_desconto_combo.value, 
+        modulos: form.curso_modulos.value, 
+        obs: form.curso_obs.value, 
       },
       resp_info:{
         ra: RA, 
