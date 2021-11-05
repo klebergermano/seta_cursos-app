@@ -23,13 +23,28 @@
         </select>
       </div>  
       </fieldset>
+   <!------------------------------ CURSO------------------------------->
     <fieldset>
       <div>
         <label> Curso:</label> 
        <input type='text' id='curso_nome'  readonly='true'/>
       </div>
+      <!--Hidden fields Curso-->
+       <input id='curso_duracao' type='number' />
+       <input id='curso_parcelas' type='number' />
+       <input id='curso_vencimento' type='number' /> 
+       <input id='curso_valor_mes' type='text'  /> 
+       <input id='curso_desconto_mes' type='text'  /> 
+       <input id='curso_valor_total_mes' type='text'  /> 
+       <input id='curso_inicio' type='date' /> 
+       <input id='curso_data_contrato' type='date' />
+       <textarea id='curso_desconto_combo'></textarea>
+       <textarea id='curso_modulos' ></textarea>
+       <textarea id='curso_obs'></textarea>
     </fieldset>
-      <fieldset>
+ <!---------------------------------------------------------------------->
+      
+    <fieldset>
     
      
         <hr/>
@@ -80,8 +95,8 @@
   
       </fieldset>
 
+      <!----Responsável---->
       <fieldset>
-      
          <div class='div_input_readonly'>
           <label>Responsável:</label> 
          <input type='text' id='resp_nome' readonly='true'/>
@@ -96,45 +111,26 @@
           <label>CPF:</label> 
          <input type='text' id='resp_cpf' readonly='true'/>
         </div>
-         <div class='div_input_readonly'>
-        <!--   <label>End.:</label>  -->
+        <!--Hidden Filds Responsável-->
          <input type='hidden' id='resp_end' readonly='true'/>
-         <!--  <label>Número.:</label>  -->
          <input type='hidden' id='resp_end_numero' readonly='true'/>
-        </div>
-         <div class='div_input_readonly'>
-        <!--   <label>Bairro:</label>  -->
          <input type='hidden' id='resp_bairro' readonly='true'/>
-        </div>
-         <div class='div_input_readonly'>
-         <!--  <label>CEP:</label> --> 
          <input type='hidden' id='resp_cep' readonly='true'/>
-        </div>
-      
-         <div class='div_input_readonly'>
-       <!--    <label for='resp_cel'>Cel:</label>  -->
          <input type='hidden' id='resp_cel' readonly='true'/>
-        </div>
-         <div class='div_input_readonly'>
-       <!--    <label for='resp_tel'>Tel:</label>  -->
          <input type='hidden' id='resp_tel' readonly='true'/>
-        </div>
-         <div  for='resp_email' class='div_input_readonly'>
-         <!--  <label>Email:</label>  -->
          <input type='hidden' id='resp_email' readonly='true'/>
-        </div>
-         <div class='div_input_readonly'>
-         <!--  <label>Data Nasc.:</label>  -->
          <input type='hidden' id='resp_data_nasc' readonly='true'/>
-        </div>
+        <!---------------------------->
       </fieldset>
-
       <fieldset>
        <div>
         <label for="aluno_obs">Obs. sobre o Aluno(a):</label>
       <textarea id="aluno_obs" type="text" placeholder=''></textarea>
       </div>
     </fieldset>
+ 
+
+
     
     <input type="submit" value="Salvar" />
   </form>

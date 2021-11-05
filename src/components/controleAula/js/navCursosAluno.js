@@ -86,7 +86,7 @@ function arrayCursosAluno(RA) {
   let result = alunoHistCurso.then((res) => {
     let cursos = [];
     res.forEach((e) => {
-      cursos.push(e.data().curso);
+      cursos.push(e.data().curso_info.nome);
     });
     return cursos;
   });
