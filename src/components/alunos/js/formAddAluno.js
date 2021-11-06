@@ -152,15 +152,24 @@ function setDateDay(data_inicio, vencimento) {
   return newDate;
 }
 
-function createParcelas(data_inicio, vencimento) {
-  let data_vencimento = setDateDay(data_inicio, vencimento);
+function createParcelas(form) {
+  let data_vencimento = setDateDay(form.curso_inicio.value, form.curso_vencimento.value);
   let num_parcelas = 12;
   let parcelas = {};
   for (let i = 0; i < num_parcelas; i++) {
     let p_vencimento = addDateMonth(i, data_vencimento);
     parcelas[i + 1] = {
-      status: "pendente",
-      vencimento: p_vencimento
+        vencimento: p_vencimento,
+        valor: form.curso_valor_mes.value,
+        desconto: form.curso_desconto_mes.value,
+        valor_total: form.curso_valor_total_mes.value,
+        pagamento:{
+          status: "pendente",
+          form_pag: "",
+          pago_em: "",
+          valor_pago: "",
+          obs: "",
+        },
     };
   }
   return parcelas;
@@ -183,7 +192,7 @@ function createParcelas(data_inicio, vencimento) {
         nome: form.curso_nome.value, 
         duracao: form.curso_duracao.value, 
         vencimento: form.curso_vencimento.value, 
-        parcelas: createParcelas(form.curso_inicio.value, form.curso_vencimento.value),
+        parcelas: createParcelas(form),
         valor_mes: form.curso_valor_mes.value, 
         desconto_mes: form.curso_desconto_mes.value, 
         valor_total_mes: form.curso_valor_total_mes.value, 

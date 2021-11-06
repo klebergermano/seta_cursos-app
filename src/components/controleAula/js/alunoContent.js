@@ -11,36 +11,23 @@ import * as formAddFeedbackBimestral from "./formAddFeedbackBimestral.js";
 import * as deleteFunc from "./deleteFunc.js";
 import * as baixarHistoricoAluno  from "./baixarHistoricoAluno.js";
 
-
-
-export function eventsAlunoContent() {
+export function eventsAlunoContent(){
   let RA = getRAfromMainSelectAluno();
   dbAlunoHistFunc.alunoHistCursosRealTimeDB(RA, insertAlunoContent);
 }
-
-function getRAfromMainSelectAluno() {
+function getRAfromMainSelectAluno(){
   let select = document.querySelector("#main_select_aluno");
   let RA = select.options[select.selectedIndex].value;
   return RA;
 }
 
-
-export function insertAlunoContent(RA, snapshotChange) {
-
-
+export function insertAlunoContent(RA, snapshotChange){
   let nomeCurso = snapshotChange[0].doc.data().curso_info.nome;
-  console.log('Nome do curso:', nomeCurso);
-  console.log(nomeCurso);
   dbAlunoHistFunc.getAlunoHistCursosDB(RA)
     .then((alunoCursosDB) => {
-
-   
           let alunoContentHTML = createAlunoContentHTML(alunoCursosDB, RA);
-       
-         
           document.querySelector("#aluno_content").innerHTML = alunoContentHTML;
-          navCursosAluno.insertNavCursosInBGCursos(RA, nomeCurso)
-       
+          navCursosAluno.insertNavCursosInBGCursos(RA, nomeCurso);
     }).then(()=>{
       eventsAulas()
       deleteFunc.eventDeleteCurso();
@@ -54,8 +41,7 @@ export function insertAlunoContent(RA, snapshotChange) {
         document.querySelector('#page_content').removeChild(spiner);
       }
     }).then(()=>{
-  document.querySelector("#controle_aula").style.opacity="1";
-
+       document.querySelector("#controle_aula").style.opacity="1";
     }).catch((err) => console.log('Ocorreu um erro ao inserir o conteúdo do aluno:', err));
 }
 function eventBtnAddAula(){
@@ -65,14 +51,11 @@ function eventBtnAddAula(){
     })
   });
 
-  
   document.querySelectorAll(".btn_add_aula").forEach((item) => {
     item.addEventListener("click", () => {
       formAddAula.insertFormAddAulaHTML();
     })
   });
-
-
 }
 function eventBtnAddReposicaoAula(){
   document.querySelectorAll(".btn_add_reposicao").forEach((item) => {
@@ -99,7 +82,6 @@ function eventBtnAddFeedbackBimestral(){
 }
 
 function createBgCursoMainStructureHTML(curso_nome_bd, RA) {
-  console.log('cn:', curso_nome_bd)
 
   if (curso_nome_bd) {
     let id_curso = commonFunc.stringToID(curso_nome_bd);
@@ -107,14 +89,12 @@ function createBgCursoMainStructureHTML(curso_nome_bd, RA) {
     bgCursoHTML.id = id_curso;
     bgCursoHTML.setAttribute('data-aluno_ra', RA);
     bgCursoHTML.setAttribute('data-curso', curso_nome_bd);
-  
     
     bgCursoHTML.innerHTML = `<nav class='nav_cursos_aluno'></nav>
     <div class='bg_curso' id='${id_curso}' data-aluno_ra='${RA}' data-curso='${curso_nome_bd}'>
        <h3 class='title_curso_nome ${id_curso}'>${curso_nome_bd}</h3>
         <div id='curso_content'>
-
-<div class='bg_btn_add'>
+        <div class='bg_btn_add'>
         <button class="btn_add btn_baixar_historico" id="x" title='Baixar Histórico do Aluno' type="button">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
         <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"/>
@@ -143,7 +123,6 @@ function createBgCursoMainStructureHTML(curso_nome_bd, RA) {
 export function resumoBimestreBD(curso){
   let bimestresKeys = commonFunc.getReverseObjectKeys(curso.bimestres);
   let resumoBimestres = {}; 
-
   for(let i = 0; i < bimestresKeys.length; i++){
     resumoBimestres[bimestresKeys[i]] = {}
     let bimestre = curso.bimestres[bimestresKeys[i]];
@@ -160,7 +139,6 @@ export function resumoBimestreBD(curso){
       for(let j = 0; j < aulasKeys.length; j++){
        let aulaStatus =  curso.bimestres[bimestresKeys[i]][aulasKeys[j]].status;
        let aulaCategoria =  curso.bimestres[bimestresKeys[i]][aulasKeys[j]].categoria;
-
        if(aulaCategoria === "feedback bimestral"){
         feedbackBimestral = curso.bimestres[bimestresKeys[i]][aulasKeys[j]].observacao;
        
@@ -194,24 +172,17 @@ export function resumoBimestreBD(curso){
     let notaFinal = parseFloat(notaProva) + pontosExtras;
     if(notaFinal > 10) notaFinal = 10;
     resumoBimestres[bimestresKeys[i]].notaFinal =  notaFinal;
-
   }
   return resumoBimestres;
-
 }
 
 function createAlunoContentHTML(alunoDataFromDB, RA) {
   let alunoContentHTML = "";
-
-
   alunoDataFromDB.forEach((resCursoDB) => {
     if (typeof resCursoDB.data !== "undefined") { resCursoDB = resCursoDB.data(); }
     else { resCursoDB = resCursoDB.doc.data(); }
-    
-
     //let resumoBimestre = resumoBimestreBD(resCursoDB);
     let bgCursoMainStructure = createBgCursoMainStructureHTML(resCursoDB.curso_info.nome, RA);
-
     if (checkIfBimestresIsEmpty(resCursoDB.bimestres)) {
       alunoContentHTML += createBgCursosInnerContent(bgCursoMainStructure, resCursoDB);
     } else {
@@ -219,8 +190,6 @@ function createAlunoContentHTML(alunoDataFromDB, RA) {
       alunoContentHTML += bgCursoMainStructure.innerHTML;
     }
   });
-
-
   return alunoContentHTML;
 }
 
