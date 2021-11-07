@@ -67,8 +67,8 @@ commonFunc.insertElementHTML("#fluxo_caixa_content", "./components/fluxoCaixa/fo
 
 function setValoresParcela(){
   let curso = getSelectCursoID();
-  let selectParcela = document.querySelector('#select_parcelas');
-  let parcela = selectParcela.options[selectParcela.selectedIndex].value;
+  let parcela = getNumeroParcela()
+
 
  let valor = document.querySelector('#valor');
  let vencimento = document.querySelector('#vencimento');
@@ -84,10 +84,24 @@ function setValoresParcela(){
 
  console.log($alunoInfo);
 }
+function setNumeroLancamento(){
+  let curso = getSelectCursoID();
+  let n_lanc = document.querySelector('#n_lanc');
+let n_parcela =  getNumeroParcela();
+  n_lanc.value = $alunoInfo.cursos[curso].id_contrato + 'F' + (n_parcela.padStart(2, '0'));
 
+}
+
+function getNumeroParcela(){
+  let selectParcela = document.querySelector('#select_parcelas');
+  let parcela = selectParcela.options[selectParcela.selectedIndex].value;
+  return parcela;
+
+}
 function eventsFormPagMensalidade() {
   insertSelectAlunos()
   document.querySelector('#select_parcelas').addEventListener('change', (e) => {
+    setNumeroLancamento()
     setValoresParcela()
   });
 

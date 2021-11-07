@@ -45,6 +45,7 @@ async function insertSelectOptionsContratos(){
   
     const formAddAluno =  document.querySelector("#form_add_aluno");
     getContratoInfo(IDContrato).then((res)=>{
+      let id_contrato = res.id; 
       let contrato = res.data();
 
       //Aluno
@@ -74,6 +75,7 @@ async function insertSelectOptionsContratos(){
       formAddAluno.querySelector("#resp_email").value = contrato.resp_info.email;
       
       //Curso
+      formAddAluno.querySelector("#curso_id_contrato").value = id_contrato;
       formAddAluno.querySelector("#curso_nome").value = contrato.curso_info.nome;
       formAddAluno.querySelector("#curso_duracao").value = contrato.curso_info.duracao;
       formAddAluno.querySelector("#curso_parcelas").value = contrato.curso_info.parcelas;
@@ -189,6 +191,7 @@ function createParcelas(form) {
     { 
       bimestres: {},
       curso_info:{
+        id_contrato: form.curso_id_contrato.value,
         nome: form.curso_nome.value, 
         duracao: form.curso_duracao.value, 
         vencimento: form.curso_vencimento.value, 
