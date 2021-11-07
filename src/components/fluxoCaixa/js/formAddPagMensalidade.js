@@ -31,7 +31,7 @@ export async function insertSelectAlunos(){
     let cursos = {};
     res.forEach((doc)=>{
      cursos[doc.data().curso_info.nome] = doc.data().curso_info;
-     
+     cursos[doc.data().curso_info.nome]['resp'] = doc.data().resp_info;
     $alunoInfo.cursos = cursos;
       optionsCurso += `<option value='${doc.data().curso_info.nome}'>${doc.data().curso_info.nome}</option>`;
     })
@@ -40,31 +40,21 @@ export async function insertSelectAlunos(){
  }
  
  function getParcelas(nomeCurso){
+   console.log($alunoInfo);
    let options = ``;
    let parcelas = $alunoInfo.cursos[nomeCurso].parcelas;
    let i = 1; 
      for(let parcela of Object.values(parcelas)){
        if(parcela.status !== 'pago'){
-        options += `<option value='parcela ${i}'>Parcela ${i}</option>`;
+        options += `<option value='${i}'>Parcela ${i}</option>`;
        }else{
-        options += `<option disabled value='parcela ${i}'>Parcela ${i}</option>`;
-
+        options += `<option disabled value='${i}'>Parcela ${i}</option>`;
        }
         i++; 
      }
      let selectParcelas = document.querySelector("#select_parcelas");
      selectParcelas.innerHTML = options;
-  /*
-  console.log($alunoInfo);
-   let RA = getRAfromMainSelectAluno();
-  let idCurso = getSelectCursoID()
 
-   getDoc(doc(db, 'alunato', RA, 'cursos', idCurso))
-  .then((res)=>{
-    console.log(res.data());
-
-  })
-  */
  }
  function getSelectCursoID(){
 let select = document.querySelector('#select_curso');
@@ -75,8 +65,32 @@ export function insertFormPagMensalidade(){
 commonFunc.insertElementHTML("#fluxo_caixa_content", "./components/fluxoCaixa/formAddPagMensalidade.html", eventsFormPagMensalidade, null, true)
 }
 
+function setValoresParcela(){
+  let curso = getSelectCursoID();
+  let selectParcela = document.querySelector('#select_parcelas');
+  let parcela = selectParcela.options[selectParcela.selectedIndex].value;
+
+ let valor = document.querySelector('#valor');
+ let vencimento = document.querySelector('#vencimento');
+ let valor_total = document.querySelector('#valor_total');
+ let desconto = document.querySelector('#desconto');
+ let resp = document.querySelector('#resp');
+
+ valor.value = $alunoInfo.cursos[curso].parcelas[parcela].valor;
+ vencimento.value = $alunoInfo.cursos[curso].parcelas[parcela].vencimento;
+ valor_total.value = $alunoInfo.cursos[curso].parcelas[parcela].valor_total;
+ desconto.value = $alunoInfo.cursos[curso].parcelas[parcela].desconto;
+ resp.value = $alunoInfo.cursos[curso]['resp'].nome;
+
+ console.log($alunoInfo);
+}
+
 function eventsFormPagMensalidade() {
   insertSelectAlunos()
+  document.querySelector('#select_parcelas').addEventListener('change', (e) => {
+    setValoresParcela()
+  });
+
   document.querySelector('#select_curso').addEventListener('change', (e) => {
     getParcelas(e.target.value)
   });
@@ -128,7 +142,6 @@ function submitFormAddPagMensalidade(e){
             }
          }
       }
- 
     },
      { merge: true}
      ).then(()=>{
