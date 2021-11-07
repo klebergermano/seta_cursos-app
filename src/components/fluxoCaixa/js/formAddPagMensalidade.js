@@ -41,7 +41,7 @@ export async function insertSelectAlunos(){
  
  function getParcelas(nomeCurso){
    console.log($alunoInfo);
-   let options = ``;
+   let options = `<option disabled selected>Selecione a Parcela</option>`;
    let parcelas = $alunoInfo.cursos[nomeCurso].parcelas;
    let i = 1; 
      for(let parcela of Object.values(parcelas)){
@@ -98,6 +98,8 @@ function getNumeroParcela(){
   return parcela;
 
 }
+
+
 function eventsFormPagMensalidade() {
   insertSelectAlunos()
   document.querySelector('#select_parcelas').addEventListener('change', (e) => {
@@ -107,10 +109,23 @@ function eventsFormPagMensalidade() {
 
   document.querySelector('#select_curso').addEventListener('change', (e) => {
     getParcelas(e.target.value)
+    document.querySelector('#select_parcelas').removeAttribute('disabled')
+
   });
   document.querySelector('#main_select_aluno').addEventListener('change', (e) => {
+
   setSelectCursos()
-  });
+function resetFieldsAfterSelectAlunoChange(){
+  document.querySelector('#select_parcelas').setAttribute('disabled', true)
+  document.querySelector('#select_parcelas').innerHTML = ""
+  document.querySelector('#n_lanc').value = ''
+  
+}
+
+resetFieldsAfterSelectAlunoChange()
+
+  
+});
     document.querySelector('#form_add_pag_mensalidade').addEventListener('submit', (e) => {
         e.preventDefault();
        submitFormAddPagMensalidade(e)
