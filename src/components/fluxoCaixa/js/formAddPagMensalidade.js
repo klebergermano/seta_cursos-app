@@ -96,11 +96,20 @@ function getNumeroParcela(){
   let selectParcela = document.querySelector('#select_parcelas');
   let parcela = selectParcela.options[selectParcela.selectedIndex].value;
   return parcela;
-
 }
 
-
+function setCurrentDate(){
+  console.log(new Date())
+  let currentDate = new Date();
+  let year =  currentDate.getFullYear(); 
+  let month = ((currentDate.getMonth() + 1).toString()).padStart(2, '0');
+  let day = ((currentDate.getDate()).toString()).padStart(2, '0'); 
+  let fcurrentDate =  year + '-' + month + '-' + day;
+  console.log(fcurrentDate);
+  document.querySelector('#data').value = fcurrentDate;
+}
 function eventsFormPagMensalidade() {
+  setCurrentDate()
   insertSelectAlunos()
   document.querySelector('#select_parcelas').addEventListener('change', (e) => {
     setNumeroLancamento()
