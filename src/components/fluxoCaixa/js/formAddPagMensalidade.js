@@ -168,25 +168,87 @@ function setNomeAndRAInput(){
 
 }
 
+function setMonthDate(data){
+  let mes = data.getMonth() + 1;
+  let monthName = '';  
+  switch(mes){
+    case 1 : monthName = 'janeiro';
+    break;
+    case 2 : monthName = 'fevereiro';
+    break;
+    case 3 : monthName = 'março';
+    break;
+    case 4 : monthName = 'abril';
+    break;
+    case 5 : monthName = 'maio';
+    break;
+    case 6 : monthName = 'junho';
+    break;
+    case 7 : monthName = 'julho';
+    break;
+    case 8 : monthName = 'agosto';
+    break;
+    case 9 : monthName = 'setembro';
+    break;
+    case 10 : monthName = 'outubro';
+    break;
+    case 11 : monthName = 'novembro';
+    break;
+    case 12 : monthName = 'dezembro';
+    break;
+  }
+return monthName;
 
+}
 
+function setIdFluxoEntradaMes(){
+
+}
+function createNewRowEntradaCaixa(ano, mes) {
+
+let newRow = getDoc(doc(db, 'fluxo_caixa', ano))
+      .then((ano) => {
+
+        console.log('ANO:', ano.data());
+        let row;
+        if(typeof ano.data()[mes] !== 'undefined'){
+          console.log('-----------------------------');
+          console.log('MES:', ano.data()[mes]);
+          console.log('-----------------------------');
+          let rows = ano.data()[mes]
+          let rowsKeys = Object.keys(rows);
+          let lastRowKey = (rowsKeys[rowsKeys.length - 1]);
+          row = (parseInt(lastRowKey) + 1).toString().padStart(2,'0'); 
+        }else{
+          row = '01';
+        }
+        console.log(row)
+          return row; 
+      })
+      
+    
+  return newRow;
+}
 
 function submitFormAddPagMensalidade(e){
   e.preventDefault();
   let form = document.querySelector('#form_add_pag_mensalidade');
-  let ano = '2021';
-  let mes = 'janeiro';
-  let id = '02';
+  let dataValue = document.querySelector('#data').value;
+  let data = new Date(dataValue + ','+ '00:00:00')
+  console.log(data);
+  let ano = (data.getFullYear()).toString();
 
+  let mes = setMonthDate(data);
+ createNewRowEntradaCaixa(ano, mes)
+ .then((row)=>{
       setDoc(doc(db, "fluxo_caixa", ano), 
      { 
        [mes]: {
-         [id] : {
+         [row] : {
           ra: form.ra.value, 
           aluno: form.aluno.value, 
-
             n_lanc: form.n_lanc.value, 
-            id: id,
+            row: row,
             categoria: "pag_mensalidade",
             data: form.data.value, 
             resp: form.resp.value, 
@@ -207,7 +269,13 @@ function submitFormAddPagMensalidade(e){
     },
      { merge: true}
      ).then(()=>{
+
+      //Update parcela aluno como paga
+
+     })
+     .then(()=>{
       commonFunc.defaultEventsAfterSubmitFixedForm("#form_add_pag_mensalidade", "Pagamento adicionado com sucesso!");
      }); 
+    });
 
 }
