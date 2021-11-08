@@ -3,12 +3,14 @@
 var $alunoInfo = {};
 
 import * as commonFunc from "../../js_common/commonFunctions.js";
-//----------------------------------------------------
+//--------------------------------------------------------------------
 import { firebaseApp } from "../../dbConfig/firebaseApp.js"
 const { getFirestore, doc, setDoc, onSnapshot, collection, getDocs, getDoc } = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
-//------------------------------------------------------
 
+//Others libraries
+const VMasker = require("vanilla-masker");
+//--------------------------------------------------------------------
 export async function insertSelectAlunos(){
   onSnapshot(
      collection(db, "alunato"),
@@ -75,22 +77,28 @@ function setValoresParcela(){
  let valor_total = document.querySelector('#valor_total');
  let desconto = document.querySelector('#desconto');
  let resp = document.querySelector('#resp');
+ let n_lanc = document.querySelector('#n_lanc');
 
  valor.value = $alunoInfo.cursos[curso].parcelas[parcela].valor;
  vencimento.value = $alunoInfo.cursos[curso].parcelas[parcela].vencimento;
  valor_total.value = $alunoInfo.cursos[curso].parcelas[parcela].valor_total;
  desconto.value = $alunoInfo.cursos[curso].parcelas[parcela].desconto;
  resp.value = $alunoInfo.cursos[curso]['resp'].nome;
+ n_lanc.value = $alunoInfo.cursos[curso].parcelas[parcela].n_lanc;
+
+ 
 
  console.log($alunoInfo);
 }
+//--------------n_lanc-----------------------
+
 function setNumeroLancamento(){
   let curso = getSelectCursoID();
   let n_lanc = document.querySelector('#n_lanc');
 let n_parcela =  getNumeroParcela();
   n_lanc.value = $alunoInfo.cursos[curso].id_contrato + 'F' + (n_parcela.padStart(2, '0'));
-
 }
+//------------------------------------------------------
 
 function getNumeroParcela(){
   let selectParcela = document.querySelector('#select_parcelas');
@@ -109,10 +117,14 @@ function setCurrentDate(){
   document.querySelector('#data').value = fcurrentDate;
 }
 function eventsFormPagMensalidade() {
+  VMasker(document.querySelector('#valor')).maskMoney();
+VMasker(document.querySelector('#desconto')).maskMoney();
+VMasker(document.querySelector('#valor_total')).maskMoney();
+
   setCurrentDate()
   insertSelectAlunos()
   document.querySelector('#select_parcelas').addEventListener('change', (e) => {
-    setNumeroLancamento()
+   
     setValoresParcela()
   });
 

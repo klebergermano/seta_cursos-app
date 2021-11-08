@@ -11,7 +11,6 @@ function getReverseObjectKeys(obj) {
 
   function createTable(aluno, bimestresKeys, index){
     let bgTables = document.createElement('div');
-
     let tableAulas = document.createElement('table');
     tableAulas.className = 'table_aulas';
     tableAulas.setAttribute('border', '1');
