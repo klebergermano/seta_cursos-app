@@ -1560,7 +1560,7 @@ input:disabled, textarea:disabled {
 #fieldset_curso .row #div_curso_parcelas label,
 #fieldset_curso .row #div_curso_valor label,
 #fieldset_curso .row #div_curso_desconto label,
-#fieldset_curso .row #div_curso_total label {
+#fieldset_curso .row #div_curso_valor_total label {
   width: 40%;
   max-width: 50%;
 }
@@ -1569,7 +1569,7 @@ input:disabled, textarea:disabled {
 #fieldset_curso .row #div_curso_parcelas input,
 #fieldset_curso .row #div_curso_valor input,
 #fieldset_curso .row #div_curso_desconto input,
-#fieldset_curso .row #div_curso_total input {
+#fieldset_curso .row #div_curso_valor_total input {
   width: 60%;
 }
 #fieldset_curso .row #div_curso_inicio,
@@ -1590,10 +1590,10 @@ input:disabled, textarea:disabled {
 }
 #fieldset_curso .row #curso_valor,
 #fieldset_curso .row #curso_desconto,
-#fieldset_curso .row #curso_total {
+#fieldset_curso .row #curso_valor_total {
   font-size: 16px;
 }
-#fieldset_curso .row #curso_total {
+#fieldset_curso .row #curso_valor_total {
   color: green;
 }
 #fieldset_curso .row #curso_desconto {
@@ -2246,13 +2246,13 @@ option[disabled] {
   background: #eee;
   user-select: none;
 }
-#form_add_pag_mensalidade fieldset .div_inputs #valor {
+#form_add_pag_mensalidade fieldset .div_inputs #curso_valor {
   color: #344e83;
 }
-#form_add_pag_mensalidade fieldset .div_inputs #desconto {
+#form_add_pag_mensalidade fieldset .div_inputs #curso_desconto {
   color: #c56674;
 }
-#form_add_pag_mensalidade fieldset .div_inputs #valor_total {
+#form_add_pag_mensalidade fieldset .div_inputs #curso_valor_total {
   color: green;
   font-weight: bold;
 }
@@ -2264,14 +2264,14 @@ option[disabled] {
 #form_add_pag_mensalidade fieldset .div_aluno, #form_add_pag_mensalidade fieldset .div_curso, #form_add_pag_mensalidade fieldset .div_resp {
   min-width: 100px;
 }
-#form_add_pag_mensalidade fieldset .div_valor, #form_add_pag_mensalidade fieldset .div_valor_total, #form_add_pag_mensalidade fieldset .div_desconto, #form_add_pag_mensalidade fieldset .div_forma_pag {
+#form_add_pag_mensalidade fieldset .div_curso_valor, #form_add_pag_mensalidade fieldset .div_curso_valor_total, #form_add_pag_mensalidade fieldset .div_curso_desconto, #form_add_pag_mensalidade fieldset .div_forma_pag {
   width: auto;
   max-width: 25%;
   flex-grow: 1;
   flex-shrink: 1;
   min-width: none;
 }
-#form_add_pag_mensalidade fieldset .div_valor input, #form_add_pag_mensalidade fieldset .div_valor_total input, #form_add_pag_mensalidade fieldset .div_desconto input, #form_add_pag_mensalidade fieldset .div_forma_pag input {
+#form_add_pag_mensalidade fieldset .div_curso_valor input, #form_add_pag_mensalidade fieldset .div_curso_valor_total input, #form_add_pag_mensalidade fieldset .div_curso_desconto input, #form_add_pag_mensalidade fieldset .div_forma_pag input {
   font-size: 18px;
   width: 100%;
 }

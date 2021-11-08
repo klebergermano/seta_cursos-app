@@ -26,6 +26,8 @@ export function eventsAlunoRA() {
 
 }
 
+
+
 function toggleRAAutomaticoAluno() {
     let checkbox_ra_automatico = document.querySelector("#checkbox_ra_automatico_aluno");
     let labelCheckbox = checkbox_ra_automatico.closest('label');

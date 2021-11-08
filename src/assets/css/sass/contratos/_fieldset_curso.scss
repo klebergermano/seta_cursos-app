@@ -46,7 +46,7 @@
         #div_curso_parcelas,
         #div_curso_valor,
         #div_curso_desconto,
-        #div_curso_total {
+        #div_curso_valor_total {
 
             label {
                 width: 40%;
@@ -76,10 +76,10 @@
 
         #curso_valor,
         #curso_desconto,
-        #curso_total {
+        #curso_valor_total {
             font-size: 16px;
         }
-        #curso_total {
+        #curso_valor_total {
             color: green;
         }
         #curso_desconto {

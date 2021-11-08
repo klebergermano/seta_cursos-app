@@ -66,13 +66,13 @@ input[readonly='true']{
     background: #eee;
     user-select: none;
 }
-#valor{
+#curso_valor{
     color:rgb(52, 78, 131);
 }
-#desconto{
+#curso_desconto{
     color:rgb(197, 102, 116);
 }
-#valor_total{
+#curso_valor_total{
     color:green;
     font-weight: bold;
 }
@@ -81,7 +81,7 @@ input[readonly='true']{
 .div_aluno, .div_curso, .div_resp{
     min-width: 100px ;
 }
- .div_valor, .div_valor_total, .div_desconto, .div_forma_pag{
+ .div_curso_valor, .div_curso_valor_total, .div_curso_desconto, .div_forma_pag{
 width:auto;
 max-width: 25%;
 flex-grow: 1;

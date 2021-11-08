@@ -3,6 +3,7 @@
 var $alunoInfo = {};
 
 import * as commonFunc from "../../js_common/commonFunctions.js";
+import insertInputValorTotal from "../../contratos/js/insertInputValorTotal.js";
 //--------------------------------------------------------------------
 import { firebaseApp } from "../../dbConfig/firebaseApp.js"
 const { getFirestore, doc, setDoc, onSnapshot, collection, getDocs, getDoc } = require("firebase/firestore")
@@ -70,27 +71,32 @@ commonFunc.insertElementHTML("#fluxo_caixa_content", "./components/fluxoCaixa/fo
 function setValoresParcela(){
   let curso = getSelectCursoID();
   let parcela = getNumeroParcela()
+  let valor = document.querySelector('#curso_valor');
+  let vencimento = document.querySelector('#vencimento');
+  let valor_total = document.querySelector('#curso_valor_total');
+  let desconto = document.querySelector('#curso_desconto');
+  let resp = document.querySelector('#resp');
+  let n_lanc = document.querySelector('#n_lanc');
 
+  valor.value = $alunoInfo.cursos[curso].parcelas[parcela].valor;
+  vencimento.value = $alunoInfo.cursos[curso].parcelas[parcela].vencimento;
+  valor_total.value = $alunoInfo.cursos[curso].parcelas[parcela].valor_total;
+  desconto.value = $alunoInfo.cursos[curso].parcelas[parcela].desconto;
+  resp.value = $alunoInfo.cursos[curso]['resp'].nome;
+  n_lanc.value = $alunoInfo.cursos[curso].parcelas[parcela].n_lanc;
 
- let valor = document.querySelector('#valor');
- let vencimento = document.querySelector('#vencimento');
- let valor_total = document.querySelector('#valor_total');
- let desconto = document.querySelector('#desconto');
- let resp = document.querySelector('#resp');
- let n_lanc = document.querySelector('#n_lanc');
-
- valor.value = $alunoInfo.cursos[curso].parcelas[parcela].valor;
- vencimento.value = $alunoInfo.cursos[curso].parcelas[parcela].vencimento;
- valor_total.value = $alunoInfo.cursos[curso].parcelas[parcela].valor_total;
- desconto.value = $alunoInfo.cursos[curso].parcelas[parcela].desconto;
- resp.value = $alunoInfo.cursos[curso]['resp'].nome;
- n_lanc.value = $alunoInfo.cursos[curso].parcelas[parcela].n_lanc;
-
- 
-
- console.log($alunoInfo);
 }
 //--------------n_lanc-----------------------
+function valorTotal(){
+  let valor = document.querySelector('#valor').value;
+  let desconto = document.querySelector('#desconto').value;
+  let valor_total = document.querySelector('#valor_total');
+
+ console.log(valor, desconto); 
+  
+
+}
+
 
 function setNumeroLancamento(){
   let curso = getSelectCursoID();
@@ -117,15 +123,20 @@ function setCurrentDate(){
   document.querySelector('#data').value = fcurrentDate;
 }
 function eventsFormPagMensalidade() {
-  VMasker(document.querySelector('#valor')).maskMoney();
-VMasker(document.querySelector('#desconto')).maskMoney();
-VMasker(document.querySelector('#valor_total')).maskMoney();
-
+  VMasker(document.querySelector('#curso_valor')).maskMoney();
+  VMasker(document.querySelector('#curso_desconto')).maskMoney();
+  VMasker(document.querySelector('#curso_valor_total')).maskMoney();
   setCurrentDate()
   insertSelectAlunos()
   document.querySelector('#select_parcelas').addEventListener('change', (e) => {
    
     setValoresParcela()
+  });
+
+  document.querySelector('#curso_desconto').addEventListener('input', (e) => {
+   //valorTotal();
+   insertInputValorTotal();
+   
   });
 
   document.querySelector('#select_curso').addEventListener('change', (e) => {
@@ -134,7 +145,6 @@ VMasker(document.querySelector('#valor_total')).maskMoney();
 
   });
   document.querySelector('#main_select_aluno').addEventListener('change', (e) => {
-
   setSelectCursos()
 function resetFieldsAfterSelectAlunoChange(){
   document.querySelector('#select_parcelas').setAttribute('disabled', true)
