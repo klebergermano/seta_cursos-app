@@ -1,6 +1,9 @@
 
 
-var $alunoInfo = {};
+var $alunoInfo = {
+  RA : '',
+  nome : ''
+};
 
 import * as commonFunc from "../../js_common/commonFunctions.js";
 import insertInputValorTotal from "../../contratos/js/insertInputValorTotal.js";
@@ -18,15 +21,56 @@ export async function insertSelectAlunos(){
      (snap) => {
        let selectAluno = `<option disabled selected>Selecione o Aluno</option>`;
        snap.forEach((doc) => {
-         selectAluno += `<option value='${doc.id}'>${doc.id} - ${doc.data().aluno.nome}</option>`;
+         selectAluno += `<option value='${doc.id}-${doc.data().aluno.nome}'>${doc.id} - ${doc.data().aluno.nome}</option>`;
        });
      document.querySelector("#main_select_aluno").innerHTML = selectAluno;
      })
  }
 
+ function eventsFormPagMensalidade() {
+  setMasks()
+  setCurrentDate()
+  insertSelectAlunos()
+  document.querySelector('#main_select_aluno').addEventListener('change', (e) => {
+    setSelectCursos()
+    resetFieldsAfterSelectAlunoChange()
+  });
+  document.querySelector('#select_curso').addEventListener('change', (e) => {
+    getParcelas(e.target.value)
+    document.querySelector('#select_parcelas').removeAttribute('disabled')
+  });
+
+  document.querySelector('#select_parcelas').addEventListener('change', (e) => {
+    setValoresParcela()
+  });
+  document.querySelector('#curso_desconto').addEventListener('input', (e) => {
+   insertInputValorTotal();
+  });
+
+    document.querySelector('#form_add_pag_mensalidade').addEventListener('submit', (e) => {
+        e.preventDefault();
+       submitFormAddPagMensalidade(e)
+    });
+}
+
+function getValueFromMainSelectAluno(){
+  let select = document.querySelector("#main_select_aluno");
+  let RA = select.options[select.selectedIndex].value;
+  return RA;
+}
+
+
+function setAlunoInfoRANome(){
+let valueMainSelect = getValueFromMainSelectAluno();
+let arrValue = valueMainSelect.split('-');
+$alunoInfo.RA = arrValue[0];
+$alunoInfo.nome = arrValue[1];
+console.log(arrValue);
+}
+
  function setSelectCursos(){
-  $alunoInfo.RA = getRAfromMainSelectAluno();
-  
+  setAlunoInfoRANome()
+  setNomeAndRAInput()
    let selectCurso = document.querySelector("#select_curso");
    let optionsCurso = '<option disabled selected>Selecione o Curso</option>';
    getDocs(collection(db, 'alunato', $alunoInfo.RA, 'cursos'))
@@ -40,6 +84,8 @@ export async function insertSelectAlunos(){
     })
     selectCurso.innerHTML = optionsCurso;
    });
+
+
  }
  
  function getParcelas(nomeCurso){
@@ -86,25 +132,7 @@ function setValoresParcela(){
   n_lanc.value = $alunoInfo.cursos[curso].parcelas[parcela].n_lanc;
 
 }
-//--------------n_lanc-----------------------
-function valorTotal(){
-  let valor = document.querySelector('#valor').value;
-  let desconto = document.querySelector('#desconto').value;
-  let valor_total = document.querySelector('#valor_total');
 
- console.log(valor, desconto); 
-  
-
-}
-
-
-function setNumeroLancamento(){
-  let curso = getSelectCursoID();
-  let n_lanc = document.querySelector('#n_lanc');
-let n_parcela =  getNumeroParcela();
-  n_lanc.value = $alunoInfo.cursos[curso].id_contrato + 'F' + (n_parcela.padStart(2, '0'));
-}
-//------------------------------------------------------
 
 function getNumeroParcela(){
   let selectParcela = document.querySelector('#select_parcelas');
@@ -122,52 +150,25 @@ function setCurrentDate(){
   console.log(fcurrentDate);
   document.querySelector('#data').value = fcurrentDate;
 }
-function eventsFormPagMensalidade() {
-  VMasker(document.querySelector('#curso_valor')).maskMoney();
-  VMasker(document.querySelector('#curso_desconto')).maskMoney();
-  VMasker(document.querySelector('#curso_valor_total')).maskMoney();
-  setCurrentDate()
-  insertSelectAlunos()
-  document.querySelector('#select_parcelas').addEventListener('change', (e) => {
-   
-    setValoresParcela()
-  });
-
-  document.querySelector('#curso_desconto').addEventListener('input', (e) => {
-   //valorTotal();
-   insertInputValorTotal();
-   
-  });
-
-  document.querySelector('#select_curso').addEventListener('change', (e) => {
-    getParcelas(e.target.value)
-    document.querySelector('#select_parcelas').removeAttribute('disabled')
-
-  });
-  document.querySelector('#main_select_aluno').addEventListener('change', (e) => {
-  setSelectCursos()
 function resetFieldsAfterSelectAlunoChange(){
   document.querySelector('#select_parcelas').setAttribute('disabled', true)
   document.querySelector('#select_parcelas').innerHTML = ""
   document.querySelector('#n_lanc').value = ''
-  
 }
 
-resetFieldsAfterSelectAlunoChange()
+function setMasks(){
+  VMasker(document.querySelector('#curso_valor')).maskMoney();
+  VMasker(document.querySelector('#curso_desconto')).maskMoney();
+  VMasker(document.querySelector('#curso_valor_total')).maskMoney();
+}
+function setNomeAndRAInput(){
+  console.log($alunoInfo);
+ document.querySelector('#ra').value = $alunoInfo.RA;
+  document.querySelector('#aluno').value = $alunoInfo.nome;
 
-  
-});
-    document.querySelector('#form_add_pag_mensalidade').addEventListener('submit', (e) => {
-        e.preventDefault();
-       submitFormAddPagMensalidade(e)
-    });
 }
 
-function getRAfromMainSelectAluno(){
-  let select = document.querySelector("#main_select_aluno");
-  let RA = select.options[select.selectedIndex].value;
-  return RA;
-}
+
 
 
 function submitFormAddPagMensalidade(e){
@@ -181,21 +182,22 @@ function submitFormAddPagMensalidade(e){
      { 
        [mes]: {
          [id] : {
+          ra: form.ra.value, 
+          aluno: form.aluno.value, 
+
+            n_lanc: form.n_lanc.value, 
             id: id,
             categoria: "pag_mensalidade",
             data: form.data.value, 
-            ra: form.ra.value, 
             resp: form.resp.value, 
-            aluno: form.aluno.value, 
-            curso: form.curso.value,
-            parcela: form.parcela.value,
-            vencimento: form.vencimento.value,
-            form_pag: form.forma_pag.value,
-            valor: form.valor.value,
-            desconto: form.desconto.value,
-            valor_total: form.valor_total.value,
-            n_lanc: form.n_lanc.value,
-            obs: form.obs.value,
+            curso: form.select_curso.value, 
+            parcela: form.select_parcelas.value, 
+            vencimento: form.vencimento.value, 
+            form_pag: form.forma_pag.value, 
+            valor: form.curso_valor.value, 
+            desconto: form.curso_desconto.value, 
+            valor_total: form.curso_valor_total.value, 
+            obs: form.obs.value, 
             metadata:{
               created: new Date(),
               modified: new Date()
