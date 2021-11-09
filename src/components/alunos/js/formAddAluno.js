@@ -1,7 +1,6 @@
 //------------------------------------------------------------------------
 //Components
 import * as commonFunc from "../../js_common/commonFunctions.js";
-import * as  dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
 import * as  alunoRA from "../../alunos/js/alunoRA.js";
 //Firebase
 import {firebaseApp} from "../../dbConfig/firebaseApp.js";
@@ -14,6 +13,9 @@ export function insertFormAddAlunoHTML(){
   './components/alunos/formAddAluno.html', eventsFormAddAluno, null, true
   );
 }
+
+
+
 
 function eventsFormAddAluno(){
   let form = document.querySelector('#form_add_aluno');
@@ -39,14 +41,12 @@ async function insertSelectOptionsContratos(){
         selectContrato.innerHTML = optionsSelect;
   }
 
-
   function insertInfoContrato(e){
     let IDContrato = e.target.value;
-  
     const formAddAluno =  document.querySelector("#form_add_aluno");
     getContratoInfo(IDContrato).then((res)=>{
+      let id_contrato = res.id; 
       let contrato = res.data();
-
       //Aluno
       formAddAluno.querySelector("#aluno_nome").value = contrato.aluno_info.nome;
       formAddAluno.querySelector("#aluno_genero").value = contrato.aluno_info.genero;
@@ -58,7 +58,6 @@ async function insertSelectOptionsContratos(){
       formAddAluno.querySelector("#aluno_cel").value = contrato.aluno_info.cel;
       formAddAluno.querySelector("#aluno_tel").value = contrato.aluno_info.tel;
       formAddAluno.querySelector("#aluno_email").value = contrato.aluno_info.email;
-    
       //Resp
       formAddAluno.querySelector("#resp_nome").value = contrato.resp_info.nome;
       formAddAluno.querySelector("#resp_genero").value = contrato.resp_info.genero;
@@ -74,6 +73,7 @@ async function insertSelectOptionsContratos(){
       formAddAluno.querySelector("#resp_email").value = contrato.resp_info.email;
       
       //Curso
+      formAddAluno.querySelector("#curso_id_contrato").value = id_contrato;
       formAddAluno.querySelector("#curso_nome").value = contrato.curso_info.nome;
       formAddAluno.querySelector("#curso_duracao").value = contrato.curso_info.duracao;
       formAddAluno.querySelector("#curso_parcelas").value = contrato.curso_info.parcelas;
@@ -86,20 +86,20 @@ async function insertSelectOptionsContratos(){
       formAddAluno.querySelector("#curso_desconto_combo").value = contrato.curso_info.desconto_combo;
       formAddAluno.querySelector("#curso_modulos").value = contrato.curso_info.modulos;
       formAddAluno.querySelector("#curso_obs").value = contrato.curso_info.obs;
-
     })
   
   }
+
+ 
+
 function getContratoInfo(IDContrato){
-  
   let contratoInfo = getDoc(doc(db, 'contratos', IDContrato));
   return contratoInfo
-
 }
 
-  function getContratos(){
+function getContratos(){
   const contratos = getDocs(collection(db, 'contratos'))
- return contratos;
+  return contratos;
 }
 //------------------------------------------------------------------------------------
 function addDateMonth(num_mes, date) {
@@ -152,13 +152,24 @@ function setDateDay(data_inicio, vencimento) {
   return newDate;
 }
 
+ //--------------n_lanc-----------------------
+
+ function createNumeroLancamento(idContrato, n_parcela){
+   console.log(idContrato, n_parcela);
+ let  n_lanc = idContrato + 'F' + (n_parcela.toString()).padStart(2, '0');
+ return n_lanc;
+}
+//------------------------------------------------------
+
 function createParcelas(form) {
+  console.log(form);
   let data_vencimento = setDateDay(form.curso_inicio.value, form.curso_vencimento.value);
   let num_parcelas = 12;
   let parcelas = {};
   for (let i = 0; i < num_parcelas; i++) {
     let p_vencimento = addDateMonth(i, data_vencimento);
     parcelas[i + 1] = {
+        n_lanc : createNumeroLancamento(form.curso_id_contrato.value, (i + 1)),
         vencimento: p_vencimento,
         valor: form.curso_valor_mes.value,
         desconto: form.curso_desconto_mes.value,
@@ -189,6 +200,7 @@ function createParcelas(form) {
     { 
       bimestres: {},
       curso_info:{
+        id_contrato: form.curso_id_contrato.value,
         nome: form.curso_nome.value, 
         duracao: form.curso_duracao.value, 
         vencimento: form.curso_vencimento.value, 

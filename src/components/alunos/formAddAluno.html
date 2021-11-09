@@ -27,9 +27,10 @@
     <fieldset>
       <div>
         <label> Curso:</label> 
-       <input type='text' id='curso_nome'  readonly='true'/>
+        <input type='text' id='curso_nome'  readonly='true'/>
       </div>
       <!--Hidden fields Curso-->
+       <input id='curso_id_contrato' type='text' />
        <input id='curso_duracao' type='number' />
        <input id='curso_parcelas' type='number' />
        <input id='curso_vencimento' type='number' /> 
@@ -45,21 +46,16 @@
  <!---------------------------------------------------------------------->
       
     <fieldset>
-    
-     
         <hr/>
         <div class='div_input_readonly'>
-          <label for="aluno_nome">Aluno:</label>
-          <input   readonly='true' id="aluno_nome" type="text" placeholder=''/>
+            <label for="aluno_nome">Aluno:</label>
+            <input   readonly='true' id="aluno_nome" type="text" placeholder=''/>
             <label for="aluno_genero">Genero.:</label>
             <input   readonly='true'id="aluno_genero" type="text" placeholder=''/>
         </div>
-    
-    
-      
         <div class='div_input_readonly'>
-          <label for="aluno_end">End.:</label>
-          <input   readonly='true' id="aluno_end" type="text" placeholder=''/>
+            <label for="aluno_end">End.:</label>
+            <input   readonly='true' id="aluno_end" type="text" placeholder=''/>
             <label for="aluno_end_numero">Numero.:</label>
             <input   readonly='true' id="aluno_end_numero" type="text" placeholder=''/>
         </div>

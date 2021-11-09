@@ -349,7 +349,7 @@ template {
   display: none;
 }
 
-.btn, #fieldset_resp div #btn_marcar_resp_aluno, .btn-secondary, .btn-primary, #form_add_pag_mensalidade .div_submit input[type=submit], .forms_fixed input[type=submit], #form_add_aluno input[type=submit], #aluno_content .btn_add_curso, .form_flex input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], .forms_controle_aula input[type=submit], .btn-default-delete, #aluno_content .bg_info_delete_curso .btn_deletar_curso, .btn-default, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], .forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox, #bg_div_id_contrato #label_id_automatico_contrato, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo, #aluno_content .btn_add, menu.submenu_page ul li a {
+.btn, #fieldset_resp div #btn_marcar_resp_aluno, .btn-secondary, .btn-primary, #form_add_pag_mensalidade fieldset .div_submit input[type=submit], .forms_fixed input[type=submit], #form_add_aluno input[type=submit], #aluno_content .btn_add_curso, .form_flex input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], .forms_controle_aula input[type=submit], .btn-default-delete, #aluno_content .bg_info_delete_curso .btn_deletar_curso, .btn-default, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], .forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox, #bg_div_id_contrato #label_id_automatico_contrato, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo, #aluno_content .btn_add, menu.submenu_page ul li a {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -359,7 +359,7 @@ template {
   border: 0px;
   cursor: pointer;
 }
-.btn svg, #fieldset_resp div #btn_marcar_resp_aluno svg, .btn-secondary svg, .btn-primary svg, #form_add_pag_mensalidade .div_submit input[type=submit] svg, .forms_fixed input[type=submit] svg, #form_add_aluno input[type=submit] svg, #aluno_content .btn_add_curso svg, .form_flex input[type=submit] svg, #form_config_perm input[type=submit] svg, #form_reauth_user input[type=submit] svg, #form_add_user input[type=submit] svg, .forms_controle_aula input[type=submit] svg, .btn-default-delete svg, #aluno_content .bg_info_delete_curso .btn_deletar_curso svg, .btn-default svg, .nav_forms ul li a svg, #page_login #login_content #form_login input[type=submit] svg, .forms_fixed .label_btn_checkbox svg, #form_add_aluno .label_btn_checkbox svg, #bg_div_id_contrato #label_id_automatico_contrato svg, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo svg, #aluno_content .btn_add svg, menu.submenu_page ul li a svg {
+.btn svg, #fieldset_resp div #btn_marcar_resp_aluno svg, .btn-secondary svg, .btn-primary svg, #form_add_pag_mensalidade fieldset .div_submit input[type=submit] svg, .forms_fixed input[type=submit] svg, #form_add_aluno input[type=submit] svg, #aluno_content .btn_add_curso svg, .form_flex input[type=submit] svg, #form_config_perm input[type=submit] svg, #form_reauth_user input[type=submit] svg, #form_add_user input[type=submit] svg, .forms_controle_aula input[type=submit] svg, .btn-default-delete svg, #aluno_content .bg_info_delete_curso .btn_deletar_curso svg, .btn-default svg, .nav_forms ul li a svg, #page_login #login_content #form_login input[type=submit] svg, .forms_fixed .label_btn_checkbox svg, #form_add_aluno .label_btn_checkbox svg, #bg_div_id_contrato #label_id_automatico_contrato svg, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo svg, #aluno_content .btn_add svg, menu.submenu_page ul li a svg {
   max-width: 100px;
   max-height: 100px;
   height: auto;
@@ -395,14 +395,14 @@ template {
   background: #fc4646;
 }
 
-.btn-primary, #form_add_pag_mensalidade .div_submit input[type=submit], .forms_fixed input[type=submit], #form_add_aluno input[type=submit], #aluno_content .btn_add_curso, .form_flex input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], .forms_controle_aula input[type=submit] {
+.btn-primary, #form_add_pag_mensalidade fieldset .div_submit input[type=submit], .forms_fixed input[type=submit], #form_add_aluno input[type=submit], #aluno_content .btn_add_curso, .form_flex input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], .forms_controle_aula input[type=submit] {
   background: #245da7;
   color: #fafafa;
 }
-.btn-primary:hover, #form_add_pag_mensalidade .div_submit input[type=submit]:hover, .forms_fixed input[type=submit]:hover, #form_add_aluno input[type=submit]:hover, #aluno_content .btn_add_curso:hover, .form_flex input[type=submit]:hover, #form_config_perm input[type=submit]:hover, #form_reauth_user input[type=submit]:hover, #form_add_user input[type=submit]:hover, .forms_controle_aula input[type=submit]:hover {
+.btn-primary:hover, #form_add_pag_mensalidade fieldset .div_submit input[type=submit]:hover, .forms_fixed input[type=submit]:hover, #form_add_aluno input[type=submit]:hover, #aluno_content .btn_add_curso:hover, .form_flex input[type=submit]:hover, #form_config_perm input[type=submit]:hover, #form_reauth_user input[type=submit]:hover, #form_add_user input[type=submit]:hover, .forms_controle_aula input[type=submit]:hover {
   background: #2969bc;
 }
-.btn-primary:active, #form_add_pag_mensalidade .div_submit input[type=submit]:active, .forms_fixed input[type=submit]:active, #form_add_aluno input[type=submit]:active, #aluno_content .btn_add_curso:active, .form_flex input[type=submit]:active, #form_config_perm input[type=submit]:active, #form_reauth_user input[type=submit]:active, #form_add_user input[type=submit]:active, .forms_controle_aula input[type=submit]:active {
+.btn-primary:active, #form_add_pag_mensalidade fieldset .div_submit input[type=submit]:active, .forms_fixed input[type=submit]:active, #form_add_aluno input[type=submit]:active, #aluno_content .btn_add_curso:active, .form_flex input[type=submit]:active, #form_config_perm input[type=submit]:active, #form_reauth_user input[type=submit]:active, #form_add_user input[type=submit]:active, .forms_controle_aula input[type=submit]:active {
   background: #1f5192;
   box-shadow: inset 0px 1px 3px #122e53;
 }
@@ -1560,7 +1560,7 @@ input:disabled, textarea:disabled {
 #fieldset_curso .row #div_curso_parcelas label,
 #fieldset_curso .row #div_curso_valor label,
 #fieldset_curso .row #div_curso_desconto label,
-#fieldset_curso .row #div_curso_total label {
+#fieldset_curso .row #div_curso_valor_total label {
   width: 40%;
   max-width: 50%;
 }
@@ -1569,7 +1569,7 @@ input:disabled, textarea:disabled {
 #fieldset_curso .row #div_curso_parcelas input,
 #fieldset_curso .row #div_curso_valor input,
 #fieldset_curso .row #div_curso_desconto input,
-#fieldset_curso .row #div_curso_total input {
+#fieldset_curso .row #div_curso_valor_total input {
   width: 60%;
 }
 #fieldset_curso .row #div_curso_inicio,
@@ -1590,10 +1590,10 @@ input:disabled, textarea:disabled {
 }
 #fieldset_curso .row #curso_valor,
 #fieldset_curso .row #curso_desconto,
-#fieldset_curso .row #curso_total {
+#fieldset_curso .row #curso_valor_total {
   font-size: 16px;
 }
-#fieldset_curso .row #curso_total {
+#fieldset_curso .row #curso_valor_total {
   color: green;
 }
 #fieldset_curso .row #curso_desconto {
@@ -2181,6 +2181,10 @@ option[disabled] {
   padding: 1px;
 }
 
+#form_add_pag_mensalidade {
+  margin: 0 auto;
+  max-width: 1000px;
+}
 #form_add_pag_mensalidade h3 {
   width: 100%;
   margin-top: 20px;
@@ -2194,14 +2198,21 @@ option[disabled] {
   max-width: 100%;
   padding: 0px;
 }
+#form_add_pag_mensalidade fieldset .row {
+  min-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid #565;
+}
 #form_add_pag_mensalidade fieldset .div_inputs {
   margin: 0px;
   background: #ccc;
-  min-width: 100px;
   flex-shrink: 1;
   flex-grow: 1;
   padding: 0px;
   box-shadow: 0px 0px 1px #111;
+  min-width: 100px;
+  width: auto;
 }
 #form_add_pag_mensalidade fieldset .div_inputs label {
   width: 100%;
@@ -2224,46 +2235,57 @@ option[disabled] {
   outline: 1px solid #245da7;
   outline-offset: -1px;
 }
+#form_add_pag_mensalidade fieldset .div_inputs input, #form_add_pag_mensalidade fieldset .div_inputs select {
+  text-align: center;
+}
 #form_add_pag_mensalidade fieldset .div_inputs textarea {
-  min-height: 50px;
+  min-height: 60px;
   margin-bottom: -3px !important;
 }
 #form_add_pag_mensalidade fieldset .div_inputs input[readonly=true] {
-  background: #ddd;
+  background: #eee;
   user-select: none;
 }
-#form_add_pag_mensalidade fieldset .div_n_lanc {
-  max-width: 100px;
+#form_add_pag_mensalidade fieldset .div_inputs #curso_valor {
+  color: #344e83;
 }
-#form_add_pag_mensalidade fieldset .div_aluno, #form_add_pag_mensalidade fieldset .div_curso, #form_add_pag_mensalidade fieldset .div_resp {
-  min-width: 80px !important;
+#form_add_pag_mensalidade fieldset .div_inputs #curso_desconto {
+  color: #c56674;
 }
-#form_add_pag_mensalidade fieldset .div_valor, #form_add_pag_mensalidade fieldset .div_valor_total, #form_add_pag_mensalidade fieldset .div_desconto {
-  width: 100px;
-}
-#form_add_pag_mensalidade fieldset .div_valor input, #form_add_pag_mensalidade fieldset .div_valor_total input, #form_add_pag_mensalidade fieldset .div_desconto input {
-  font-size: 18px;
+#form_add_pag_mensalidade fieldset .div_inputs #curso_valor_total {
+  color: green;
   font-weight: bold;
 }
-#form_add_pag_mensalidade fieldset .div_vencimento {
-  max-width: 170px;
+#form_add_pag_mensalidade fieldset .div_n_lanc {
+  max-width: 150px;
+  min-width: 100px;
+  width: auto;
 }
-#form_add_pag_mensalidade fieldset .div_data {
-  max-width: 200px;
+#form_add_pag_mensalidade fieldset .div_aluno, #form_add_pag_mensalidade fieldset .div_curso, #form_add_pag_mensalidade fieldset .div_resp {
+  min-width: 100px;
 }
-#form_add_pag_mensalidade .div_submit {
+#form_add_pag_mensalidade fieldset .div_curso_valor, #form_add_pag_mensalidade fieldset .div_curso_valor_total, #form_add_pag_mensalidade fieldset .div_curso_desconto, #form_add_pag_mensalidade fieldset .div_forma_pag {
+  width: auto;
+  max-width: 25%;
+  flex-grow: 1;
+  flex-shrink: 1;
+  min-width: none;
+}
+#form_add_pag_mensalidade fieldset .div_curso_valor input, #form_add_pag_mensalidade fieldset .div_curso_valor_total input, #form_add_pag_mensalidade fieldset .div_curso_desconto input, #form_add_pag_mensalidade fieldset .div_forma_pag input {
+  font-size: 18px;
   width: 100%;
-  background: #ddd;
-  border: 1px solid #333;
-  border-top: 0px;
-  padding: 40px 20px;
-  border: 0px;
+}
+#form_add_pag_mensalidade fieldset .div_submit {
+  padding: 20px;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: 0px 0px 0px 0px #666;
 }
-#form_add_pag_mensalidade .div_submit input[type=submit] {
-  margin: 0 auto;
+#form_add_pag_mensalidade fieldset .div_submit input[type=submit] {
   min-width: 30%;
-  min-width: 300px;
+  max-width: 300px;
 }
 
 @keyframes spinner-line-fade-more {

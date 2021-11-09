@@ -1,7 +1,7 @@
 
 
 function insertComboTextarea() {
-  let total = document.querySelector("#curso_total");
+  let total = document.querySelector("#curso_valor_total");
   let desconto = document.querySelector("#curso_desconto");
   let comboTextarea = document.querySelector("#combo_textarea");
   let comboCurso1 = document.querySelector("#combo_curso_1");
