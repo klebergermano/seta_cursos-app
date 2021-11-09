@@ -156,7 +156,7 @@ function setDateDay(data_inicio, vencimento) {
 
  function createNumeroLancamento(idContrato, n_parcela){
    console.log(idContrato, n_parcela);
- let  n_lanc = idContrato + 'F' + (n_parcela.toString()).padStart(2, '0');
+ let  n_lanc = idContrato + 'F' + n_parcela;
  return n_lanc;
 }
 //------------------------------------------------------
@@ -164,12 +164,13 @@ function setDateDay(data_inicio, vencimento) {
 function createParcelas(form) {
   console.log(form);
   let data_vencimento = setDateDay(form.curso_inicio.value, form.curso_vencimento.value);
-  let num_parcelas = 12;
+  let num_parcelas = parseInt(form.curso_parcelas.value);
   let parcelas = {};
   for (let i = 0; i < num_parcelas; i++) {
     let p_vencimento = addDateMonth(i, data_vencimento);
-    parcelas[i + 1] = {
-        n_lanc : createNumeroLancamento(form.curso_id_contrato.value, (i + 1)),
+    let num_parcela = (i + 1).toString().padStart(2, '0'); 
+    parcelas[num_parcela] = {
+        n_lanc : createNumeroLancamento(form.curso_id_contrato.value, (num_parcela)),
         vencimento: p_vencimento,
         valor: form.curso_valor_mes.value,
         desconto: form.curso_desconto_mes.value,
@@ -204,6 +205,7 @@ function createParcelas(form) {
         nome: form.curso_nome.value, 
         duracao: form.curso_duracao.value, 
         vencimento: form.curso_vencimento.value, 
+        parcelas_total: form.curso_parcelas.value,
         parcelas: createParcelas(form),
         valor_mes: form.curso_valor_mes.value, 
         desconto_mes: form.curso_desconto_mes.value, 
