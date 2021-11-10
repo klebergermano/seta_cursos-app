@@ -547,6 +547,18 @@ inputs, .input-primary {
   user-select: none;
 }
 
+.filtro_table {
+  display: flex;
+  padding: 5px;
+  background: #ccc;
+}
+.filtro_table select {
+  font-size: 16px;
+  padding: 5px 10px;
+  font-weight: bolder;
+  color: #555;
+}
+
 .tables, .table_info, #users_table_info {
   width: 100%;
   border-collapse: collapse;
@@ -2326,6 +2338,11 @@ option[disabled] {
     opacity: 1;
   }
 }
+*:focus {
+  outline: 2px solid #5690db;
+  outline-offset: -2px;
+}
+
 .load_element {
   width: 100px;
   height: 100px;

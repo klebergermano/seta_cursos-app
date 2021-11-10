@@ -1,4 +1,18 @@
 @use 'variables' as *;
+
+.filtro_table{
+    display: flex;
+    padding:5px; 
+    background:#ccc;
+ 
+    select{
+        font-size:16px;
+        padding:5px 10px;
+        font-weight: bolder;
+        color:#555;
+    }
+
+}
 .tables{
    
     width:100%;
