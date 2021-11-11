@@ -33,42 +33,54 @@ function infoTableContent(ano, mes){
     .then((res)=>{
         let contentTable = createContentInfoTableHTML(res, mes);
         return contentTable;
-    }).then((contentTable)=>{
-        let table = document.querySelector('#pag_mensal_table_info');
-        table.removeChild(table.querySelector('tbody'));
-
-        return contentTable;
     })
     .then((contentTable)=>{
         insertContentTable(contentTable)
     })
 }
 function insertContentTable(contentTable){
-    console.log(contentTable);
    let table = document.querySelector('#pag_mensal_table_info');
-   table.appendChild(contentTable);
+   table.querySelector('#tbody').innerHTML = contentTable.innerHTML;
 
 }
 
 function createContentInfoTableHTML (resfluxoCaixaAno, mes){
 
-    let fluxoCaixaMes = resfluxoCaixaAno.data()[mes];
-    let bgTr = document.querySelector('tbody'); 
-for( let [key, value] of Object.entries(fluxoCaixaMes)){
-    let tr = document.createElement('tr');
-    let trContent = 
-    `
-    <td class='linha'>${key}</td>
-    <td>${value.data}</td>
-    <td>${value.aluno}</td>
-    <td>${value.curso}</td>
-    <td>${value.parcela}</td>
-    <td>${value.form_pag}</td>
-    <td>${value.valor_total}</td>
-    `
-    tr.innerHTML = trContent;
-    bgTr.appendChild(tr)
+    let fluxoCaixaMes = resfluxoCaixaAno.data()?.[mes];
+    console.log(fluxoCaixaMes);
+    let bgTr = document.createElement('tbody'); 
+
+    if(fluxoCaixaMes){
+        for( let [key, value] of Object.entries(fluxoCaixaMes)){
+            let tr = document.createElement('tr');
+            let trContent = 
+            `
+            <td class='linha'>${key}</td>
+            <td>${value.data}</td>
+            <td>${value.aluno}</td>
+            <td>${value.curso}</td>
+            <td>${value.parcela}</td>
+            <td>${value.form_pag}</td>
+            <td>${value.valor_total}</td>
+            `
+            tr.innerHTML = trContent;
+            bgTr.appendChild(tr)
+            }
+    }else{
+        let tr = document.createElement('tr')
+        tr.innerHTML= `
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>`;
+        ;
+        bgTr.appendChild(tr)
+
     }
+
        return bgTr;
       
     }
