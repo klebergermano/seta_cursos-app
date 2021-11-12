@@ -25,5 +25,35 @@ let changedDate = `${day}/${month}/${year}`;
 let n = ''+day;
 let x = n.padStart('2', '0');
     return changedDate;
-
 }
+
+export function converteMesNumeroPorExtenso(mes) {
+    let monthName = '';
+    switch (mes) {
+      case 1: monthName = 'janeiro';
+        break;
+      case 2: monthName = 'fevereiro';
+        break;
+      case 3: monthName = 'março';
+        break;
+      case 4: monthName = 'abril';
+        break;
+      case 5: monthName = 'maio';
+        break;
+      case 6: monthName = 'junho';
+        break;
+      case 7: monthName = 'julho';
+        break;
+      case 8: monthName = 'agosto';
+        break;
+      case 9: monthName = 'setembro';
+        break;
+      case 10: monthName = 'outubro';
+        break;
+      case 11: monthName = 'novembro';
+        break;
+      case 12: monthName = 'dezembro';
+        break;
+    }
+    return monthName;
+  }

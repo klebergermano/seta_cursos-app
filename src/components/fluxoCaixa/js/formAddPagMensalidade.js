@@ -205,7 +205,6 @@ function setMonthDate(data) {
       break;
   }
   return monthName;
-
 }
 
 function createNewRowEntradaCaixa(ano, mes) {
