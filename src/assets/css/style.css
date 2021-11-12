@@ -2300,6 +2300,41 @@ option[disabled] {
   max-width: 300px;
 }
 
+#bg_info_table_pag_mensal table thead th {
+  background: #4d794d;
+}
+#bg_info_table_pag_mensal table tbody tr:nth-child(even) {
+  background: #dfdfdf;
+}
+#bg_info_table_pag_mensal table tbody tr:hover {
+  background: #f6f6e0;
+}
+#bg_info_table_pag_mensal table tbody tr td {
+  padding: 10px 5px;
+}
+#bg_info_table_pag_mensal table tbody tr#tr_resumo {
+  background: #ccc;
+}
+#bg_info_table_pag_mensal table tbody tr#tr_resumo #td_res_valor_total {
+  text-align: center;
+  background: #464;
+  color: #fff;
+}
+#bg_info_table_pag_mensal table .td_linha {
+  text-align: center;
+  background: #ccc;
+  color: #666;
+}
+#bg_info_table_pag_mensal table .td_data {
+  text-align: center;
+}
+#bg_info_table_pag_mensal table .td_parcela {
+  text-align: center;
+}
+#bg_info_table_pag_mensal table .td_valor_total {
+  color: #247e24;
+}
+
 @keyframes spinner-line-fade-more {
   0%, 100% {
     opacity: 0;
