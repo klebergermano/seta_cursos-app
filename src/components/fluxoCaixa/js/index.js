@@ -6,12 +6,8 @@ export function onload(){
         //formAddPagMensalidade.insertSelectAlunos();
     });
     document.querySelector("#btn_users_info_table").addEventListener('click', ()=>{
-      console.log('click');
      fluxoCaixaInfoTable.insertFluxoCaixaInfoInTableHTML();
-      //fluxoCaixaInfoTable.insertMenuFiltroTabela('#fluxo_caixa_content');
     });
-    
-    //-----------------------
-  //  formAddPagMensalidade.insertFormPagMensalidade();
-   // fluxoCaixaInfoTable.inserFluxoCaixaInfoInTable();
+    fluxoCaixaInfoTable.insertFluxoCaixaInfoInTableHTML();
+
 }

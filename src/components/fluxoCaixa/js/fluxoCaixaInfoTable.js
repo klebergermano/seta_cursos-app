@@ -5,49 +5,79 @@ const {getFirestore, getDocs, collection, getDoc, doc} = require("firebase/fires
 const db = getFirestore(firebaseApp);
 
 import * as commonFunc from "../../js_common/commonFunctions.js";
-
-
-
-
+import * as dateFunc from "../../js_common/dateFunc.js";
 export function insertFluxoCaixaInfoInTableHTML(){
     commonFunc.insertElementHTML('#fluxo_caixa_content', './components/fluxoCaixa/infoTablePagMensal.html', eventsInfoTable, null, true);
-
 }
 
+function setAnoMesAtual(){
+    return 
+}
 
+function setAnoMesSelectFiltros(){
+    let date = new Date();
+    let mes = parseInt(date.getMonth()) + 1;
+    let ano = date.getFullYear();
+    let optionsSelectAno = Array.from(document.querySelector('#select_ano').options);
+    let optionsSelectMes = Array.from(document.querySelector('#select_mes').options);
+    optionsSelectAno.forEach((optAno)=>{
+      if(optAno.value === ano){
+        optAno.setAttribute('selected', true);
+      }
+    });
+    optionsSelectMes.forEach((optMes)=>{
+        let mesExtenso = dateFunc.converteMesNumeroPorExtenso(mes);
+      if(optMes.value === mesExtenso){
+        optMes.setAttribute('selected', true);
+      }
+    });
+}
 function eventsInfoTable(){
-    infoTableContent('2021', 'novembro');
+    setAnoMesSelectFiltros()
+    let filtroInfo = getFiltroInfoAnoMes()
+
+    setFluxoCaixaAno(filtroInfo.ano)
+    .then((res)=>{
+        infoTableContent(res, filtroInfo.mes)
+    }).catch(err => console.log(err))
+
     document.querySelector("#select_ano").addEventListener('change', (e)=>{
         let filtroInfo = getFiltroInfoAnoMes()
-        infoTableContent( filtroInfo.ano, filtroInfo.mes)
+        setFluxoCaixaAno(filtroInfo.ano)
+        .then(()=>{
+            infoTableContent($fluxoCaixaAno, filtroInfo.mes)
+        }).catch(err => console.log(err))
      })
      document.querySelector("#select_mes").addEventListener('change', (e)=>{
         let filtroInfo = getFiltroInfoAnoMes()
-        infoTableContent( filtroInfo.ano, filtroInfo.mes)
+        infoTableContent($fluxoCaixaAno, filtroInfo.mes)
      })
 }
 
-
-function infoTableContent(ano, mes){
-    getFluxoCaixaAno(ano)
-    .then((res)=>{
-        let contentTable = createContentInfoTableHTML(res, mes);
-        return contentTable;
-    })
-    .then((contentTable)=>{
+function infoTableContent( fluxoCaixaAno, mes){
+        let contentTable = createContentInfoTableHTML(fluxoCaixaAno, mes);
         insertContentTable(contentTable)
-    })
 }
+
 function insertContentTable(contentTable){
    let table = document.querySelector('#pag_mensal_table_info');
    table.querySelector('#tbody').innerHTML = contentTable.innerHTML;
-
 }
 
-function createContentInfoTableHTML (resfluxoCaixaAno, mes){
+async function setFluxoCaixaAno(ano){
+    let fluxoCaixa =  getDoc(doc(db, 'fluxo_caixa', ano))
+    .then((res)=>{
+        $fluxoCaixaAno = res.data();
+        $fluxoCaixaAno.ano = ano;
+        return res.data();
+    }).catch(err => console.log(err));
+    return fluxoCaixa;
+}
 
-    let fluxoCaixaMes = resfluxoCaixaAno.data()?.[mes];
-    console.log(fluxoCaixaMes);
+
+function createContentInfoTableHTML (fluxoCaixaAno, mes){
+   
+    let fluxoCaixaMes = fluxoCaixaAno?.[mes];
     let bgTr = document.createElement('tbody'); 
 
     if(fluxoCaixaMes){
@@ -80,31 +110,9 @@ function createContentInfoTableHTML (resfluxoCaixaAno, mes){
         bgTr.appendChild(tr)
 
     }
-
        return bgTr;
-      
     }
 
-
-
-
-
-
-
-
-
-function removeMenuFiltroTable(){
-    let menuFiltro = document.querySelectorAll('.menu_info_table')
-    menuFiltro.forEach((menu)=>{
-        let parent = menu.parentElement;
-        parent.removeChild(menu);
-    })
-}
-export function insertMenuFiltroTabela(idTarget){
-    removeMenuFiltroTable()
-    document.querySelector(idTarget).insertAdjacentElement('beforebegin', menuFiltroTabela());
-    
-}
 
 function getFiltroInfoAnoMes(){
     let filtroInfo = {};
@@ -116,25 +124,8 @@ function getFiltroInfoAnoMes(){
 }
 
 
-export function insertFluxoCaixaInfoInTableX(ano, mes){
-    getFluxoCaixaAno(ano)
-    .then((res) => {
-        return createTableFluxoCaixaHTML(res, mes)
-    })
-    .then((tableFluxoCaixaHTML)=>{
-       document.querySelector('#fluxo_caixa_content').innerHTML = ""; 
-       document.querySelector('#fluxo_caixa_content').appendChild(tableFluxoCaixaHTML);
-    })
-    .catch(err => console.log(err))
-  
-}
 
 
-
-    function getFluxoCaixaAno(ano){
-        let fluxoCaixaAno = getDoc(doc(db, 'fluxo_caixa', ano));
-        return fluxoCaixaAno;
-    }
 
 
 
