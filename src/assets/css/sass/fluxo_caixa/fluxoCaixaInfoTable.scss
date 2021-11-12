@@ -11,18 +11,13 @@
             tr{
                 &:nth-child(even){
                     background:#dfdfdf;
-    
-                 
                 }
                 &:hover{
                     background: #f6f6e0;
                 }
                 td{
                     padding:10px 5px;
-        
                 }
-
-               
             }
             tr#tr_resumo{
                 background:#ccc;
