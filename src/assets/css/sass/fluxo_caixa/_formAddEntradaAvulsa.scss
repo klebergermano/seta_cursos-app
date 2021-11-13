@@ -1,0 +1,123 @@
+@use "../abstracts/" as *;
+
+$verde-claro: "#d3ddd3"; 
+
+#form_add_entrada_avulsa{
+    margin:0 auto;
+    max-width: 1000px;
+    h3{
+        width:100%; margin-top:20px; margin-bottom:20px;
+    }
+
+fieldset{
+    background: rgb(117, 141, 115);
+    border:1px solid #333;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+    padding:0px;
+.row{
+    min-width: 100%;
+    display: flex; 
+    flex-wrap: wrap;
+    border:1px solid #565;
+}
+.div_inputs{
+    margin:0px;
+    background:#ccc;
+    flex-shrink: 1;
+    flex-grow: 1;
+    padding:0px;
+    box-shadow: 0px 0px 1px #111;
+    min-width: 100px;
+    width:auto;
+
+label{
+    width:100%; 
+    border-radius: 0px;
+    padding:5px;
+    display: flex;
+    justify-content:center; 
+    background: #d3ddd3;
+    border-bottom:1px solid #aaa;
+    }
+
+input, select, textarea{
+    width:100%;  height:50px;
+    padding:12px 10px;
+    border-radius: 0px;
+    border:0px solid #aaa;
+    resize: vertical;
+    &:focus{
+        outline: 1px solid $primary-color;
+        outline-offset: -1px;
+    }
+}
+input, select{
+    text-align: center;
+}
+
+select{
+   
+}
+textarea{
+    margin-right:1px; 
+    border-right:1px solid #ddd;
+    min-height:50px ;
+    margin-bottom:-3px !important;
+}
+
+
+
+input[readonly='true']{
+    background: #eee;
+    user-select: none;
+}
+
+
+
+}
+
+
+
+#div_data{
+    max-width: 180px !important;
+}
+#div_saida_valor{
+    max-width: 100px !important;
+   input{
+    color:rgb(184, 53, 53);
+   }
+}
+#div_tipo_saida{
+    max-width: 150px !important;
+}
+#div_tipo_saida{
+    max-width: 150px !important;
+}
+
+.div_data{};
+
+.div_submit{
+    padding:20px;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 0px 0px #666;
+    input[type='submit']{
+        @extend .btn-default;
+        background: rgb(57, 102, 53);
+      color:#fff;
+        max-width: 180px;
+        &:hover{
+        background: rgb(69, 128, 63);
+
+        }
+    }
+    }
+
+    }
+
+ 
+}

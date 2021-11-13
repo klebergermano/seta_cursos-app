@@ -7,7 +7,7 @@ const db = getFirestore(firebaseApp);
 import * as commonFunc from "../../js_common/commonFunctions.js";
 import * as dateFunc from "../../js_common/dateFunc.js";
 export function insertFluxoCaixaInfoInTableHTML(){
-    commonFunc.insertElementHTML('#fluxo_caixa_content', './components/fluxoCaixa/infoTablePagMensal.html', eventsInfoTable, null, true);
+    commonFunc.insertElementHTML('#entradas_content', './components/fluxoCaixa/infoTablePagMensal.html', eventsInfoTable, null, true);
 }
 
 function setAnoMesSelectFiltros(){

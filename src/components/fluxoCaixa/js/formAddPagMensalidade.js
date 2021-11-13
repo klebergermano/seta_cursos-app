@@ -109,7 +109,7 @@ function getSelectCursoID() {
   return idCurso;
 }
 export function insertFormPagMensalidade() {
-  insertElementHTML("#fluxo_caixa_content", "./components/fluxoCaixa/formAddPagMensalidade.html", eventsFormPagMensalidade, null, true)
+  insertElementHTML("#entradas_content", "./components/fluxoCaixa/formAddPagMensalidade.html", eventsFormPagMensalidade, null, true)
 }
 
 function setValoresParcela() {
