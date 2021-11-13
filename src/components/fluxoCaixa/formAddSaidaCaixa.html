@@ -1,15 +1,40 @@
 <form id='form_add_saida_caixa' >
     <h3>
-        + <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash" viewBox="0 0 16 16">
+        - <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash" viewBox="0 0 16 16">
             <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
             <path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z"/>
           </svg> 
         Saida de Caixa</h3>
 <fieldset>
+<div class='row'>
+    <div class='div_inputs' id='div_data'>
+        <label>Data: </label>
+        <input  type='Date' id='data'/>
+    </div>
+    <div  class='div_inputs' div='div_descricao'>
+        <label>Descrição: </label>
+        <textarea id='descricao' ></textarea>
+    </div>
 
+    <div  class='div_inputs' id='div_tipo_saida'>
+        <label>Tipo de Saída.</label>
+        <select id='tipo_saida'>
+            <option disabled selected></option>
+            <option value='dinheiro'>Pró-labore</option>
+            <option value='dinheiro'>Contas</option>
+            <option value='débito'>Suplementos</option>
+            <option value='crédito'>Manutenção</option>
+            <option value='pix'>Anúncio</option>
+        </select>
+    </div>
+    <div  class='div_inputs ' id='div_saida_valor'>
+        <label>Valor: </label>
+        <input  type='text' id='saida_valor'  value='0,00'/>
+    </div>
+    </div><!--row-->
 <div class='row'>
     <div class='div_inputs div_submit'>
-        <input type='submit' value="Salvar Pagamento"/>
+        <input type='submit' value="Salvar Saída"/>
     </div>
 </div><!--row-->
 

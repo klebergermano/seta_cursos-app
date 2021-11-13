@@ -3,13 +3,20 @@ export function changeDateTextToYYYYMMDD(dateString){
 let arrayDate = dateString.split('/');
 let newDate = arrayDate[2]+'-'+(arrayDate[1])+'-'+arrayDate[0];
 return newDate;
-
-
 }
-export function changeDateToDDMMYYYY(){
 
 
+
+export function setCurrentDate(idInput) {
+  let currentDate = new Date();
+  let year = currentDate.getFullYear();
+  let month = ((currentDate.getMonth() + 1).toString()).padStart(2, '0');
+  let day = ((currentDate.getDate()).toString()).padStart(2, '0');
+  let fcurrentDate = year + '-' + month + '-' + day;
+  document.querySelector(idInput).value = fcurrentDate;
 }
+
+
 export function changeDateToDislayText(dateString){
 let newDate = new Date(dateString);
 newDate.setDate(newDate.getDate()+1);

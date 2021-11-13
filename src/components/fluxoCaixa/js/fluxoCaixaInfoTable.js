@@ -73,8 +73,12 @@ async function setFluxoCaixaAno(ano){
 function countEntradasTotal(mes){
     let entradas = $fluxoCaixaAno[mes];
     let n_entradas = 0; 
-    for(let key of Object.keys(entradas)){
-        n_entradas++; 
+    for(let value of Object.values(entradas)){
+        if(value.categoria === 'pag_mensalidade'){
+            n_entradas++; 
+
+        }
+
     }
 
 return n_entradas; 
@@ -84,9 +88,12 @@ function createValorTotalMes(mes){
 let valorTotalMes = [];
     let entradas = $fluxoCaixaAno[mes];
     for(let value of Object.values(entradas)){
-        valorTotalMes.push(value.valor_total)
+        if(value.categoria === 'pag_mensalidade'){
+            valorTotalMes.push(value.valor_total)
+
+        }
     }
-let res = valorTotalMes.reduce((acc, value)=>{
+    let res = valorTotalMes.reduce((acc, value)=>{
     return parseInt(acc) + parseInt(value);
 })
 return res; 
@@ -122,26 +129,27 @@ function createContentInfoTableHTML (fluxoCaixaAno, mes){
     if(fluxoCaixaMes){
         let i = 1; 
         for( let [key, value] of Object.entries(fluxoCaixaMes)){
-            let tr = document.createElement('tr');
-            tr.id='tr_comum';
-            let trContent = 
-            `
-            <td class='td_data'>${dateFunc.changeDateToDislayText(value.data)}</td>
-            <td class='td_aluno'>${value.aluno}</td>
-            <td class='td_curso'>${value.curso}</td>
-            <td class='td_parcela'>${value.parcela}</td>
-            <td class='td_form_pag'>${value.form_pag}</td>
-            <td class='td_valor_total'>R$ ${value.valor_total}</td>
-            `
-            tr.innerHTML = trContent;
-            bgTr.appendChild(tr)
-            i++;
+            if(value.categoria === "pag_mensalidade"){
+                let tr = document.createElement('tr');
+                tr.id='tr_comum';
+                let trContent = 
+                `
+                <td class='td_data'>${dateFunc.changeDateToDislayText(value.data)}</td>
+                <td class='td_aluno'>${value.aluno}</td>
+                <td class='td_curso'>${value.curso}</td>
+                <td class='td_parcela'>${value.parcela}</td>
+                <td class='td_form_pag'>${value.form_pag}</td>
+                <td class='td_valor_total'>R$ ${value.valor_total}</td>
+                `
+                tr.innerHTML = trContent;
+                bgTr.appendChild(tr)
+                i++;
+               }//if
             }
-           
          
-let resEntradas = countEntradasTotal(mes);
-let resValorTotal = createValorTotalMes(mes);
-//--------------------------------------
+            let resEntradas = countEntradasTotal(mes);
+            let resValorTotal = createValorTotalMes(mes);
+            //--------------------------------------
             let trResumo = document.createElement('tr');
             trResumo.id='tr_resumo';
             trResumo.innerHTML = `
