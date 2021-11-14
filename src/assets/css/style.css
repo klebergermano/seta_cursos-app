@@ -2553,6 +2553,10 @@ option[disabled] {
   color: #247e24;
 }
 
+#entrada_avulsa_table_info {
+  margin-top: 40px;
+}
+
 #submenu_fluxo_caixa #btn_form_saida_caixa {
   color: red;
 }

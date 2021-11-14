@@ -48,10 +48,10 @@ function submitFormAddEntradaAvulsa(e) {
           [mes]: {
             [row]: {
               row: row,
-              categoria: "entrada_avulsa_caixa",
+              categoria: "entrada_avulsa",
               data: form.data.value,
               descricao: form.descricao.value,
-              tipo_entrada_avulsa: form.tipo_entrada_avulsa.value,
+              form_pag: form.form_pag.value,
               valor: form.entrada_avulsa_valor.value,
               descricao: form.descricao.value,
               metadata: {
@@ -63,7 +63,7 @@ function submitFormAddEntradaAvulsa(e) {
         },
         { merge: true }
       ).then(() => {
-        defaultEventsAfterSubmitFixedForm("#form_add_entrada_avulsa_caixa", "Saída de caixa adicionada com sucesso!");
+        defaultEventsAfterSubmitFixedForm("#form_add_entrada_avulsa", "Saída de caixa adicionada com sucesso!");
       });
     });
 
