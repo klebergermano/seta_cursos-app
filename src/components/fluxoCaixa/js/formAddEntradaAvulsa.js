@@ -18,9 +18,8 @@ export function insertFormAddEntradaAvulsa() {
   insertElementHTML("#entradas_content", "./components/fluxoCaixa/formAddEntradaAvulsa.html", eventsFormAddEntradaAvulsa, null, true)
 }
 
-function setMasks() {
-  VMasker(document.querySelector('#entrada_avulsa_valor')).maskMoney();
-  
+function setMasks(){
+
 }
 
 function eventsFormAddEntradaAvulsa() {

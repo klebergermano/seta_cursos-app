@@ -1,14 +1,20 @@
-var $fluxoCaixaAno = {};
-
+//-------------------------------------------------------------------
+import * as commonFunc from "../../js_common/commonFunctions.js";
+import * as dateFunc from "../../js_common/dateFunc.js";
+//firebase
 import {firebaseApp} from "../../dbConfig/firebaseApp.js";
 const {getFirestore, getDoc, doc} = require("firebase/firestore") 
 const db = getFirestore(firebaseApp);
 
-import * as commonFunc from "../../js_common/commonFunctions.js";
-import * as dateFunc from "../../js_common/dateFunc.js";
+//Others libraries
+const VMasker = require("vanilla-masker");
+//--------------------------------------------------------------------
+var $fluxoCaixaAno = {};
+
 export function insertFluxoCaixaInfoInTableHTML(){
     commonFunc.insertElementHTML('#entradas_content', './components/fluxoCaixa/infoTablePagMensal.html', eventsInfoTable, null, true);
 }
+
 
 function setAnoMesSelectFiltros(){
     let date = new Date();
@@ -29,6 +35,11 @@ function setAnoMesSelectFiltros(){
     });
     
 }
+
+function setMasks() {
+  //  VMasker(document.querySelector('.td_valor_total')).maskMoney();
+  }
+  
 function eventsInfoTable(){
     setAnoMesSelectFiltros()
     let filtroInfo = getFiltroInfoAnoMes()
@@ -48,6 +59,7 @@ function eventsInfoTable(){
         let filtroInfo = getFiltroInfoAnoMes()
         insertContentTables($fluxoCaixaAno, filtroInfo.mes)
      })
+     setMasks() 
 }
 
 function insertContentTables( fluxoCaixaAno, mes){
@@ -87,11 +99,8 @@ function countEntradasTotal(mes, categoria){
     for(let value of Object.values(entradas)){
         if(value.categoria === categoria){
             n_entradas++; 
-
         }
-
     }
-
 return n_entradas; 
 }
 
@@ -104,14 +113,14 @@ let valorTotalMes = [];
                 valorTotalMes.push(value.valor_total)
             }else{
                 valorTotalMes.push(value.valor)
-
             }
-
         }
     }
     let res = valorTotalMes.reduce((acc, value)=>{
-    return parseInt(acc) + parseInt(value);
-})
+        let v = value.replace(',', '');
+    return parseFloat(acc) + parseFloat(v);
+}, 0)
+  res = VMasker.toMoney(res);
 return res; 
 }
 

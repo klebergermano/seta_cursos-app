@@ -581,8 +581,7 @@ inputs, .input-primary {
 }
 
 menu.submenu_page {
-  padding: 5px 5px;
-  background: #ddd;
+  background: #ccc;
   border-radius: 3px 3px 0px 0px;
   margin-bottom: 20px;
   width: 100%;
@@ -2198,7 +2197,7 @@ option[disabled] {
   background: #fff;
 }
 #bg_entradas_fluxo_caixa #sub_menu_entradas {
-  border: 1px solid #333;
+  border-bottom: 1px solid #333;
 }
 #bg_entradas_fluxo_caixa #sub_menu_entradas ul {
   display: flex;
@@ -2208,6 +2207,9 @@ option[disabled] {
 }
 #bg_entradas_fluxo_caixa #sub_menu_entradas ul li a {
   text-decoration: none;
+}
+#bg_entradas_fluxo_caixa #sub_menu_entradas ul li a:focus {
+  outline: 0px;
 }
 
 #form_add_pag_mensalidade {
@@ -2313,8 +2315,8 @@ option[disabled] {
   box-shadow: 0px 0px 0px 0px #666;
 }
 #form_add_pag_mensalidade fieldset .div_submit input[type=submit] {
-  min-width: 30%;
-  max-width: 300px;
+  background: #464;
+  max-width: 180px;
 }
 
 #form_add_saida_caixa {
@@ -2516,13 +2518,31 @@ option[disabled] {
   margin-bottom: 20px;
 }
 #bg_info_table_pag_mensal .filtro_table {
-  background: #464;
+  background: #fff;
+  border: 1px solid #333;
+  border-radius: 3px 3px 0px 0px;
+  border-bottom: 0px;
+}
+#bg_info_table_pag_mensal #bg_tables {
+  border: 1px solid #444;
+  padding: 10px;
+}
+#bg_info_table_pag_mensal table caption {
+  padding: 8px;
+  background: #4d794d;
+  color: #f0f0f0;
+  font-size: 14px;
 }
 #bg_info_table_pag_mensal table thead th {
-  background: #4d794d;
+  height: 40px;
+  background: #ccc;
+  color: #333;
+}
+#bg_info_table_pag_mensal table tbody tr {
+  background: #f0f0f0;
 }
 #bg_info_table_pag_mensal table tbody tr:nth-child(even) {
-  background: #dfdfdf;
+  background: #e6e6e6;
 }
 #bg_info_table_pag_mensal table tbody tr:hover {
   background: #f6f6e0;
@@ -2532,6 +2552,7 @@ option[disabled] {
 }
 #bg_info_table_pag_mensal table tbody tr#tr_resumo {
   background: #ccc;
+  height: 40px;
 }
 #bg_info_table_pag_mensal table tbody tr#tr_resumo #td_res_valor_total {
   text-align: center;

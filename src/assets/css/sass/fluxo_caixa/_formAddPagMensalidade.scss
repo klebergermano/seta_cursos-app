@@ -108,8 +108,8 @@ min-width: none;
     box-shadow: 0px 0px 0px 0px #666;
     input[type='submit']{
         @extend .btn-primary;
-        min-width: 30%;
-        max-width: 300px;
+        background: #464;
+        max-width: 180px;
     }
     }
 
