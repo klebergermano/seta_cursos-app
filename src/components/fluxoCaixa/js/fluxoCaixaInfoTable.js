@@ -1,13 +1,13 @@
 var $fluxoCaixaAno = {};
 
 import {firebaseApp} from "../../dbConfig/firebaseApp.js";
-const {getFirestore, getDocs, collection, getDoc, doc} = require("firebase/firestore") 
+const {getFirestore, getDoc, doc} = require("firebase/firestore") 
 const db = getFirestore(firebaseApp);
 
 import * as commonFunc from "../../js_common/commonFunctions.js";
 import * as dateFunc from "../../js_common/dateFunc.js";
 export function insertFluxoCaixaInfoInTableHTML(){
-    commonFunc.insertElementHTML('#fluxo_caixa_content', './components/fluxoCaixa/infoTablePagMensal.html', eventsInfoTable, null, true);
+    commonFunc.insertElementHTML('#entradas_content', './components/fluxoCaixa/infoTablePagMensal.html', eventsInfoTable, null, true);
 }
 
 function setAnoMesSelectFiltros(){
@@ -34,30 +34,41 @@ function eventsInfoTable(){
     let filtroInfo = getFiltroInfoAnoMes()
     setFluxoCaixaAno(filtroInfo.ano)
     .then((res)=>{
-        infoTableContent(res, filtroInfo.mes)
+        insertContentTables(res, filtroInfo.mes)
     }).catch(err => console.log(err))
 
     document.querySelector("#select_ano").addEventListener('change', (e)=>{
         let filtroInfo = getFiltroInfoAnoMes()
         setFluxoCaixaAno(filtroInfo.ano)
         .then(()=>{
-            infoTableContent($fluxoCaixaAno, filtroInfo.mes)
+            insertContentTables($fluxoCaixaAno, filtroInfo.mes)
         }).catch(err => console.log(err))
      })
      document.querySelector("#select_mes").addEventListener('change', (e)=>{
         let filtroInfo = getFiltroInfoAnoMes()
-        infoTableContent($fluxoCaixaAno, filtroInfo.mes)
+        insertContentTables($fluxoCaixaAno, filtroInfo.mes)
      })
 }
 
-function infoTableContent( fluxoCaixaAno, mes){
-        let contentTable = createContentInfoTableHTML(fluxoCaixaAno, mes);
-        insertContentTable(contentTable);
+function insertContentTables( fluxoCaixaAno, mes){
+        let contentTablePagMensal = createContentPagMensalTableHTML(fluxoCaixaAno, mes);
+        insertContentTablePagMensal(contentTablePagMensal);
         sortTbodyElementDate("#pag_mensal_table_info");
+        //-----------------------------------------
+
+        let contentTableEntradaAvulsa = createContentEntradaAvulsaTableHTML(fluxoCaixaAno, mes);
+        insertContentTableEntradaAvulsa(contentTableEntradaAvulsa);
+        sortTbodyElementDate("#entrada_avulsa_table_info");
+        //-----------------------------------------
+
 }
 
-function insertContentTable(contentTable){
+function insertContentTablePagMensal(contentTable){
    let table = document.querySelector('#pag_mensal_table_info');
+   table.querySelector('#tbody').innerHTML = contentTable.innerHTML;
+}
+function insertContentTableEntradaAvulsa(contentTable){
+   let table = document.querySelector('#entrada_avulsa_table_info');
    table.querySelector('#tbody').innerHTML = contentTable.innerHTML;
 }
 
@@ -70,11 +81,11 @@ async function setFluxoCaixaAno(ano){
     }).catch(err => console.log(err));
     return fluxoCaixa;
 }
-function countEntradasTotal(mes){
+function countEntradasTotal(mes, categoria){
     let entradas = $fluxoCaixaAno[mes];
     let n_entradas = 0; 
     for(let value of Object.values(entradas)){
-        if(value.categoria === 'pag_mensalidade'){
+        if(value.categoria === categoria){
             n_entradas++; 
 
         }
@@ -84,12 +95,17 @@ function countEntradasTotal(mes){
 return n_entradas; 
 }
 
-function createValorTotalMes(mes){
+function createValorTotalMes(mes, categoria){
 let valorTotalMes = [];
     let entradas = $fluxoCaixaAno[mes];
     for(let value of Object.values(entradas)){
-        if(value.categoria === 'pag_mensalidade'){
-            valorTotalMes.push(value.valor_total)
+        if(value.categoria === categoria){
+            if(value.valor_total){
+                valorTotalMes.push(value.valor_total)
+            }else{
+                valorTotalMes.push(value.valor)
+
+            }
 
         }
     }
@@ -121,14 +137,54 @@ function sortTbodyElementDate(tableID) {
     return +(p[2] + p[1] + p[0]);
   }
 
-function createContentInfoTableHTML (fluxoCaixaAno, mes){
-   
+  function createContentEntradaAvulsaTableHTML (fluxoCaixaAno, mes){
     let fluxoCaixaMes = fluxoCaixaAno?.[mes];
-    let bgTr = document.createElement('tbody'); 
-
+    let tbody = document.createElement('tbody'); 
     if(fluxoCaixaMes){
-        let i = 1; 
-        for( let [key, value] of Object.entries(fluxoCaixaMes)){
+        for( let value of Object.values(fluxoCaixaMes)){
+            if(value.categoria === "entrada_avulsa"){
+                let tr = document.createElement('tr');
+                tr.id='tr_comum';
+                let trContent = 
+                `
+                <td class='td_data'>${dateFunc.changeDateToDislayText(value.data)}</td>
+                <td class='td_descricao'>${value.descricao}</td>
+                <td class='td_form_pag'>${value.form_pag}</td>
+                <td class='td_valor_total'>R$ ${value.valor}</td>
+                `
+                tr.innerHTML = trContent;
+                tbody.appendChild(tr)
+               }//if
+            }
+         
+            let resEntradas = countEntradasTotal(mes, 'entrada_avulsa');
+            let resValorTotal = createValorTotalMes(mes,  'entrada_avulsa');
+            //--------------------------------------
+            let trResumo = document.createElement('tr');
+            trResumo.id='tr_resumo';
+            trResumo.innerHTML = `
+            <td colspan='3'>Entradas: <span id='res_total_entradas'>${resEntradas}</span></td>
+            <td colspan='1' class="td_valor_total" id="td_res_valor_total">R$ ${resValorTotal}</td>
+            `;
+            tbody.appendChild(trResumo)
+    }else{
+        let tr = document.createElement('tr')
+        tr.innerHTML= `
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>R$ 0,00</td>`;
+        ;
+        tbody.appendChild(tr)
+    }
+       return tbody;
+    }
+
+function createContentPagMensalTableHTML (fluxoCaixaAno, mes){
+    let fluxoCaixaMes = fluxoCaixaAno?.[mes];
+    let tbody = document.createElement('tbody'); 
+    if(fluxoCaixaMes){
+        for( let value of Object.values(fluxoCaixaMes)){
             if(value.categoria === "pag_mensalidade"){
                 let tr = document.createElement('tr');
                 tr.id='tr_comum';
@@ -142,13 +198,12 @@ function createContentInfoTableHTML (fluxoCaixaAno, mes){
                 <td class='td_valor_total'>R$ ${value.valor_total}</td>
                 `
                 tr.innerHTML = trContent;
-                bgTr.appendChild(tr)
-                i++;
+                tbody.appendChild(tr)
                }//if
             }
          
-            let resEntradas = countEntradasTotal(mes);
-            let resValorTotal = createValorTotalMes(mes);
+            let resEntradas = countEntradasTotal(mes, 'pag_mensalidade');
+            let resValorTotal = createValorTotalMes(mes, 'pag_mensalidade');
             //--------------------------------------
             let trResumo = document.createElement('tr');
             trResumo.id='tr_resumo';
@@ -156,29 +211,20 @@ function createContentInfoTableHTML (fluxoCaixaAno, mes){
             <td colspan='5'>Entradas: <span id='res_total_entradas'>${resEntradas}</span></td>
             <td colspan='1' class="td_valor_total" id="td_res_valor_total">R$ ${resValorTotal}</td>
             `;
-            bgTr.appendChild(trResumo)
-            setTimeout(()=>{
-                let x = document.querySelector('#tr_resumo');
-                console.log(x);
-
-            }, 500)
-            
-
+            tbody.appendChild(trResumo)
     }else{
         let tr = document.createElement('tr')
         tr.innerHTML= `
-        
         <td>...</td>
         <td>...</td>
         <td>...</td>
         <td>...</td>
         <td>...</td>
-        <td>...</td>`;
+        <td>R$ 0,00</td>`;
         ;
-        bgTr.appendChild(tr)
-        
+        tbody.appendChild(tr)
     }
-       return bgTr;
+       return tbody;
     }
 
 
