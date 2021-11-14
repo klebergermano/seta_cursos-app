@@ -2528,16 +2528,20 @@ option[disabled] {
 }
 #bg_info_table_pag_mensal table caption {
   padding: 8px;
-  background: #ccc;
-  color: #333;
+  background: #4d794d;
+  color: #f0f0f0;
   font-size: 14px;
-  text-align: right;
 }
 #bg_info_table_pag_mensal table thead th {
-  background: #4d794d;
+  height: 40px;
+  background: #ccc;
+  color: #333;
+}
+#bg_info_table_pag_mensal table tbody tr {
+  background: #f0f0f0;
 }
 #bg_info_table_pag_mensal table tbody tr:nth-child(even) {
-  background: #dfdfdf;
+  background: #e6e6e6;
 }
 #bg_info_table_pag_mensal table tbody tr:hover {
   background: #f6f6e0;
@@ -2547,6 +2551,7 @@ option[disabled] {
 }
 #bg_info_table_pag_mensal table tbody tr#tr_resumo {
   background: #ccc;
+  height: 40px;
 }
 #bg_info_table_pag_mensal table tbody tr#tr_resumo #td_res_valor_total {
   text-align: center;
