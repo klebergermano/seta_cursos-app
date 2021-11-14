@@ -3,16 +3,19 @@
     padding:20px;
     background: #fff;
     #sub_menu_entradas{
-        background: #464;
-        border:1px solid #333;
+        border-bottom:1px solid #333;
         ul{
         display: flex;
 
         li {
         list-style: none;
             a {
+                &:focus{
+                    outline: 0px;
+                }
                 text-decoration: none;
                 @extend .btn-default;
+          
                } 
         }
      
