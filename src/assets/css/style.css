@@ -2330,7 +2330,7 @@ option[disabled] {
 #bg_saidas_info_table caption {
   background: #bd4343;
 }
-#bg_saidas_info_table tr#td_res_valor_total {
+#bg_saidas_info_table tr#tr_resumo #td_res_valor_total {
   text-align: center;
   background: #bd4343;
   color: #fff;
