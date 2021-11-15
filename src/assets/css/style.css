@@ -349,7 +349,7 @@ template {
   display: none;
 }
 
-.btn, #fieldset_resp div #btn_marcar_resp_aluno, .btn-secondary, .btn-primary, #form_add_pag_mensalidade fieldset .div_submit input[type=submit], .forms_fixed input[type=submit], #form_add_aluno input[type=submit], #aluno_content .btn_add_curso, .form_flex input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], .forms_controle_aula input[type=submit], .btn-default-delete, #form_add_saida_caixa fieldset .div_submit input[type=submit], #aluno_content .bg_info_delete_curso .btn_deletar_curso, .btn-default, #form_add_entrada_avulsa fieldset .div_submit input[type=submit], #bg_entradas_fluxo_caixa #sub_menu_entradas ul li a, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], .forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox, #bg_div_id_contrato #label_id_automatico_contrato, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo, #aluno_content .btn_add, menu.submenu_page ul li a {
+.btn, #fieldset_resp div #btn_marcar_resp_aluno, .btn-secondary, .btn-primary, .forms_fixed input[type=submit], #form_add_aluno input[type=submit], #aluno_content .btn_add_curso, .form_flex input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], .forms_controle_aula input[type=submit], .btn-default-delete, #form_add_saida_avulsa fieldset .div_submit input[type=submit], #aluno_content .bg_info_delete_curso .btn_deletar_curso, .btn-default, form.forms_fluxo_caixa .div_submit input[type=submit], .sub_menu_fluxo_caixa ul li a, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], .forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox, #bg_div_id_contrato #label_id_automatico_contrato, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo, #aluno_content .btn_add, menu.submenu_page ul li a {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -359,50 +359,50 @@ template {
   border: 0px;
   cursor: pointer;
 }
-.btn svg, #fieldset_resp div #btn_marcar_resp_aluno svg, .btn-secondary svg, .btn-primary svg, #form_add_pag_mensalidade fieldset .div_submit input[type=submit] svg, .forms_fixed input[type=submit] svg, #form_add_aluno input[type=submit] svg, #aluno_content .btn_add_curso svg, .form_flex input[type=submit] svg, #form_config_perm input[type=submit] svg, #form_reauth_user input[type=submit] svg, #form_add_user input[type=submit] svg, .forms_controle_aula input[type=submit] svg, .btn-default-delete svg, #form_add_saida_caixa fieldset .div_submit input[type=submit] svg, #aluno_content .bg_info_delete_curso .btn_deletar_curso svg, .btn-default svg, #form_add_entrada_avulsa fieldset .div_submit input[type=submit] svg, #bg_entradas_fluxo_caixa #sub_menu_entradas ul li a svg, .nav_forms ul li a svg, #page_login #login_content #form_login input[type=submit] svg, .forms_fixed .label_btn_checkbox svg, #form_add_aluno .label_btn_checkbox svg, #bg_div_id_contrato #label_id_automatico_contrato svg, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo svg, #aluno_content .btn_add svg, menu.submenu_page ul li a svg {
+.btn svg, #fieldset_resp div #btn_marcar_resp_aluno svg, .btn-secondary svg, .btn-primary svg, .forms_fixed input[type=submit] svg, #form_add_aluno input[type=submit] svg, #aluno_content .btn_add_curso svg, .form_flex input[type=submit] svg, #form_config_perm input[type=submit] svg, #form_reauth_user input[type=submit] svg, #form_add_user input[type=submit] svg, .forms_controle_aula input[type=submit] svg, .btn-default-delete svg, #form_add_saida_avulsa fieldset .div_submit input[type=submit] svg, #aluno_content .bg_info_delete_curso .btn_deletar_curso svg, .btn-default svg, form.forms_fluxo_caixa .div_submit input[type=submit] svg, .sub_menu_fluxo_caixa ul li a svg, .nav_forms ul li a svg, #page_login #login_content #form_login input[type=submit] svg, .forms_fixed .label_btn_checkbox svg, #form_add_aluno .label_btn_checkbox svg, #bg_div_id_contrato #label_id_automatico_contrato svg, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo svg, #aluno_content .btn_add svg, menu.submenu_page ul li a svg {
   max-width: 100px;
   max-height: 100px;
   height: auto;
   width: 20px;
 }
 
-.btn-default, #form_add_entrada_avulsa fieldset .div_submit input[type=submit], #bg_entradas_fluxo_caixa #sub_menu_entradas ul li a, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], .forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox, #bg_div_id_contrato #label_id_automatico_contrato, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo, #aluno_content .btn_add, menu.submenu_page ul li a {
+.btn-default, form.forms_fluxo_caixa .div_submit input[type=submit], .sub_menu_fluxo_caixa ul li a, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], .forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox, #bg_div_id_contrato #label_id_automatico_contrato, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo, #aluno_content .btn_add, menu.submenu_page ul li a {
   background: #f0f0f0;
   color: #333;
   border: 1px solid #666;
 }
-.btn-default:hover, #form_add_entrada_avulsa fieldset .div_submit input[type=submit]:hover, #bg_entradas_fluxo_caixa #sub_menu_entradas ul li a:hover, .nav_forms ul li a:hover, #page_login #login_content #form_login input[type=submit]:hover, .forms_fixed .label_btn_checkbox:hover, #form_add_aluno .label_btn_checkbox:hover, #bg_div_id_contrato #label_id_automatico_contrato:hover, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo:hover, #aluno_content .btn_add:hover, menu.submenu_page ul li a:hover {
+.btn-default:hover, form.forms_fluxo_caixa .div_submit input[type=submit]:hover, .sub_menu_fluxo_caixa ul li a:hover, .nav_forms ul li a:hover, #page_login #login_content #form_login input[type=submit]:hover, .forms_fixed .label_btn_checkbox:hover, #form_add_aluno .label_btn_checkbox:hover, #bg_div_id_contrato #label_id_automatico_contrato:hover, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo:hover, #aluno_content .btn_add:hover, menu.submenu_page ul li a:hover {
   background: #fdfdfd;
 }
-.btn-default:active, #form_add_entrada_avulsa fieldset .div_submit input[type=submit]:active, #bg_entradas_fluxo_caixa #sub_menu_entradas ul li a:active, .nav_forms ul li a:active, #page_login #login_content #form_login input[type=submit]:active, .forms_fixed .label_btn_checkbox:active, #form_add_aluno .label_btn_checkbox:active, #bg_div_id_contrato #label_id_automatico_contrato:active, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo:active, #aluno_content .btn_add:active, menu.submenu_page ul li a:active {
+.btn-default:active, form.forms_fluxo_caixa .div_submit input[type=submit]:active, .sub_menu_fluxo_caixa ul li a:active, .nav_forms ul li a:active, #page_login #login_content #form_login input[type=submit]:active, .forms_fixed .label_btn_checkbox:active, #form_add_aluno .label_btn_checkbox:active, #bg_div_id_contrato #label_id_automatico_contrato:active, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo:active, #aluno_content .btn_add:active, menu.submenu_page ul li a:active {
   background: #e3e3e3;
   box-shadow: inset 0px 1px 3px #bdbdbd;
 }
 
-.btn-default-delete, #form_add_saida_caixa fieldset .div_submit input[type=submit], #aluno_content .bg_info_delete_curso .btn_deletar_curso {
+.btn-default-delete, #form_add_saida_avulsa fieldset .div_submit input[type=submit], #aluno_content .bg_info_delete_curso .btn_deletar_curso {
   background: #e03737;
   color: #fafafa;
   border: 1px solid #520404;
 }
-.btn-default-delete:hover, #form_add_saida_caixa fieldset .div_submit input[type=submit]:hover, #aluno_content .bg_info_delete_curso .btn_deletar_curso:hover {
+.btn-default-delete:hover, #form_add_saida_avulsa fieldset .div_submit input[type=submit]:hover, #aluno_content .bg_info_delete_curso .btn_deletar_curso:hover {
   background: #e34d4d;
 }
-.btn-default-delete:active, #form_add_saida_caixa fieldset .div_submit input[type=submit]:active, #aluno_content .bg_info_delete_curso .btn_deletar_curso:active {
+.btn-default-delete:active, #form_add_saida_avulsa fieldset .div_submit input[type=submit]:active, #aluno_content .bg_info_delete_curso .btn_deletar_curso:active {
   background: #db2222;
   box-shadow: inset 0px 1px 3px #991818;
 }
-.btn-default-delete:hover, #form_add_saida_caixa fieldset .div_submit input[type=submit]:hover, #aluno_content .bg_info_delete_curso .btn_deletar_curso:hover {
+.btn-default-delete:hover, #form_add_saida_avulsa fieldset .div_submit input[type=submit]:hover, #aluno_content .bg_info_delete_curso .btn_deletar_curso:hover {
   background: #fc4646;
 }
 
-.btn-primary, #form_add_pag_mensalidade fieldset .div_submit input[type=submit], .forms_fixed input[type=submit], #form_add_aluno input[type=submit], #aluno_content .btn_add_curso, .form_flex input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], .forms_controle_aula input[type=submit] {
+.btn-primary, .forms_fixed input[type=submit], #form_add_aluno input[type=submit], #aluno_content .btn_add_curso, .form_flex input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], .forms_controle_aula input[type=submit] {
   background: #245da7;
   color: #fafafa;
 }
-.btn-primary:hover, #form_add_pag_mensalidade fieldset .div_submit input[type=submit]:hover, .forms_fixed input[type=submit]:hover, #form_add_aluno input[type=submit]:hover, #aluno_content .btn_add_curso:hover, .form_flex input[type=submit]:hover, #form_config_perm input[type=submit]:hover, #form_reauth_user input[type=submit]:hover, #form_add_user input[type=submit]:hover, .forms_controle_aula input[type=submit]:hover {
+.btn-primary:hover, .forms_fixed input[type=submit]:hover, #form_add_aluno input[type=submit]:hover, #aluno_content .btn_add_curso:hover, .form_flex input[type=submit]:hover, #form_config_perm input[type=submit]:hover, #form_reauth_user input[type=submit]:hover, #form_add_user input[type=submit]:hover, .forms_controle_aula input[type=submit]:hover {
   background: #2969bc;
 }
-.btn-primary:active, #form_add_pag_mensalidade fieldset .div_submit input[type=submit]:active, .forms_fixed input[type=submit]:active, #form_add_aluno input[type=submit]:active, #aluno_content .btn_add_curso:active, .form_flex input[type=submit]:active, #form_config_perm input[type=submit]:active, #form_reauth_user input[type=submit]:active, #form_add_user input[type=submit]:active, .forms_controle_aula input[type=submit]:active {
+.btn-primary:active, .forms_fixed input[type=submit]:active, #form_add_aluno input[type=submit]:active, #aluno_content .btn_add_curso:active, .form_flex input[type=submit]:active, #form_config_perm input[type=submit]:active, #form_reauth_user input[type=submit]:active, #form_add_user input[type=submit]:active, .forms_controle_aula input[type=submit]:active {
   background: #1f5192;
   box-shadow: inset 0px 1px 3px #122e53;
 }
@@ -2192,294 +2192,80 @@ option[disabled] {
   padding: 1px;
 }
 
-#bg_entradas_fluxo_caixa {
-  padding: 20px;
-  background: #fff;
-}
-#bg_entradas_fluxo_caixa #sub_menu_entradas {
-  border-bottom: 1px solid #333;
-}
-#bg_entradas_fluxo_caixa #sub_menu_entradas ul {
-  display: flex;
-}
-#bg_entradas_fluxo_caixa #sub_menu_entradas ul li {
-  list-style: none;
-}
-#bg_entradas_fluxo_caixa #sub_menu_entradas ul li a {
-  text-decoration: none;
-}
-#bg_entradas_fluxo_caixa #sub_menu_entradas ul li a:focus {
-  outline: 0px;
-}
-
-#form_add_pag_mensalidade {
-  margin: 0 auto;
-  max-width: 1000px;
-}
-#form_add_pag_mensalidade h3 {
-  width: 100%;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
 #form_add_pag_mensalidade fieldset {
   background: #738d73;
-  border: 1px solid #333;
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 100%;
-  padding: 0px;
-}
-#form_add_pag_mensalidade fieldset .row {
-  min-width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  border: 1px solid #565;
-}
-#form_add_pag_mensalidade fieldset .div_inputs {
-  margin: 0px;
-  background: #ccc;
-  flex-shrink: 1;
-  flex-grow: 1;
-  padding: 0px;
-  box-shadow: 0px 0px 1px #111;
-  min-width: 100px;
-  width: auto;
-}
-#form_add_pag_mensalidade fieldset .div_inputs label {
-  width: 100%;
-  border-radius: 0px;
-  padding: 5px;
-  display: flex;
-  justify-content: center;
-  background: #d3ddd3;
-  border-bottom: 1px solid #aaa;
-}
-#form_add_pag_mensalidade fieldset .div_inputs input, #form_add_pag_mensalidade fieldset .div_inputs select, #form_add_pag_mensalidade fieldset .div_inputs textarea {
-  width: 100%;
-  height: 50px;
-  padding: 12px 10px;
-  border-radius: 0px;
-  border: 0px solid #aaa;
-  resize: vertical;
-}
-#form_add_pag_mensalidade fieldset .div_inputs input:focus, #form_add_pag_mensalidade fieldset .div_inputs select:focus, #form_add_pag_mensalidade fieldset .div_inputs textarea:focus {
-  outline: 1px solid #245da7;
-  outline-offset: -1px;
-}
-#form_add_pag_mensalidade fieldset .div_inputs input, #form_add_pag_mensalidade fieldset .div_inputs select {
-  text-align: center;
-}
-#form_add_pag_mensalidade fieldset .div_inputs textarea {
-  min-height: 60px;
-  margin-bottom: -3px !important;
-}
-#form_add_pag_mensalidade fieldset .div_inputs input[readonly=true] {
-  background: #eee;
-  user-select: none;
-}
-#form_add_pag_mensalidade fieldset .div_inputs #curso_valor {
-  color: #344e83;
-}
-#form_add_pag_mensalidade fieldset .div_inputs #curso_desconto {
-  color: #c56674;
-}
-#form_add_pag_mensalidade fieldset .div_inputs #curso_valor_total {
-  color: green;
-  font-weight: bold;
 }
 #form_add_pag_mensalidade fieldset .div_n_lanc {
   max-width: 150px;
   min-width: 100px;
   width: auto;
 }
-#form_add_pag_mensalidade fieldset .div_aluno, #form_add_pag_mensalidade fieldset .div_curso, #form_add_pag_mensalidade fieldset .div_resp {
+#form_add_pag_mensalidade fieldset .div_aluno,
+#form_add_pag_mensalidade fieldset .div_curso,
+#form_add_pag_mensalidade fieldset .div_resp {
   min-width: 100px;
 }
-#form_add_pag_mensalidade fieldset .div_curso_valor, #form_add_pag_mensalidade fieldset .div_curso_valor_total, #form_add_pag_mensalidade fieldset .div_curso_desconto, #form_add_pag_mensalidade fieldset .div_forma_pag {
+#form_add_pag_mensalidade fieldset .div_curso_valor,
+#form_add_pag_mensalidade fieldset .div_curso_valor_total,
+#form_add_pag_mensalidade fieldset .div_curso_desconto,
+#form_add_pag_mensalidade fieldset .div_forma_pag {
   width: auto;
   max-width: 25%;
   flex-grow: 1;
   flex-shrink: 1;
   min-width: none;
 }
-#form_add_pag_mensalidade fieldset .div_curso_valor input, #form_add_pag_mensalidade fieldset .div_curso_valor_total input, #form_add_pag_mensalidade fieldset .div_curso_desconto input, #form_add_pag_mensalidade fieldset .div_forma_pag input {
+#form_add_pag_mensalidade fieldset .div_curso_valor input,
+#form_add_pag_mensalidade fieldset .div_curso_valor_total input,
+#form_add_pag_mensalidade fieldset .div_curso_desconto input,
+#form_add_pag_mensalidade fieldset .div_forma_pag input {
   font-size: 18px;
   width: 100%;
 }
-#form_add_pag_mensalidade fieldset .div_submit {
-  padding: 20px;
-  background: #f0f0f0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0px 0px 0px 0px #666;
-}
 #form_add_pag_mensalidade fieldset .div_submit input[type=submit] {
-  background: #464;
-  max-width: 180px;
+  background: #396635;
+}
+#form_add_pag_mensalidade fieldset .div_submit input[type=submit]:hover {
+  background: #45803f;
 }
 
-#form_add_saida_caixa {
+#form_add_saida_avulsa {
   margin: 0 auto;
   max-width: 1000px;
 }
-#form_add_saida_caixa h3 {
+#form_add_saida_avulsa h3 {
   width: 100%;
   margin-top: 20px;
   margin-bottom: 20px;
 }
-#form_add_saida_caixa fieldset {
+#form_add_saida_avulsa fieldset {
   background: #8d7373;
-  border: 1px solid #333;
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 100%;
-  padding: 0px;
 }
-#form_add_saida_caixa fieldset .row {
-  min-width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  border: 1px solid #565;
-}
-#form_add_saida_caixa fieldset .div_inputs {
-  margin: 0px;
-  background: #ccc;
-  flex-shrink: 1;
-  flex-grow: 1;
-  padding: 0px;
-  box-shadow: 0px 0px 1px #111;
-  min-width: 100px;
-  width: auto;
-}
-#form_add_saida_caixa fieldset .div_inputs label {
-  width: 100%;
-  border-radius: 0px;
-  padding: 5px;
-  display: flex;
-  justify-content: center;
+#form_add_saida_avulsa fieldset .div_inputs label {
   background: #ddd3d3;
-  border-bottom: 1px solid #aaa;
 }
-#form_add_saida_caixa fieldset .div_inputs input, #form_add_saida_caixa fieldset .div_inputs select, #form_add_saida_caixa fieldset .div_inputs textarea {
-  width: 100%;
-  height: 50px;
-  padding: 12px 10px;
-  border-radius: 0px;
-  border: 0px solid #aaa;
-  resize: vertical;
-}
-#form_add_saida_caixa fieldset .div_inputs input:focus, #form_add_saida_caixa fieldset .div_inputs select:focus, #form_add_saida_caixa fieldset .div_inputs textarea:focus {
-  outline: 1px solid #245da7;
-  outline-offset: -1px;
-}
-#form_add_saida_caixa fieldset .div_inputs input, #form_add_saida_caixa fieldset .div_inputs select {
-  text-align: center;
-}
-#form_add_saida_caixa fieldset .div_inputs textarea {
-  margin-right: 1px;
-  border-right: 1px solid #ddd;
-  min-height: 50px;
-  margin-bottom: -3px !important;
-}
-#form_add_saida_caixa fieldset .div_inputs input[readonly=true] {
-  background: #eee;
-  user-select: none;
-}
-#form_add_saida_caixa fieldset #div_data {
+#form_add_saida_avulsa fieldset #div_data {
   max-width: 180px !important;
 }
-#form_add_saida_caixa fieldset #div_saida_valor {
+#form_add_saida_avulsa fieldset #div_saida_valor {
   max-width: 100px !important;
 }
-#form_add_saida_caixa fieldset #div_saida_valor input {
+#form_add_saida_avulsa fieldset #div_saida_valor input {
   color: #b83535;
 }
-#form_add_saida_caixa fieldset #div_tipo_saida {
+#form_add_saida_avulsa fieldset #div_tipo_saida {
   max-width: 150px !important;
 }
-#form_add_saida_caixa fieldset #div_tipo_saida {
+#form_add_saida_avulsa fieldset #div_tipo_saida {
   max-width: 150px !important;
 }
-#form_add_saida_caixa fieldset .div_submit {
-  padding: 20px;
-  background: #f0f0f0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0px 0px 0px 0px #666;
-}
-#form_add_saida_caixa fieldset .div_submit input[type=submit] {
+#form_add_saida_avulsa fieldset .div_submit input[type=submit] {
   background: #be4040;
   max-width: 180px;
 }
 
-#form_add_entrada_avulsa {
-  margin: 0 auto;
-  max-width: 1000px;
-}
-#form_add_entrada_avulsa h3 {
-  width: 100%;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
 #form_add_entrada_avulsa fieldset {
   background: #758d73;
-  border: 1px solid #333;
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 100%;
-  padding: 0px;
-}
-#form_add_entrada_avulsa fieldset .row {
-  min-width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  border: 1px solid #565;
-}
-#form_add_entrada_avulsa fieldset .div_inputs {
-  margin: 0px;
-  background: #ccc;
-  flex-shrink: 1;
-  flex-grow: 1;
-  padding: 0px;
-  box-shadow: 0px 0px 1px #111;
-  min-width: 100px;
-  width: auto;
-}
-#form_add_entrada_avulsa fieldset .div_inputs label {
-  width: 100%;
-  border-radius: 0px;
-  padding: 5px;
-  display: flex;
-  justify-content: center;
-  background: #d3ddd3;
-  border-bottom: 1px solid #aaa;
-}
-#form_add_entrada_avulsa fieldset .div_inputs input, #form_add_entrada_avulsa fieldset .div_inputs select, #form_add_entrada_avulsa fieldset .div_inputs textarea {
-  width: 100%;
-  height: 50px;
-  padding: 12px 10px;
-  border-radius: 0px;
-  border: 0px solid #aaa;
-  resize: vertical;
-}
-#form_add_entrada_avulsa fieldset .div_inputs input:focus, #form_add_entrada_avulsa fieldset .div_inputs select:focus, #form_add_entrada_avulsa fieldset .div_inputs textarea:focus {
-  outline: 1px solid #245da7;
-  outline-offset: -1px;
-}
-#form_add_entrada_avulsa fieldset .div_inputs input, #form_add_entrada_avulsa fieldset .div_inputs select {
-  text-align: center;
-}
-#form_add_entrada_avulsa fieldset .div_inputs textarea {
-  margin-right: 1px;
-  border-right: 1px solid #ddd;
-  min-height: 50px;
-  margin-bottom: -3px !important;
-}
-#form_add_entrada_avulsa fieldset .div_inputs input[readonly=true] {
-  background: #eee;
-  user-select: none;
 }
 #form_add_entrada_avulsa fieldset #div_data {
   max-width: 180px !important;
@@ -2496,81 +2282,80 @@ option[disabled] {
 #form_add_entrada_avulsa fieldset #div_tipo_saida {
   max-width: 150px !important;
 }
-#form_add_entrada_avulsa fieldset .div_submit {
-  padding: 20px;
-  background: #f0f0f0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0px 0px 0px 0px #666;
-}
 #form_add_entrada_avulsa fieldset .div_submit input[type=submit] {
   background: #396635;
-  color: #fff;
-  max-width: 180px;
 }
 #form_add_entrada_avulsa fieldset .div_submit input[type=submit]:hover {
   background: #45803f;
 }
 
-#bg_info_table_pag_mensal h3 {
+.bg_info_tables h3 {
   margin-top: 20px;
   margin-bottom: 20px;
 }
-#bg_info_table_pag_mensal .filtro_table {
+.bg_info_tables .filtro_table {
   background: #fff;
   border: 1px solid #333;
   border-radius: 3px 3px 0px 0px;
   border-bottom: 0px;
 }
-#bg_info_table_pag_mensal #bg_tables {
+.bg_info_tables #bg_tables {
   border: 1px solid #444;
   padding: 10px;
 }
-#bg_info_table_pag_mensal table caption {
+.bg_info_tables table caption {
   padding: 8px;
-  background: #4d794d;
+  background: #333;
   color: #f0f0f0;
   font-size: 14px;
 }
-#bg_info_table_pag_mensal table thead th {
+.bg_info_tables table thead th {
   height: 40px;
   background: #ccc;
   color: #333;
 }
-#bg_info_table_pag_mensal table tbody tr {
+.bg_info_tables table tbody tr {
   background: #f0f0f0;
 }
-#bg_info_table_pag_mensal table tbody tr:nth-child(even) {
+.bg_info_tables table tbody tr:nth-child(even) {
   background: #e6e6e6;
 }
-#bg_info_table_pag_mensal table tbody tr:hover {
+.bg_info_tables table tbody tr:hover {
   background: #f6f6e0;
 }
-#bg_info_table_pag_mensal table tbody tr td {
+.bg_info_tables table tbody tr td {
   padding: 10px 5px;
 }
-#bg_info_table_pag_mensal table tbody tr#tr_resumo {
-  background: #ccc;
-  height: 40px;
+
+#bg_saidas_info_table caption {
+  background: #bd4343;
 }
-#bg_info_table_pag_mensal table tbody tr#tr_resumo #td_res_valor_total {
+#bg_saidas_info_table tr#td_res_valor_total {
+  text-align: center;
+  background: #bd4343;
+  color: #fff;
+}
+
+#bg_entradas_info_table caption {
+  background: #4d794d;
+}
+#bg_entradas_info_table tr#tr_resumo #td_res_valor_total {
   text-align: center;
   background: #464;
   color: #fff;
 }
-#bg_info_table_pag_mensal table .td_linha {
+#bg_entradas_info_table .td_linha {
   text-align: center;
   background: #ccc;
   color: #666;
 }
-#bg_info_table_pag_mensal table .td_data {
+#bg_entradas_info_table .td_data {
   text-align: center;
 }
-#bg_info_table_pag_mensal table .td_parcela {
+#bg_entradas_info_table .td_parcela {
   text-align: center;
 }
-#bg_info_table_pag_mensal table .td_valor_total {
+#bg_entradas_info_table .td_valor_total {
   color: #247e24;
 }
 
@@ -2578,11 +2363,122 @@ option[disabled] {
   margin-top: 40px;
 }
 
+#fluxo_caixa_content {
+  padding: 20px;
+  background: #fff;
+}
 #submenu_fluxo_caixa #btn_form_saida_caixa {
   color: red;
 }
 #submenu_fluxo_caixa #btn_form_entrada_caixa {
   color: green;
+}
+
+form.forms_fluxo_caixa {
+  margin: 0 auto;
+  max-width: 1000px;
+}
+form.forms_fluxo_caixa h3 {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+form.forms_fluxo_caixa h4 {
+  text-align: center;
+  font-weight: normal;
+  background: #ccc;
+  padding: 5px;
+}
+form.forms_fluxo_caixa fieldset {
+  border: 1px solid #ccc;
+  background: #758d73;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100%;
+  padding: 0px;
+}
+form.forms_fluxo_caixa fieldset .row {
+  min-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid #565;
+}
+form.forms_fluxo_caixa fieldset .div_inputs {
+  margin: 0;
+  background: #ccc;
+  flex-shrink: 1;
+  flex-grow: 1;
+  padding: 0;
+  box-shadow: 0 0 1px #111;
+  min-width: 100px;
+  width: auto;
+}
+form.forms_fluxo_caixa fieldset .div_inputs label {
+  width: 100%;
+  border-radius: 0;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  background: #d3ddd3;
+  border-bottom: 1px solid #aaa;
+}
+form.forms_fluxo_caixa fieldset .div_inputs input,
+form.forms_fluxo_caixa fieldset .div_inputs select,
+form.forms_fluxo_caixa fieldset .div_inputs textarea {
+  width: 100%;
+  height: 50px;
+  padding: 12px 10px;
+  border-radius: 0;
+  border: 0 solid #aaa;
+  resize: vertical;
+}
+form.forms_fluxo_caixa fieldset .div_inputs input:focus,
+form.forms_fluxo_caixa fieldset .div_inputs select:focus,
+form.forms_fluxo_caixa fieldset .div_inputs textarea:focus {
+  outline: 1px solid #245da7;
+  outline-offset: -1px;
+}
+form.forms_fluxo_caixa fieldset .div_inputs input,
+form.forms_fluxo_caixa fieldset .div_inputs select {
+  text-align: center;
+}
+form.forms_fluxo_caixa fieldset .div_inputs textarea {
+  margin-right: 1px;
+  border-right: 1px solid #ddd;
+  min-height: 50px;
+  margin-bottom: -3px !important;
+}
+form.forms_fluxo_caixa fieldset .div_inputs input[readonly=true] {
+  background: #eee;
+  user-select: none;
+}
+form.forms_fluxo_caixa .div_submit {
+  padding: 20px;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 0 #666;
+}
+form.forms_fluxo_caixa .div_submit input[type=submit] {
+  color: #fff;
+  max-width: 180px;
+}
+.sub_menu_fluxo_caixa {
+  border: 1px solid #333;
+  margin: 20px 0px;
+}
+.sub_menu_fluxo_caixa ul {
+  display: flex;
+}
+.sub_menu_fluxo_caixa ul li {
+  list-style: none;
+}
+.sub_menu_fluxo_caixa ul li a {
+  text-decoration: none;
+}
+.sub_menu_fluxo_caixa ul li a:focus {
+  outline: 0;
 }
 
 @keyframes spinner-line-fade-more {

@@ -12,7 +12,7 @@ const VMasker = require("vanilla-masker");
 var $fluxoCaixaAno = {};
 
 export function insertFluxoCaixaInfoInTableHTML(){
-    commonFunc.insertElementHTML('#entradas_content', './components/fluxoCaixa/infoTablePagMensal.html', eventsInfoTable, null, true);
+    commonFunc.insertElementHTML('#entradas_content', './components/fluxoCaixa/entradasInfoTable.html', eventsEntradasInfoTable, null, true);
 }
 
 
@@ -40,7 +40,7 @@ function setMasks() {
   //  VMasker(document.querySelector('.td_valor_total')).maskMoney();
   }
   
-function eventsInfoTable(){
+function eventsEntradasInfoTable(){
     setAnoMesSelectFiltros()
     let filtroInfo = getFiltroInfoAnoMes()
     setFluxoCaixaAno(filtroInfo.ano)

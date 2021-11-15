@@ -1,25 +1,2 @@
-@use "../abstracts/" as *; 
-#bg_entradas_fluxo_caixa{
-    padding:20px;
-    background: #fff;
-    #sub_menu_entradas{
-        border-bottom:1px solid #333;
-        ul{
-        display: flex;
+@use "../abstracts/" as *;
 
-        li {
-        list-style: none;
-            a {
-                &:focus{
-                    outline: 0px;
-                }
-                text-decoration: none;
-                @extend .btn-default;
-          
-               } 
-        }
-     
-    } 
-
-    }
-}
