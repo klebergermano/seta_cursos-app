@@ -1,13 +1,12 @@
 import { insertElementHTML } from "../../js_common/commonFunctions.js";
-import {insertFluxoCaixaInfoInTableHTML} from "./fluxoCaixaInfoTable.js"
+import {insertFluxoCaixaInfoInTableHTML} from "./entradasInfoTable.js"
 import {insertFormPagMensalidade} from "./formAddPagMensalidade.js"
 import {insertFormAddEntradaAvulsa} from "./formAddEntradaAvulsa.js"
-export function insertEntradasFluxoCaixaHTML(){
-    insertElementHTML("#fluxo_caixa_content", "./components/fluxoCaixa/entradasFluxoCaixa.html", eventsEntradaFluxoCaixa, null, true)
-
+export function insertEntradasSubpageHTML(){
+    insertElementHTML("#fluxo_caixa_content", "./components/fluxoCaixa/entradasSubpage.html", eventsEntradasSubpage, null, true)
 }
 
-function eventsEntradaFluxoCaixa(){
+function eventsEntradasSubpage(){
    insertFluxoCaixaInfoInTableHTML();
    
    document.querySelector("#btn_form_add_pag_mensalidade").addEventListener('click', ()=>{

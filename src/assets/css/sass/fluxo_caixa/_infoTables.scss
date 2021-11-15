@@ -1,17 +1,15 @@
 
-#bg_info_table_pag_mensal{
+.bg_info_tables{
     h3{
         margin-top:20px;
         margin-bottom:20px;
     }
-
     .filtro_table{
         background: #fff;
         border:1px solid #333;
         border-radius: 3px 3px 0px 0px;
         border-bottom:0px;
     }
-     
     #bg_tables{
         border:1px solid #444; 
         padding:10px;
@@ -19,7 +17,7 @@
     table{
         caption{
             padding:8px;
-            background:#4d794d;
+            background:#333;
             color:#f0f0f0;
             font-size:14px;
         }
@@ -44,17 +42,30 @@
                     padding:10px 5px;
                 }
             }
+        }
+    }
+}
+#bg_saidas_info_table{
+    caption{
+        background:#bd4343;
+    }
+    tr#td_res_valor_total{
+        text-align: center; 
+        background: #bd4343;
+        color:#fff;
+    }
+}
+#bg_entradas_info_table{
+        caption{
+            background:#4d794d;
+        }
             tr#tr_resumo{
-                background:#ccc;
-                height:40px;
-                
                 #td_res_valor_total{
                     text-align: center;
                     background:#464; 
                     color:#fff;
                 }
             }
-        }
         .td_linha{
             text-align: center;
             background:#ccc;
@@ -69,8 +80,6 @@
         .td_valor_total{
             color:#247e24;
         }
-
-    }
 }
 #entrada_avulsa_table_info{
     margin-top:40px;

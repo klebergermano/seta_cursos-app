@@ -8,24 +8,23 @@ import {defaultEventsAfterSubmitFixedForm, insertElementHTML} from "../../js_com
 
 //Firebase
 import { firebaseApp } from "../../dbConfig/firebaseApp.js"
-const { getFirestore, doc, setDoc, onSnapshot, updateDoc, collection, getDocs, getDoc } = require("firebase/firestore")
+const { getFirestore, doc, setDoc} = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
 
 //Others libraries
 const VMasker = require("vanilla-masker");
 //--------------------------------------------------------------------
-export function insertFormAddSaidaCaixa() {
-  insertElementHTML("#fluxo_caixa_content", "./components/fluxoCaixa/formAddSaidaCaixa.html", eventsFormAddSaidaCaixa, null, true)
+export function insertFormAddSaidaAvulsa() {
+  insertElementHTML("#saidas_content", "./components/fluxoCaixa/formAddSaidaAvulsa.html", eventsFormAddSaidaAvulsa, null, true)
 }
 
 function setMasks() {
   VMasker(document.querySelector('#saida_valor')).maskMoney();
-  
 }
 
-function eventsFormAddSaidaCaixa() {
+function eventsFormAddSaidaAvulsa() {
   setCurrentDate('#data');
-  document.querySelector('#form_add_saida_caixa').addEventListener('submit', (e) => {
+  document.querySelector('#form_add_saida_avulsa').addEventListener('submit', (e) => {
   e.preventDefault();
     submitFormAddPagMensalidade(e)
   });
@@ -40,7 +39,7 @@ function submitFormAddPagMensalidade(e) {
   let ano = (data.getFullYear()).toString();
   let mes = converteMesNumeroPorExtenso((data.getMonth() + 1));
 
-  let form = document.querySelector('#form_add_saida_caixa');
+  let form = document.querySelector('#form_add_saida_avulsa');
   createNewRowFluxoCaixa(ano, mes)
     .then((row) => {
       setDoc(doc(db, "fluxo_caixa", ano),
@@ -63,7 +62,7 @@ function submitFormAddPagMensalidade(e) {
         },
         { merge: true }
       ).then(() => {
-        defaultEventsAfterSubmitFixedForm("#form_add_saida_caixa", "Saída de caixa adicionada com sucesso!");
+        defaultEventsAfterSubmitFixedForm("#form_add_saida_avulsa", "Saída de caixa adicionada com sucesso!");
       });
     });
 
