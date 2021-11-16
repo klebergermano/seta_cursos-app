@@ -19,7 +19,9 @@ export function insertFormAddEntradaAvulsa() {
 }
 
 function setMasks(){
-
+  
+  let valor = document.querySelector("#entrada_avulsa_valor");
+  VMasker(valor).maskMoney();
 }
 
 function eventsFormAddEntradaAvulsa() {
@@ -29,7 +31,6 @@ function eventsFormAddEntradaAvulsa() {
     submitFormAddEntradaAvulsa(e)
   });
   setMasks() 
-
 }
 
 function submitFormAddEntradaAvulsa(e) {
