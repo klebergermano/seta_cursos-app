@@ -14,13 +14,18 @@
     }
 }
 #submenu_fluxo_caixa{
+   
     #btn_form_saida_caixa{
         color:red;
     }
     #btn_form_entrada_caixa{
         color:green;
     }
-
+a{
+    &:focus{
+        outline:0px;
+    }
+}
 }
 
 form.forms_fluxo_caixa{
