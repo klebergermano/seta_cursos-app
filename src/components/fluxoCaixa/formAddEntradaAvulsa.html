@@ -4,16 +4,16 @@
 <div class='row'>
     <div class='div_inputs' id='div_data'>
         <label>Data: </label>
-        <input  type='Date' id='data'/>
+        <input  required  type='Date' id='data'/>
     </div>
     <div  class='div_inputs' div='div_descricao'>
         <label>Descrição: </label>
-        <textarea id='descricao' ></textarea>
+        <textarea required  id='descricao' ></textarea>
     </div>
 
     <div  class='div_inputs' id='div_tipo_entrada_avulsa'>
         <label>Form. Pag</label>
-        <select id='form_pag'>
+        <select required id='form_pag'>
             <option disabled selected></option>
             <option value='dinheiro'>Dinheiro</option>
             <option value='débito'>Débito</option>
@@ -23,7 +23,7 @@
     </div>
     <div  class='div_inputs ' id='div_entrada_avulsa_valor'>
         <label>Valor: </label>
-        <input  type='text' id='entrada_avulsa_valor'  value='0,00'/>
+        <input  required   type='text' id='entrada_avulsa_valor'  value=''/>
     </div>
     </div><!--row-->
 <div class='row'>

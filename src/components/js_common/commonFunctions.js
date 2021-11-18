@@ -30,7 +30,6 @@ export function insertElementHTML(target, pathElementHTML,  callback, event, cle
   })
   .then((htmlElement)=>{
     if(cleanTargetElement){
-      console.log("Limpo");
       targetElement.innerHTML = '';
     }   
     targetElement.appendChild(htmlElement);

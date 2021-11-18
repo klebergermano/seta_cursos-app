@@ -3,6 +3,7 @@
 @use "./formAddSaidaAvulsa.scss" ;
 @use "./formAddEntradaAvulsa.scss" ;
 @use "./infoTables.scss" ;
+@use "./resumoFluxoCaixa.scss" ;
 @use "../abstracts/" as *;
 
 
@@ -14,13 +15,18 @@
     }
 }
 #submenu_fluxo_caixa{
+   
     #btn_form_saida_caixa{
         color:red;
     }
-    #btn_form_entrada_caixa{
+    #btn_entradas_caixa{
         color:green;
     }
-
+a{
+    &:focus{
+        outline:0px;
+    }
+} 
 }
 
 form.forms_fluxo_caixa{
