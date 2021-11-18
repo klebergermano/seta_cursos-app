@@ -2222,6 +2222,12 @@ option[disabled] {
   font-size: 18px;
   width: 100%;
 }
+#form_add_pag_mensalidade fieldset .div_curso_desconto input {
+  color: red;
+}
+#form_add_pag_mensalidade fieldset .div_curso_valor input, #form_add_pag_mensalidade fieldset .div_curso_valor_total input {
+  color: green;
+}
 #form_add_pag_mensalidade fieldset .div_submit input[type=submit] {
   background: #396635;
 }
