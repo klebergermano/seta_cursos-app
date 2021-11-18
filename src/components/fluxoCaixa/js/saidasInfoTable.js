@@ -23,14 +23,17 @@ function eventsSaidasInfoTable(){
     let filtroInfo = getFiltroInfoAnoMes()
     setFluxoCaixaAno(filtroInfo.ano)
     .then((res)=>{
+        $fluxoCaixaAno = res; 
+        $fluxoCaixaAno.ano = filtroInfo.ano;
         insertContentTables(res, filtroInfo.mes)
     }).catch(err => console.log(err))
 
     document.querySelector("#select_ano").addEventListener('change', (e)=>{
         let filtroInfo = getFiltroInfoAnoMes()
         setFluxoCaixaAno(filtroInfo.ano)
-        .then(()=>{
-            insertContentTables($fluxoCaixaAno, filtroInfo.mes)
+        .then((res)=>{
+            res.ano = filtroInfo.ano;
+             insertContentTables(res, filtroInfo.mes)
         }).catch(err => console.log(err))
      })
      document.querySelector("#select_mes").addEventListener('change', (e)=>{
@@ -40,6 +43,7 @@ function eventsSaidasInfoTable(){
 }
 
 function insertContentTables(fluxoCaixaAno, mes){
+
     let contentTableSaidaAvulsa = createContentSaidaAvulsaTableHTML(fluxoCaixaAno, mes);
     insertContentTableSaidaAvulsaMensal(contentTableSaidaAvulsa);
     sortTbodyElementByDate("#saida_avulsa_table_info");
@@ -64,6 +68,8 @@ table.querySelector('#tbody').innerHTML = contentTable.innerHTML;
   function createContentSaidaAvulsaTableHTML (fluxoCaixaAno, mes){
     
     let fluxoCaixaMes = fluxoCaixaAno?.[mes];
+    console.log(fluxoCaixaAno);
+    console.log(fluxoCaixaMes);
     let tbody = document.createElement('tbody'); 
     if(fluxoCaixaMes){
         for( let value of Object.values(fluxoCaixaMes)){

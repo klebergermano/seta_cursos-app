@@ -47,7 +47,7 @@ function submitFormAddPagMensalidade(e) {
           [mes]: {
             [row]: {
               row: row,
-              categoria: "saida_caixa",
+              categoria: "saida_avulsa",
               data: form.data.value,
               descricao: form.descricao.value,
               tipo_saida: form.tipo_saida.value,

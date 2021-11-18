@@ -13,7 +13,8 @@ export function onload(){
     document.querySelector("#btn_form_saida_caixa").addEventListener('click', ()=>{
         insertSaidasSubpage();
     });
+    insertResumoFluxoCaixaHTML();
    
-    insertEntradasSubpageHTML();
+   // insertEntradasSubpageHTML();
 
 }
