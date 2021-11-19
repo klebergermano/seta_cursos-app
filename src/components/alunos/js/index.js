@@ -1,13 +1,20 @@
-import * as alunosInfoTable from "../js/alunosInfoTable.js"
-import * as submenuPage from "../js/submenuPage.js"
+import {insertInfoTableAlunosHTML} from "../js/infoTableAlunos.js";
+import {insertFormAddAlunoHTML} from "../js/formAddAluno.js";
 import * as commonFunc from "../../js_common/commonFunctions.js";
 
 
 
 export function onload(){
-   
-    alunosInfoTable.inserAlunosInfoInTable()
-    commonFunc.insertElementHTML("#bg_submenu_page", "./components/alunos/submenuPage.html",  submenuPage.eventsSubmenuPage, null, true)
+    document.querySelector('#btn_add_aluno').addEventListener('click', (e)=>{
+        insertFormAddAlunoHTML();
+    })  
+    document.querySelector('#btn_alunos_info_table').addEventListener('click', (e)=>{
+    insertInfoTableAlunosHTML()
+
+    })  
+
+
+    insertInfoTableAlunosHTML()
 
 
 }

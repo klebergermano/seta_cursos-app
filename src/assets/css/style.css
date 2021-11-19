@@ -2070,6 +2070,21 @@ option[disabled] {
   color: #fff !important;
 }
 
+#table_info_alunos .td_controles {
+  width: 180px;
+  height: 40px;
+  align-items: center;
+  text-align: center;
+}
+#table_info_alunos .td_controles button {
+  padding: 5px;
+  font-size: 12px;
+  display: block;
+  float: none !important;
+  display: inline;
+  cursor: pointer;
+}
+
 #page_login {
   opacity: 1;
   transition: opacity 10s ease-in-out;
@@ -2643,8 +2658,7 @@ form.forms_fluxo_caixa .div_submit input[type=submit] {
   }
 }
 *:focus {
-  outline: 2px solid #5690db;
-  outline-offset: -2px;
+  outline-color: #5690db;
 }
 
 .load_element {

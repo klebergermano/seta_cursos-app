@@ -9,7 +9,7 @@ const db = getFirestore(firebaseApp);
 //-------------------------------------------------------------------------
 
 export function insertFormAddAlunoHTML(){
-  commonFunc.insertElementHTML('#alunos_submenu_content',
+  commonFunc.insertElementHTML('#alunos_content',
   './components/alunos/formAddAluno.html', eventsFormAddAluno, null, true
   );
 }
