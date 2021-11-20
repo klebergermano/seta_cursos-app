@@ -30,8 +30,8 @@ export function insertInfoTableAlunosHTML(){
         let btnsAddCurso = document.querySelectorAll(".btn_add_curso");
         btnsAddCurso.forEach((item)=>{
            item.addEventListener('click', (e)=>{
-               let RA = e.target.parentElement.dataset.ra;
-               let alunoNome = e.target.parentElement.dataset.aluno_nome;
+               let RA = e.target.closest('td').dataset.ra;
+               let alunoNome =  e.target.closest('td').dataset.aluno_nome;
             insertFormAddCursoHTML(RA, alunoNome);
            
            });

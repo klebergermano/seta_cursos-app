@@ -1,0 +1,28 @@
+@use "../abstracts/" as *;
+
+#form_add_curso{
+    @extend .form_flex_absolute;
+    fieldset{
+        min-width: 100%;
+        margin-bottom:10px;
+    }
+    div{
+        overflow: hidden;
+        display: flex;
+        max-width: 100%;
+        select{
+            min-width: 300px;
+            flex-grow: 1;
+        }
+    }
+    #aluno_ra{ max-width: 80px; min-width: 50px; }
+    #div_contrato{
+        min-width: 100%;;
+    }
+    #div_info_aluno_nome{
+        min-width: 100%;;
+    }
+    #div_submit{
+        width:100%;
+    }
+}

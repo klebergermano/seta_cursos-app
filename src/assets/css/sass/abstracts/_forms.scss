@@ -7,7 +7,6 @@ inputs{
 }
 
 .forms{
-
   border: $border-set-default;
   position:fixed;
   right: 0px; left:0px;
@@ -45,7 +44,7 @@ inputs{
   margin: 20px auto;
   height: auto;
 
-  background:#fff;
+  background:#ffc;
   transition: all 2s;
   h3{
     text-transform: uppercase;
@@ -103,6 +102,89 @@ inputs{
        margin: auto ;
        margin-top:40px
   }
+
+}
+
+.bg_form_block_screen{
+  width:100%;
+  min-height: 100vh;
+  position: fixed;
+  background-color: #11111199;
+  right: 0px; left:0px;
+  top: 0%; 
+  z-index: 5;
+
+}
+
+.form_flex_absolute{
+  @extend .forms;
+  display:flex;
+  flex-wrap: wrap;
+  border-radius: $border-radius;
+  border-color: $border-color-medium;
+  padding: $padding-large;
+ max-width: 600px;
+ margin: 20px auto;
+ height: auto;
+ background:#fff;
+ transition: all 2s;
+ z-index: 7;
+ h3{
+   text-transform: uppercase;
+   flex-basis:100%;
+   text-align: center;
+   margin-bottom:30px;
+   margin-top:-5px;
+   svg{margin-bottom:-5px; margin-right:2px; height:25px;  width:auto;}
+ }
+  div{
+    display:flex;
+    padding: $padding-extra-light;
+    flex-grow: 1;
+    max-width: 100%;
+   min-height: 45px;
+   padding:5px 0px;
+   margin-top:5px;
+   justify-content: center;
+
+    label{
+      display:flex;
+      align-items: center;
+      min-width:85px;
+      background:#f0f0f0;
+      padding:5px 10px;
+    }
+
+    input, textarea{
+      width:auto;
+      max-width: 500px;
+      min-width: 100px;
+      flex-shrink: 1;
+      flex-grow:1;
+      display:block;
+      border: $border-set-default;
+       padding: $padding-extra-light;
+       color: $text-color; 
+    }
+  }
+  select {
+   display: block;
+   flex-grow: 1;
+ }
+
+ .div_submit{
+   width:100%;
+ }
+  input[type=submit]{
+      @extend .btn-primary;
+      display: block;
+      clear:both;
+      max-width:300px;
+      min-width: 50%;
+      min-height: 45px;
+      margin: auto ;
+      margin-top:40px
+ }
 
 }
 

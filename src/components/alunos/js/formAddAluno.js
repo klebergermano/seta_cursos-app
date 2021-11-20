@@ -1,50 +1,41 @@
-//------------------------------------------------------------------------
-//Components
-import * as commonFunc from "../../js_common/commonFunctions.js";
-import * as  alunoRA from "../../alunos/js/alunoRA.js";
+
+//-------------------------------------------------------------------------
 //Firebase
 import {firebaseApp} from "../../dbConfig/firebaseApp.js";
 const {getFirestore, setDoc,  doc, collection, getDocs, getDoc} = require("firebase/firestore") 
 const db = getFirestore(firebaseApp);
-//-------------------------------------------------------------------------
+//Components
+import {insertElementHTML, defaultEventsAfterSubmitFixedForm} from "../../js_common/commonFunctions.js";
+import {eventsAlunoRA} from "../../alunos/js/alunoRA.js";
+import {getContratoInfoDB,  createParcelas,  insertOptionsSelectContrato} from "./commonAlunos.js";
+//------------------------------------------------------------------------
 
 export function insertFormAddAlunoHTML(){
-  commonFunc.insertElementHTML('#alunos_content',
+   insertElementHTML('#alunos_content',
   './components/alunos/formAddAluno.html', eventsFormAddAluno, null, true
   );
 }
 
-
-
-
 function eventsFormAddAluno(){
   let form = document.querySelector('#form_add_aluno');
-  alunoRA.eventsAlunoRA();
+  eventsAlunoRA();
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
       submitFormAddAluno(e);
   });
-  insertSelectOptionsContratos()
+  insertOptionsSelectContrato()
 
   form.querySelector("#select_contrato").addEventListener('change', (e)=>{
     insertInfoContrato(e)
   })
 }
-async function insertSelectOptionsContratos(){
-  const selectContrato = document.querySelector("#form_add_aluno").querySelector("#select_contrato");
-    let contratosList = await getContratos();
-    let optionsSelect = "<option value='' disabled selected>Selectione um contrato</option>"; 
-        contratosList.forEach((contrato)=>{
-          optionsSelect += `<option value='${contrato.id}'>${contrato.id} - <b>${contrato.data().resp_info.nome} (${contrato.data().curso_info.nome})</option>`; 
-        });
-        selectContrato.innerHTML = optionsSelect;
-  }
+
 
   function insertInfoContrato(e){
     let IDContrato = e.target.value;
     const formAddAluno =  document.querySelector("#form_add_aluno");
-    getContratoInfo(IDContrato).then((res)=>{
+    getContratoInfoDB(IDContrato).then((res)=>{
       let id_contrato = res.id; 
       let contrato = res.data();
       //Aluno
@@ -90,102 +81,6 @@ async function insertSelectOptionsContratos(){
   
   }
 
- 
-
-function getContratoInfo(IDContrato){
-  let contratoInfo = getDoc(doc(db, 'contratos', IDContrato));
-  return contratoInfo
-}
-
-function getContratos(){
-  const contratos = getDocs(collection(db, 'contratos'))
-  return contratos;
-}
-//------------------------------------------------------------------------------------
-function addDateMonth(num_mes, date) {
-  let i = num_mes;
-  let vencimento_data = date; //formato deve ser o mesmo do DB  "yyyy-mm-dd" ex: "2020-01-02"
-  vencimento_data = vencimento_data.split("-");
-  let dia_split = vencimento_data[2];
-  let mes_split = vencimento_data[1];
-  let ano_split = vencimento_data[0];
-  let mes_futuro = parseInt(mes_split) + i;
-  mes_split = mes_futuro;
-  if (mes_split > 12) {
-    mes_split = mes_split - 12;
-    ano_split = parseInt(ano_split) + 1;
-  }
-  if (dia_split > "28" && mes_split == "2") {
-    dia_split = "28";
-  } else if (dia_split > "30") {
-    switch (mes_split) {
-      case 4:
-        dia_split = "30";
-        break;
-      case 6:
-        dia_split = "30";
-        break;
-      case 9:
-        dia_split = "30";
-        break;
-      case 11:
-        dia_split = "30";
-        break;
-    }
-  }
-  let data_final =
-    ano_split +
-    "-" +
-    (parseInt(mes_split) + "").padStart(2, "0") +
-    "-" +
-    (parseInt(dia_split) + "").padStart(2, "0");
-
-  return data_final;
-}
-
-function setDateDay(data_inicio, vencimento) {
-  let d = new Date(data_inicio + ", 00:00:00");
-  let year = d.getFullYear();
-  let month = (d.getMonth() + 1).toString().padStart(2, "0");
-  let day = vencimento.toString().padStart(2, "0");
-  let newDate = `${year}-${month}-${day}`;
-  return newDate;
-}
-
- //--------------n_lanc-----------------------
-
- function createNumeroLancamento(idContrato, n_parcela){
-   console.log(idContrato, n_parcela);
- let  n_lanc = idContrato + 'F' + n_parcela;
- return n_lanc;
-}
-//------------------------------------------------------
-
-function createParcelas(form) {
-  console.log(form);
-  let data_vencimento = setDateDay(form.curso_inicio.value, form.curso_vencimento.value);
-  let num_parcelas = parseInt(form.curso_parcelas.value);
-  let parcelas = {};
-  for (let i = 0; i < num_parcelas; i++) {
-    let p_vencimento = addDateMonth(i, data_vencimento);
-    let num_parcela = (i + 1).toString().padStart(2, '0'); 
-    parcelas[num_parcela] = {
-        n_lanc : createNumeroLancamento(form.curso_id_contrato.value, (num_parcela)),
-        vencimento: p_vencimento,
-        valor: form.curso_valor_mes.value,
-        desconto: form.curso_desconto_mes.value,
-        valor_total: form.curso_valor_total_mes.value,
-        pagamento:{
-          status: "pendente",
-          form_pag: "",
-          pago_em: "",
-          valor_pago: "",
-          obs: "",
-        },
-    };
-  }
-  return parcelas;
-}
 
 
 
@@ -196,6 +91,16 @@ function createParcelas(form) {
     e.preventDefault();
     let form = e.target;
     let RA = (form.aluno_ra.value).toUpperCase()
+    //Objecto utilizado para criar as parcelas com "createParcelas(parcelaInfo)".
+    let parcelaInfo = {
+      id_contrato: form.curso_id_contrato.value,
+      inicio: form.curso_inicio.value, 
+      vencimento: form.curso_vencimento.value,
+      parcelas: form.curso_parcelas.value,
+      valor_mes: form.curso_valor_mes.value,
+      desconto_mes: form.curso_desconto_mes.value,
+      valor_total_mes: form.curso_valor_total_mes.value,
+  }
 
      setDoc(doc(db, "alunato", RA, "cursos", form.curso_nome.value),
     { 
@@ -206,7 +111,7 @@ function createParcelas(form) {
         duracao: form.curso_duracao.value, 
         vencimento: form.curso_vencimento.value, 
         parcelas_total: form.curso_parcelas.value,
-        parcelas: createParcelas(form),
+        parcelas: createParcelas(parcelaInfo),
         valor_mes: form.curso_valor_mes.value, 
         desconto_mes: form.curso_desconto_mes.value, 
         valor_total_mes: form.curso_valor_total_mes.value, 
@@ -263,7 +168,7 @@ function createParcelas(form) {
 
      // { nome: form.nome.value}, { merge: true}); 
     }).then(()=>{
-      commonFunc.defaultEventsAfterSubmitFixedForm("#alunos_submenu_content", "Aluno salvo com sucesso!");
+      defaultEventsAfterSubmitFixedForm("#alunos_content", "Aluno salvo com sucesso!");
 
     }).catch((error) => console.error("Erro ao adicionar Aluno:", error));
   }
