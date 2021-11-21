@@ -16,7 +16,6 @@ export function importHTMLWithScript(target, htmlSRC, scriptSRC, callback){
 }
 export function removeBlockScreen(){
   changeCSSDisplay('#block_screen', 'none')
-
 }
 export function displayBlockScreen(){
   changeCSSDisplay('#block_screen', 'block')
@@ -90,9 +89,15 @@ export function removeElement(childElementID, callback){
  
 export function btnCloseForm(formID){
   let form = document.querySelector(formID);
+  let formParent = document.querySelector(formID).parentElement;
   //Remove the parent form
   form.querySelector('.btn_close_form').addEventListener('click', (e) => {
-   removeFormElement(formID);
+   //remove bg_form_block_screen if it has
+   if(formParent.className?.includes('bg_form_block_screen')){
+    let blockScreen = formParent; 
+    let parentOfBlockScreen = blockScreen.parentElement; 
+    parentOfBlockScreen.removeChild(blockScreen);
+   }
 
   })
 }

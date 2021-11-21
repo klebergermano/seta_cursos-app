@@ -1,0 +1,14 @@
+#table_info_alunos
+{
+    .td_controles{
+     width: 180px;
+        height:40px;
+        align-items: center;
+        text-align: center;
+            button{ padding:5px; font-size: 12px;
+                display: block;
+                float:none!important;display:inline;
+                cursor: pointer;
+            }
+    }
+}

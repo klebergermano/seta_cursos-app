@@ -68,8 +68,7 @@ table.querySelector('#tbody').innerHTML = contentTable.innerHTML;
   function createContentSaidaAvulsaTableHTML (fluxoCaixaAno, mes){
     
     let fluxoCaixaMes = fluxoCaixaAno?.[mes];
-    console.log(fluxoCaixaAno);
-    console.log(fluxoCaixaMes);
+   
     let tbody = document.createElement('tbody'); 
     if(fluxoCaixaMes){
         for( let value of Object.values(fluxoCaixaMes)){

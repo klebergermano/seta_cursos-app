@@ -3,7 +3,9 @@
       <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
       <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
     </svg> Adicionar Aluno</h3>
-    <fieldset class='fieldset'>
+    
+   <!------------------------------ FIELDSET ADD ALUNO------------------------------->
+    <fieldset class='fieldset' id='fildset_add_aluno'>
       <div id='div_ra_aluno'>
   
         <label for="aluno_new_ra">Aluno RA:</label>
@@ -23,6 +25,7 @@
         </select>
       </div>  
       </fieldset>
+
    <!------------------------------ CURSO------------------------------->
     <fieldset>
       <div>
@@ -30,18 +33,18 @@
         <input type='text' id='curso_nome'  readonly='true'/>
       </div>
       <!--Hidden fields Curso-->
-       <input id='curso_id_contrato' type='text' />
-       <input id='curso_duracao' type='number' />
-       <input id='curso_parcelas' type='number' />
-       <input id='curso_vencimento' type='number' /> 
-       <input id='curso_valor_mes' type='text'  /> 
-       <input id='curso_desconto_mes' type='text'  /> 
-       <input id='curso_valor_total_mes' type='text'  /> 
-       <input id='curso_inicio' type='date' /> 
-       <input id='curso_data_contrato' type='date' />
-       <textarea id='curso_desconto_combo'></textarea>
-       <textarea id='curso_modulos' ></textarea>
-       <textarea id='curso_obs'></textarea>
+       <input id='curso_id_contrato' type='hidden' />
+       <input id='curso_duracao' type='hidden' />
+       <input id='curso_parcelas' type='hidden' />
+       <input id='curso_vencimento' type='hidden' /> 
+       <input id='curso_valor_mes' type='hidden'  /> 
+       <input id='curso_desconto_mes' type='hidden'  /> 
+       <input id='curso_valor_total_mes' type='hidden'  /> 
+       <input id='curso_inicio' type='hidden' /> 
+       <input id='curso_data_contrato' type='hidden' />
+       <textarea id='curso_desconto_combo' hidden='hidden'></textarea>
+       <textarea id='curso_modulos' hidden='hidden'></textarea>
+       <textarea id='curso_obs' hidden='hidden'></textarea>
     </fieldset>
  <!---------------------------------------------------------------------->
       

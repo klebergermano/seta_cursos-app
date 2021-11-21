@@ -56,8 +56,7 @@
 }
 
 *:focus{
-  outline: 2px solid lighten($primary-color, 20%);
-  outline-offset: -2px;
+  outline-color: lighten($primary-color, 20%);
 
 }
 

@@ -35,7 +35,14 @@ $verde-claro: "#d3ddd3";
 
         .div_vencimento {}
         .div_data {};
-
+        .div_curso_desconto{
+            input{ color:red}
+        }
+        .div_curso_valor, .div_curso_valor_total{
+           input{
+            color:green;
+           } 
+        }
         .div_submit {
            
             input[type='submit'] {
