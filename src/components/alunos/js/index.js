@@ -10,7 +10,6 @@ export function onload(){
     })  
     document.querySelector('#btn_alunos_info_table').addEventListener('click', (e)=>{
     insertInfoTableAlunosHTML()
-
     })  
 
 
