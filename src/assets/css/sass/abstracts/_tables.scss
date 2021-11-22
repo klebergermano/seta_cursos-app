@@ -1,5 +1,9 @@
 @use 'variables' as *;
 
+.bg_tables{
+    border: 1px solid #444;
+    padding:10px;
+}
 .filtro_table{
     display: flex;
     padding:5px; 
@@ -14,16 +18,27 @@
 
 }
 .tables{
-   
     width:100%;
     border-collapse: collapse;
     padding:5px;
     th, td{
         padding:5px 10px;
+        img{width: 50px; height: 50px;  }
+        button{
+            padding:5px; font-size: 12px;
+                float:none!important;
+                display:inline;
+                cursor: pointer;
+        } 
+    }
+    .td_controls{
+        text-align: center;
     }
     th{  background: $primary-color; color:#f0f0f0;
          font-weight: normal;
        vertical-align: middle;}
+
+
 }
 
 .table_info{

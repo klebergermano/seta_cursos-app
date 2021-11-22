@@ -9,7 +9,6 @@ import {  insertElementHTML, btnCloseForm, defaultEventsAfterSubmitForm } from "
 import {getContratosListDB,  createParcelas,  insertOptionsSelectContrato} from "./commonAlunos.js";
 //---------------------------------------------------------------------
 
-
 let $contratosListInfo = {};
 let $contratoInfo = {};
 
@@ -19,7 +18,6 @@ export function insertFormAddCursoHTML(RA, alunoNome) {
       eventsFormAddCurso(RA, alunoNome)
     });
 }
-
 
 function eventsFormAddCurso(RA, alunoNome) {
   setContratosListInfo();

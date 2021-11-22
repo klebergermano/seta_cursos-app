@@ -1,9 +1,6 @@
 @use "../abstracts/" as *;
 
-#alunos_content{
-    background: #ddd;
-    padding:20px;
-}
+
 #form_info_aluno{
 background: transparent;
 padding:0px;
@@ -11,16 +8,36 @@ box-shadow: none;
 border:0px;
 @extend .form_flex_static;
 
+#aluno_genero, #aluno_end_numero{
+    max-width: 50px;
+}
+#aluno_data_nasc{
+    max-width: 180px;
+}
+
+
+.bg_curso{
+    display: block;
+    border:1px solid red;
+    padding:10px;
+    h4{ width:100%;
+    text-align: center;
+    padding:10px;
+    }
+    fieldset{
+        width:100%;
+    }
+}
 fieldset{
     background: transparent;
     .div_input{
+        flex-shrink: 1;
        margin:0px;
        label{
-        background: #e6e6e6;
-       
+        background: #ddd;
     }
         input[readonly='true']{
-            background: #f0f0f0;
+            background: #fff;
             border:0px;
             &:focus{
                 outline: 0px;
@@ -29,5 +46,18 @@ fieldset{
     }
 }
 
+#div_desconto_combo, #div_curso_obs, #div_modulos {
+    min-width:100%;
+}
+
+#div_desconto_combo{
+    div{
+        padding:5px;
+        display:block;
+        background: #fff;
+
+    }
+}
 
 }
+

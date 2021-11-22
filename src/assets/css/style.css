@@ -709,6 +709,11 @@ inputs, .input-primary {
   user-select: none;
 }
 
+.bg_tables {
+  border: 1px solid #444;
+  padding: 10px;
+}
+
 .filtro_table {
   display: flex;
   padding: 5px;
@@ -728,6 +733,20 @@ inputs, .input-primary {
 }
 .tables th, .table_info th, #users_table_info th, .tables td, .table_info td, #users_table_info td {
   padding: 5px 10px;
+}
+.tables th img, .table_info th img, #users_table_info th img, .tables td img, .table_info td img, #users_table_info td img {
+  width: 50px;
+  height: 50px;
+}
+.tables th button, .table_info th button, #users_table_info th button, .tables td button, .table_info td button, #users_table_info td button {
+  padding: 5px;
+  font-size: 12px;
+  float: none !important;
+  display: inline;
+  cursor: pointer;
+}
+.tables .td_controls, .table_info .td_controls, #users_table_info .td_controls {
+  text-align: center;
 }
 .tables th, .table_info th, #users_table_info th {
   background: #245da7;
@@ -2200,32 +2219,55 @@ option[disabled] {
   width: 100%;
 }
 
-#alunos_content {
-  background: #ddd;
-  padding: 20px;
-}
-
 #form_info_aluno {
   background: transparent;
   padding: 0px;
   box-shadow: none;
   border: 0px;
 }
+#form_info_aluno #aluno_genero, #form_info_aluno #aluno_end_numero {
+  max-width: 50px;
+}
+#form_info_aluno #aluno_data_nasc {
+  max-width: 180px;
+}
+#form_info_aluno .bg_curso {
+  display: block;
+  border: 1px solid red;
+  padding: 10px;
+}
+#form_info_aluno .bg_curso h4 {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+}
+#form_info_aluno .bg_curso fieldset {
+  width: 100%;
+}
 #form_info_aluno fieldset {
   background: transparent;
 }
 #form_info_aluno fieldset .div_input {
+  flex-shrink: 1;
   margin: 0px;
 }
 #form_info_aluno fieldset .div_input label {
-  background: #e6e6e6;
+  background: #ddd;
 }
 #form_info_aluno fieldset .div_input input[readonly=true] {
-  background: #f0f0f0;
+  background: #fff;
   border: 0px;
 }
 #form_info_aluno fieldset .div_input input[readonly=true]:focus {
   outline: 0px;
+}
+#form_info_aluno #div_desconto_combo, #form_info_aluno #div_curso_obs, #form_info_aluno #div_modulos {
+  min-width: 100%;
+}
+#form_info_aluno #div_desconto_combo div {
+  padding: 5px;
+  display: block;
+  background: #fff;
 }
 
 #div_ra_aluno {
@@ -2283,18 +2325,8 @@ option[disabled] {
 #table_info_alunos .td_controles {
   width: 180px;
   height: 40px;
-  align-items: center;
   text-align: center;
 }
-#table_info_alunos .td_controles button {
-  padding: 5px;
-  font-size: 12px;
-  display: block;
-  float: none !important;
-  display: inline;
-  cursor: pointer;
-}
-
 #page_login {
   opacity: 1;
   transition: opacity 10s ease-in-out;
@@ -2400,15 +2432,13 @@ option[disabled] {
   margin-right: 0px;
 }
 
-#users_table_info .user_foto {
+#users_table_info .td_user_foto {
   text-align: center;
 }
-#users_table_info .user_foto img {
-  width: 50px;
-  height: 50px;
+#users_table_info .td_user_foto img {
   border-radius: 50%;
 }
-#users_table_info .user_level {
+#users_table_info .td_user_level {
   text-align: center;
   width: 20px;
 }
@@ -2532,10 +2562,6 @@ option[disabled] {
   border: 1px solid #333;
   border-radius: 3px 3px 0px 0px;
   border-bottom: 0px;
-}
-.bg_info_tables #bg_tables {
-  border: 1px solid #444;
-  padding: 10px;
 }
 .bg_info_tables table caption {
   padding: 8px;
