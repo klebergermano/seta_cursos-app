@@ -1,0 +1,33 @@
+@use "../abstracts/" as *;
+
+#alunos_content{
+    background: #ddd;
+    padding:20px;
+}
+#form_info_aluno{
+background: transparent;
+padding:0px;
+box-shadow: none;
+border:0px;
+@extend .form_flex_static;
+
+fieldset{
+    background: transparent;
+    .div_input{
+       margin:0px;
+       label{
+        background: #e6e6e6;
+       
+    }
+        input[readonly='true']{
+            background: #f0f0f0;
+            border:0px;
+            &:focus{
+                outline: 0px;
+            }
+        }
+    }
+}
+
+
+}
