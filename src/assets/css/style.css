@@ -436,15 +436,15 @@ inputs, .input-primary {
 .forms, .form_flex_static, #form_info_aluno, .form_flex_absolute, #form_add_curso, .form_flex, #form_config_perm, #form_reauth_user, #form_add_user, .forms_controle_aula {
   border: 1px solid #999;
   position: fixed;
-  right: 0px;
-  left: 0px;
+  right: 0;
+  left: 0;
   top: 25%;
   z-index: 5;
-  box-shadow: 0px 1px 2px #666;
+  box-shadow: 0 1px 2px #666;
 }
 .forms .btn_close_form, .form_flex_static .btn_close_form, #form_info_aluno .btn_close_form, .form_flex_absolute .btn_close_form, #form_add_curso .btn_close_form, .form_flex .btn_close_form, #form_config_perm .btn_close_form, #form_reauth_user .btn_close_form, #form_add_user .btn_close_form, .forms_controle_aula .btn_close_form {
-  right: 0px;
-  top: 0px;
+  right: 0;
+  top: 0;
   padding: 5px 10px;
   position: absolute;
   cursor: pointer;
@@ -453,7 +453,27 @@ inputs, .input-primary {
   background: #dd4f4f;
   color: #fff;
 }
-.forms input:focus, .form_flex_static input:focus, #form_info_aluno input:focus, .form_flex_absolute input:focus, #form_add_curso input:focus, .form_flex input:focus, #form_config_perm input:focus, #form_reauth_user input:focus, #form_add_user input:focus, .forms_controle_aula input:focus, .forms textarea:focus, .form_flex_static textarea:focus, #form_info_aluno textarea:focus, .form_flex_absolute textarea:focus, #form_add_curso textarea:focus, .form_flex textarea:focus, #form_config_perm textarea:focus, #form_reauth_user textarea:focus, #form_add_user textarea:focus, .forms_controle_aula textarea:focus, .forms select:focus, .form_flex_static select:focus, #form_info_aluno select:focus, .form_flex_absolute select:focus, #form_add_curso select:focus, .form_flex select:focus, #form_config_perm select:focus, #form_reauth_user select:focus, #form_add_user select:focus, .forms_controle_aula select:focus {
+.forms input:focus, .form_flex_static input:focus, #form_info_aluno input:focus, .form_flex_absolute input:focus, #form_add_curso input:focus, .form_flex input:focus, #form_config_perm input:focus, #form_reauth_user input:focus, #form_add_user input:focus, .forms_controle_aula input:focus,
+.forms textarea:focus,
+.form_flex_static textarea:focus,
+#form_info_aluno textarea:focus,
+.form_flex_absolute textarea:focus,
+#form_add_curso textarea:focus,
+.form_flex textarea:focus,
+#form_config_perm textarea:focus,
+#form_reauth_user textarea:focus,
+#form_add_user textarea:focus,
+.forms_controle_aula textarea:focus,
+.forms select:focus,
+.form_flex_static select:focus,
+#form_info_aluno select:focus,
+.form_flex_absolute select:focus,
+#form_add_curso select:focus,
+.form_flex select:focus,
+#form_config_perm select:focus,
+#form_reauth_user select:focus,
+#form_add_user select:focus,
+.forms_controle_aula select:focus {
   outline: 2px solid #5690db;
   outline-offset: -2px;
 }
@@ -489,7 +509,7 @@ inputs, .input-primary {
   flex-grow: 1;
   max-width: 100%;
   min-height: 45px;
-  padding: 5px 0px;
+  padding: 5px 0;
   margin-top: 5px;
   justify-content: center;
 }
@@ -500,7 +520,12 @@ inputs, .input-primary {
   background: #f0f0f0;
   padding: 5px 10px;
 }
-.form_flex div input, #form_config_perm div input, #form_reauth_user div input, #form_add_user div input, .forms_controle_aula div input, .form_flex div textarea, #form_config_perm div textarea, #form_reauth_user div textarea, #form_add_user div textarea, .forms_controle_aula div textarea {
+.form_flex div input, #form_config_perm div input, #form_reauth_user div input, #form_add_user div input, .forms_controle_aula div input,
+.form_flex div textarea,
+#form_config_perm div textarea,
+#form_reauth_user div textarea,
+#form_add_user div textarea,
+.forms_controle_aula div textarea {
   width: auto;
   max-width: 500px;
   min-width: 100px;
@@ -524,8 +549,7 @@ inputs, .input-primary {
   max-width: 300px;
   min-width: 50%;
   min-height: 45px;
-  margin: auto;
-  margin-top: 40px;
+  margin: 40px auto auto;
 }
 
 .bg_form_block_screen {
@@ -533,9 +557,9 @@ inputs, .input-primary {
   min-height: 100vh;
   position: fixed;
   background-color: #11111199;
-  right: 0px;
-  left: 0px;
-  top: 0%;
+  right: 0;
+  left: 0;
+  top: 0;
   z-index: 5;
 }
 
@@ -571,7 +595,7 @@ inputs, .input-primary {
   flex-grow: 1;
   max-width: 100%;
   min-height: 45px;
-  padding: 5px 0px;
+  padding: 5px 0;
   margin-top: 5px;
   justify-content: center;
 }
@@ -582,7 +606,9 @@ inputs, .input-primary {
   background: #f0f0f0;
   padding: 5px 10px;
 }
-.form_flex_absolute div input, #form_add_curso div input, .form_flex_absolute div textarea, #form_add_curso div textarea {
+.form_flex_absolute div input, #form_add_curso div input,
+.form_flex_absolute div textarea,
+#form_add_curso div textarea {
   width: auto;
   max-width: 500px;
   min-width: 100px;
@@ -606,8 +632,7 @@ inputs, .input-primary {
   max-width: 300px;
   min-width: 50%;
   min-height: 45px;
-  margin: auto;
-  margin-top: 40px;
+  margin: 40px auto auto;
 }
 
 .form_flex_static, #form_info_aluno {
@@ -628,7 +653,7 @@ inputs, .input-primary {
   border: 1px solid #999;
   display: flex;
   flex-wrap: wrap;
-  margin: 0px;
+  margin: 0;
   max-width: 100%;
   flex-grow: 1;
 }
@@ -651,7 +676,7 @@ inputs, .input-primary {
   flex-grow: 1;
   max-width: 100%;
   min-height: 45px;
-  padding: 5px 0px;
+  padding: 5px 0;
   margin-top: 5px;
   justify-content: center;
 }
@@ -662,7 +687,9 @@ inputs, .input-primary {
   background: #f0f0f0;
   padding: 5px 10px;
 }
-.form_flex_static div input, #form_info_aluno div input, .form_flex_static div textarea, #form_info_aluno div textarea {
+.form_flex_static div input, #form_info_aluno div input,
+.form_flex_static div textarea,
+#form_info_aluno div textarea {
   width: auto;
   max-width: 500px;
   min-width: 100px;
@@ -686,8 +713,7 @@ inputs, .input-primary {
   max-width: 300px;
   min-width: 50%;
   min-height: 45px;
-  margin: auto;
-  margin-top: 40px;
+  margin: 40px auto auto;
 }
 
 .nav_flex, nav.nav_cursos_aluno {
@@ -2220,54 +2246,126 @@ option[disabled] {
 }
 
 #form_info_aluno {
-  background: transparent;
-  padding: 0px;
+  background: #f0f0f0;
+  padding: 0;
   box-shadow: none;
-  border: 0px;
+  border: 0;
+  padding: 20px;
+  max-width: 1200px;
 }
-#form_info_aluno #aluno_genero, #form_info_aluno #aluno_end_numero {
-  max-width: 50px;
+#form_info_aluno table, #form_info_aluno td, #form_info_aluno th {
+  padding: 5px;
+  text-align: center;
+  border: 1px solid #333;
+  border-collapse: collapse;
 }
-#form_info_aluno #aluno_data_nasc {
-  max-width: 180px;
+#form_info_aluno table {
+  width: 100%;
+  font-size: 12px;
+}
+#form_info_aluno table tr:hover {
+  background: #ffe;
+}
+#form_info_aluno .fieldset {
+  position: relative;
+  background: transparent;
+  max-width: 100%;
+  margin: 20px 0px;
+  border: 1px solid #aaa;
+  padding: 20px 30px;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+#form_info_aluno .fieldset legend {
+  background: #f0f0f0;
+  padding: 5px;
+  position: absolute;
+  top: -15px;
+  left: 20px;
+}
+#form_info_aluno .fieldset .row {
+  max-width: 100%;
+  display: flex;
+  flex-shrink: 1;
+  flex-grow: 1;
+}
+#form_info_aluno .fieldset .row div {
+  min-width: 50px;
+  flex-shrink: 1;
+  flex-grow: 1;
+  display: flex;
+  padding: 5px 0;
+}
+#form_info_aluno .fieldset .row div label {
+  text-align: center;
+  min-width: 60px;
+  max-width: 60%;
+  width: 60%;
+  flex-grow: 1;
+}
+#form_info_aluno .fieldset .row div input {
+  max-width: 40%;
+}
+#form_info_aluno .fieldset .div_input {
+  flex-shrink: 1;
+  margin: 0;
+}
+#form_info_aluno .fieldset .div_input input,
+#form_info_aluno .fieldset .div_input textarea {
+  max-width: none;
+}
+#form_info_aluno .fieldset .div_input label {
+  background: #ddd;
+}
+#form_info_aluno .fieldset .div_input input[readonly=true] {
+  background: #fff;
+  border: 0;
+}
+#form_info_aluno .fieldset .div_input input[readonly=true]:focus {
+  outline: 0;
+}
+#form_info_aluno .fieldset #div_desconto_combo,
+#form_info_aluno .fieldset #div_curso_obs,
+#form_info_aluno .fieldset #div_modulos {
+  min-width: 100%;
+}
+#form_info_aluno .fieldset #div_desconto_combo div {
+  padding: 5px;
+  display: block;
+  background: #fff;
+}
+#form_info_aluno .fieldset #modulos, #form_info_aluno .fieldset #curso_obs {
+  max-width: none !important;
+}
+#form_info_aluno .fieldset #resp_end_numero, #form_info_aluno .fieldset #aluno_end_numero, #form_info_aluno .fieldset #aluno_genero, #form_info_aluno .fieldset #resp_genero {
+  max-width: 80px;
 }
 #form_info_aluno .bg_curso {
-  display: block;
-  border: 1px solid red;
   padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: block;
+  border: 1px solid #333;
 }
 #form_info_aluno .bg_curso h4 {
-  width: 100%;
+  text-transform: uppercase;
+  background: #cdc;
+  width: calc(100% + 20px);
   text-align: center;
-  padding: 10px;
+  padding: 20px;
+  margin: -10px;
+  margin-bottom: 20px;
 }
 #form_info_aluno .bg_curso fieldset {
   width: 100%;
 }
-#form_info_aluno fieldset {
-  background: transparent;
+#form_info_aluno .bg_curso label {
+  background: #ddd !important;
 }
-#form_info_aluno fieldset .div_input {
-  flex-shrink: 1;
-  margin: 0px;
-}
-#form_info_aluno fieldset .div_input label {
-  background: #ddd;
-}
-#form_info_aluno fieldset .div_input input[readonly=true] {
-  background: #fff;
-  border: 0px;
-}
-#form_info_aluno fieldset .div_input input[readonly=true]:focus {
-  outline: 0px;
-}
-#form_info_aluno #div_desconto_combo, #form_info_aluno #div_curso_obs, #form_info_aluno #div_modulos {
-  min-width: 100%;
-}
-#form_info_aluno #div_desconto_combo div {
-  padding: 5px;
-  display: block;
-  background: #fff;
+#form_info_aluno input[type=submit] {
+  margin: 0 auto;
+  opacity: 0.3;
 }
 
 #div_ra_aluno {

@@ -1,63 +1,151 @@
 @use "../abstracts/" as *;
 
+#form_info_aluno {
+    @extend .form_flex_static;
+    background: #f0f0f0;
+    padding: 0;
+    box-shadow: none;
+    border: 0;
+    padding:20px;
+    max-width: 1200px;
 
-#form_info_aluno{
-background: transparent;
-padding:0px;
-box-shadow: none;
-border:0px;
-@extend .form_flex_static;
-
-#aluno_genero, #aluno_end_numero{
-    max-width: 50px;
-}
-#aluno_data_nasc{
-    max-width: 180px;
-}
-
-
-.bg_curso{
-    display: block;
-    border:1px solid red;
-    padding:10px;
-    h4{ width:100%;
-    text-align: center;
-    padding:10px;
+    table,td, th{
+        padding:5px;
+        text-align: center;
+        border:1px solid #333;
+        border-collapse: collapse;
     }
-    fieldset{
+    table{
         width:100%;
-    }
-}
-fieldset{
-    background: transparent;
-    .div_input{
-        flex-shrink: 1;
-       margin:0px;
-       label{
-        background: #ddd;
-    }
-        input[readonly='true']{
-            background: #fff;
-            border:0px;
-            &:focus{
-                outline: 0px;
-            }
+        font-size:12px;
+        tr{
+            &:hover{ background:#ffe;}
         }
     }
-}
+    .fieldset {
+        position: relative;
+        background: transparent;
+        max-width: 100%;
+        margin: 20px 0px;
+        border: 1px solid #aaa;
+        padding: 20px 30px;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
 
-#div_desconto_combo, #div_curso_obs, #div_modulos {
-    min-width:100%;
-}
+        legend {
+            background: #f0f0f0;
+            padding: 5px;
+            position: absolute;
+            top: -15px;
+            left: 20px;
+        }
+        
+        .row {
+            max-width: 100%;
+            display: flex;
+            flex-shrink: 1;
+            flex-grow: 1;
+            div {
+                min-width: 50px;
+                flex-shrink: 1;
+                flex-grow: 1;
+                display: flex;
+                padding: 5px 0;
 
-#div_desconto_combo{
-    div{
-        padding:5px;
-        display:block;
-        background: #fff;
+                label {
+                    text-align: center;
+                    min-width: 60px;
+                    max-width: 60%;
+                    width:60%;
+                    flex-grow: 1;
+                }
+                input{
+                    max-width: 40%;
+                }
+            }
+            #div_valor,
+            #div_desconto,
+            #div_valor_total {
+                label {
+                   // width: 40%;
+                   // max-width: 50%;
+                }
+                input {
+                   // min-width: 50px;
+                   // width: 60%;
+                }
+            }
+        }
+
+        .div_input {
+            flex-shrink: 1;
+            margin: 0;
+            input,
+            textarea {
+                max-width: none;
+            }
+            label {
+                background: #ddd;
+            }
+            input[readonly='true'] {
+                background: #fff;
+                border: 0;
+                &:focus {
+                    outline: 0;
+                }
+            }
+        }
+
+        #div_desconto_combo,
+        #div_curso_obs,
+        #div_modulos {
+            min-width: 100%;
+        }
+        #div_desconto_combo {
+            div {
+                padding: 5px;
+                display: block;
+                background: #fff;
+
+            }
+        }
+        #modulos, #curso_obs{
+            max-width: none !important;
+        }
+
+      #resp_end_numero, #aluno_end_numero, #aluno_genero, #resp_genero{
+          max-width: 80px;
+      }  
 
     }
-}
+
+    .bg_curso {
+        padding:10px;
+        margin-top:20px;
+        margin-bottom:20px;
+        display: block;
+        border:1px solid #333;
+        h4 {
+            text-transform: uppercase;
+            background:#cdc;
+            width: calc(100% + 20px);
+            text-align: center;
+            padding: 20px;
+            margin: -10px;
+            margin-bottom:20px;
+        }
+        fieldset {
+
+            width: 100%;
+       
+        }
+        label{background:#ddd !important;}
+    }
+
+    input[type='submit']{
+        margin: 0 auto;
+        opacity: 0.3;
+    }
 
 }
-
