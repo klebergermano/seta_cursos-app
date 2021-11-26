@@ -41,7 +41,7 @@
 
 }
 
-.table_info{
+.table_info, .view_table{
     @extend .tables;
     background:#f0f0f0;
     border-collapse: collapse;

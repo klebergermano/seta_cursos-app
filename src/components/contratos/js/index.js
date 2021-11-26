@@ -1,14 +1,13 @@
 
-import * as contratosInfoTable from "../js/contratosInfoTable.js"
-import * as submenuPage from "../js/submenuPage.js"
-import * as commonFunc from "../../js_common/commonFunctions.js";
+import { insertViewTableContratosHTML } from "./viewTableContratos.js"
+import { insertFormAddContratoHTML } from "./formAddContrato.js"
 
-export function onload(){
-
-  commonFunc.displaySpinnerLoad("#page_content")
-  contratosInfoTable.insertContratosInfoTable()
-  .then(()=>{
-    commonFunc.removeSpinnerLoad("#page_content")
+export function onload() {
+  document.querySelector('#btn_add_contrato').addEventListener('click', (e) => {
+    insertFormAddContratoHTML();
   })
-  commonFunc.insertElementHTML("#bg_submenu_page", "./components/contratos/submenuPage.html",  submenuPage.eventsSubmenuPage, null, true)
+  document.querySelector('#btn_contratos_view_table').addEventListener('click', (e) => {
+    insertViewTableContratosHTML
+  })
+  insertViewTableContratosHTML()
 }

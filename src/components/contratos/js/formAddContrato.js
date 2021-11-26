@@ -22,7 +22,7 @@ const VMasker = require("vanilla-masker");
 //-------------------------------------------------------------------------
 
 export function insertFormAddContratoHTML(){
-  commonFunc.insertElementHTML('#contratos_submenu_content',
+  commonFunc.insertElementHTML('#contratos_content',
   './components/contratos/formAddContrato.html', eventsFormAddContrato, null, true
   );
 }
