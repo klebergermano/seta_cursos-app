@@ -2263,8 +2263,29 @@ option[disabled] {
   width: 100%;
   font-size: 12px;
 }
+#form_info_aluno table th {
+  background: #cdc;
+  color: #444;
+  font-weight: normal;
+}
 #form_info_aluno table tr:hover {
   background: #ffe;
+}
+#form_info_aluno table .tr_btn_talao:hover {
+  background: transparent;
+}
+#form_info_aluno table td {
+  text-align: center;
+}
+#form_info_aluno table td button {
+  background: #245da7;
+  color: #fff;
+  border: 0px;
+  padding: 10px;
+  cursor: pointer;
+}
+#form_info_aluno table td button:hover {
+  background: #2d74d1;
 }
 #form_info_aluno .fieldset {
   position: relative;
@@ -2421,7 +2442,7 @@ option[disabled] {
 }
 
 #view_table_alunos .td_controles {
-  width: 220px;
+  width: 240px;
   height: 40px;
   text-align: center;
 }

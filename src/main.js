@@ -6,6 +6,7 @@ const pdf = require("html-pdf");
 const fs = require("fs");
 const path = require("path");
 const downloadPath = app.getPath("downloads");
+const TemplateTalao = require("./components/contratos/gerador_talao_pdf/pdfTemplate.js");
 const TemplateContrato = require("./components/contratos/js/TemplateContrato.js");
 const TemplateHistoricoAluno = require("./components/controleAula/js/TemplateHistoricoAluno.js");
 
@@ -54,8 +55,63 @@ app.on('activate', () => {
   }
 });
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and import them here.
+//TODO: Refatorar funções PDF
+
+//-------------------------------------------------------------------------------------//
+//-----------------------------------------TALÕES PDF ------------------------//
+//-------------------------------------------------------------------------------------//
+
+
+function createPDFTalao(docTalao) {
+  var options = { 
+    "format": "A4",
+    "base": "file:///D:/#KG/seta_cursos-app/src/assets/"
+    }
+
+ // const templateTalao = TemplateTalao(docAlunoHistorico); // create template from the form inputs
+  const templateTalao = "<h1>Template Talão</h1>" // create template from the form inputs
+  return new Promise((resolve, reject) => {
+    pdf
+      .create(templateTalao, options)
+      .toFile(path.join(__dirname, "talao.pdf"), (err, res) => {
+        if (err) reject();
+        else resolve(res);
+      });
+  });
+}
+
+ipcMain.handle("createTalaoPDF", async (event, docTalao) => {
+  let novoPDF = createPDFTalao(docTalao); // call the createPDF function
+  novoPDF.then((pdf) => {
+    // Read the file
+    let filename = `talao.pdf`;
+    filename = filename.toUpperCase();
+    let oldpath = `${__dirname}/talao.pdf`;
+    let newpath = `${downloadPath}/${filename}`;
+    fs.readFile(oldpath, function (err, data) {
+      if (err) throw err;
+      console.log("File read!");
+      // Write the file
+      fs.writeFile(newpath, data, function (err) {
+        if (err) throw err;
+        console.log("File written!");
+        dialog.showMessageBoxSync({
+          type: "info",
+          title: "SETA CURSOS - Talão",
+          message: `Talao do Aluno salvo com sucesso em: ${downloadPath}`,
+        });
+      });
+      // Delete the file
+      fs.unlink(oldpath, function (err) {
+        if (err) throw err;
+        console.log("File deleted!");
+      });
+    });
+  })
+});
+
+
+
 
 //-------------------------------------------------------------------------------------//
 //-----------------------------------------ALUNO HISTORICO PDF ------------------------//
