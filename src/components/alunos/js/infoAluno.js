@@ -29,8 +29,8 @@ function eventsInfoAluno(RA) {
             btns.forEach((item) => {
                 item.addEventListener('click', (e) => {
                     let cursoNome = e.target.closest('table').dataset.curso_nome;
-                    let curso = createInfoTalao(cursoNome);
-                    submitTalaoPDF(curso);
+                  let talaoInfo = createInfoTalao(cursoNome);
+                   submitTalaoPDF(talaoInfo);
 
                 })
             });
@@ -62,9 +62,7 @@ function getCursosInfoAlunoDB(RA) {
             return res;
         })
     return cursos;
-
 }
-
 
 function insertAlunoInfo(alunoInfo) {
     document.querySelector('#aluno_nome').value = alunoInfo.aluno.nome;
@@ -281,20 +279,33 @@ function submitTalaoPDF(talaoInfo) {
 
 
 function createInfoTalao(cursoNome) {
-   let curso = $alunoInfo.cursos[cursoNome];
-   curso.aluno = $alunoInfo.aluno;
-    return curso;
+    let talaoInfo = []; 
+    let alunoNome = $alunoInfo.aluno.nome;
+    let RA = $alunoInfo.aluno.ra;
+    let respNome = $alunoInfo.cursos[cursoNome].resp_info.nome;
+    let parcelas_total = $alunoInfo.cursos[cursoNome].curso_info.parcelas_total;
+    let parcelas =  $alunoInfo.cursos[cursoNome].curso_info.parcelas;
+   
+   let arr = [];
+   for (let p of Object.entries(parcelas)) {
+       arr.push(p);
+   }
+
+   let parcelasOrdered = arr.sort();
+   parcelasOrdered.forEach((item) => {
+       item[1].num_parcela = item[0];
+       item[1].responsavel = respNome;
+       item[1].aluno = alunoNome;
+       item[1].ra = RA;
+       item[1].curso = cursoNome;
+       item[1].parcelas_total = parcelas_total;
+     let folha = item[1]; 
+     talaoInfo.push(folha); 
+     
+   });
+
+ console.log('ti:', talaoInfo);
+    return talaoInfo;
     
 }
 
-function eventsBtnCreateTalao(e) {
-    // let idContrato = e.target.closest('td').dataset.id_contrato;
-    console.log('click');
-    /*
-       $contratosLista.forEach((item)=>{
-           if(item.id === idContrato){
-               submitTalaoPDF(item.data())
-           }
-       })
-       */
-}

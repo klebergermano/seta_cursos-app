@@ -6,7 +6,7 @@ const pdf = require("html-pdf");
 const fs = require("fs");
 const path = require("path");
 const downloadPath = app.getPath("downloads");
-const TemplateTalao = require("./components/contratos/gerador_talao_pdf/pdfTemplate.js");
+const TemplateTalao = require("./components/alunos/js/TemplateTalao.js");
 const TemplateContrato = require("./components/contratos/js/TemplateContrato.js");
 const TemplateHistoricoAluno = require("./components/controleAula/js/TemplateHistoricoAluno.js");
 
@@ -62,14 +62,15 @@ app.on('activate', () => {
 //-------------------------------------------------------------------------------------//
 
 
-function createPDFTalao(docTalao) {
+function createPDFTalao(talaoInfo) {
+
   var options = { 
     "format": "A4",
     "base": "file:///D:/#KG/seta_cursos-app/src/assets/"
     }
 
  // const templateTalao = TemplateTalao(docAlunoHistorico); // create template from the form inputs
-  const templateTalao = "<h1>Template Talão</h1>" // create template from the form inputs
+  const templateTalao = TemplateTalao(talaoInfo) // create template from the form inputs
   return new Promise((resolve, reject) => {
     pdf
       .create(templateTalao, options)
@@ -80,8 +81,11 @@ function createPDFTalao(docTalao) {
   });
 }
 
-ipcMain.handle("createTalaoPDF", async (event, docTalao) => {
-  let novoPDF = createPDFTalao(docTalao); // call the createPDF function
+ipcMain.handle("createTalaoPDF", async (event, talaoInfo) => {
+ 
+
+
+  let novoPDF = createPDFTalao(talaoInfo); // call the createPDF function
   novoPDF.then((pdf) => {
     // Read the file
     let filename = `talao.pdf`;

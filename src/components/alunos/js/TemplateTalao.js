@@ -1,11 +1,13 @@
-const folhasTalao = require ('./folhasTalao');
+const folhasTalao = require ('./TemplateTalaoFolhas.js');
 
-const pdfTemplate = (data)=>{
-var talao = ''; 
+const TemplateTalao = (talaoInfo)=>{
+console.log(talaoInfo)
 
-  data.forEach((item)=>{
-  talao += folhasTalao(item);
-  });
+ let talao = ''; 
+    talaoInfo.forEach((item)=>{
+      talao += folhasTalao(item)
+    });
+    
 
     return (`
     <!DOCTYPE >
@@ -16,12 +18,18 @@ var talao = '';
         <meta charset="UTF-8">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Archivo+Black|Roboto:500&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:700&display=swap" rel="stylesheet"> 
+       
           <style>
+          @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+          @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+          @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
             * { box-sizing: border-box; margin:0px; padding:0px;  }
-            .a4 { font-family: "Open Sans";  width: 21cm; height: auto; overflow: hidden; margin: 0 auto; background: #f0f0f0; }
+            .a4 {  
+              font-family: 'Noto Sans', sans-serif;
+             width: 21cm; height: auto; overflow: hidden; margin: 0 auto; 
+            background: #f0f0f0;  }
             #title_recibo_pag{
-              font-family: "Roboto"; padding-left:10px; color:#111;
+               padding-left:10px; color:#111; font-weight:bold;
             }
            
             .bg_boleto {width: 21cm;  border-bottom: 1px dotted #fff; height: 7.42cm; background: #fff;  overflow: hidden; border-bottom:1px dotted #ccc}
@@ -34,15 +42,15 @@ var talao = '';
             .value { font-size: 12px; }
             .valor_total { font-size: 14px; }
             .seta_nome { padding: 10px 10px !important; }
-            .seta_nome span { font-weight: normal;  height: 35px; }
+            .seta_nome span { font-weight: bold;  height: 35px; }
             .RA { font-size: 8px; }
             hr {  margin-top: 25px;}
             .ass {padding: 8px; border-bottom: 0px; border-left: 0px !important; }
             .ass_label { margin-top: 10px; float: left;  padding: 0 10px 0px 0px;}
             .data_destaque {margin-top: 10px; float: right; padding: 0px 10px; }
             .curso { font-size: 13px;  padding: 0 5px;  text-transform: uppercase; }
-            h3 { padding: 0px; margin-top: 0px; margin-bottom: 0px;  float: left; font-weight: bolder; }
-            b { letter-spacing: 0px; font-family: 'Open Sans'; font-size: 11px; color: #222; }
+            h3 { padding: 0px; margin-top: 0px; margin-bottom: 0px;   float: left; }
+            b { letter-spacing: 0px;  font-size: 11px; color: #222;  font-weight:bold;}
             .bloco_cliente td { font-size: 11px;  padding: 4px 5px 4px 5px; }
             .cifrao_total {font-size: 13px;}
             .bloco_cliente b { font-size: 10px;}
@@ -50,30 +58,25 @@ var talao = '';
             .RA_cliente { font-size: 9px !important;}
             .n_lanc_cliente { font-size: 10px !important;}
             .n_lanc { font-size: 10px !important;}
-            .n_lanc b { font-weight:bold; font-size:9px;}
+            .n_lanc b { font-weight:bold; font-size:9px; }
   
             .curso_cliente { font-size: 13px; padding: 0 5px; text-transform: uppercase;}
             .responsavel,.responsavel_cliente,.aluno,
             .aluno_cliente {}
+            #seta_nome{ font-weight:normal !important; }
           </style>
       </head>
       <body>
         <div class="a4">
-  <!--${talao}-->
-      
- 
+        ${talao}
         </div>
       </body>
     </html>
-    
-    
-      
-    
     
     `);
 
 }
 
-module.exports = pdfTemplate; 
 
-//  ${folhas_template}
+module.exports = TemplateTalao; 
+
