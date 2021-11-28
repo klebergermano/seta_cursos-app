@@ -18,9 +18,30 @@
     table{
         width:100%;
         font-size:12px;
+        th{
+            background: #cdc;
+            color:#444;
+            font-weight: normal;
+        }
         tr{
             &:hover{ background:#ffe;}
         }
+        .tr_btn_talao{
+            &:hover{background: transparent;}
+        }
+
+        td{ text-align: center;
+            button{
+               background: $primary-color;
+               color:#fff;
+               border:0px;
+            padding:10px;
+            cursor: pointer;
+            &:hover{
+               background: lighten($primary-color, 10%);
+
+            }
+        }}
     }
     .fieldset {
         position: relative;

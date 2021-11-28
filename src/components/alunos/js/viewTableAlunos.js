@@ -1,67 +1,66 @@
 
 //firestore
-import {firebaseApp} from "../../dbConfig/firebaseApp.js";
-const {getFirestore, getDocs, collection} = require("firebase/firestore");
+import { firebaseApp } from "../../dbConfig/firebaseApp.js";
+const { getFirestore, getDocs, collection } = require("firebase/firestore");
 const db = getFirestore(firebaseApp);
 //imports
-import {insertElementHTML, displayBlockScreen} from "../../js_common/commonFunctions.js"; 
-import {insertFormAddCursoHTML} from "./formAddCurso.js"; 
-import {insertInfoAlunoHTML} from "./infoAluno.js"; 
+import { insertElementHTML, displayBlockScreen } from "../../js_common/commonFunctions.js";
+import { insertFormAddCursoHTML } from "./formAddCurso.js";
+import { insertInfoAlunoHTML } from "./infoAluno.js";
 //-----------------------------------------------------------------------
 
 
-export function insertInfoTableAlunosHTML(){
-    insertElementHTML("#alunos_content", "./components/alunos/infoTableAlunos.html",  eventsInserInfoTableAlunos, null, true)
+export function insertViewTableAlunosHTML() {
+    insertElementHTML("#alunos_content", "./components/alunos/viewTableAlunos.html", eventsInserViewTableAlunos, null, true)
 }
-    export function eventsInserInfoTableAlunos(){
-        getAlunosList()
+export function eventsInserViewTableAlunos() {
+    getAlunosList()
         .then((res) => {
             return createTableAlunosHTML(res)
         })
-        .then((tbody)=>{
-            document.querySelector('#table_info_alunos tbody').innerHTML = ""; 
-            document.querySelector('#table_info_alunos tbody').innerHTML = tbody.innerHTML;
-        }).then(()=>{
+        .then((tbody) => {
+            document.querySelector('#view_table_alunos tbody').innerHTML = "";
+            document.querySelector('#view_table_alunos tbody').innerHTML = tbody.innerHTML;
+        }).then(() => {
             eventsButtonsInfoTableAlunos();
-        })
-        .catch(err => console.log(err))
-    }
+        }).catch(err => console.log(err))
+}
 
-    function eventsButtonsInfoTableAlunos(){
+    function eventsButtonsInfoTableAlunos() {
         let btnsAddCurso = document.querySelectorAll(".btn_add_curso");
         let btnsInfoAluno = document.querySelectorAll(".btn_info_aluno");
-        btnsAddCurso.forEach((item)=>{
-           item.addEventListener('click', (e)=>{
-               let RA = e.target.closest('td').dataset.ra;
-               let alunoNome =  e.target.closest('td').dataset.aluno_nome;
-            insertFormAddCursoHTML(RA, alunoNome);
-           
-           });
+        btnsAddCurso.forEach((item) => {
+            item.addEventListener('click', (e) => {
+                let RA = e.target.closest('td').dataset.ra;
+                let alunoNome = e.target.closest('td').dataset.aluno_nome;
+                insertFormAddCursoHTML(RA, alunoNome);
+
+            });
         })
-        btnsInfoAluno.forEach((item)=>{
-           item.addEventListener('click', (e)=>{
-               let RA = e.target.closest('td').dataset.ra;
-         
-            insertInfoAlunoHTML(RA);
-           
-           });
+        btnsInfoAluno.forEach((item) => {
+            item.addEventListener('click', (e) => {
+                let RA = e.target.closest('td').dataset.ra;
+
+                insertInfoAlunoHTML(RA);
+
+            });
         })
-    
+
     }
 
-    function getAlunosList(){
+    function getAlunosList() {
         let alunatoList = getDocs(collection(db, 'alunato'));
         return alunatoList;
     }
-    
-    function createTableAlunosHTML (alunosInfo){
+
+    function createTableAlunosHTML(alunosInfo) {
         let tbody = document.createElement('tbody');
-        alunosInfo.forEach((item)=>{
+        alunosInfo.forEach((item) => {
             let aluno = item.data().aluno;
             let tr = document.createElement('tr');
             tr.className = 'alunosRow';
-            let trContent = 
-            `
+            let trContent =
+                `
             <td class='td_ra'>${aluno.ra}</td>
             <td class='td_nome'>${aluno.nome}</td>
             <td class='td_cursos'></td>
@@ -82,6 +81,7 @@ export function insertInfoTableAlunosHTML(){
                 </svg>
                  Curso
             </button>
+      
             </td>
             `
             tr.innerHTML = trContent;
@@ -90,4 +90,6 @@ export function insertInfoTableAlunosHTML(){
         console.log(tbody);
         return tbody;
     }
+
+
 
