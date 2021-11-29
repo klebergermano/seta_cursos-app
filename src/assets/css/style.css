@@ -1116,20 +1116,21 @@ menu.submenu_page ul li a {
   transition: all 0.5s;
 }
 #controle_aula #form_select_aluno {
+  background: #ddd;
+  border: 1px solid #444;
   width: 100%;
   height: auto;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 20px;
+  padding: 5px;
+  border-radius: 3px 3px 0px 0px;
+  margin-bottom: 20px;
 }
 #controle_aula #form_select_aluno label {
-  border-radius: 3px 0px 0px 3px;
-  background: #fff;
   display: block;
   padding: 10px;
-  border: 1px solid #444;
   border-right: 0px;
 }
 #controle_aula #form_select_aluno .div_input {
@@ -1140,7 +1141,7 @@ menu.submenu_page ul li a {
 }
 #controle_aula #form_select_aluno .div_input select {
   padding: 10px;
-  border: 1px solid #444;
+  border: 1px solid #999;
   font-weight: bold;
   font-size: 16px;
   flex-grow: 1;
@@ -1164,14 +1165,22 @@ menu.submenu_page ul li a {
 
 nav.nav_cursos_aluno {
   background-color: #fff;
-  border-bottom: 1px solid #999;
-  height: 50px;
+  border-bottom: 1px solid #666;
+  padding: 0px;
+  height: auto;
+}
+nav.nav_cursos_aluno ul {
+  margin: 0px;
+  height: 100%;
+  height: auto;
 }
 nav.nav_cursos_aluno ul li {
-  padding: 16px 0px 0px 0px;
+  display: flex;
+  height: auto;
+  overflow: hidden;
 }
 nav.nav_cursos_aluno ul li a {
-  padding: 15px 20px 16px 20px;
+  padding: 15px;
   background: #fff;
   border: 1px solid #999;
   border-top: 0px;
@@ -1189,8 +1198,7 @@ nav.nav_cursos_aluno ul li .active {
 }
 
 #aluno_content {
-  border-radius: 5px 5px 0px 0px;
-  border: 1px solid #999;
+  border: 1px solid #666;
   overflow: hidden;
   position: relative;
 }
@@ -1205,11 +1213,9 @@ nav.nav_cursos_aluno ul li .active {
 }
 #aluno_content .bg_btn_add {
   padding: 5px;
-  margin-top: 20px;
-  margin-bottom: 40px;
+  margin-top: 0px;
   width: 100%;
-  background: #eee;
-  box-shadow: 0px 1px 1px #aaa;
+  border-bottom: 1px solid #666;
   border-radius: 5px 5px 0px 0px;
   overflow: hidden;
 }
@@ -1249,22 +1255,26 @@ nav.nav_cursos_aluno ul li .active {
 }
 #aluno_content .bg_curso {
   position: relative;
-  background: #ddd;
+  background: #fff;
   padding: 40px;
   padding-top: 0px;
   display: none;
+  border-color: 1px solid #666;
 }
 #aluno_content .bg_curso h3 {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+#aluno_content .bg_curso #curso_content {
+  border: 1px solid #666;
+}
 #aluno_content h3.title_curso_nome {
   padding: 20px;
   font-size: 18px;
   text-align: center;
   width: 100%;
-  padding-top: 50px;
+  padding: 30px;
   text-transform: uppercase;
 }
 #aluno_content h3[class*=web] {
@@ -1313,11 +1323,13 @@ nav.nav_cursos_aluno ul li .active {
   background: #fff;
 }
 #aluno_content .bg_bimestres {
+  background: #444;
   width: 100%;
   min-height: 300px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  padding: 20px;
 }
 #aluno_content .bg_bimestres .bimestres {
   position: relative;
@@ -1329,9 +1341,9 @@ nav.nav_cursos_aluno ul li .active {
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-around;
-  background: #eee;
-  margin-bottom: 40px;
-  box-shadow: 0px 1px 1px #999;
+  background: #fff;
+  margin-top: 20px;
+  box-shadow: 0px 1px 1px #333;
   /*h3 bimestre title*/
 }
 #aluno_content .bg_bimestres .bimestres .resumo_bimestre {
@@ -1382,7 +1394,8 @@ nav.nav_cursos_aluno ul li .active {
 }
 #aluno_content .bg_bimestres .bimestres .resumo_bimestre .feedback_bimestral .feedback_value {
   min-height: 30px;
-  box-shadow: 0px 0px 0px 1px #245da7;
+  border: 1px solid #999;
+  box-shadow: 0px 0px 0px;
 }
 #aluno_content .bg_bimestres .bimestres .resumo_bimestre .feedback_bimestral .btn_add_feedback_bimestral {
   max-height: 35px;
@@ -1390,7 +1403,7 @@ nav.nav_cursos_aluno ul li .active {
   padding: 5px 10px;
   color: #245da7;
   background: #fff;
-  border-radius: 5px;
+  border-radius: 3px;
   cursor: pointer;
   margin: 10px 5px;
   float: right;
@@ -1401,7 +1414,6 @@ nav.nav_cursos_aluno ul li .active {
 #aluno_content .bg_bimestres .bimestres h3 {
   position: absolute;
   top: 0px;
-  background: #fff;
   color: #444;
   font-weight: normal;
   min-width: 100%;
@@ -1413,7 +1425,6 @@ nav.nav_cursos_aluno ul li .active {
   width: 24%;
   min-width: 200px;
   flex-grow: 1;
-  background: #eee;
   box-shadow: 0px 0px 2px #aaa;
   padding-top: 15px;
   padding-bottom: 15px;

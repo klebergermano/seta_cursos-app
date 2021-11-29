@@ -1,16 +1,21 @@
 @use "../abstracts" as *;
 
-
 nav.nav_cursos_aluno {
     @extend .nav_flex;
     background-color: $white-color-tone;
-    border-bottom: $border-set-default;
-    height: 50px;
+    border-bottom: $border-set-decorative;
+    padding:0px;
+    height: auto;
     ul {
-        li {
-            padding: 16px 0px 0px 0px;
+        margin:0px;
+        height:100%;
+        height:auto;
+        li { 
+            display: flex;
+            height:auto;
+            overflow: hidden;
             a {
-                padding: 15px 20px 16px 20px;
+                padding: 15px;
                 background:  $white-color-tone;
                 border: $border-set-default;
                 border-top: 0px;
@@ -20,7 +25,7 @@ nav.nav_cursos_aluno {
                 text-transform: uppercase;
                 &:active {
                     background: $yellow-light-color;
-                }
+                } 
             }
             .active {
                 background: $yellow-light-color;
@@ -30,14 +35,12 @@ nav.nav_cursos_aluno {
     }
 }
 #aluno_content {
-    border-radius: 5px 5px 0px 0px;
-    border: $border-set-default;
+ 
+    border:$border-set-decorative;
     overflow: hidden;
     position: relative;
-
     .btn_add_curso {
         @extend .btn-primary;
-
         svg {
             max-width: 100px;
             max-height: 100px;
@@ -48,17 +51,14 @@ nav.nav_cursos_aluno {
             background: lighten($primary-color, 5%);
         }
     }
-        
     .bg_btn_add{
         padding:5px;
-        margin-top:20px;
-        margin-bottom:40px;
+        margin-top:0px;
+
         width:100%;
-        background:#eee;
-        box-shadow: 0px 1px 1px #aaa;
+        border-bottom: $border-set-decorative;
         border-radius: 5px 5px 0px 0px;
         overflow: hidden;
-
     }
     .btn_add{
         @extend .btn-default;
@@ -90,31 +90,31 @@ nav.nav_cursos_aluno {
             margin-top:-5px;
             margin-left:-5px;
         }
-    
     }
-
     .btn_add_reposicao {
         color: $reposicao-color;
         border-color: $reposicao-color;
-     
     }
     .btn_add_ponto_extra {
         color: $ponto-extra-color;
         border-color: $ponto-extra-color;
-     
     }
-
     .bg_curso {
         position: relative;
-        background: #ddd;
+        background: #fff;
         padding: $padding-large;
         padding-top: 0px;
         display: none;
+        border-color: $border-set-decorative;
         h3 {
             display: flex;
             align-items: center;
             justify-content: center;
         }
+        #curso_content{
+            border: $border-set-decorative;
+    
+           }
     }
 
     h3.title_curso_nome {
@@ -122,9 +122,7 @@ nav.nav_cursos_aluno {
         font-size: 18px;
         text-align: center;
         width: 100%;
-        padding-top: 50px;
-
-       
+        padding: 30px;
         text-transform: uppercase;
     }
 
@@ -179,12 +177,13 @@ nav.nav_cursos_aluno {
         }
     }
     .bg_bimestres {
-        // border: $border-set-default;
+      background:#444;
         width: 100%;
         min-height: 300px;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        padding:20px;
 
         .bimestres {
             position: relative;
@@ -196,9 +195,10 @@ nav.nav_cursos_aluno {
             flex-wrap: wrap;
             align-items: flex-start;
             justify-content: space-around;
-            background: #eee;
-            margin-bottom: 40px;
-            box-shadow: 0px 1px 1px #999;
+            background: #fff;
+            margin-top: 20px;
+            box-shadow: 0px 1px 1px #333;
+           
             .resumo_bimestre {
                 width: 100%;
                 grid-gap: 1px;
@@ -247,7 +247,8 @@ nav.nav_cursos_aluno {
                     }
                     .feedback_value {
                         min-height: 30px;
-                   box-shadow: 0px 0px 0px 1px $primary-color;
+                   border: $border-set-default;
+                   box-shadow: 0px 0px 0px;
 
                     }
                     .btn_add_feedback_bimestral {
@@ -256,7 +257,7 @@ nav.nav_cursos_aluno {
                         padding: 5px 10px;
                         color: $primary-color;
                         background: $white-color-tone;
-                        border-radius: 5px;
+                        border-radius: 3px;
                         cursor: pointer;
                         margin: 10px 5px;
                         float: right;
@@ -270,7 +271,7 @@ nav.nav_cursos_aluno {
             h3 {
                 position: absolute;
                 top:0px;
-                background: #fff;
+               
                 color: #444;
 
                 font-weight: normal;
@@ -285,7 +286,7 @@ nav.nav_cursos_aluno {
                 min-width: 200px;
                 flex-grow: 1;
               //  border: $border-set-default;
-              background: #eee;
+           
               box-shadow: 0px 0px 2px #aaa;
                 padding-top:15px;
                 padding-bottom:15px;

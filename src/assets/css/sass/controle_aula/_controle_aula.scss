@@ -10,21 +10,22 @@
 
 
   #form_select_aluno {
+    background: #ddd;
+    border:1px solid #444;
     width: 100%;
     height: auto;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding-bottom:20px;
+    padding: 5px;
+    border-radius: 3px 3px 0px 0px;
+    margin-bottom:20px;
     label{
-    border-radius: 3px 0px 0px 3px;
-
-      background:#fff;
       display: block;
       padding: 10px;
-      border: 1px solid #444;
       border-right:0px;
+
     }
 
     .div_input {
@@ -34,7 +35,7 @@
       flex-grow: 1;
       select{
           padding: 10px;
-          border: 1px solid #444;
+          border: $border-set-default;
           font-weight: bold;
           font-size:16px;
       flex-grow: 1;
