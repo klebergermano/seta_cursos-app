@@ -38,9 +38,7 @@ export function insertElementHTML(target, pathElementHTML,  callback, event, cle
     return htmlElement;
   })
   .catch((err)=> console.log(err));
-
     return insertedElement;
-
 } 
 
 export function addEventListener(targetElement, event, callback){
@@ -76,11 +74,9 @@ export function removeElement(childElementID, callback){
   let child = document.querySelector(childElementID);
   let parent = child.parentElement;
      parent.removeChild(child);
-     callback();
+     if(callback) callback();
  }
-
  export function removeFormElement(childElementID){
-
   removeElement(childElementID, ()=>{
     let blockScreen = document.querySelector("#block_screen");
     if(blockScreen){ removeBlockScreen()}
@@ -88,6 +84,7 @@ export function removeElement(childElementID, callback){
 }
  
 export function btnCloseForm(formID){
+  console.log('click');
   let form = document.querySelector(formID);
   let formParent = document.querySelector(formID).parentElement;
   //Remove the parent form
@@ -98,11 +95,9 @@ export function btnCloseForm(formID){
     let parentOfBlockScreen = blockScreen.parentElement; 
     parentOfBlockScreen.removeChild(blockScreen);
    }
-
   })
 }
 //----------------------SPIN JS---------------------------------------
-
 
 export function displaySpinnerLoad(idTarget, blockScreen = false){
   if(blockScreen) displayBlockScreen();

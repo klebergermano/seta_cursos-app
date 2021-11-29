@@ -1,4 +1,5 @@
 import * as commonFunc from "../../js_common/commonFunctions.js";
+import {insertElementHTML, btnCloseForm, removeElement } from "../../js_common/commonFunctions.js";
 import * as formAdduser from "./formAddUser.js"
 //----------------------------------------------------
 import { firebaseApp } from "../../dbConfig/firebaseApp.js"
@@ -8,12 +9,11 @@ const auth = getAuth(firebaseApp);
 
 
 export function insertFormReauthUser(){
-    commonFunc.insertElementHTML('#page_users', './components/users/formReauthUser.html', eventsFormReauthUser);
-    commonFunc.displayBlockScreen();
+    insertElementHTML('#page_users', './components/users/formReauthUser.html', eventsFormReauthUser);
 }
 
 function eventsFormReauthUser(){
-    commonFunc.btnCloseForm('#form_reauth_user');
+    btnCloseForm('#form_reauth_user');
     insertAuthEmailInput()
     let form = document.querySelector('#form_reauth_user');
     form.addEventListener('submit', (e) => {
@@ -24,9 +24,8 @@ function eventsFormReauthUser(){
 }
 
 function insertAuthEmailInput(){
-document.querySelector("#form_reauth_user").querySelector("#user_email").value = auth.currentUser.email;
-document.querySelector("#form_reauth_user").querySelector("#user_email").setAttribute('readonly', true);
-
+    document.querySelector("#form_reauth_user").querySelector("#user_email").value = auth.currentUser.email;
+    document.querySelector("#form_reauth_user").querySelector("#user_email").setAttribute('readonly', true);
 }
 
 function submitFormReauthUser(form){
@@ -42,10 +41,7 @@ let credentials = EmailAuthProvider.credential( userReauthInfo.email, userReauth
 
     reauthenticateWithCredential(user, credentials).then(() => {
       // User re-authenticated.
-      console.log('Reauthenticado com sucesso!');
-      commonFunc.removeElement('#form_reauth_user', ()=>{
-          commonFunc.removeBlockScreen();
-      });
+     removeElement('#form_reauth_user');
     
     }).then(()=>{
         formAdduser.insertFormAddUser(userReauthInfo)

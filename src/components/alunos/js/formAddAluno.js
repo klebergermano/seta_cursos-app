@@ -1,4 +1,3 @@
-
 //-------------------------------------------------------------------------
 //Firebase
 import {firebaseApp} from "../../dbConfig/firebaseApp.js";
@@ -31,7 +30,6 @@ function eventsFormAddAluno(){
   })
 }
 
-
   function insertInfoContrato(e){
     let IDContrato = e.target.value;
     const formAddAluno =  document.querySelector("#form_add_aluno");
@@ -62,7 +60,6 @@ function eventsFormAddAluno(){
       formAddAluno.querySelector("#resp_tel").value = contrato.resp_info.tel;
       formAddAluno.querySelector("#resp_cel").value = contrato.resp_info.cel;
       formAddAluno.querySelector("#resp_email").value = contrato.resp_info.email;
-      
       //Curso
       formAddAluno.querySelector("#curso_id_contrato").value = id_contrato;
       formAddAluno.querySelector("#curso_nome").value = contrato.curso_info.nome;
@@ -78,11 +75,7 @@ function eventsFormAddAluno(){
       formAddAluno.querySelector("#curso_modulos").value = contrato.curso_info.modulos;
       formAddAluno.querySelector("#curso_obs").value = contrato.curso_info.obs;
     })
-  
   }
-
-
-
 
 //-----------------------------------------------
 
@@ -101,7 +94,6 @@ function eventsFormAddAluno(){
       desconto_mes: form.curso_desconto_mes.value,
       valor_total_mes: form.curso_valor_total_mes.value,
   }
-
      setDoc(doc(db, "alunato", RA, "cursos", form.curso_nome.value),
     { 
       bimestres: {},

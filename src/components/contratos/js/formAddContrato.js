@@ -20,7 +20,6 @@ import * as geradorIDContrato from "./geradorIDContrato.js";
 //Others libraries
 const VMasker = require("vanilla-masker");
 //-------------------------------------------------------------------------
-
 export function insertFormAddContratoHTML(){
   commonFunc.insertElementHTML('#contratos_content',
   './components/contratos/formAddContrato.html', eventsFormAddContrato, null, true
@@ -120,15 +119,12 @@ vencimento.value = String(new Date().getDate()).padStart(2, "0");
 
 geradorIDContrato.eventsIDContrato();
 
-
 }
 
 
 export function submitFormContrato(e){
     e.preventDefault();
-
-let formInfo = createFormInfo(e);
-console.log(formInfo);
+    let formInfo = createFormInfo(e);
 
 setDoc(doc(db, "contratos", formInfo.id_contrato), 
 { 
@@ -160,9 +156,7 @@ setDoc(doc(db, "contratos", formInfo.id_contrato),
     tel: formInfo.aluno_tel,
     email: formInfo.aluno_email,
     data_nasc: formInfo.aluno_data_nasc,
-   
   },
-
   curso_info: {
     nome: formInfo.curso_nome, 
     modulos: formInfo.curso_modulos,

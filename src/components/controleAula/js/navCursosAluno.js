@@ -2,7 +2,7 @@
 //Cria o menu nav_cursos_aluno
 import * as dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
 import * as commonFunc from "../../js_common/commonFunctions.js";
-import * as formAddCurso from "./formAddCurso.js";
+
 
 
 export function insertNavCursosInBGCursos(RA, nomeDoCurso) {
