@@ -4,7 +4,7 @@ import { firebaseApp } from "../../dbConfig/firebaseApp.js";
 const { getFirestore, getDocs, collection } = require("firebase/firestore");
 const db = getFirestore(firebaseApp);
 //imports
-import { insertElementHTML, displayBlockScreen } from "../../js_common/commonFunctions.js";
+import { insertElementHTML} from "../../js_common/commonFunctions.js";
 import { insertFormAddCursoHTML } from "./formAddCurso.js";
 import { insertInfoAlunoHTML } from "./infoAluno.js";
 //-----------------------------------------------------------------------

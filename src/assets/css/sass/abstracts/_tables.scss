@@ -3,12 +3,17 @@
 .bg_tables{
     border: 1px solid #444;
     padding:10px;
+
 }
+
+
 .filtro_table{
     display: flex;
     padding:5px; 
     background:#ccc;
- 
+ border: $border-set-decorative;
+ border-bottom:0px;
+ border-radius: 3px 3px 0px 0px;
     select{
         font-size:16px;
         padding:5px 10px;

@@ -75,22 +75,18 @@ export function displaySpinnerLoad(idTarget, blockScreen = false) {
     className: 'spinner', // The CSS class to assign to the spinner
     position: 'absolute', // Element positioning
   };
-
   var target = document.querySelector(idTarget);
   var spinner = new Spinner(opts).spin(target);
 }
 
 export function removeSpinnerLoad(idTarget) {
-  removeBlockScreen();
   let spiner = document.querySelector('.spinner');
   document.querySelector(idTarget).removeChild(spiner);
 }
 
-
 //===========================================================================
 //--------------------------- MESSAGES --------------------------------------
 //===========================================================================
-
 export function insertMessage(targetID, message, callback) {
   document.getElementById(targetID).innerHTML =
     `<div class='show_message'>${message}</div>`;
@@ -204,8 +200,6 @@ export function removeFormElement(formID) {
   }
 
 }
-
-
 
 //===========================================================================
 //------------------------------- OTHERS ------------------------------------

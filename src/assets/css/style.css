@@ -744,6 +744,9 @@ inputs, .input-primary {
   display: flex;
   padding: 5px;
   background: #ccc;
+  border: 1px solid #666;
+  border-bottom: 0px;
+  border-radius: 3px 3px 0px 0px;
 }
 .filtro_table select {
   font-size: 16px;
@@ -752,36 +755,36 @@ inputs, .input-primary {
   color: #555;
 }
 
-.tables, .table_info, #users_table_info, .view_table {
+.tables, .table_info, #view_table_users, .view_table {
   width: 100%;
   border-collapse: collapse;
   padding: 5px;
 }
-.tables th, .table_info th, #users_table_info th, .view_table th, .tables td, .table_info td, #users_table_info td, .view_table td {
+.tables th, .table_info th, #view_table_users th, .view_table th, .tables td, .table_info td, #view_table_users td, .view_table td {
   padding: 5px 10px;
 }
-.tables th img, .table_info th img, #users_table_info th img, .view_table th img, .tables td img, .table_info td img, #users_table_info td img, .view_table td img {
+.tables th img, .table_info th img, #view_table_users th img, .view_table th img, .tables td img, .table_info td img, #view_table_users td img, .view_table td img {
   width: 50px;
   height: 50px;
 }
-.tables th button, .table_info th button, #users_table_info th button, .view_table th button, .tables td button, .table_info td button, #users_table_info td button, .view_table td button {
+.tables th button, .table_info th button, #view_table_users th button, .view_table th button, .tables td button, .table_info td button, #view_table_users td button, .view_table td button {
   padding: 5px;
   font-size: 12px;
   float: none !important;
   display: inline;
   cursor: pointer;
 }
-.tables .td_controls, .table_info .td_controls, #users_table_info .td_controls, .view_table .td_controls {
+.tables .td_controls, .table_info .td_controls, #view_table_users .td_controls, .view_table .td_controls {
   text-align: center;
 }
-.tables th, .table_info th, #users_table_info th, .view_table th {
+.tables th, .table_info th, #view_table_users th, .view_table th {
   background: #245da7;
   color: #f0f0f0;
   font-weight: normal;
   vertical-align: middle;
 }
 
-.table_info, #users_table_info, .view_table {
+.table_info, #view_table_users, .view_table {
   background: #f0f0f0;
   border-collapse: collapse;
   width: 100%;
@@ -2560,13 +2563,13 @@ option[disabled] {
   margin-right: 0px;
 }
 
-#users_table_info .td_user_foto {
+#view_table_users .td_user_foto {
   text-align: center;
 }
-#users_table_info .td_user_foto img {
+#view_table_users .td_user_foto img {
   border-radius: 50%;
 }
-#users_table_info .td_user_level {
+#view_table_users .td_user_level {
   text-align: center;
   width: 20px;
 }
@@ -2684,12 +2687,6 @@ option[disabled] {
 .bg_info_tables h3 {
   margin-top: 20px;
   margin-bottom: 20px;
-}
-.bg_info_tables .filtro_table {
-  background: #fff;
-  border: 1px solid #333;
-  border-radius: 3px 3px 0px 0px;
-  border-bottom: 0px;
 }
 .bg_info_tables table caption {
   padding: 8px;
