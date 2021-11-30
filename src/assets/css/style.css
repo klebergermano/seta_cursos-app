@@ -1116,8 +1116,8 @@ menu.submenu_page ul li a {
   transition: all 0.5s;
 }
 #controle_aula #form_select_aluno {
-  background: #ddd;
-  border: 1px solid #444;
+  background: #ccc;
+  border-bottom: 1px solid #444;
   width: 100%;
   height: auto;
   display: flex;
@@ -1182,9 +1182,7 @@ nav.nav_cursos_aluno ul li {
 nav.nav_cursos_aluno ul li a {
   padding: 15px;
   background: #fff;
-  border: 1px solid #999;
-  border-top: 0px;
-  border-bottom: 0px;
+  border-left: 1px solid #999;
   color: #333;
   font-size: 14px;
   text-transform: uppercase;
@@ -1323,13 +1321,13 @@ nav.nav_cursos_aluno ul li .active {
   background: #fff;
 }
 #aluno_content .bg_bimestres {
-  background: #444;
+  background: #9a9;
   width: 100%;
   min-height: 300px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 20px;
+  padding: 10px;
 }
 #aluno_content .bg_bimestres .bimestres {
   position: relative;
@@ -1413,12 +1411,12 @@ nav.nav_cursos_aluno ul li .active {
 }
 #aluno_content .bg_bimestres .bimestres h3 {
   position: absolute;
-  top: 0px;
+  top: 10px;
+  text-transform: uppercase;
   color: #444;
   font-weight: normal;
   min-width: 100%;
   font-size: 18px;
-  text-transform: capitalize;
   padding: 10px;
 }
 #aluno_content .bg_bimestres .bimestres .columns {

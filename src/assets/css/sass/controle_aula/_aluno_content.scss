@@ -17,9 +17,8 @@ nav.nav_cursos_aluno {
             a {
                 padding: 15px;
                 background:  $white-color-tone;
-                border: $border-set-default;
-                border-top: 0px;
-                border-bottom: 0px;
+                border-left: $border-set-default;
+                
                 color: #333;
                 font-size: 14px;
                 text-transform: uppercase;
@@ -29,7 +28,8 @@ nav.nav_cursos_aluno {
             }
             .active {
                 background: $yellow-light-color;
-                color: #333;
+                 color: #333;
+               
             }
         }
     }
@@ -177,13 +177,13 @@ nav.nav_cursos_aluno {
         }
     }
     .bg_bimestres {
-      background:#444;
+      background:#9a9;
         width: 100%;
         min-height: 300px;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        padding:20px;
+        padding:10px;
 
         .bimestres {
             position: relative;
@@ -270,14 +270,14 @@ nav.nav_cursos_aluno {
             /*h3 bimestre title*/
             h3 {
                 position: absolute;
-                top:0px;
+                top:10px;
+                text-transform: uppercase;
                
                 color: #444;
 
                 font-weight: normal;
                 min-width:100%;
                 font-size: 18px;
-                text-transform: capitalize;
                 padding: 10px ;
               
             }

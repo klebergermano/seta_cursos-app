@@ -91,7 +91,7 @@ function removeActiveClassFromNavCursos() {
 
 function displayCursoById(idCurso) {
   commonFunc.hideAllElementsByClassName('.bg_curso');
-  commonFunc.changeCSSDisplay("#" + idCurso, 'block');
+  document.querySelector('#'+idCurso).style.display='block';
 }
 
 export function displayFirstCursoAluno(){
