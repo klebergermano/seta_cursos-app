@@ -63,12 +63,10 @@ function setContratoInfo(IDContrato) {
 
 
 function submitformAddCurso(e) {
-  console.log('ok');
   e.preventDefault();
   let form = e.target;
   
   let RA = (form.aluno_ra.value).toUpperCase()
-  console.log(RA);
     //Objecto utilizado para criar as parcelas com "createParcelas(parcelaInfo)".
     let parcelaInfo = {
       id_contrato: $contratoInfo.metadata.id,
@@ -118,16 +116,17 @@ function submitformAddCurso(e) {
         }
       }
     }, {merge: true})
-  /*
-  e.preventDefault();
-  let form = e.target;
-  let RA = form.select_aluno.value;
-  let curso = form.select_curso.value; 
-  setDoc(doc(db, 'alunato', RA, 'cursos', curso),
-  { curso: form.select_curso.value,
-    bimestres: {},
-  }).then(() =>{
+    .then(()=>{
+      setDoc(doc(db, "contratos",  $contratoInfo.metadata.id), 
+      { 
+        metadata:{
+          aluno_associado: RA
+        }
+     },
+      { merge: true}
+      ); 
+    })
+  .then(() =>{
     defaultEventsAfterSubmitForm("#form_add_curso", "Curso adicionado com sucesso!");
    }).catch((error) => console.error("Erro ao adicionar curso: ", error));;
-   */
 }

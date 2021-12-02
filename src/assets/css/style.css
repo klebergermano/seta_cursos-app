@@ -783,6 +783,9 @@ inputs, .input-primary {
   font-weight: normal;
   vertical-align: middle;
 }
+.tables tr:hover, .table_info tr:hover, #view_table_users tr:hover, .view_table tr:hover {
+  background: #ffe;
+}
 
 .table_info, #view_table_users, .view_table {
   background: #f0f0f0;
@@ -2453,6 +2456,52 @@ option[disabled] {
   color: #fff !important;
 }
 
+#view_table_alunos .td_cursos {
+  font-size: 13px;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  padding: 0px 5px;
+}
+#view_table_alunos .td_cursos div {
+  display: flex;
+  width: 100%;
+}
+#view_table_alunos .td_cursos div span {
+  min-height: 100%;
+  flex-grow: 1;
+  text-align: center;
+  padding: 5px;
+  background: #ddddddcc;
+}
+#view_table_alunos .td_cursos div span:nth-child(even) {
+  margin-left: 3px;
+  background: #cccccccc;
+}
+#view_table_alunos .td_cursos div span[class*=Informática] {
+  color: #245da7;
+}
+#view_table_alunos .td_cursos div span[class*=web] {
+  color: #1111ff;
+}
+#view_table_alunos .td_cursos div span[class*=Inglês] {
+  color: #cf0675;
+}
+#view_table_alunos .td_cursos div span[class*=Excel] {
+  color: green;
+}
+#view_table_alunos .td_cursos div span[class*=Banco] {
+  color: #ad593a;
+}
+#view_table_alunos .td_cursos div span[class*=Espanhol] {
+  color: #70152c;
+}
+#view_table_alunos .td_cursos div span[class*=Adm] {
+  color: #157055;
+}
+#view_table_alunos .td_cursos div .re {
+  color: #702e70;
+}
 #view_table_alunos .td_controles {
   width: 240px;
   height: 40px;

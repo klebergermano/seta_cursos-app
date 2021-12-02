@@ -174,8 +174,8 @@ setDoc(doc(db, "contratos", formInfo.id_contrato),
    },
    metadata:{
      id:  formInfo.id_contrato,
-     status: "associacão pendente",
-     aluno_associado: "",
+     aluno_associado: "pendente",
+     status: "ativo",
      created: new Date(),
      modified: new Date()
    } 
@@ -188,7 +188,6 @@ setDoc(doc(db, "contratos", formInfo.id_contrato),
 function createFormInfo(e){
     const formData = [...e.target];
     let formInfo = {};
-
     let conclusao = new Date(e.target.curso_inicio.value);
     conclusao.setMonth(
          conclusao.getMonth() + parseInt(e.target.curso_duracao.value)

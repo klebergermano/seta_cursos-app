@@ -15,12 +15,18 @@ export function getContratosListDB() {
     return contratos;
 }
 
+
+
 export async function insertOptionsSelectContrato() {
     const selectContrato = document.querySelector("#select_contrato");
     let contratosList = await getContratosListDB();
     let optionsSelect = "<option value='' disabled selected>Selectione um contrato</option>";
     contratosList.forEach((contrato) => {
-        optionsSelect += `<option value='${contrato.id}'>${contrato.id} - <b>${contrato.data().resp_info.nome} (${contrato.data().curso_info.nome})</option>`;
+        let disabled =''; 
+        if(contrato.data().metadata.aluno_associado !== 'pendente'){
+            disabled = "disabled='true'";
+        }
+        optionsSelect += `<option ${disabled} value='${contrato.id}'>${contrato.id} - <b>${contrato.data().resp_info.nome} (${contrato.data().curso_info.nome})</option>`;
     });
     selectContrato.innerHTML = optionsSelect;
 }

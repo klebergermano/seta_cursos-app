@@ -22,9 +22,11 @@ export function eventsInserViewTableAlunos() {
             document.querySelector('#view_table_alunos tbody').innerHTML = "";
             document.querySelector('#view_table_alunos tbody').innerHTML = tbody.innerHTML;
         }).then(() => {
+            insertCursosList()
             eventsButtonsInfoTableAlunos();
         }).catch(err => console.log(err))
 }
+
 
     function eventsButtonsInfoTableAlunos() {
         let btnsAddCurso = document.querySelectorAll(".btn_add_curso");
@@ -34,7 +36,6 @@ export function eventsInserViewTableAlunos() {
                 let RA = e.target.closest('td').dataset.ra;
                 let alunoNome = e.target.closest('td').dataset.aluno_nome;
                 insertFormAddCursoHTML(RA, alunoNome);
-
             });
         })
         btnsInfoAluno.forEach((item) => {
@@ -45,20 +46,45 @@ export function eventsInserViewTableAlunos() {
 
             });
         })
-
     }
 
     function getAlunosList() {
-        let alunatoList = getDocs(collection(db, 'alunato'));
+        let alunatoList = getDocs(collection(db, 'alunato'))
         return alunatoList;
+    }
+
+    async function getCusosList(RA) {
+        let cursosList = getDocs(collection(db, 'alunato', RA, 'cursos'))
+                .then((res)=>{
+                    let cursos = document.createElement('div');
+                    res.forEach((item)=>{
+                        cursos.innerHTML += `<span class="${item.data().curso_info.nome}"> ${item.data().curso_info.nome} </span>`;
+                    })
+                    return cursos;
+                })
+        return cursosList;
+    }
+
+
+  function insertCursosList(){
+      let TRAlunos = document.querySelectorAll('#view_table_alunos tbody tr');
+      let arrTRAlunos = Array.from(TRAlunos);
+      arrTRAlunos.forEach((item)=>{
+          let RA = item.id;
+      getCusosList(RA).then((cursos)=>{
+            item.querySelector('.td_cursos').innerHTML = cursos.outerHTML;
+
+          })
+      });
     }
 
     function createTableAlunosHTML(alunosInfo) {
         let tbody = document.createElement('tbody');
-        alunosInfo.forEach((item) => {
+   
+        alunosInfo.forEach(async (item) => {
             let aluno = item.data().aluno;
             let tr = document.createElement('tr');
-            tr.className = 'alunosRow';
+            tr.id = aluno.ra;
             let trContent =
                 `
             <td class='td_ra'>${aluno.ra}</td>
@@ -71,7 +97,7 @@ export function eventsInserViewTableAlunos() {
                 <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
             </svg>
             Info
-        </button> 
+         </button> 
        
             <button  class='btn_add_curso'> 
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-plus" viewBox="0 0 16 16">
@@ -87,7 +113,6 @@ export function eventsInserViewTableAlunos() {
             tr.innerHTML = trContent;
             tbody.appendChild(tr);
         })
-        console.log(tbody);
         return tbody;
     }
 
