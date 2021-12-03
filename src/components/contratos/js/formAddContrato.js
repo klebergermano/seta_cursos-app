@@ -49,6 +49,7 @@ function checkboxRespAluno(e) {
     removeAttributeFromElement("#aluno_nome", 'required');
     removeAttributeFromElement("#aluno_parentesco", 'required');
     removeAttributeFromElement("#aluno_genero", 'required');
+    removeAttributeFromElement("#aluno_rg", 'required');
   } else {
     btn_marcar_resp_aluno.classList.remove('btn_ativo');
     btn_marcar_resp_aluno.querySelector('span').textContent = "Marcar como aluno(a)";
@@ -60,6 +61,8 @@ function checkboxRespAluno(e) {
     setAttribute("#aluno_nome", 'required', true);
     setAttribute("#aluno_parentesco", 'required', true);
     setAttribute("#aluno_genero", 'required', true);
+    setAttribute("#aluno_rg", 'required', true);
+
   }
 }
 
