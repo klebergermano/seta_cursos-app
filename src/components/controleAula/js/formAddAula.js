@@ -3,11 +3,9 @@ const {getFirestore, setDoc,  doc} = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
 
 
-
 import * as commonFunc from "../../js_common/commonFunctions.js";
 import * as dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
-import * as formAddAluno from "./formAddAluno.js";
-import * as formEditAulas from "./formEditAula.js";
+
 
 export async function insertFormAddAulaHTML() {
   commonFunc.insertElementHTML('#page_content',
@@ -18,8 +16,7 @@ export async function insertFormAddAulaHTML() {
   form.addEventListener("submit", (e) => {
     submitFormAddAula(e);  
   });
-  //Bloqueia o fundo com o "#block_screen".
-  commonFunc.changeCSSDisplay('#block_screen', 'block')
+
   //Copia as opções do "#main_select_aluno" e insere no select_aluno
   insertOptionsInSelectAluno(form)
   //insere as opções de curso e seta o selecionado.
@@ -118,8 +115,6 @@ bg_curso.forEach((curso)=>{
   form.querySelector('#curso_nome').innerHTML = '<span>Curso: </span>'+select.options[select.selectedIndex].textContent;
 }
 
-
-
 function validaSelectAula(form) {
   let infoAula;
   infoAula = getInfoFormAddAula(form);
@@ -141,7 +136,7 @@ function getInfoFormAddAula(form) {
   let bimestre = selectBimestre.options[
     selectBimestre.selectedIndex
   ].value;
-
+  
   infoAddAula.RA = RA;
   infoAddAula.curso = curso;
   infoAddAula.bimestre = bimestre;

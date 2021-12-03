@@ -2,7 +2,7 @@
 //Cria o menu nav_cursos_aluno
 import * as dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
 import * as commonFunc from "../../js_common/commonFunctions.js";
-import * as formAddCurso from "./formAddCurso.js";
+
 
 
 export function insertNavCursosInBGCursos(RA, nomeDoCurso) {
@@ -91,7 +91,7 @@ function removeActiveClassFromNavCursos() {
 
 function displayCursoById(idCurso) {
   commonFunc.hideAllElementsByClassName('.bg_curso');
-  commonFunc.changeCSSDisplay("#" + idCurso, 'block');
+  document.querySelector('#'+idCurso).style.display='block';
 }
 
 export function displayFirstCursoAluno(){

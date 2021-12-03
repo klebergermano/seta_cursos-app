@@ -1,9 +1,8 @@
 
 import * as formReauthUser from "./formReauthUser.js";
 import {firebaseApp} from "../../dbConfig/firebaseApp.js";
-import * as userPermissions from "./formConfigPerm.js";
 import * as formConfigPerm from "./formConfigPerm.js";
-import * as usersInfoTable from "./usersInfoTable.js";
+import {insertViewTableUsersHTML} from "./viewTableUsers.js";
 
 //Firebase
 const {getFirestore, collection, getDocs, doc,  getDoc } = require("firebase/firestore") 
@@ -27,7 +26,7 @@ export function getUserCompleteInfo(currentUser){
 
 export function onload(){
     document.querySelector('#btn_users_info_table').addEventListener('click', (e)=>{
-      usersInfoTable.insertUsersInfoTable();
+      insertViewTableUsersHTML();
     })
     document.querySelector('#btn_add_user').addEventListener('click', (e)=>{
       formReauthUser.insertFormReauthUser();
@@ -35,6 +34,6 @@ export function onload(){
     document.querySelector('#btn_config_permissions').addEventListener('click', (e)=>{
        formConfigPerm.insertFormConfigPerm();
     })
-  usersInfoTable.insertUsersInfoTable();
+  insertViewTableUsersHTML();
 }
 

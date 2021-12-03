@@ -1,22 +1,20 @@
-import * as commonFunc from "../../js_common/commonFunctions.js";
+import {btnCloseForm, insertElementHTML, defaultEventsAfterSubmitForm} from "../../js_common/commonFunctions.js";
 import * as permissionsFunc from "./permissions.js";
 
 import {firebaseApp} from "../../dbConfig/firebaseApp.js";
-const {getFirestore, collection, getDocs, doc, setDoc, getDoc } = require("firebase/firestore") 
+const {getFirestore,  doc, setDoc } = require("firebase/firestore") 
 const db = getFirestore(firebaseApp);
 
 
 
 export function insertFormConfigPerm(){
-    commonFunc.insertElementHTML('#page_users', './components/users/formConfigPerm.html', ()=>{
+    insertElementHTML('#page_users', './components/users/formConfigPerm.html', ()=>{
         eventsFormConfigPerm()
-
     });
-    commonFunc.displayBlockScreen();
 }
 
 function eventsFormConfigPerm(){
-    commonFunc.btnCloseForm("#form_config_perm");
+   btnCloseForm("#form_config_perm");
     insertPermissionTextarea()
     let form = document.querySelector("#form_config_perm")
     form.addEventListener('submit', (e)=>{
@@ -48,7 +46,7 @@ export function submitConfigPerm(){
         console.log(permissions[item]);
         setDoc(doc(db, 'permissions', item), permissions[item])
         .then(()=>{
-            commonFunc.defaultEventsAfterSubmitForm('#form_config_perm', "Permissões adicionadas com sucesso!");
+            defaultEventsAfterSubmitForm('#form_config_perm', "Permissões adicionadas com sucesso!");
         })
         .catch((error) => console.error("Erro ao adicionar permissões de usuário:", error));
     

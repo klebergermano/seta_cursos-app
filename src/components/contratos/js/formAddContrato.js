@@ -20,7 +20,6 @@ import * as geradorIDContrato from "./geradorIDContrato.js";
 //Others libraries
 const VMasker = require("vanilla-masker");
 //-------------------------------------------------------------------------
-
 export function insertFormAddContratoHTML(){
   commonFunc.insertElementHTML('#contratos_content',
   './components/contratos/formAddContrato.html', eventsFormAddContrato, null, true
@@ -50,6 +49,7 @@ function checkboxRespAluno(e) {
     removeAttributeFromElement("#aluno_nome", 'required');
     removeAttributeFromElement("#aluno_parentesco", 'required');
     removeAttributeFromElement("#aluno_genero", 'required');
+    removeAttributeFromElement("#aluno_rg", 'required');
   } else {
     btn_marcar_resp_aluno.classList.remove('btn_ativo');
     btn_marcar_resp_aluno.querySelector('span').textContent = "Marcar como aluno(a)";
@@ -61,6 +61,8 @@ function checkboxRespAluno(e) {
     setAttribute("#aluno_nome", 'required', true);
     setAttribute("#aluno_parentesco", 'required', true);
     setAttribute("#aluno_genero", 'required', true);
+    setAttribute("#aluno_rg", 'required', true);
+
   }
 }
 
@@ -120,15 +122,12 @@ vencimento.value = String(new Date().getDate()).padStart(2, "0");
 
 geradorIDContrato.eventsIDContrato();
 
-
 }
 
 
 export function submitFormContrato(e){
     e.preventDefault();
-
-let formInfo = createFormInfo(e);
-console.log(formInfo);
+    let formInfo = createFormInfo(e);
 
 setDoc(doc(db, "contratos", formInfo.id_contrato), 
 { 
@@ -160,9 +159,7 @@ setDoc(doc(db, "contratos", formInfo.id_contrato),
     tel: formInfo.aluno_tel,
     email: formInfo.aluno_email,
     data_nasc: formInfo.aluno_data_nasc,
-   
   },
-
   curso_info: {
     nome: formInfo.curso_nome, 
     modulos: formInfo.curso_modulos,
@@ -180,8 +177,8 @@ setDoc(doc(db, "contratos", formInfo.id_contrato),
    },
    metadata:{
      id:  formInfo.id_contrato,
-     status: "associacão pendente",
-     aluno_associado: "",
+     aluno_associado: "pendente",
+     status: "ativo",
      created: new Date(),
      modified: new Date()
    } 
@@ -194,7 +191,6 @@ setDoc(doc(db, "contratos", formInfo.id_contrato),
 function createFormInfo(e){
     const formData = [...e.target];
     let formInfo = {};
-
     let conclusao = new Date(e.target.curso_inicio.value);
     conclusao.setMonth(
          conclusao.getMonth() + parseInt(e.target.curso_duracao.value)

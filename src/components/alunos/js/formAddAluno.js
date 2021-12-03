@@ -1,4 +1,3 @@
-
 //-------------------------------------------------------------------------
 //Firebase
 import {firebaseApp} from "../../dbConfig/firebaseApp.js";
@@ -19,18 +18,15 @@ export function insertFormAddAlunoHTML(){
 function eventsFormAddAluno(){
   let form = document.querySelector('#form_add_aluno');
   eventsAlunoRA();
-
   form.addEventListener("submit", (e) => {
     e.preventDefault();
       submitFormAddAluno(e);
   });
   insertOptionsSelectContrato()
-
   form.querySelector("#select_contrato").addEventListener('change', (e)=>{
     insertInfoContrato(e)
   })
 }
-
 
   function insertInfoContrato(e){
     let IDContrato = e.target.value;
@@ -62,7 +58,6 @@ function eventsFormAddAluno(){
       formAddAluno.querySelector("#resp_tel").value = contrato.resp_info.tel;
       formAddAluno.querySelector("#resp_cel").value = contrato.resp_info.cel;
       formAddAluno.querySelector("#resp_email").value = contrato.resp_info.email;
-      
       //Curso
       formAddAluno.querySelector("#curso_id_contrato").value = id_contrato;
       formAddAluno.querySelector("#curso_nome").value = contrato.curso_info.nome;
@@ -78,14 +73,9 @@ function eventsFormAddAluno(){
       formAddAluno.querySelector("#curso_modulos").value = contrato.curso_info.modulos;
       formAddAluno.querySelector("#curso_obs").value = contrato.curso_info.obs;
     })
-  
   }
 
-
-
-
 //-----------------------------------------------
-
   //Salva o aluno no banco de dados.
   async function submitFormAddAluno(e) {
     e.preventDefault();
@@ -101,7 +91,6 @@ function eventsFormAddAluno(){
       desconto_mes: form.curso_desconto_mes.value,
       valor_total_mes: form.curso_valor_total_mes.value,
   }
-
      setDoc(doc(db, "alunato", RA, "cursos", form.curso_nome.value),
     { 
       bimestres: {},
@@ -160,14 +149,20 @@ function eventsFormAddAluno(){
           modified: new Date()
         }
        },
-       
- 
-    },
-     { merge: true}
+    },{ merge: true}
      ); 
-
-     // { nome: form.nome.value}, { merge: true}); 
-    }).then(()=>{
+    })
+    .then(()=>{
+      setDoc(doc(db, "contratos",  form.curso_id_contrato.value), 
+      { 
+        metadata:{
+          aluno_associado: RA
+        }
+     },
+      { merge: true}
+      ); 
+    })
+    .then(()=>{
       defaultEventsAfterSubmitFixedForm("#alunos_content", "Aluno salvo com sucesso!");
 
     }).catch((error) => console.error("Erro ao adicionar Aluno:", error));

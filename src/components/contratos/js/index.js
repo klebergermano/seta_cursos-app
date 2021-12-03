@@ -7,7 +7,7 @@ export function onload() {
     insertFormAddContratoHTML();
   })
   document.querySelector('#btn_contratos_view_table').addEventListener('click', (e) => {
-    insertViewTableContratosHTML
+    insertViewTableContratosHTML();
   })
   insertViewTableContratosHTML()
 }

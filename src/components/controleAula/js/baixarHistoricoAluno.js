@@ -1,11 +1,12 @@
 //imports
 import * as commonFunc from "../../js_common/commonFunctions.js";
+import {displaySpinnerLoad, removeSpinnerLoad } from "../../js_common/commonFunctions.js";
 
 //require Nodejs
 const { ipcRenderer } = require("electron");
 //Firebase
 import { firebaseApp } from "../../dbConfig/firebaseApp.js";
-const { getFirestore, collection, getDocs, doc, getDoc, onSnapshot } = require("firebase/firestore")
+const { getFirestore, doc, getDoc } = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
 //-----------------------------------------------------------------
 
@@ -23,7 +24,7 @@ export function eventsBaixarHistorico(e) {
 
 //Envia o objeto com as informações do formulário para a main stream index.js
 async function sendHistoricoAluno(alunoInfo) {
-  commonFunc.displaySpinnerLoad("#page_content", true);
+  displaySpinnerLoad("#page_content", true);
   let docAlunoHistorico = getDoc(doc(db, "alunato", alunoInfo.RA, 'cursos', alunoInfo.curso));
   docAlunoHistorico.then((resData) => {
     let res = resData.data();
@@ -39,7 +40,7 @@ async function sendHistoricoAluno(alunoInfo) {
     //Response esta sendo executado antes da mensagem de conclusão aparecer
     //setTimeout esta servindo para fazer um delay na remoção do spinner
     setTimeout(()=>{
-      commonFunc.removeSpinnerLoad("#page_content");
+      removeSpinnerLoad("#page_content");
     }, 1500)
   })
     .catch((err) => console.log('Ocorreu um erro ao enviar o Histórico do Aluno', err));

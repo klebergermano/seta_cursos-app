@@ -744,6 +744,9 @@ inputs, .input-primary {
   display: flex;
   padding: 5px;
   background: #ccc;
+  border: 1px solid #666;
+  border-bottom: 0px;
+  border-radius: 3px 3px 0px 0px;
 }
 .filtro_table select {
   font-size: 16px;
@@ -752,36 +755,39 @@ inputs, .input-primary {
   color: #555;
 }
 
-.tables, .table_info, #users_table_info, .view_table {
+.tables, .table_info, #view_table_users, .view_table {
   width: 100%;
   border-collapse: collapse;
   padding: 5px;
 }
-.tables th, .table_info th, #users_table_info th, .view_table th, .tables td, .table_info td, #users_table_info td, .view_table td {
+.tables th, .table_info th, #view_table_users th, .view_table th, .tables td, .table_info td, #view_table_users td, .view_table td {
   padding: 5px 10px;
 }
-.tables th img, .table_info th img, #users_table_info th img, .view_table th img, .tables td img, .table_info td img, #users_table_info td img, .view_table td img {
+.tables th img, .table_info th img, #view_table_users th img, .view_table th img, .tables td img, .table_info td img, #view_table_users td img, .view_table td img {
   width: 50px;
   height: 50px;
 }
-.tables th button, .table_info th button, #users_table_info th button, .view_table th button, .tables td button, .table_info td button, #users_table_info td button, .view_table td button {
+.tables th button, .table_info th button, #view_table_users th button, .view_table th button, .tables td button, .table_info td button, #view_table_users td button, .view_table td button {
   padding: 5px;
   font-size: 12px;
   float: none !important;
   display: inline;
   cursor: pointer;
 }
-.tables .td_controls, .table_info .td_controls, #users_table_info .td_controls, .view_table .td_controls {
+.tables .td_controls, .table_info .td_controls, #view_table_users .td_controls, .view_table .td_controls {
   text-align: center;
 }
-.tables th, .table_info th, #users_table_info th, .view_table th {
+.tables th, .table_info th, #view_table_users th, .view_table th {
   background: #245da7;
   color: #f0f0f0;
   font-weight: normal;
   vertical-align: middle;
 }
+.tables tr:hover, .table_info tr:hover, #view_table_users tr:hover, .view_table tr:hover {
+  background: #ffe;
+}
 
-.table_info, #users_table_info, .view_table {
+.table_info, #view_table_users, .view_table {
   background: #f0f0f0;
   border-collapse: collapse;
   width: 100%;
@@ -1116,20 +1122,21 @@ menu.submenu_page ul li a {
   transition: all 0.5s;
 }
 #controle_aula #form_select_aluno {
+  background: #ccc;
+  border-bottom: 1px solid #444;
   width: 100%;
   height: auto;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 20px;
+  padding: 5px;
+  border-radius: 3px 3px 0px 0px;
+  margin-bottom: 20px;
 }
 #controle_aula #form_select_aluno label {
-  border-radius: 3px 0px 0px 3px;
-  background: #fff;
   display: block;
   padding: 10px;
-  border: 1px solid #444;
   border-right: 0px;
 }
 #controle_aula #form_select_aluno .div_input {
@@ -1140,7 +1147,7 @@ menu.submenu_page ul li a {
 }
 #controle_aula #form_select_aluno .div_input select {
   padding: 10px;
-  border: 1px solid #444;
+  border: 1px solid #999;
   font-weight: bold;
   font-size: 16px;
   flex-grow: 1;
@@ -1164,18 +1171,24 @@ menu.submenu_page ul li a {
 
 nav.nav_cursos_aluno {
   background-color: #fff;
-  border-bottom: 1px solid #999;
-  height: 50px;
+  border-bottom: 1px solid #666;
+  padding: 0px;
+  height: auto;
+}
+nav.nav_cursos_aluno ul {
+  margin: 0px;
+  height: 100%;
+  height: auto;
 }
 nav.nav_cursos_aluno ul li {
-  padding: 16px 0px 0px 0px;
+  display: flex;
+  height: auto;
+  overflow: hidden;
 }
 nav.nav_cursos_aluno ul li a {
-  padding: 15px 20px 16px 20px;
+  padding: 15px;
   background: #fff;
-  border: 1px solid #999;
-  border-top: 0px;
-  border-bottom: 0px;
+  border-left: 1px solid #999;
   color: #333;
   font-size: 14px;
   text-transform: uppercase;
@@ -1189,8 +1202,7 @@ nav.nav_cursos_aluno ul li .active {
 }
 
 #aluno_content {
-  border-radius: 5px 5px 0px 0px;
-  border: 1px solid #999;
+  border: 1px solid #666;
   overflow: hidden;
   position: relative;
 }
@@ -1205,11 +1217,9 @@ nav.nav_cursos_aluno ul li .active {
 }
 #aluno_content .bg_btn_add {
   padding: 5px;
-  margin-top: 20px;
-  margin-bottom: 40px;
+  margin-top: 0px;
   width: 100%;
-  background: #eee;
-  box-shadow: 0px 1px 1px #aaa;
+  border-bottom: 1px solid #666;
   border-radius: 5px 5px 0px 0px;
   overflow: hidden;
 }
@@ -1249,22 +1259,26 @@ nav.nav_cursos_aluno ul li .active {
 }
 #aluno_content .bg_curso {
   position: relative;
-  background: #ddd;
+  background: #fff;
   padding: 40px;
   padding-top: 0px;
   display: none;
+  border-color: 1px solid #666;
 }
 #aluno_content .bg_curso h3 {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+#aluno_content .bg_curso #curso_content {
+  border: 1px solid #666;
+}
 #aluno_content h3.title_curso_nome {
   padding: 20px;
   font-size: 18px;
   text-align: center;
   width: 100%;
-  padding-top: 50px;
+  padding: 30px;
   text-transform: uppercase;
 }
 #aluno_content h3[class*=web] {
@@ -1313,11 +1327,13 @@ nav.nav_cursos_aluno ul li .active {
   background: #fff;
 }
 #aluno_content .bg_bimestres {
+  background: #9a9;
   width: 100%;
   min-height: 300px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  padding: 10px;
 }
 #aluno_content .bg_bimestres .bimestres {
   position: relative;
@@ -1329,9 +1345,9 @@ nav.nav_cursos_aluno ul li .active {
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-around;
-  background: #eee;
-  margin-bottom: 40px;
-  box-shadow: 0px 1px 1px #999;
+  background: #fff;
+  margin-top: 20px;
+  box-shadow: 0px 1px 1px #333;
   /*h3 bimestre title*/
 }
 #aluno_content .bg_bimestres .bimestres .resumo_bimestre {
@@ -1382,7 +1398,8 @@ nav.nav_cursos_aluno ul li .active {
 }
 #aluno_content .bg_bimestres .bimestres .resumo_bimestre .feedback_bimestral .feedback_value {
   min-height: 30px;
-  box-shadow: 0px 0px 0px 1px #245da7;
+  border: 1px solid #999;
+  box-shadow: 0px 0px 0px;
 }
 #aluno_content .bg_bimestres .bimestres .resumo_bimestre .feedback_bimestral .btn_add_feedback_bimestral {
   max-height: 35px;
@@ -1390,7 +1407,7 @@ nav.nav_cursos_aluno ul li .active {
   padding: 5px 10px;
   color: #245da7;
   background: #fff;
-  border-radius: 5px;
+  border-radius: 3px;
   cursor: pointer;
   margin: 10px 5px;
   float: right;
@@ -1400,20 +1417,18 @@ nav.nav_cursos_aluno ul li .active {
 }
 #aluno_content .bg_bimestres .bimestres h3 {
   position: absolute;
-  top: 0px;
-  background: #fff;
+  top: 10px;
+  text-transform: uppercase;
   color: #444;
   font-weight: normal;
   min-width: 100%;
   font-size: 18px;
-  text-transform: capitalize;
   padding: 10px;
 }
 #aluno_content .bg_bimestres .bimestres .columns {
   width: 24%;
   min-width: 200px;
   flex-grow: 1;
-  background: #eee;
   box-shadow: 0px 0px 2px #aaa;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -2244,6 +2259,10 @@ option[disabled] {
 #form_add_curso #div_submit {
   width: 100%;
 }
+#form_add_curso .blocked {
+  background: #fee;
+  border: 1px solid red;
+}
 
 #form_info_aluno {
   background: #f0f0f0;
@@ -2441,6 +2460,51 @@ option[disabled] {
   color: #fff !important;
 }
 
+#view_table_alunos .td_cursos {
+  font-size: 13px;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  padding: 0px 5px;
+}
+#view_table_alunos .td_cursos div {
+  display: flex;
+  width: 100%;
+}
+#view_table_alunos .td_cursos div span {
+  min-height: 100%;
+  flex-grow: 1;
+  text-align: center;
+  padding: 5px;
+  background: #ddddddcc;
+}
+#view_table_alunos .td_cursos div span:nth-child(even) {
+  margin-left: 3px;
+}
+#view_table_alunos .td_cursos div span[class*=Informática] {
+  color: #245da7;
+}
+#view_table_alunos .td_cursos div span[class*=web] {
+  color: #1111ff;
+}
+#view_table_alunos .td_cursos div span[class*=Inglês] {
+  color: #cf0675;
+}
+#view_table_alunos .td_cursos div span[class*=Excel] {
+  color: green;
+}
+#view_table_alunos .td_cursos div span[class*=Banco] {
+  color: #ad593a;
+}
+#view_table_alunos .td_cursos div span[class*=Espanhol] {
+  color: #70152c;
+}
+#view_table_alunos .td_cursos div span[class*=Adm] {
+  color: #157055;
+}
+#view_table_alunos .td_cursos div .re {
+  color: #702e70;
+}
 #view_table_alunos .td_controles {
   width: 240px;
   height: 40px;
@@ -2551,13 +2615,13 @@ option[disabled] {
   margin-right: 0px;
 }
 
-#users_table_info .td_user_foto {
+#view_table_users .td_user_foto {
   text-align: center;
 }
-#users_table_info .td_user_foto img {
+#view_table_users .td_user_foto img {
   border-radius: 50%;
 }
-#users_table_info .td_user_level {
+#view_table_users .td_user_level {
   text-align: center;
   width: 20px;
 }
@@ -2675,12 +2739,6 @@ option[disabled] {
 .bg_info_tables h3 {
   margin-top: 20px;
   margin-bottom: 20px;
-}
-.bg_info_tables .filtro_table {
-  background: #fff;
-  border: 1px solid #333;
-  border-radius: 3px 3px 0px 0px;
-  border-bottom: 0px;
 }
 .bg_info_tables table caption {
   padding: 8px;

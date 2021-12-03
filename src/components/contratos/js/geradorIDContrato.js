@@ -19,7 +19,6 @@ export function eventsIDContrato() {
         maskValueIDContrato()
         checkInputIDContrato()
     });
-
 }
 
 function toggleIDAutomaticoContrato() {
@@ -49,7 +48,6 @@ function checkInputIDContrato() {
             })
             if(!valida) invalidateInputIDContrato();
             else validateInputIDContrato();
-
         });
 }
 
@@ -121,7 +119,6 @@ function maskValueIDContrato() {
 function formatToIdContrato(numbers) {
     let numbers_pad = numbers.padStart('4', 0);
     return 'C' + numbers_pad;
-
 }
 function getNumbersFromString(string) {
     let numbers = (string).replace(/\D/g, '');

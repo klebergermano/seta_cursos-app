@@ -2,13 +2,31 @@
 import {firebaseApp} from "../../dbConfig/firebaseApp.js";
 const {getFirestore, getDocs, collection} = require("firebase/firestore") 
 const db = getFirestore(firebaseApp);
+import {insertElementHTML} from "../../js_common/commonFunctions.js";
+
+
+export function insertViewTableUsersHTML(){
+    insertElementHTML("#users_content", "./components/users/viewTableUsers.html",  eventsViewTableUsers, null, true)
+}
+function eventsViewTableUsers(){
+    getUsersList()
+    .then((res) => {
+     
+        return createTableUsersHTML(res)
+    })
+    .then((tbody)=>{
+        document.querySelector('#view_table_users tbody').outerHTML = tbody.outerHTML;
+    })
+    .catch(err => console.log(err))
+}
+
 
     function getUsersList(){
         let usersList = getDocs(collection(db, 'users'));
         return usersList;
     }
 
-    export async function insertUsersInfoTable(){
+ async function insertViewTableUsersHTMLX(){
         getUsersList().then((res) => {
             return createTableUsersHTML(res)
         })
@@ -20,24 +38,12 @@ const db = getFirestore(firebaseApp);
     }
     
     function createTableUsersHTML (usersInfo){
-    let tableUsersHTML = document.createElement('table'); 
-    tableUsersHTML.setAttribute('border', '1'); 
-        tableUsersHTML.id='users_table_info';
-        tableUsersHTML.className='table_info';
-        tableUsersHTML.innerHTML = `
-        <thead> 
-        <th>Foto</th>
-        <th>Nome</th>
-        <th>Email</th>
-        <th>Categoria</th>
-        <th></th>
-        </thead>
-        <tbody></tbody>`;
+    let tbody = document.createElement('tbody'); 
+
         usersInfo.forEach((item)=>{
             let user = item.data();
-            let row = document.createElement('tr');
-            row.className = 'usersRow';
-            let rowContent = 
+            let tr = document.createElement('tr');
+            let trContent = 
             `
             <td class='td_user_foto'><img src='../src/assets/img/usersIcons/${user.photoURL}'/></td>
             <td class='td_user_name'>${user.name}</td>
@@ -58,8 +64,8 @@ const db = getFirestore(firebaseApp);
             Editar</button>
             </td> 
             `
-            row.innerHTML = rowContent;
-            tableUsersHTML.appendChild(row);
+            tr.innerHTML = trContent;
+            tbody.appendChild(tr);
         })
-        return tableUsersHTML;
+        return tbody;
     }
