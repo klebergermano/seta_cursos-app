@@ -2259,6 +2259,10 @@ option[disabled] {
 #form_add_curso #div_submit {
   width: 100%;
 }
+#form_add_curso .blocked {
+  background: #fee;
+  border: 1px solid red;
+}
 
 #form_info_aluno {
   background: #f0f0f0;
@@ -2476,7 +2480,6 @@ option[disabled] {
 }
 #view_table_alunos .td_cursos div span:nth-child(even) {
   margin-left: 3px;
-  background: #cccccccc;
 }
 #view_table_alunos .td_cursos div span[class*=Informática] {
   color: #245da7;
