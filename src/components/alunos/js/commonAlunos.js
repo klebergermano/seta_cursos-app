@@ -16,6 +16,21 @@ export function getContratosListDB() {
 }
 
 
+export async function insertOptionsSelectCursos(RA) {
+    let selectCursos = document.querySelector("#select_curso");
+    console.log(selectCursos);
+    let optionsSelect = "<option value='' disabled selected>Selectione o Curso</option>";
+     getDocs(collection(db, 'alunato', RA, 'cursos'))
+            .then((res)=>{
+                res.forEach((item)=>{
+                    optionsSelect += `<option data-id_contrato='${item.data().curso_info.id_contrato}' value="${item.data().curso_info.nome}"> ${item.data().curso_info.nome}</option>`;
+               console.log(item);
+                })
+              
+            }).then(()=>{
+                selectCursos.innerHTML = optionsSelect;
+            })
+}
 
 export async function insertOptionsSelectContrato() {
     const selectContrato = document.querySelector("#select_contrato");

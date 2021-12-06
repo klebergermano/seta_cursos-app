@@ -5,8 +5,6 @@ let newDate = arrayDate[2]+'-'+(arrayDate[1])+'-'+arrayDate[0];
 return newDate;
 }
 
-
-
 export function setCurrentDate(idInput) {
   let currentDate = new Date();
   let year = currentDate.getFullYear();
@@ -15,7 +13,6 @@ export function setCurrentDate(idInput) {
   let fcurrentDate = year + '-' + month + '-' + day;
   document.querySelector(idInput).value = fcurrentDate;
 }
-
 
 export function changeDateToDislayText(dateString){
 let newDate = new Date(dateString);

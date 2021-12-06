@@ -69,14 +69,15 @@
  z-index: 5;
  border-radius: 50%;
 }
-#block_screen{
-  width:100%; 
+.block_screen{
+  min-width:100%; 
   min-height: 100vh;
   position: absolute;
-  background-color: #11111140;
+  background-color: #00000080;
   z-index: 4;
   bottom:0px;
-  top:0px;
+  top:-5px;
+  left:0px; right:0px;
   display:none;
 }
 
@@ -177,7 +178,6 @@ grid-template-columns: 250px 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .confirm_box{
-
   background: #fff;
   position: absolute;
   margin-left: auto;

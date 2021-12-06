@@ -1,6 +1,7 @@
 @use "../abstracts/" as *;
 @use "./form_add_aluno";
 @use "./form_add_curso";
+@use "./form_delete_curso";
 @use "./info_aluno";
 @use "./id_aluno";
 @use "./view_table_alunos";

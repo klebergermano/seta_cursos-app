@@ -231,7 +231,6 @@ function submitFormAddAula(e) {
   )
 .then(()=>{
   commonFunc.defaultEventsAfterSubmitForm("#form_add_aula", "Aula adicionada com sucesso!")
-
 }).catch((error) => console.error("Erro ao adicionar aula:", error));
 }
 

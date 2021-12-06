@@ -1,8 +1,12 @@
 //---------------------------------------------------------------------
 //Firestore
-import { firebaseApp } from "../../dbConfig/firebaseApp.js";
-const { getFirestore, setDoc, doc, getDocs, collection } = require("firebase/firestore")
+import {firebaseApp } from "../../dbConfig/firebaseApp.js";
+const {getFirestore, setDoc, doc, getDocs, collection } = require("firebase/firestore")
+
 const db = getFirestore(firebaseApp);
+
+
+
 //Components
 import * as dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
 import {  insertElementHTML, btnCloseForm, defaultEventsAfterSubmitForm } from "../../js_common/commonFunctions.js";
@@ -104,7 +108,6 @@ function setContratoInfo(IDContrato) {
 function submitformAddCurso(e) {
   e.preventDefault();
 
-  console.log('validaCon', validaCon);
   let form = e.target;
   let RA = (form.aluno_ra.value).toUpperCase()
     //Objecto utilizado para criar as parcelas com "createParcelas(parcelaInfo)".
@@ -154,6 +157,11 @@ function submitformAddCurso(e) {
           created: new Date(),
           modified: new Date()
         }
+      },
+      metadata: {
+        status: 'ativo',
+        created: new Date(),
+        modified: new Date()
       }
     }, {merge: true})
     .then(()=>{
