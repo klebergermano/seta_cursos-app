@@ -126,8 +126,6 @@ export function showTemporaryMessage
   if (callback) callback();
 }
 
-
-
 //===========================================================================
 //------------------------------- CONFIRM BOX ------------------------------------
 //===========================================================================
@@ -144,18 +142,15 @@ export function confirmBoxDelete(target, msg, callback) {
   <button class='btn-default-delete'>Deletar</button><button class='btn-default-cancel' button>Cancelar</button>`;
   msgBox.querySelector('.btn-default-delete').addEventListener('click', (e) => {
     callback();
-    document.querySelector('#block_screen').style.display = 'none';
+    closeConfirmBox(e)
   });
   msgBox.querySelector('.btn-default-cancel').addEventListener('click', (e) => {
     closeConfirmBox(e)
-    document.querySelector('#block_screen').style.display = 'none';
   });
   msgBox.querySelector('.btn_close').addEventListener('click', (e) => {
     closeConfirmBox(e)
-    document.querySelector('#block_screen').style.display = 'none';
   });
   elementTarget.appendChild(msgBox);
-  document.querySelector('#block_screen').style.display = 'block';
 }
 
 //===========================================================================
@@ -250,3 +245,7 @@ export function hideAllElementsByClassName(className) {
   });
 }
 
+export function readableRandomStringMaker(length) {
+  for (var s=''; s.length < length; s += 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.charAt(Math.random()*62|0));
+  return s;
+}

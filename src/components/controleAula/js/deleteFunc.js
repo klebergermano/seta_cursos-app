@@ -56,7 +56,6 @@ function checkIfBimestreIsEmptyToDelete(aulaInfoDelete){
 }
 
 function deleteCurso(btn){
-
     let RA = btn.dataset.aluno_ra;
     let curso =  btn.dataset.delete_curso;
     deleteDoc(doc(db, 'alunato', RA, 'cursos', curso))
@@ -64,7 +63,7 @@ function deleteCurso(btn){
         navCursosAluno.displayFirstCursoAluno();
     }).then(()=>{
         commonFunc.  changeCSSDisplay("#block_screen", "none");
-    }).catch((err)=> console.log(err));;
+    }).catch((err)=> console.log(err));
 }
 
 function deleteBimestre(aulaInfoDelete){
