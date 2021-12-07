@@ -1,6 +1,7 @@
 
+import {removeSpinnerLoad, displaySpinnerLoad} from "../../js_common/commonFunctions.js";
 import * as commonFunc from "../../js_common/commonFunctions.js";
-import * as dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
+import {alunoHistCursosRealTimeDB, getAlunoHistCursosDB} from "../../js_common/dbAlunoHistoricoFunc.js";
 import * as dateFunc from "../../js_common/dateFunc.js";
 import * as navCursosAluno from "./navCursosAluno.js";
 import * as formEditAula from "./formEditAula.js";
@@ -13,36 +14,53 @@ import * as baixarHistoricoAluno  from "./baixarHistoricoAluno.js";
 
 export function eventsAlunoContent(){
   let RA = getRAfromMainSelectAluno();
-  dbAlunoHistFunc.alunoHistCursosRealTimeDB(RA, insertAlunoContent);
+  alunoHistCursosRealTimeDB(RA, insertAlunoContent);
 }
 function getRAfromMainSelectAluno(){
   let select = document.querySelector("#main_select_aluno");
   let RA = select.options[select.selectedIndex].value;
   return RA;
 }
+function evenstContentAula(){
+  eventsAulas()
+  deleteFunc.eventDeleteCurso();
+  eventBtnAddAula();
+  eventBtnAddReposicaoAula()
+  eventBtnAddPontoExtra()
+  eventBtnAddFeedbackBimestral();
+}
 
+function alunoSemCursoContent(){
+  let content = `
+  <div class='bg_curso' style='display:block; padding-top:30px;'>
+  <h3 class='title_curso_nome'>Aluno sem cursos associados</h3>
+  </div>
+  `
+  return content
+
+}
 export function insertAlunoContent(RA, snapshotChange){
-  let nomeCurso = snapshotChange[0].doc.data().curso_info.nome;
-  dbAlunoHistFunc.getAlunoHistCursosDB(RA)
-    .then((alunoCursosDB) => {
+    let nomeCurso = snapshotChange[0]?.doc.data()?.curso_info?.nome;
+    getAlunoHistCursosDB(RA)
+      .then((alunoCursosDB) => {
+        if(snapshotChange.length !== 0){
           let alunoContentHTML = createAlunoContentHTML(alunoCursosDB, RA);
           document.querySelector("#aluno_content").innerHTML = alunoContentHTML;
           navCursosAluno.insertNavCursosInBGCursos(RA, nomeCurso);
-    }).then(()=>{
-      eventsAulas()
-      deleteFunc.eventDeleteCurso();
-      eventBtnAddAula();
-      eventBtnAddReposicaoAula()
-      eventBtnAddPontoExtra()
-      eventBtnAddFeedbackBimestral();
-    }).then(()=>{
-      let spiner = document.querySelector('.spinner');
-      if(spiner){
-        document.querySelector('#page_content').removeChild(spiner);
-      }
-    }).then(()=>{
-       document.querySelector("#controle_aula").style.opacity="1";
-    }).catch((err) => console.log('Ocorreu um erro ao inserir o conteúdo do aluno:', err));
+        }else{
+          document.querySelector("#aluno_content").innerHTML = alunoSemCursoContent(); 
+        }
+        
+      }).then(()=>{
+        evenstContentAula()
+      }).then(()=>{
+        let spiner = document.querySelector('.spinner');
+        if(spiner){
+          document.querySelector('#page_content').removeChild(spiner);
+        }
+      }).then(()=>{
+        document.querySelector("#controle_aula").style.opacity="1";
+      }).catch((err) => console.log('Ocorreu um erro ao inserir o conteúdo do aluno:', err));
 }
 function eventBtnAddAula(){
   document.querySelectorAll(".btn_baixar_historico").forEach((item) => {
