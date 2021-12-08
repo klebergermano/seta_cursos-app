@@ -1,7 +1,13 @@
 
 import {removeSpinnerLoad, displaySpinnerLoad} from "../../js_common/commonFunctions.js";
 import * as commonFunc from "../../js_common/commonFunctions.js";
-import {alunoHistCursosRealTimeDB, getAlunoHistCursosDB} from "../../js_common/dbAlunoHistoricoFunc.js";
+//import { getAlunoHistCursosDB} from "../../js_common/dbAlunoHistoricoFunc.js";
+//Firebase
+import { firebaseApp } from "../../dbConfig/firebaseApp.js"
+const {getFirestore, onSnapshot, collection, getDocs} = require("firebase/firestore")
+const db = getFirestore(firebaseApp);
+
+import {getAlunosRA} from "../../alunos/js/alunoRA.js"
 import * as dateFunc from "../../js_common/dateFunc.js";
 import * as navCursosAluno from "./navCursosAluno.js";
 import * as formEditAula from "./formEditAula.js";
@@ -12,15 +18,118 @@ import * as formAddFeedbackBimestral from "./formAddFeedbackBimestral.js";
 import * as deleteFunc from "./deleteFunc.js";
 import * as baixarHistoricoAluno  from "./baixarHistoricoAluno.js";
 
-export function eventsAlunoContent(){
-  let RA = getRAfromMainSelectAluno();
-  alunoHistCursosRealTimeDB(RA, insertAlunoContent);
+
+export function getAlunoCursosDB(RA) {
+  let alunoHistorico = getDocs(collection(db, 'alunato', RA, 'cursos'));
+  if(alunoHistorico === 'undefined'){
+    alunoHistorico = []
+  }
+  return alunoHistorico;
 }
-function getRAfromMainSelectAluno(){
-  let select = document.querySelector("#main_select_aluno");
-  let RA = select.options[select.selectedIndex].value;
-  return RA;
+export function getSnapshotAlunoCursosDB(RA, callback) {
+  onSnapshot(
+    collection(db, 'alunato', RA, 'cursos'), 
+    (snapshot)=>{
+    callback(snapshot.docChanges(), RA, true);
+  });
 }
+
+export function contentAlunoRealTime(){
+  let RA = getRAFromMainSelectAluno();
+  getSnapshotAlunoCursosDB(RA, insertAlunoContent);
+}
+
+function getRAFromMainSelectAluno(){
+  let mainSelect = document.querySelector('#main_select_aluno');
+  let RA = mainSelect.options[mainSelect.selectedIndex].value;
+  return RA; 
+}
+
+
+//------------------------------------------------------------------------
+
+export function insertAlunoContent(alunoCursosDB, RA, snapshot= false){
+  if(snapshot){
+    console.log(alunoCursosDB.data());
+
+  }else{
+
+  }
+      let nomeCurso = alunoCursosDB.docs[0]?.data().curso_info?.nome;
+      if(nomeCurso){
+        let alunoContentHTML = createAlunoContentHTML(alunoCursosDB, RA);
+          document.querySelector("#controle_aula_content").innerHTML = alunoContentHTML;
+          navCursosAluno.insertNavCursosInBGCursos(RA, nomeCurso);
+      }else{
+       document.querySelector("#controle_aula_content").innerHTML = alunoSemCursoContent(); 
+      }
+      evenstContentAula()
+      let spiner = document.querySelector('.spinner');
+      if(spiner){
+       document.querySelector('#page_content').removeChild(spiner);
+      }
+      document.querySelector("#controle_aula").style.opacity="1";
+}
+
+
+/*
+
+export function insertAlunoContent(RA, alunoSnapshot){
+ 
+  getAlunoHistCursosDB(RA)
+    .then((alunoCursosDB) => {
+      let nomeCurso = alunoCursosDB.docs[0]?.data().curso_info?.nome;
+      if(nomeCurso){
+        let alunoContentHTML = createAlunoContentHTML(alunoCursosDB, RA);
+          document.querySelector("#controle_aula_content").innerHTML = alunoContentHTML;
+          navCursosAluno.insertNavCursosInBGCursos(RA, nomeCurso);
+      }else{
+       document.querySelector("#controle_aula_content").innerHTML = alunoSemCursoContent(); 
+      }
+    }).then(()=>{
+      evenstContentAula()
+    }).then(()=>{
+      let spiner = document.querySelector('.spinner');
+      if(spiner){
+       document.querySelector('#page_content').removeChild(spiner);
+      }
+    }).then(()=>{
+      document.querySelector("#controle_aula").style.opacity="1";
+    })
+    .catch((err) => console.log('Ocorreu um erro ao inserir o conteúdo do aluno:', err));
+}
+
+*/
+/*
+ function insertAlunoContentXXXXX(RA, snapshotChange){
+  let nomeCurso = snapshotChange[0]?.doc.data()?.curso_info?.nome;
+  getAlunoHistCursosDB(RA)
+    .then((alunoCursosDB) => {
+      if(snapshotChange.length !== 0 && nomeCurso){
+        let alunoContentHTML = createAlunoContentHTML(alunoCursosDB, RA);
+        document.querySelector("#controle_aula_content").innerHTML = alunoContentHTML;
+        navCursosAluno.insertNavCursosInBGCursos(RA, nomeCurso);
+      }else{
+        document.querySelector("#controle_aula_content").innerHTML = alunoSemCursoContent(); 
+      }
+    }).then(()=>{
+      evenstContentAula()
+    }).then(()=>{
+      let spiner = document.querySelector('.spinner');
+      if(spiner){
+        document.querySelector('#page_content').removeChild(spiner);
+      }
+    }).then(()=>{
+      document.querySelector("#controle_aula").style.opacity="1";
+    }).catch((err) => console.log('Ocorreu um erro ao inserir o conteúdo do aluno:', err));
+  }
+  function getRAfromMainSelectAluno(){
+    let select = document.querySelector("#main_select_aluno");
+    let RA = select.options[select.selectedIndex].value;
+    return RA;
+  }
+*/
+
 function evenstContentAula(){
   eventsAulas()
   deleteFunc.eventDeleteCurso();
@@ -37,31 +146,8 @@ function alunoSemCursoContent(){
   </div>
   `
   return content
+}
 
-}
-export function insertAlunoContent(RA, snapshotChange){
-    let nomeCurso = snapshotChange[0]?.doc.data()?.curso_info?.nome;
-    getAlunoHistCursosDB(RA)
-      .then((alunoCursosDB) => {
-        if(snapshotChange.length !== 0 && nomeCurso){
-          let alunoContentHTML = createAlunoContentHTML(alunoCursosDB, RA);
-          document.querySelector("#aluno_content").innerHTML = alunoContentHTML;
-          navCursosAluno.insertNavCursosInBGCursos(RA, nomeCurso);
-        }else{
-          document.querySelector("#aluno_content").innerHTML = alunoSemCursoContent(); 
-        }
-        
-      }).then(()=>{
-        evenstContentAula()
-      }).then(()=>{
-        let spiner = document.querySelector('.spinner');
-        if(spiner){
-          document.querySelector('#page_content').removeChild(spiner);
-        }
-      }).then(()=>{
-        document.querySelector("#controle_aula").style.opacity="1";
-      }).catch((err) => console.log('Ocorreu um erro ao inserir o conteúdo do aluno:', err));
-}
 function eventBtnAddAula(){
   document.querySelectorAll(".btn_baixar_historico").forEach((item) => {
     item.addEventListener("click", (e) => {
@@ -197,7 +283,6 @@ export function resumoBimestreBD(curso){
 function createAlunoContentHTML(alunoDataFromDB, RA) {
   let alunoContentHTML = "";
   alunoDataFromDB.forEach((resCursoDB) => {
-    
     if (typeof resCursoDB.data !== "undefined") { resCursoDB = resCursoDB.data(); }
     else { resCursoDB = resCursoDB.doc.data(); }
     //let resumoBimestre = resumoBimestreBD(resCursoDB);

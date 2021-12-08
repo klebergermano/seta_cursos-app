@@ -2,9 +2,8 @@ import {firebaseApp} from "../../dbConfig/firebaseApp.js";
 const {getFirestore, setDoc,  doc} = require("firebase/firestore") 
 const db = getFirestore(firebaseApp);
 
-
 import * as commonFunc from "../../js_common/commonFunctions.js";
-import * as dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
+import {getAlunoHistCursosDB} from "../../js_common/dbAlunoHistoricoFunc.js";
 
 
 export async function insertFormAddAulaHTML() {
@@ -197,12 +196,11 @@ function blocoAddAula(dados) {
       },
     };
   }
-
   return aula;
 }
 
 function getKeysAulas(RA, idCurso, bimestre) {
-  let aluno = dbAlunoHistFunc.getAlunoHistCursosDB(RA);
+  let aluno = getAlunoHistCursosDB(RA);
   let keysAulas = [];
   let nomeCursoBD;
   let keys = aluno.then((res) => {
@@ -220,7 +218,7 @@ function getKeysAulas(RA, idCurso, bimestre) {
   return keys;
 }
 
-function submitFormAddAula(e) {
+function submitFormAddAula(e){
   e.preventDefault();
   let form = e.target;
   let RA = form.select_aluno.value;
@@ -229,8 +227,9 @@ function submitFormAddAula(e) {
         {bimestres: blocoAddAula(form)},
         { merge: true }
   )
-.then(()=>{
-  commonFunc.defaultEventsAfterSubmitForm("#form_add_aula", "Aula adicionada com sucesso!")
-}).catch((error) => console.error("Erro ao adicionar aula:", error));
+  .then(()=>{
+    commonFunc.defaultEventsAfterSubmitForm("#form_add_aula", "Aula adicionada com sucesso!")
+  }).catch((error) => console.error("Erro ao adicionar aula:", error));
+
 }
 

@@ -84,7 +84,6 @@ function insertOptionslistAlunoRA() {
 function setAlunoRAAutomatico() {
     let InputAlunoRA = document.querySelector('#aluno_ra');
     InputAlunoRA.setAttribute('readonly', true);
-
     let alunosRA = getAlunosRA();
     alunosRA.then((res) => {
         let newAlunoRA = createNewAlunoRA(res)
@@ -133,7 +132,7 @@ function getNumbersFromString(string) {
     return numbers
 }
 
-function getAlunosRA() {
+export function getAlunosRA() {
     let alunosRA = getDocs(collection(db, 'alunato'))
         .then((alunos) => {
             let RAs = [];
