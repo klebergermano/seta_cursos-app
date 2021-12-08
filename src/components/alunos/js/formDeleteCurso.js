@@ -92,7 +92,7 @@ function submitformDeleteCurso(e){
  .then(()=>{
 let data = new Date();
 let id =  data.getFullYear()+''+(data.getMonth()+1)+''+data.getDate()+''+readableRandomStringMaker(5);
-      setDoc(doc(db, "log", 'log_aluno'),{
+      setDoc(doc(db, "log", 'log_alunato'),{
         [id]: `Curso referente ao contrato ${idContrato} deletado do aluno ${RA} em ${new Date()} por ${auth.currentUser.email}`
         },
         { merge: true})

@@ -44,13 +44,10 @@ export function insertAlunoContent(RA, snapshotChange){
     getAlunoHistCursosDB(RA)
       .then((alunoCursosDB) => {
         if(snapshotChange.length !== 0 && nomeCurso){
-          console.log(nomeCurso);
           let alunoContentHTML = createAlunoContentHTML(alunoCursosDB, RA);
           document.querySelector("#aluno_content").innerHTML = alunoContentHTML;
           navCursosAluno.insertNavCursosInBGCursos(RA, nomeCurso);
         }else{
-          console.log('vazio');
-
           document.querySelector("#aluno_content").innerHTML = alunoSemCursoContent(); 
         }
         

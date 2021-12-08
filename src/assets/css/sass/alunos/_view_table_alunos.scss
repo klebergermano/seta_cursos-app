@@ -1,4 +1,8 @@
 @use "../abstracts/" as *;
+
+#bg_view_table_alunos{
+    position: relative;
+}
 #view_table_alunos
 {
     .td_cursos{
