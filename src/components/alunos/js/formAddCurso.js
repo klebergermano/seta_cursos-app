@@ -85,11 +85,20 @@ function setInputsContratoInfo(contratoInfo) {
 }
 
 function validaContrato(contratoInfo, alunoInfo){
-  let alunoNome = contratoInfo?.aluno_info?.nome
-  let alunoRG = contratoInfo?.aluno_info?.rg;
-  if(alunoNome === alunoInfo.nome && alunoRG === alunoInfo.rg && alunoNome !== undefined && alunoRG !== undefined){
+  let alunoNome = (contratoInfo?.aluno_info?.nome).toLowerCase().trim();
+  let alunoRG = (contratoInfo?.aluno_info?.rg);
+  if(alunoNome === alunoInfo.nome.toLowerCase().trim() && alunoRG === alunoInfo.rg && alunoNome !== undefined && alunoRG !== undefined){
     return true;
   }else{
+    if(alunoNome.trim() === alunoInfo.nome.trim()){
+      console.log('nome igual');
+    }else{
+      console.log('nome diferente');
+    console.log('alunoNome:' + alunoNome , 'alunoInfo.nome:'+ alunoInfo.nome);
+
+
+    }
+    console.log('alunoNome', alunoNome , 'alunoInfo.nome',alunoInfo.nome,  '!=',   'alunoRG', alunoRG,  '!=' , 'alunoInfo.rg', alunoInfo.rg);
     return false;
   }
 }

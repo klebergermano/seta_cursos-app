@@ -34,11 +34,14 @@ nav.nav_cursos_aluno {
         }
     }
 }
-#aluno_content {
+#controle_aula_content {
  
     border:$border-set-decorative;
     overflow: hidden;
     position: relative;
+    min-height: 500px;
+    opacity: 0;
+    transition: all 1s;
     .btn_add_curso {
         @extend .btn-primary;
         svg {

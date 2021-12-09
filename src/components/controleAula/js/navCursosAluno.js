@@ -3,8 +3,6 @@
 import * as dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
 import * as commonFunc from "../../js_common/commonFunctions.js";
 
-
-
 export function insertNavCursosInBGCursos(RA, nomeDoCurso) {
   //Cria o menu nav_cursos_aluno
   createNavCursosAluno(RA)
@@ -17,9 +15,7 @@ export function insertNavCursosInBGCursos(RA, nomeDoCurso) {
     .then(() => {
       //remove os nav_cursos_extras
       removeExtraNavCursosAluno();
-
       //mostra o curso que foi atualizado usando displayNavCursoAlunoUpdated
-
       displayNavCursoAlunoUpdated(nomeDoCurso);
     }).catch((err) => { console.log(err) });
 }
@@ -110,7 +106,7 @@ function displayNavCursoAlunoUpdated(nomeCurso) {
 
 function removeExtraNavCursosAluno() {
   //remove os nav_cursos_extras
-  let aluno_content = document.querySelector('#aluno_content');
+  let aluno_content = document.querySelector('#controle_aula_content');
   let navCursosAluno = document.querySelectorAll('.nav_cursos_aluno');
   for (let i = 0; i < navCursosAluno.length; i++) {
     if (i > 0) {

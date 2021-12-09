@@ -349,7 +349,7 @@ template {
   display: none;
 }
 
-.btn, #fieldset_resp div #btn_marcar_resp_aluno, .btn-secondary, .btn-primary, .forms_fixed input[type=submit], #form_add_aluno input[type=submit], #aluno_content .btn_add_curso, .form_flex input[type=submit], .form_flex_absolute input[type=submit], .form_flex_static input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], .forms_controle_aula input[type=submit], #form_info_aluno input[type=submit], #form_delete_curso input[type=submit], #form_add_curso input[type=submit], .btn-default-delete, #form_add_saida_avulsa fieldset .div_submit input[type=submit], #aluno_content .bg_info_delete_curso .btn_deletar_curso, .btn-default, form.forms_fluxo_caixa .div_submit input[type=submit], .sub_menu_fluxo_caixa ul li a, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], .forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox, #bg_div_id_contrato #label_id_automatico_contrato, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo, #aluno_content .btn_add, menu.submenu_page ul li a {
+.btn, #fieldset_resp div #btn_marcar_resp_aluno, .btn-secondary, .btn-primary, .forms_fixed input[type=submit], #form_add_aluno input[type=submit], #controle_aula_content .btn_add_curso, .form_flex input[type=submit], .form_flex_absolute input[type=submit], .form_flex_static input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], .forms_controle_aula input[type=submit], #form_info_aluno input[type=submit], #form_delete_curso input[type=submit], #form_add_curso input[type=submit], .btn-default-delete, #form_add_saida_avulsa fieldset .div_submit input[type=submit], #controle_aula_content .bg_info_delete_curso .btn_deletar_curso, .btn-default, form.forms_fluxo_caixa .div_submit input[type=submit], .sub_menu_fluxo_caixa ul li a, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], .forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox, #bg_div_id_contrato #label_id_automatico_contrato, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo, #controle_aula_content .btn_add, menu.submenu_page ul li a {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -359,50 +359,50 @@ template {
   border: 0px;
   cursor: pointer;
 }
-.btn svg, #fieldset_resp div #btn_marcar_resp_aluno svg, .btn-secondary svg, .btn-primary svg, .forms_fixed input[type=submit] svg, #form_add_aluno input[type=submit] svg, #aluno_content .btn_add_curso svg, .form_flex input[type=submit] svg, .form_flex_absolute input[type=submit] svg, .form_flex_static input[type=submit] svg, #form_config_perm input[type=submit] svg, #form_reauth_user input[type=submit] svg, #form_add_user input[type=submit] svg, .forms_controle_aula input[type=submit] svg, #form_info_aluno input[type=submit] svg, #form_delete_curso input[type=submit] svg, #form_add_curso input[type=submit] svg, .btn-default-delete svg, #form_add_saida_avulsa fieldset .div_submit input[type=submit] svg, #aluno_content .bg_info_delete_curso .btn_deletar_curso svg, .btn-default svg, form.forms_fluxo_caixa .div_submit input[type=submit] svg, .sub_menu_fluxo_caixa ul li a svg, .nav_forms ul li a svg, #page_login #login_content #form_login input[type=submit] svg, .forms_fixed .label_btn_checkbox svg, #form_add_aluno .label_btn_checkbox svg, #bg_div_id_contrato #label_id_automatico_contrato svg, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo svg, #aluno_content .btn_add svg, menu.submenu_page ul li a svg {
+.btn svg, #fieldset_resp div #btn_marcar_resp_aluno svg, .btn-secondary svg, .btn-primary svg, .forms_fixed input[type=submit] svg, #form_add_aluno input[type=submit] svg, #controle_aula_content .btn_add_curso svg, .form_flex input[type=submit] svg, .form_flex_absolute input[type=submit] svg, .form_flex_static input[type=submit] svg, #form_config_perm input[type=submit] svg, #form_reauth_user input[type=submit] svg, #form_add_user input[type=submit] svg, .forms_controle_aula input[type=submit] svg, #form_info_aluno input[type=submit] svg, #form_delete_curso input[type=submit] svg, #form_add_curso input[type=submit] svg, .btn-default-delete svg, #form_add_saida_avulsa fieldset .div_submit input[type=submit] svg, #controle_aula_content .bg_info_delete_curso .btn_deletar_curso svg, .btn-default svg, form.forms_fluxo_caixa .div_submit input[type=submit] svg, .sub_menu_fluxo_caixa ul li a svg, .nav_forms ul li a svg, #page_login #login_content #form_login input[type=submit] svg, .forms_fixed .label_btn_checkbox svg, #form_add_aluno .label_btn_checkbox svg, #bg_div_id_contrato #label_id_automatico_contrato svg, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo svg, #controle_aula_content .btn_add svg, menu.submenu_page ul li a svg {
   max-width: 100px;
   max-height: 100px;
   height: auto;
   width: 20px;
 }
 
-.btn-default, form.forms_fluxo_caixa .div_submit input[type=submit], .sub_menu_fluxo_caixa ul li a, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], .forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox, #bg_div_id_contrato #label_id_automatico_contrato, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo, #aluno_content .btn_add, menu.submenu_page ul li a {
+.btn-default, form.forms_fluxo_caixa .div_submit input[type=submit], .sub_menu_fluxo_caixa ul li a, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], .forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox, #bg_div_id_contrato #label_id_automatico_contrato, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo, #controle_aula_content .btn_add, menu.submenu_page ul li a {
   background: #f0f0f0;
   color: #333;
   border: 1px solid #666;
 }
-.btn-default:hover, form.forms_fluxo_caixa .div_submit input[type=submit]:hover, .sub_menu_fluxo_caixa ul li a:hover, .nav_forms ul li a:hover, #page_login #login_content #form_login input[type=submit]:hover, .forms_fixed .label_btn_checkbox:hover, #form_add_aluno .label_btn_checkbox:hover, #bg_div_id_contrato #label_id_automatico_contrato:hover, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo:hover, #aluno_content .btn_add:hover, menu.submenu_page ul li a:hover {
+.btn-default:hover, form.forms_fluxo_caixa .div_submit input[type=submit]:hover, .sub_menu_fluxo_caixa ul li a:hover, .nav_forms ul li a:hover, #page_login #login_content #form_login input[type=submit]:hover, .forms_fixed .label_btn_checkbox:hover, #form_add_aluno .label_btn_checkbox:hover, #bg_div_id_contrato #label_id_automatico_contrato:hover, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo:hover, #controle_aula_content .btn_add:hover, menu.submenu_page ul li a:hover {
   background: #fdfdfd;
 }
-.btn-default:active, form.forms_fluxo_caixa .div_submit input[type=submit]:active, .sub_menu_fluxo_caixa ul li a:active, .nav_forms ul li a:active, #page_login #login_content #form_login input[type=submit]:active, .forms_fixed .label_btn_checkbox:active, #form_add_aluno .label_btn_checkbox:active, #bg_div_id_contrato #label_id_automatico_contrato:active, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo:active, #aluno_content .btn_add:active, menu.submenu_page ul li a:active {
+.btn-default:active, form.forms_fluxo_caixa .div_submit input[type=submit]:active, .sub_menu_fluxo_caixa ul li a:active, .nav_forms ul li a:active, #page_login #login_content #form_login input[type=submit]:active, .forms_fixed .label_btn_checkbox:active, #form_add_aluno .label_btn_checkbox:active, #bg_div_id_contrato #label_id_automatico_contrato:active, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo:active, #controle_aula_content .btn_add:active, menu.submenu_page ul li a:active {
   background: #e3e3e3;
   box-shadow: inset 0px 1px 3px #bdbdbd;
 }
 
-.btn-default-delete, #form_add_saida_avulsa fieldset .div_submit input[type=submit], #aluno_content .bg_info_delete_curso .btn_deletar_curso {
+.btn-default-delete, #form_add_saida_avulsa fieldset .div_submit input[type=submit], #controle_aula_content .bg_info_delete_curso .btn_deletar_curso {
   background: #e03737;
   color: #fafafa;
   border: 1px solid #520404;
 }
-.btn-default-delete:hover, #form_add_saida_avulsa fieldset .div_submit input[type=submit]:hover, #aluno_content .bg_info_delete_curso .btn_deletar_curso:hover {
+.btn-default-delete:hover, #form_add_saida_avulsa fieldset .div_submit input[type=submit]:hover, #controle_aula_content .bg_info_delete_curso .btn_deletar_curso:hover {
   background: #e34d4d;
 }
-.btn-default-delete:active, #form_add_saida_avulsa fieldset .div_submit input[type=submit]:active, #aluno_content .bg_info_delete_curso .btn_deletar_curso:active {
+.btn-default-delete:active, #form_add_saida_avulsa fieldset .div_submit input[type=submit]:active, #controle_aula_content .bg_info_delete_curso .btn_deletar_curso:active {
   background: #db2222;
   box-shadow: inset 0px 1px 3px #991818;
 }
-.btn-default-delete:hover, #form_add_saida_avulsa fieldset .div_submit input[type=submit]:hover, #aluno_content .bg_info_delete_curso .btn_deletar_curso:hover {
+.btn-default-delete:hover, #form_add_saida_avulsa fieldset .div_submit input[type=submit]:hover, #controle_aula_content .bg_info_delete_curso .btn_deletar_curso:hover {
   background: #fc4646;
 }
 
-.btn-primary, .forms_fixed input[type=submit], #form_add_aluno input[type=submit], #aluno_content .btn_add_curso, .form_flex input[type=submit], .form_flex_absolute input[type=submit], .form_flex_static input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], .forms_controle_aula input[type=submit], #form_info_aluno input[type=submit], #form_delete_curso input[type=submit], #form_add_curso input[type=submit] {
+.btn-primary, .forms_fixed input[type=submit], #form_add_aluno input[type=submit], #controle_aula_content .btn_add_curso, .form_flex input[type=submit], .form_flex_absolute input[type=submit], .form_flex_static input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], .forms_controle_aula input[type=submit], #form_info_aluno input[type=submit], #form_delete_curso input[type=submit], #form_add_curso input[type=submit] {
   background: #245da7;
   color: #fafafa;
 }
-.btn-primary:hover, .forms_fixed input[type=submit]:hover, #form_add_aluno input[type=submit]:hover, #aluno_content .btn_add_curso:hover, .form_flex input[type=submit]:hover, .form_flex_absolute input[type=submit]:hover, .form_flex_static input[type=submit]:hover, #form_config_perm input[type=submit]:hover, #form_reauth_user input[type=submit]:hover, #form_add_user input[type=submit]:hover, .forms_controle_aula input[type=submit]:hover, #form_info_aluno input[type=submit]:hover, #form_delete_curso input[type=submit]:hover, #form_add_curso input[type=submit]:hover {
+.btn-primary:hover, .forms_fixed input[type=submit]:hover, #form_add_aluno input[type=submit]:hover, #controle_aula_content .btn_add_curso:hover, .form_flex input[type=submit]:hover, .form_flex_absolute input[type=submit]:hover, .form_flex_static input[type=submit]:hover, #form_config_perm input[type=submit]:hover, #form_reauth_user input[type=submit]:hover, #form_add_user input[type=submit]:hover, .forms_controle_aula input[type=submit]:hover, #form_info_aluno input[type=submit]:hover, #form_delete_curso input[type=submit]:hover, #form_add_curso input[type=submit]:hover {
   background: #2969bc;
 }
-.btn-primary:active, .forms_fixed input[type=submit]:active, #form_add_aluno input[type=submit]:active, #aluno_content .btn_add_curso:active, .form_flex input[type=submit]:active, .form_flex_absolute input[type=submit]:active, .form_flex_static input[type=submit]:active, #form_config_perm input[type=submit]:active, #form_reauth_user input[type=submit]:active, #form_add_user input[type=submit]:active, .forms_controle_aula input[type=submit]:active, #form_info_aluno input[type=submit]:active, #form_delete_curso input[type=submit]:active, #form_add_curso input[type=submit]:active {
+.btn-primary:active, .forms_fixed input[type=submit]:active, #form_add_aluno input[type=submit]:active, #controle_aula_content .btn_add_curso:active, .form_flex input[type=submit]:active, .form_flex_absolute input[type=submit]:active, .form_flex_static input[type=submit]:active, #form_config_perm input[type=submit]:active, #form_reauth_user input[type=submit]:active, #form_add_user input[type=submit]:active, .forms_controle_aula input[type=submit]:active, #form_info_aluno input[type=submit]:active, #form_delete_curso input[type=submit]:active, #form_add_curso input[type=submit]:active {
   background: #1f5192;
   box-shadow: inset 0px 1px 3px #122e53;
 }
@@ -1118,9 +1118,13 @@ menu.submenu_page ul li a {
   flex-grow: 1;
 }
 
+.fadeOut {
+  opacity: 1;
+}
+
 #controle_aula {
   position: relative;
-  opacity: 0;
+  opacity: 1;
   overflow: hidden;
   transition: all 0.5s;
 }
@@ -1204,21 +1208,24 @@ nav.nav_cursos_aluno ul li .active {
   color: #333;
 }
 
-#aluno_content {
+#controle_aula_content {
   border: 1px solid #666;
   overflow: hidden;
   position: relative;
+  min-height: 500px;
+  opacity: 0;
+  transition: all 1s;
 }
-#aluno_content .btn_add_curso svg {
+#controle_aula_content .btn_add_curso svg {
   max-width: 100px;
   max-height: 100px;
   height: 25px;
   width: auto;
 }
-#aluno_content .btn_add_curso:hover {
+#controle_aula_content .btn_add_curso:hover {
   background: #2969bc;
 }
-#aluno_content .bg_btn_add {
+#controle_aula_content .bg_btn_add {
   padding: 5px;
   margin-top: 0px;
   width: 100%;
@@ -1226,41 +1233,41 @@ nav.nav_cursos_aluno ul li .active {
   border-radius: 5px 5px 0px 0px;
   overflow: hidden;
 }
-#aluno_content .btn_add {
+#controle_aula_content .btn_add {
   background: #f0f0f0;
   float: left;
   cursor: pointer;
 }
-#aluno_content .btn_add:hover {
+#controle_aula_content .btn_add:hover {
   background: #fff;
   box-shadow: 0px 1px 1px #ccc;
 }
-#aluno_content .btn_add:active {
+#controle_aula_content .btn_add:active {
   background: #f0f0f0;
   box-shadow: inset 0px 0px 2px #222;
 }
-#aluno_content .btn_add_aula {
+#controle_aula_content .btn_add_aula {
   border-color: #245da7;
   color: #245da7;
   padding-left: 20px;
   padding-right: 20px;
   float: right;
 }
-#aluno_content .btn_add_aula svg {
+#controle_aula_content .btn_add_aula svg {
   height: 25px;
   width: auto;
   margin-top: -5px;
   margin-left: -5px;
 }
-#aluno_content .btn_add_reposicao {
+#controle_aula_content .btn_add_reposicao {
   color: #8971cc;
   border-color: #8971cc;
 }
-#aluno_content .btn_add_ponto_extra {
+#controle_aula_content .btn_add_ponto_extra {
   color: #779214;
   border-color: #779214;
 }
-#aluno_content .bg_curso {
+#controle_aula_content .bg_curso {
   position: relative;
   background: #fff;
   padding: 40px;
@@ -1268,15 +1275,15 @@ nav.nav_cursos_aluno ul li .active {
   display: none;
   border-color: 1px solid #666;
 }
-#aluno_content .bg_curso h3 {
+#controle_aula_content .bg_curso h3 {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-#aluno_content .bg_curso #curso_content {
+#controle_aula_content .bg_curso #curso_content {
   border: 1px solid #666;
 }
-#aluno_content h3.title_curso_nome {
+#controle_aula_content h3.title_curso_nome {
   padding: 20px;
   font-size: 18px;
   text-align: center;
@@ -1284,20 +1291,20 @@ nav.nav_cursos_aluno ul li .active {
   padding: 30px;
   text-transform: uppercase;
 }
-#aluno_content h3[class*=web] {
+#controle_aula_content h3[class*=web] {
   color: #206186;
 }
-#aluno_content h3[class*=inglês] {
+#controle_aula_content h3[class*=inglês] {
   color: red;
 }
-#aluno_content h3[class*=excel] {
+#controle_aula_content h3[class*=excel] {
   color: #269426;
 }
-#aluno_content h3[class^=informática],
-#aluno_content h3[class*=informática] {
+#controle_aula_content h3[class^=informática],
+#controle_aula_content h3[class*=informática] {
   color: blue !important;
 }
-#aluno_content .bg_info_delete_curso {
+#controle_aula_content .bg_info_delete_curso {
   width: 100%;
   height: auto;
   padding: 20px;
@@ -1308,28 +1315,28 @@ nav.nav_cursos_aluno ul li .active {
   background: #f6f6e0;
   align-items: center;
 }
-#aluno_content .bg_info_delete_curso p {
+#controle_aula_content .bg_info_delete_curso p {
   display: block;
   width: 100%;
   text-align: center;
   padding: 10px;
 }
-#aluno_content .bg_info_delete_curso button {
+#controle_aula_content .bg_info_delete_curso button {
   float: left;
 }
-#aluno_content .bg_info_delete_curso .btn_add_aula {
+#controle_aula_content .bg_info_delete_curso .btn_add_aula {
   position: initial;
   margin-left: 10px;
 }
-#aluno_content .bg_info_delete_curso .btn_add_aula svg {
+#controle_aula_content .bg_info_delete_curso .btn_add_aula svg {
   width: auto;
   height: auto;
   margin-bottom: -2px;
 }
-#aluno_content .bg_info_delete_curso .btn_add_aula:hover {
+#controle_aula_content .bg_info_delete_curso .btn_add_aula:hover {
   background: #fff;
 }
-#aluno_content .bg_bimestres {
+#controle_aula_content .bg_bimestres {
   background: #9a9;
   width: 100%;
   min-height: 300px;
@@ -1338,7 +1345,7 @@ nav.nav_cursos_aluno ul li .active {
   flex-wrap: wrap;
   padding: 10px;
 }
-#aluno_content .bg_bimestres .bimestres {
+#controle_aula_content .bg_bimestres .bimestres {
   position: relative;
   min-width: 100%;
   padding: 20px;
@@ -1353,18 +1360,18 @@ nav.nav_cursos_aluno ul li .active {
   box-shadow: 0px 1px 1px #333;
   /*h3 bimestre title*/
 }
-#aluno_content .bg_bimestres .bimestres .resumo_bimestre {
+#controle_aula_content .bg_bimestres .bimestres .resumo_bimestre {
   width: 100%;
   grid-gap: 1px;
   display: flex;
   flex-wrap: wrap;
 }
-#aluno_content .bg_bimestres .bimestres .resumo_bimestre .row {
+#controle_aula_content .bg_bimestres .bimestres .resumo_bimestre .row {
   min-width: 100%;
   display: flex;
   flex-wrap: wrap;
 }
-#aluno_content .bg_bimestres .bimestres .resumo_bimestre .row p {
+#controle_aula_content .bg_bimestres .bimestres .resumo_bimestre .row p {
   min-width: auto;
   flex-grow: 1;
   width: auto;
@@ -1372,15 +1379,15 @@ nav.nav_cursos_aluno ul li .active {
   box-shadow: 0px 0px 0px 1px #ccc;
   background: #fafafa;
 }
-#aluno_content .bg_bimestres .bimestres .resumo_bimestre .row .label {
+#controle_aula_content .bg_bimestres .bimestres .resumo_bimestre .row .label {
   width: 100%;
   flex-grow: 1;
   font-size: 14px;
 }
-#aluno_content .bg_bimestres .bimestres .resumo_bimestre .row span.values {
+#controle_aula_content .bg_bimestres .bimestres .resumo_bimestre .row span.values {
   font-weight: bold;
 }
-#aluno_content .bg_bimestres .bimestres .resumo_bimestre .feedback_bimestral {
+#controle_aula_content .bg_bimestres .bimestres .resumo_bimestre .feedback_bimestral {
   padding: 10px;
   padding-top: 20px;
   margin-top: 0px;
@@ -1395,16 +1402,16 @@ nav.nav_cursos_aluno ul li .active {
   justify-content: space-between;
   background: #fafafa;
 }
-#aluno_content .bg_bimestres .bimestres .resumo_bimestre .feedback_bimestral p {
+#controle_aula_content .bg_bimestres .bimestres .resumo_bimestre .feedback_bimestral p {
   padding: 5px;
   flex-grow: 1;
 }
-#aluno_content .bg_bimestres .bimestres .resumo_bimestre .feedback_bimestral .feedback_value {
+#controle_aula_content .bg_bimestres .bimestres .resumo_bimestre .feedback_bimestral .feedback_value {
   min-height: 30px;
   border: 1px solid #999;
   box-shadow: 0px 0px 0px;
 }
-#aluno_content .bg_bimestres .bimestres .resumo_bimestre .feedback_bimestral .btn_add_feedback_bimestral {
+#controle_aula_content .bg_bimestres .bimestres .resumo_bimestre .feedback_bimestral .btn_add_feedback_bimestral {
   max-height: 35px;
   border: 1px solid #245da7;
   padding: 5px 10px;
@@ -1415,10 +1422,10 @@ nav.nav_cursos_aluno ul li .active {
   margin: 10px 5px;
   float: right;
 }
-#aluno_content .bg_bimestres .bimestres .resumo_bimestre .feedback_bimestral .btn_add_feedback_bimestral:hover {
+#controle_aula_content .bg_bimestres .bimestres .resumo_bimestre .feedback_bimestral .btn_add_feedback_bimestral:hover {
   background: #f6f6e0;
 }
-#aluno_content .bg_bimestres .bimestres h3 {
+#controle_aula_content .bg_bimestres .bimestres h3 {
   position: absolute;
   top: 10px;
   text-transform: uppercase;
@@ -1428,7 +1435,7 @@ nav.nav_cursos_aluno ul li .active {
   font-size: 18px;
   padding: 10px;
 }
-#aluno_content .bg_bimestres .bimestres .columns {
+#controle_aula_content .bg_bimestres .bimestres .columns {
   width: 24%;
   min-width: 200px;
   flex-grow: 1;
@@ -1437,24 +1444,24 @@ nav.nav_cursos_aluno ul li .active {
   padding-bottom: 15px;
   margin-top: 1px;
 }
-#aluno_content .bg_bimestres .bimestres .column_reposicao {
+#controle_aula_content .bg_bimestres .bimestres .column_reposicao {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
-#aluno_content .bg_bimestres .bimestres .column_pontos_extras {
+#controle_aula_content .bg_bimestres .bimestres .column_pontos_extras {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   background: #f4fade;
 }
-#aluno_content .bg_bimestres .bimestres .column_pontos_extras .aulas {
+#controle_aula_content .bg_bimestres .bimestres .column_pontos_extras .aulas {
   width: auto;
   flex-grow: 1;
   flex-shrink: 1;
   max-width: 250px;
 }
-#aluno_content .bg_bimestres .bimestres .aulas {
+#controle_aula_content .bg_bimestres .bimestres .aulas {
   position: relative;
   margin: 10px 20px;
   width: auto;
@@ -1468,65 +1475,65 @@ nav.nav_cursos_aluno ul li .active {
   font-size: 13px;
   padding: 5px 10px 10px 10px;
 }
-#aluno_content .bg_bimestres .bimestres .aulas .status {
+#controle_aula_content .bg_bimestres .bimestres .aulas .status {
   text-transform: capitalize;
 }
-#aluno_content .bg_bimestres .bimestres .aulas .aula_detalhes {
+#controle_aula_content .bg_bimestres .bimestres .aulas .aula_detalhes {
   margin-top: 10px;
   border: 1px solid #999;
   overflow-y: scroll;
   height: 145px;
   padding: 5px;
 }
-#aluno_content .bg_bimestres .bimestres .aulas .aula_numero {
+#controle_aula_content .bg_bimestres .bimestres .aulas .aula_numero {
   text-transform: capitalize;
   color: #122e53;
 }
-#aluno_content .bg_bimestres .bimestres .aulas .aula_data {
+#controle_aula_content .bg_bimestres .bimestres .aulas .aula_data {
   padding: 5px 0px;
 }
-#aluno_content .bg_bimestres .bimestres .aulas .aula_data svg {
+#controle_aula_content .bg_bimestres .bimestres .aulas .aula_data svg {
   max-height: 14px;
   margin-bottom: -2px;
   color: #444;
 }
-#aluno_content .bg_bimestres .bimestres .aula_concluida {
+#controle_aula_content .bg_bimestres .bimestres .aula_concluida {
   background: #fff;
 }
-#aluno_content .bg_bimestres .bimestres .aula_falta {
+#controle_aula_content .bg_bimestres .bimestres .aula_falta {
   background: #fee;
   border-color: #ff8888;
 }
-#aluno_content .bg_bimestres .bimestres .aula_remarcada {
+#controle_aula_content .bg_bimestres .bimestres .aula_remarcada {
   background: #ddd;
   border-color: #919191;
 }
-#aluno_content .bg_bimestres .bimestres [data-aula_categoria=reposição] {
+#controle_aula_content .bg_bimestres .bimestres [data-aula_categoria=reposição] {
   background: #e7e2f4 !important;
   border: 1px solid #8971cc;
   width: auto;
   flex-grow: 1;
   flex-shrink: 1;
 }
-#aluno_content .bg_bimestres .bimestres [data-aula_categoria="ponto extra"] {
+#controle_aula_content .bg_bimestres .bimestres [data-aula_categoria="ponto extra"] {
   background: #e6f4b1 !important;
   border: 1px solid #666;
   height: 30px;
   max-height: 180px !important;
 }
-#aluno_content .bg_bimestres .bimestres [data-aula_categoria="ponto extra"] .aula_detalhes {
+#controle_aula_content .bg_bimestres .bimestres [data-aula_categoria="ponto extra"] .aula_detalhes {
   height: 110px;
 }
-#aluno_content .bg_bimestres .bimestres [data-aula_categoria=prova] {
+#controle_aula_content .bg_bimestres .bimestres [data-aula_categoria=prova] {
   background: #d4e3f6 !important;
 }
-#aluno_content .bg_bimestres .bimestres [data-aula_categoria=prova] .aula_detalhes {
+#controle_aula_content .bg_bimestres .bimestres [data-aula_categoria=prova] .aula_detalhes {
   height: 110px;
 }
-#aluno_content .bg_bimestres .bimestres .open_aula {
+#controle_aula_content .bg_bimestres .bimestres .open_aula {
   height: 260px;
 }
-#aluno_content .bg_bimestres .bimestres .btn_deletar_aula {
+#controle_aula_content .bg_bimestres .bimestres .btn_deletar_aula {
   z-index: 2;
   cursor: pointer;
   float: left;
@@ -1535,27 +1542,27 @@ nav.nav_cursos_aluno ul li .active {
   font-size: 12px;
   color: #444;
 }
-#aluno_content .bg_bimestres .bimestres .btn_deletar_aula:hover {
+#controle_aula_content .bg_bimestres .bimestres .btn_deletar_aula:hover {
   background: #fee;
   color: #db1e1e;
 }
-#aluno_content .bg_bimestres .bimestres .btn_deletar_aula svg {
+#controle_aula_content .bg_bimestres .bimestres .btn_deletar_aula svg {
   z-index: 0;
 }
-#aluno_content .bg_bimestres .bimestres .btn_edit_aula {
+#controle_aula_content .bg_bimestres .bimestres .btn_edit_aula {
   float: right;
   padding: 3px;
   margin-top: 5px;
   cursor: pointer;
 }
-#aluno_content .bg_bimestres .bimestres .btn_edit_aula:hover {
+#controle_aula_content .bg_bimestres .bimestres .btn_edit_aula:hover {
   background: #fafafa;
   color: #245da7;
 }
-#aluno_content .bg_bimestres .bimestres .btn_edit_aula:active {
+#controle_aula_content .bg_bimestres .bimestres .btn_edit_aula:active {
   color: #1b467d;
 }
-#aluno_content .bg_bimestres .bimestres .btn_open_close_aulas {
+#controle_aula_content .bg_bimestres .bimestres .btn_open_close_aulas {
   cursor: pointer;
   position: absolute;
   right: 0px;
@@ -1570,11 +1577,11 @@ nav.nav_cursos_aluno ul li .active {
   font-stretch: expanded;
   border-radius: 0px 0px 0px 3px;
 }
-#aluno_content .bg_bimestres .bimestres .btn_open_close_aulas svg {
+#controle_aula_content .bg_bimestres .bimestres .btn_open_close_aulas svg {
   margin-top: 1px;
   color: #fff;
 }
-#aluno_content .bg_bimestres .bimestres .btn_open_close_aulas:active {
+#controle_aula_content .bg_bimestres .bimestres .btn_open_close_aulas:active {
   background: #4182d6;
   user-select: none;
 }
@@ -2492,6 +2499,10 @@ option[disabled] {
   width: 350px;
   background: #245da7 !important;
   color: #fff !important;
+}
+
+#bg_view_table_alunos {
+  position: relative;
 }
 
 #view_table_alunos .td_cursos {

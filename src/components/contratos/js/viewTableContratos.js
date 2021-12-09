@@ -1,10 +1,12 @@
 
 import {firebaseApp} from "../../dbConfig/firebaseApp.js";
-const {getFirestore, getDocs, collection, deleteDoc, doc} = require("firebase/firestore") 
+const {getFirestore, getDocs, collection, deleteDoc, doc, setDoc} = require("firebase/firestore") 
 const db = getFirestore(firebaseApp);
+const {getAuth} = require("firebase/auth");
+const auth = getAuth(firebaseApp);
 
 let $contratosLista = {};
-import { insertElementHTML, confirmBoxDelete} from "../../js_common/commonFunctions.js";
+import { insertElementHTML, confirmBoxDelete, readableRandomStringMaker} from "../../js_common/commonFunctions.js";
     function getContratosList(){
         let contratosList = getDocs(collection(db, 'contratos'));
         return contratosList;
@@ -41,14 +43,20 @@ import { insertElementHTML, confirmBoxDelete} from "../../js_common/commonFuncti
             confirmBoxDelete("#bg_contrato_content", msg, ()=>{
                 submitDeleteContrato(idContrato)
             })
-       
-             
           })
         })
     }
 
 function  submitDeleteContrato(idContrato){
     deleteDoc(doc(db, 'contratos', idContrato))
+    .then(()=>{
+        let data = new Date();
+        let id =  data.getFullYear()+''+(data.getMonth()+1)+''+data.getDate()+''+readableRandomStringMaker(5);
+      setDoc(doc(db, "log", 'log_contratos'),{
+        [id]: `Contrato ${idContrato} deletado em ${new Date()} por ${auth.currentUser.email}`
+        },
+        { merge: true})
+    })
     .then(()=>{
         insertViewTableContratosHTML()
     })

@@ -27,12 +27,12 @@ return alunoListRA;
 
 }
 
-  export function getAlunoHistCursosDB(RA) {
-let alunoHistorico = getDocs(collection(db, 'alunato', RA, 'cursos'));
-if(alunoHistorico === 'undefined'){
-  alunoHistorico = []
-}
-return alunoHistorico;
+export function getAlunoHistCursosDB(RA) {
+  let alunoHistorico = getDocs(collection(db, 'alunato', RA, 'cursos'));
+  if(alunoHistorico === 'undefined'){
+    alunoHistorico = []
   }
+  return alunoHistorico;
+}
   
 
