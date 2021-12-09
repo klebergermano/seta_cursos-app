@@ -349,7 +349,7 @@ template {
   display: none;
 }
 
-.btn, #fieldset_resp div #btn_marcar_resp_aluno, .btn-secondary, .btn-primary, .forms_fixed input[type=submit], #form_add_aluno input[type=submit], #controle_aula_content .btn_add_curso, .form_flex input[type=submit], .form_flex_absolute input[type=submit], .form_flex_static input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], .forms_controle_aula input[type=submit], #form_info_aluno input[type=submit], #form_delete_curso input[type=submit], #form_add_curso input[type=submit], .btn-default-delete, #form_add_saida_avulsa fieldset .div_submit input[type=submit], #controle_aula_content .bg_info_delete_curso .btn_deletar_curso, .btn-default, form.forms_fluxo_caixa .div_submit input[type=submit], .sub_menu_fluxo_caixa ul li a, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], .forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox, #bg_div_id_contrato #label_id_automatico_contrato, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo, #controle_aula_content .btn_add, menu.submenu_page ul li a {
+.btn, #fieldset_resp div #btn_marcar_resp_aluno, .btn-secondary, .btn-primary, .forms_fixed input[type=submit], #form_add_aluno input[type=submit], #controle_aula_content .btn_add_curso, .form_flex_absolute input[type=submit], .form_flex_static input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], #form_delete_curso input[type=submit], #form_add_curso input[type=submit], .forms_controle_aula input[type=submit], #form_info_aluno input[type=submit], .btn-default-delete, #form_add_saida_avulsa fieldset .div_submit input[type=submit], #controle_aula_content .bg_info_delete_curso .btn_deletar_curso, .btn-default, form.forms_fluxo_caixa .div_submit input[type=submit], .sub_menu_fluxo_caixa ul li a, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], .forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox, #bg_div_id_contrato #label_id_automatico_contrato, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo, #controle_aula_content .btn_add, menu.submenu_page ul li a {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -359,7 +359,7 @@ template {
   border: 0px;
   cursor: pointer;
 }
-.btn svg, #fieldset_resp div #btn_marcar_resp_aluno svg, .btn-secondary svg, .btn-primary svg, .forms_fixed input[type=submit] svg, #form_add_aluno input[type=submit] svg, #controle_aula_content .btn_add_curso svg, .form_flex input[type=submit] svg, .form_flex_absolute input[type=submit] svg, .form_flex_static input[type=submit] svg, #form_config_perm input[type=submit] svg, #form_reauth_user input[type=submit] svg, #form_add_user input[type=submit] svg, .forms_controle_aula input[type=submit] svg, #form_info_aluno input[type=submit] svg, #form_delete_curso input[type=submit] svg, #form_add_curso input[type=submit] svg, .btn-default-delete svg, #form_add_saida_avulsa fieldset .div_submit input[type=submit] svg, #controle_aula_content .bg_info_delete_curso .btn_deletar_curso svg, .btn-default svg, form.forms_fluxo_caixa .div_submit input[type=submit] svg, .sub_menu_fluxo_caixa ul li a svg, .nav_forms ul li a svg, #page_login #login_content #form_login input[type=submit] svg, .forms_fixed .label_btn_checkbox svg, #form_add_aluno .label_btn_checkbox svg, #bg_div_id_contrato #label_id_automatico_contrato svg, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo svg, #controle_aula_content .btn_add svg, menu.submenu_page ul li a svg {
+.btn svg, #fieldset_resp div #btn_marcar_resp_aluno svg, .btn-secondary svg, .btn-primary svg, .forms_fixed input[type=submit] svg, #form_add_aluno input[type=submit] svg, #controle_aula_content .btn_add_curso svg, .form_flex_absolute input[type=submit] svg, .form_flex_static input[type=submit] svg, #form_config_perm input[type=submit] svg, #form_reauth_user input[type=submit] svg, #form_add_user input[type=submit] svg, #form_delete_curso input[type=submit] svg, #form_add_curso input[type=submit] svg, .forms_controle_aula input[type=submit] svg, #form_info_aluno input[type=submit] svg, .btn-default-delete svg, #form_add_saida_avulsa fieldset .div_submit input[type=submit] svg, #controle_aula_content .bg_info_delete_curso .btn_deletar_curso svg, .btn-default svg, form.forms_fluxo_caixa .div_submit input[type=submit] svg, .sub_menu_fluxo_caixa ul li a svg, .nav_forms ul li a svg, #page_login #login_content #form_login input[type=submit] svg, .forms_fixed .label_btn_checkbox svg, #form_add_aluno .label_btn_checkbox svg, #bg_div_id_contrato #label_id_automatico_contrato svg, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo svg, #controle_aula_content .btn_add svg, menu.submenu_page ul li a svg {
   max-width: 100px;
   max-height: 100px;
   height: auto;
@@ -395,14 +395,14 @@ template {
   background: #fc4646;
 }
 
-.btn-primary, .forms_fixed input[type=submit], #form_add_aluno input[type=submit], #controle_aula_content .btn_add_curso, .form_flex input[type=submit], .form_flex_absolute input[type=submit], .form_flex_static input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], .forms_controle_aula input[type=submit], #form_info_aluno input[type=submit], #form_delete_curso input[type=submit], #form_add_curso input[type=submit] {
+.btn-primary, .forms_fixed input[type=submit], #form_add_aluno input[type=submit], #controle_aula_content .btn_add_curso, .form_flex_absolute input[type=submit], .form_flex_static input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], #form_delete_curso input[type=submit], #form_add_curso input[type=submit], .forms_controle_aula input[type=submit], #form_info_aluno input[type=submit] {
   background: #245da7;
   color: #fafafa;
 }
-.btn-primary:hover, .forms_fixed input[type=submit]:hover, #form_add_aluno input[type=submit]:hover, #controle_aula_content .btn_add_curso:hover, .form_flex input[type=submit]:hover, .form_flex_absolute input[type=submit]:hover, .form_flex_static input[type=submit]:hover, #form_config_perm input[type=submit]:hover, #form_reauth_user input[type=submit]:hover, #form_add_user input[type=submit]:hover, .forms_controle_aula input[type=submit]:hover, #form_info_aluno input[type=submit]:hover, #form_delete_curso input[type=submit]:hover, #form_add_curso input[type=submit]:hover {
+.btn-primary:hover, .forms_fixed input[type=submit]:hover, #form_add_aluno input[type=submit]:hover, #controle_aula_content .btn_add_curso:hover, .form_flex_absolute input[type=submit]:hover, .form_flex_static input[type=submit]:hover, #form_config_perm input[type=submit]:hover, #form_reauth_user input[type=submit]:hover, #form_add_user input[type=submit]:hover, #form_delete_curso input[type=submit]:hover, #form_add_curso input[type=submit]:hover, .forms_controle_aula input[type=submit]:hover, #form_info_aluno input[type=submit]:hover {
   background: #2969bc;
 }
-.btn-primary:active, .forms_fixed input[type=submit]:active, #form_add_aluno input[type=submit]:active, #controle_aula_content .btn_add_curso:active, .form_flex input[type=submit]:active, .form_flex_absolute input[type=submit]:active, .form_flex_static input[type=submit]:active, #form_config_perm input[type=submit]:active, #form_reauth_user input[type=submit]:active, #form_add_user input[type=submit]:active, .forms_controle_aula input[type=submit]:active, #form_info_aluno input[type=submit]:active, #form_delete_curso input[type=submit]:active, #form_add_curso input[type=submit]:active {
+.btn-primary:active, .forms_fixed input[type=submit]:active, #form_add_aluno input[type=submit]:active, #controle_aula_content .btn_add_curso:active, .form_flex_absolute input[type=submit]:active, .form_flex_static input[type=submit]:active, #form_config_perm input[type=submit]:active, #form_reauth_user input[type=submit]:active, #form_add_user input[type=submit]:active, #form_delete_curso input[type=submit]:active, #form_add_curso input[type=submit]:active, .forms_controle_aula input[type=submit]:active, #form_info_aluno input[type=submit]:active {
   background: #1f5192;
   box-shadow: inset 0px 1px 3px #122e53;
 }
@@ -433,79 +433,91 @@ inputs, .input-primary {
   color: #444;
 }
 
-.forms, .form_flex_static, #form_info_aluno, .form_flex_absolute, #form_delete_curso, #form_add_curso, .form_flex, #form_config_perm, #form_reauth_user, #form_add_user, .forms_controle_aula {
+.forms, .form_flex_static, #form_info_aluno, .form_flex_absolute, #form_config_perm, #form_reauth_user, #form_add_user, #form_delete_curso, #form_add_curso, .forms_controle_aula {
   border: 1px solid #999;
-  position: fixed;
   right: 0;
   left: 0;
   top: 25%;
   z-index: 5;
   box-shadow: 0 1px 2px #666;
 }
-.forms .btn_close_form, .form_flex_static .btn_close_form, #form_info_aluno .btn_close_form, .form_flex_absolute .btn_close_form, #form_delete_curso .btn_close_form, #form_add_curso .btn_close_form, .form_flex .btn_close_form, #form_config_perm .btn_close_form, #form_reauth_user .btn_close_form, #form_add_user .btn_close_form, .forms_controle_aula .btn_close_form {
+.forms .btn_close_form, .form_flex_static .btn_close_form, #form_info_aluno .btn_close_form, .form_flex_absolute .btn_close_form, #form_config_perm .btn_close_form, #form_reauth_user .btn_close_form, #form_add_user .btn_close_form, #form_delete_curso .btn_close_form, #form_add_curso .btn_close_form, .forms_controle_aula .btn_close_form {
   right: 0;
   top: 0;
   padding: 5px 10px;
   position: absolute;
   cursor: pointer;
 }
-.forms .btn_close_form:hover, .form_flex_static .btn_close_form:hover, #form_info_aluno .btn_close_form:hover, .form_flex_absolute .btn_close_form:hover, #form_delete_curso .btn_close_form:hover, #form_add_curso .btn_close_form:hover, .form_flex .btn_close_form:hover, #form_config_perm .btn_close_form:hover, #form_reauth_user .btn_close_form:hover, #form_add_user .btn_close_form:hover, .forms_controle_aula .btn_close_form:hover {
+.forms .btn_close_form:hover, .form_flex_static .btn_close_form:hover, #form_info_aluno .btn_close_form:hover, .form_flex_absolute .btn_close_form:hover, #form_config_perm .btn_close_form:hover, #form_reauth_user .btn_close_form:hover, #form_add_user .btn_close_form:hover, #form_delete_curso .btn_close_form:hover, #form_add_curso .btn_close_form:hover, .forms_controle_aula .btn_close_form:hover {
   background: #dd4f4f;
   color: #fff;
 }
-.forms input:focus, .form_flex_static input:focus, #form_info_aluno input:focus, .form_flex_absolute input:focus, #form_delete_curso input:focus, #form_add_curso input:focus, .form_flex input:focus, #form_config_perm input:focus, #form_reauth_user input:focus, #form_add_user input:focus, .forms_controle_aula input:focus,
+.forms input:focus, .form_flex_static input:focus, #form_info_aluno input:focus, .form_flex_absolute input:focus, #form_config_perm input:focus, #form_reauth_user input:focus, #form_add_user input:focus, #form_delete_curso input:focus, #form_add_curso input:focus, .forms_controle_aula input:focus,
 .forms textarea:focus,
 .form_flex_static textarea:focus,
 #form_info_aluno textarea:focus,
 .form_flex_absolute textarea:focus,
-#form_delete_curso textarea:focus,
-#form_add_curso textarea:focus,
-.form_flex textarea:focus,
 #form_config_perm textarea:focus,
 #form_reauth_user textarea:focus,
 #form_add_user textarea:focus,
+#form_delete_curso textarea:focus,
+#form_add_curso textarea:focus,
 .forms_controle_aula textarea:focus,
 .forms select:focus,
 .form_flex_static select:focus,
 #form_info_aluno select:focus,
 .form_flex_absolute select:focus,
-#form_delete_curso select:focus,
-#form_add_curso select:focus,
-.form_flex select:focus,
 #form_config_perm select:focus,
 #form_reauth_user select:focus,
 #form_add_user select:focus,
+#form_delete_curso select:focus,
+#form_add_curso select:focus,
 .forms_controle_aula select:focus {
   outline: 2px solid #5690db;
   outline-offset: -2px;
 }
 
-.form_flex, #form_config_perm, #form_reauth_user, #form_add_user, .forms_controle_aula {
+.bg_form_block_screen {
+  width: 100%;
+  min-height: 100vh;
+  position: fixed;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #11111199;
+  right: 0;
+  left: 0;
+  top: 0;
+  z-index: 5;
+}
+
+.form_flex_absolute, #form_config_perm, #form_reauth_user, #form_add_user, #form_delete_curso, #form_add_curso, .forms_controle_aula {
+  display: flex;
+  position: relative;
   flex-wrap: wrap;
   border-radius: 3px;
   border-color: #999;
   padding: 40px;
   max-width: 600px;
-  margin: 20px auto;
   height: auto;
-  background: #ffc;
+  background: #fff;
   transition: all 2s;
+  z-index: 7;
 }
-.form_flex h3, #form_config_perm h3, #form_reauth_user h3, #form_add_user h3, .forms_controle_aula h3 {
+.form_flex_absolute h3, #form_config_perm h3, #form_reauth_user h3, #form_add_user h3, #form_delete_curso h3, #form_add_curso h3, .forms_controle_aula h3 {
   text-transform: uppercase;
   flex-basis: 100%;
   text-align: center;
   margin-bottom: 30px;
   margin-top: -5px;
 }
-.form_flex h3 svg, #form_config_perm h3 svg, #form_reauth_user h3 svg, #form_add_user h3 svg, .forms_controle_aula h3 svg {
+.form_flex_absolute h3 svg, #form_config_perm h3 svg, #form_reauth_user h3 svg, #form_add_user h3 svg, #form_delete_curso h3 svg, #form_add_curso h3 svg, .forms_controle_aula h3 svg {
   margin-bottom: -5px;
   margin-right: 2px;
   height: 25px;
   width: auto;
 }
-.form_flex div, #form_config_perm div, #form_reauth_user div, #form_add_user div, .forms_controle_aula div {
+.form_flex_absolute div, #form_config_perm div, #form_reauth_user div, #form_add_user div, #form_delete_curso div, #form_add_curso div, .forms_controle_aula div {
   display: flex;
   padding: 5px;
   flex-grow: 1;
@@ -515,18 +527,20 @@ inputs, .input-primary {
   margin-top: 5px;
   justify-content: center;
 }
-.form_flex div label, #form_config_perm div label, #form_reauth_user div label, #form_add_user div label, .forms_controle_aula div label {
+.form_flex_absolute div label, #form_config_perm div label, #form_reauth_user div label, #form_add_user div label, #form_delete_curso div label, #form_add_curso div label, .forms_controle_aula div label {
   display: flex;
   align-items: center;
   min-width: 85px;
   background: #f0f0f0;
   padding: 5px 10px;
 }
-.form_flex div input, #form_config_perm div input, #form_reauth_user div input, #form_add_user div input, .forms_controle_aula div input,
-.form_flex div textarea,
+.form_flex_absolute div input, #form_config_perm div input, #form_reauth_user div input, #form_add_user div input, #form_delete_curso div input, #form_add_curso div input, .forms_controle_aula div input,
+.form_flex_absolute div textarea,
 #form_config_perm div textarea,
 #form_reauth_user div textarea,
 #form_add_user div textarea,
+#form_delete_curso div textarea,
+#form_add_curso div textarea,
 .forms_controle_aula div textarea {
   width: auto;
   max-width: 500px;
@@ -538,98 +552,14 @@ inputs, .input-primary {
   padding: 5px;
   color: #444;
 }
-.form_flex select, #form_config_perm select, #form_reauth_user select, #form_add_user select, .forms_controle_aula select {
+.form_flex_absolute select, #form_config_perm select, #form_reauth_user select, #form_add_user select, #form_delete_curso select, #form_add_curso select, .forms_controle_aula select {
   display: block;
   flex-grow: 1;
 }
-.form_flex .div_submit, #form_config_perm .div_submit, #form_reauth_user .div_submit, #form_add_user .div_submit, .forms_controle_aula .div_submit {
+.form_flex_absolute .div_submit, #form_config_perm .div_submit, #form_reauth_user .div_submit, #form_add_user .div_submit, #form_delete_curso .div_submit, #form_add_curso .div_submit, .forms_controle_aula .div_submit {
   width: 100%;
 }
-.form_flex input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], .forms_controle_aula input[type=submit] {
-  display: block;
-  clear: both;
-  max-width: 300px;
-  min-width: 50%;
-  min-height: 45px;
-  margin: 40px auto auto;
-}
-
-.bg_form_block_screen {
-  width: 100%;
-  min-height: 100vh;
-  position: fixed;
-  background-color: #11111199;
-  right: 0;
-  left: 0;
-  top: 0;
-  z-index: 5;
-}
-
-.form_flex_absolute, #form_delete_curso, #form_add_curso {
-  display: flex;
-  flex-wrap: wrap;
-  border-radius: 3px;
-  border-color: #999;
-  padding: 40px;
-  max-width: 600px;
-  margin: 20px auto;
-  height: auto;
-  background: #fff;
-  transition: all 2s;
-  z-index: 7;
-}
-.form_flex_absolute h3, #form_delete_curso h3, #form_add_curso h3 {
-  text-transform: uppercase;
-  flex-basis: 100%;
-  text-align: center;
-  margin-bottom: 30px;
-  margin-top: -5px;
-}
-.form_flex_absolute h3 svg, #form_delete_curso h3 svg, #form_add_curso h3 svg {
-  margin-bottom: -5px;
-  margin-right: 2px;
-  height: 25px;
-  width: auto;
-}
-.form_flex_absolute div, #form_delete_curso div, #form_add_curso div {
-  display: flex;
-  padding: 5px;
-  flex-grow: 1;
-  max-width: 100%;
-  min-height: 45px;
-  padding: 5px 0;
-  margin-top: 5px;
-  justify-content: center;
-}
-.form_flex_absolute div label, #form_delete_curso div label, #form_add_curso div label {
-  display: flex;
-  align-items: center;
-  min-width: 85px;
-  background: #f0f0f0;
-  padding: 5px 10px;
-}
-.form_flex_absolute div input, #form_delete_curso div input, #form_add_curso div input,
-.form_flex_absolute div textarea,
-#form_delete_curso div textarea,
-#form_add_curso div textarea {
-  width: auto;
-  max-width: 500px;
-  min-width: 100px;
-  flex-shrink: 1;
-  flex-grow: 1;
-  display: block;
-  border: 1px solid #999;
-  padding: 5px;
-  color: #444;
-}
-.form_flex_absolute select, #form_delete_curso select, #form_add_curso select {
-  display: block;
-  flex-grow: 1;
-}
-.form_flex_absolute .div_submit, #form_delete_curso .div_submit, #form_add_curso .div_submit {
-  width: 100%;
-}
-.form_flex_absolute input[type=submit], #form_delete_curso input[type=submit], #form_add_curso input[type=submit] {
+.form_flex_absolute input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], #form_delete_curso input[type=submit], #form_add_curso input[type=submit], .forms_controle_aula input[type=submit] {
   display: block;
   clear: both;
   max-width: 300px;
