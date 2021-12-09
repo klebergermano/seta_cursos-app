@@ -43,22 +43,13 @@ export async function onload(){
  displaySpinnerLoad("#page_content")
   insertOptionsSelectAlunos()
   .then((RA)=>{
-    getAlunoCursosDB(RA)
-    .then((alunoCursosDB)=>{
-      insertAlunoContent(alunoCursosDB, RA);
-    })
-    return RA;
-  }).then((RA)=>{
-    getSnapshotAlunoCursosDB(RA, ()=>{
-      insertAlunoContent;
-    })
+    console.log(RA);
+    getSnapshotAlunoCursosDB(RA, insertAlunoContent)
   });
   document.querySelector('#main_select_aluno').addEventListener('change', (e)=>{
     let RA = e.target.value;
-    console.log(RA);
-    getSnapshotAlunoCursosDB(RA, ()=>{
-     insertAlunoContent;
-   })
+    getSnapshotAlunoCursosDB(RA, insertAlunoContent)
+
    });
 }
 

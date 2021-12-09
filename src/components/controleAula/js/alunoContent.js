@@ -30,7 +30,7 @@ export function getSnapshotAlunoCursosDB(RA, callback) {
   onSnapshot(
     collection(db, 'alunato', RA, 'cursos'), 
     (snapshot)=>{
-    callback(snapshot.docChanges(), RA, true);
+    callback(RA, snapshot.docChanges());
   });
 }
 
@@ -48,87 +48,27 @@ function getRAFromMainSelectAluno(){
 
 //------------------------------------------------------------------------
 
-export function insertAlunoContent(alunoCursosDB, RA, snapshot= false){
-  if(snapshot){
-    console.log(alunoCursosDB.data());
+export function insertAlunoContent(RA, alunoCursosDB){
+  document.querySelector("#controle_aula_content").style.opacity = '0';
 
+  if(alunoCursosDB.length !== 0){
+    let alunoContentHTML = createAlunoContentHTML(alunoCursosDB, RA);
+    document.querySelector("#controle_aula_content").innerHTML = alunoContentHTML;
+    let nomeCurso = document.querySelector('.bg_curso').dataset.curso;
+    navCursosAluno.insertNavCursosInBGCursos(RA, nomeCurso);
   }else{
-
+     document.querySelector("#controle_aula_content").innerHTML = alunoSemCursoContent(); 
   }
-      let nomeCurso = alunoCursosDB.docs[0]?.data().curso_info?.nome;
-      if(nomeCurso){
-        let alunoContentHTML = createAlunoContentHTML(alunoCursosDB, RA);
-          document.querySelector("#controle_aula_content").innerHTML = alunoContentHTML;
-          navCursosAluno.insertNavCursosInBGCursos(RA, nomeCurso);
-      }else{
-       document.querySelector("#controle_aula_content").innerHTML = alunoSemCursoContent(); 
-      }
-      evenstContentAula()
-      let spiner = document.querySelector('.spinner');
-      if(spiner){
-       document.querySelector('#page_content').removeChild(spiner);
-      }
-      document.querySelector("#controle_aula").style.opacity="1";
+  evenstContentAula()
+
+  let spiner = document.querySelector('.spinner');
+  if(spiner){
+   document.querySelector('#page_content').removeChild(spiner);
+  }
+  document.querySelector("#controle_aula_content").style.opacity = '1';
+
 }
 
-
-/*
-
-export function insertAlunoContent(RA, alunoSnapshot){
- 
-  getAlunoHistCursosDB(RA)
-    .then((alunoCursosDB) => {
-      let nomeCurso = alunoCursosDB.docs[0]?.data().curso_info?.nome;
-      if(nomeCurso){
-        let alunoContentHTML = createAlunoContentHTML(alunoCursosDB, RA);
-          document.querySelector("#controle_aula_content").innerHTML = alunoContentHTML;
-          navCursosAluno.insertNavCursosInBGCursos(RA, nomeCurso);
-      }else{
-       document.querySelector("#controle_aula_content").innerHTML = alunoSemCursoContent(); 
-      }
-    }).then(()=>{
-      evenstContentAula()
-    }).then(()=>{
-      let spiner = document.querySelector('.spinner');
-      if(spiner){
-       document.querySelector('#page_content').removeChild(spiner);
-      }
-    }).then(()=>{
-      document.querySelector("#controle_aula").style.opacity="1";
-    })
-    .catch((err) => console.log('Ocorreu um erro ao inserir o conteúdo do aluno:', err));
-}
-
-*/
-/*
- function insertAlunoContentXXXXX(RA, snapshotChange){
-  let nomeCurso = snapshotChange[0]?.doc.data()?.curso_info?.nome;
-  getAlunoHistCursosDB(RA)
-    .then((alunoCursosDB) => {
-      if(snapshotChange.length !== 0 && nomeCurso){
-        let alunoContentHTML = createAlunoContentHTML(alunoCursosDB, RA);
-        document.querySelector("#controle_aula_content").innerHTML = alunoContentHTML;
-        navCursosAluno.insertNavCursosInBGCursos(RA, nomeCurso);
-      }else{
-        document.querySelector("#controle_aula_content").innerHTML = alunoSemCursoContent(); 
-      }
-    }).then(()=>{
-      evenstContentAula()
-    }).then(()=>{
-      let spiner = document.querySelector('.spinner');
-      if(spiner){
-        document.querySelector('#page_content').removeChild(spiner);
-      }
-    }).then(()=>{
-      document.querySelector("#controle_aula").style.opacity="1";
-    }).catch((err) => console.log('Ocorreu um erro ao inserir o conteúdo do aluno:', err));
-  }
-  function getRAfromMainSelectAluno(){
-    let select = document.querySelector("#main_select_aluno");
-    let RA = select.options[select.selectedIndex].value;
-    return RA;
-  }
-*/
 
 function evenstContentAula(){
   eventsAulas()

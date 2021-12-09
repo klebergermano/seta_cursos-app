@@ -2,9 +2,12 @@
 @use './form_add_aula.scss/' as *;
 
 
+.fadeOut{
+  opacity: 1;
+}
 #controle_aula {
   position:relative;
-  opacity: 0;
+  opacity: 1;
   overflow: hidden;
   transition: all 0.5s;
 

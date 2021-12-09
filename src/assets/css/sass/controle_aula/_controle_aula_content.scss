@@ -39,6 +39,9 @@ nav.nav_cursos_aluno {
     border:$border-set-decorative;
     overflow: hidden;
     position: relative;
+    min-height: 500px;
+    opacity: 0;
+    transition: all 1s;
     .btn_add_curso {
         @extend .btn-primary;
         svg {

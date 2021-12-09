@@ -1118,9 +1118,13 @@ menu.submenu_page ul li a {
   flex-grow: 1;
 }
 
+.fadeOut {
+  opacity: 1;
+}
+
 #controle_aula {
   position: relative;
-  opacity: 0;
+  opacity: 1;
   overflow: hidden;
   transition: all 0.5s;
 }
@@ -1208,6 +1212,9 @@ nav.nav_cursos_aluno ul li .active {
   border: 1px solid #666;
   overflow: hidden;
   position: relative;
+  min-height: 500px;
+  opacity: 0;
+  transition: all 1s;
 }
 #controle_aula_content .btn_add_curso svg {
   max-width: 100px;
