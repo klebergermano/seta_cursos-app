@@ -479,6 +479,7 @@ function createHTMLProva(aulaDados, n_aula, n_bimestre) {
   return block;
 }
 function createHTMLAula(aulaDados, n_aula, n_bimestre) {
+  console.log('dataDB', aulaDados.data);
   //substitui espaços em branco pelo underscore e passa para minúsculas as letras
   let id_aula = commonFunc.stringToID(n_aula);
   //let id_bimestre = n_bimestre.replace(/\s+/g, "_").toLowerCase();

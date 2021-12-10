@@ -61,9 +61,7 @@ app.on('activate', () => {
 //-----------------------------------------TALÕES PDF ------------------------//
 //-------------------------------------------------------------------------------------//
 
-
 function createPDFTalao(talaoInfo) {
-
   var options = { 
     "format": "A4",
     "base": "file:///D:/#KG/seta_cursos-app/src/assets/"
@@ -82,13 +80,10 @@ function createPDFTalao(talaoInfo) {
 }
 
 ipcMain.handle("createTalaoPDF", async (event, talaoInfo) => {
- 
-
-
   let novoPDF = createPDFTalao(talaoInfo); // call the createPDF function
+
   novoPDF.then((pdf) => {
-    // Read the file
-    let filename = `talao.pdf`;
+   let filename = `talao-${talaoInfo[0].ra}-${talaoInfo[0].aluno}-${talaoInfo[0].curso}.pdf`;
     filename = filename.toUpperCase();
     let oldpath = `${__dirname}/talao.pdf`;
     let newpath = `${downloadPath}/${filename}`;
