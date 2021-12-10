@@ -16,8 +16,6 @@ export function setCurrentDate(idInput) {
 
 export function changeDateToDislayText(dateString){
 let newDate = new Date(dateString + ',00:00:00');
-console.log('nd', newDate);
-
 let day = newDate.getDate();
 let year = newDate.getFullYear();
 let month = (newDate.getMonth() +1);
