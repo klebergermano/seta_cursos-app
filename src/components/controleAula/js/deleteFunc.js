@@ -36,7 +36,9 @@ function getInfoDeleteAula(item){
     aulaInfoDelete.curso = bg_curso.dataset.curso;
     aulaInfoDelete.aula = aula.dataset.aula;
     aulaInfoDelete.bimestre = aula.dataset.bimestre;
-    commonFunc.confirmBoxDelete('#controle_aula', "Tem certeza que deseja deletar essa aula? <br/> <span style='color:#dd0000'>Essa ação não podera ser desfeita!</span>", ()=>{
+    commonFunc.confirmBoxDelete('#controle_aula',  `
+    Tem certeza que deseja deletar a <span style='text-transform: capitalize;'><b>${aula.dataset.aula}</b></span>
+    <br/>do <span style='text-transform: capitalize;'><b>${aula.dataset.bimestre}</b></span>? <br/> <span style='color:#dd0000'>Essa ação não podera ser desfeita!</span>`, ()=>{
      deleteDbAula(aulaInfoDelete)
     });
 }

@@ -29,7 +29,6 @@ function insertAuthEmailInput(){
 }
 
 function submitFormReauthUser(form){
-
     const user = auth.currentUser;
     // TODO(you): prompt the user to re-provide their sign-in credentials
     let userReauthInfo = {
@@ -41,10 +40,14 @@ let credentials = EmailAuthProvider.credential( userReauthInfo.email, userReauth
 
     reauthenticateWithCredential(user, credentials).then(() => {
       // User re-authenticated.
-     removeElement('#form_reauth_user');
-    
+      document.querySelector("#form_reauth_user").style.opacity = '0';
+      setTimeout(()=>{
+        removeElement('.bg_form_block_screen');
+      }, 300);
     }).then(()=>{
-        formAdduser.insertFormAddUser(userReauthInfo)
+        setTimeout(()=>{
+          formAdduser.insertFormAddUser(userReauthInfo)
+          }, 300);
     })
     .catch((error) => {
       // An error ocurred
