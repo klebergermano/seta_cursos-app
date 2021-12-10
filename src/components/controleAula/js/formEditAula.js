@@ -1,17 +1,16 @@
 import * as formAddAula from "./formAddAula.js";
-import * as commonFunc from "../../js_common/commonFunctions.js";
+import {insertElementHTML} from "../../js_common/commonFunctions.js";
 import * as dateFunc from "../../js_common/dateFunc.js";
 //TODO:-----------------------------EDIT Aulas------------------------------------
 export function insertFormEditAulaHTML(eventClick){
-  let form = commonFunc.insertElementHTML('#page_content',
+  let form = insertElementHTML('#page_content',
   './components/controleAula/formAddAula.html');
-
-  form.then((formRes)=>{
-    formAddAula.eventsFormAddAula(formRes);
+  form.then((bgformRes)=>{
+    console.log('formRes', bgformRes);
+    formAddAula.eventsFormAddAula(bgformRes);
     eventsFormEditAula(eventClick)
-    console.log(formRes.select_categoria.value)
-    if(formRes.select_categoria.value === 'prova'){
-      showInputsProva(formRes)
+    if(bgformRes.querySelector('#aula_categoria').value === 'prova'){
+      showInputsProva(bgformRes)
     }
   });
 }
@@ -76,20 +75,21 @@ function setCheckedStatusAula(form, aulaInfo){
     
     setCheckedStatusAula(formAddAula, aulaInfo)
 
-    let aulaCategoria = formAddAula.querySelector("#select_categoria");
+    let aulaCategoria = formAddAula.querySelector("#aula_categoria");
     aulaCategoria.value = aulaInfo.categoria;
     
-   formAddAula.querySelector("#nota_prova").value = aulaInfo.nota_prova;
-   formAddAula.querySelector("#numero_questoes").value = aulaInfo.numero_questoes;
-   formAddAula.querySelector("#obs_prova").value = aulaInfo.observacao;
+    formAddAula.querySelector("#nota_prova").value = aulaInfo.nota_prova;
+    formAddAula.querySelector("#numero_questoes").value = aulaInfo.numero_questoes;
+    formAddAula.querySelector("#obs_prova").value = aulaInfo.observacao;
 
     formAddAula.querySelector("#tema").value = aulaInfo.tema;
     formAddAula.querySelector("#horario").value = aulaInfo.horario;
+   
+
     formAddAula.querySelector("#data").value = aulaInfo.data;
     formAddAula.querySelector("#detalhes").value = aulaInfo.detalhes;
     let bimestres = formAddAula.querySelector('#select_bimestre');
     let selectAulas = formAddAula.querySelector('#select_aula');
-
 
     bimestres.setAttribute('disabled', true);
     for(let i = 0; i <= selectAulas.options.length -1; i++){

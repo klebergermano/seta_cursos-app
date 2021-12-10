@@ -1,7 +1,7 @@
 
 @use "../abstracts" as *;
 #form_config_perm{
-    @extend .form_flex; 
+    @extend .form_flex_absolute;; 
 
     textarea{
         width:100%;

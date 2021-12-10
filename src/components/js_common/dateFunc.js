@@ -15,12 +15,12 @@ export function setCurrentDate(idInput) {
 }
 
 export function changeDateToDislayText(dateString){
-let newDate = new Date(dateString);
-newDate.setDate(newDate.getDate()+1);
-newDate.setMonth(newDate.getMonth()+1);
+let newDate = new Date(dateString + ',00:00:00');
+console.log('nd', newDate);
+
 let day = newDate.getDate();
 let year = newDate.getFullYear();
-let month = newDate.getMonth();
+let month = (newDate.getMonth() +1);
 
 day = day.toString().padStart('2', '0');
 month = month.toString().padStart('2', '0');
