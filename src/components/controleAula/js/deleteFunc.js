@@ -11,7 +11,7 @@ export function eventDeleteCurso(){
     let btn_deletar_curso = document.querySelectorAll('.btn_deletar_curso');
     btn_deletar_curso.forEach((item)=>{
         item.addEventListener('click', (e)=>{
-        commonFunc.confirmBoxDelete('#aluno_content', "Tem certeza que deseja deletar?", ()=>{
+        commonFunc.confirmBoxDelete('#controle_aula', "Tem certeza que deseja deletar?", ()=>{
             deleteCurso(e.target)
         });
         });
@@ -36,8 +36,10 @@ function getInfoDeleteAula(item){
     aulaInfoDelete.curso = bg_curso.dataset.curso;
     aulaInfoDelete.aula = aula.dataset.aula;
     aulaInfoDelete.bimestre = aula.dataset.bimestre;
-    commonFunc.confirmBoxDelete('#aluno_content', "Tem certeza que deseja deletar essa aula? <br/> <span style='color:#dd0000'>Essa ação não podera ser desfeita!</span>", ()=>{
-    deleteDbAula(aulaInfoDelete)
+    commonFunc.confirmBoxDelete('#controle_aula',  `
+    Tem certeza que deseja deletar a <span style='text-transform: capitalize;'><b>${aula.dataset.aula}</b></span>
+    <br/>do <span style='text-transform: capitalize;'><b>${aula.dataset.bimestre}</b></span>? <br/> <span style='color:#dd0000'>Essa ação não podera ser desfeita!</span>`, ()=>{
+     deleteDbAula(aulaInfoDelete)
     });
 }
 
@@ -50,7 +52,6 @@ function checkIfBimestreIsEmptyToDelete(aulaInfoDelete){
         let keys = Object.keys(bimestre);
         if(keys.length <= 0){
             deleteBimestre(aulaInfoDelete);
-           
         }
     }).catch((err)=> console.log(err));
 }
@@ -61,8 +62,6 @@ function deleteCurso(btn){
     deleteDoc(doc(db, 'alunato', RA, 'cursos', curso))
     .then(()=>{
         navCursosAluno.displayFirstCursoAluno();
-    }).then(()=>{
-        commonFunc.  changeCSSDisplay("#block_screen", "none");
     }).catch((err)=> console.log(err));
 }
 
