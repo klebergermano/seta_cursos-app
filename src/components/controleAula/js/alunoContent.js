@@ -34,6 +34,14 @@ export function getSnapshotAlunoCursosDB(RA, callback) {
   });
 }
 
+export function getCursosDB(RA, callback) {
+  onSnapshot(
+    collection(db, 'alunato', RA, 'cursos'), 
+    (snapshot)=>{
+    callback(RA, snapshot.docChanges());
+  });
+}
+
 export function contentAlunoRealTime(){
   let RA = getRAFromMainSelectAluno();
   getSnapshotAlunoCursosDB(RA, insertAlunoContent);
@@ -44,10 +52,10 @@ function getRAFromMainSelectAluno(){
   let RA = mainSelect.options[mainSelect.selectedIndex].value;
   return RA; 
 }
-
 //------------------------------------------------------------------------
 
 export function insertAlunoContent(RA, alunoCursosDB){
+  console.log(alunoCursosDB);
   document.querySelector("#controle_aula_content").style.opacity = '0';
   if(alunoCursosDB.length !== 0){
     let alunoContentHTML = createAlunoContentHTML(alunoCursosDB, RA);
