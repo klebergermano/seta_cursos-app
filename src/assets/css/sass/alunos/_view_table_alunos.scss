@@ -5,8 +5,10 @@
 }
 #view_table_alunos
 {
+    .td_ra{
+        text-align: center;
+    }
     .td_cursos{
-      
         font-size: 13px;
         justify-content: center;
         align-items: center;

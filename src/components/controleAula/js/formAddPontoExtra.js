@@ -26,18 +26,19 @@ function eventsFormAddPontoExtra(form){
   formAddAula.insertOptionSelectCurso(form).then((res)=>{
   })
   displayAlunoCursoNome(form)
-  removeFiledFormAddAula(form)
+  removeFieldFormAddAula(form)
 }
 
-function removeFiledFormAddAula(form){
+function removeFieldFormAddAula(form){
   form.querySelector("h3").textContent = "Adicionar Ponto Extra";
   form.querySelector("#select_aula").removeAttribute("required");
   form.querySelector("#horario").removeAttribute("required");
   form.querySelector("#tema").removeAttribute("required");
+  form.querySelector("#aula_categoria").removeAttribute("required");
 
   form.querySelector("#div_status_aula").style.display = "none";
-  form.querySelector("#div_horario").style.display = "none";
-  form.querySelector("#div_select_aula").style.display = "none";
+ form.querySelector("#div_horario").style.display = "none";
+ form.querySelector("#div_select_aula").style.display = "none";
   form.querySelector("#div_tema").style.display = "none";
 }
 function displayAlunoCursoNome(form){
@@ -54,9 +55,9 @@ function displayAlunoCursoNome(form){
 function submitformAddPontoExtra(e) {
   e.preventDefault();
   let form = e.target;
-  let RA = form.select_aluno.value;
-  let curso = form.select_curso.value;
-  let pontoExtra = "ponto extra " + form.data.value;
+  let RA = form.querySelector("#select_aluno").value;
+  let curso = form.querySelector("#select_curso").value;
+  let pontoExtra = "ponto extra " + form.querySelector("#data").value;
   setDoc(doc(db, 'alunato', RA, 'cursos', curso),
     {
       bimestres: {
@@ -71,50 +72,10 @@ function submitformAddPontoExtra(e) {
     }, { merge: true }
   )
   .then(() => {
-  commonFunc.showMessage("form_add_aula", "Ponto Extra adicionado com sucesso!")
-  setTimeout(() => {
-    commonFunc.removeElementChild('#page_content', '#form_add_aula',()=>{
-      commonFunc.changeCSSDisplay('#block_screen', 'none')
-    });
-  }, 1500);
+    commonFunc.defaultEventsAfterSubmitForm("#form_add_aula", "Ponto extra adicionado com sucesso!")
+
   }).catch((error) => console.error("Erro ao adicionar Ponto Extra: ", error));
 
 ;
 }
-function submitformAddPontoExtraXXXXX(e) {
-  e.preventDefault();
-  let form = e.target;
-  let RA = form.select_aluno.value;
-  let aulaHistorico;
- // let pontoExtra = "ponto extra #" +  Math.ceil(Math.random() * 1000000);;
-  let pontoExtra = "ponto extra " + form.data.value;
-  aulaHistorico = db
-    .collection("alunato")
-    .doc(RA)
-    .collection("cursos")
-    .doc(form.select_curso.value)
-    .set(
-      {
-        bimestres: {
-          [form.select_bimestre.value]:{
-              [pontoExtra]:{
-               categoria: 'ponto extra',
-               data: form.data.value,
-               descricao: form.detalhes.value
-              }
-          }
-        }
-      },
-      { merge: true }
-    )
-    .then(() =>
-      commonFunc.showMessage("form_add_aula", "Ponto Extra adicionado com sucesso!")
-    )
-    .then(() => {
-      commonFunc.defaultEventsAfterSubmitForm("#form_add_aula");
- 
-    }).catch((error) => console.error("Erro ao adicionar Ponto Extra: ", error));
 
-
-
-}

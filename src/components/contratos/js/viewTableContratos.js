@@ -96,8 +96,8 @@ function  submitDeleteContrato(idContrato){
             <td class='td_contrato_id'>${contrato.metadata.id}</td>
             <td class='td_resp_nome'>${contrato.resp_info.nome}</td>
             <td class='td_aluno_nome'>${contrato.aluno_info.nome}</td>
-            <td class='td_aluno_nome'>${contrato.metadata.aluno_associado}</td>
-            <td class='td_aluno_nome'>${contrato.metadata.status}</td>
+            <td class='td_aluno_assoc'>${contrato.metadata.aluno_associado}</td>
+            <td class='td_contrato_status'>${contrato.metadata.status}</td>
             <td class='td_controls' data-id_contrato="${contrato.metadata.id}"  data-aluno_nome="${contrato.aluno_info.nome}">
             ${buttonDelete}
             </td>

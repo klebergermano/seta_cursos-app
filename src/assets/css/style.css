@@ -2053,6 +2053,9 @@ option[disabled] {
 #bg_contrato_content {
   position: relative;
 }
+#bg_contrato_content table .td_contrato_id, #bg_contrato_content table .td_aluno_assoc, #bg_contrato_content table .td_contrato_status {
+  text-align: center;
+}
 
 .forms_fixed, #form_add_aluno {
   box-shadow: 0 1px 3px #666;
@@ -2436,6 +2439,9 @@ option[disabled] {
   position: relative;
 }
 
+#view_table_alunos .td_ra {
+  text-align: center;
+}
 #view_table_alunos .td_cursos {
   font-size: 13px;
   justify-content: center;
