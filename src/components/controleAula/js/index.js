@@ -4,8 +4,8 @@ const {getFirestore, collection, getDocs, doc, getDoc, onSnapshot } = require("f
 const db = getFirestore(firebaseApp);
 //---------------
 
-import * as alunoContent from "./alunoContent.js";
-import {insertAlunoContent, contentAlunoRealTime, getSnapshotAlunoCursosDB, getAlunoCursosDB} from "./alunoContent.js";
+import * as alunoContent from "./inserAlunoContent.js";
+import {insertAlunoContent, contentAlunoRealTime, getSnapshotAlunoCursosDB, getAlunoCursosDB} from "./inserAlunoContent.js";
 import {alunoHistCursosRealTimeDB} from "../../js_common/dbAlunoHistoricoFunc.js";
 import {displaySpinnerLoad} from "../../js_common/commonFunctions.js";
 
