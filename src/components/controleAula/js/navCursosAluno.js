@@ -7,15 +7,9 @@ export function insertNavCursosInBGCursos(RA, nomeDoCurso) {
   //Cria o menu nav_cursos_aluno
   createNavCursosAluno(RA)
     .then((navUL) => {
-      //Insere o conteúdo no menu nav_cursos_aluno. 
-      let navCursos = document.querySelector('.nav_cursos_aluno');
-      navCursos.innerHTML = ''; //remove o menu anterior;
-      navCursos.appendChild(navUL);
+      document.querySelector("#controle_aula_content").insertAdjacentElement('afterbegin', navUL);
     })
     .then(() => {
-      //remove os nav_cursos_extras
-      removeExtraNavCursosAluno();
-      //mostra o curso que foi atualizado usando displayNavCursoAlunoUpdated
       displayNavCursoAlunoUpdated(nomeDoCurso);
     }).catch((err) => { console.log(err) });
 }
@@ -23,6 +17,8 @@ export function insertNavCursosInBGCursos(RA, nomeDoCurso) {
 
 async function createNavCursosAluno(RA) {
   let cursos = arrayCursosAluno(RA);
+  let nav = document.createElement("nav");
+      nav.classList = 'nav_cursos_aluno';
   let ul = document.createElement("ul");
   let id_curso;
   let menuNavUl = cursos
@@ -41,11 +37,21 @@ async function createNavCursosAluno(RA) {
       });
     })
     .then(() => {
-      return ul;
+      nav.appendChild(ul)
+      return nav;
     });
   return menuNavUl;
 }
 
+export function displayFirstCursoAluno(){
+  let id = document.querySelectorAll('.bg_curso')[0].id;
+  displayNavCursoAlunoUpdated(id)
+}
+
+function displayCursoById(idCurso) {
+  commonFunc.hideAllElementsByClassName('.bg_curso');
+  document.querySelector('#'+idCurso).style.display='block';
+}
 function removeActiveClassNavCursosElement() {
   let a = document.querySelector(".nav_cursos_aluno").getElementsByTagName("a");
   for (let item of a) {
@@ -75,25 +81,6 @@ function arrayCursosAluno(RA) {
   return result;
 }
 
-function removeActiveClassFromNavCursos() {
-  let nav = document.querySelectorAll(".nav_cursos_alunoHistCurso")[0];
-  if (nav) {
-    let a = nav.getElementsByTagName("a");
-    for (let i = 0; i < a.length; i++) {
-      a[i].classList.remove("active");
-    }
-  }
-}
-
-function displayCursoById(idCurso) {
-  commonFunc.hideAllElementsByClassName('.bg_curso');
-  document.querySelector('#'+idCurso).style.display='block';
-}
-
-export function displayFirstCursoAluno(){
-  let id = document.querySelectorAll('.bg_curso')[0].id;
-  displayNavCursoAlunoUpdated(id)
-}
 
 function displayNavCursoAlunoUpdated(nomeCurso) {
   let nomeCursoAtualizado = commonFunc.stringToID(nomeCurso);
@@ -104,13 +91,18 @@ function displayNavCursoAlunoUpdated(nomeCurso) {
   a[0].classList.add("active");
 }
 
-function removeExtraNavCursosAluno() {
-  //remove os nav_cursos_extras
-  let aluno_content = document.querySelector('#controle_aula_content');
-  let navCursosAluno = document.querySelectorAll('.nav_cursos_aluno');
-  for (let i = 0; i < navCursosAluno.length; i++) {
-    if (i > 0) {
-      aluno_content.removeChild(navCursosAluno[i]);
+
+function removeActiveClassFromNavCursos() {
+  let nav = document.querySelectorAll(".nav_cursos_aluno")[0];
+  if (nav) {
+    let a = nav.getElementsByTagName("a");
+    for (let i = 0; i < a.length; i++) {
+      a[i].classList.remove("active");
     }
   }
 }
+
+
+//------------------------------------------------------------------------------
+
+

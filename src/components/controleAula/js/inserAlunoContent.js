@@ -45,6 +45,41 @@ function getRAFromMainSelectAluno() {
 //----------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------
 export function insertAlunoContent(RA, alunoCursosDB) {
+  document.querySelector("#controle_aula_content").style.opacity = '0';
+  if (alunoCursosDB.length !== 0) {
+    createAlunoContentHTML(alunoCursosDB, RA);
+    //document.querySelector("#controle_aula_content").innerHTML = alunoContentHTML;
+    let nomeCurso = document.querySelector('.bg_curso').dataset.curso;
+    insertNavCursosInBGCursos(RA, nomeCurso);
+  } else {
+   document.querySelector("#controle_aula_content").innerHTML = alunoSemCursoContent();
+  }
+  eventsAulas();
+  let spiner = document.querySelector('.spinner');
+  if (spiner) {
+    document.querySelector('#page_content').removeChild(spiner);
+  }
+  document.querySelector("#controle_aula_content").style.opacity = '1';
+}
+
+
+
+//======================================================================================
+//---------------------------------CREATE HTML -----------------------------------------
+//======================================================================================
+function alunoSemCursoContent() {
+  let content = `
+  <div class='bg_curso' style='display:block; padding-top:30px;'>
+  <h3 class='title_curso_nome'>Aluno sem curso associado</h3>
+  </div>
+  `
+  return content
+}
+
+
+
+/*
+export function insertAlunoContentXXXXXX(RA, alunoCursosDB) {
   console.log(alunoCursosDB);
   document.querySelector("#controle_aula_content").style.opacity = '0';
   if (alunoCursosDB.length !== 0) {
@@ -63,20 +98,4 @@ export function insertAlunoContent(RA, alunoCursosDB) {
   document.querySelector("#controle_aula_content").style.opacity = '1';
 }
 
-//======================================================================================
-//---------------------------------CREATE HTML -----------------------------------------
-//======================================================================================
-function alunoSemCursoContent() {
-  let content = `
-  <div class='bg_curso' style='display:block; padding-top:30px;'>
-  <h3 class='title_curso_nome'>Aluno sem curso associado</h3>
-  </div>
-  `
-  return content
-}
-
-
-
-
-
-
+*/
