@@ -14,35 +14,45 @@ function insertBgCursoHTML(cursoHTMLContent) {
   }
 }
 
+function removeBgCursosAnteriosOutrosAlunos(RA){
+  let controleAulaContent = document.querySelector("#controle_aula_content");
+  let bgCurso = controleAulaContent.querySelectorAll('.bg_curso');
+  console.log(bgCurso)
+  bgCurso.forEach((item)=>{
+    if(RA !==  item.dataset.aluno_ra){
+      controleAulaContent.removeChild(item);
+    }
+  });
+}
+function removeNavAnteriosOutrosAlunos(){
+  let controleAulaContent = document.querySelector("#controle_aula_content");
+  let navs = controleAulaContent.querySelectorAll('.nav_cursos_aluno');
+  navs.forEach((item)=>{
+    console.log('removido');
+      controleAulaContent.removeChild(item);
+  });
+}
 
 export function createAlunoContentHTML(alunoDataFromDB, RA) {
-  let alunoContentHTML = "";
-  document.querySelector("#controle_aula_content").innerHTML = '';
+  removeBgCursosAnteriosOutrosAlunos(RA)
+
+ // document.querySelector("#controle_aula_content").innerHTML = '';
 
   alunoDataFromDB.forEach((resCursoDB) => {
     resCursoDB = resCursoDB.doc.data();
     if (checkIfBimestresIsEmpty(resCursoDB.bimestres)) {
+      //Cria o layout para curso com aulas adicionadas
       let bgCursoHTML = createBgCursoHTML(resCursoDB.curso_info.nome, RA);
       let cursoHTMLContent = createCursoHTMLContent(bgCursoHTML, resCursoDB);
       insertBgCursoHTML(cursoHTMLContent);
     } else {
-      console.log('Curso Vazio');
-      // bgCursoHTML.querySelector('#curso_content').innerHTML = cursoVazioHTML(RA, resCursoDB.curso_info.nome);
-      // alunoContentHTML += bgCursoHTML.innerHTML;
-      let cursoHTMLContent = cursoVazioHTML(RA, resCursoDB.curso_info.nome);
+      //Cria o layout para curso vazio sem nenhuma aula adicionada
+      let cursoHTMLContent = cursoVazioHTML(resCursoDB.curso_info.nome, RA);
       insertBgCursoHTML(cursoHTMLContent);
     }
-    /*
-              if (checkIfBimestresIsEmpty(resCursoDB.bimestres)){
-                //alunoContentHTML += createCursoHTMLContent(bgCursoHTML, resCursoDB);
-              } else {
-                bgCursoHTML.querySelector('#curso_content').innerHTML = cursoVazioHTML(RA, resCursoDB.curso_info.nome);
-                alunoContentHTML += bgCursoHTML.innerHTML;
-              }
-              */
+
   });
   //return alunoContentHTML;
-
   /*
      //Testa para conferir se é um Snapshot ou Get
      if (typeof resCursoDB.data !== "undefined"){
@@ -55,8 +65,6 @@ export function createAlunoContentHTML(alunoDataFromDB, RA) {
      }
      */
 }
-
-
 
 function createBgCursoHTML(curso_nome_bd, RA) {
   if (curso_nome_bd) {
@@ -321,15 +329,21 @@ function createHTMLPontoExtra(aulaDados, n_aula, n_bimestre) {
   return block;
 }
 
-function cursoVazioHTML(RA, curso) {
-  let div = document.createElement('div');
-  div.classList = "bg_info_delete_curso";
-  div.innerHTML = `
-  <div class='bg_info_delete_curso'>
+function cursoVazioHTML(curso_nome_bd, RA) {
+  let id_curso = stringToID(curso_nome_bd);
+  let bgCursoHTML = document.createElement("div");
+  bgCursoHTML.classList = 'bg_curso_vazio bg_curso';
+  bgCursoHTML.id = id_curso;
+  bgCursoHTML.setAttribute('data-aluno_ra', RA);
+  bgCursoHTML.setAttribute('data-curso', curso_nome_bd);
+
+
+  bgCursoHTML.innerHTML = `
+  <div class='bg_info_curso_vazio' >
       <p>
       Esse curso não possui aulas adicionadas.
     </p> 
-      <div class='bg_btn_deletar_curso'>
+      <div class='bg_btn_curso'>
         <button class="btn_add btn_add_aula" id="btn_add_aula" title='Adicionar Aula' type="button">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-plus" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"></path>
@@ -341,7 +355,7 @@ function cursoVazioHTML(RA, curso) {
       </div>
       </div>
   `
-  return div; 
+  return bgCursoHTML; 
 }
 
 function checkIfBimestresIsEmpty(bimestres) {

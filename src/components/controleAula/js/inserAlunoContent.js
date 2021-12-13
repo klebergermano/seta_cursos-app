@@ -44,7 +44,10 @@ function getRAFromMainSelectAluno() {
 //----------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------
+
+
 export function insertAlunoContent(RA, alunoCursosDB) {
+
   document.querySelector("#controle_aula_content").style.opacity = '0';
   if (alunoCursosDB.length !== 0) {
     createAlunoContentHTML(alunoCursosDB, RA);

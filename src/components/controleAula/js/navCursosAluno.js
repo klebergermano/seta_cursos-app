@@ -7,18 +7,24 @@ export function insertNavCursosInBGCursos(RA, nomeDoCurso) {
   //Cria o menu nav_cursos_aluno
   createNavCursosAluno(RA)
     .then((navUL) => {
-      document.querySelector("#controle_aula_content").insertAdjacentElement('afterbegin', navUL);
+     document.querySelector(".nav_cursos_aluno").innerHTML = navUL.outerHTML ;
+      //document.querySelector("#controle_aula_content").insertAdjacentElement('afterbegin', navUL);
     })
-    .then(() => {
+  .then(()=>{
+      document.querySelectorAll(".nav_cursos_aluno a").forEach((item) => {
+        item.addEventListener("click", (e) => {
+          navCursosClick(e);
+        });
+      });
+    }) .then(() => {
       displayNavCursoAlunoUpdated(nomeDoCurso);
-    }).catch((err) => { console.log(err) });
+    })
+    .catch((err) => { console.log(err) });
 }
 
 
 async function createNavCursosAluno(RA) {
   let cursos = arrayCursosAluno(RA);
-  let nav = document.createElement("nav");
-      nav.classList = 'nav_cursos_aluno';
   let ul = document.createElement("ul");
   let id_curso;
   let menuNavUl = cursos
@@ -29,16 +35,16 @@ async function createNavCursosAluno(RA) {
       });
     })
     .then(() => {
-      //TODO: conferir a possibilidade de se usar uma função genérica
+      /*
       ul.querySelectorAll("a").forEach((item) => {
         item.addEventListener("click", (e) => {
           navCursosClick(e);
         });
       });
+      */
     })
     .then(() => {
-      nav.appendChild(ul)
-      return nav;
+      return ul;
     });
   return menuNavUl;
 }
@@ -49,6 +55,7 @@ export function displayFirstCursoAluno(){
 }
 
 function displayCursoById(idCurso) {
+  console.log('idCurso', idCurso);
   commonFunc.hideAllElementsByClassName('.bg_curso');
   document.querySelector('#'+idCurso).style.display='block';
 }
@@ -60,6 +67,7 @@ function removeActiveClassNavCursosElement() {
 }
 
 function navCursosClick(e) {
+  console.log('click nav')
   let idCurso = e.target.dataset.active;
   //Remove a classe "active" dos elementos a.
   removeActiveClassNavCursosElement();
