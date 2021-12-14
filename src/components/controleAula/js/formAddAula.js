@@ -1,17 +1,19 @@
 import {firebaseApp} from "../../dbConfig/firebaseApp.js";
-const {getFirestore, setDoc,  doc} = require("firebase/firestore") 
+const {getFirestore, setDoc,  doc, getDocs, collection} = require("firebase/firestore") 
 const db = getFirestore(firebaseApp);
 
-import * as commonFunc from "../../js_common/commonFunctions.js";
+import {removeBugExtraBgFormBLockScreen, btnCloseForm, insertElementHTML, stringToID, defaultEventsAfterSubmitForm} from "../../js_common/commonFunctions.js";
 import {getAlunoHistCursosDB} from "../../js_common/dbAlunoHistoricoFunc.js";
 
 
-export async function insertFormAddAulaHTML() {
-  commonFunc.insertElementHTML('#controle_aula_content',
-    './components/controleAula/formAddAula.html', eventsFormAddAula);
-}
+  export async function insertFormAddAulaHTML() {
+    insertElementHTML('#controle_aula_content',
+      './components/controleAula/formAddAula.html', eventsFormAddAula);
+  }
+
  export function eventsFormAddAula(form) {
-   commonFunc.btnCloseForm("#form_add_aula");
+  removeBugExtraBgFormBLockScreen()
+   btnCloseForm("#form_add_aula");
   form.addEventListener("submit", (e) => {
     submitFormAddAula(e);  
   });
@@ -63,8 +65,6 @@ selectAula.addEventListener('change', (e)=>{
 })
 }
 
-
-
 export function setClassBtnStatus(form){
   removeClassActivedBtnStatus();
   let btns = form.querySelector('#div_status_aula').querySelectorAll('label');
@@ -107,7 +107,7 @@ let bg_curso = document.querySelectorAll(".bg_curso");
 let navCursos = document.querySelector('.nav_cursos_aluno');
 let activeCurso = navCursos.querySelector('.active').dataset.active;
 bg_curso.forEach((curso)=>{
-    if (commonFunc.stringToID(curso.dataset.curso) === activeCurso) {
+    if (stringToID(curso.dataset.curso) === activeCurso) {
      select.innerHTML = `<option value='${curso.dataset.curso}' selected>${curso.dataset.curso}</option>`
     }
 })
@@ -200,15 +200,15 @@ function blocoAddAula(dados) {
 }
 
 function getKeysAulas(RA, idCurso, bimestre) {
-  let aluno = getAlunoHistCursosDB(RA);
   let keysAulas = [];
   let nomeCursoBD;
+  let aluno = getDocs(collection(db, 'alunato', RA, 'cursos'));
   let keys = aluno.then((res) => {
-    res.forEach((e) => {
+    res.forEach((item) => {
       //nomeCursoBD = commonFunc.stringToID(e.data().curso);
-      if (e.data().curso === idCurso) {
-        if (e.data().bimestres[bimestre]) {
-          keysAulas = Object.keys(e.data().bimestres[bimestre]);
+      if (item.data().curso_info.nome === idCurso) {
+        if (item.data().bimestres[bimestre]) {
+          keysAulas = Object.keys(item.data().bimestres[bimestre]);
         }
       }
     });
@@ -217,6 +217,7 @@ function getKeysAulas(RA, idCurso, bimestre) {
   }).catch((err) => { console.log(err) });
   return keys;
 }
+
 
 function submitFormAddAula(e){
   e.preventDefault();
@@ -228,7 +229,7 @@ function submitFormAddAula(e){
         { merge: true }
   )
   .then(()=>{
-  //  commonFunc.defaultEventsAfterSubmitForm("#form_add_aula", "Aula adicionada com sucesso!")
+    defaultEventsAfterSubmitForm("#form_add_aula", "Aula adicionada com sucesso!")
   }).catch((error) => console.error("Erro ao adicionar aula:", error));
 
 }

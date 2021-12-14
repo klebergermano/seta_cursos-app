@@ -62,6 +62,9 @@
         position: relative;
         top: 1px;
         border: 1px solid $grey-color;
+        &:focus{
+          outline: 0px;
+        }
       }
       input:checked {
         background: $primary-color;
@@ -80,13 +83,13 @@
     .actived_label_aula_com_falta {
       background: #fcc !important;
       input:checked {
-        background: $red-light-color;
+        background: red;
       }
     }
     .actived_label_aula_remarcada {
       background: #cde !important;
       input:checked {
-        background: $disabled-light-color;
+        background: #999;
       }
     }
   }

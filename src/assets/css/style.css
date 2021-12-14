@@ -967,6 +967,9 @@ menu.submenu_page ul li a {
   top: 1px;
   border: 1px solid #ccc;
 }
+#form_add_aula #div_status_aula label input:focus {
+  outline: 0px;
+}
 #form_add_aula #div_status_aula label input:checked {
   background: #245da7;
 }
@@ -983,13 +986,13 @@ menu.submenu_page ul li a {
   background: #fcc !important;
 }
 #form_add_aula #div_status_aula .actived_label_aula_com_falta input:checked {
-  background: #fee;
+  background: red;
 }
 #form_add_aula #div_status_aula .actived_label_aula_remarcada {
   background: #cde !important;
 }
 #form_add_aula #div_status_aula .actived_label_aula_remarcada input:checked {
-  background: #ddd;
+  background: #999;
 }
 #form_add_aula #bg_prova_inputs {
   width: 100%;

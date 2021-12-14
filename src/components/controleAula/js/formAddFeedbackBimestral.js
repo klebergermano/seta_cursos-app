@@ -4,7 +4,7 @@ import {firebaseApp} from "../../dbConfig/firebaseApp.js";
 const {getFirestore, setDoc,  doc} = require("firebase/firestore") 
 const db = getFirestore(firebaseApp);
 
-import {insertElementHTML, btnCloseForm, defaultEventsAfterSubmitForm, showMessage} from "../../js_common/commonFunctions.js";
+import {removeBugExtraBgFormBLockScreen, insertElementHTML, btnCloseForm, defaultEventsAfterSubmitForm, showMessage} from "../../js_common/commonFunctions.js";
 import * as formAddAula from "./formAddAula.js";
 
 export function insertFormAddFeedbackBimestral(e){
@@ -14,6 +14,7 @@ export function insertFormAddFeedbackBimestral(e){
 }
 
 function eventsFormAddFeedbackBimestral(form, event){
+  removeBugExtraBgFormBLockScreen();
  btnCloseForm("#form_add_feedback_bimestral");
 
       form.addEventListener("submit", (e) => {
