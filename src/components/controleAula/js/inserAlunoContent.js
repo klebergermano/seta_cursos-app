@@ -54,12 +54,13 @@ export function insertAlunoContent(RA, alunoCursosDB) {
   } else {
    document.querySelector("#controle_aula_content").innerHTML = alunoSemCursoContent();
   }
-  eventsAulas();
   let spiner = document.querySelector('.spinner');
   if (spiner) {
     document.querySelector('#page_content').removeChild(spiner);
   }
   document.querySelector("#controle_aula_content").style.opacity = '1';
+  eventsAulas();
+
 }
 
 //======================================================================================
