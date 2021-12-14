@@ -349,7 +349,7 @@ template {
   display: none;
 }
 
-.btn, #fieldset_resp div #btn_marcar_resp_aluno, .btn-secondary, .btn-primary, .forms_fixed input[type=submit], #form_add_aluno input[type=submit], #controle_aula_content .btn_add_curso, .form_flex_absolute input[type=submit], .form_flex_static input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], #form_delete_curso input[type=submit], #form_add_curso input[type=submit], .forms_controle_aula input[type=submit], #form_info_aluno input[type=submit], .btn-default-delete, #form_add_saida_avulsa fieldset .div_submit input[type=submit], #controle_aula_content .bg_info_delete_curso .btn_deletar_curso, .btn-default, form.forms_fluxo_caixa .div_submit input[type=submit], .sub_menu_fluxo_caixa ul li a, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], .forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox, #bg_div_id_contrato #label_id_automatico_contrato, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo, #controle_aula_content .btn_add, menu.submenu_page ul li a {
+.btn, #fieldset_resp div #btn_marcar_resp_aluno, .btn-secondary, .btn-primary, .forms_fixed input[type=submit], #form_add_aluno input[type=submit], #controle_aula_content .btn_add_curso, .form_flex_absolute input[type=submit], .form_flex_static input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], #form_delete_curso input[type=submit], #form_add_curso input[type=submit], .forms_controle_aula input[type=submit], #form_info_aluno input[type=submit], .btn-default-delete, #form_add_saida_avulsa fieldset .div_submit input[type=submit], .btn-default, form.forms_fluxo_caixa .div_submit input[type=submit], .sub_menu_fluxo_caixa ul li a, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], .forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox, #bg_div_id_contrato #label_id_automatico_contrato, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo, #controle_aula_content .btn_add, menu.submenu_page ul li a {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -359,7 +359,7 @@ template {
   border: 0px;
   cursor: pointer;
 }
-.btn svg, #fieldset_resp div #btn_marcar_resp_aluno svg, .btn-secondary svg, .btn-primary svg, .forms_fixed input[type=submit] svg, #form_add_aluno input[type=submit] svg, #controle_aula_content .btn_add_curso svg, .form_flex_absolute input[type=submit] svg, .form_flex_static input[type=submit] svg, #form_config_perm input[type=submit] svg, #form_reauth_user input[type=submit] svg, #form_add_user input[type=submit] svg, #form_delete_curso input[type=submit] svg, #form_add_curso input[type=submit] svg, .forms_controle_aula input[type=submit] svg, #form_info_aluno input[type=submit] svg, .btn-default-delete svg, #form_add_saida_avulsa fieldset .div_submit input[type=submit] svg, #controle_aula_content .bg_info_delete_curso .btn_deletar_curso svg, .btn-default svg, form.forms_fluxo_caixa .div_submit input[type=submit] svg, .sub_menu_fluxo_caixa ul li a svg, .nav_forms ul li a svg, #page_login #login_content #form_login input[type=submit] svg, .forms_fixed .label_btn_checkbox svg, #form_add_aluno .label_btn_checkbox svg, #bg_div_id_contrato #label_id_automatico_contrato svg, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo svg, #controle_aula_content .btn_add svg, menu.submenu_page ul li a svg {
+.btn svg, #fieldset_resp div #btn_marcar_resp_aluno svg, .btn-secondary svg, .btn-primary svg, .forms_fixed input[type=submit] svg, #form_add_aluno input[type=submit] svg, #controle_aula_content .btn_add_curso svg, .form_flex_absolute input[type=submit] svg, .form_flex_static input[type=submit] svg, #form_config_perm input[type=submit] svg, #form_reauth_user input[type=submit] svg, #form_add_user input[type=submit] svg, #form_delete_curso input[type=submit] svg, #form_add_curso input[type=submit] svg, .forms_controle_aula input[type=submit] svg, #form_info_aluno input[type=submit] svg, .btn-default-delete svg, #form_add_saida_avulsa fieldset .div_submit input[type=submit] svg, .btn-default svg, form.forms_fluxo_caixa .div_submit input[type=submit] svg, .sub_menu_fluxo_caixa ul li a svg, .nav_forms ul li a svg, #page_login #login_content #form_login input[type=submit] svg, .forms_fixed .label_btn_checkbox svg, #form_add_aluno .label_btn_checkbox svg, #bg_div_id_contrato #label_id_automatico_contrato svg, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo svg, #controle_aula_content .btn_add svg, menu.submenu_page ul li a svg {
   max-width: 100px;
   max-height: 100px;
   height: auto;
@@ -379,19 +379,19 @@ template {
   box-shadow: inset 0px 1px 3px #bdbdbd;
 }
 
-.btn-default-delete, #form_add_saida_avulsa fieldset .div_submit input[type=submit], #controle_aula_content .bg_info_delete_curso .btn_deletar_curso {
+.btn-default-delete, #form_add_saida_avulsa fieldset .div_submit input[type=submit] {
   background: #e03737;
   color: #fafafa;
   border: 1px solid #520404;
 }
-.btn-default-delete:hover, #form_add_saida_avulsa fieldset .div_submit input[type=submit]:hover, #controle_aula_content .bg_info_delete_curso .btn_deletar_curso:hover {
+.btn-default-delete:hover, #form_add_saida_avulsa fieldset .div_submit input[type=submit]:hover {
   background: #e34d4d;
 }
-.btn-default-delete:active, #form_add_saida_avulsa fieldset .div_submit input[type=submit]:active, #controle_aula_content .bg_info_delete_curso .btn_deletar_curso:active {
+.btn-default-delete:active, #form_add_saida_avulsa fieldset .div_submit input[type=submit]:active {
   background: #db2222;
   box-shadow: inset 0px 1px 3px #991818;
 }
-.btn-default-delete:hover, #form_add_saida_avulsa fieldset .div_submit input[type=submit]:hover, #controle_aula_content .bg_info_delete_curso .btn_deletar_curso:hover {
+.btn-default-delete:hover, #form_add_saida_avulsa fieldset .div_submit input[type=submit]:hover {
   background: #fc4646;
 }
 
@@ -1203,7 +1203,6 @@ nav.nav_cursos_aluno ul li .active {
   background: #fff;
   padding: 40px;
   padding-top: 0px;
-  display: none;
   border-color: 1px solid #666;
 }
 #controle_aula_content .bg_curso h3 {
@@ -1235,36 +1234,43 @@ nav.nav_cursos_aluno ul li .active {
 #controle_aula_content h3[class*=informática] {
   color: blue !important;
 }
-#controle_aula_content .bg_info_delete_curso {
+#controle_aula_content .bg_curso_vazio {
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  align-items: stretch;
+}
+#controle_aula_content .bg_curso_vazio .bg_info_curso_vazio {
+  margin-top: 40px;
+  flex-grow: 1;
   width: 100%;
-  height: auto;
   padding: 20px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   overflow: hidden;
-  background: #f6f6e0;
-  align-items: center;
+  align-items: stretch !important;
 }
-#controle_aula_content .bg_info_delete_curso p {
+#controle_aula_content .bg_curso_vazio .bg_info_curso_vazio p {
   display: block;
   width: 100%;
   text-align: center;
   padding: 10px;
 }
-#controle_aula_content .bg_info_delete_curso button {
+#controle_aula_content .bg_curso_vazio .bg_info_curso_vazio button {
   float: left;
 }
-#controle_aula_content .bg_info_delete_curso .btn_add_aula {
+#controle_aula_content .bg_curso_vazio .bg_info_curso_vazio .btn_add_aula {
   position: initial;
   margin-left: 10px;
 }
-#controle_aula_content .bg_info_delete_curso .btn_add_aula svg {
+#controle_aula_content .bg_curso_vazio .bg_info_curso_vazio .btn_add_aula svg {
   width: auto;
   height: auto;
   margin-bottom: -2px;
 }
-#controle_aula_content .bg_info_delete_curso .btn_add_aula:hover {
+#controle_aula_content .bg_curso_vazio .bg_info_curso_vazio .btn_add_aula:hover {
   background: #fff;
 }
 #controle_aula_content .bg_bimestres {

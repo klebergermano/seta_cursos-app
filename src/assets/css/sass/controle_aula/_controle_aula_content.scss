@@ -107,7 +107,6 @@ nav.nav_cursos_aluno {
         background: #fff;
         padding: $padding-large;
         padding-top: 0px;
-        display: none;
         border-color: $border-set-decorative;
         h3 {
             display: flex;
@@ -144,41 +143,50 @@ nav.nav_cursos_aluno {
     h3[class*="informática"] {
         color: blue !important;
     }
-    .bg_info_delete_curso {
-        width: 100%;
-        height: auto;
-        padding: $padding-medium;
+
+    .bg_curso_vazio{
+        padding:0px;
         display: flex;
         justify-content: center;
-        flex-wrap: wrap;
-        overflow: hidden;
-        background: $yellow-light-color;
-        align-items: center;
-        p {
-            display: block;
+        position: relative;
+        align-items: stretch;
+        .bg_info_curso_vazio {
+            margin-top:40px;
+            flex-grow: 1;
             width: 100%;
-            text-align: center;
-            padding: $padding-light;
-        }
-        button {
-            float: left;
-        }
-        .btn_deletar_curso {
-            @extend .btn-default-delete;
-        }
-        .btn_add_aula {
-            position: initial;
-            margin-left: 10px;
-            svg {
-                width: auto;
-                height: auto;
-                margin-bottom: -2px;
+            padding: $padding-medium;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            overflow: hidden;
+      
+        align-items: stretch !important;
+
+            p {
+                display: block;
+                width: 100%;
+                text-align: center;
+                padding: $padding-light;
             }
-            &:hover {
-                background: $white-color-tone;
+            button {
+                float: left;
+            }
+        
+            .btn_add_aula {
+                position: initial;
+                margin-left: 10px;
+                svg {
+                    width: auto;
+                    height: auto;
+                    margin-bottom: -2px;
+                }
+                &:hover {
+                    background: $white-color-tone;
+                }
             }
         }
     }
+  
     .bg_bimestres {
       background:#9a9;
         width: 100%;
