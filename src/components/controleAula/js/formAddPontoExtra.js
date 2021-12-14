@@ -2,14 +2,12 @@
 import {firebaseApp} from "../../dbConfig/firebaseApp.js";
 const {getFirestore, setDoc,  doc} = require("firebase/firestore") 
 const db = getFirestore(firebaseApp);
+import {insertOptionsInSelectAluno,insertOptionSelectCurso } from "./formAddAula.js";
+import {removeBugExtraBgFormBLockScreen, btnCloseForm, insertElementHTML, defaultEventsAfterSubmitForm} from "../../js_common/commonFunctions.js";
 
-import * as formAddAula from "./formAddAula.js";
-import * as commonFunc from "../../js_common/commonFunctions.js";
-import * as dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
-import * as dateFunc from "../../js_common/dateFunc.js";
 
 export function insertFormAddPontoExtra(){
-    let form = commonFunc.insertElementHTML('#page_content',
+    let form = insertElementHTML('#page_content',
     './components/controleAula/formAddAula.html');
     form.then((form)=>{
       eventsFormAddPontoExtra(form)
@@ -17,13 +15,13 @@ export function insertFormAddPontoExtra(){
   }
   
 function eventsFormAddPontoExtra(form){
-  commonFunc.btnCloseForm("#form_add_aula");
-
+  removeBugExtraBgFormBLockScreen();
+  btnCloseForm("#form_add_aula");
   form.addEventListener("submit", (e) => {
     submitformAddPontoExtra(e);  
   });
-  formAddAula.insertOptionsInSelectAluno(form)
-  formAddAula.insertOptionSelectCurso(form).then((res)=>{
+    insertOptionsInSelectAluno(form)
+    insertOptionSelectCurso(form).then((res)=>{
   })
   displayAlunoCursoNome(form)
   removeFieldFormAddAula(form)
@@ -72,7 +70,7 @@ function submitformAddPontoExtra(e) {
     }, { merge: true }
   )
   .then(() => {
-    commonFunc.defaultEventsAfterSubmitForm("#form_add_aula", "Ponto extra adicionado com sucesso!")
+    defaultEventsAfterSubmitForm("#form_add_aula", "Ponto extra adicionado com sucesso!")
 
   }).catch((error) => console.error("Erro ao adicionar Ponto Extra: ", error));
 

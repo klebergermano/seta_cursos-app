@@ -1,12 +1,15 @@
 import {stringToID} from "../../js_common/commonFunctions.js";
 import {changeDateToDislayText} from "../../js_common/dateFunc.js";
 import {insertFormAddAulaHTML} from "./formAddAula.js";
+import {insertFormEditAulaHTML} from "./formEditAula.js";
 import {insertFormReposicaoAula} from "./formAddReposicaoAula.js";
 import {insertFormAddPontoExtra} from "./formAddPontoExtra.js";
 import {insertFormAddFeedbackBimestral} from "./formAddFeedbackBimestral.js";
 import {eventDeleteCurso, eventsDeletarAula} from "./deleteFunc.js";
 import {eventsBaixarHistorico} from "./baixarHistoricoAluno.js";
 import {addEventListenerInAllElements} from "../../js_common/commonFunctions.js";
+
+
 
 export function eventsAulas() {
     eventDeleteCurso();
@@ -140,7 +143,7 @@ function clickOpenCloseAulas(e) {
 function eventBtnEditAula(){
     document.querySelectorAll(".btn_edit_aula").forEach((item) => {
       item.addEventListener("click", (eventClick) => {
-        formEditAula.insertFormEditAulaHTML(eventClick);
+        insertFormEditAulaHTML(eventClick);
       })
     });
   }

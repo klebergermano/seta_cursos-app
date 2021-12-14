@@ -45,13 +45,10 @@ function getRAFromMainSelectAluno() {
 //----------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------
 
-
 export function insertAlunoContent(RA, alunoCursosDB) {
-  console.log('alunoCursosDB', alunoCursosDB);
   document.querySelector("#controle_aula_content").style.opacity = '0';
   if (alunoCursosDB.length !== 0) {
     createAlunoContentHTML(alunoCursosDB, RA);
-    //document.querySelector("#controle_aula_content").innerHTML = alunoContentHTML;
     let nomeCurso =  alunoCursosDB[0].doc.data().curso_info.nome;
     insertNavCursosInBGCursos(RA, nomeCurso);
   } else {
@@ -64,8 +61,6 @@ export function insertAlunoContent(RA, alunoCursosDB) {
   }
   document.querySelector("#controle_aula_content").style.opacity = '1';
 }
-
-
 
 //======================================================================================
 //---------------------------------CREATE HTML -----------------------------------------

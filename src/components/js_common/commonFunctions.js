@@ -262,3 +262,12 @@ export function readableRandomStringMaker(length) {
   for (var s=''; s.length < length; s += 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.charAt(Math.random()*62|0));
   return s;
 }
+
+export function removeBugExtraBgFormBLockScreen(){
+  let formBlocks = document.querySelectorAll(".bg_form_block_screen");
+  for(let i = 0; i < formBlocks.length -1; i++){
+    let item = formBlocks[i]; 
+    let parent = item.parentElement;
+    parent.removeChild(item);
+  }
+}

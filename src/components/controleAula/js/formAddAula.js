@@ -2,16 +2,18 @@ import {firebaseApp} from "../../dbConfig/firebaseApp.js";
 const {getFirestore, setDoc,  doc} = require("firebase/firestore") 
 const db = getFirestore(firebaseApp);
 
-import * as commonFunc from "../../js_common/commonFunctions.js";
+import {removeBugExtraBgFormBLockScreen, btnCloseForm, insertElementHTML, stringToID, defaultEventsAfterSubmitForm} from "../../js_common/commonFunctions.js";
 import {getAlunoHistCursosDB} from "../../js_common/dbAlunoHistoricoFunc.js";
 
 
-export async function insertFormAddAulaHTML() {
-  commonFunc.insertElementHTML('#controle_aula_content',
-    './components/controleAula/formAddAula.html', eventsFormAddAula);
-}
+  export async function insertFormAddAulaHTML() {
+    insertElementHTML('#controle_aula_content',
+      './components/controleAula/formAddAula.html', eventsFormAddAula);
+  }
+
  export function eventsFormAddAula(form) {
-   commonFunc.btnCloseForm("#form_add_aula");
+  removeBugExtraBgFormBLockScreen()
+   btnCloseForm("#form_add_aula");
   form.addEventListener("submit", (e) => {
     submitFormAddAula(e);  
   });
@@ -26,6 +28,7 @@ export async function insertFormAddAulaHTML() {
   });
   eventClickBtnStatus(form)
   setInputsProva(form)
+
 }
 
 function eventClickBtnStatus(form){
@@ -107,7 +110,7 @@ let bg_curso = document.querySelectorAll(".bg_curso");
 let navCursos = document.querySelector('.nav_cursos_aluno');
 let activeCurso = navCursos.querySelector('.active').dataset.active;
 bg_curso.forEach((curso)=>{
-    if (commonFunc.stringToID(curso.dataset.curso) === activeCurso) {
+    if (stringToID(curso.dataset.curso) === activeCurso) {
      select.innerHTML = `<option value='${curso.dataset.curso}' selected>${curso.dataset.curso}</option>`
     }
 })
@@ -228,7 +231,7 @@ function submitFormAddAula(e){
         { merge: true }
   )
   .then(()=>{
-  //  commonFunc.defaultEventsAfterSubmitForm("#form_add_aula", "Aula adicionada com sucesso!")
+    defaultEventsAfterSubmitForm("#form_add_aula", "Aula adicionada com sucesso!")
   }).catch((error) => console.error("Erro ao adicionar aula:", error));
 
 }
