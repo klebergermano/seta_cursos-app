@@ -7,7 +7,7 @@ import {getAlunoHistCursosDB} from "../../js_common/dbAlunoHistoricoFunc.js";
 
 
 export async function insertFormAddAulaHTML() {
-  commonFunc.insertElementHTML('#page_content',
+  commonFunc.insertElementHTML('#controle_aula_content',
     './components/controleAula/formAddAula.html', eventsFormAddAula);
 }
  export function eventsFormAddAula(form) {
@@ -228,7 +228,7 @@ function submitFormAddAula(e){
         { merge: true }
   )
   .then(()=>{
-    commonFunc.defaultEventsAfterSubmitForm("#form_add_aula", "Aula adicionada com sucesso!")
+  //  commonFunc.defaultEventsAfterSubmitForm("#form_add_aula", "Aula adicionada com sucesso!")
   }).catch((error) => console.error("Erro ao adicionar aula:", error));
 
 }

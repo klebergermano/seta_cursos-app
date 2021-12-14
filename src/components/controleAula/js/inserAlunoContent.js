@@ -47,12 +47,12 @@ function getRAFromMainSelectAluno() {
 
 
 export function insertAlunoContent(RA, alunoCursosDB) {
-
+  console.log('alunoCursosDB', alunoCursosDB);
   document.querySelector("#controle_aula_content").style.opacity = '0';
   if (alunoCursosDB.length !== 0) {
     createAlunoContentHTML(alunoCursosDB, RA);
     //document.querySelector("#controle_aula_content").innerHTML = alunoContentHTML;
-    let nomeCurso = document.querySelector('.bg_curso').dataset.curso;
+    let nomeCurso =  alunoCursosDB[0].doc.data().curso_info.nome;
     insertNavCursosInBGCursos(RA, nomeCurso);
   } else {
    document.querySelector("#controle_aula_content").innerHTML = alunoSemCursoContent();
@@ -80,25 +80,3 @@ function alunoSemCursoContent() {
 }
 
 
-
-/*
-export function insertAlunoContentXXXXXX(RA, alunoCursosDB) {
-  console.log(alunoCursosDB);
-  document.querySelector("#controle_aula_content").style.opacity = '0';
-  if (alunoCursosDB.length !== 0) {
-    let alunoContentHTML = createAlunoContentHTML(alunoCursosDB, RA);
-    document.querySelector("#controle_aula_content").innerHTML = alunoContentHTML;
-    let nomeCurso = document.querySelector('.bg_curso').dataset.curso;
-    insertNavCursosInBGCursos(RA, nomeCurso);
-  } else {
-    document.querySelector("#controle_aula_content").innerHTML = alunoSemCursoContent();
-  }
-  eventsAulas();
-  let spiner = document.querySelector('.spinner');
-  if (spiner) {
-    document.querySelector('#page_content').removeChild(spiner);
-  }
-  document.querySelector("#controle_aula_content").style.opacity = '1';
-}
-
-*/

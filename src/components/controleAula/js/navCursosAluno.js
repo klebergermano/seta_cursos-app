@@ -92,13 +92,13 @@ function arrayCursosAluno(RA) {
 
 function displayNavCursoAlunoUpdated(nomeCurso) {
   let nomeCursoAtualizado = commonFunc.stringToID(nomeCurso);
+  console.log('Nav nomeCurso:', nomeCursoAtualizado);
   displayCursoById(nomeCursoAtualizado);
   removeActiveClassFromNavCursos()
   //Adiciona class "active" no navCursos a[data-active='nomecurso']
   let a = document.querySelectorAll(`[data-active="${nomeCursoAtualizado}"]`);
   a[0].classList.add("active");
 }
-
 
 function removeActiveClassFromNavCursos() {
   let nav = document.querySelectorAll(".nav_cursos_aluno")[0];

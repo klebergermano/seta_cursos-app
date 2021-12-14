@@ -50,7 +50,6 @@ export function createAlunoContentHTML(alunoDataFromDB, RA) {
       let cursoHTMLContent = cursoVazioHTML(resCursoDB.curso_info.nome, RA);
       insertBgCursoHTML(cursoHTMLContent);
     }
-
   });
   //return alunoContentHTML;
   /*
