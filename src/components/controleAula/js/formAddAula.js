@@ -1,5 +1,5 @@
 import {firebaseApp} from "../../dbConfig/firebaseApp.js";
-const {getFirestore, setDoc,  doc} = require("firebase/firestore") 
+const {getFirestore, setDoc,  doc, getDocs, collection} = require("firebase/firestore") 
 const db = getFirestore(firebaseApp);
 
 import {removeBugExtraBgFormBLockScreen, btnCloseForm, insertElementHTML, stringToID, defaultEventsAfterSubmitForm} from "../../js_common/commonFunctions.js";
@@ -28,7 +28,6 @@ import {getAlunoHistCursosDB} from "../../js_common/dbAlunoHistoricoFunc.js";
   });
   eventClickBtnStatus(form)
   setInputsProva(form)
-
 }
 
 function eventClickBtnStatus(form){
@@ -65,8 +64,6 @@ selectAula.addEventListener('change', (e)=>{
   }
 })
 }
-
-
 
 export function setClassBtnStatus(form){
   removeClassActivedBtnStatus();
@@ -203,15 +200,15 @@ function blocoAddAula(dados) {
 }
 
 function getKeysAulas(RA, idCurso, bimestre) {
-  let aluno = getAlunoHistCursosDB(RA);
   let keysAulas = [];
   let nomeCursoBD;
+  let aluno = getDocs(collection(db, 'alunato', RA, 'cursos'));
   let keys = aluno.then((res) => {
-    res.forEach((e) => {
+    res.forEach((item) => {
       //nomeCursoBD = commonFunc.stringToID(e.data().curso);
-      if (e.data().curso === idCurso) {
-        if (e.data().bimestres[bimestre]) {
-          keysAulas = Object.keys(e.data().bimestres[bimestre]);
+      if (item.data().curso_info.nome === idCurso) {
+        if (item.data().bimestres[bimestre]) {
+          keysAulas = Object.keys(item.data().bimestres[bimestre]);
         }
       }
     });
@@ -220,6 +217,7 @@ function getKeysAulas(RA, idCurso, bimestre) {
   }).catch((err) => { console.log(err) });
   return keys;
 }
+
 
 function submitFormAddAula(e){
   e.preventDefault();
