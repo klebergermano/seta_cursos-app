@@ -20,7 +20,6 @@ function eventsFormAddFeedbackBimestral(form, event){
       form.addEventListener("submit", (e) => {
         submitformAddFeedbackBimestral(e);  
       });
-
       formAddAula.insertOptionsInSelectAluno(form)
       formAddAula.insertOptionSelectCurso(form)
   insertOptionSelectBimestre(form, event)
@@ -30,10 +29,7 @@ async function insertOptionSelectBimestre(form, event){
     let bimestre = event.target.closest('.bimestres').dataset.bimestre;
     let feedbackValue = event.target.closest('.feedback_bimestral').querySelector(".feedback_value").textContent;
     let select = form.querySelector('#select_bimestre');
-    console.log('f', form)
-console.log('s', select)
     select.innerHTML = `<option value='${bimestre}' selected>${bimestre}</option>`
-    console.log('f', form, 'e', event);
 
     form.querySelector('#bimestre_nome').innerHTML = select.options[select.selectedIndex].textContent;
 form.querySelector('#observacao').value =  feedbackValue; 
