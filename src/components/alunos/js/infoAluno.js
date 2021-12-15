@@ -3,7 +3,7 @@ const { ipcRenderer } = require("electron");
 
 //firestore
 import { firebaseApp } from "../../dbConfig/firebaseApp.js";
-const { getFirestore, getDocs, collection, getDoc, doc } = require("firebase/firestore");
+const { getFirestore, setDoc, getDocs, collection, getDoc, doc } = require("firebase/firestore");
 const db = getFirestore(firebaseApp);
 
 //Components
@@ -22,22 +22,65 @@ export function insertInfoAlunoHTML(RA) {
 function eventsInfoAluno(RA) {
     document.querySelector('#form_info_aluno').addEventListener('submit', (e) => {
         e.preventDefault();
+        submitFormInfoAluno(e);
     })
+
     getInfoAlunoDB(RA)
         .then((alunoInfo) => {
             let btns = document.querySelectorAll('.btn_create_talao');
             btns.forEach((item) => {
                 item.addEventListener('click', (e) => {
+                    e.preventDefault();
                     let cursoNome = e.target.closest('table').dataset.curso_nome;
                   let talaoInfo = createInfoTalao(cursoNome);
                    submitTalaoPDF(talaoInfo);
-
                 })
             });
+        }).then(()=>{
+            let inputs = document.querySelectorAll('.form_info input, .form_info textarea');
+            console.log(inputs);
+            inputs.forEach((item)=>{
+                item.addEventListener('input', (e)=>{
+                    activeSubmitOnChangeInput(e)
+                });
+            })
+        
+        }).then(()=>{
+        
         })
 }
 
+function activeSubmitOnChangeInput(e){
+    let form = e.target.closest('form');
+    let inputSubmit = form.querySelector('input[type="submit"]');
+    console.log(inputSubmit);
+    inputSubmit.removeAttribute('disabled');
+    inputSubmit.style.opacity='1';
+    }
+    
+    function submitFormInfoAluno(e){
+      let form = e.target;
+      let RA = form.aluno_ra.value; 
+      console.log(form);
+        setDoc(doc(db, "alunato", RA), 
+        { 
+          aluno: {
+           email: form.aluno_email.value,
+           end: form.aluno_end.value,
+           end_numero: form.aluno_end_numero.value,
+           bairro: form.aluno_bairro.value,
+           cep: form.aluno_cep.value,
+           data_nasc: form.aluno_data_nasc.value,
+           cel: form.aluno_cel.value,
+           tel: form.aluno_tel.value,
+           metadata:{
+             modified: new Date()
+           }
+          },
+       },{ merge: true}
+       )}
 
+    
 async function getInfoAlunoDB(RA) {
     let alunoInfo = getDoc(doc(db, 'alunato', RA))
         .then((res) => {
@@ -46,7 +89,7 @@ async function getInfoAlunoDB(RA) {
         }).then(async (res) => {
             insertAlunoInfo(res);
             let cursos = await getCursosInfoAlunoDB(RA)
-            insertAlunoCursoInfo(cursos);
+            insertAlunoCursoInfo(RA, cursos);
         }).then(()=>{
         return $alunoInfo;
         })
@@ -65,27 +108,27 @@ function getCursosInfoAlunoDB(RA) {
 }
 
 function insertAlunoInfo(alunoInfo) {
+    document.querySelector('#aluno_ra').value = alunoInfo.aluno.ra;
     document.querySelector('#aluno_nome').value = alunoInfo.aluno.nome;
     document.querySelector('#aluno_genero').value = alunoInfo.aluno.genero;
     document.querySelector('#aluno_end').value = alunoInfo.aluno.end;
     document.querySelector('#aluno_end_numero').value = alunoInfo.aluno.end_numero;
     document.querySelector('#aluno_bairro').value = alunoInfo.aluno.bairro;
     document.querySelector('#aluno_cep').value = alunoInfo.aluno.cep;
+    document.querySelector('#aluno_email').value = alunoInfo.aluno.email;
     document.querySelector('#aluno_rg').value = alunoInfo.aluno.rg;
     document.querySelector('#aluno_cel').value = alunoInfo.aluno.cel;
     document.querySelector('#aluno_tel').value = alunoInfo.aluno.tel;
 
 }
-function insertAlunoCursoInfo(cursos) {
-
+function insertAlunoCursoInfo(RA, cursos) {
     cursos.forEach((item) => {
         let curso = item.data();
-        let bg_curso = createCursoCotentHTML(curso);
-        document.querySelector("#form_info_aluno").appendChild(bg_curso);
+        let formCurso = createCursoCotentHTML(RA, curso);
+        document.querySelector("#bg_info_aluno").appendChild(formCurso);
     })
-
-
 }
+
 
 function createTableParcelasTable(parcelas, cursoNome) {
     let tableParcelas = document.createElement('table');
@@ -147,9 +190,9 @@ function createTableParcelasTable(parcelas, cursoNome) {
 
 }
 
-function createCursoCotentHTML(curso) {
-    console.log(curso);
-
+function createCursoCotentHTML(RA, curso) {
+let form = document.createElement('form');
+form.classList = 'form_info';
     let bg_curso = document.createElement('div');
     bg_curso.className = 'bg_curso';
     bg_curso.innerHTML =
@@ -220,13 +263,13 @@ function createCursoCotentHTML(curso) {
             </div>
             <div  class='div_input_info'>
                 <label>Endereço: </label>
-                <input id='resp_end' type='text' readonly="true" value="${curso.resp_info.end}"/>
+                <input id='resp_end' type='text'  value="${curso.resp_info.end}"/>
                 <label>Nº: </label>
-                <input id='resp_end_numero' type='text' readonly="true" value="${curso.resp_info.end_numero}"/>
+                <input id='resp_end_numero' type='text'  value="${curso.resp_info.end_numero}"/>
             </div>
             <div class='div_input_info'>
                 <label>Bairro</label>
-                <input id='resp_bairro' type='text' readonly="true" value="${curso.resp_info.bairro}"/>
+                <input id='resp_bairro' type='text'  value="${curso.resp_info.bairro}"/>
             </div>
             <div class='div_input_info'>
                 <label>CEP</label>
@@ -234,31 +277,31 @@ function createCursoCotentHTML(curso) {
             </div>
             <div class='div_input_info'>
                 <label>CPF</label>
-                <input id='resp_cpf'  type='text' readonly="true" value="${curso.resp_info.cep}"/>
+                <input id='resp_cpf'  type='text' readonly="true" value="${curso.resp_info.cpf}"/>
             </div>
             <div class='div_input_info'>
                 <label>RG</label>
-                <input id='resp_rg'  type='text' readonly="true" value="${curso.resp_info.cep}"/>
+                <input id='resp_rg'  type='text' readonly="true" value="${curso.resp_info.rg}"/>
             </div>
             <div class='div_input_info'>
                 <label>Email</label>
-                <input id='resp_email'  type='text' readonly="true" value="${curso.resp_info.cep}"/>
+                <input id='resp_email'  type='text'  value="${curso.resp_info.email}"/>
             </div>
-            <div class='div_input_info'>
-                <label>Email</label>
-                <input id='resp_email'  type='text' readonly="true" value="${curso.resp_info.cep}"/>
-            </div>
+    
             <div class='div_input_info'>
                 <label>Cel.:</label>
-                <input id='resp_cel'  type='text' readonly="true" value="${curso.resp_info.cel}"/>
+                <input id='resp_cel'  type='text'  value="${curso.resp_info.cel}"/>
             </div>
             <div class='div_input_info'>
                 <label>Tel.:</label>
-                <input id='resp_tel'  type='text' readonly="true" value="${curso.resp_info.tel}"/>
+                <input id='resp_tel'  type='text'  value="${curso.resp_info.tel}"/>
             </div>
         </div><!--fieldset-->
+        <input disabled='true' type='submit' value='Salvar Edições'>
     `;
-    return bg_curso;
+
+    form.appendChild(bg_curso);
+    return form;
 }
 
 function submitTalaoPDF(talaoInfo) {

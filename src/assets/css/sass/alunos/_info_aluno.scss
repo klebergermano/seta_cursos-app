@@ -1,6 +1,6 @@
 @use "../abstracts/" as *;
 
-#form_info_aluno {
+#form_info_aluno, .form_info {
     @extend .form_flex_static;
     background: #f0f0f0;
     padding: 0;
@@ -138,10 +138,9 @@ input[readonly="true"]{
             max-width: none !important;
         }
 
-      #resp_end_numero, #aluno_end_numero, #aluno_genero, #resp_genero{
+        #aluno_ra, #resp_end_numero, #aluno_end_numero, #aluno_genero, #resp_genero{
           max-width: 80px;
       }  
-
     }
 
     .bg_curso {
