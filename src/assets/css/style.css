@@ -2256,6 +2256,9 @@ option[disabled] {
   padding: 20px;
   max-width: 1200px;
 }
+#form_info_aluno input[readonly=true] {
+  background: #ccc;
+}
 #form_info_aluno table, #form_info_aluno td, #form_info_aluno th {
   padding: 5px;
   text-align: center;

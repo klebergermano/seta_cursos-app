@@ -129,6 +129,7 @@ export function submitFormContrato(e){
     e.preventDefault();
     let formInfo = createFormInfo(e);
 
+    console.log(formInfo);
 setDoc(doc(db, "contratos", formInfo.id_contrato), 
 { 
   resp_info: {
@@ -144,7 +145,6 @@ setDoc(doc(db, "contratos", formInfo.id_contrato),
    tel: formInfo.resp_tel,
    cel: formInfo.resp_cel,
    email: formInfo.resp_email,
-  
   },
   aluno_info: {
     parentesco_resp: formInfo.aluno_parentesco, 
@@ -190,6 +190,7 @@ setDoc(doc(db, "contratos", formInfo.id_contrato),
 
 function createFormInfo(e){
     const formData = [...e.target];
+    console.log('formData', formData);
     let formInfo = {};
     let conclusao = new Date(e.target.curso_inicio.value);
     conclusao.setMonth(
@@ -210,20 +211,21 @@ function createFormInfo(e){
     formInfo.curso_combo = comboTextarea.innerHTML;
     formInfo.curso_conclusao = f_conclusao;
   
-    //Caso o Aluno seja o próprio responsável seta os valores como --/--
+    //Caso o Aluno seja o próprio responsável 
     if (e.target.checkbox_resp_aluno.checked) {
       formInfo.checkbox_resp_aluno = true;
       formInfo.aluno_nome = formInfo.resp_nome;
       formInfo.aluno_end = formInfo.resp_end;
-      formInfo.aluno_numero = formInfo.resp_numero;
+      formInfo.aluno_end_numero = formInfo.resp_end_numero;
       formInfo.aluno_parentesco = "(IDEM)";
       formInfo.aluno_bairro = formInfo.resp_bairro;
       formInfo.aluno_cep = formInfo.resp_cep;
       formInfo.aluno_rg = formInfo.resp_rg;
       formInfo.aluno_data_nasc = formInfo.resp_data_nasc;
+      formInfo.aluno_email = formInfo.resp_email;
       formInfo.aluno_cel = formInfo.resp_cel;
       formInfo.aluno_tel = formInfo.resp_tel;
-      formInfo.aluno_obs = formInfo.resp_obs;
+      console.log('formInfo2', formInfo);
     }else{
       formInfo.checkbox_resp_aluno = false;
     }

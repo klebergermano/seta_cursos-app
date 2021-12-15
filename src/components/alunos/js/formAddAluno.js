@@ -134,6 +134,7 @@ function eventsFormAddAluno(){
      { 
        aluno: {
         ra: RA, 
+        genero: form.aluno_genero.value,
         nome: form.aluno_nome.value, 
         rg: form.aluno_rg.value,
         email: form.aluno_email.value,
@@ -142,7 +143,8 @@ function eventsFormAddAluno(){
         bairro: form.aluno_bairro.value,
         cep: form.aluno_cep.value,
         data_nasc: form.aluno_data_nasc.value,
-        genero: form.aluno_genero.value,
+        cel: form.aluno_cel.value,
+        tel: form.aluno_tel.value,
         obs:  form.aluno_obs.value,
         metadata:{
           created: new Date(),

@@ -159,7 +159,7 @@ function createCursoCotentHTML(curso) {
             <legend>Curso Info.</legend>
             <div class='div_input_info'>
                 <label>ID Contrato: </label>
-                <input id='id_contrato' readonly type='text' value="${curso.curso_info.id_contrato}"/>
+                <input id='id_contrato' readonly="true" type='text' value="${curso.curso_info.id_contrato}"/>
             </div>
             <div class='div_input_info'>
                 <label>Data Contrato: </label>
@@ -204,7 +204,7 @@ function createCursoCotentHTML(curso) {
             </div>
             <div class='div_input_info' id='div_curso_obs'>
                 <label>Obs.:</label>
-                <textarea id='curso_obs' readonly='true' >${curso.curso_info.obs}</textarea>
+                <textarea id='curso_obs' >${curso.curso_info.obs}</textarea>
             </div>
             <div class='bg_table'>
               ${(createTableParcelasTable(curso.curso_info.parcelas, curso.curso_info.nome)).outerHTML}
