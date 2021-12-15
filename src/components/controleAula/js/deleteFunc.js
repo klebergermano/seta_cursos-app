@@ -50,7 +50,10 @@ function checkIfBimestreIsEmptyToDelete(aulaInfoDelete){
     docCurso.then((res)=>{
         let bimestre = res.data().bimestres[aulaInfoDelete.bimestre];
         let keys = Object.keys(bimestre);
-        if(keys.length <= 0){
+        let values = Object.values(bimestre);
+
+        if(keys.length <= 0 || (keys.length === 1 && keys[0] === "feedback bimestral" && values[0].observacao.trim() === ""))
+        {
             deleteBimestre(aulaInfoDelete);
         }
     }).catch((err)=> console.log(err));
