@@ -215,6 +215,7 @@ function createFormInfo(e){
     if (e.target.checkbox_resp_aluno.checked) {
       formInfo.checkbox_resp_aluno = true;
       formInfo.aluno_nome = formInfo.resp_nome;
+      formInfo.aluno_genero = formInfo.resp_genero;
       formInfo.aluno_end = formInfo.resp_end;
       formInfo.aluno_end_numero = formInfo.resp_end_numero;
       formInfo.aluno_parentesco = "(IDEM)";
@@ -225,7 +226,6 @@ function createFormInfo(e){
       formInfo.aluno_email = formInfo.resp_email;
       formInfo.aluno_cel = formInfo.resp_cel;
       formInfo.aluno_tel = formInfo.resp_tel;
-      console.log('formInfo2', formInfo);
     }else{
       formInfo.checkbox_resp_aluno = false;
     }

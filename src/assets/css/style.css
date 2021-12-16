@@ -2255,8 +2255,8 @@ option[disabled] {
   background: #f0f0f0;
   padding: 0;
   box-shadow: none;
-  border: 0;
-  padding: 20px;
+  border: 1px solid #245da7;
+  padding: 20px 40px;
   max-width: 1200px;
 }
 #form_info_aluno input[readonly=true], .form_info input[readonly=true] {
@@ -2379,7 +2379,6 @@ option[disabled] {
   margin-top: 20px;
   margin-bottom: 20px;
   display: block;
-  border: 1px solid #333;
 }
 #form_info_aluno .bg_curso h4, .form_info .bg_curso h4 {
   text-transform: uppercase;
@@ -2387,8 +2386,11 @@ option[disabled] {
   width: calc(100% + 20px);
   text-align: center;
   padding: 20px;
-  margin: -10px;
+  margin-top: -50px;
+  margin-left: -50px;
+  margin-right: -50px;
   margin-bottom: 20px;
+  width: calc(100% + 100px);
 }
 #form_info_aluno .bg_curso fieldset, .form_info .bg_curso fieldset {
   width: 100%;

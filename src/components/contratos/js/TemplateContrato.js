@@ -13,9 +13,7 @@ function converteData(data) {
   return f_data;
 }
 const TemplateContrato = (data)=>{
-  console.log('********************************');
-  console.log(data);
-  console.log('********************************');
+
 
   if (data.checkbox_resp_aluno) {
     data.aluno_nome = "(IDEM)";

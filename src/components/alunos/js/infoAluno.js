@@ -9,6 +9,8 @@ const db = getFirestore(firebaseApp);
 //Components
 import { insertElementHTML, displaySpinnerLoad, removeSpinnerLoad} from "../../js_common/commonFunctions.js";
 //------------------------------------------------------------------------
+//Others libraries
+const VMasker = require("vanilla-masker");
 
 let $alunoInfo = {
     cursos: {}
@@ -19,7 +21,12 @@ export function insertInfoAlunoHTML(RA) {
     );
 }
 
+function maskInputs(){
+
+}
+
 function eventsInfoAluno(RA) {
+    
     document.querySelector('#form_info_aluno').addEventListener('submit', (e) => {
         e.preventDefault();
         submitFormInfoAluno(e);
@@ -37,8 +44,7 @@ function eventsInfoAluno(RA) {
                 })
             });
         }).then(()=>{
-            let inputs = document.querySelectorAll('.form_info input, .form_info textarea');
-            console.log(inputs);
+            let inputs = document.querySelectorAll('#form_info_aluno input, .form_info input, .form_info textarea');
             inputs.forEach((item)=>{
                 item.addEventListener('input', (e)=>{
                     activeSubmitOnChangeInput(e)
@@ -46,22 +52,64 @@ function eventsInfoAluno(RA) {
             })
         
         }).then(()=>{
-        
+            let formsInfo = document.querySelectorAll('.form_info');
+            formsInfo.forEach((form)=>{
+                VMasker(form.querySelector("#resp_cep")).maskPattern("99999-999");
+                VMasker(form.querySelector("#resp_cpf")).maskPattern("999.999.999-99");
+                VMasker(form.querySelector("#resp_rg")).maskPattern("99.999.999-S");
+                form.addEventListener('submit', (e)=>{
+                    e.preventDefault();
+                    submitFormsInfo(e)
+                });
+            })
+        }).then(()=>{
+         
+VMasker(document.querySelector("#form_info_aluno #aluno_rg")).maskPattern("99.999.999-S");
+VMasker(document.querySelector("#form_info_aluno #aluno_cep")).maskPattern("99999-999");
         })
 }
 
 function activeSubmitOnChangeInput(e){
     let form = e.target.closest('form');
     let inputSubmit = form.querySelector('input[type="submit"]');
-    console.log(inputSubmit);
     inputSubmit.removeAttribute('disabled');
     inputSubmit.style.opacity='1';
+    }
+
+    function submitFormsInfo(e){
+        let form = e.target;
+        let RA = form.aluno_ra.value; 
+        let curso = form.curso_nome.value; 
+          setDoc(doc(db, "alunato", RA, 'cursos', curso), 
+          { 
+              curso_info:{
+                  obs: form.curso_obs.value
+              },
+              resp_info:{
+                email: form.resp_email.value,
+                end: form.resp_end.value,
+                end_numero: form.resp_end_numero.value,
+                bairro: form.resp_bairro.value,
+                cep: form.resp_cep.value,
+                cpf: form.resp_cpf.value,
+                data_nasc: form.resp_data_nasc.value,
+                cel: form.resp_cel.value,
+                tel: form.resp_tel.value,
+              },
+             metadata:{
+               modified: new Date()
+            },
+         },{ merge: true}
+         ).then(()=>{
+           let inputSubmit = form.querySelector('input[type="submit"]');
+          inputSubmit.setAttribute('disabled', true);
+          inputSubmit.style.opacity='0.5';
+         })
     }
     
     function submitFormInfoAluno(e){
       let form = e.target;
       let RA = form.aluno_ra.value; 
-      console.log(form);
         setDoc(doc(db, "alunato", RA), 
         { 
           aluno: {
@@ -78,7 +126,13 @@ function activeSubmitOnChangeInput(e){
            }
           },
        },{ merge: true}
-       )}
+       ).then(()=>{
+         let inputSubmit = form.querySelector('input[type="submit"]');
+        inputSubmit.setAttribute('disabled', true);
+        inputSubmit.style.opacity='0.5';
+       })
+    
+    }
 
     
 async function getInfoAlunoDB(RA) {
@@ -108,6 +162,7 @@ function getCursosInfoAlunoDB(RA) {
 }
 
 function insertAlunoInfo(alunoInfo) {
+    console.log(alunoInfo);
     document.querySelector('#aluno_ra').value = alunoInfo.aluno.ra;
     document.querySelector('#aluno_nome').value = alunoInfo.aluno.nome;
     document.querySelector('#aluno_genero').value = alunoInfo.aluno.genero;
@@ -115,11 +170,11 @@ function insertAlunoInfo(alunoInfo) {
     document.querySelector('#aluno_end_numero').value = alunoInfo.aluno.end_numero;
     document.querySelector('#aluno_bairro').value = alunoInfo.aluno.bairro;
     document.querySelector('#aluno_cep').value = alunoInfo.aluno.cep;
+    document.querySelector('#aluno_data_nasc').value = alunoInfo.aluno.data_nasc;
     document.querySelector('#aluno_email').value = alunoInfo.aluno.email;
     document.querySelector('#aluno_rg').value = alunoInfo.aluno.rg;
     document.querySelector('#aluno_cel').value = alunoInfo.aluno.cel;
     document.querySelector('#aluno_tel').value = alunoInfo.aluno.tel;
-
 }
 function insertAlunoCursoInfo(RA, cursos) {
     cursos.forEach((item) => {
@@ -191,12 +246,15 @@ function createTableParcelasTable(parcelas, cursoNome) {
 }
 
 function createCursoCotentHTML(RA, curso) {
+    console.log(curso);
 let form = document.createElement('form');
 form.classList = 'form_info';
     let bg_curso = document.createElement('div');
     bg_curso.className = 'bg_curso';
     bg_curso.innerHTML =
         `
+        <input id='aluno_ra' readonly="true" type='hidden' value="${RA}"/>
+        <input id='curso_nome' readonly="true" type='hidden' value="${curso.curso_info.nome}"/>
         <h4>${curso.curso_info.nome}</h4>
         <div class='fieldset'>
             <legend>Curso Info.</legend>
@@ -273,7 +331,7 @@ form.classList = 'form_info';
             </div>
             <div class='div_input_info'>
                 <label>CEP</label>
-                <input id='resp_cep'  type='text' readonly="true" value="${curso.resp_info.cep}"/>
+                <input id='resp_cep'  type='text'  value="${curso.resp_info.cep}"/>
             </div>
             <div class='div_input_info'>
                 <label>CPF</label>
@@ -283,6 +341,11 @@ form.classList = 'form_info';
                 <label>RG</label>
                 <input id='resp_rg'  type='text' readonly="true" value="${curso.resp_info.rg}"/>
             </div>
+            <div class='div_input_info'>
+                <label>Data Nasc.</label>
+                <input id='resp_data_nasc'  type='date'  value="${curso.resp_info.data_nasc}"/>
+             </div>
+
             <div class='div_input_info'>
                 <label>Email</label>
                 <input id='resp_email'  type='text'  value="${curso.resp_info.email}"/>
