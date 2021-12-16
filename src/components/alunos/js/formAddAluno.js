@@ -32,8 +32,10 @@ function eventsFormAddAluno(){
     let IDContrato = e.target.value;
     const formAddAluno =  document.querySelector("#form_add_aluno");
     getContratoInfoDB(IDContrato).then((res)=>{
+
       let id_contrato = res.id; 
       let contrato = res.data();
+      console.log(contrato);
       //Aluno
       formAddAluno.querySelector("#aluno_nome").value = contrato.aluno_info.nome;
       formAddAluno.querySelector("#aluno_genero").value = contrato.aluno_info.genero;
@@ -41,6 +43,7 @@ function eventsFormAddAluno(){
       formAddAluno.querySelector("#aluno_end_numero").value = contrato.aluno_info.end_numero;
       formAddAluno.querySelector("#aluno_bairro").value = contrato.aluno_info.bairro;
       formAddAluno.querySelector("#aluno_cep").value = contrato.aluno_info.cep;
+      formAddAluno.querySelector("#aluno_data_nasc").value = contrato.aluno_info.data_nasc;
       formAddAluno.querySelector("#aluno_rg").value = contrato.aluno_info.rg;
       formAddAluno.querySelector("#aluno_cel").value = contrato.aluno_info.cel;
       formAddAluno.querySelector("#aluno_tel").value = contrato.aluno_info.tel;
@@ -121,7 +124,7 @@ function eventsFormAddAluno(){
         data_nasc: form.resp_data_nasc.value, 
         rg: form.resp_rg.value,
         cpf: form.resp_cpf.value,
-        email: form.resp_cpf.value,
+        email: form.resp_email.value,
         cel: form.resp_cel.value,
         tel: form.resp_tel.value,
         metadata:{
@@ -134,6 +137,7 @@ function eventsFormAddAluno(){
      { 
        aluno: {
         ra: RA, 
+        genero: form.aluno_genero.value,
         nome: form.aluno_nome.value, 
         rg: form.aluno_rg.value,
         email: form.aluno_email.value,
@@ -142,7 +146,8 @@ function eventsFormAddAluno(){
         bairro: form.aluno_bairro.value,
         cep: form.aluno_cep.value,
         data_nasc: form.aluno_data_nasc.value,
-        genero: form.aluno_genero.value,
+        cel: form.aluno_cel.value,
+        tel: form.aluno_tel.value,
         obs:  form.aluno_obs.value,
         metadata:{
           created: new Date(),

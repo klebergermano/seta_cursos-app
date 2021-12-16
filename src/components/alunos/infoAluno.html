@@ -5,25 +5,29 @@
       <div class='block_info' id='info_cursos'>
 
     </div>
- <form id='form_info_aluno'>
+ <form id='form_info_aluno' >
+
 <div class='fieldset' id='filedset_info_cadastro'>
+   
     <div class='div_input_info'>
+        <label>RA:</label><input readonly="true" id='aluno_ra' type='text'>
         <label>Aluno:</label><input readonly="true" id='aluno_nome' type='text'>
         <label>Genero:</label><input  readonly="true" id='aluno_genero' type='text'>
     </div>
 
     <div class='div_input_info'>
-        <label>Endereço:</label><input readonly="true" id='aluno_end' type='text'>
-        <label>Nº:</label><input  readonly="true" id='aluno_end_numero' type='text'>
+        <label>Endereço:</label><input id='aluno_end' type='text'>
+        <label>Nº:</label><input   id='aluno_end_numero' type='text'>
     </div>
     <div class='div_input_info'><label>Bairro:</label>
-        <input readonly="true" id='aluno_bairro' type='text'>
+        <input id='aluno_bairro' type='text'>
     </div>
-    <div class='div_input_info'><label>CEP:</label><input readonly="true" id='aluno_cep' type='text'></div>
+    <div class='div_input_info'><label>CEP:</label><input id='aluno_cep' type='text'></div>
+    <div class='div_input_info'><label>Email:</label><input id='aluno_email' type='text'></div>
     <div class='div_input_info'><label>RG:</label><input readonly="true" id='aluno_rg' type='text'></div>
-    <div class='div_input_info'><label>Data Nasc.:</label><input readonly="true" id='aluno_data_nasc' type='text'></div>
-    <div class='div_input_info'><label>Cel.:</label><input readonly="true" id='aluno_cel' type='text'></div>
-    <div class='div_input_info'><label>Tel.:</label><input readonly="true" id='aluno_tel' type='text'></div>
+    <div class='div_input_info'><label>Data Nasc.:</label><input  id='aluno_data_nasc' type='date'></div>
+    <div class='div_input_info'><label>Cel.:</label><input  id='aluno_cel' type='text'></div>
+    <div class='div_input_info'><label>Tel.:</label><input  id='aluno_tel' type='text'></div>
 </div><!--filedset-->
 
 <input disabled type='submit' value='Salvar Alterações'>

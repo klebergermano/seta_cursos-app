@@ -1,13 +1,16 @@
 @use "../abstracts/" as *;
 
-#form_info_aluno {
+#form_info_aluno, .form_info {
     @extend .form_flex_static;
     background: #f0f0f0;
     padding: 0;
     box-shadow: none;
-    border: 0;
-    padding:20px;
+    border:1px solid $primary-color;
+    padding:20px 40px;
     max-width: 1200px;
+input[readonly="true"]{
+    background: #ccc;
+}
 
     table,td, th{
         padding:5px;
@@ -135,10 +138,9 @@
             max-width: none !important;
         }
 
-      #resp_end_numero, #aluno_end_numero, #aluno_genero, #resp_genero{
+        #aluno_ra, #resp_end_numero, #aluno_end_numero, #aluno_genero, #resp_genero{
           max-width: 80px;
       }  
-
     }
 
     .bg_curso {
@@ -146,15 +148,17 @@
         margin-top:20px;
         margin-bottom:20px;
         display: block;
-        border:1px solid #333;
         h4 {
             text-transform: uppercase;
             background:#cdc;
             width: calc(100% + 20px);
             text-align: center;
             padding: 20px;
-            margin: -10px;
+            margin-top: -50px;
+            margin-left:-50px; 
+            margin-right: -50px;
             margin-bottom:20px;
+            width: calc(100% + 100px)
         }
         fieldset {
 
