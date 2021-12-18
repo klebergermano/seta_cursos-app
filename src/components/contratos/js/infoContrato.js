@@ -9,14 +9,13 @@ export function insertInfoContratoHTML(idContrato){
     insertElementHTML("#contratos_content", "./components/contratos/infoContrato.html",  ()=>{eventsInfoContrato(idContrato)}, null, true)
 }
 function eventsInfoContrato(idContrato){
-    getDoc(doc(db, 'contratos', idContrato)).then((contratoInfo)=>{
+    getDoc(doc(db, 'contratos', idContrato))
+    .then((contratoInfo)=>{
         insertValuesInputs(contratoInfo)
-    })
-    console.log('IDCONTRATO', idContrato)
+    }).catch((err)=> console.log(err));
 }
 
 function insertValuesInputs(contratoInfo){
-    console.log(contratoInfo.data());
     contratoInfo = contratoInfo.data();
         //Resp
         document.querySelector('#resp_nome').value = contratoInfo.resp_info.nome;

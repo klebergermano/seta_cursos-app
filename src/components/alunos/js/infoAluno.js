@@ -161,7 +161,6 @@ function getCursosInfoAlunoDB(RA) {
 }
 
 function insertAlunoInfo(alunoInfo) {
-    console.log(alunoInfo);
     document.querySelector('#aluno_ra').value = alunoInfo.aluno.ra;
     document.querySelector('#aluno_nome').value = alunoInfo.aluno.nome;
     document.querySelector('#aluno_genero').value = alunoInfo.aluno.genero;
@@ -245,7 +244,6 @@ function createTableParcelasTable(parcelas, cursoNome) {
 }
 
 function createCursoCotentHTML(RA, curso) {
-    console.log(curso);
 let form = document.createElement('form');
 form.classList = 'form_info';
     let bg_curso = document.createElement('div');
@@ -408,8 +406,6 @@ function createInfoTalao(cursoNome) {
      talaoInfo.push(folha); 
      
    });
-
- console.log('ti:', talaoInfo);
     return talaoInfo;
     
 }

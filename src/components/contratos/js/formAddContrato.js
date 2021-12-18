@@ -128,8 +128,6 @@ geradorIDContrato.eventsIDContrato();
 export function submitFormContrato(e){
     e.preventDefault();
     let formInfo = createFormInfo(e);
-
-    console.log(formInfo);
 setDoc(doc(db, "contratos", formInfo.id_contrato), 
 { 
   resp_info: {
@@ -190,7 +188,6 @@ setDoc(doc(db, "contratos", formInfo.id_contrato),
 
 function createFormInfo(e){
     const formData = [...e.target];
-    console.log('formData', formData);
     let formInfo = {};
     let conclusao = new Date(e.target.curso_inicio.value);
     conclusao.setMonth(

@@ -41,8 +41,6 @@ function closeConfirmBox(e){
   let block_screen = parent;
   let parent_block_screen = block_screen.parentElement;
   parent_block_screen.removeChild(block_screen);
-  }else{
-    console.log(parent.parentElement);
   }
 };
 export function confirmBoxDeleteCurso(target, curso, callback) {

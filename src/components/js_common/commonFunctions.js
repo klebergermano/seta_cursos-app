@@ -110,9 +110,7 @@ export function showTemporaryMessage
   if (blockScreen) {
     divMessage.id = 'block_screen_msg';
     divMessage.innerHTML = `<div class='temp_msg'><p>${msg}</p></div>`;
-    console.log('yeap');
   } else {
-    console.log('nop');
     divMessage.className = 'temp_msg';
     divMessage.innerHTML = `<p>${msg}</p>`;
   }

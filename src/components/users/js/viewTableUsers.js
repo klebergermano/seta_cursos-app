@@ -15,15 +15,12 @@ function eventsViewTableUsers(){
     })
     .then((tbody)=>{
         document.querySelector('#view_table_users tbody').outerHTML = tbody.outerHTML;
-    }).then(()=>{
-        eventBtnDeleteUser()
     })
     .catch(err => console.log(err))
 }
 
 function eventBtnDeleteUser(){
     let btns = document.querySelectorAll('#view_table_users .btn_delete_user');
-    console.log(btns);
     btns.forEach((item)=>{
       item.addEventListener('click', (e)=>{
         let idUser = e.target.closest('tr').dataset.uid;
@@ -39,24 +36,6 @@ function eventBtnDeleteUser(){
     })
 }
 
-    function  submitDeleteUser(idUser, username){
-        console.log(idUser,username );
-        /*
-        deleteDoc(doc(db, 'alunato', RA))
-        .then(()=>{
-            let data = new Date();
-            let id =  data.getFullYear()+''+(data.getMonth()+1)+''+data.getDate()+''+readableRandomStringMaker(5);
-          setDoc(doc(db, "log", 'log_alunato'),{
-            [id]: `Aluno ${RA} deletado em ${new Date()} por ${auth.currentUser.email}`
-            },
-            { merge: true})
-        })
-        .then(()=>{
-           // insertViewTableAlunosHTML()
-        })
-        .catch((err)=> console.log(err));
-    */
-        }
 
 
     function getUsersList(){
@@ -69,7 +48,6 @@ function eventBtnDeleteUser(){
 
         usersInfo.forEach((item)=>{
             let user = item.data();
-            console.log(user);
             let tr = document.createElement('tr');
           tr.setAttribute('data-uid', user.uid);
           tr.setAttribute('data-user_email', user.email);

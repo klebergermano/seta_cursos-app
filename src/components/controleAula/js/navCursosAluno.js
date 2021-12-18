@@ -55,7 +55,6 @@ export function displayFirstCursoAluno(){
 }
 
 function displayCursoById(idCurso) {
-  console.log('idCurso', idCurso);
   commonFunc.hideAllElementsByClassName('.bg_curso');
   document.querySelector('#'+idCurso).style.display='block';
 }
@@ -67,8 +66,6 @@ function removeActiveClassNavCursosElement() {
 }
 
 function navCursosClick(e) {
-  console.log('click nav')
-  let idCurso = e.target.dataset.active;
   //Remove a classe "active" dos elementos a.
   removeActiveClassNavCursosElement();
   //Mostra o curso pelo id do menu clicado.
@@ -92,7 +89,6 @@ function arrayCursosAluno(RA) {
 
 function displayNavCursoAlunoUpdated(nomeCurso) {
   let nomeCursoAtualizado = commonFunc.stringToID(nomeCurso);
-  console.log('Nav nomeCurso:', nomeCursoAtualizado);
   displayCursoById(nomeCursoAtualizado);
   removeActiveClassFromNavCursos()
   //Adiciona class "active" no navCursos a[data-active='nomecurso']
