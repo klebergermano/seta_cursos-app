@@ -4,6 +4,7 @@ const {getFirestore, getDocs, collection, deleteDoc, doc, setDoc} = require("fir
 const db = getFirestore(firebaseApp);
 const {getAuth} = require("firebase/auth");
 const auth = getAuth(firebaseApp);
+import {insertInfoContratoHTML} from "./infoContrato.js"; 
 
 let $contratosLista = {};
 import { insertElementHTML, confirmBoxDelete, readableRandomStringMaker} from "../../js_common/commonFunctions.js";
@@ -15,7 +16,6 @@ import { insertElementHTML, confirmBoxDelete, readableRandomStringMaker} from ".
         insertElementHTML("#contratos_content", "./components/contratos/viewTableContratos.html",  eventsViewTableContratos, null, true)
     }
 
-
     function eventsViewTableContratos(){
         getContratosList()
         .then((res) => {
@@ -26,6 +26,15 @@ import { insertElementHTML, confirmBoxDelete, readableRandomStringMaker} from ".
             document.querySelector('#view_table_contratos tbody').outerHTML = tbody.outerHTML;
         }).then(()=>{
             eventBtnDeleteContrato()
+        }).then(()=>{
+            let btns = document.querySelectorAll('.btn_info_aluno');
+            btns.forEach((item)=>{
+                item.addEventListener('click', (e)=>{
+                    
+                   let idContrato = e.target.closest('tr').dataset.id_contrato;  
+                    insertInfoContratoHTML(idContrato)
+                });
+            });
         })
         .catch(err => console.log(err))
     }
@@ -61,7 +70,6 @@ function  submitDeleteContrato(idContrato){
         insertViewTableContratosHTML()
     })
     .catch((err)=> console.log(err));
-
     }
  
     function createTableContratosHTML (contratosInfo){
@@ -69,7 +77,9 @@ function  submitDeleteContrato(idContrato){
         contratosInfo.forEach((item)=>{
             let contrato = item.data();
             let tr = document.createElement('tr');
-            tr.classList = contratosInfo.metadata.aluno_associado;
+            tr.classList = contrato.metadata.status;
+
+            tr.setAttribute('data-id_contrato', contrato.metadata.id );
             let disabled; 
             let title = "Deletar contrato";
             let buttonDelete = "";
@@ -90,7 +100,6 @@ function  submitDeleteContrato(idContrato){
                 </svg>
             </button>`
             }
-            
             let trContent = 
             `
             <td class='td_contrato_id'>${contrato.metadata.id}</td>
@@ -98,6 +107,15 @@ function  submitDeleteContrato(idContrato){
             <td class='td_aluno_nome'>${contrato.aluno_info.nome}</td>
             <td class='td_aluno_assoc'>${contrato.metadata.aluno_associado}</td>
             <td class='td_contrato_status'>${contrato.metadata.status}</td>
+            <td class='td_contrato_info'>
+            <button class='btn_info_aluno'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+            </svg>
+            Info
+         </button> 
+            </td>
             <td class='td_controls' data-id_contrato="${contrato.metadata.id}"  data-aluno_nome="${contrato.aluno_info.nome}">
             ${buttonDelete}
             </td>

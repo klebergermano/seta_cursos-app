@@ -50,7 +50,6 @@ function eventsInfoAluno(RA) {
                     activeSubmitOnChangeInput(e)
                 });
             })
-        
         }).then(()=>{
             let formsInfo = document.querySelectorAll('.form_info');
             formsInfo.forEach((form)=>{
