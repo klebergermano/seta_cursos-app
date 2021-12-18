@@ -2067,7 +2067,7 @@ option[disabled] {
 #bg_contrato_content {
   position: relative;
 }
-#bg_contrato_content table .td_contrato_id, #bg_contrato_content table .td_aluno_assoc, #bg_contrato_content table .td_contrato_status {
+#bg_contrato_content table .td_contrato_id, #bg_contrato_content table .td_aluno_assoc, #bg_contrato_content table .td_contrato_status, #bg_contrato_content table .td_contrato_info {
   text-align: center;
 }
 
@@ -2296,14 +2296,15 @@ option[disabled] {
 #fieldset_curso .row #curso_desconto {
   color: red;
 }
-#fieldset_curso .row #div_curso_combo textarea {
-  width: 100%;
-}
 #fieldset_curso .row #div_curso_obs {
   margin-top: 5px;
 }
 #fieldset_curso .row #div_curso_obs #curso_obs {
   min-height: 60px !important;
+  padding: 5px;
+}
+#fieldset_curso #div_curso_desconto_combo div {
+  background: #dfdfdf;
   padding: 5px;
 }
 #fieldset_curso #div_curso_obs {
