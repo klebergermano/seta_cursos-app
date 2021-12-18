@@ -51,15 +51,6 @@ export function submitConfigPerm(){
         .catch((error) => console.error("Erro ao adicionar permissões de usuário:", error));
     
     }
-    /*
-    setDoc(doc(db, 'users', 'permissions'), permissions)
-    .then(()=>{
-        console.log('PERMISSIONS:', permissions)
-        commonFunc.defaultEventsAfterSubmitForm('#form_config_perm', "Permissões adicionadas com sucesso!");
-    })
-    .catch((error) => console.error("Erro ao adicionar permissões de usuário:", error));
 
-
-    */
 }
 
