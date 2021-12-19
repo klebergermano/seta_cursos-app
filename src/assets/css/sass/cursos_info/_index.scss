@@ -1,3 +1,4 @@
+@use '../abstracts/variables' as *;
 #cursos_info{
 
     .page_content{
@@ -6,32 +7,77 @@
         grid-template-columns: repeat(auto-fit, minmax(350px, auto));
        gap:20px;
         .curso_content{
-            h2{margin-bottom: 20px;}
-            .categoria{
-                display: none;
-            }
             padding:20px;
-            border:1px solid #333;
+            border:2px solid #333;
             border-radius: 5px;
-            background:#e0e0e0;
+            background: #f0f0f0;
+
+            h2{margin-bottom: 20px;
+                text-align: center; text-transform: uppercase;}
+            .categoria{
+                display:none;
+            }
             .modulos{
+                font-size:12px;
+                padding:10px;
+                border:1px solid #ccc;
                 margin-bottom:20px;
                 h3{ margin-bottom: 10px;
                     font-size: 16px;
+                    text-align: left;
                 }
                 ul li{
                     margin-left:20px;
                 }
             }
             .div_valor, .div_duracao{
-                
                 margin-top:10px;
                 font-size: 20px !important;
-                
+                 
                 p{
                      font-weight: bold;}
             }
 
         }
+
+        div[class*="curso_informatica"]{
+            //background: lighten($background-informatica, 50%);
+            h2{color:$color-informatica}
+            border-color: $color-informatica;
+        }
+        div[class*="curso_excel"]{
+            h2{color:$color-excel}
+            border-color: $color-excel;
+
+        }
+        div[class*="curso_ingles"]{
+            h2{color:$color-ingles}
+            border-color: $color-ingles;
+        
+        }
+        div[class*="curso_web"]{
+            h2{color:$color-web}
+            border-color: $color-web;
+
+
+        }
+        div[class*="curso_adm"]{
+            h2{color:$color-adm}
+            border-color: $color-adm;
+
+
+        }
+        div[class*="curso_banco"]{
+            h2{color:$color-banco}
+            border-color: $color-banco;
+
+
+        }
+   
     }
+
+    
+
 }
+
+
