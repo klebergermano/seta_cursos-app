@@ -157,11 +157,7 @@ function createContentAulaHTML(aluno){
         //Adiciona "pages" em "bgPages"
         bgPages.appendChild(pages);
     }
-        console.log('-------------------------------------------------'); 
-        console.log('-------------------------------------------------'); 
-      //  console.log('bgPages:', bgPages.innerHTML); 
-        console.log('-------------------------------------------------'); 
-        console.log('-------------------------------------------------'); 
+    
 
 
     return bgPages; 

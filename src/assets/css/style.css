@@ -884,22 +884,28 @@ menu.submenu_page ul li a {
 }
 #cursos_info .page_content .curso_content {
   padding: 20px;
-  border: 1px solid #333;
+  border: 2px solid #333;
   border-radius: 5px;
-  background: #e0e0e0;
+  background: #f0f0f0;
 }
 #cursos_info .page_content .curso_content h2 {
   margin-bottom: 20px;
+  text-align: center;
+  text-transform: uppercase;
 }
 #cursos_info .page_content .curso_content .categoria {
   display: none;
 }
 #cursos_info .page_content .curso_content .modulos {
+  font-size: 12px;
+  padding: 10px;
+  border: 1px solid #ccc;
   margin-bottom: 20px;
 }
 #cursos_info .page_content .curso_content .modulos h3 {
   margin-bottom: 10px;
   font-size: 16px;
+  text-align: left;
 }
 #cursos_info .page_content .curso_content .modulos ul li {
   margin-left: 20px;
@@ -910,6 +916,42 @@ menu.submenu_page ul li a {
 }
 #cursos_info .page_content .curso_content .div_valor p, #cursos_info .page_content .curso_content .div_duracao p {
   font-weight: bold;
+}
+#cursos_info .page_content div[class*=curso_informatica] {
+  border-color: #1f3c7a;
+}
+#cursos_info .page_content div[class*=curso_informatica] h2 {
+  color: #1f3c7a;
+}
+#cursos_info .page_content div[class*=curso_excel] {
+  border-color: #097a4a;
+}
+#cursos_info .page_content div[class*=curso_excel] h2 {
+  color: #097a4a;
+}
+#cursos_info .page_content div[class*=curso_ingles] {
+  border-color: #ad054b;
+}
+#cursos_info .page_content div[class*=curso_ingles] h2 {
+  color: #ad054b;
+}
+#cursos_info .page_content div[class*=curso_web] {
+  border-color: #1f3c7a;
+}
+#cursos_info .page_content div[class*=curso_web] h2 {
+  color: #1f3c7a;
+}
+#cursos_info .page_content div[class*=curso_adm] {
+  border-color: #0d705c;
+}
+#cursos_info .page_content div[class*=curso_adm] h2 {
+  color: #0d705c;
+}
+#cursos_info .page_content div[class*=curso_banco] {
+  border-color: #ca881d;
+}
+#cursos_info .page_content div[class*=curso_banco] h2 {
+  color: #ca881d;
 }
 
 #form_add_aula {

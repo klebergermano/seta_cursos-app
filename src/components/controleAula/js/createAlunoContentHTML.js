@@ -16,7 +16,6 @@ function insertBgCursoHTML(cursoHTMLContent) {
 function removeBgCursosAnteriosOutrosAlunos(RA){
   let controleAulaContent = document.querySelector("#controle_aula_content");
   let bgCurso = controleAulaContent.querySelectorAll('.bg_curso');
-  console.log(bgCurso)
   bgCurso.forEach((item)=>{
     if(RA !==  item.dataset.aluno_ra){
       controleAulaContent.removeChild(item);
@@ -42,18 +41,7 @@ export function createAlunoContentHTML(alunoDataFromDB, RA) {
       insertBgCursoHTML(cursoHTMLContent);
     }
   });
-  //return alunoContentHTML;
-  /*
-     //Testa para conferir se é um Snapshot ou Get
-     if (typeof resCursoDB.data !== "undefined"){
-       console.log('get');
-       //Get
-       resCursoDB = resCursoDB.data();
-     }
-     else {
-       //Snapshot
-     }
-     */
+
 }
 
 function createBgCursoHTML(curso_nome_bd, RA) {
@@ -178,9 +166,6 @@ function createCursoHTMLContent(bgCursoHTML, cursoDB) {
     divCursoContent.appendChild(divBgBimestres); //Adiciona o '.bg_bimestres' em '#curso_content'
   }//------------------------------------------------END FOR Bimestres
 
-  console.log('---------------------------------------------------------------------')
-  console.log('bgCursoHTML', bgCursoHTML)
-  console.log('---------------------------------------------------------------------')
 
   return bgCursoHTML;
 }

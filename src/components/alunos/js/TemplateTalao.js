@@ -1,8 +1,6 @@
 const folhasTalao = require ('./TemplateTalaoFolhas.js');
 
 const TemplateTalao = (talaoInfo)=>{
-console.log(talaoInfo)
-
  let talao = ''; 
     talaoInfo.forEach((item)=>{
       talao += folhasTalao(item)

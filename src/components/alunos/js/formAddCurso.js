@@ -91,14 +91,7 @@ function validaContrato(contratoInfo, alunoInfo){
     return true;
   }else{
     if(alunoNome.trim() === alunoInfo.nome.trim()){
-      console.log('nome igual');
-    }else{
-      console.log('nome diferente');
-    console.log('alunoNome:' + alunoNome , 'alunoInfo.nome:'+ alunoInfo.nome);
-
-
     }
-    console.log('alunoNome', alunoNome , 'alunoInfo.nome',alunoInfo.nome,  '!=',   'alunoRG', alunoRG,  '!=' , 'alunoInfo.rg', alunoInfo.rg);
     return false;
   }
 }

@@ -6,7 +6,6 @@ export function insertFormEditAulaHTML(eventClick){
   let form = insertElementHTML('#page_content',
   './components/controleAula/formAddAula.html');
   form.then((bgformRes)=>{
-    console.log('formRes', bgformRes);
     formAddAula.eventsFormAddAula(bgformRes);
     eventsFormEditAula(eventClick)
     if(bgformRes.querySelector('#aula_categoria').value === 'prova'){

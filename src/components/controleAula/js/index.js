@@ -44,8 +44,6 @@ export async function onload(){
  displaySpinnerLoad("#page_content")
   insertOptionsSelectAlunos()
   .then((RA)=>{
-    console.log(RA);
-    
     getSnapshotAlunoCursosDB(RA, insertAlunoContent)
   });
   document.querySelector('#main_select_aluno').addEventListener('change', (e)=>{

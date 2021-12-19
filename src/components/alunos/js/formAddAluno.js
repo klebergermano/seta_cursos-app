@@ -35,7 +35,6 @@ function eventsFormAddAluno(){
 
       let id_contrato = res.id; 
       let contrato = res.data();
-      console.log(contrato);
       //Aluno
       formAddAluno.querySelector("#aluno_nome").value = contrato.aluno_info.nome;
       formAddAluno.querySelector("#aluno_genero").value = contrato.aluno_info.genero;
