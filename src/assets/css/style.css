@@ -941,6 +941,12 @@ menu.submenu_page ul li a {
 #cursos_info .page_content div[class*=curso_web] h2 {
   color: #1f3c7a;
 }
+#cursos_info .page_content div[class*=curso_espanhol] {
+  border-color: #f0a029;
+}
+#cursos_info .page_content div[class*=curso_espanhol] h2 {
+  color: #7a082e;
+}
 #cursos_info .page_content div[class*=curso_adm] {
   border-color: #0d705c;
 }

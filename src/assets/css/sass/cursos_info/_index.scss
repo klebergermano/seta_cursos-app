@@ -61,11 +61,14 @@
 
 
         }
+        div[class*="curso_espanhol"]{
+            h2{color:$color-espanhol}
+            border-color: $background-espanhol;
+        }
+
         div[class*="curso_adm"]{
             h2{color:$color-adm}
             border-color: $color-adm;
-
-
         }
         div[class*="curso_banco"]{
             h2{color:$color-banco}
