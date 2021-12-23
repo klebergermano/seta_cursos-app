@@ -1,0 +1,19 @@
+
+@use "../abstracts" as *;
+#form_add_curso_info{
+    @extend .form_flex_absolute;
+
+    #div_modulos{
+        width:100%;
+    }
+
+    #div_valor_mes, #div_duracao, #div_parcelas{
+        padding:3px;
+        max-width: 33.3333%;
+        input{
+            max-width: 100%;
+            min-width: 50px !important;
+        }
+    }
+
+}
