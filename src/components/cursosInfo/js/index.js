@@ -1,6 +1,6 @@
 
-import { insertViewTableCursosInfoHTML } from "./viewTableCursosInfo.js"
-import { insertFormAddCursosInfoHTML } from "./formAddCursoInfo.js"
+import { insertViewTableCursosInfoHTML } from "./viewTableCursosInfo.js";
+import { insertFormAddCursosInfoHTML } from "./formAddCursoInfo.js";
 
 export function onload() {
   document.querySelector('#btn_add_curso_info').addEventListener('click', (e) => {

@@ -974,11 +974,34 @@ menu.submenu_page ul li a {
   max-width: 100%;
   min-width: 50px !important;
 }
+#form_add_curso_info #modulos {
+  min-height: 150px;
+}
+#form_add_curso_info input[readonly=true] {
+  background: #ddd;
+}
 
 #bg_view_table_cursos_info {
   position: relative;
 }
+#bg_view_table_cursos_info table th {
+  background: #45856a;
+}
+#bg_view_table_cursos_info table td, #bg_view_table_cursos_info table th {
+  font-size: 13px;
+}
+#bg_view_table_cursos_info table td {
+  text-align: center;
+}
+#bg_view_table_cursos_info table #td_nome {
+  text-align: left;
+}
+#bg_view_table_cursos_info table #td_categoria {
+  font-size: 12px;
+  text-transform: capitalize;
+}
 #bg_view_table_cursos_info table textarea {
+  font-size: 12px;
   width: 100%;
 }
 
@@ -2137,6 +2160,9 @@ option[disabled] {
 #bg_contrato_content {
   position: relative;
 }
+#bg_contrato_content table th {
+  background: #889099;
+}
 #bg_contrato_content table .td_contrato_id, #bg_contrato_content table .td_aluno_assoc, #bg_contrato_content table .td_contrato_status, #bg_contrato_content table .td_contrato_info {
   text-align: center;
 }
@@ -2777,6 +2803,9 @@ option[disabled] {
   position: relative;
 }
 
+#view_table_alunos th {
+  background: #c46641;
+}
 #view_table_alunos .td_ra {
   text-align: center;
 }

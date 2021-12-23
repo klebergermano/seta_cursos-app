@@ -18,13 +18,10 @@ let IDs = [];
 let alunoListRA = alunosList.then((list)=>{
   list.forEach((item)=>{
     IDs.push(item.id);
-
   });
   return IDs.reverse();
-
 });
-return alunoListRA;
-
+  return alunoListRA;
 }
 
 export function getAlunoHistCursosDB(RA) {
