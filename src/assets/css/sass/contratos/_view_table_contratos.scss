@@ -2,6 +2,10 @@
     position: relative;
 
     table{
+        th{
+            background:#889099;
+        }
+        
         .td_contrato_id, .td_aluno_assoc, .td_contrato_status, .td_contrato_info{
             text-align: center;
         }

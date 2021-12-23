@@ -1,0 +1,28 @@
+#bg_view_table_cursos_info{
+    position: relative;
+    table{
+      th{
+        background:rgb(69, 133, 106);
+    }
+    td, th{
+      font-size:13px;
+
+    }
+
+    td{
+   text-align: center;
+    }
+
+ #td_nome{
+  text-align: left;
+}
+    #td_categoria{
+      font-size: 12px;
+      text-transform: capitalize;
+    }
+      textarea{
+        font-size:12px;
+          width:100%; 
+      }
+    }
+} 

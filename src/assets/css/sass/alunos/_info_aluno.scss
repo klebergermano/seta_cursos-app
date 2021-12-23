@@ -8,10 +8,9 @@
     border:1px solid $primary-color;
     padding:20px 40px;
     max-width: 1200px;
-input[readonly="true"]{
-    background: #ccc;
-}
-
+    input[readonly="true"]{
+        background: #ccc;
+    }
     table,td, th{
         padding:5px;
         text-align: center;

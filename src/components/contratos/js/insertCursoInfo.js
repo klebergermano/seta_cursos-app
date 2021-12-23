@@ -89,7 +89,34 @@ function selectCursoInfo(nomeCurso) {
       duracao: "12",
       parcelas: "12",
     },
-
+    ESPB: {
+      nome: "Espanhol Básico",
+      modulos:
+        "Pre-teen (o aluno será preparado para as próximas etapas do Inglês, onde terá seu vocabulário expandido, trabalhando as bases do idioma de forma dinâmica e interativa). ",
+      valor: "140,00",
+      duracao: "12",
+      parcelas: "12",
+    },
+    ESPI: {
+      nome: "Espanhol Intermediário",
+      modulos:
+        "Pre-teen (o aluno será preparado para as próximas etapas do Inglês, onde terá seu vocabulário expandido, trabalhando as bases do idioma de forma dinâmica e interativa). ",
+      valor: "140,00",
+      duracao: "12",
+      parcelas: "12",
+    },
+    ADM: {
+      nome: "Administração",
+      modulos:
+        `Teoria Geral da Administração (TGA), Linguagem Técnica do Trabalho (LTT), Rotinas Adminstrativas, 
+        Dinâmicas em Grupo, Softwares de Escritório, Empreendedorismo, Matemática Financeira, Introdução a Contabilidade,  
+        Empreendedorismo e Inovação, Planejamento de Comunicação, Pesquisa de Mercado, Psicologia Organizacional, Organização Empresarial
+        Métodos Ágeis, Gestão de Projetos, Gestão de Pessoas, Gestão de Processos.
+        `,
+      valor: "110,00",
+      duracao: "6",
+      parcelas: "6",
+    },
 
     EXA: {
       nome: "Excel Avançado",
@@ -105,7 +132,7 @@ function selectCursoInfo(nomeCurso) {
     BDBMYSQL: {
       nome: "Banco de Dados Básico MySQL",
       modulos:
-        "Introdução a Banco de Dados, Banco de Dados Relacional, Introdução ao SQL, DDL, DML, DQL, DCL, Normalização de Dados, Introdução ao Workbench, Diagrama EER.",
+        ` Introdução a Banco de Dados, Banco de Dados Relacional, Introdução ao SQL, DDL, DML, DQL, DCL.`,
       valor: "140,00",
       duracao: "6",
       parcelas: "6",
@@ -114,7 +141,7 @@ function selectCursoInfo(nomeCurso) {
     DWB: {
       nome: "Desenvolvimento WEB",
       modulos:
-        "Lógica de Programação, Wireframes, HTML, CSS, Javascript, Photoshop.",
+        `Introdução a TI, Lógica de Programação, HTML 5, CSS, JavaScript / NodeJS, Photoshop, Wireframe, Introdução a Banco de Dados.`,
       valor: "120,00",
       duracao: "12",
       parcelas: "12",
