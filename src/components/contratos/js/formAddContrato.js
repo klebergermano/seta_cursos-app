@@ -29,7 +29,6 @@ export function insertFormAddContratoHTML(){
 function setCurso() {
 let cursosSelect1 = document.querySelector("#curso_nome");
 let cursosSelect2 = document.querySelector("#combo_curso_2");
-
   let cursos = cursosSelect1.innerHTML;
   cursosSelect2.innerHTML = cursos;
 };
@@ -71,19 +70,19 @@ let optionsSelect  = getDocs(collection(db, 'cursos_info'))
 .then((res)=>{
   let options = '<option selected="true" disabled></option>'; 
   res.forEach((item)=>{
-    options += `<option class='${item.data().categoria}_color' value='${item.id}'>${item.data().nome}</option>`;
+    options += `<option class='${item.data().categoria}_color' name='${item.id}' value='${item.data().nome}'>${item.data().nome}</option>`;
   })
   return options; 
 }).then((res)=>{
   document.querySelector("#curso_nome").innerHTML = res;
+  document.querySelector("#combo_curso_2").innerHTML = res;
 })
 return optionsSelect;
 }
 
 export function eventsFormAddContrato(){
   insertOptionsSelectCurso();
-
-  setCurso() 
+//  setCurso() 
 //variáveis
 let form = document.querySelector("#form_add_contrato");
 let valor = document.querySelector("#curso_valor");
