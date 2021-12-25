@@ -56,12 +56,13 @@ function invalidateInputIDContrato(){
     idInput.setCustomValidity("ID em uso ou inválida");
     idInput.classList.add('input_invalido');
 } 
+
 function validateInputIDContrato(){
     let idInput = document.querySelector("#id_contrato");
     idInput.classList.remove('input_invalido');
-
     idInput.setCustomValidity("");
 } 
+
 function insertOptionslistIdContrato() {
     let listIdContrato = document.querySelector("#list_id_contrato");
     getIdContratos()
@@ -72,7 +73,6 @@ function insertOptionslistIdContrato() {
             });
             listIdContrato.innerHTML = options;
         });
-
 }
 
 function setIDAutomaticoContrato() {
@@ -94,8 +94,8 @@ function removeIDAutomaticoContrato() {
 }
 function insertNewIDContrato(newIdContrato) {
     document.querySelector('#id_contrato').value = newIdContrato;
-
 }
+
 function createNewIDContrato(contratos_id) {
     let id_numbers = [];
     contratos_id.forEach((item) => {

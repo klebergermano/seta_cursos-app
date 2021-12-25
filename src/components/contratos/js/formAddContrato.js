@@ -1,7 +1,7 @@
 //Firebase
 const { ipcRenderer } = require("electron");
 import {firebaseApp} from "../../dbConfig/firebaseApp.js";
-const {getFirestore, setDoc,  doc} = require("firebase/firestore") 
+const {getFirestore, setDoc,  doc, getDocs, collection} = require("firebase/firestore") 
 const db = getFirestore(firebaseApp);
 //-----------------------------------------------------------------------
 //Components
@@ -29,7 +29,6 @@ export function insertFormAddContratoHTML(){
 function setCurso() {
 let cursosSelect1 = document.querySelector("#curso_nome");
 let cursosSelect2 = document.querySelector("#combo_curso_2");
-
   let cursos = cursosSelect1.innerHTML;
   cursosSelect2.innerHTML = cursos;
 };
@@ -61,13 +60,29 @@ function checkboxRespAluno(e) {
     setAttribute("#aluno_nome", 'required', true);
     setAttribute("#aluno_parentesco", 'required', true);
     setAttribute("#aluno_genero", 'required', true);
-    setAttribute("#aluno_rg", 'required', true);
+    setAttribute("#aluno_rg", 'required', true);Lura
 
   }
 }
 
+function insertOptionsSelectCurso(){
+let optionsSelect  = getDocs(collection(db, 'cursos_info'))
+.then((res)=>{
+  let options = '<option selected="true" disabled></option>'; 
+  res.forEach((item)=>{
+    options += `<option class='${item.data().categoria}_color' name='${item.id}' value='${item.data().nome}'>${item.data().nome}</option>`;
+  })
+  return options; 
+}).then((res)=>{
+  document.querySelector("#curso_nome").innerHTML = res;
+  document.querySelector("#combo_curso_2").innerHTML = res;
+})
+return optionsSelect;
+}
+
 export function eventsFormAddContrato(){
-  setCurso() 
+  insertOptionsSelectCurso();
+//  setCurso() 
 //variáveis
 let form = document.querySelector("#form_add_contrato");
 let valor = document.querySelector("#curso_valor");

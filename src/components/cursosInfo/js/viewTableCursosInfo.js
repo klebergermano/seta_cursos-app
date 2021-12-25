@@ -35,7 +35,8 @@ import { insertElementHTML, confirmBoxDelete, readableRandomStringMaker} from ".
     function setEditCursoInfo(trInfo){
         
         setTimeout(()=>{
-            let formEdit = document.querySelector('#form_add_curso_info')
+            let formEdit = document.querySelector('#form_add_curso_info');
+            formEdit.classList.add('form_edit_curso_info');
             formEdit.querySelector('#nome').setAttribute('readonly', true);
             formEdit.querySelector('#nome').value = trInfo.querySelector('#td_nome').innerHTML;
             formEdit.querySelector('#valor_mes').value = trInfo.querySelector('#td_valor').innerHTML;
@@ -43,6 +44,7 @@ import { insertElementHTML, confirmBoxDelete, readableRandomStringMaker} from ".
             formEdit.querySelector('#modulos').value = trInfo.querySelector('#td_modulos textarea').innerHTML;
             formEdit.querySelector('#duracao').value = trInfo.querySelector('#td_duracao').innerHTML;
             formEdit.querySelector('#carga_horaria').value = trInfo.querySelector('#td_carga_horaria').innerHTML;
+            formEdit.querySelector('#id_curso').value = trInfo.querySelector('#td_id_curso').innerHTML;
 
             let selectCategoria = formEdit.querySelector('#categoria')
             let arrOptions = Array.from(selectCategoria.options); 
@@ -93,6 +95,7 @@ import { insertElementHTML, confirmBoxDelete, readableRandomStringMaker} from ".
     
             let trContent = 
             `
+            <td id='td_id_curso'>${curso.cod}</td>
             <td id='td_categoria'>${curso.categoria}</td>
             <td id='td_nome'>${curso.nome}</td>
             <td id='td_modulos'><textarea readonly='true'>${curso.modulos}</textarea></td>

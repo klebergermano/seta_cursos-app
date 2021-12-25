@@ -1,9 +1,54 @@
+import {firebaseApp} from "../../dbConfig/firebaseApp.js";
+const {getFirestore, setDoc,  doc, getDocs, getDoc, collection} = require("firebase/firestore") 
+const db = getFirestore(firebaseApp);
+
+
 import insertComboTextarea from "./insertComboTextarea.js";
 import insertInputValorTotal from "./insertInputValorTotal.js";
 
+function getCursoInfo(e){
+  let idCurso = e.target.options[e.target.selectedIndex].getAttribute('name'); 
+  console.log(idCurso);
+ return getDoc(doc(db, 'cursos_info', idCurso));
+}
+
+export default function InsertCursoInfo(e) {
+  let modulos = document.querySelector("#curso_modulos");
+  let duracao = document.querySelector("#curso_duracao");
+  let parcelas = document.querySelector("#curso_parcelas");
+  let comboCurso1 = document.querySelector("#combo_curso_1");
+  let valor = document.querySelector("#curso_valor");
+  let select = document.getElementById("curso_nome");
+
+  let nomeCurso = select.options[select.selectedIndex].getAttribute("name");
+  //let cursoInfo = selectCursoInfo(nomeCurso);
+  let cursosSelect2 = document.querySelector("#combo_curso_2");
+  let selectOptions = cursosSelect2.querySelectorAll("option");
+  let cursoInfo = getCursoInfo(e);
+  selectOptions.forEach((e) => {  
+    e.removeAttribute("disabled"); 
+  });
+
+  let option = cursosSelect2.querySelectorAll(`[name='${nomeCurso}']`)[0];
+  option.setAttribute("disabled", "true");
+
+cursoInfo.then((cursoInfo)=>{
+  valor.value = cursoInfo.data().valor;
+  duracao.value = cursoInfo.data().duracao;
+  parcelas.value = cursoInfo.data().parcelas;
+  modulos.value = cursoInfo.data().modulos;
+  comboCurso1.value = cursoInfo.data().nome;
+  insertInputValorTotal();
+  insertComboTextarea();
+})
+
+}
+
+
+
+
 
 function selectCursoInfo(nomeCurso) {
-
   let cursos = {
     IFP: {
       nome: "Informática Prática",
@@ -150,32 +195,5 @@ function selectCursoInfo(nomeCurso) {
   return cursos[nomeCurso];
 }
 
-function InsertCursoInfo(e) {
-  let modulos = document.querySelector("#curso_modulos");
-  let duracao = document.querySelector("#curso_duracao");
-  let parcelas = document.querySelector("#curso_parcelas");
-  let comboCurso1 = document.querySelector("#combo_curso_1");
-  let valor = document.querySelector("#curso_valor");
-  let select = document.getElementById("curso_nome");
 
-  let nomeCurso = select.options[select.selectedIndex].getAttribute("name");
-  let cursoInfo = selectCursoInfo(nomeCurso);
 
-  let cursosSelect2 = document.querySelector("#combo_curso_2");
-  let selectOptions = cursosSelect2.querySelectorAll("option");
-
-  selectOptions.forEach((e) => {  
-    e.removeAttribute("disabled"); 
-  });
-
-  let option = cursosSelect2.querySelectorAll(`[name='${nomeCurso}']`)[0];
-  option.setAttribute("disabled", "true");
-  valor.value = cursoInfo.valor;
-  duracao.value = cursoInfo.duracao;
-  parcelas.value = cursoInfo.parcelas;
-  modulos.value = cursoInfo.modulos;
-  comboCurso1.value = cursoInfo.nome;
-  insertInputValorTotal();
-  insertComboTextarea();
-}
-export default InsertCursoInfo;

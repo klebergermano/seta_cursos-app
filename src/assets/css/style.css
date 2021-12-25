@@ -966,11 +966,14 @@ menu.submenu_page ul li a {
 #form_add_curso_info #div_modulos {
   width: 100%;
 }
-#form_add_curso_info #div_valor_mes, #form_add_curso_info #div_duracao, #form_add_curso_info #div_parcelas {
+#form_add_curso_info #id_curso {
+  text-transform: uppercase;
+}
+#form_add_curso_info #div_valor_mes, #form_add_curso_info #div_duracao, #form_add_curso_info #div_parcelas, #form_add_curso_info #div_carga_horaria, #form_add_curso_info #div_id_curso {
   padding: 3px;
   max-width: 33.3333%;
 }
-#form_add_curso_info #div_valor_mes input, #form_add_curso_info #div_duracao input, #form_add_curso_info #div_parcelas input {
+#form_add_curso_info #div_valor_mes input, #form_add_curso_info #div_duracao input, #form_add_curso_info #div_parcelas input, #form_add_curso_info #div_carga_horaria input, #form_add_curso_info #div_id_curso input {
   max-width: 100%;
   min-width: 50px !important;
 }
@@ -1998,9 +2001,6 @@ select .re {
 
 #bg_div_id_contrato label {
   background: #ddd;
-}
-#bg_div_id_contrato .input_invalido {
-  background: #f1c0c0 !important;
 }
 #bg_div_id_contrato #label_id_automatico_contrato {
   margin: 0px;
@@ -3473,6 +3473,10 @@ h1 {
   text-align: center;
 }
 
+.input_invalido {
+  background: #f1c0c0 !important;
+}
+
 #adminContent {
   background: #ddd url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm380-16-x_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=d0c544f028f2405b219eb997cb580e21");
   background-size: 100% auto;
@@ -3511,6 +3515,7 @@ h1 {
   background: #22222270;
   z-index: 5;
 }
+
 .btn_close {
   right: 0px;
   top: 0px;
