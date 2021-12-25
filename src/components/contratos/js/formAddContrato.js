@@ -1,7 +1,7 @@
 //Firebase
 const { ipcRenderer } = require("electron");
 import {firebaseApp} from "../../dbConfig/firebaseApp.js";
-const {getFirestore, setDoc,  doc} = require("firebase/firestore") 
+const {getFirestore, setDoc,  doc, getDocs, collection} = require("firebase/firestore") 
 const db = getFirestore(firebaseApp);
 //-----------------------------------------------------------------------
 //Components
@@ -61,12 +61,28 @@ function checkboxRespAluno(e) {
     setAttribute("#aluno_nome", 'required', true);
     setAttribute("#aluno_parentesco", 'required', true);
     setAttribute("#aluno_genero", 'required', true);
-    setAttribute("#aluno_rg", 'required', true);
+    setAttribute("#aluno_rg", 'required', true);Lura
 
   }
 }
 
+function insertOptionsSelectCurso(){
+let optionsSelect  = getDocs(collection(db, 'cursos_info'))
+.then((res)=>{
+  let options = '<option selected="true" disabled></option>'; 
+  res.forEach((item)=>{
+    options += `<option class='${item.data().categoria}_color' value='${item.id}'>${item.data().nome}</option>`;
+  })
+  return options; 
+}).then((res)=>{
+  document.querySelector("#curso_nome").innerHTML = res;
+})
+return optionsSelect;
+}
+
 export function eventsFormAddContrato(){
+  insertOptionsSelectCurso();
+
   setCurso() 
 //variáveis
 let form = document.querySelector("#form_add_contrato");

@@ -1,9 +1,7 @@
 import insertComboTextarea from "./insertComboTextarea.js";
 import insertInputValorTotal from "./insertInputValorTotal.js";
 
-
 function selectCursoInfo(nomeCurso) {
-
   let cursos = {
     IFP: {
       nome: "Informática Prática",
