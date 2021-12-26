@@ -1,17 +1,16 @@
 @use '../abstracts/variables' as *;
 #cursos_info{
-
     .page_content{
         padding-bottom:20px;
         display:grid;
         grid-template-columns: repeat(auto-fit, minmax(350px, auto));
-       gap:20px;
+        gap:20px;
+
         .curso_content{
             padding:20px;
             border:2px solid #333;
             border-radius: 5px;
             background: #f0f0f0;
-
             h2{margin-bottom: 20px;
                 text-align: center; text-transform: uppercase;}
             .categoria{
@@ -30,51 +29,48 @@
                     margin-left:20px;
                 }
             }
-            .div_valor, .div_duracao{
+            .div_valor, .div_duracao, .div_carga_horaria{
                 margin-top:10px;
                 font-size: 20px !important;
-                 
                 p{
                      font-weight: bold;}
             }
-
         }
 
-        div[class*="curso_informatica"]{
+        div[class*="color_Informática"]{
             //background: lighten($background-informatica, 50%);
             h2{color:$color-informatica}
             border-color: $color-informatica;
         }
-        div[class*="curso_excel"]{
+
+        div[class*="color_Excel"]{
             h2{color:$color-excel}
             border-color: $color-excel;
 
         }
-        div[class*="curso_ingles"]{
+
+        div[class*="color_Inglês"]{
             h2{color:$color-ingles}
             border-color: $color-ingles;
-        
         }
-        div[class*="curso_web"]{
+
+        div[class*="color_Desenvolvimento Web"]{
             h2{color:$color-web}
             border-color: $color-web;
-
-
         }
-        div[class*="curso_espanhol"]{
+
+        div[class*="color_Espanhol"]{
             h2{color:$color-espanhol}
             border-color: $background-espanhol;
         }
 
-        div[class*="curso_adm"]{
+        div[class*="color_Adm"]{
             h2{color:$color-adm}
             border-color: $color-adm;
         }
-        div[class*="curso_banco"]{
+        div[class*="color_Banco"]{
             h2{color:$color-banco}
             border-color: $color-banco;
-
-
         }
    
     }

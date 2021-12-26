@@ -52,7 +52,6 @@ function checkboxRespAluno(e) {
   } else {
     btn_marcar_resp_aluno.classList.remove('btn_ativo');
     btn_marcar_resp_aluno.querySelector('span').textContent = "Marcar como aluno(a)";
-
     fieldset_aluno.classList.remove("aluno_off");
     //Remove o valor "IDEM" no nome do aluno
     setAttribute("#aluno_nome", 'style', "color:#333");
@@ -60,7 +59,7 @@ function checkboxRespAluno(e) {
     setAttribute("#aluno_nome", 'required', true);
     setAttribute("#aluno_parentesco", 'required', true);
     setAttribute("#aluno_genero", 'required', true);
-    setAttribute("#aluno_rg", 'required', true);Lura
+    setAttribute("#aluno_rg", 'required', true);
 
   }
 }
