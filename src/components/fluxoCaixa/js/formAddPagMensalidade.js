@@ -197,6 +197,7 @@ function submitFormAddPagMensalidade(e) {
         });
       return row;
     }).then((row) => {
+      
       setDoc(doc(db, 'alunato', RA, 'cursos', curso), {
         curso_info: {
           parcelas: {
@@ -211,7 +212,6 @@ function submitFormAddPagMensalidade(e) {
                   modified: new Date(),
                 }
               }
-
             }
           }
         }

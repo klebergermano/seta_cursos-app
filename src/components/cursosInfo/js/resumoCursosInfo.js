@@ -23,12 +23,24 @@ function getCursosInfo(){
     return getDocs(collection(db, 'cursos_info'))
 }
 
+function listaModulos(modulos){
+
+    let lista = document.createElement('ul'); 
+    lista.innerHTML = '<li>';
+     lista.innerHTML += modulos.replace(/,/g, '</li><li>');
+    lista.innerHTML += '</li>';
+
+   return lista.outerHTML;
+
+}
+
 function createContentResumoCursosInfo(){
 
 let bgCursosInfo = getCursosInfo().then((res)=>{
     let bgCursosInfo = document.createElement('div');
     res.forEach((item)=>{
 
+        listaModulos(item.data().modulos)
         let cursoInfo = `
         <div class='curso_content color_${item.data().nome}'>
                 <h2>${item.data().nome}</h2>
@@ -39,16 +51,17 @@ let bgCursosInfo = getCursosInfo().then((res)=>{
                     <h3>Módulos</h3>
                     ${item.data().modulos}
                 </div>
-                <div class='div_valor'>
-                    <p class='valor'>Investimento: ${item.data().valor}</p>
-                </div>
                 <div class='div_duracao'>
-                    <p class='duracao'>Duração: ${item.data().duracao}</p>
+                    <p class='duracao'>Duração: ${item.data().duracao} Meses</p>
                 </div>
          
                 <div class='div_carga_horaria'>
-                    <p class='duracao'>C. Horária: ${item.data().carga_horaria}</p>
+                    <p class='duracao'>C. Horária: ${item.data().carga_horaria}h</p>
                 </div>
+                <div class='div_valor'>
+                <p class='valor'>Investimento: R$${item.data().valor}</p>
+            </div>
+
             </div>
         
         `; 

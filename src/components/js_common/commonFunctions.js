@@ -269,3 +269,9 @@ export function removeBugExtraBgFormBLockScreen(){
     parent.removeChild(item);
   }
 }
+
+export function createRadomIdLogBasedOnData(){
+  let data = new Date();
+  let idLog =  data.getFullYear()+''+(data.getMonth()+1)+''+data.getDate()+''+readableRandomStringMaker(5);
+return idLog;
+}

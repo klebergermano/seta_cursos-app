@@ -1,5 +1,5 @@
 import { insertElementHTML } from "../../js_common/commonFunctions.js";
-import {insertFluxoCaixaInfoInTableHTML} from "./entradasInfoTable.js"
+import {insertFluxoCaixaInfoInTableHTML} from "./viewTableEntradasInfo.js"
 import {insertFormPagMensalidade} from "./formAddPagMensalidade.js"
 import {insertFormAddEntradaAvulsa} from "./formAddEntradaAvulsa.js"
 export function insertEntradasSubpageHTML(){

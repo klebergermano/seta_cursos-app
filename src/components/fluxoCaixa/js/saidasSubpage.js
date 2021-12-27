@@ -1,5 +1,5 @@
 import { insertElementHTML } from "../../js_common/commonFunctions.js";
-import { insertSaidasInfoTableHTML } from "./saidasInfoTable.js";
+import { insertSaidasInfoTableHTML } from "./viewTableSaidasInfo.js";
 import { insertFormAddSaidaAvulsa } from "./formAddSaidaAvulsa.js";
 export function insertSaidasSubpage(){
     insertElementHTML("#fluxo_caixa_content", "./components/fluxoCaixa/saidasSubpage.html", eventsSaidasSubpage, null, true)
