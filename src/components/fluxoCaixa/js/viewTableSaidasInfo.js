@@ -16,7 +16,7 @@ const VMasker = require("vanilla-masker");
 //--------------------------------------------------------------------
 var $fluxoCaixaAno = {};
 export function insertSaidasInfoTableHTML(){
-    commonFunc.insertElementHTML('#saidas_content', './components/fluxoCaixa/saidasInfoTable.html', eventsSaidasInfoTable, null, true);
+    commonFunc.insertElementHTML('#saidas_content', './components/fluxoCaixa/viewTableSaidasInfo.html', eventsSaidasInfoTable, null, true);
 }
 function eventsSaidasInfoTable(){
     setAnoMesSelectFiltros()
