@@ -75,11 +75,12 @@ import { insertElementHTML, confirmBoxDelete, readableRandomStringMaker} from ".
         btns.forEach((item)=>{
           item.addEventListener('click', (e)=>{
             let cursoNome = e.target.closest('tr').dataset.curso_info_nome;
+            let idCurso = e.target.closest('tr').dataset.id_curso;
             let msg = `<span style='color:red'><b>ATENÇÃO</b></span>
             <br/>Tem certeza que deseja deletar o Curso Info <b>${cursoNome}</b>?
             <br/>Essa ação não podera ser desfeita!`;
             confirmBoxDelete("#bg_cursos_info_content", msg, ()=>{
-                submitDeleteCursoInfo(cursoNome)
+                submitDeleteCursoInfo(idCurso, cursoNome)
             })
           })
         })
@@ -90,14 +91,14 @@ import { insertElementHTML, confirmBoxDelete, readableRandomStringMaker} from ".
         cursosInfo.forEach((item)=>{
             let curso = item.data();
             let tr = document.createElement('tr');
-            tr.setAttribute('data-id_curso', curso.nome );
+            tr.setAttribute('data-id_curso', curso.cod );
             tr.setAttribute('data-curso_info_nome', curso.nome)
     
             let trContent = 
             `
             <td id='td_id_curso'>${curso.cod}</td>
+            <td id='td_nome' class='color_${curso.nome}'>${curso.nome}</td>
             <td id='td_categoria'>${curso.categoria}</td>
-            <td id='td_nome'>${curso.nome}</td>
             <td id='td_modulos'><textarea readonly='true'>${curso.modulos}</textarea></td>
             <td id='td_duracao'>${curso.duracao}</td>
             <td id='td_parcelas'>${curso.parcelas}</td>
@@ -127,13 +128,13 @@ import { insertElementHTML, confirmBoxDelete, readableRandomStringMaker} from ".
         return tbody;
     }
 
-    function  submitDeleteCursoInfo(cursoNome){
-        deleteDoc(doc(db, 'cursos_info', cursoNome))
+    function  submitDeleteCursoInfo(idCurso, cursoNome){
+        deleteDoc(doc(db, 'cursos_info', idCurso))
         .then(()=>{
             let data = new Date();
             let id =  data.getFullYear()+''+(data.getMonth()+1)+''+data.getDate()+''+readableRandomStringMaker(5);
           setDoc(doc(db, "log", 'log_cursos_info'),{
-            [id]: `Curso Info ${cursoNome} deletado em ${new Date()} por ${auth.currentUser.email}`
+            [id]: `Curso Info '${idCurso}, ${cursoNome}' deletado em ${new Date()} por ${auth.currentUser.email}`
             },
             { merge: true})
         })

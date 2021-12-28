@@ -1,0 +1,24 @@
+@use 'variables' as *;
+
+*[class^='color_inform'], *[class*="color_Inform"] {
+    color: $color-informatica;
+}
+*[class^='color_excel'], *[class*="color_Excel"] {
+    color: $color-excel;
+}
+*[class^='color_desenvolvimento web'], *[class*="Desenvolvimento Web"] {
+    color: $color-web;
+}
+*[class^='color_inglês'], *[class*="color_Inglês"] {
+    color: $color-ingles;
+}
+*[class^='color_espanhol'], *[class*="color_Espanhol"] {
+    color: $color-espanhol;
+}
+*[class^='color_adm'], *[class*="color_Adm"] {
+    color: $color-adm;
+}
+*[class^='color_banco'], *[class*="color_Banco"] {
+    color: $color-banco;
+}
+

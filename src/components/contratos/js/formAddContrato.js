@@ -69,7 +69,7 @@ let optionsSelect  = getDocs(collection(db, 'cursos_info'))
 .then((res)=>{
   let options = '<option selected="true" disabled></option>'; 
   res.forEach((item)=>{
-    options += `<option class='${item.data().categoria}_color' name='${item.id}' value='${item.data().nome}'>${item.data().nome}</option>`;
+    options += `<option class='color_${item.data().nome}' name='${item.id}' value='${item.data().nome}'>${item.data().nome}</option>`;
   })
   return options; 
 }).then((res)=>{

@@ -426,6 +426,34 @@ template {
   background: #ddd;
 }
 
+*[class^=color_inform], *[class*=color_Inform] {
+  color: #1f3c7a;
+}
+
+*[class^=color_excel], *[class*=color_Excel] {
+  color: #097a4a;
+}
+
+*[class^="color_desenvolvimento web"], *[class*="Desenvolvimento Web"] {
+  color: #015dc5;
+}
+
+*[class^=color_inglês], *[class*=color_Inglês] {
+  color: #ad054b;
+}
+
+*[class^=color_espanhol], *[class*=color_Espanhol] {
+  color: #7a082e;
+}
+
+*[class^=color_adm], *[class*=color_Adm] {
+  color: #0d705c;
+}
+
+*[class^=color_banco], *[class*=color_Banco] {
+  color: #ca881d;
+}
+
 inputs, .input-primary {
   border: 1px solid #999;
   padding: 5px;
@@ -3112,6 +3140,17 @@ option[disabled] {
 .bg_info_tables table tbody tr td {
   padding: 10px 5px;
 }
+.bg_info_tables table tbody .td_linha {
+  text-align: center;
+  background: #ccc;
+  color: #666;
+}
+.bg_info_tables table tbody .td_data, .bg_info_tables table tbody .td_parcela, .bg_info_tables table tbody .td_valor_total, .bg_info_tables table tbody .td_controls {
+  text-align: center;
+}
+.bg_info_tables table tbody .td_valor_total {
+  color: #247e24;
+}
 
 #bg_saidas_info_table caption {
   background: #bd4343;
@@ -3129,20 +3168,6 @@ option[disabled] {
   text-align: center;
   background: #464;
   color: #fff;
-}
-#bg_entradas_info_table .td_linha {
-  text-align: center;
-  background: #ccc;
-  color: #666;
-}
-#bg_entradas_info_table .td_data {
-  text-align: center;
-}
-#bg_entradas_info_table .td_parcela {
-  text-align: center;
-}
-#bg_entradas_info_table .td_valor_total {
-  color: #247e24;
 }
 
 #entrada_avulsa_table_info {
