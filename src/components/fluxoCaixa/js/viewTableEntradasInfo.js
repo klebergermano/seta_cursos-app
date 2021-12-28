@@ -143,7 +143,7 @@ function insertContentTableEntradaAvulsa(contentTable){
                 <td class='td_descricao'>${value.descricao}</td>
                 <td class='td_form_pag'>${value.form_pag}</td>
                 <td class='td_valor_total'>R$ ${value.valor}</td>
-                <td class='td_controles'>
+                <td class='td_controls'>
                     <button title="Deletar Pagamento" class='btn_delete_entrada_avulsa'>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
@@ -260,7 +260,7 @@ function createContentPagMensalTableHTML (fluxoCaixaAno, mes){
                 <td class='td_parcela'>${value.parcela}</td>
                 <td class='td_form_pag'>${value.form_pag}</td>
                 <td class='td_valor_total'>R$ ${value.valor_total}</td>
-                <td>
+                <td  class='td_controls'>
                 <button title="Deletar Pagamento" class='btn_delete_pag_mensal'>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>

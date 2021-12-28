@@ -32,6 +32,18 @@
                     padding:10px 5px;
                 }
             }
+            .td_linha{
+                text-align: center;
+                background:#ccc;
+                color:#666;
+            }
+            .td_data, .td_parcela, .td_valor_total, .td_controls{
+                text-align: center;
+            }
+         
+            .td_valor_total{
+                color:#247e24;
+            }
         }
     }
 }
@@ -59,20 +71,7 @@
                     color:#fff;
                 }
             }
-        .td_linha{
-            text-align: center;
-            background:#ccc;
-            color:#666;
-        }
-        .td_data{
-            text-align: center;
-        }
-        .td_parcela{
-            text-align: center;
-        }
-        .td_valor_total{
-            color:#247e24;
-        }
+
 }
 #entrada_avulsa_table_info{
     margin-top:40px;
