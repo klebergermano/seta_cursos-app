@@ -426,32 +426,60 @@ template {
   background: #ddd;
 }
 
-*[class^=color_inform], *[class*=color_Inform] {
-  color: #1f3c7a;
+*[class*=color_inform], *[class*=color_Inform] {
+  color: #1f3c7a !important;
 }
 
-*[class^=color_excel], *[class*=color_Excel] {
-  color: #097a4a;
+*[class*=color_excel], *[class*=color_Excel] {
+  color: #097a4a !important;
 }
 
-*[class^="color_desenvolvimento web"], *[class*="Desenvolvimento Web"] {
-  color: #015dc5;
+*[class*="color_desenvolvimento web"], *[class*="color_Desenvolvimento Web"] {
+  color: #015dc5 !important;
 }
 
-*[class^=color_inglês], *[class*=color_Inglês] {
-  color: #ad054b;
+*[class*=color_inglês], *[class*=color_Inglês] {
+  color: #ad054b !important;
 }
 
-*[class^=color_espanhol], *[class*=color_Espanhol] {
-  color: #7a082e;
+*[class*=color_espanhol], *[class*=color_Espanhol] {
+  color: #7a082e !important;
 }
 
-*[class^=color_adm], *[class*=color_Adm] {
-  color: #0d705c;
+*[class*=color_adm], *[class*=color_Adm] {
+  color: #0d705c !important;
 }
 
-*[class^=color_banco], *[class*=color_Banco] {
-  color: #ca881d;
+*[class*=color_banco], *[class*=color_Banco] {
+  color: #ca881d !important;
+}
+
+*[class*=border_inform], *[class*=border_Inform] {
+  border-color: #1f3c7a !important;
+}
+
+*[class*=border_excel], *[class*=border_Excel] {
+  border-color: #097a4a !important;
+}
+
+*[class*="border_desenvolvimento web"], *[class*="border_Desenvolvimento Web"] {
+  border-color: #015dc5 !important;
+}
+
+*[class*=border_inglês], *[class*=border_Inglês] {
+  border-color: #ad054b !important;
+}
+
+*[class*=border_espanhol], *[class*=border_Espanhol] {
+  border-color: #7a082e !important;
+}
+
+*[class*=border_adm], *[class*=border_Adm] {
+  border-color: #0d705c !important;
+}
+
+*[class*=border_banco], *[class*=border_Banco] {
+  border-color: #ca881d !important;
 }
 
 inputs, .input-primary {
@@ -895,6 +923,7 @@ menu.submenu_page ul li a {
   clear: both;
 }
 #bg_main_menu_lateral_admin nav ul li a {
+  user-select: none;
   padding: 13px 15px;
   color: #fafafa;
   height: auto;
@@ -903,8 +932,14 @@ menu.submenu_page ul li a {
   display: block;
 }
 #bg_main_menu_lateral_admin nav ul li a:hover {
-  color: #80ace4;
-  background: #333;
+  background: #2a2a2a;
+}
+#bg_main_menu_lateral_admin nav ul li a:active {
+  background: #2c2c2c;
+}
+#bg_main_menu_lateral_admin nav .active {
+  color: #6dacfd;
+  background: #1f1f1f;
 }
 
 #cursos_info .page_content {
@@ -947,48 +982,6 @@ menu.submenu_page ul li a {
 }
 #cursos_info .page_content .curso_content .div_valor p, #cursos_info .page_content .curso_content .div_duracao p, #cursos_info .page_content .curso_content .div_carga_horaria p {
   font-weight: bold;
-}
-#cursos_info .page_content div[class*=color_Informática] {
-  border-color: #1f3c7a;
-}
-#cursos_info .page_content div[class*=color_Informática] h2 {
-  color: #1f3c7a;
-}
-#cursos_info .page_content div[class*=color_Excel] {
-  border-color: #097a4a;
-}
-#cursos_info .page_content div[class*=color_Excel] h2 {
-  color: #097a4a;
-}
-#cursos_info .page_content div[class*=color_Inglês] {
-  border-color: #ad054b;
-}
-#cursos_info .page_content div[class*=color_Inglês] h2 {
-  color: #ad054b;
-}
-#cursos_info .page_content div[class*="color_Desenvolvimento Web"] {
-  border-color: #015dc5;
-}
-#cursos_info .page_content div[class*="color_Desenvolvimento Web"] h2 {
-  color: #015dc5;
-}
-#cursos_info .page_content div[class*=color_Espanhol] {
-  border-color: #f0a029;
-}
-#cursos_info .page_content div[class*=color_Espanhol] h2 {
-  color: #7a082e;
-}
-#cursos_info .page_content div[class*=color_Adm] {
-  border-color: #0d705c;
-}
-#cursos_info .page_content div[class*=color_Adm] h2 {
-  color: #0d705c;
-}
-#cursos_info .page_content div[class*=color_Banco] {
-  border-color: #ca881d;
-}
-#cursos_info .page_content div[class*=color_Banco] h2 {
-  color: #ca881d;
 }
 
 #form_add_curso_info #div_modulos {

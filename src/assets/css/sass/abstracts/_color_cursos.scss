@@ -1,24 +1,50 @@
 @use 'variables' as *;
+//COLORS
+*[class*='color_inform'], *[class*="color_Inform"] {
+    color: $color-informatica !important;
+}
+*[class*='color_excel'], *[class*="color_Excel"] {
+    color: $color-excel !important;
+}
+*[class*='color_desenvolvimento web'], *[class*="color_Desenvolvimento Web"] {
+    color: $color-web !important;
+}
+*[class*='color_inglês'], *[class*="color_Inglês"] {
+    color: $color-ingles !important;
+}
+*[class*='color_espanhol'], *[class*="color_Espanhol"] {
+    color: $color-espanhol !important;
+}
+*[class*='color_adm'], *[class*="color_Adm"] {
+    color: $color-adm !important;
+}
+*[class*='color_banco'], *[class*="color_Banco"] {
+    color: $color-banco !important;
+}
 
-*[class^='color_inform'], *[class*="color_Inform"] {
-    color: $color-informatica;
+//BORDERS
+*[class*='border_inform'], *[class*="border_Inform"] {
+    border-color: $color-informatica !important;
 }
-*[class^='color_excel'], *[class*="color_Excel"] {
-    color: $color-excel;
+*[class*='border_excel'], *[class*="border_Excel"] {
+    border-color: $color-excel !important;
 }
-*[class^='color_desenvolvimento web'], *[class*="Desenvolvimento Web"] {
-    color: $color-web;
+*[class*='border_desenvolvimento web'], *[class*="border_Desenvolvimento Web"] {
+    border-color: $color-web !important;
 }
-*[class^='color_inglês'], *[class*="color_Inglês"] {
-    color: $color-ingles;
+*[class*='border_inglês'], *[class*="border_Inglês"] {
+    border-color: $color-ingles !important;
 }
-*[class^='color_espanhol'], *[class*="color_Espanhol"] {
-    color: $color-espanhol;
+*[class*='border_espanhol'], *[class*="border_Espanhol"] {
+    border-color: $color-espanhol !important;
 }
-*[class^='color_adm'], *[class*="color_Adm"] {
-    color: $color-adm;
+*[class*='border_adm'], *[class*="border_Adm"] {
+    border-color: $color-adm !important;
 }
-*[class^='color_banco'], *[class*="color_Banco"] {
-    color: $color-banco;
+*[class*='border_banco'], *[class*="border_Banco"] {
+    border-color: $color-banco !important;
 }
 
+*[class*="border_Desenvolvimento Web"]{
+    //border-color: #f90 !important;
+}

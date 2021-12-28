@@ -42,8 +42,8 @@ let bgCursosInfo = getCursosInfo().then((res)=>{
 
         listaModulos(item.data().modulos)
         let cursoInfo = `
-        <div class='curso_content color_${item.data().nome}'>
-                <h2>${item.data().nome}</h2>
+        <div class='curso_content  border_${item.data().nome}>${item.data().nome}'>
+                <h2 class='color_${item.data().nome}'>${item.data().nome}</h2>
                 <div class='categoria'>
                     <p>Categoria: ${item.data().categoria}</p>
                 </div>

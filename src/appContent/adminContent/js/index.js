@@ -53,7 +53,6 @@ function importHTML(target, htmlSRC, scriptSRC){
 
 export function onload(){
   checkRolePermission(auth);
-
 users.getUserCompleteInfo(auth.currentUser)
     .then((userCompleteInfo)=>{
       setLoginInfo(userCompleteInfo)
@@ -68,14 +67,25 @@ users.getUserCompleteInfo(auth.currentUser)
 
   commonFunc.importHTMLWithScript('#page_content', "./components/home/index.html", "../home/js/index.js");
 
+  let childs = document.querySelector('#nav_main_menu_lateral_admin').querySelectorAll("a");
+  childs.forEach((item) => {
 
-let childs = document.querySelector('#nav_main_menu_lateral_admin').querySelectorAll("a");
-childs.forEach((item) => {
-  item.addEventListener("click", (e) => {
-    let htmlSRC = '../src/components/'+ e.target.dataset.path + '/index.html'; 
-    let scriptSRC = '../../../components/'+ e.target.dataset.script_src + '/js/index.js'; 
+    item.addEventListener("click", (e) => {
+      removeActiveNavMainMenuLateral();
+      let htmlSRC = '../src/components/'+ e.target.dataset.path + '/index.html'; 
+      let scriptSRC = '../../../components/'+ e.target.dataset.script_src + '/js/index.js'; 
+      importHTML('#page_content', htmlSRC, scriptSRC);
+      e.target.classList.add('active');
 
-    importHTML('#page_content', htmlSRC, scriptSRC);
+    });
   });
-});
+}
+
+function removeActiveNavMainMenuLateral(){
+  let childs = document.querySelector('#nav_main_menu_lateral_admin').querySelectorAll("a");
+  childs.forEach((item) => {
+item.classList.remove('active');
+  });
+
+  
 }
