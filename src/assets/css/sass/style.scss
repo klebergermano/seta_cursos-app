@@ -11,10 +11,6 @@
 
 
 
-//Components
-//Controle Aula
-//Gerador Contrato
-
 @keyframes spinner-line-fade-more {
   0%, 100% {
     opacity: 0; /* minimum opacity */
@@ -86,7 +82,6 @@
   }
 }
 
-
 p{
   line-height: 18px;
   font-size:14px;
@@ -118,7 +113,7 @@ h1{text-align: center;}
   max-width: 100%;
   margin: 0 auto;
   display: grid;
-grid-template-columns: 250px 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+grid-template-columns: minmax(160px, 14%) 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-areas:
   'aside header header header header header header header'
   'aside  cp     cp     cp     cp     cp     cp     cp'
@@ -311,6 +306,7 @@ grid-template-columns: 250px 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 footer{
   grid-area: footer;
   height:50px;
-  background:#111;
+  background:#f0f0f0;
+  border-top:1px solid #333;
 }
 
