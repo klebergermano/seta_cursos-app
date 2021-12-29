@@ -2,7 +2,11 @@
 
 #bg_main_menu_lateral_admin{
   z-index: 4;
+  grid-area: aside; 
+  background:#222;
+
     figure#bg_logo {
+      cursor:pointer;
       padding:20px;
       max-width: 100%;
      height:auto;
@@ -16,8 +20,7 @@
         max-height: 100%;
       }
     }
-  grid-area: aside; 
-  background:#222;
+ 
   nav{
     margin-top:40px;
     ul li {

@@ -68,6 +68,10 @@ users.getUserCompleteInfo(auth.currentUser)
   commonFunc.importHTMLWithScript('#page_content', "./components/home/index.html", "../home/js/index.js");
 
   let childs = document.querySelector('#nav_main_menu_lateral_admin').querySelectorAll("a");
+  document.querySelector('#bg_logo').addEventListener('click', ()=>{
+    importHTML('#page_content', '../src/components/home/index.html', '../../../components/home/js/index.js' )
+  })
+
   childs.forEach((item) => {
 
     item.addEventListener("click", (e) => {
