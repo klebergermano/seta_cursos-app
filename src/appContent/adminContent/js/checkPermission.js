@@ -3,8 +3,6 @@ import * as users from "../../../components/users/js/index.js";
 import * as commonFunc from "../../../components/js_common/commonFunctions.js";
 import * as permissionsFunc from "../../../components/users/js/permissions.js";
 
-
-
 export function checkRolePermission(auth){
     let currentUser = auth.currentUser;
     removeUnauthorizedElement(currentUser)

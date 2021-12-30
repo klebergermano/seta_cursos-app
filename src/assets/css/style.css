@@ -813,7 +813,7 @@ menu.submenu_page ul li a {
   z-index: 3;
   grid-area: header;
   background: #245da7;
-  background: #f0f0f0;
+  background: #eee;
   position: fixed;
   border-bottom: 1px solid #666;
   width: 100%;
@@ -905,7 +905,7 @@ menu.submenu_page ul li a {
 }
 #bg_main_menu_lateral_admin figure#bg_logo {
   cursor: pointer;
-  padding: 20px;
+  padding: 20px 60px;
   max-width: 100%;
   height: auto;
   overflow: hidden;
@@ -918,7 +918,7 @@ menu.submenu_page ul li a {
   max-height: 100%;
 }
 #bg_main_menu_lateral_admin nav {
-  margin-top: 40px;
+  margin-top: 30px;
 }
 #bg_main_menu_lateral_admin nav ul li {
   clear: both;
