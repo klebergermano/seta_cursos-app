@@ -1,6 +1,7 @@
 import * as users from "../../../components/users/js/index.js";
 import * as commonFunc from "../../../components/js_common/commonFunctions.js";
-import {checkRolePermission} from "./checkPermission.js"
+import {checkRolePermission} from "./checkPermission.js";
+import {timerIdleMouseMoveFunc} from "./timerIdle.js";
 //----------------------------------------------------
 import {firebaseApp} from "../../../components/dbConfig/firebaseApp.js";
 const {getAuth, signOut } =  require("firebase/auth");
@@ -8,25 +9,6 @@ const {getFirestore, doc, getDoc, setDoc} = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
 const auth = getAuth(firebaseApp);
 //-----------------------------------------------------
-
-
-
- function getUserCompleteInfoX(currentUser){
-  let userInfo = getDoc(doc(db, "users",  currentUser.uid))
-  .then((res)=>{
-
-    let userInfo = {
-      email: currentUser.email,
-      username: res.data().name,
-      photoURL: res.data().photoURL,
-      privilege: res.data()["privilege"],
-      role: res.data()["role"]
-    }
-    return userInfo; 
-  });
-  return userInfo;
-  }
-
 
 //------------------------------------------------------
 
@@ -50,8 +32,18 @@ function importHTML(target, htmlSRC, scriptSRC){
    document.querySelector("#user_icon").appendChild(imgUserIcon);
    document.querySelector("#user_role").textContent = userCompleteInfo.role;
   }
+  
+
+
+
+
+
 
 export function onload(){
+//timer conta em segundos 5 * 60 = 5 min
+  timerIdleMouseMoveFunc(5 * 60, ()=>{
+    signOut(auth);
+  });
   checkRolePermission(auth);
 users.getUserCompleteInfo(auth.currentUser)
     .then((userCompleteInfo)=>{
@@ -90,6 +82,5 @@ function removeActiveNavMainMenuLateral(){
   childs.forEach((item) => {
 item.classList.remove('active');
   });
-
   
 }

@@ -48,7 +48,6 @@ import { insertElementHTML, confirmBoxDelete, readableRandomStringMaker} from ".
 
             let selectCategoria = formEdit.querySelector('#categoria')
             let arrOptions = Array.from(selectCategoria.options); 
-            console.log(arrOptions);
             arrOptions.forEach((item)=>{
             if(item.value === trInfo.querySelector('#td_categoria').innerHTML){
                 item.setAttribute('selected', true);
