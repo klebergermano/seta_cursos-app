@@ -21,7 +21,6 @@ function removeUnauthorizedElement(currentUser){
         authElements.forEach((item)=>{
             let itemDataAuth = item.dataset.auth;
             if(!userPermission[itemDataAuth]){
-                console.log('removed!', item.dataset.auth );
                 removeElement(item)
             }           
         })
@@ -31,29 +30,7 @@ function removeUnauthorizedElement(currentUser){
    
  }
 
-function removeUnauthorizedElementXX(currentUser){
-   users.getUserCompleteInfo(currentUser)
-    .then((userInfo)=>{
-        let role = userInfo.role;
-    permissionsFunc.getPermissions().then((permissions)=>{
 
-        console.log('PERMISSIONS', permissions);
-        let userPermission = permissions.data()[role];
-        let authElements = document.querySelectorAll('*[data-auth]');
-       authElements.forEach((item)=>{
-           let itemDataAuth = item.dataset.auth;
-           if(!userPermission[itemDataAuth]){
-               console.log('removed!', item.dataset.auth );
-               removeElement(item)
-           }           
-       })
-
-        });
-
-
-    })
-  
-}
 
 
 function removeElement(item){
