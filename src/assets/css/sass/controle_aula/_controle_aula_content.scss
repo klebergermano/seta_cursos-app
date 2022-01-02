@@ -369,7 +369,7 @@ nav.nav_cursos_aluno {
                 background: $disabled-light-color;
                 border-color: darken($disabled-light-color, 30%);
             }
-            [data-aula_categoria="reposição"] {
+            [data-aula_categoria="reposição"], [data-aula_categoria="reposição de prova"]  {
                 background: lighten($reposicao-color, 30%) !important;
                 border: 1px solid $reposicao-color;
                 width: auto;
@@ -388,7 +388,13 @@ nav.nav_cursos_aluno {
             [data-aula_categoria="prova"] {
                 background: lighten($primary-color, 50%) !important;
                 .aula_detalhes {
-                    height: 110px;
+                    height: 100px;
+                }
+            }
+            [data-aula_categoria="reposição de prova"]{
+                background: lighten($reposicao-color, 20%) !important;
+                .aula_detalhes {
+                    height: 100px;
                 }
             }
             .open_aula {
