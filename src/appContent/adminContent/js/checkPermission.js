@@ -3,8 +3,9 @@ import * as users from "../../../components/users/js/index.js";
 import * as commonFunc from "../../../components/js_common/commonFunctions.js";
 import * as permissionsFunc from "../../../components/users/js/permissions.js";
 
-
-
+//Remove elementos não autorizados usando o "data-auth";
+//Qualquer elemento que tenha o data-auth e não esteja na lista de 
+//pormissões do usuário sera removido do elemento pai;
 export function checkRolePermission(auth){
     let currentUser = auth.currentUser;
     removeUnauthorizedElement(currentUser)

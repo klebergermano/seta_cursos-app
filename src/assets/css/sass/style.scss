@@ -1,6 +1,7 @@
 @use 'base';
 @use 'abstracts' as *;
 @use 'elements';
+@use 'update_app';
 @use 'cursos_info';
 @use 'controle_aula';
 @use 'contratos';
@@ -304,9 +305,14 @@ grid-template-columns: minmax(160px, 14%) 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 footer{
+  
   grid-area: footer;
   height:50px;
-  background:#f0f0f0;
-  border-top:1px solid #333;
+  background:#eee;
+  border-top:1px solid #666;
+  .app_version{
+    padding:10px 40px;
+    text-align: center;
+  }
 }
 
