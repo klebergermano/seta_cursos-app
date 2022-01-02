@@ -44,7 +44,7 @@ let selectAula = form.querySelector("#select_aula");
 let aula_categoria = form.querySelector("#aula_categoria");
 
 selectAula.addEventListener('change', (e)=>{
-  if(e.target.value === "aula 16"){
+  if(e.target.value === "aula 16" || e.target.value === "reposição da aula 16"){
     form.querySelector("#bg_prova_inputs").style.display = "flex";
     form.querySelector("#div_detalhes").style.display = "none";
     form.querySelector("#nota_prova").setAttribute("required", true);
@@ -167,7 +167,7 @@ function blockSelectOptionsAddAulas(RA, curso, bimestre) {
 
 function blocoAddAula(dados) {
   let aula = {};
-  if( dados.aula_categoria.value === "prova"){
+  if( dados.aula_categoria.value === "prova" || dados.aula_categoria.value === "reposição de prova"){
     aula = {
       [dados.select_bimestre.value]: {
         [dados.select_aula.value]: {

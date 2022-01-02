@@ -122,6 +122,11 @@ function createCursoHTMLContent(bgCursoHTML, cursoDB) {
         if (aula.categoria === "reposição") {
           divColumnReposicao.innerHTML += createAulaHTML(aula, aulaSortedKeys[j], bimSortedKeys[i]);
         }
+        else if(aula.categoria === "reposição de prova"){
+          console.log('AULA REPO PROVA:', aula);
+          divColumnReposicao.innerHTML += createHTMLProva(aula, aulaSortedKeys[j], bimSortedKeys[i]);
+
+        }
         else if (aula.categoria && aula.categoria.includes('ponto extra')) {
           divColumnPontosExtras.innerHTML += createHTMLPontoExtra(aula, aulaSortedKeys[j], bimSortedKeys[i]);
         }
@@ -258,6 +263,7 @@ function createResumoBimestreHTML(cursoDB, bimestreKey) {
 }
 
 function createHTMLProva(aulaDados, n_aula, n_bimestre) {
+  console.log(aulaDados);
   //substitui espaços em branco pelo underscore e passa para minúsculas as letras
   let id_aula = stringToID(n_aula);
   //let id_bimestre = n_bimestre.replace(/\s+/g, "_").toLowerCase();

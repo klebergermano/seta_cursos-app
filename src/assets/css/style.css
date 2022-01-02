@@ -1582,7 +1582,7 @@ nav.nav_cursos_aluno ul li .active {
   background: #ddd;
   border-color: #919191;
 }
-#controle_aula_content .bg_bimestres .bimestres [data-aula_categoria=reposição] {
+#controle_aula_content .bg_bimestres .bimestres [data-aula_categoria=reposição], #controle_aula_content .bg_bimestres .bimestres [data-aula_categoria="reposição de prova"] {
   background: #e7e2f4 !important;
   border: 1px solid #8971cc;
   width: auto;
@@ -1602,7 +1602,13 @@ nav.nav_cursos_aluno ul li .active {
   background: #d4e3f6 !important;
 }
 #controle_aula_content .bg_bimestres .bimestres [data-aula_categoria=prova] .aula_detalhes {
-  height: 110px;
+  height: 100px;
+}
+#controle_aula_content .bg_bimestres .bimestres [data-aula_categoria="reposição de prova"] {
+  background: #c7bce7 !important;
+}
+#controle_aula_content .bg_bimestres .bimestres [data-aula_categoria="reposição de prova"] .aula_detalhes {
+  height: 100px;
 }
 #controle_aula_content .bg_bimestres .bimestres .open_aula {
   height: 260px;

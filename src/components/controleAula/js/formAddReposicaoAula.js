@@ -7,7 +7,6 @@ import * as dateFunc from "../../js_common/dateFunc.js";
 export function insertFormReposicaoAula(eventClick){
     let form = commonFunc.insertElementHTML('#page_content',
     './components/controleAula/formAddAula.html');
-  
     form.then((formRes)=>{
       formAddAula.eventsFormAddAula(formRes);
       eventsFormReposicaoAula(formRes)
