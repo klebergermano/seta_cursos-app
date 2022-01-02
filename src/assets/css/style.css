@@ -943,6 +943,19 @@ menu.submenu_page ul li a {
   background: #1f1f1f;
 }
 
+#update_app_content {
+  max-width: 600px;
+  padding: 50px;
+  text-align: center;
+  border: 1px solid #333;
+  margin: 0 auto;
+  margin-top: 20%;
+}
+#update_app_content #update_message {
+  max-width: 550px;
+  margin: 0 auto;
+}
+
 #cursos_info .page_content {
   padding-bottom: 20px;
   display: grid;
@@ -3695,8 +3708,12 @@ h1 {
 footer {
   grid-area: footer;
   height: 50px;
-  background: #f0f0f0;
-  border-top: 1px solid #333;
+  background: #eee;
+  border-top: 1px solid #666;
+}
+footer .app_version {
+  padding: 10px 40px;
+  text-align: center;
 }
 
 /*# sourceMappingURL=style.css.map */

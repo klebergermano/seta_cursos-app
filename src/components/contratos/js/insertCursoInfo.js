@@ -8,7 +8,7 @@ import insertInputValorTotal from "./insertInputValorTotal.js";
 
 function getCursoInfo(e){
   let idCurso = e.target.options[e.target.selectedIndex].getAttribute('name'); 
-  console.log(idCurso);
+ 
  return getDoc(doc(db, 'cursos_info', idCurso));
 }
 

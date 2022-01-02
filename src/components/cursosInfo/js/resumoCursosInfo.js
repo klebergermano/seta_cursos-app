@@ -6,7 +6,7 @@ const db = getFirestore(firebaseApp);
 import {insertElementHTML}  from "../../js_common/commonFunctions.js";
 
 export function insertResumoCursosInfo() {
- insertElementHTML('#home_content', './components/cursosInfo/resumoCursosInfo.html', eventsResumoCursosInfo);    
+ insertElementHTML('#home_content', './components/cursosInfo/resumoCursosInfo.html', eventsResumoCursosInfo, null, true);    
 }
 
 function eventsResumoCursosInfo(){
