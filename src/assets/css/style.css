@@ -3259,7 +3259,8 @@ option[disabled] {
   color: #bd4343;
 }
 .bg_info_resumo .td_total {
-  background: #222;
+  background: #333;
+  border-color: #555;
   color: #5ad85a;
   text-align: center;
 }
