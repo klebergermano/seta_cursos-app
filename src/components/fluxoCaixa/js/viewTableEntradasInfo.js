@@ -23,9 +23,7 @@ export function insertFluxoCaixaInfoInTableHTML(){
     insertElementHTML('#entradas_content', './components/fluxoCaixa/viewTableEntradasInfo.html', eventsEntradasInfoTable, null, true);
 }
 
-function setMasks() {
-   //VMasker(document.querySelector('.td_valor_total')).maskMoney();
-  }
+
   
 function eventsEntradasInfoTable(){
     setAnoMesSelectFiltros()
@@ -41,29 +39,33 @@ function eventsEntradasInfoTable(){
     }).catch(err => console.log(err))
 
     document.querySelector("#select_ano").addEventListener('change', (e)=>{
-        let filtroInfo = getFiltroInfoAnoMes()
+        let filtroInfo = getFiltroInfoAnoMes();
         setFluxoCaixaAno(filtroInfo.ano)
-        .then(()=>{
-            insertContentTables($fluxoCaixaAno, filtroInfo.mes)
+        .then((res)=>{
+             res.ano =  filtroInfo.ano;
+            insertContentTables(res, filtroInfo.mes)
         }).then(()=>{
             btnsDeletePagMensal();
            btnsDeleteEntradaAvulsa();
         }).catch(err => console.log(err))
      })
      document.querySelector("#select_mes").addEventListener('change', (e)=>{
-        let filtroInfo = getFiltroInfoAnoMes()
-        insertContentTables($fluxoCaixaAno, filtroInfo.mes)
-        btnsDeletePagMensal();
-      btnsDeleteEntradaAvulsa()
+        let filtroInfo = getFiltroInfoAnoMes();
+        setFluxoCaixaAno(filtroInfo.ano)
+        .then((res)=>{
+            insertContentTables(res, filtroInfo.mes)
+        }).then(()=>{
+            btnsDeletePagMensal();
+            btnsDeleteEntradaAvulsa()
+        }).catch(err => console.log(err))
+       
      })
-     setMasks() 
 }
 
 function btnsDeleteEntradaAvulsa(){
     let btnsPagMensal = document.querySelectorAll('#entrada_avulsa_table_info .btn_delete_entrada_avulsa');
     btnsPagMensal.forEach((item)=>{
         item.addEventListener('click', (e)=>{
-            console.log('click');
             let tr = e.target.closest('tr');
             let data = tr.querySelector('.td_data').innerHTML;
             let valor = tr.querySelector('.td_valor_total').innerHTML;
@@ -81,7 +83,6 @@ function btnsDeleteEntradaAvulsa(){
     });
 }
 function btnsDeletePagMensal(){
-
     let btnsPagMensal = document.querySelectorAll('#pag_mensal_table_info .btn_delete_pag_mensal');
     btnsPagMensal.forEach((item)=>{
         item.addEventListener('click', (e)=>{
@@ -100,13 +101,12 @@ function btnsDeletePagMensal(){
             <br/>Essa ação não podera ser desfeita!`;
             confirmBoxDelete(".bg_tables", msg, ()=>{
               submitDeletePagMensal(ano, mes, row, RA,  curso, parcela, data, valor); 
-               
             })
         });
     });
 }
 
-function insertContentTables( fluxoCaixaAno, mes){
+function insertContentTables(fluxoCaixaAno, mes){
         let contentTablePagMensal = createContentPagMensalTableHTML(fluxoCaixaAno, mes);
         insertContentTablePagMensal(contentTablePagMensal);
         sortTbodyElementByDate("#pag_mensal_table_info");
@@ -244,7 +244,6 @@ function createContentPagMensalTableHTML (fluxoCaixaAno, mes){
         for( let value of Object.values(fluxoCaixaMes)){
             if(value.categoria === "pag_mensalidade"){
                 let tr = document.createElement('tr');
-                console.log(value);
                 tr.id='tr_comum';
                 tr.setAttribute('data-ano', fluxoCaixaAno.ano);
                 tr.setAttribute('data-mes', mes);
