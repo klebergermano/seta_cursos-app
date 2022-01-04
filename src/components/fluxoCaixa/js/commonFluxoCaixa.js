@@ -1,11 +1,15 @@
 import { converteMesNumeroPorExtenso } from "../../js_common/dateFunc.js";
 
+
+
 //firebase
 import { firebaseApp } from "../../dbConfig/firebaseApp.js";
 const { getFirestore, getDoc, doc } = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
 
 const VMasker = require("vanilla-masker");
+
+
 
 export function countEntradasTotal($fluxoCaixaAno, mes, categoria) {
     let entradas = $fluxoCaixaAno[mes];
@@ -38,6 +42,8 @@ export function somaValorTotalMes($fluxoCaixaAno, mes, categoria) {
 export function sumArrayDecimalNumbers(arrDecimalNumbers){
     let res = arrDecimalNumbers.reduce((acc, value) => {
                 let valor = value.replace(',', '');
+                valor = valor.replace(".", "");
+
                 return parseFloat(acc) + parseFloat(valor);
             }, 0)
     res = VMasker.toMoney(res, {showSignal: true});
@@ -45,9 +51,11 @@ export function sumArrayDecimalNumbers(arrDecimalNumbers){
 };
 export function subArrayDecimalNumbers(arrDecimalNumbers){
     let res = arrDecimalNumbers.reduce((acc, value) => {
-                let v = value.replace(',', '');
+                let valor = value.replace(',', '');
+                    valor = valor.replace('.', '');
                 let a = acc.replace(',', '');
-                return parseFloat(a) - parseFloat(v);
+                   a = a.replace('.', '');
+                return parseFloat(a) - parseFloat(valor);
             })
     res = VMasker.toMoney(res, {showSignal: true});
     return res; 
@@ -60,6 +68,21 @@ export async function setFluxoCaixaAno(ano) {
     return fluxoCaixa;
 }
 
+
+function createSelectAnoOptions(){
+    let anoAtual = (new Date()).getFullYear();
+    let anoInicial = 2019;
+    let anoLimite = anoAtual + 1;
+let options = '';
+    for(let i = anoInicial; i <= anoLimite; i++ ){
+        let selected = ''; 
+        if(i === anoAtual){selected = 'selected="true"'}
+            options += `<option ${selected} value='${i}'>${i}</option>`;
+    }
+return options;
+}
+
+
 export function setAnoMesSelectFiltros() {
     let date = new Date();
     let mes = parseInt(date.getMonth()) + 1;
@@ -67,12 +90,15 @@ export function setAnoMesSelectFiltros() {
     let selectAno = document.querySelector('#select_ano');
     let selectMes = document.querySelector('#select_mes');
     if (selectAno) {
+       selectAno.innerHTML = createSelectAnoOptions()
+       /*
         let optionsSelectAno = Array.from(selectAno.options);
         optionsSelectAno.forEach((optAno) => {
             if (optAno.value === ano) {
                 optAno.setAttribute('selected', true);
             }
         });
+        */
     }
 
     if (selectMes) {
@@ -121,4 +147,29 @@ export function getFiltroInfoAnoMes() {
         filtroInfo.mes = selectMes.options[selectMes.selectedIndex].value;
     }
     return filtroInfo;
+}
+
+//DELETE CAMPOS FLUXO CAIXA
+function btnsDeleteFieldTable(idTable, classBtn){
+    let btnsPagMensal = document.querySelectorAll('#pag_mensal_table_info');
+    btnsPagMensal.forEach((item)=>{
+        item.addEventListener('click', (e)=>{
+            let tr = e.target.closest('tr');
+            let alunoNome = tr.querySelector('.td_aluno').innerHTML;
+            let data = tr.querySelector('.td_data').innerHTML;
+            let valor = tr.querySelector('.td_valor_total').innerHTML;
+            let RA = tr.dataset.ra; 
+            let ano = tr.dataset.ano; 
+            let mes = tr.dataset.mes; 
+            let row = tr.dataset.row; 
+            let curso = tr.dataset.curso; 
+            let parcela = tr.dataset.parcela; 
+            let msg = `<span style='color:red'><b>ATENÇÃO</b></span>
+            <br/>Tem certeza que deseja deletar o Pagamento de Mensalidade: "<b> ${data} - ${RA} - ${alunoNome} - ${curso} - ${valor}"</b>?
+            <br/>Essa ação não podera ser desfeita!`;
+            confirmBoxDelete(".bg_tables", msg, ()=>{
+              submitDeletePagMensal(ano, mes, row, RA,  curso, parcela, data, valor); 
+            })
+        });
+    });
 }

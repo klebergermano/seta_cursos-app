@@ -26,6 +26,8 @@ function eventsSaidasInfoTable(){
         $fluxoCaixaAno = res; 
         $fluxoCaixaAno.ano = filtroInfo.ano;
         insertContentTables(res, filtroInfo.mes)
+    }).then(()=>{
+        btnsDeleteEntradaAvulsa()
     }).catch(err => console.log(err))
 
     document.querySelector("#select_ano").addEventListener('change', (e)=>{
@@ -34,10 +36,19 @@ function eventsSaidasInfoTable(){
         .then((res)=>{
             res.ano = filtroInfo.ano;
              insertContentTables(res, filtroInfo.mes)
+        }).then(()=>{
+            btnsDeleteEntradaAvulsa()
         }).catch(err => console.log(err))
      })
      document.querySelector("#select_mes").addEventListener('change', (e)=>{
         let filtroInfo = getFiltroInfoAnoMes()
+        setFluxoCaixaAno(filtroInfo.ano)
+.then((res)=>{
+    res.ano =  filtroInfo.ano;
+    insertContentTables(res, filtroInfo.mes)
+}).then(()=>{
+    btnsDeleteEntradaAvulsa()
+})
         insertContentTables($fluxoCaixaAno, filtroInfo.mes)
      })
 }
@@ -123,8 +134,45 @@ table.querySelector('#tbody').innerHTML = contentTable.innerHTML;
     }
 
 
+    function btnsDeleteEntradaAvulsa(){
+        let btnsPagMensal = document.querySelectorAll('#saidas_avulsa_table_info .btn_delete_saida_avulsa');
+        btnsPagMensal.forEach((item)=>{
+            item.addEventListener('click', (e)=>{
+                let tr = e.target.closest('tr');
+                let data = tr.querySelector('.td_data').innerHTML;
+                let valor = tr.querySelector('.td_valor_total').innerHTML;
+                let descricao = tr.querySelector('.td_descricao').innerHTML;
+                let ano = tr.dataset.ano; 
+                let mes = tr.dataset.mes; 
+                let row = tr.dataset.row; 
+                let msg = `<span style='color:red'><b>ATENÇÃO</b></span>
+                <br/>Tem certeza que deseja deletar a saida de caixa "<b>${data} - ${descricao} - ${valor}</b>"?
+                <br/>Essa ação não podera ser desfeita!`;
+                confirmBoxDelete(".bg_tables", msg, ()=>{
+                 submitDeleteSaidaAvulsa(ano, mes, row, data, valor, descricao); 
+                })
+            });
+        });
+    }
 
 
+    function  submitDeleteSaidaAvulsa(ano, mes, row, data, valor, descricao){
+        let string = `${mes}.${row}`;
+        let deleteQuery = {};
+        deleteQuery[string] = deleteField();
+        const docAula = doc(db, 'fluxo_caixa', ano);
+        updateDoc(docAula, deleteQuery)
+        .then(()=>{ 
+        let idLog = createRadomIdLogBasedOnData();
+            setDoc(doc(db, "log", 'log_fluxo_caixa'),{
+                [idLog]: `Deletado 'Saida de Fluxo de Caixa Avulsa' "${data} - R$${valor} - ${descricao}" deletado em ${new Date()} por ${auth.currentUser.email}`
+                },
+                { merge: true})
+        })
+        .then(()=>{
+            insertFluxoCaixaInfoInTableHTML();
+        }).catch((err)=> console.log(err));
+        }
 
 
 

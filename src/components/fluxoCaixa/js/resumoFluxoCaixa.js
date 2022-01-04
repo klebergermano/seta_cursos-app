@@ -1,6 +1,8 @@
 import {countEntradasTotal, somaValorTotalMes, setFluxoCaixaAno, 
   setAnoMesSelectFiltros, sortTbodyElementByDate, 
-  getFiltroInfoAnoMes, sumArrayDecimalNumbers, subArrayDecimalNumbers} from "./commonFluxoCaixa.js";
+  getFiltroInfoAnoMes, sumArrayDecimalNumbers, subArrayDecimalNumbers
+
+} from "./commonFluxoCaixa.js";
 
 
 //--------------------------------------------------------------------
@@ -17,14 +19,8 @@ export function insertResumoFluxoCaixaHTML() {
 
 }
 
-function setMasks(){
-
-
-}
-
 
 function eventsResumoFluxoCaixa() {
-  
   setAnoMesSelectFiltros()
   let filtroInfo = getFiltroInfoAnoMes()
   setFluxoCaixaAno(filtroInfo.ano)
@@ -40,8 +36,8 @@ function eventsResumoFluxoCaixa() {
     let filtroInfo = getFiltroInfoAnoMes()
     setFluxoCaixaAno(filtroInfo.ano)
     .then((res)=>{
-      res.ano =  filtroInfo.ano;
-     insertContentResumoTable(res)
+        res.ano =  filtroInfo.ano;
+      insertContentResumoTable(res)
     }).catch(err => console.log(err))
  })
 }
@@ -70,7 +66,6 @@ function somaMesesAno(fluxoCaixaAno){
      document.querySelector(`#res_${mesNome} .td_saidas_avulso`).innerHTML = "R$"+ somaSaidaAvulsa;
 
 let somaEntradasMes = sumArrayDecimalNumbers([somaPagMensalidade, somaEntradaAvulsa]);
-
 totalMes = subArrayDecimalNumbers([somaEntradasMes, somaSaidaAvulsa ]);
 if(totalMes.includes('-'))
  {
