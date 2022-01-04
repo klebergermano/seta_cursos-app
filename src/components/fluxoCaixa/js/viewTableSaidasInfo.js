@@ -1,5 +1,5 @@
 //-------------------------------------------------------------------
-import * as commonFunc from "../../js_common/commonFunctions.js";
+import {confirmBoxDelete, insertElementHTML, createRadomIdLogBasedOnData} from "../../js_common/commonFunctions.js";
 import {changeDateToDislayText} from "../../js_common/dateFunc.js";
 
 import {countEntradasTotal, somaValorTotalMes, setFluxoCaixaAno, 
@@ -8,7 +8,9 @@ import {countEntradasTotal, somaValorTotalMes, setFluxoCaixaAno,
 
 //firebase
 import {firebaseApp} from "../../dbConfig/firebaseApp.js";
-const {getFirestore, getDoc, doc} = require("firebase/firestore") 
+const {getFirestore, getDoc, doc, deleteField,setDoc, updateDoc} = require("firebase/firestore") 
+const {getAuth} = require("firebase/auth");
+const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
 
 //Others libraries
@@ -16,7 +18,7 @@ const VMasker = require("vanilla-masker");
 //--------------------------------------------------------------------
 var $fluxoCaixaAno = {};
 export function insertSaidasInfoTableHTML(){
-    commonFunc.insertElementHTML('#saidas_content', './components/fluxoCaixa/viewTableSaidasInfo.html', eventsSaidasInfoTable, null, true);
+    insertElementHTML('#saidas_content', './components/fluxoCaixa/viewTableSaidasInfo.html', eventsSaidasInfoTable, null, true);
 }
 function eventsSaidasInfoTable(){
     setAnoMesSelectFiltros()
@@ -82,10 +84,15 @@ table.querySelector('#tbody').innerHTML = contentTable.innerHTML;
    
     let tbody = document.createElement('tbody'); 
     if(fluxoCaixaMes){
+        let saidas = false; 
         for( let value of Object.values(fluxoCaixaMes)){
-            if(value.categoria === "saida_avulsa"){
+            if(value?.categoria === "saida_avulsa"){
+                saidas = true;
                 let tr = document.createElement('tr');
                 tr.id='tr_comum';
+                tr.setAttribute('data-ano', fluxoCaixaAno.ano);
+                tr.setAttribute('data-mes', mes);
+                tr.setAttribute('data-row', value.row);
                 let trContent = 
                 `
                 <td class='td_data'>${changeDateToDislayText(value.data)}</td>
@@ -106,18 +113,31 @@ table.querySelector('#tbody').innerHTML = contentTable.innerHTML;
                }//if
             }
 
-            let resEntradas = countEntradasTotal(fluxoCaixaAno, mes, 'saida_avulsa');
-            let resValorTotal = somaValorTotalMes(fluxoCaixaAno, mes, 'saida_avulsa');
-
-
-            //--------------------------------------
-            let trResumo = document.createElement('tr');
-            trResumo.id='tr_resumo';
-            trResumo.innerHTML = `
-            <td colspan='3'>Entradas: <span id='res_total_saida'>${resEntradas}</span></td>
-            <td colspan='2' class="td_valor_total" id="td_res_valor_total">R$ ${resValorTotal}</td>
-            `;
-            tbody.appendChild(trResumo)
+            if(saidas){
+                //-----------Resumo---------------------------
+                let resEntradas = countEntradasTotal(fluxoCaixaAno, mes, 'saida_avulsa');
+                let resValorTotal = somaValorTotalMes(fluxoCaixaAno, mes, 'saida_avulsa');
+                let trResumo = document.createElement('tr');
+                trResumo.id='tr_resumo';
+                trResumo.innerHTML = `
+                <td colspan='3'>Entradas: <span id='res_total_saida'>${resEntradas}</span></td>
+                <td colspan='2' class="td_valor_total" id="td_res_valor_total">R$ ${resValorTotal}</td>
+                `;
+                tbody.appendChild(trResumo)
+                //-----------------------------------------
+            }else{
+                let tr = document.createElement('tr')
+                tr.innerHTML= `
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>R$ 0,00</td>
+                <td>...</td>
+                `;
+                ;
+                tbody.appendChild(tr)
+            }
+    
     }else{
         let tr = document.createElement('tr')
         tr.innerHTML= `
@@ -135,7 +155,7 @@ table.querySelector('#tbody').innerHTML = contentTable.innerHTML;
 
 
     function btnsDeleteEntradaAvulsa(){
-        let btnsPagMensal = document.querySelectorAll('#saidas_avulsa_table_info .btn_delete_saida_avulsa');
+        let btnsPagMensal = document.querySelectorAll('#saida_avulsa_table_info .btn_delete_saida_avulsa');
         btnsPagMensal.forEach((item)=>{
             item.addEventListener('click', (e)=>{
                 let tr = e.target.closest('tr');
@@ -170,7 +190,7 @@ table.querySelector('#tbody').innerHTML = contentTable.innerHTML;
                 { merge: true})
         })
         .then(()=>{
-            insertFluxoCaixaInfoInTableHTML();
+            insertSaidasInfoTableHTML();
         }).catch((err)=> console.log(err));
         }
 
