@@ -744,7 +744,7 @@ inputs, .input-primary {
   border-radius: 3px 3px 0px 0px;
 }
 .filtro_table select {
-  font-size: 16px;
+  font-size: 18px;
   padding: 5px 10px;
   font-weight: bolder;
   color: #555;
@@ -3201,7 +3201,7 @@ option[disabled] {
   background: #ccc;
 }
 .bg_info_resumo .filtro_resumo select {
-  font-size: 16px;
+  font-size: 18px;
   padding: 5px 10px;
   font-weight: bolder;
   color: #555;
