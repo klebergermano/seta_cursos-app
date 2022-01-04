@@ -3245,20 +3245,22 @@ option[disabled] {
 .bg_info_resumo .td_num_pag_mensalidade {
   text-align: center;
 }
-.bg_info_resumo .td_pag_mensalidade {
-  color: green;
+.bg_info_resumo .td_pag_mensalidade, .bg_info_resumo .td_entradas_avulso {
+  color: #265026;
   text-align: center;
 }
-.bg_info_resumo .td_entradas_avulso {
-  color: green;
+.bg_info_resumo .td_total_entradas {
   text-align: center;
+  background: #cdc;
 }
 .bg_info_resumo .td_saidas_avulso {
+  background: #dcc;
   text-align: center;
   color: #bd4343;
 }
 .bg_info_resumo .td_total {
-  color: green;
+  background: #222;
+  color: #5ad85a;
   text-align: center;
 }
 

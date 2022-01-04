@@ -61,17 +61,18 @@ function somaMesesAno(fluxoCaixaAno){
        somaSaidaAvulsa = somaValorTotalMes(fluxoCaixaAno, mesNome, 'saida_avulsa');
       }
      document.querySelector(`#res_${mesNome} .td_num_pag_mensalidade`).innerHTML = numPagMes;
-     document.querySelector(`#res_${mesNome} .td_pag_mensalidade`).innerHTML = "R$"+ somaPagMensalidade;
-     document.querySelector(`#res_${mesNome} .td_entradas_avulso`).innerHTML = "R$"+ somaEntradaAvulsa;
-     document.querySelector(`#res_${mesNome} .td_saidas_avulso`).innerHTML = "R$"+ somaSaidaAvulsa;
+     document.querySelector(`#res_${mesNome} .td_pag_mensalidade`).innerHTML =  somaPagMensalidade;
+     document.querySelector(`#res_${mesNome} .td_entradas_avulso`).innerHTML =  somaEntradaAvulsa;
+     document.querySelector(`#res_${mesNome} .td_saidas_avulso`).innerHTML =  somaSaidaAvulsa;
 
 let somaEntradasMes = sumArrayDecimalNumbers([somaPagMensalidade, somaEntradaAvulsa]);
+document.querySelector(`#res_${mesNome} .td_total_entradas`).innerHTML =  somaEntradasMes;
 totalMes = subArrayDecimalNumbers([somaEntradasMes, somaSaidaAvulsa ]);
 if(totalMes.includes('-'))
  {
   document.querySelector(`#res_${mesNome} .td_total`).classList.add('red');
  }
- document.querySelector(`#res_${mesNome} .td_total`).innerHTML = "R$"+ totalMes;
+ document.querySelector(`#res_${mesNome} .td_total`).innerHTML =  totalMes;
  
 
   }

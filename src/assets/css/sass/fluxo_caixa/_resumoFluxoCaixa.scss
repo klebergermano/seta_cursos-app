@@ -64,15 +64,23 @@
     }
     .td_mes{}
     .td_num_pag_mensalidade{  text-align: center;}
-    .td_pag_mensalidade{color:green; text-align: center;}
-    .td_entradas_avulso{ color:green; text-align: center;}
+    .td_pag_mensalidade,  .td_entradas_avulso{color:rgb(38, 80, 38); text-align: center;}
+    .td_total_entradas{
+        text-align: center;
+        background:#cdc;
+    }
+    
     .td_saidas_avulso{
+        background:#dcc;
+
         text-align: center;
         color:#bd4343;
 
     }
+
     .td_total{
-        color:green;
+        background:#222;
+        color:rgb(90, 216, 90);
         text-align: center;
     }
 
