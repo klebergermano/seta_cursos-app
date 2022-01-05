@@ -482,6 +482,41 @@ template {
   border-color: #ca881d !important;
 }
 
+*[class*=background_inform], *[class*=background_Inform] {
+  background: #1f3c7a !important;
+  color: #fff;
+}
+
+*[class*=background_excel], *[class*=background_Excel] {
+  background: #097a4a !important;
+  color: #fff;
+}
+
+*[class*="background_desenvolvimento web"], *[class*="background_Desenvolvimento Web"] {
+  background: #015dc5 !important;
+  color: #fff;
+}
+
+*[class*=background_inglês], *[class*=background_Inglês] {
+  background: #ad054b !important;
+  color: #fff;
+}
+
+*[class*=background_espanhol], *[class*=background_Espanhol] {
+  background: #7a082e !important;
+  color: #fff;
+}
+
+*[class*=background_adm], *[class*=background_Adm] {
+  background: #0d705c !important;
+  color: #fff;
+}
+
+*[class*=background_banco], *[class*=background_Banco] {
+  background: #ca881d !important;
+  color: #fff;
+}
+
 inputs, .input-primary {
   border: 1px solid #999;
   padding: 5px;
@@ -3238,9 +3273,21 @@ option[disabled] {
 .bg_info_resumo table tbody tr:hover {
   background: #f6f6e0;
 }
+.bg_info_resumo table tbody tr:hover .td_saidas_avulso {
+  background: #ecd6d6;
+}
+.bg_info_resumo table tbody tr:hover .td_total_entradas {
+  background: #cce4cc;
+}
+.bg_info_resumo table tbody tr:hover .td_total {
+  background: #ddd;
+}
 .bg_info_resumo table tbody tr td {
   border: 1px solid #333;
   padding: 10px 5px;
+}
+.bg_info_resumo .td_mes {
+  padding-left: 10px;
 }
 .bg_info_resumo .td_num_pag_mensalidade {
   text-align: center;
@@ -3259,9 +3306,8 @@ option[disabled] {
   color: #bd4343;
 }
 .bg_info_resumo .td_total {
-  background: #333;
-  border-color: #555;
-  color: #5ad85a;
+  background: #ccccce;
+  color: #085f08;
   text-align: center;
 }
 

@@ -9,6 +9,7 @@ const downloadPath = app.getPath("downloads");
 const TemplateTalao = require("./components/alunos/js/TemplateTalao.js");
 const TemplateContrato = require("./components/contratos/js/TemplateContrato.js");
 const TemplateHistoricoAluno = require("./components/controleAula/js/TemplateHistoricoAluno.js");
+const TemplateCertificado = require("./components/alunos/js/TemplateCertificado.js");
 
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -60,6 +61,61 @@ app.on('activate', () => {
 });
 
 //TODO: Refatorar funções PDF
+
+
+
+//-------------------------------------------------------------------------------------//
+//-----------------------------------------CERTIFICADOS PDF ------------------------//
+//-------------------------------------------------------------------------------------//
+
+function createPDFCertificado(certificadoInfo) {
+  var options = { 
+    "height": "21cm",        
+    "width": "29.6cm",            
+    "base": "file:///D:/#KG/seta_cursos-app/src/assets/"
+    }
+
+ // const templateTalao = TemplateTalao(docAlunoHistorico); // create template from the form inputs
+  const templateCertificado = TemplateCertificado(certificadoInfo) // create template from the form inputs
+  return new Promise((resolve, reject) => {
+    pdf
+      .create(templateCertificado, options)
+      .toFile(path.join(__dirname, "certificado.pdf"), (err, res) => {
+        if (err) reject();
+        else resolve(res);
+      });
+  });
+}
+
+ipcMain.handle("createCertificadoPDF", async (event, certificadoInfo) => {
+  let novoPDF = createPDFCertificado(certificadoInfo); // call the createPDF function
+
+  novoPDF.then((pdf) => {
+   let filename = `certificado-${certificadoInfo.ra}-${certificadoInfo.aluno}-${certificadoInfo.curso}.pdf`;
+    filename = filename.toUpperCase();
+    let oldpath = `${__dirname}/certificado.pdf`;
+    let newpath = `${downloadPath}/${filename}`;
+    fs.readFile(oldpath, function (err, data) {
+      if (err) throw err;
+      console.log("File read!");
+      // Write the file
+      fs.writeFile(newpath, data, function (err) {
+        if (err) throw err;
+        console.log("File written!");
+        dialog.showMessageBoxSync({
+          type: "info",
+          title: "SETA CURSOS - Certificado",
+          message: `Certificado do Aluno salvo com sucesso em: ${downloadPath}`,
+        });
+      });
+      // Delete the file
+      fs.unlink(oldpath, function (err) {
+        if (err) throw err;
+        console.log("File deleted!");
+      });
+    });
+  })
+});
 
 //-------------------------------------------------------------------------------------//
 //-----------------------------------------TALÕES PDF ------------------------//

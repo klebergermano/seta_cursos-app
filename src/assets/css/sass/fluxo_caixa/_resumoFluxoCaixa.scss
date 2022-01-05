@@ -54,6 +54,18 @@
                 }
                 &:hover{
                     background: #f6f6e0;
+                    .td_saidas_avulso{
+                        background:#ecd6d6;
+                    } 
+                    .td_total_entradas{
+                        background:#cce4cc;
+                    }
+                    .td_total{
+                        background:#ddd;
+                     
+                    }
+                
+                   
                 }
                 td{
                     border: 1px solid #333;
@@ -62,7 +74,7 @@
             }
         }
     }
-    .td_mes{}
+    .td_mes{padding-left:10px;}
     .td_num_pag_mensalidade{  text-align: center;}
     .td_pag_mensalidade,  .td_entradas_avulso{color:rgb(38, 80, 38); text-align: center;}
     .td_total_entradas{
@@ -79,9 +91,11 @@
     }
 
     .td_total{
-        background:#333;
-        border-color:#555;
-        color:rgb(90, 216, 90);
+        background:#ccccce;
+       // border-color:#555;
+        color:rgb(8, 95, 8);
+
+       // color:rgb(90, 216, 90);
         text-align: center;
     }
 
