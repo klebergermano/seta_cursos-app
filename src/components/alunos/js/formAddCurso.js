@@ -17,7 +17,6 @@ let $contratosListInfo = {};
 let $contratoInfo = {};
 let $alunoInfo = {};
 
-
 export function insertFormAddCursoHTML(RA, alunoNome, RG) {
   insertElementHTML('#page_content',
     './components/alunos/formAddCurso.html', () => {
@@ -109,7 +108,6 @@ function setContratoInfo(IDContrato) {
 
 function submitformAddCurso(e) {
   e.preventDefault();
-
   let form = e.target;
   let RA = (form.aluno_ra.value).toUpperCase()
     //Objecto utilizado para criar as parcelas com "createParcelas(parcelaInfo)".
@@ -130,7 +128,9 @@ function submitformAddCurso(e) {
         nome: $contratoInfo.curso_info.nome,
         duracao: $contratoInfo.curso_info.duracao,
         vencimento: $contratoInfo.curso_info.vencimento,
-        parcelas_total: $contratoInfo.curso_info.parcelas,
+        carga_horaria: $contratoInfo.curso_info.carga_horaria,
+        horas_aula: $contratoInfo.curso_info.horas_aula,
+        parcelas_total: $contratoInfo.curso_info.parcelas,      
         parcelas: createParcelas(parcelaInfo),
         valor_mes: $contratoInfo.curso_info.valor_mes,
         desconto_mes: $contratoInfo.curso_info.desconto_mes,

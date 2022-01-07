@@ -26,12 +26,7 @@ export function insertFormAddContratoHTML(){
   );
 }
 
-function setCurso() {
-let cursosSelect1 = document.querySelector("#curso_nome");
-let cursosSelect2 = document.querySelector("#combo_curso_2");
-  let cursos = cursosSelect1.innerHTML;
-  cursosSelect2.innerHTML = cursos;
-};
+
 
 //Remove e reinsere o aluno usando css transition em ".aluno_off"
 function checkboxRespAluno(e) {
@@ -81,7 +76,6 @@ return optionsSelect;
 
 export function eventsFormAddContrato(){
   insertOptionsSelectCurso();
-//  setCurso() 
 //variáveis
 let form = document.querySelector("#form_add_contrato");
 let valor = document.querySelector("#curso_valor");
@@ -177,6 +171,8 @@ setDoc(doc(db, "contratos", formInfo.id_contrato),
     modulos: formInfo.curso_modulos,
     duracao: formInfo.curso_duracao,
     parcelas: formInfo.curso_parcelas,
+    carga_horaria: formInfo.curso_carga_horaria,
+    horas_aula: formInfo.curso_horas_aula,
     vencimento: formInfo.curso_vencimento,
     valor_mes: formInfo.curso_valor,
     desconto_mes: formInfo.curso_desconto,

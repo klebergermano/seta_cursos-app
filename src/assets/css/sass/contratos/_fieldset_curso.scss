@@ -38,9 +38,11 @@
                 max-width: 60px;
             }
         }
-        #div_curso_vencimento,
+      
         #div_curso_duracao,
         #div_curso_parcelas,
+        #div_curso_carga_horaria,
+        #div_curso_horas_aula,
         #div_curso_valor,
         #div_curso_desconto,
         #div_curso_valor_total {
@@ -53,13 +55,26 @@
                 width: 60%;
             }
         }
+        #div_curso_vencimento{
+            max-width:20% !important;
+            min-width: 130px;
+            label{
+                width:auto; 
+                max-width: 40%;
+                min-width: 80px;
+                padding-right:0px;
+            }
+            input{
 
+            }
+
+        }
         #div_curso_inicio,
         #div_curso_data {
             flex-shrink: 1;
-            max-width:50% !important;
-
+            max-width:40% !important;
             label {
+                padding-right:0px;
                 width: 40%;
                 max-width: 50%;
                 min-width: auto;

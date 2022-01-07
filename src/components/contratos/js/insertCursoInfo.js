@@ -13,14 +13,10 @@ function getCursoInfo(e){
 }
 
 export default function InsertCursoInfo(e) {
-  let modulos = document.querySelector("#curso_modulos");
-  let duracao = document.querySelector("#curso_duracao");
-  let parcelas = document.querySelector("#curso_parcelas");
-  let comboCurso1 = document.querySelector("#combo_curso_1");
-  let valor = document.querySelector("#curso_valor");
-  let select = document.getElementById("curso_nome");
+ 
+  let selectCurso = document.getElementById("curso_nome");
 
-  let nomeCurso = select.options[select.selectedIndex].getAttribute("name");
+  let nomeCurso = selectCurso.options[selectCurso.selectedIndex].getAttribute("name");
   //let cursoInfo = selectCursoInfo(nomeCurso);
   let cursosSelect2 = document.querySelector("#combo_curso_2");
   let selectOptions = cursosSelect2.querySelectorAll("option");
@@ -33,11 +29,12 @@ export default function InsertCursoInfo(e) {
   option.setAttribute("disabled", "true");
 
 cursoInfo.then((cursoInfo)=>{
-  valor.value = cursoInfo.data().valor;
-  duracao.value = cursoInfo.data().duracao;
-  parcelas.value = cursoInfo.data().parcelas;
-  modulos.value = cursoInfo.data().modulos;
-  comboCurso1.value = cursoInfo.data().nome;
+  document.querySelector("#curso_valor").value = cursoInfo.data().valor;
+  document.querySelector("#curso_duracao").value = cursoInfo.data().duracao;
+  document.querySelector("#curso_carga_horaria").value = cursoInfo.data().carga_horaria;
+  document.querySelector("#curso_parcelas").value = cursoInfo.data().parcelas;
+  document.querySelector("#curso_modulos").value = cursoInfo.data().modulos;
+  document.querySelector("#combo_curso_1").value = cursoInfo.data().nome;
   insertInputValorTotal();
   insertComboTextarea();
 })
@@ -46,154 +43,6 @@ cursoInfo.then((cursoInfo)=>{
 
 
 
-
-
-function selectCursoInfo(nomeCurso) {
-  let cursos = {
-    IFP: {
-      nome: "Informática Prática",
-      modulos:
-      "Introdução a Informática, Dispositivos, Pacote Office, Instalação de Programas, Atualização e Formatação, "+ 
-       "Windows, Digitação, Hardware, Redes, Internet, Backup e Segurança, Gerenciamento de Dados.",
-      valor: "90,00",
-      duracao: "12",
-      parcelas: "12",
-    },
-
-    IFPRO: {
-      nome: "Informática Profissional",
-      modulos:
-      "Introdução a Informática, Dispositivos, Pacote Office, Instalação de Programas, Atualização e Formatação, Windows, "+ 
-      "Digitação, Hardware, Redes, Internet, Backup e Segurança, Gerenciamento de Dados, Inglês Instrumental, Introdução a Banco de Dados.",
-      valor: "90,00",
-      duracao: "12",
-      parcelas: "12",
-    },
-
-    IFC: {
-      nome: "Informática Completo",
-      modulos:
-        "Introdução a Informática, Dispositivos, Pacote Office, Atualização e Formatação, Instalação de Programas, Windows, Redes, Digitação, "+ 
-        "Hardware, Internet, Backup e Segurança, Gerenciamento de Dados, Inglês Instrumental, Lógica de Programação e Introdução a: HTML, CSS, JS, Photoshop.",
-      valor: "90,00",
-      duracao: "12",
-      parcelas: "12",
-    },
-    IFK: {
-      nome: "Informática KIDS",
-      modulos:
-        "Introdução a Informática, Dispositivos, Pacote Office, Instalação de Programas, Windows, Digitação, Hardware, Internet, Programação KIDS.",
-      valor: "90,00",
-      duracao: "12",
-      parcelas: "12",
-    },
-    IGB: {
-      nome: "Inglês Básico",
-      modulos:
-        "Básico 1 (o aluno terá o primeiro contato com o idioma, abecedário, numerais, vocabulário baseado no seu dia a dia e aprenderá a usar frases simples). "+ 
-        "Básico 2 (o aluno será capaz de usar frases e pequenos diálogos, compreendendo mais sobre a gramática e a como trabalhar com tempos verbais simples).",
-      valor: "120,00",
-      duracao: "12",
-      parcelas: "12",
-    },
-
-    IGI: {
-      nome: "Inglês Intermediário",
-      modulos:
-        "Intermediário 1 (o aluno começará a se expressar com mais independência, compreendera textos mais comuns além de ser introduzido a outros tempos verbais). "+
-        "Intermediário 2 (o aluno conseguirá trabalhar com todos os tempos verbais, e a se expressar sobre assuntos variados).",
-      valor: "120,00",
-      duracao: "12",
-      parcelas: "12",
-    },
-    IGA: {
-      nome: "Inglês Avançado",
-      modulos:
-        "Avançado 1 (o aluno conseguira se expressar de forma mais natural sem depender do interlocutor, compreender textos e diálogos sobre diversos assuntos, e uma boa compreensão da gramática inglesa). "+
-        "Avançado 2 (o aluno será capaz de falar de forma mais fluente, e conhecerá mais sobre a cultura inglesa, expressões idiomáticas, phrasal verbs, além de identificar diferentes sotaques e peculiaridades do idioma).",
-        valor: "120,00",
-      duracao: "12",
-      parcelas: "12",
-    },
-
-    IGK: {
-      nome: "Inglês KIDS",
-      modulos:
-          "KIDS (a criança aprenderá de forma divertida, espontânea e prática, tendo o contato com a língua inglesa através de atividades, jogos, quadrinhos e dinâmicas onde ela começará a formar seu vocabulário, "+ 
-          "tendo como base o alfabeto, cores, numerais, itens do dia-a-dia além das expressões bases do idioma). ",
-      valor: "120,00",
-      duracao: "12",
-      parcelas: "12",
-    },
-
-    IGPT: {
-      nome: "Inglês Pre-teen",
-      modulos:
-        "Pre-teen (o aluno será preparado para as próximas etapas do Inglês, onde terá seu vocabulário expandido, trabalhando as bases do idioma de forma dinâmica e interativa). ",
-      valor: "120,00",
-      duracao: "12",
-      parcelas: "12",
-    },
-    ESPB: {
-      nome: "Espanhol Básico",
-      modulos:
-        "Pre-teen (o aluno será preparado para as próximas etapas do Inglês, onde terá seu vocabulário expandido, trabalhando as bases do idioma de forma dinâmica e interativa). ",
-      valor: "140,00",
-      duracao: "12",
-      parcelas: "12",
-    },
-    ESPI: {
-      nome: "Espanhol Intermediário",
-      modulos:
-        "Pre-teen (o aluno será preparado para as próximas etapas do Inglês, onde terá seu vocabulário expandido, trabalhando as bases do idioma de forma dinâmica e interativa). ",
-      valor: "140,00",
-      duracao: "12",
-      parcelas: "12",
-    },
-    ADM: {
-      nome: "Administração",
-      modulos:
-        `Teoria Geral da Administração (TGA), Linguagem Técnica do Trabalho (LTT), Rotinas Adminstrativas, 
-        Dinâmicas em Grupo, Softwares de Escritório, Empreendedorismo, Matemática Financeira, Introdução a Contabilidade,  
-        Empreendedorismo e Inovação, Planejamento de Comunicação, Pesquisa de Mercado, Psicologia Organizacional, Organização Empresarial
-        Métodos Ágeis, Gestão de Projetos, Gestão de Pessoas, Gestão de Processos.
-        `,
-      valor: "110,00",
-      duracao: "6",
-      parcelas: "6",
-    },
-
-    EXA: {
-      nome: "Excel Avançado",
-      modulos:
-        "Atalhos, Tabelas Dinâmicas, Gráficos Dinâmicos, Formatação Condicional, Validação de Dados, Macros, Segurança de Planilhas e Pastas de Trabalho, Hiperlinks, Dashboards, "+
-        "Importação e Exportação de Dados do Excel e Banco de Dados, Vínculos, Solver, Atingir Meta, Funções Aninhadas. Funções de Lógica de Texto, Funções de Data e Hora, Funções Matemáticas, "+
-        "Funções de Pesquisa, PROCC e PROCV.",
-      valor: "140,00",
-      duracao: "6",
-      parcelas: "6",
-    },
-
-    BDBMYSQL: {
-      nome: "Banco de Dados Básico MySQL",
-      modulos:
-        ` Introdução a Banco de Dados, Banco de Dados Relacional, Introdução ao SQL, DDL, DML, DQL, DCL.`,
-      valor: "140,00",
-      duracao: "6",
-      parcelas: "6",
-    },
-
-    DWB: {
-      nome: "Desenvolvimento WEB",
-      modulos:
-        `Introdução a TI, Lógica de Programação, HTML 5, CSS, JavaScript / NodeJS, Photoshop, Wireframe, Introdução a Banco de Dados.`,
-      valor: "120,00",
-      duracao: "12",
-      parcelas: "12",
-    },
-  };
-  return cursos[nomeCurso];
-}
 
 
 

@@ -9,6 +9,8 @@ import {eventsAlunoRA} from "../../alunos/js/alunoRA.js";
 import {getContratoInfoDB,  createParcelas,  insertOptionsSelectContrato} from "./commonAlunos.js";
 //------------------------------------------------------------------------
 
+let $contratoInfo = {};
+
 export function insertFormAddAlunoHTML(){
    insertElementHTML('#alunos_content',
   './components/alunos/formAddAluno.html', eventsFormAddAluno, null, true
@@ -35,6 +37,8 @@ function eventsFormAddAluno(){
 
       let id_contrato = res.id; 
       let contrato = res.data();
+          $contratoInfo = res.data();
+
       //Aluno
       formAddAluno.querySelector("#aluno_nome").value = contrato.aluno_info.nome;
       formAddAluno.querySelector("#aluno_genero").value = contrato.aluno_info.genero;
@@ -49,31 +53,12 @@ function eventsFormAddAluno(){
       formAddAluno.querySelector("#aluno_email").value = contrato.aluno_info.email;
       //Resp
       formAddAluno.querySelector("#resp_nome").value = contrato.resp_info.nome;
-      formAddAluno.querySelector("#resp_genero").value = contrato.resp_info.genero;
-      formAddAluno.querySelector("#resp_end").value = contrato.resp_info.end;
-      formAddAluno.querySelector("#resp_end_numero").value = contrato.resp_info.end_numero;
-      formAddAluno.querySelector("#resp_bairro").value = contrato.resp_info.bairro;
-      formAddAluno.querySelector("#resp_cep").value = contrato.resp_info.cep;
-      formAddAluno.querySelector("#resp_data_nasc").value = contrato.resp_info.data_nasc;
       formAddAluno.querySelector("#resp_rg").value = contrato.resp_info.rg;
       formAddAluno.querySelector("#resp_cpf").value = contrato.resp_info.cpf;
-      formAddAluno.querySelector("#resp_tel").value = contrato.resp_info.tel;
-      formAddAluno.querySelector("#resp_cel").value = contrato.resp_info.cel;
-      formAddAluno.querySelector("#resp_email").value = contrato.resp_info.email;
+
       //Curso
-      formAddAluno.querySelector("#curso_id_contrato").value = id_contrato;
       formAddAluno.querySelector("#curso_nome").value = contrato.curso_info.nome;
-      formAddAluno.querySelector("#curso_duracao").value = contrato.curso_info.duracao;
-      formAddAluno.querySelector("#curso_parcelas").value = contrato.curso_info.parcelas;
-      formAddAluno.querySelector("#curso_vencimento").value = contrato.curso_info.vencimento;
-      formAddAluno.querySelector("#curso_valor_mes").value = contrato.curso_info.valor_mes;
-      formAddAluno.querySelector("#curso_desconto_mes").value = contrato.curso_info.desconto_mes;
-      formAddAluno.querySelector("#curso_valor_total_mes").value = contrato.curso_info.valor_total_mes;
-      formAddAluno.querySelector("#curso_inicio").value = contrato.curso_info.inicio;
-      formAddAluno.querySelector("#curso_data_contrato").value = contrato.curso_info.data_contrato;
-      formAddAluno.querySelector("#curso_desconto_combo").value = contrato.curso_info.desconto_combo;
-      formAddAluno.querySelector("#curso_modulos").value = contrato.curso_info.modulos;
-      formAddAluno.querySelector("#curso_obs").value = contrato.curso_info.obs;
+
     })
   }
 
@@ -81,83 +66,67 @@ function eventsFormAddAluno(){
   //Salva o aluno no banco de dados.
   async function submitFormAddAluno(e) {
     e.preventDefault();
+    console.log($contratoInfo);
     let form = e.target;
     let RA = (form.aluno_ra.value).toUpperCase()
     //Objecto utilizado para criar as parcelas com "createParcelas(parcelaInfo)".
     let parcelaInfo = {
-      id_contrato: form.curso_id_contrato.value,
-      inicio: form.curso_inicio.value, 
-      vencimento: form.curso_vencimento.value,
-      parcelas: form.curso_parcelas.value,
-      valor_mes: form.curso_valor_mes.value,
-      desconto_mes: form.curso_desconto_mes.value,
-      valor_total_mes: form.curso_valor_total_mes.value,
+      id_contrato: $contratoInfo.metadata.id,
+      inicio: $contratoInfo.curso_info.inicio, 
+      vencimento: $contratoInfo.curso_info.vencimento,
+      parcelas: $contratoInfo.curso_info.parcelas,
+      valor_mes: $contratoInfo.curso_info.valor_mes,
+      desconto_mes: $contratoInfo.curso_info.desconto_mes,
+      valor_total_mes: $contratoInfo.curso_info.valor_total_mes,
   }
-     setDoc(doc(db, "alunato", RA, "cursos", form.curso_nome.value),
+     setDoc(doc(db, "alunato", RA, "cursos", $contratoInfo.curso_info.nome),
     { 
       bimestres: {},
-      curso_info:{
-        id_contrato: form.curso_id_contrato.value,
-        nome: form.curso_nome.value, 
-        duracao: form.curso_duracao.value, 
-        vencimento: form.curso_vencimento.value, 
-        parcelas_total: form.curso_parcelas.value,
+      curso_info: {
+        id_contrato: $contratoInfo.metadata.id,
+        nome: $contratoInfo.curso_info.nome,
+        duracao: $contratoInfo.curso_info.duracao,
+        vencimento: $contratoInfo.curso_info.vencimento,
+        carga_horaria: $contratoInfo.curso_info.carga_horaria,
+        horas_aula: $contratoInfo.curso_info.horas_aula,
+        parcelas_total: $contratoInfo.curso_info.parcelas,      
         parcelas: createParcelas(parcelaInfo),
-        valor_mes: form.curso_valor_mes.value, 
-        desconto_mes: form.curso_desconto_mes.value, 
-        valor_total_mes: form.curso_valor_total_mes.value, 
-        inicio: form.curso_inicio.value, 
-        data_contrato: form.curso_data_contrato.value, 
-        desconto_combo: form.curso_desconto_combo.value, 
-        modulos: form.curso_modulos.value, 
-        obs: form.curso_obs.value, 
+        valor_mes: $contratoInfo.curso_info.valor_mes,
+        desconto_mes: $contratoInfo.curso_info.desconto_mes,
+        valor_total_mes: $contratoInfo.curso_info.valor_total_mes,
+        inicio: $contratoInfo.curso_info.inicio,
+        data_contrato: $contratoInfo.curso_info.data_contrato,
+        desconto_combo: $contratoInfo.curso_info.desconto_combo,
+        modulos: $contratoInfo.curso_info.modulos,
+        obs: $contratoInfo.curso_info.obs,
       },
-      resp_info:{
-        ra: RA, 
-        nome: form.resp_nome.value, 
-        genero: form.resp_genero.value, 
-        end: form.resp_end.value, 
-        end_numero: form.resp_end_numero.value, 
-        bairro: form.resp_bairro.value, 
-        cep: form.resp_cep.value, 
-        data_nasc: form.resp_data_nasc.value, 
-        rg: form.resp_rg.value,
-        cpf: form.resp_cpf.value,
-        email: form.resp_email.value,
-        cel: form.resp_cel.value,
-        tel: form.resp_tel.value,
-        metadata:{
+      resp_info: {
+        ra: RA,
+        nome: $contratoInfo.resp_info.nome,
+        genero: $contratoInfo.resp_info.genero,
+        end: $contratoInfo.resp_info.end,
+        end_numero: $contratoInfo.resp_info.end_numero,
+        bairro: $contratoInfo.resp_info.bairro,
+        cep: $contratoInfo.resp_info.cep,
+        data_nasc: $contratoInfo.resp_info.data_nasc,
+        rg: $contratoInfo.resp_info.rg,
+        cpf: $contratoInfo.resp_info.cpf,
+        email: $contratoInfo.resp_info.cpf,
+        cel: $contratoInfo.resp_info.cel,
+        tel: $contratoInfo.resp_info.tel,
+        metadata: {
           created: new Date(),
           modified: new Date()
         }
-       }
-    }).then(()=>{
-      setDoc(doc(db, "alunato", RA), 
-     { 
-       aluno: {
-        ra: RA, 
-        genero: form.aluno_genero.value,
-        nome: form.aluno_nome.value, 
-        rg: form.aluno_rg.value,
-        email: form.aluno_email.value,
-        end: form.aluno_end.value,
-        end_numero: form.aluno_end_numero.value,
-        bairro: form.aluno_bairro.value,
-        cep: form.aluno_cep.value,
-        data_nasc: form.aluno_data_nasc.value,
-        cel: form.aluno_cel.value,
-        tel: form.aluno_tel.value,
-        obs:  form.aluno_obs.value,
-        metadata:{
-          created: new Date(),
-          modified: new Date()
-        }
-       },
-    },{ merge: true}
-     ); 
+      },
+      metadata: {
+        status: 'ativo',
+        created: new Date(),
+        modified: new Date()
+      }
     })
     .then(()=>{
-      setDoc(doc(db, "contratos",  form.curso_id_contrato.value), 
+      setDoc(doc(db, "contratos",  $contratoInfo.metadata.id), 
       { 
         metadata:{
           aluno_associado: RA
@@ -167,11 +136,39 @@ function eventsFormAddAluno(){
       ); 
     })
     .then(()=>{
+      //Cria as informações do aluno em Alunato
+      setInfoAlunoAlunato(RA)
+    })
+    .then(()=>{
       defaultEventsAfterSubmitFixedForm("#alunos_content", "Aluno salvo com sucesso!");
-
     }).catch((error) => console.error("Erro ao adicionar Aluno:", error));
   }
 
+function setInfoAlunoAlunato(RA){
+  setDoc(doc(db, "alunato", RA), 
+  { 
+    aluno: {
+      ra: RA,
+      genero: $contratoInfo.aluno_info.genero,
+      nome: $contratoInfo.aluno_info.nome,
+      rg: $contratoInfo.aluno_info.rg,
+      email: $contratoInfo.aluno_info.email,
+      end: $contratoInfo.aluno_info.end,
+      end_numero: $contratoInfo.aluno_info.end_numero,
+      bairro: $contratoInfo.aluno_info.bairro,
+      cep: $contratoInfo.aluno_info.cep,
+      data_nasc: $contratoInfo.aluno_info.data_nasc,
+      cel: $contratoInfo.aluno_info.cel,
+      tel: $contratoInfo.aluno_info.tel,
+     metadata:{
+       created: new Date(),
+       modified: new Date()
+     }
+    },
 
 
+    
+ },{ merge: true}
+  );
+}
     

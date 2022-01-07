@@ -72,17 +72,17 @@ const TemplateCertificado = (certificadoInfo)=>{
         <body>
           <div class='page'>
               <div id='bg_info_1' class='bg_info'>
-              <p class='p_curso'>Certificamos que <span id='aluno'>Fulano de Tal</span>, concluiu com êxito o curso de <span id='curso'>Informática Completo</span></p>
-              <p  class='p_modulos'>Módulos: <span id='modulos'>Introdução a Informática, Dispositivos, Pacote Office, Atualização e Formatação, Instalação de Programas, Windows, Redes, Digitação, Hardware, Internet, Backup e Segurança, Gerenciamento de Dados, Inglês Instrumental, 
-                  Lógica de Programação e Introdução a: HTML, CSS, JS, Photoshop.</span></p>
-              <p>Carga horária: <span id='horas'>96 horas</span></p>
-              <p>Início: <span id='inicio'>25/08/2020</span></p>
-              <p>Local: <span id='endereco'>Rua Gustavo Bacarisas, nº8 - Sala 3 - Jd. Zilda - São Paulo - SP</span></p>
+              <p class='p_curso'>Certificamos que <span id='aluno'>${certificadoInfo.aluno_nome}</span>, 
+              concluiu com êxito o curso de <span id='curso'>${certificadoInfo.curso_nome}</span></p>
+              <p  class='p_modulos'>Módulos: <span id='modulos'>${certificadoInfo.curso_modulos}</span></p>
+              <p>Carga horária: <span id='horas'>${certificadoInfo.curso_carga_horaria}</span></p>
+              <p>Início: <span id='inicio'>${certificadoInfo.curso_inicio}</span></p>
+              <p>Local: <span id='endereco'>${certificadoInfo.endereco}</span></p>
             </div>
             <div id='bg_info_2' class='bg_info'>
                 <p>Para verificar a validade desse certificado acesse</p>
-                <p><span id='site'>www.setacursos.com.br/certificados</span> e digite o código <span id='cod'>IB1325</span></p>
-                <p>Data de emissão: 02/12/2020</p>
+                <p><span id='site'>www.setacursos.com.br/certificados</span> e digite o código <span id='cod'>${certificadoInfo.certificado_cod}</span></p>
+                <p>Data de emissão: ${certificadoInfo.data_expedicao}</p>
                
                       </div>
           </div><!--page-->

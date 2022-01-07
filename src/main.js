@@ -91,7 +91,7 @@ ipcMain.handle("createCertificadoPDF", async (event, certificadoInfo) => {
   let novoPDF = createPDFCertificado(certificadoInfo); // call the createPDF function
 
   novoPDF.then((pdf) => {
-   let filename = `certificado-${certificadoInfo.ra}-${certificadoInfo.aluno}-${certificadoInfo.curso}.pdf`;
+   let filename = `certificado-${certificadoInfo.aluno_ra}-${certificadoInfo.aluno_nome}-${certificadoInfo.curso_nome}.pdf`;
     filename = filename.toUpperCase();
     let oldpath = `${__dirname}/certificado.pdf`;
     let newpath = `${downloadPath}/${filename}`;

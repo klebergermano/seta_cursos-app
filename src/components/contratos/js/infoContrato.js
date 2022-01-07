@@ -30,9 +30,7 @@ function insertValuesInputs(contratoInfo){
         document.querySelector('#resp_cel').value = contratoInfo.resp_info.cel;
         document.querySelector('#resp_tel').value = contratoInfo.resp_info.tel;
     //Aluno
-
   
-
     document.querySelector('#aluno_parentesco').value = contratoInfo.aluno_info.parentesco_resp;
     document.querySelector('#aluno_nome').value = contratoInfo.aluno_info.nome;
     document.querySelector('#aluno_genero').value = contratoInfo.aluno_info.genero;
@@ -46,19 +44,23 @@ function insertValuesInputs(contratoInfo){
     document.querySelector('#aluno_cel').value = contratoInfo.aluno_info.cel;
     document.querySelector('#aluno_tel').value = contratoInfo.aluno_info.tel;
 
-//Curso
-document.querySelector('#curso_nome').value = contratoInfo.curso_info.nome;
-document.querySelector('#curso_modulos').value = contratoInfo.curso_info.modulos;
-document.querySelector('#curso_duracao').value = contratoInfo.curso_info.duracao;
-document.querySelector('#curso_parcelas').value = contratoInfo.curso_info.parcelas;
-document.querySelector('#curso_valor').value = contratoInfo.curso_info.valor_mes;
-document.querySelector('#curso_desconto').value = contratoInfo.curso_info.desconto_mes;
-document.querySelector('#curso_valor_total').value = contratoInfo.curso_info.valor_total_mes;
-document.querySelector('#curso_data_contrato').value = contratoInfo.curso_info.data_contrato;
-document.querySelector('#curso_vencimento').value = contratoInfo.curso_info.vencimento;
-document.querySelector('#curso_obs').value = contratoInfo.curso_info.obs;
-document.querySelector('#curso_inicio').value = contratoInfo.curso_info.inicio;
-document.querySelector('#curso_desconto_combo').innerHTML = contratoInfo.curso_info.desconto_combo;
+    //Curso
+    document.querySelector('#curso_nome').value = contratoInfo.curso_info.nome;
+    document.querySelector('#curso_modulos').value = contratoInfo.curso_info.modulos;
+    document.querySelector('#curso_duracao').value = contratoInfo.curso_info.duracao;
+    document.querySelector('#curso_parcelas').value = contratoInfo.curso_info.parcelas;
+    document.querySelector('#curso_valor').value = contratoInfo.curso_info.valor_mes;
+    document.querySelector('#curso_desconto').value = contratoInfo.curso_info.desconto_mes;
+    document.querySelector('#curso_valor_total').value = contratoInfo.curso_info.valor_total_mes;
+    document.querySelector('#curso_data_contrato').value = contratoInfo.curso_info.data_contrato;
+    document.querySelector('#curso_vencimento').value = contratoInfo.curso_info.vencimento;
+
+    document.querySelector('#curso_carga_horaria').value = contratoInfo.curso_info.carga_horaria;
+    document.querySelector('#curso_horas_aula').value = contratoInfo.curso_info.horas_aula;
+
+    document.querySelector('#curso_obs').value = contratoInfo.curso_info.obs;
+    document.querySelector('#curso_inicio').value = contratoInfo.curso_info.inicio;
+    document.querySelector('#curso_desconto_combo').innerHTML = contratoInfo.curso_info.desconto_combo;
 
 }
 

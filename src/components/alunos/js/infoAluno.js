@@ -8,20 +8,33 @@ const db = getFirestore(firebaseApp);
 
 //Components
 import { insertElementHTML, displaySpinnerLoad, removeSpinnerLoad} from "../../js_common/commonFunctions.js";
+import { insertFormAddCertificadoHTML} from "./formAddCertificado.js";
 //------------------------------------------------------------------------
 //Others libraries
 const VMasker = require("vanilla-masker");
-
 let $alunoInfo = {
     cursos: {}
 }
 export function insertInfoAlunoHTML(RA) {
-    insertElementHTML('#alunos_content',
+    insertElementHTML('#alunos_page',
         './components/alunos/infoAluno.html', () => { eventsInfoAluno(RA) }, null, true
     );
+
 }
 
-function maskInputs(){
+function getInfoCertficado(e){
+    let certificadoInfo = {};
+let formInfo = e.target.closest('.form_info');
+certificadoInfo.aluno = document.querySelector("#aluno_nome").value
+certificadoInfo.ra = document.querySelector("#aluno_ra").value
+certificadoInfo.curso = formInfo.dataset.curso_nome;
+certificadoInfo.inicio = formInfo.querySelector("#data_inicio").value;
+certificadoInfo.horas_aula = formInfo.querySelector("#horas_aula").value;
+certificadoInfo.carga_horaria = formInfo.querySelector("#carga_horaria").value;
+certificadoInfo.modulos = formInfo.querySelector("#modulos").value;
+
+
+return certificadoInfo; 
 
 }
 
@@ -32,25 +45,17 @@ function eventsInfoAluno(RA) {
         submitFormInfoAluno(e);
     })
     getInfoAlunoDB(RA)    
-    .then((alunoInfo) => {
+    .then(() => {
         let btns = document.querySelectorAll('.btn_create_certificado');
         btns.forEach((item) => {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
-                console.log('click');
-               // let cursoNome = e.target.closest('table').dataset.curso_nome;
-              //let talaoInfo = createInfoTalao(cursoNome);
-              let certificadoInfo = {
-                  aluno: "Xis",
-                  curso: "Seilasdfas",
-                  ra: 'RA0001'
-
-              }
-               submitCertificadoPDF(certificadoInfo);
+              let certificadoInfo = getInfoCertficado(e);
+              insertFormAddCertificadoHTML(certificadoInfo);
             })
         });
     })
-        .then((alunoInfo) => {
+        .then(() => {
             let btns = document.querySelectorAll('.btn_create_talao');
             btns.forEach((item) => {
                 item.addEventListener('click', (e) => {
@@ -263,6 +268,7 @@ function createTableParcelasTable(parcelas, cursoNome) {
 function createCursoCotentHTML(RA, curso) {
 let form = document.createElement('form');
 form.classList = 'form_info';
+form.setAttribute('data-curso_nome', curso.curso_info.nome);
     let bg_curso = document.createElement('div');
     bg_curso.className = `bg_curso`;
     bg_curso.innerHTML =
@@ -301,16 +307,25 @@ form.classList = 'form_info';
                     <label>Data Início:</label>
                     <input id='data_inicio'type='text' readonly='true' value="${curso.curso_info.inicio}"/>
                 </div>
-                <div class='div_input_info'>
-                    <label>Total de Parcelas:</label>
-                    <input id='parcelas_total' type='text' readonly='true' value="${curso.curso_info.parcelas_total}"/>
-                </div>
+        
                 <div class='div_input_info'>
                 <label>Vencimento:</label>
                 <input id='vencimento' type='text' readonly='true' value="${curso.curso_info.vencimento}"/>
                 </div>
-            </div><!--roe-->
+                <div class='div_input_info'>
+                <label>Hr. Aula:</label>
+                <input id='horas_aula' type='text' readonly='true' value="${curso.curso_info.horas_aula}"/>
+                </div>
+                <div class='div_input_info'>
+                <label>C. Horaria:</label>
+                <input id='carga_horaria' type='text' readonly='true' value="${curso.curso_info.carga_horaria}"/>
+                </div>
+            </div><!--row-->
             <div class='row'>
+            <div class='div_input_info'>
+            <label>T. Parcelas:</label>
+            <input id='parcelas_total' type='text' readonly='true' value="${curso.curso_info.parcelas_total}"/>
+        </div>
                 <div id='div_valor'>
                     <label>Valor mês:</label>
                     <input id='valor_mes' type='text' readonly='true' value="${curso.curso_info.valor_mes}"/>
@@ -397,6 +412,7 @@ form.classList = 'form_info';
     return form;
 }
 
+/*
 function submitCertificadoPDF(certificadoInfo) {
     displaySpinnerLoad("#page_content", true);
     let result = new Promise((resolve, reject) => {
@@ -412,7 +428,7 @@ function submitCertificadoPDF(certificadoInfo) {
         removeSpinnerLoad("#page_content");
     });
 }
-
+*/
 
 
 function submitTalaoPDF(talaoInfo) {
