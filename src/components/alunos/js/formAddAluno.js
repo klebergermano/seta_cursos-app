@@ -83,7 +83,9 @@ function eventsFormAddAluno(){
     { 
       bimestres: {},
       curso_info: {
+
         id_contrato: $contratoInfo.metadata.id,
+        cod: $contratoInfo.curso_info.cod,
         nome: $contratoInfo.curso_info.nome,
         duracao: $contratoInfo.curso_info.duracao,
         vencimento: $contratoInfo.curso_info.vencimento,

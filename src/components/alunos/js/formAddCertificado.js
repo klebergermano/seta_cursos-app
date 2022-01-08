@@ -6,7 +6,8 @@ const {getFirestore, setDoc, doc, getDocs, collection } = require("firebase/fire
 const db = getFirestore(firebaseApp);
 
 //Components
-import {  insertElementHTML, displaySpinnerLoad,removeSpinnerLoad, btnCloseForm, defaultEventsAfterSubmitForm } from "../../js_common/commonFunctions.js";
+import {  insertElementHTML, displaySpinnerLoad,removeSpinnerLoad, btnCloseForm,  defaultEventsAfterSubmitForm } from "../../js_common/commonFunctions.js";
+import { setCurrentDate } from "../../js_common/dateFunc.js";
 //---------------------------------------------------------------------
 export function insertFormAddCertificadoHTML(certificadoInfo) {
   insertElementHTML('#page_content',
@@ -26,16 +27,29 @@ function eventsFormAddCertificado(certificadoInfo) {
   })
 }
 
+function createCertificadoCod(certificadoInfo){
+  let certificadoCod = ''; 
+let letrasNome = (certificadoInfo.aluno).substring('0', '2').toUpperCase();
+let RANumber = (certificadoInfo.ra).slice(2);
+let cursoCod = certificadoInfo.curso_cod;
+
+certificadoCod += letrasNome + RANumber + cursoCod; 
+
+return certificadoCod; 
+};
+
 function insertCertificadoInfoInputs(certificadoInfo){
   console.log(certificadoInfo);
+
   let form = document.querySelector("#form_add_certificado");
+  form.querySelector("#certificado_cod").value = createCertificadoCod(certificadoInfo);
   form.querySelector("#aluno_ra").value = certificadoInfo.ra;
   form.querySelector("#aluno_nome").value = certificadoInfo.aluno;
   form.querySelector("#curso_nome").value = certificadoInfo.curso;
   form.querySelector("#curso_modulos").value = certificadoInfo.modulos;
   form.querySelector("#curso_carga_horaria").value = certificadoInfo.carga_horaria;
   form.querySelector("#curso_inicio").value = certificadoInfo.inicio;
-  form.querySelector("#data_expedicao").value = new Date();
+   setCurrentDate("#form_add_certificado #data_emissao");
 }
 function submitCertificadoPDF(certificadoInfo) {
   displaySpinnerLoad("#form_add_certificado", true);
@@ -55,72 +69,32 @@ function submitCertificadoPDF(certificadoInfo) {
 
 function submitformAddCertificado(e) {
   e.preventDefault();
-//Pega todas as informações dos elementos do formAddCertificado.
-    let form = Array.from(e.target.elements);
-    let certificadoInfo = {};
-    form.forEach((item)=>{
-      certificadoInfo[item.id] = item.value;
-    });
-  submitCertificadoPDF(certificadoInfo);
-  /*
-  setDoc(doc(db, "alunato", RA, "cursos", $contratoInfo.curso_info.nome),
-    {
-      bimestres: {},
-      curso_info: {
-        id_contrato: $contratoInfo.metadata.id,
-        nome: $contratoInfo.curso_info.nome,
-        duracao: $contratoInfo.curso_info.duracao,
-        vencimento: $contratoInfo.curso_info.vencimento,
-        parcelas_total: $contratoInfo.curso_info.parcelas,
-        parcelas: createParcelas(parcelaInfo),
-        valor_mes: $contratoInfo.curso_info.valor_mes,
-        desconto_mes: $contratoInfo.curso_info.desconto_mes,
-        valor_total_mes: $contratoInfo.curso_info.valor_total_mes,
-        inicio: $contratoInfo.curso_info.inicio,
-        data_contrato: $contratoInfo.curso_info.data_contrato,
-        desconto_combo: $contratoInfo.curso_info.desconto_combo,
-        modulos: $contratoInfo.curso_info.modulos,
-        obs: $contratoInfo.curso_info.obs,
-      },
-      resp_info: {
-        ra: RA,
-        nome: $contratoInfo.resp_info.nome,
-        genero: $contratoInfo.resp_info.genero,
-        end: $contratoInfo.resp_info.end,
-        end_numero: $contratoInfo.resp_info.end_numero,
-        bairro: $contratoInfo.resp_info.bairro,
-        cep: $contratoInfo.resp_info.cep,
-        data_nasc: $contratoInfo.resp_info.data_nasc,
-        rg: $contratoInfo.resp_info.rg,
-        cpf: $contratoInfo.resp_info.cpf,
-        email: $contratoInfo.resp_info.cpf,
-        cel: $contratoInfo.resp_info.cel,
-        tel: $contratoInfo.resp_info.tel,
-        metadata: {
-          created: new Date(),
-          modified: new Date()
-        }
-      },
-      metadata: {
-        status: 'ativo',
-        created: new Date(),
-        modified: new Date()
-      }
-    }, {merge: true})
-    .then(()=>{
-      setDoc(doc(db, "contratos",  $contratoInfo.metadata.id), 
-      { 
-        metadata:{
-          aluno_associado: RA
-        }
-     },
-      { merge: true}
-      ); 
-    })
-  .then(() =>{
-    defaultEventsAfterSubmitForm("#form_add_curso", "Curso adicionado com sucesso!");
-   }).catch((error) => console.error("Erro ao adicionar curso: ", error));
+  //Pega todas as informações dos elementos do formAddCertificado.
+  let form = e.target.elements; 
+  let formArr = Array.from(form);
+  let certificadoInfo = {};
+  formArr.forEach((item)=>{
+    certificadoInfo[item.id] = item.value;
+  });
 
-*/
+  setDoc(doc(db, "alunato", certificadoInfo.aluno_ra, "cursos", certificadoInfo.curso_nome),
+    {
+      curso_info: {
+        certificado:{
+          entregue: "",
+          cod: certificadoInfo.certificado_cod, 
+          data_emissao: certificadoInfo.data_emissao, 
+          local: certificadoInfo.endereco, 
+        }
+      },
+
+    }, {merge: true})
+
+  .then(()=>{
+    submitCertificadoPDF(certificadoInfo);
+  }).then(() =>{
+    defaultEventsAfterSubmitForm("#form_add_certificado", "Certificado adicionado com sucesso!");
+   }).catch((error) => console.error("Erro ao adicionar certificado: ", error));
+
   
 }

@@ -11,6 +11,7 @@ const db = getFirestore(firebaseApp);
 import * as dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
 import {  insertElementHTML, btnCloseForm, defaultEventsAfterSubmitForm } from "../../js_common/commonFunctions.js";
 import {getContratosListDB,  createParcelas,  insertOptionsSelectContrato} from "./commonAlunos.js";
+import {insertViewTableAlunosHTML} from "./viewTableAlunos.js";
 //---------------------------------------------------------------------
 
 let $contratosListInfo = {};
@@ -125,6 +126,7 @@ function submitformAddCurso(e) {
       bimestres: {},
       curso_info: {
         id_contrato: $contratoInfo.metadata.id,
+        cod: $contratoInfo.curso_info.cod,
         nome: $contratoInfo.curso_info.nome,
         duracao: $contratoInfo.curso_info.duracao,
         vencimento: $contratoInfo.curso_info.vencimento,
@@ -178,6 +180,8 @@ function submitformAddCurso(e) {
     })
   .then(() =>{
     defaultEventsAfterSubmitForm("#form_add_curso", "Curso adicionado com sucesso!");
+   }).then(()=>{
+    insertViewTableAlunosHTML();
    }).catch((error) => console.error("Erro ao adicionar curso: ", error));
 
 

@@ -29,6 +29,7 @@ export default function InsertCursoInfo(e) {
   option.setAttribute("disabled", "true");
 
 cursoInfo.then((cursoInfo)=>{
+  document.querySelector("#curso_cod").value = cursoInfo.data().cod;
   document.querySelector("#curso_valor").value = cursoInfo.data().valor;
   document.querySelector("#curso_duracao").value = cursoInfo.data().duracao;
   document.querySelector("#curso_carga_horaria").value = cursoInfo.data().carga_horaria;

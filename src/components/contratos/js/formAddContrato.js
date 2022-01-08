@@ -167,6 +167,7 @@ setDoc(doc(db, "contratos", formInfo.id_contrato),
     data_nasc: formInfo.aluno_data_nasc,
   },
   curso_info: {
+    cod: formInfo.curso_cod, 
     nome: formInfo.curso_nome, 
     modulos: formInfo.curso_modulos,
     duracao: formInfo.curso_duracao,

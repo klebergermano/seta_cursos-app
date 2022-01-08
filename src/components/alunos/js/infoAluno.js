@@ -22,11 +22,12 @@ export function insertInfoAlunoHTML(RA) {
 
 }
 
-function getInfoCertficado(e){
+function getCertificadoInfo(e){
     let certificadoInfo = {};
 let formInfo = e.target.closest('.form_info');
 certificadoInfo.aluno = document.querySelector("#aluno_nome").value
 certificadoInfo.ra = document.querySelector("#aluno_ra").value
+certificadoInfo.curso_cod = formInfo.querySelector("#curso_cod").value;
 certificadoInfo.curso = formInfo.dataset.curso_nome;
 certificadoInfo.inicio = formInfo.querySelector("#data_inicio").value;
 certificadoInfo.horas_aula = formInfo.querySelector("#horas_aula").value;
@@ -50,7 +51,7 @@ function eventsInfoAluno(RA) {
         btns.forEach((item) => {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
-              let certificadoInfo = getInfoCertficado(e);
+              let certificadoInfo = getCertificadoInfo(e);
               insertFormAddCertificadoHTML(certificadoInfo);
             })
         });
@@ -269,6 +270,7 @@ function createCursoCotentHTML(RA, curso) {
 let form = document.createElement('form');
 form.classList = 'form_info';
 form.setAttribute('data-curso_nome', curso.curso_info.nome);
+form.setAttribute('data-curso_cod', curso.curso_info.cod);
     let bg_curso = document.createElement('div');
     bg_curso.className = `bg_curso`;
     bg_curso.innerHTML =
@@ -301,6 +303,10 @@ form.setAttribute('data-curso_nome', curso.curso_info.nome);
             <div class='div_input_info'>
                 <label>Data Contrato: </label>
                 <input id='data_contrato'  type='text' readonly='true' value="${curso.curso_info.data_contrato}"/>
+            </div>
+            <div class='div_input_info'>
+                <label>Curso Cod.: </label>
+                <input id='curso_cod'  type='text' readonly='true' value="${curso.curso_info.cod}"/>
             </div>
             <div class='row'>
                 <div class='div_input_info'>

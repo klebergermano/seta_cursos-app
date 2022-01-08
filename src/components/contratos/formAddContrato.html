@@ -108,17 +108,19 @@
         <div class='div_input' id='div_aluno_cel'><label>Cel.: </label> <input id="aluno_cel" type="text" /></div>
         <div class='div_input' id='div_aluno_tel'><label>Tel.: </label> <input id="aluno_tel" type="text" /></div>
         <div class='div_input' id='div_aluno_email'>
-          <label>Email: </label> <input id="aluno_email" type="text" />
+          <label>Email: </label><input id="aluno_email" type="text" />
         </div>
   
        </div>
       <!--div fieldset-->
       <!------------------------------ FIELDSET CURSO------------------------------->
       <div class='fieldset' id='fieldset_curso'>
-          <div  class='div_input'id='div_curso_nome'> <label><span class='required'>&nbsp;&nbsp;
-            *</span> Curso: </label>
+          <div  class='div_input'id='div_curso_nome'>
+            *<label>Curso: </label>
             <select required id='curso_nome'>
             </select>
+          
+            <input id='curso_cod' readonly='true' type='text' />
           </div>
        
           <div  class='div_input' id='div_curso_modulos'> <label id='label_curso_modulos'>Módulos: </label> 

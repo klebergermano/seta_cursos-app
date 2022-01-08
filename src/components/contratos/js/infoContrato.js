@@ -45,6 +45,7 @@ function insertValuesInputs(contratoInfo){
     document.querySelector('#aluno_tel').value = contratoInfo.aluno_info.tel;
 
     //Curso
+    document.querySelector('#curso_cod').value = contratoInfo.curso_info.cod;
     document.querySelector('#curso_nome').value = contratoInfo.curso_info.nome;
     document.querySelector('#curso_modulos').value = contratoInfo.curso_info.modulos;
     document.querySelector('#curso_duracao').value = contratoInfo.curso_info.duracao;
