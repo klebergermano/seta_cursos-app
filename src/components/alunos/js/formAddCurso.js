@@ -11,12 +11,12 @@ const db = getFirestore(firebaseApp);
 import * as dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
 import {  insertElementHTML, btnCloseForm, defaultEventsAfterSubmitForm } from "../../js_common/commonFunctions.js";
 import {getContratosListDB,  createParcelas,  insertOptionsSelectContrato} from "./commonAlunos.js";
+import {insertViewTableAlunosHTML} from "./viewTableAlunos.js";
 //---------------------------------------------------------------------
 
 let $contratosListInfo = {};
 let $contratoInfo = {};
 let $alunoInfo = {};
-
 
 export function insertFormAddCursoHTML(RA, alunoNome, RG) {
   insertElementHTML('#page_content',
@@ -109,7 +109,6 @@ function setContratoInfo(IDContrato) {
 
 function submitformAddCurso(e) {
   e.preventDefault();
-
   let form = e.target;
   let RA = (form.aluno_ra.value).toUpperCase()
     //Objecto utilizado para criar as parcelas com "createParcelas(parcelaInfo)".
@@ -127,10 +126,13 @@ function submitformAddCurso(e) {
       bimestres: {},
       curso_info: {
         id_contrato: $contratoInfo.metadata.id,
+        cod: $contratoInfo.curso_info.cod,
         nome: $contratoInfo.curso_info.nome,
         duracao: $contratoInfo.curso_info.duracao,
         vencimento: $contratoInfo.curso_info.vencimento,
-        parcelas_total: $contratoInfo.curso_info.parcelas,
+        carga_horaria: $contratoInfo.curso_info.carga_horaria,
+        horas_aula: $contratoInfo.curso_info.horas_aula,
+        parcelas_total: $contratoInfo.curso_info.parcelas,      
         parcelas: createParcelas(parcelaInfo),
         valor_mes: $contratoInfo.curso_info.valor_mes,
         desconto_mes: $contratoInfo.curso_info.desconto_mes,
@@ -178,6 +180,8 @@ function submitformAddCurso(e) {
     })
   .then(() =>{
     defaultEventsAfterSubmitForm("#form_add_curso", "Curso adicionado com sucesso!");
+   }).then(()=>{
+    insertViewTableAlunosHTML();
    }).catch((error) => console.error("Erro ao adicionar curso: ", error));
 
 

@@ -3,6 +3,7 @@ const { ipcRenderer } = require("electron");
 import {firebaseApp} from "../../dbConfig/firebaseApp.js";
 const {getFirestore, setDoc,  doc, getDocs, collection} = require("firebase/firestore") 
 const db = getFirestore(firebaseApp);
+
 //-----------------------------------------------------------------------
 //Components
 import {insertElementHTML, btnCloseForm, defaultEventsAfterSubmitForm} from "../../js_common/commonFunctions.js";

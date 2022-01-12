@@ -17,8 +17,6 @@ export function getPermissions(){
     }
 
     export function getRolePermission(userRole){
-   
     let permission = getDoc(doc(db, 'permissions', userRole))
         return permission
-
     }

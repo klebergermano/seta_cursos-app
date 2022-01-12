@@ -8,6 +8,7 @@ const auth = getAuth(firebaseApp);
 //Components
 import {  insertElementHTML, readableRandomStringMaker, btnCloseForm, defaultEventsAfterSubmitForm, confirmBoxDelete } from "../../js_common/commonFunctions.js";
 import { insertOptionsSelectCursos, createParcelas, } from "./commonAlunos.js";
+import { insertViewTableAlunosHTML} from "./viewTableAlunos.js";
 
 //---------------------------------------------------------------------
 let $contratosListInfo = {};
@@ -107,6 +108,8 @@ let id =  data.getFullYear()+''+(data.getMonth()+1)+''+data.getDate()+''+readabl
   })
   .then(() =>{
     defaultEventsAfterSubmitForm("#form_delete_curso", "Curso deletado com sucesso!");
+   }).then(()=>{
+    insertViewTableAlunosHTML();
    })
   .catch((err)=> console.log(err));
 }

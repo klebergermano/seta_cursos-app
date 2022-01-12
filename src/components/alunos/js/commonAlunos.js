@@ -82,13 +82,12 @@ export function createParcelas(parcelaInfo) {
     return parcelas;
 }
 
-//--------------n_lanc-----------------------
+//--------------n_lanc---------------------------------------------------------------
  function createNumeroLancamento(idContrato, n_parcela) {
     console.log(idContrato, n_parcela);
     let n_lanc = idContrato + 'F' + n_parcela;
     return n_lanc;
 }
-
 //------------------------------------------------------------------------------------
 
 function setDateDay(data_inicio, vencimento) {
@@ -140,3 +139,5 @@ function addDateMonth(num_mes, date) {
 
     return data_final;
 }
+
+  

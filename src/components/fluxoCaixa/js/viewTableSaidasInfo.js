@@ -98,7 +98,7 @@ table.querySelector('#tbody').innerHTML = contentTable.innerHTML;
                 <td class='td_data'>${changeDateToDislayText(value.data)}</td>
                 <td class='td_descricao'>${value.descricao}</td>
                 <td class='td_tipo_saida'>${value.tipo_saida}</td>
-                <td class='td_valor_total'>R$ ${value.valor}</td>
+                <td class='td_valor_total'>${value.valor}</td>
                 <td  class='td_controls'>
                 <button title="Deletar Pagamento" class='btn_delete_saida_avulsa'>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -121,7 +121,7 @@ table.querySelector('#tbody').innerHTML = contentTable.innerHTML;
                 trResumo.id='tr_resumo';
                 trResumo.innerHTML = `
                 <td colspan='3'>Entradas: <span id='res_total_saida'>${resEntradas}</span></td>
-                <td colspan='2' class="td_valor_total" id="td_res_valor_total">R$ ${resValorTotal}</td>
+                <td colspan='2' class="td_valor_total" id="td_res_valor_total">${resValorTotal}</td>
                 `;
                 tbody.appendChild(trResumo)
                 //-----------------------------------------

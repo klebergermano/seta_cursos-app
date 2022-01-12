@@ -108,18 +108,19 @@
         <div class='div_input' id='div_aluno_cel'><label>Cel.: </label> <input id="aluno_cel" type="text" /></div>
         <div class='div_input' id='div_aluno_tel'><label>Tel.: </label> <input id="aluno_tel" type="text" /></div>
         <div class='div_input' id='div_aluno_email'>
-          <label>Email: </label> <input id="aluno_email" type="text" />
+          <label>Email: </label><input id="aluno_email" type="text" />
         </div>
   
        </div>
       <!--div fieldset-->
       <!------------------------------ FIELDSET CURSO------------------------------->
       <div class='fieldset' id='fieldset_curso'>
-          <div  class='div_input'id='div_curso_nome'> <label><span class='required'>&nbsp;&nbsp;
-                *</span> Curso: </label>
+          <div  class='div_input'id='div_curso_nome'>
+            *<label>Curso: </label>
             <select required id='curso_nome'>
-    
             </select>
+          
+            <input id='curso_cod' readonly='true' type='text' />
           </div>
        
           <div  class='div_input' id='div_curso_modulos'> <label id='label_curso_modulos'>Módulos: </label> 
@@ -127,22 +128,35 @@
         <div class='row'>
           <div  id='div_curso_duracao'> <label>D. Meses: </label> <input id="curso_duracao" type="number" /> </div>
           <div  id='div_curso_parcelas'> <label>Parcelas: </label> <input id="curso_parcelas"
-              type="number" /> </div>
-          <div  id='div_curso_vencimento'> 
-            <label>Dia Venc.: </label> <input id="curso_vencimento" type="number" /> </div>
-        </div>
+              type="number" /> 
+            </div>
+          <div  id='div_curso_horas_aula'> 
+            <label>Horas p/ Aula: </label>
+            <input id="curso_horas_aula" type="number" value='2' /> 
+          </div>
+          <div  id='div_curso_carga_horaria'> 
+            <label>Carga Horária: </label>
+            <input id="curso_carga_horaria" type="number" /> 
+          </div>
+
+</div>
         <!--row-->
+
         <div class='row'>
           <div  id='div_curso_valor'> <label>Valor R$: </label> <input id="curso_valor" type="text"
               value='0,00' /> </div>
           <div  id='div_curso_desconto'> <label for='curso_desconto'> Desc. R$: </label> <input
               id="curso_desconto" type="text" value='0,00' /> </div>
           <div  id='div_curso_valor_total'> <label>Total R$: </label> 
-            <input id="curso_valor_total" type="text" value='0,00' /> </div>
+            <input id="curso_valor_total" type="text" value='0,00' /> 
+          </div>
         </div>
         <!--row-->
         <div class='row'>
-        
+          <div id='div_curso_vencimento'>
+            <label>Dia Venc.: </label>
+            <input id="curso_vencimento"  type='number'/>
+          </div>
           <div  id='div_curso_inicio'> <label>Data de Início: </label> <input id="curso_inicio"
               type="date" /> </div>
           <div  id='div_curso_data'> <label>Data Contrato: </label> <input id="curso_data_contrato"

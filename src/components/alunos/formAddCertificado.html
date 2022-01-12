@@ -1,0 +1,52 @@
+<div class='bg_form_block_screen'>
+<form id="form_add_certificado" >
+    <h3><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+      <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+      <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+    </svg>Salvar Certificado</h3>
+
+  <span class="btn_close_form">X</span>
+    
+   <!------------------------------ FIELDSET ADD ALUNO------------------------------->
+    <fieldset class='fieldset' id='fildset_add_certificado'>
+      <div>
+        <label for="certificado_cod">Cod:</label>
+        <input type='text' id="certificado_cod" />
+        <label for="data_expedicao">Emissão:</label>
+        <input type='date' id='data_emissao'>
+      </div>
+      <div id='div_aluno'>
+        <label for="aluno_ra">RA:</label>
+        <input  id="aluno_ra" type="text" />
+        <label for="aluno_nome">Aluno:</label>
+        <input  id="aluno_nome" type="text" />
+      </div><!--bg_div_id_aluno-->
+       <div>
+        <label for="curso_nome">Curso:</label>
+        <input type='text' id="curso_nome" />
+      </div>
+      <div>
+        <label for="curso_modulos">Módulos:</label>
+        <textarea id="curso_modulos"></textarea>
+      </div>
+      <div>
+        <label for="curso_carga_horaria">C. Horária:</label>
+        <input id="curso_carga_horaria" />
+        <label for="curso_inicio">Início:</label>
+        <input type='date' id='curso_inicio'>
+     
+      </div>
+      <div>
+        <label for="endereco">Local:</label>
+        <input id='endereco' value='Rua Gustavo Bacarisas, nº 8 - Sala 3 - Jd. Zilda, São Paulo - SP' />
+      </div>
+      <div>
+        <label for="endereco">Obs.:</label>
+        <textarea id='obs'></textarea>
+      </div>
+    </fieldset>
+
+    
+    <input type="submit" value="Salvar" />
+  </form>
+</div>

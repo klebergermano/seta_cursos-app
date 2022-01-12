@@ -1,4 +1,4 @@
-import {insertElementHTML, btnCloseForm } from "../../js_common/commonFunctions.js";
+import {insertElementHTML, btnCloseForm, defaultEventsAfterSubmitForm } from "../../js_common/commonFunctions.js";
 import * as relogin from "./reLogin.js";
 //----------------------------------------------------
 import { firebaseApp } from "../../../components/dbConfig/firebaseApp.js"
@@ -17,6 +17,7 @@ function eventsFormAddUser(userReauthInfo) {
    btnCloseForm('#form_add_user');
    document.querySelector('#form_add_user').addEventListener('submit', (e) => {
         e.preventDefault();
+        let form = e.target;
         submitFormAddUser(form, userReauthInfo)
     });
 }
@@ -46,7 +47,7 @@ function submitFormAddUser(form, userReauthInfo) {
             })
         })
         .then(() => {
-            commonFunc.defaultEventsAfterSubmitForm('#form_add_user', "Usuário adicionado com sucesso!")
+            defaultEventsAfterSubmitForm('#form_add_user', "Usuário adicionado com sucesso!")
         })
         .catch((error) => console.log(error.code, error.message));
 }
