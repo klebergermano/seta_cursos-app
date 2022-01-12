@@ -85,6 +85,7 @@ function submitformAddCertificado(e) {
           cod: certificadoInfo.certificado_cod, 
           data_emissao: certificadoInfo.data_emissao, 
           local: certificadoInfo.endereco, 
+          obs: certificadoInfo.obs, 
         }
       },
 

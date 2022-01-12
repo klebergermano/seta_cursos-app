@@ -8,15 +8,23 @@ const { getAuth, signOut } = require("firebase/auth");
 
 const auth = getAuth(firebaseApp);
 //-----------------------------------------------------
+
+import {getRolePermission} from "../../../components/users/js/permissions.js";
+
 var appVersion = require("electron").remote.app.getVersion();
 
-
+(function setGlobalPermissionInfo(){
+  getUserCompleteInfo(auth.currentUser).then((userCompleteInfo)=>{
+    getRolePermission(userCompleteInfo.role).then((res)=>{
+      window.$PERMISSIONS = res.data();
+    });
+  });
+})();
 
 //------------------------------------------------------
 
 
 export function onload() {
-
 
   //timer conta em segundos 5 * 60 = 5 min
   timerIdleMouseMoveFunc(5 * 60, () => {

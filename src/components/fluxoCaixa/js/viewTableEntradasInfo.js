@@ -141,7 +141,7 @@ function insertContentTableEntradaAvulsa(contentTable){
                 <td class='td_data'>${changeDateToDislayText(value.data)}</td>
                 <td class='td_descricao'>${value.descricao}</td>
                 <td class='td_form_pag'>${value.form_pag}</td>
-                <td class='td_valor_total'>R$ ${value.valor}</td>
+                <td class='td_valor_total'>${value.valor}</td>
                 <td class='td_controls'>
                     <button title="Deletar Pagamento" class='btn_delete_entrada_avulsa'>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -164,7 +164,7 @@ function insertContentTableEntradaAvulsa(contentTable){
          trResumo.id='tr_resumo';
          trResumo.innerHTML = `
          <td colspan='3'>Entradas: <span id='res_total_entradas'>${resEntradas}</span></td>
-         <td colspan='2' class="td_valor_total" id="td_res_valor_total">R$ ${resValorTotal}</td>
+         <td colspan='2' class="td_valor_total" id="td_res_valor_total">${resValorTotal}</td>
          `;
          tbody.appendChild(trResumo)
          //---------------------
@@ -275,7 +275,7 @@ function createContentPagMensalTableHTML (fluxoCaixaAno, mes){
                 <td class='td_curso'>${value.curso}</td>
                 <td class='td_parcela'>${value.parcela}</td>
                 <td class='td_form_pag'>${value.form_pag}</td>
-                <td class='td_valor_total'>R$ ${value.valor_total}</td>
+                <td class='td_valor_total'>${value.valor_total}</td>
                 <td  class='td_controls'>
                 <button title="Deletar Pagamento" class='btn_delete_pag_mensal'>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -300,7 +300,8 @@ function createContentPagMensalTableHTML (fluxoCaixaAno, mes){
             trResumo.id='tr_resumo';
             trResumo.innerHTML = `
             <td colspan='5'>Entradas: <span id='res_total_entradas'>${resEntradas}</span></td>
-            <td colspan='2' class="td_valor_total" id="td_res_valor_total">R$ ${resValorTotal}</td>
+            <td colspan='2' class="td_valor_total" id="td_res_valor_total">${resValorTotal}</td>
+
             `;
             tbody.appendChild(trResumo)
             }else{

@@ -1,5 +1,25 @@
 
+function changeDateToDislayText(dateString){
+    let newDate = new Date(dateString + ',00:00:00');
+    let day = newDate.getDate();
+    let year = newDate.getFullYear();
+    let month = (newDate.getMonth() +1);
+    
+    day = day.toString().padStart('2', '0');
+    month = month.toString().padStart('2', '0');
+    let changedDate = `${day}/${month}/${year}`;
+    /*
+    let n = ''+day;
+    let x = n.padStart('2', '0');
+    */
+        return changedDate;
+    }
+
+
 const TemplateCertificado = (certificadoInfo)=>{
+
+    console.log(certificadoInfo);
+
     return (`
     <!DOCTYPE html>
     <html lang="pt-br">
@@ -76,13 +96,13 @@ const TemplateCertificado = (certificadoInfo)=>{
               concluiu com êxito o curso de <span id='curso'>${certificadoInfo.curso_nome}</span></p>
               <p  class='p_modulos'>Módulos: <span id='modulos'>${certificadoInfo.curso_modulos}</span></p>
               <p>Carga horária: <span id='horas'>${certificadoInfo.curso_carga_horaria}</span></p>
-              <p>Início: <span id='inicio'>${certificadoInfo.curso_inicio}</span></p>
+              <p>Início: <span id='inicio'>${changeDateToDislayText(certificadoInfo.curso_inicio)}</span></p>
               <p>Local: <span id='endereco'>${certificadoInfo.endereco}</span></p>
             </div>
             <div id='bg_info_2' class='bg_info'>
                 <p>Para verificar a validade desse certificado acesse</p>
                 <p><span id='site'>www.setacursos.com.br/certificados</span> e digite o código <span id='cod'>${certificadoInfo.certificado_cod}</span></p>
-                <p>Data de emissão: ${certificadoInfo.data_expedicao}</p>
+                <p>Data de emissão:<b>${changeDateToDislayText(certificadoInfo.data_emissao)}</b></p>
                
                       </div>
           </div><!--page-->

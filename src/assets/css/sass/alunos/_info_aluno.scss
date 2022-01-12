@@ -47,21 +47,22 @@
     }
     .fieldset {
         position: relative;
-        background: transparent;
+        background: #fff;
         max-width: 100%;
         margin: 20px 0px;
         border: 1px solid #aaa;
-        padding: 20px 30px;
+        padding: 30px 30px;
         height: auto;
         display: flex;
         flex-wrap: wrap;
 
         legend {
             background: #f0f0f0;
-            padding: 5px;
+            padding: 5px 8px;
             position: absolute;
             top: -15px;
             left: 20px;
+            border-radius: 5px;
         }
         
         .row {
@@ -142,6 +143,14 @@
       }  
     }
 
+    .fieldset_certificado_status{
+background: #fffff6;
+    }
+    .fieldset_curso_info{
+    }
+    .fieldset_resp_info{
+    }
+
     .bg_curso {
         padding:10px;
         margin-top:20px;
@@ -164,12 +173,38 @@
             width: 100%;
        
         }
-        label{background:#ddd !important;}
+        label{background:#ddd ;}
     }
 
     input[type='submit']{
         margin: 0 auto;
         opacity: 0.3;
+    }
+
+    .btn_create_certificado{
+        @extend .btn-default;
+
+
+    }
+   #label_checkbox_certificado_entregue {
+        @extend .btn-default;
+        background: #f0f0f0;
+        user-select: none;
+       margin: 5px;
+
+        max-width: 250px !important;
+        min-width: 180px;
+ 
+        input {
+          display: none;
+        }
+        color: #333;
+
+    }
+
+    .active {
+        color: #fff !important;
+        background: #548b54 !important;
     }
 
 }
