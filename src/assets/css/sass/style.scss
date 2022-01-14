@@ -56,6 +56,14 @@
 
 }
 
+//-----------AUTH DISABLED ELEMENTS LINKS
+LI[data-auth][disabled='true']{
+  user-select: none !important;
+  pointer-events: none !important;
+ opacity: 0.3;
+}
+
+//---------------------------------
 .load_element{
  width:100px;
  height:100px;

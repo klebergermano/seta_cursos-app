@@ -131,7 +131,7 @@ function getInfoInputsFormAddAula(eventClick) {
   let aulaInfo = {}
   aulaInfo.categoria = aula.dataset.aula_categoria;
   if (aulaInfo.categoria === "prova" || aulaInfo.categoria === "reposição de prova" ) {
-    console.log('REPOSI', aulaInfo.categoria);
+   
     aulaInfo.nota_prova = aula.querySelector('.aula_nota_prova')?.textContent;
     aulaInfo.numero_questoes = aula.querySelector('.aula_numero_questoes')?.textContent;
     aulaInfo.observacao = aula.querySelector('.aula_detalhes_info')?.textContent;

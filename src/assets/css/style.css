@@ -3562,6 +3562,12 @@ form.forms_fluxo_caixa .div_submit input[type=submit] {
   outline-color: #5690db;
 }
 
+LI[data-auth][disabled=true] {
+  user-select: none !important;
+  pointer-events: none !important;
+  opacity: 0.3;
+}
+
 .load_element {
   width: 100px;
   height: 100px;

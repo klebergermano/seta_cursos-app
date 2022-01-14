@@ -15,20 +15,31 @@ export function checkRolePermission(auth){
        removeUnauthorizedElement(permissions.data())
         });
     })
-
-
    // removeUnauthorizedElement(currentUser)
 }
-function removeUnauthorizedElement(userPermission){
+export function removeUnauthorizedElement(userPermission){
     let authElements = document.querySelectorAll('*[data-auth]');
     authElements.forEach((item)=>{
         let itemDataAuth = item.dataset.auth;
+
         if(!userPermission[itemDataAuth]){
-            removeElement(item)
+
+            if(item.tagName === 'LI' || item.tagName === 'A' || item.tagName === 'BUTTON' ){
+item.setAttribute('disabled', true);
+            }else{
+                //Remove o elemento não autorizado
+                let parent = item.parentElement;
+                parent.removeChild(item);
+            }
+          
         }           
     })
 }
-
+function removeElement(item){
+    let parent = item.parentElement;
+    parent.removeChild(item);
+}
+/*
 function removeUnauthorizedElementXX(currentUser){
     users.getUserCompleteInfo(currentUser)
      .then((userInfo)=>{
@@ -45,7 +56,6 @@ function removeUnauthorizedElementXX(currentUser){
                 removeElement(item)
             }           
         })
- */
 
 
 
@@ -53,9 +63,6 @@ function removeUnauthorizedElementXX(currentUser){
          });
      })
  }
+ */
 
 
-function removeElement(item){
-    let parent = item.parentElement;
-    parent.removeChild(item);
-}

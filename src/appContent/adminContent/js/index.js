@@ -13,22 +13,25 @@ import {getRolePermission} from "../../../components/users/js/permissions.js";
 
 var appVersion = require("electron").remote.app.getVersion();
 
-(function setGlobalPermissionInfo(){
-  getUserCompleteInfo(auth.currentUser).then((userCompleteInfo)=>{
-    getRolePermission(userCompleteInfo.role).then((res)=>{
-      window.$PERMISSIONS = res.data();
-    });
-  });
-})();
+
 
 //------------------------------------------------------
 
 
 export function onload() {
+  (function setGlobalPermissionInfo(){
+    getUserCompleteInfo(auth.currentUser).then((userCompleteInfo)=>{
+      getRolePermission(userCompleteInfo.role).then((res)=>{
+        window.$PERMISSIONS = res.data();
+      });
+    });
+  })();
+
 
   //timer conta em segundos 5 * 60 = 5 min
   timerIdleMouseMoveFunc(5 * 60, () => {
-    signOut(auth);
+    signOut(auth)
+    .catch(err => console.log(err));
   });
 
   //Remove os elementos sem autorização
@@ -47,6 +50,8 @@ export function onload() {
   document.querySelector("#logout_user").addEventListener('click', () => {
     signOut(auth)
       .catch(err => console.log(err));
+
+
   })
 
   //Cerrega página principal da home
@@ -56,17 +61,8 @@ export function onload() {
   document.querySelector('footer').innerHTML = `<p class='app_version'>Versão: ${appVersion}</p>`;
 }
 
-function removeMainMenuLateral() {
-  let bgMenu = document.querySelector('#bg_main_menu_lateral_admin');
-  let parentBgMenu = bgMenu.parentElement;
-  parentBgMenu.removeChild(bgMenu);
-}
-
-function eventsUpdateAppVersion() {
 
 
-
-}
 
 //Função usada no lugar do importHTMLWithScript 
 //TODO: Conferir utilidade da função duplicada

@@ -6,6 +6,7 @@ import {insertFormAddPontoExtra} from "./formAddPontoExtra.js";
 import {insertFormAddFeedbackBimestral} from "./formAddFeedbackBimestral.js";
 import {eventDeleteCurso, eventsDeletarAula} from "./deleteFunc.js";
 import {eventsBaixarHistorico} from "./baixarHistoricoAluno.js";
+import {removeUnauthorizedElement} from "../../../appContent/adminContent/js/checkPermission.js";
 
 
 export function eventsAulas() {
@@ -24,6 +25,7 @@ export function eventsAulas() {
     //Carrega a função de click
     //Workaroud bug no carregamento
     eventBtnOpenCloseAula()
+    removeUnauthorizedElement(window.$PERMISSIONS);
   }
 
   
