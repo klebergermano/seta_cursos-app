@@ -1,4 +1,7 @@
+
+
 import { insertElementHTML, displaySpinnerLoad, removeSpinnerLoad} from "../../js_common/commonFunctions.js";
+import {submitFormContratoPDF} from "./formAddContrato.js";
 //firestore
 import { firebaseApp } from "../../dbConfig/firebaseApp.js";
 const { getFirestore, setDoc, getDocs, collection, getDoc, doc } = require("firebase/firestore");
@@ -11,12 +14,22 @@ export function insertInfoContratoHTML(idContrato){
 function eventsInfoContrato(idContrato){
     getDoc(doc(db, 'contratos', idContrato))
     .then((contratoInfo)=>{
+        document.querySelector("#form_info_contrato").addEventListener('submit', (e)=>{
+e.preventDefault();
+console.log('submit');
+submitFormContratoPDF(e)
+        });
         insertValuesInputs(contratoInfo)
     }).catch((err)=> console.log(err));
 }
 
 function insertValuesInputs(contratoInfo){
     contratoInfo = contratoInfo.data();
+let parentesco_resp = contratoInfo.aluno_info.parentesco_resp;
+if(parentesco_resp === 'IDEM'){
+    document.querySelector("#checkbox_resp_aluno").setAttribute('checked', true);
+}
+   
         //Resp
         document.querySelector('#resp_nome').value = contratoInfo.resp_info.nome;
         document.querySelector('#resp_genero').value = contratoInfo.resp_info.genero;
@@ -61,7 +74,7 @@ function insertValuesInputs(contratoInfo){
 
     document.querySelector('#curso_obs').value = contratoInfo.curso_info.obs;
     document.querySelector('#curso_inicio').value = contratoInfo.curso_info.inicio;
-    document.querySelector('#curso_desconto_combo').innerHTML = contratoInfo.curso_info.desconto_combo;
+    document.querySelector('#combo_textarea').innerHTML = contratoInfo.curso_info.desconto_combo;
 
 }
 

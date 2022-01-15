@@ -30,7 +30,7 @@ let lastRA = getDocs(collection(db, "alunato"))
  
 function setLastRAOptionSelected(lastRA){
   let mainsSelectOption = document.querySelectorAll("#main_select_aluno option");
-  console.log(Array.from(mainsSelectOption));
+
   let options = Array.from(mainsSelectOption);
   options.forEach((item)=>{
     if(item.value === lastRA){

@@ -82,7 +82,6 @@ const TemplateCertificado = (certificadoInfo)=>{
                 #curso{ text-transform: uppercase; font-weight: bold;}
                 #aluno, #horas, #inicio, #site, #cod{font-weight: bold;}
                 #modulos{ line-height: 16pt; font-style:italic !important; font-weight:normal;}
-    
           
                
       
@@ -95,7 +94,7 @@ const TemplateCertificado = (certificadoInfo)=>{
               <p class='p_curso'>Certificamos que <span id='aluno'>${certificadoInfo.aluno_nome}</span>, 
               concluiu com êxito o curso de <span id='curso'>${certificadoInfo.curso_nome}</span></p>
               <p  class='p_modulos'>Módulos: <span id='modulos'>${certificadoInfo.curso_modulos}</span></p>
-              <p>Carga horária: <span id='horas'>${certificadoInfo.curso_carga_horaria}</span></p>
+              <p>Carga horária: <span id='horas'>${certificadoInfo.curso_carga_horaria} horas</span></p>
               <p>Início: <span id='inicio'>${changeDateToDislayText(certificadoInfo.curso_inicio)}</span></p>
               <p>Local: <span id='endereco'>${certificadoInfo.endereco}</span></p>
             </div>

@@ -36,8 +36,3 @@ const auth = getAuth(firebaseApp);
   
 
 
-  
-function logOut() {
-    console.log("Logout!!!");
-  }
-  

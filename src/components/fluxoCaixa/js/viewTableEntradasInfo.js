@@ -27,7 +27,7 @@ function eventsEntradasInfoTable(){
     let filtroInfo = getFiltroInfoAnoMes()
     setFluxoCaixaAno(filtroInfo.ano)
     .then((res)=>{
-       
+       res.ano = filtroInfo.ano;
         insertContentTables(res, filtroInfo.mes)
     }).then(()=>{
        btnsDeletePagMensal()
@@ -197,6 +197,8 @@ function insertContentTableEntradaAvulsa(contentTable){
     }
 
     function  submitDeletePagMensal(ano, mes, row, RA, curso, parcela, data, valor){
+            console.log(ano, mes, row, RA, curso, parcela, data, valor);
+
         let string = `${mes}.${row}`;
         let deleteQuery = {};
         deleteQuery[string] = deleteField();
@@ -257,6 +259,7 @@ function createContentPagMensalTableHTML (fluxoCaixaAno, mes){
     if(fluxoCaixaMes){
         let entradas = false; 
         for( let value of Object.values(fluxoCaixaMes)){
+            console.log(fluxoCaixaAno);
             if(value.categoria === "pag_mensalidade"){
                 entradas = true;
                 let tr = document.createElement('tr');

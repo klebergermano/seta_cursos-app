@@ -1,6 +1,7 @@
 import { getReverseObjectKeys, stringToID } from "../../js_common/commonFunctions.js";
 import { resumoBimestreBD } from "./resumoBimestreBD.js";
 import { changeDateToDislayText } from "../../js_common/dateFunc.js";
+import {removeUnauthorizedElement} from "../../../appContent/adminContent/js/checkPermission.js";
 
 
 function insertBgCursoHTML(cursoHTMLContent) {
@@ -63,13 +64,13 @@ function createBgCursoHTML(curso_nome_bd, RA) {
                   </svg>
                   &nbsp; Baixar Histórico
                 </button>
-                <button class='btn_add btn_add_ponto_extra' id='btn_add_ponto_extra'>
+                <button data-auth='professor' class='btn_add btn_add_ponto_extra' id='btn_add_ponto_extra'>
                   + Pontos Extras
                 </button>
-                <button class='btn_add btn_add_reposicao' id='btn_add_reposicao'>
+                <button data-auth='professor' class='btn_add btn_add_reposicao' id='btn_add_reposicao'>
                   + Reposição de Aula
                 </button>
-                <button class="btn_add btn_add_aula" id="btn_add_aula" title='Adicionar Aula' type="button">
+                <button data-auth='professor' class="btn_add btn_add_aula" id="btn_add_aula" title='Adicionar Aula' type="button">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-plus" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"></path>
                     <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"></path>
@@ -123,7 +124,6 @@ function createCursoHTMLContent(bgCursoHTML, cursoDB) {
           divColumnReposicao.innerHTML += createAulaHTML(aula, aulaSortedKeys[j], bimSortedKeys[i]);
         }
         else if(aula.categoria === "reposição de prova"){
-          console.log('AULA REPO PROVA:', aula);
           divColumnReposicao.innerHTML += createHTMLProva(aula, aulaSortedKeys[j], bimSortedKeys[i]);
 
         }
@@ -213,13 +213,13 @@ function createAulaHTML(aulaDados, n_aula, n_bimestre) {
           <span class='aula_detalhes_info'>${aulaDados.detalhes}</span>
           </p>
       </div>
-     <span class='btn_deletar_aula'>
+     <span data-auth='professor' class='btn_deletar_aula'>
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
         <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
       </svg>
      </span>
-  <span class=' btn_edit_aula'>
+  <span data-auth='professor' class=' btn_edit_aula'>
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
   <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
   <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -255,7 +255,7 @@ function createResumoBimestreHTML(cursoDB, bimestreKey) {
         Observação bimestral sobre o aluno:
        </span>
         <p class='feedback_value'>${resBimestre.feedbackBimestral}</p>
-        <button class='btn btn_add_feedback_bimestral'>Feedback</button>
+        <button data-auth='professor' class='btn btn_add_feedback_bimestral'>Feedback</button>
       <div>
     </div>
     `
@@ -263,7 +263,6 @@ function createResumoBimestreHTML(cursoDB, bimestreKey) {
 }
 
 function createHTMLProva(aulaDados, n_aula, n_bimestre) {
-  console.log(aulaDados);
   //substitui espaços em branco pelo underscore e passa para minúsculas as letras
   let id_aula = stringToID(n_aula);
   //let id_bimestre = n_bimestre.replace(/\s+/g, "_").toLowerCase();
@@ -332,7 +331,6 @@ function createHTMLProva(aulaDados, n_aula, n_bimestre) {
 function createHTMLPontoExtra(aulaDados, n_aula, n_bimestre) {
   //substitui espaços em branco pelo underscore e passa para minúsculas as letras
   let id_aula = stringToID(n_aula);
-  //let id_bimestre = n_bimestre.replace(/\s+/g, "_").toLowerCase();
   let id_bimestre = stringToID(n_bimestre);
 
   let block = `
@@ -378,7 +376,7 @@ function cursoVazioHTML(curso_nome_bd, RA) {
       Esse curso não possui aulas adicionadas.
     </p> 
       <div class='bg_btn_curso'>
-        <button class="btn_add btn_add_aula" id="btn_add_aula" title='Adicionar Aula' type="button">
+        <button data-auth='professor' class="btn_add btn_add_aula" id="btn_add_aula" title='Adicionar Aula' type="button">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-plus" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"></path>
             <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"></path>
