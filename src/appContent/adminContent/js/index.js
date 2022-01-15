@@ -95,10 +95,10 @@ function eventsMainMenu() {
   childs.forEach((item) => {
     item.addEventListener("click", (e) => {
       removeActiveNavMainMenuLateral();
-      let htmlSRC = '../src/components/' + e.target.dataset.path + '/index.html';
-      let scriptSRC = '../../../components/' + e.target.dataset.script_src + '/js/index.js';
+      let htmlSRC = '../src/components/' + item.dataset.path + '/index.html';
+      let scriptSRC = '../../../components/' + item.dataset.script_src + '/js/index.js';
       importHTML('#page_content', htmlSRC, scriptSRC);
-      e.target.classList.add('active');
+      item.classList.add('active');
 
     });
   });
