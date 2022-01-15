@@ -29,7 +29,7 @@ export function onload() {
 
 
   //timer conta em segundos 5 * 60 = 5 min
-  timerIdleMouseMoveFunc(5 * 60, () => {
+  timerIdleMouseMoveFunc(10 * 60, () => {
     signOut(auth)
     .catch(err => console.log(err));
   });

@@ -226,7 +226,7 @@ function createFormInfo(e){
       formInfo.aluno_genero = formInfo.resp_genero;
       formInfo.aluno_end = formInfo.resp_end;
       formInfo.aluno_end_numero = formInfo.resp_end_numero;
-      formInfo.aluno_parentesco = "(IDEM)";
+      formInfo.aluno_parentesco = "IDEM";
       formInfo.aluno_bairro = formInfo.resp_bairro;
       formInfo.aluno_cep = formInfo.resp_cep;
       formInfo.aluno_rg = formInfo.resp_rg;
@@ -241,7 +241,7 @@ function createFormInfo(e){
 }
 
 //Envia o objeto com as informações do formulário para a main stream index.js
-function submitFormContratoPDF(e) {
+export function submitFormContratoPDF(e) {
   commonFunc.displaySpinnerLoad("#page_content", true);
    let formValues = createFormInfo(e);
   //  let loadinContrato = document.querySelector("#loading_contrato");
