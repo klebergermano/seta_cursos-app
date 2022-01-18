@@ -6,6 +6,8 @@ const db = getFirestore(firebaseApp);
 
 import * as alunoContent from "./inserAlunoContent.js";
 import {insertAlunoContent, contentAlunoRealTime, getSnapshotAlunoCursosDB, getAlunoCursosDB} from "./inserAlunoContent.js";
+import {insertFormAddAulaGrupoHTML} from "./formAddAulaGrupo.js";
+
 import {alunoHistCursosRealTimeDB} from "../../js_common/dbAlunoHistoricoFunc.js";
 import {displaySpinnerLoad} from "../../js_common/commonFunctions.js";
 
@@ -30,7 +32,6 @@ let lastRA = getDocs(collection(db, "alunato"))
  
 function setLastRAOptionSelected(lastRA){
   let mainsSelectOption = document.querySelectorAll("#main_select_aluno option");
-
   let options = Array.from(mainsSelectOption);
   options.forEach((item)=>{
     if(item.value === lastRA){
@@ -52,6 +53,10 @@ export async function onload(){
     getSnapshotAlunoCursosDB(RA, insertAlunoContent)
 
    });
+
+   document.querySelector("#btn_add_aula_grupo").addEventListener('click', (e)=>{
+    insertFormAddAulaGrupoHTML();
+   })
 }
 
 //----------------------------------------------------------

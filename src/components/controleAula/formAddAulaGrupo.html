@@ -1,0 +1,108 @@
+<div class='bg_form_block_screen'>
+<form id="form_add_aula_grupo" class="forms_controle_aula">
+
+  <!----------------------------------------------->
+  <div id='bg_aula_info'>
+
+
+
+
+    <span class="btn_close_form">X</span>
+    <h3><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-plus" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"/>
+      <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+      <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+    </svg> Adicionar Aula</h3>
+    <div id='div_status_aula'>
+      <label class='actived_label_aula_concluida' id='label_aula_concluida'><input checked  id='aula_concluida' type='radio' name='status' value='concluida'>Concluida</label>
+      <label class='' id='label_aula_com_falta'><input id='aula_com_falta' type='radio' name='status' value='falta'>Falta</label>
+      <label class='' id='label_aula_remarcada'><input id='aula_remarcada'type='radio' name='status' value='remarcada'>Remarcada</label>
+    </div>
+    <div id="div_data">
+      <label>Data:</label>
+      <input required id="data" type="date" /> 
+    </div>
+      <div id='div_horario'>
+        <label>Horário:</label>
+      <input id="horario" list='horario_list'>
+      <datalist id='horario_list'>
+        <option value='08h às 10h'/>
+        <option value='09h às 11h'/>
+        <option value='10h às 12h'/>
+        <option value='11h às 13h'/>
+        <option value='12h às 14h'/>
+        <option value='13h às 15h'/>
+        <option value='14h às 16h'/>
+        <option value='15h às 17h'/>
+        <option value='18h às 19h'/>
+        <option value='19h às 21h'/>
+      </datalist>
+    </div>
+    <div id='div_tema'><label>Tema:</label>
+      <input required  id="tema" type="text" />
+    </div>
+    <div id='bg_prova_inputs'>
+      <div id='div_nota_prova'>
+        <label>Nota:</label>
+        <input id='nota_prova' type='number' />
+      </div>
+      <div id='div_numero_questoes'>
+        <label>Nº de Questões</label>
+        <input id='numero_questoes' type='number' />
+      </div>
+      <div id='div_obs_prova'>
+        <label >Obs.:</label>
+        <textarea id='obs_prova'></textarea>
+      </div>
+    </div>
+    <div id='div_detalhes'><label>Detalhes:</label><textarea  required  id="detalhes"></textarea></div>
+  </div><!--bg_aula_info-->
+  <!----------------------------------------------->
+<div id='bg_grupo_alunos'>
+  <div class='div_aluno_adicionado'>
+<input required='true' class='select_aluno_adicionado' type='text' list='alunos_datalist'>
+<datalist id='alunos_datalist'>
+  
+</datalist>
+<select required='true'  disabled id='select_curso'>
+  <option  disabled  selected>Curso</option>
+</select>
+  <select required='true' disabled='true' id='select_bimestre'>
+    <option value='' disabled  selected>Bimestre</option>
+       <option value='bimestre 1'>Bimestre 1</option>
+       <option value='bimestre 2'>Bimestre 2</option>
+       <option value='bimestre 3'>Bimestre 3</option>
+       <option value='bimestre 4'>Bimestre 4</option>
+       <option value='bimestre 5'>Bimestre 5</option>
+       <option value='bimestre 6'>Bimestre 6</option>
+  </select>
+
+ 
+  <select required='true' disabled='true' id='select_aula'>
+    <option value='' disabled selected>Selecione a Aula</option>
+    <option value="aula 01">Aula 1</option>
+    <option value="aula 02">Aula 2</option>
+    <option value="aula 03">Aula 3</option>
+    <option value="aula 04">Aula 4</option>
+    <option value="aula 05">Aula 5</option>
+    <option value="aula 06">Aula 6</option>
+    <option value="aula 07">Aula 7</option>
+    <option value="aula 08">Aula 8</option>
+    <option value="aula 09">Aula 9</option>
+    <option value="aula 10">Aula 10</option>
+    <option value="aula 11">Aula 11</option>
+    <option value="aula 12">Aula 12</option>
+    <option value="aula 13">Aula 13</option>
+    <option value="aula 14">Aula 14</option>
+    <option value="aula 15">Aula 15</option>
+    <option value="aula 16">Aula 16 - Prova</option>
+</select>
+</div>
+  <button id='btn_add_aluno_grupo'>+ Aluno</button>
+
+
+</div>
+
+    <input type="submit" value="Salvar" />
+  </form>
+</div>

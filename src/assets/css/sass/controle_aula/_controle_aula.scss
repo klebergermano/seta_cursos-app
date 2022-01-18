@@ -11,7 +11,7 @@
   overflow: hidden;
   transition: all 0.5s;
 
-  #form_select_aluno {
+  #bg_select_aluno {
     background: #ccc;
     border-bottom:1px solid #444;
     width: 100%;
@@ -52,6 +52,7 @@
         }
     }
     button {
+      @extend .btn-default;
       float: left;
       margin:0px;
       margin-left:10px;
