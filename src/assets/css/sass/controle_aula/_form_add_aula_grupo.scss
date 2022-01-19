@@ -9,7 +9,7 @@ max-width: 800px;
 #bg_aula_info{
   max-width: 100%;
   border:2px solid #333;
-  padding:20px 40px;
+  padding:20px 60px;
   display: flex;
   flex-wrap: wrap;
   float:left;
@@ -52,13 +52,14 @@ max-width: 800px;
   #div_select_curso {
     display: none;
   }
-  #select_aula {
+  .select_aula {
     option[disabled="true"] {
       background: $yellow-light-color;
     }
   }
 
   #div_status_aula {
+    width: 100%;
     label {
       position: relative;
       border: 1px solid $grey-dark-color;

@@ -38,11 +38,11 @@ function eventsFormAddAulaGrupo(form) {
 function setCursoSelect(e) {
   let RA = (e.target.value).split('-')[0];
   let divAluno = e.target.closest('.div_aluno_adicionado');
-  let selectCurso = divAluno.querySelector('#select_curso');
+  let selectCurso = divAluno.querySelector('.select_curso');
   console.log(selectCurso)
     getDocs(collection(db, 'alunato', RA, 'cursos'))
       .then((res) => {
-        let option = '<option disabled selected>Selecione o Curso</option>';
+        let option = '<option disabled selected value="">Selecione o Curso</option>';
         res.forEach((item) => {
           console.log(item.data())
           option += `<option value='${item.data().curso_info.nome}'>${item.data().curso_info.nome}</option>`;
@@ -61,11 +61,11 @@ function eventsDivAlunoAdicinado(divAluno){
   divAluno.querySelector('.select_aluno_adicionado').addEventListener('input', (e) => {
     validaSelectAlunoAdicionado(e);
   });
-  divAluno.querySelector('#select_curso').addEventListener('change', (e)=>{
+  divAluno.querySelector('.select_curso').addEventListener('change', (e)=>{
     console.log('change curso');
     enableSelectBimestre(e)
   })
-  divAluno.querySelector('#select_bimestre').addEventListener('change', (e)=>{
+  divAluno.querySelector('.select_bimestre').addEventListener('change', (e)=>{
 console.log('change')
     validaSelectAula(e)
   })
@@ -76,10 +76,9 @@ function adicionaAluno() {
   let bgAlunoAdicionado = document.querySelector("#bg_grupo_alunos");
   let divAluno = alunoHTML.cloneNode(true);
   divAluno.querySelector(".select_aluno_adicionado").value = '';
-  divAluno.querySelector("#select_curso").setAttribute('disabled', true);
-  divAluno.querySelector("#select_bimestre").setAttribute('disabled', true);
-  divAluno.querySelector("#select_aula").setAttribute('disabled', true);
-
+  divAluno.querySelector(".select_curso").setAttribute('disabled', true);
+  divAluno.querySelector(".select_bimestre").setAttribute('disabled', true);
+  divAluno.querySelector(".select_aula").setAttribute('disabled', true);
   
   let btnDel = document.createElement('button');
   btnDel.classList = 'btn_del_aluno'
@@ -87,7 +86,7 @@ function adicionaAluno() {
   btnDel.addEventListener('click', (e) => {
     e.preventDefault();
     btnDeleteAlunoAdicionado(e)
-    alidaSelectAlunoAdicionado();
+    validaSelectAlunoAdicionado();
   })
   divAluno.insertAdjacentElement('afterbegin', btnDel);
   bgAlunoAdicionado.appendChild(divAluno)
@@ -99,11 +98,17 @@ function adicionaAluno() {
 
 function enableSelectBimestre(e){
   let divAluno = e.target.closest('.div_aluno_adicionado');
-  divAluno.querySelector('#select_bimestre').removeAttribute('disabled');
+  divAluno.querySelector('.select_bimestre').removeAttribute('disabled');
 }
 function disableSelectBimestre(e){
   let divAluno = e.target.closest('.div_aluno_adicionado');
-  let selectBimestre = divAluno.querySelector('#select_bimestre')
+  let selectBimestre = divAluno.querySelector('.select_bimestre')
+  selectBimestre.setAttribute('disabled', true);
+  selectBimestre.selectedIndex = 0; 
+}
+function disableSelectAula(e){
+  let divAluno = e.target.closest('.div_aluno_adicionado');
+  let selectBimestre = divAluno.querySelector('.select_aula')
   selectBimestre.setAttribute('disabled', true);
   selectBimestre.selectedIndex = 0; 
 }
@@ -124,12 +129,14 @@ function validaSelectAlunoAdicionado(e) {
   if (!valorExisteNaLista) {
     select_aluno.setCustomValidity("Nome inválido");
     select_aluno.classList.add('input_invalido');
-    divAluno.querySelector('#select_curso').setAttribute('disabled', true)
-    divAluno.querySelector('#select_curso').innerHTML = "<option selected disabled>Selecione o Curso</option>";
+    divAluno.querySelector('.select_curso').setAttribute('disabled', true)
+    divAluno.querySelector('.select_curso').innerHTML = "<option selected disabled>Selecione o Curso</option>";
     disableSelectBimestre(e)
+    disableSelectAula(e)
+  
   } else {
     setCursoSelect(e)
-    divAluno.querySelector('#select_curso').removeAttribute('disabled')
+    divAluno.querySelector('.select_curso').removeAttribute('disabled')
     select_aluno.setCustomValidity("");
     select_aluno.classList.remove('input_invalido');
   }
@@ -166,11 +173,11 @@ function getInfoFormAddAula(divAluno) {
   let infoAddAula = {};
   let selectAluno = divAluno.querySelector(".select_aluno_adicionado");
   let RA = (selectAluno.value).split('-')[0];
-  let selectCurso = divAluno.querySelector("#select_curso");
+  let selectCurso = divAluno.querySelector(".select_curso");
   let curso = selectCurso.options[
     selectCurso.selectedIndex
   ].value;
-  let selectBimestre = divAluno.querySelector("#select_bimestre");
+  let selectBimestre = divAluno.querySelector(".select_bimestre");
   let bimestre = selectBimestre.options[
     selectBimestre.selectedIndex
   ].value;
@@ -184,7 +191,7 @@ function blockSelectOptionsAddAulas(divAluno, infoAula) {
   let curso = infoAula.curso;
   let bimestre = infoAula.bimestre;
   //Bloqueia as options do select #aula_numero no formulário form_add_aula
-  let select = divAluno.querySelector("#select_aula");
+  let select = divAluno.querySelector(".select_aula");
   select.removeAttribute('disabled')
   let aulasKeys = getKeysAulas(RA, curso, bimestre);
 
@@ -226,41 +233,97 @@ function getKeysAulas(RA, idCurso, bimestre) {
   return keys;
 }
 
-/*
-function blocoAddAula(dados) {
+//------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
+
+
+function submitFormAddAulaGrupo(e) {
+  e.preventDefault();
+  let form = e.target;
+  console.log(form);
+  let divAlunos = form.querySelectorAll('.div_aluno_adicionado');
+  divAlunos.forEach((item)=>{
+
+    let RA =  item.querySelector('.select_aluno_adicionado').value.split('-')[0];
+    let curso =  item.querySelector('.select_curso').value;
+    let bimestre =  item.querySelector('.select_bimestre').value;
+    let aula =  item.querySelector('.select_aula').value;
+
+    form.RA = RA; 
+    form.bimestre = bimestre; 
+    form.aula = aula;
+    form.curso = curso;
+
+  setDoc(doc(db, 'alunato', RA, 'cursos', curso),
+    { bimestres: blocoAddAula(form) },
+    { merge: true }
+  )
+    .then(() => {
+     
+    }).catch((error) => console.error("Erro ao adicionar aula:", error));
+
+});
+defaultEventsAfterSubmitForm("#form_add_aula_grupo", "Aulas adicionadas com sucesso!")
+  
+  /*
+  let RA = form.select_aluno.value;
+  let curso = form.select_curso.value;
+
+  setDoc(doc(db, 'alunato', RA, 'cursos', curso),
+    { bimestres: blocoAddAula(form) },
+    { merge: true }
+  )
+    .then(() => {
+      defaultEventsAfterSubmitForm("#form_add_aula", "Aula adicionada com sucesso!")
+    }).catch((error) => console.error("Erro ao adicionar aula:", error));
+    */
+}
+
+
+
+
+
+
+
+
+//----------------------------------------------------------------------
+//----------------------------------------------------------------------
+
+
+
+function blocoAddAula(form) {
   let aula = {};
-  if (dados.aula_categoria.value === "prova" || dados.aula_categoria.value === "reposição de prova") {
+  if (form.aula_categoria.value === "prova" || form.aula_categoria.value === "reposição de prova") {
     aula = {
-      [dados.select_bimestre.value]: {
-        [dados.select_aula.value]: {
-          categoria: dados.aula_categoria.value,
-          status: dados.status.value,
-          tema: dados.tema.value,
-          data: dados.data.value,
-          horario: dados.horario.value,
-          nota: dados.nota_prova.value,
-          numero_questoes: dados.numero_questoes.value,
-          observacao: dados.obs_prova.value,
+      [form.bimestre]: {
+        [form.aula]: {
+          categoria: form.aula_categoria.value,
+          status: form.status.value,
+          tema: form.tema.value,
+          data: form.data.value,
+          horario: form.horario.value,
+          nota: form.nota_prova.value,
+          numero_questoes: form.numero_questoes.value,
+          observacao: form.obs_prova.value,
         },
       },
     };
   } else {
     aula = {
-      [dados.select_bimestre.value]: {
-        [dados.select_aula.value]: {
-          categoria: dados.aula_categoria.value,
-          status: dados.status.value,
-          tema: dados.tema.value,
-          data: dados.data.value,
-          horario: dados.horario.value,
-          detalhes: dados.detalhes.value,
+      [form.bimestre]: {
+        [form.aula]: {
+          categoria: form.aula_categoria.value,
+          status: form.status.value,
+          tema: form.tema.value,
+          data: form.data.value,
+          horario: form.horario.value,
+          detalhes: form.detalhes.value,
         },
       },
     };
   }
   return aula;
 }
-*/
 
 
 
@@ -296,7 +359,9 @@ function eventClickBtnStatus(form) {
     });
   });
 }
-export function setClassBtnStatus(form) {
+
+
+function setClassBtnStatus(form) {
   removeClassActivedBtnStatus();
   let btns = form.querySelector('#div_status_aula').querySelectorAll('label');
   btns.forEach((item) => {
@@ -322,7 +387,7 @@ function removeClassActivedBtnStatus() {
   });
 }
 
-export function insertOptionsInSelectAluno(form) {
+function insertOptionsInSelectAluno(form) {
   let select = form.querySelector('#select_aluno');
   let mainSelect = document.querySelector('#main_select_aluno');
   select.innerHTML = mainSelect.innerHTML;
@@ -332,7 +397,7 @@ export function insertOptionsInSelectAluno(form) {
 }
 /*
 export async function insertOptionSelectCurso(form) {
-  let select = form.querySelector('#select_curso');
+  let select = form.querySelector('.select_curso');
   let option = ``;
   let bg_curso = document.querySelectorAll(".bg_curso");
   let navCursos = document.querySelector('.nav_cursos_aluno');
@@ -347,27 +412,9 @@ export async function insertOptionSelectCurso(form) {
 */
 
 
-function submitFormAddAulaGrupo(e) {
-  e.preventDefault();
-  let form = e.target;
-  let RA = form.select_aluno.value;
-  let curso = form.select_curso.value;
-  setDoc(doc(db, 'alunato', RA, 'cursos', curso),
-    { bimestres: blocoAddAula(form) },
-    { merge: true }
-  )
-    .then(() => {
-      defaultEventsAfterSubmitForm("#form_add_aula", "Aula adicionada com sucesso!")
-    }).catch((error) => console.error("Erro ao adicionar aula:", error));
-
-}
-
-
-//----------------------------------------------------------------------
-//----------------------------------------------------------------------
 
 function setInputsProva(form) {
-  let selectAula = form.querySelector("#select_aula");
+  let selectAula = form.querySelector(".select_aula");
   let aula_categoria = form.querySelector("#aula_categoria");
 
   selectAula.addEventListener('change', (e) => {
