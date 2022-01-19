@@ -170,8 +170,6 @@ function createCursoHTMLContent(bgCursoHTML, cursoDB) {
 
     divCursoContent.appendChild(divBgBimestres); //Adiciona o '.bg_bimestres' em '#curso_content'
   }//------------------------------------------------END FOR Bimestres
-
-
   return bgCursoHTML;
 }
 function createAulaHTML(aulaDados, n_aula, n_bimestre) {
@@ -179,7 +177,6 @@ function createAulaHTML(aulaDados, n_aula, n_bimestre) {
   let id_aula = stringToID(n_aula);
   //let id_bimestre = n_bimestre.replace(/\s+/g, "_").toLowerCase();
   let id_bimestre = stringToID(n_bimestre);
- 
   let block = `
     <div id='${id_bimestre}_${id_aula}' data-bimestre='${n_bimestre}' 
     data-aula='${n_aula}'  class="aulas aula_${aulaDados.status}" data-aula_categoria="${aulaDados.categoria}">
@@ -230,12 +227,9 @@ function createAulaHTML(aulaDados, n_aula, n_bimestre) {
   return block;
 }
 
-
-
 function createResumoBimestreHTML(cursoDB, bimestreKey) {
   let resBimestre = resumoBimestreBD(cursoDB);
   resBimestre = resBimestre[bimestreKey];
-
   let divResumo = document.createElement('div');
   divResumo.className = 'resumo_bimestre'
   divResumo.innerHTML = `
