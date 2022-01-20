@@ -1,0 +1,49 @@
+#window-bar{
+    opacity: 1;
+    height:30px;
+    margin-top:-20px;
+    overflow: hidden;
+    z-index: 9;
+  
+    width:100%;
+    position: fixed;
+    background: #333;
+    color:#fff;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-app-region: drag;
+    display: flex;
+    justify-content: space-between;
+    #menu-bar{
+        border:1px solid #f90;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        p{
+            font-size: 12px;
+
+
+        }
+    }
+    #bg_buttons{
+
+        display: flex;
+    border:1px solid #f90;
+        display: flex;
+        button{
+            -webkit-app-region: no-drag;
+            margin:0px;
+            border:0px; 
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding:10px;
+            background: transparent;
+            &:hover{
+                background: #444;
+                color:#fff;
+            }
+        }
+    }
+}
