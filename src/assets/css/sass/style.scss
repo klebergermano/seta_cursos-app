@@ -149,6 +149,8 @@ grid-template-columns: minmax(160px, 14%) 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   'aside  cp     cp     cp     cp     cp     cp     cp'
   'aside  footer footer footer footer footer footer footer';
 }
+
+
 #page_content{
   position: relative;
   padding-top:0px;
@@ -157,12 +159,25 @@ grid-template-columns: minmax(160px, 14%) 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   min-height:100vh;
   margin:0px 60px 0px 60px;
 }
+//---------------MEDIA -----------
 @media(min-width:1600px){
   #page_content{
     margin:0px 160px 0px 160px;
   
   }
 }
+
+@media screen and (max-width: 1000px) {
+  #adminContent{
+    grid-template-columns:60px 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  
+  }
+  #page_content{
+    margin:0px 20px 0px 20px !important;
+  
+  }
+  }
+//-------------------------------
 
 .components{
   h3{text-align: center;}
