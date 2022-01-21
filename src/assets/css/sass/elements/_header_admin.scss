@@ -1,6 +1,7 @@
 @use '../abstracts/' as *;
 
 #header_admin {
+  margin-top: -60px;
   z-index: 3;
     grid-area: header;
     background: $primary-color;

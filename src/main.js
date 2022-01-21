@@ -23,6 +23,7 @@ const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 1270,
     height: 800,
+    frame: false,
     autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true,
@@ -36,6 +37,29 @@ const createWindow = () => {
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
+
+
+
+//Btn close App
+ipcMain.on('closeApp', ()=>{
+  mainWindow.close();
+});
+//Btn minimize App
+ipcMain.on('minimizeApp', ()=>{
+  mainWindow.minimize();
+});
+//Btn minimize App
+ipcMain.on('maxRestoreApp', ()=>{
+console.log('maxRestoreApp');
+  if(mainWindow.isMaximized()){
+    mainWindow.restore();
+  }else{
+    mainWindow.maximize();
+
+  }
+});
+
+
 };
 
 // This method will be called when Electron has finished
@@ -60,8 +84,11 @@ app.on('activate', () => {
   }
 });
 
-//TODO: Refatorar funções PDF
 
+
+
+
+//TODO: Refatorar funções PDF
 
 
 //-------------------------------------------------------------------------------------//

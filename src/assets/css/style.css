@@ -848,6 +848,7 @@ menu.submenu_page ul li a {
 }
 
 #header_admin {
+  margin-top: -60px;
   z-index: 3;
   grid-area: header;
   background: #245da7;
@@ -937,6 +938,11 @@ menu.submenu_page ul li a {
 }
 
 #bg_main_menu_lateral_admin {
+  position: fixed;
+  margin-top: -60px;
+  min-height: 100vh;
+  width: 14%;
+  min-width: 160px;
   z-index: 4;
   grid-area: aside;
   background: #222;
@@ -3725,6 +3731,74 @@ form.forms_fluxo_caixa .div_submit input[type=submit] {
   outline: 0;
 }
 
+#window-bar {
+  opacity: 1;
+  height: 35px;
+  margin-top: -30px;
+  overflow: hidden;
+  z-index: 9;
+  width: 100%;
+  position: fixed;
+  background: #303030;
+  color: #fff;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-app-region: drag;
+  display: flex;
+  justify-content: space-between;
+}
+#window-bar figure#bg_logo {
+  cursor: pointer;
+  padding: 30px 20px;
+  max-width: 100%;
+  height: auto;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#window-bar figure#bg_logo img {
+  max-width: 100px;
+  max-height: 100%;
+}
+#window-bar #bg_menu_window_bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#window-bar #bg_menu_window_bar p {
+  font-size: 12px;
+}
+#window-bar #bg_buttons_window_bar {
+  display: flex;
+}
+#window-bar #bg_buttons_window_bar button {
+  -webkit-app-region: no-drag;
+  margin: 0px;
+  border: 0px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background: transparent;
+  color: #f0f0f0;
+  padding: 0px 10px;
+  width: 40px;
+}
+#window-bar #bg_buttons_window_bar button:hover {
+  background: #245da7;
+}
+#window-bar #bg_buttons_window_bar #btn_max_restore_window {
+  padding: 8px;
+}
+#window-bar #bg_buttons_window_bar #btn_max_restore_window svg {
+  font-size: 6px;
+  padding: 2px;
+  max-width: 15px !important;
+  height: auto;
+}
+
 @keyframes spinner-line-fade-more {
   0%, 100% {
     opacity: 0;
@@ -3765,6 +3839,17 @@ form.forms_fluxo_caixa .div_submit input[type=submit] {
 }
 *:focus {
   outline-color: #5690db;
+}
+
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 4px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  border-radius: 9999px;
+  background-color: #222;
 }
 
 LI[data-auth][disabled=true] {
@@ -3813,10 +3898,15 @@ svg {
   margin: 0px 2px -2px 2px;
 }
 
+body, html {
+  overflow: hidden;
+}
+
 body {
   background: #ccc;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   position: relative;
+  padding-top: 30px;
 }
 
 h1 {
@@ -3828,10 +3918,14 @@ h1 {
 }
 
 #adminContent {
+  max-height: calc(100vh - 80px);
+  overflow: scroll;
+  overflow-x: hidden;
+  margin: 0 auto;
+  margin-top: 65px;
   background: #ddd url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm380-16-x_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=d0c544f028f2405b219eb997cb580e21");
   background-size: 100% auto;
   max-width: 100%;
-  margin: 0 auto;
   display: grid;
   grid-template-columns: minmax(160px, 14%) 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-areas: "aside header header header header header header header" "aside  cp     cp     cp     cp     cp     cp     cp" "aside  footer footer footer footer footer footer footer";
@@ -3839,7 +3933,7 @@ h1 {
 
 #page_content {
   position: relative;
-  padding-top: 60px;
+  padding-top: 0px;
   grid-area: cp;
   max-width: 100%;
   min-height: 100vh;
