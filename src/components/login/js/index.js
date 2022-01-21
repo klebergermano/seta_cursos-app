@@ -28,7 +28,7 @@ export function onload() {
         // Signed in 
         getDoc(doc(db, "metadata", "last_version")).then((res) => {
           if (res.data().version !== appVersion) {
-            //Cerrega página principal da home
+            //Cerrega página de updateVersion
             // importHTMLWithScript('#page_content', "../src/appContent/adminContent/updateAppVersion.html", "../../appContent/adminContent/js/index.js", eventsUpdateAppVersion);
             insertElementHTML('#app', './appContent/adminContent/updateAppVersion.html', () => {
               eventsUpdateAppVersion(res.data(), appVersion)
