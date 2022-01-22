@@ -3240,6 +3240,7 @@ option[disabled] {
   background-size: cover;
 }
 #page_login #login_content {
+  position: relative;
   max-width: 400px;
   margin-top: -15%;
 }
@@ -3252,11 +3253,29 @@ option[disabled] {
   max-width: 100%;
 }
 #page_login #login_content #form_login {
+  position: relative;
   max-width: 400px;
   min-height: 250px;
   background: #ffffff66;
   border-radius: 5px;
   padding: 40px 30px;
+}
+#page_login #login_content #form_login #error_login_msg {
+  min-width: calc(100% - 10px);
+  position: absolute;
+  left: 5px;
+  color: #fa4b4b;
+  padding: 3px;
+  background: #00000099;
+  top: -15px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+#page_login #login_content #form_login #error_login_msg p {
+  font-size: 11px;
 }
 #page_login #login_content #form_login h3 {
   text-align: center;
