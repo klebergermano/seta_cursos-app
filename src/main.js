@@ -1,6 +1,6 @@
 
 
-const { app, BrowserWindow, Menu, ipcMain, globalShortcut, Tray, dialog } = require("electron");
+const { app, BrowserWindow, Menu, ipcMain, globalShortcut, Tray, dialog,  shell } = require("electron");
 
 const pdf = require("html-pdf");
 const fs = require("fs");
@@ -40,27 +40,32 @@ const createWindow = () => {
 
 
 
-//Btn close App
-ipcMain.on('closeApp', ()=>{
-  mainWindow.close();
-});
-//Btn minimize App
-ipcMain.on('minimizeApp', ()=>{
-  mainWindow.minimize();
-});
-//Btn minimize App
-ipcMain.on('maxRestoreApp', ()=>{
-console.log('maxRestoreApp');
-  if(mainWindow.isMaximized()){
-    mainWindow.restore();
-  }else{
-    mainWindow.maximize();
+  //Btn close App
+  ipcMain.on('closeApp', ()=>{
+    mainWindow.close();
+  });
+  //Btn minimize App
+  ipcMain.on('minimizeApp', ()=>{
+    mainWindow.minimize();
+  });
+  //Btn minimize App
+  ipcMain.on('maxRestoreApp', ()=>{
+  console.log('maxRestoreApp');
+    if(mainWindow.isMaximized()){
+      mainWindow.restore();
+    }else{
+      mainWindow.maximize();
 
-  }
-});
+    }
+  });
 
 
+  mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+    shell.openExternal(url);
+    return { action: 'deny' };
+  });
 };
+
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
