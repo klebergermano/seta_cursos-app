@@ -36,7 +36,7 @@ const createWindow = () => {
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
 
   // Open the DevTools.
-  //mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 
 
 
@@ -121,7 +121,6 @@ function createPDFCertificado(certificadoInfo) {
 
 ipcMain.handle("createCertificadoPDF", async (event, certificadoInfo) => {
   let novoPDF = createPDFCertificado(certificadoInfo); // call the createPDF function
-
   novoPDF.then((pdf) => {
    let filename = `certificado-${certificadoInfo.aluno_ra}-${certificadoInfo.aluno_nome}-${certificadoInfo.curso_nome}.pdf`;
     filename = filename.toUpperCase();
