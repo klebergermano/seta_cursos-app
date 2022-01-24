@@ -3848,6 +3848,31 @@ form.forms_fluxo_caixa .div_submit input[type=submit] {
   height: auto;
 }
 
+#bg_view_table_log_data {
+  position: relative;
+}
+#bg_view_table_log_data menu #select_log {
+  font-size: 12px;
+}
+#bg_view_table_log_data table th {
+  background: #dddfde;
+  color: #333;
+}
+#bg_view_table_log_data table td, #bg_view_table_log_data table th {
+  font-size: 12px;
+}
+#bg_view_table_log_data table td {
+  padding: 2px !important;
+  text-align: center;
+}
+#bg_view_table_log_data table td .date_text {
+  font-weight: bold;
+}
+#bg_view_table_log_data table textarea {
+  font-size: 10px;
+  width: 100%;
+}
+
 @keyframes spinner-line-fade-more {
   0%, 100% {
     opacity: 0;

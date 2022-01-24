@@ -1,0 +1,30 @@
+#bg_view_table_log_data{
+    position: relative;
+
+    menu{
+      #select_log{
+       font-size: 12px;
+      }
+    }
+    table{
+      th{
+        background:rgb(221, 223, 222);
+        color:#333;
+    }
+    td, th{
+      font-size:12px;
+
+    }
+    td{
+      padding:2px !important;
+       text-align: center;
+       .date_text{
+         font-weight: bold;
+       }
+    }
+      textarea{
+        font-size:10px;
+          width:100%; 
+      }
+    }
+} 

@@ -5,7 +5,6 @@ import { timerIdleMouseMoveFunc } from "./timerIdle.js";
 //----------------------------------------------------
 import { firebaseApp } from "../../../components/dbConfig/firebaseApp.js";
 const { getAuth, signOut } = require("firebase/auth");
-
 const auth = getAuth(firebaseApp);
 //-----------------------------------------------------
 

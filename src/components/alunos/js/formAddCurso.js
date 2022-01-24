@@ -12,6 +12,7 @@ import * as dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
 import {  insertElementHTML, btnCloseForm, defaultEventsAfterSubmitForm } from "../../js_common/commonFunctions.js";
 import {getContratosListDB,  createParcelas,  insertOptionsSelectContrato} from "./commonAlunos.js";
 import {insertViewTableAlunosHTML} from "./viewTableAlunos.js";
+import {addLogInfo} from "../../logData/js/logFunctions.js"; 
 //---------------------------------------------------------------------
 
 let $contratosListInfo = {};
@@ -110,6 +111,7 @@ function setContratoInfo(IDContrato) {
 function submitformAddCurso(e) {
   e.preventDefault();
   let form = e.target;
+  let cursoNome = $contratoInfo.curso_info.nome; 
   let RA = (form.aluno_ra.value).toUpperCase()
     //Objecto utilizado para criar as parcelas com "createParcelas(parcelaInfo)".
     let parcelaInfo = {
@@ -181,8 +183,16 @@ function submitformAddCurso(e) {
   .then(() =>{
     defaultEventsAfterSubmitForm("#form_add_curso", "Curso adicionado com sucesso!");
    }).then(()=>{
-    insertViewTableAlunosHTML();
-   }).catch((error) => console.error("Erro ao adicionar curso: ", error));
+     setTimeout(()=>{
+      insertViewTableAlunosHTML();
+     }, 2000)
+   }).then(()=>{
+     addLogInfo('log_alunato', 'curso_adicionado', RA + '-' + cursoNome);
+   })
+   .catch((error) => {
+    addLogInfo('log_alunato', 'error', RA, error);
+    console.error("Erro ao adicionar curso: ", error)
+    });
 
 
   

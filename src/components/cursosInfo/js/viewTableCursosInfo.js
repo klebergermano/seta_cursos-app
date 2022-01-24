@@ -6,7 +6,7 @@ const {getAuth} = require("firebase/auth");
 const auth = getAuth(firebaseApp);
 import { insertFormAddCursosInfoHTML } from "./formAddCursoInfo.js";
 import {removeUnauthorizedElement} from "../../../appContent/adminContent/js/checkPermission.js";
-
+import {addLogInfo} from "../../logData/js/logFunctions.js"
 
 let $cursosList = {};
 import { insertElementHTML, confirmBoxDelete, readableRandomStringMaker} from "../../js_common/commonFunctions.js";
@@ -141,6 +141,9 @@ import { insertElementHTML, confirmBoxDelete, readableRandomStringMaker} from ".
         })
         .then(()=>{
             insertViewTableCursosInfoHTML();
+        }).then(()=>{
+            addLogInfo("log_cursos_info", 'delete', idCurso);
+        }).catch((error)=>{
+            addLogInfo("log_cursos_info", 'error', idCurso, error)
         })
-        .catch((err)=> console.log(err));
-        }
+    }  

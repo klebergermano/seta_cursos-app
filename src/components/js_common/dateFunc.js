@@ -16,6 +16,21 @@ export function setCurrentDate(idInput) {
   document.querySelector(idInput).value = fcurrentDate;
 }
 
+export function changeDateToDislayTextDatetime(datetime){
+
+  console.log(datetime.toLocaleDateString('pt-BR'));
+  let time = new Date(datetime.getTime()).toLocaleTimeString("en-US"); 
+let day = datetime.getDate();
+let year = datetime.getFullYear();
+let month = (datetime.getMonth() +1);
+day = day.toString().padStart('2', '0');
+month = month.toString().padStart('2', '0');
+let changedDate = `${day}/${month}/${year}`;
+
+
+      return changedDate;
+  
+}
 export function changeDateToDislayText(dateString){
 let newDate = new Date(dateString + ',00:00:00');
 let day = newDate.getDate();

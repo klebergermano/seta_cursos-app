@@ -8,7 +8,7 @@ const db = getFirestore(firebaseApp);
 //Components
 import {insertElementHTML, btnCloseForm, defaultEventsAfterSubmitForm} from "../../js_common/commonFunctions.js";
 import { insertViewTableCursosInfoHTML } from "./viewTableCursosInfo.js";
-
+import { addLogInfo } from "../../logData/js/logFunctions.js";
 //Firebase
 
 //Others libraries
@@ -146,9 +146,11 @@ export function submitFormEditCursoInfo(e){
 
 export function submitFormAddCursoInfo(e){
     let form = e.target;
-    setDoc(doc(db, "cursos_info", form.id_curso.value), 
+    let idCurso = form.id_curso.value;
+    console.log(idCurso);
+    setDoc(doc(db, "cursos_info", idCurso), 
     { 
-      cod: form.id_curso.value, 
+      cod: idCurso, 
       categoria: form.categoria.value, 
       nome: form.nome.value, 
       modulos: form.modulos.value, 
@@ -164,8 +166,15 @@ export function submitFormAddCursoInfo(e){
     ).then(()=>{
       defaultEventsAfterSubmitForm('#form_add_curso_info', 'Curso adicionado com sucesso!');
     }).then(()=>{
-      insertViewTableCursosInfoHTML();
+      //setTimeout usado para atrazer a atualização da página, evitando erro
+      setTimeout(()=>{
+        insertViewTableCursosInfoHTML();
+      }, 2000);
+    }).then(()=>{
+      addLogInfo('log_cursos_info', 'insert', idCurso )
     })
-    .catch(err => console.log(err)); 
+    .catch((error)=>{
+      addLogInfo('log_cursos_info', 'error', idCurso, error)
+    }); 
 }
 

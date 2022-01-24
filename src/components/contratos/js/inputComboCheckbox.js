@@ -16,7 +16,6 @@ let checkCombo = document.querySelector("#check_combo");
       e.target.parentElement.classList.remove("check_combo_checked");
     } else {
       btn_check_combo.querySelector('span').innerHTML = "Desconto Combo &#10003;";
-
       checkCombo.value = true;
       e.target.parentElement.classList.add("check_combo_checked");
     }

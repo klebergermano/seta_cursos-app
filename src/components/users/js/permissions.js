@@ -12,7 +12,7 @@ export function getPermissions(){
             permissions[item.id] = item.data();
         })
         return permissions
-    })
+    }).catch((error)=>{ console.log(error)})
     return perm;
     }
 

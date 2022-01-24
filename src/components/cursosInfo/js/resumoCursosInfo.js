@@ -11,9 +11,7 @@ export function insertResumoCursosInfo() {
 
 function eventsResumoCursosInfo(){
      createContentResumoCursosInfo().then((bgCursosInfo)=>{
-        
         document.querySelector('#cursos_info .page_content').innerHTML = bgCursosInfo.innerHTML;
-
      }); 
 
 }

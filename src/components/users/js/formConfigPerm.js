@@ -1,12 +1,12 @@
-import {btnCloseForm, insertElementHTML, defaultEventsAfterSubmitForm} from "../../js_common/commonFunctions.js";
-import * as permissionsFunc from "./permissions.js";
+
 
 import {firebaseApp} from "../../dbConfig/firebaseApp.js";
 const {getFirestore,  doc, setDoc } = require("firebase/firestore") 
 const db = getFirestore(firebaseApp);
 
-
-
+import {btnCloseForm, insertElementHTML, defaultEventsAfterSubmitForm} from "../../js_common/commonFunctions.js";
+import {getPermissions} from "./permissions.js";
+import {addLogInfo} from "../../logData/js/logFunctions.js"; 
 export function insertFormConfigPerm(){
     insertElementHTML('#page_users', './components/users/formConfigPerm.html', ()=>{
         eventsFormConfigPerm()
@@ -24,7 +24,7 @@ function eventsFormConfigPerm(){
 }
 
 function insertPermissionTextarea(){
-    permissionsFunc.getPermissions()
+    getPermissions()
     .then((permissions)=>{
         let textareaPerm = {}; 
         for(let item in permissions){
@@ -36,20 +36,33 @@ function insertPermissionTextarea(){
         .querySelector('#textarea_permissions')
         .innerHTML = JSON.stringify(textareaPerm, null, '\t') ;
     })
-
 }
 
 export function submitConfigPerm(){
     let form = document.querySelector('#form_config_perm');
     let permissions = JSON.parse(form.textarea_permissions.value);
+
     for(let item in permissions){
+        console.log(item);
         setDoc(doc(db, 'permissions', item), permissions[item])
         .then(()=>{
             defaultEventsAfterSubmitForm('#form_config_perm', "Permissões adicionadas com sucesso!");
         })
-        .catch((error) => console.error("Erro ao adicionar permissões de usuário:", error));
-    
+        .then(()=>{
+            //TODO: corrigir função sem utilizar o setTimeout.
+            //setTimeout usado para contornar o problema de tempo de execução entre o for e a função asincrona addLogInfo.
+            //sem o setTimeout o addLogInfo sobrescreve aomenos uma das entradas no log.
+          setTimeout(()=>{
+              addLogInfo("log_users", 'update', item)
+    }, 1000);
+        })
+        .catch((error) => {
+            addLogInfo("log_users", 'error', item, error);
+            console.error("Erro ao adicionar permissões de usuário:", error);
+        })
     }
+
+
 
 }
 
