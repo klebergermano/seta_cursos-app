@@ -4,9 +4,8 @@ import { insertElementHTML, displaySpinnerLoad, removeSpinnerLoad} from "../../j
 import {submitFormContratoPDF} from "./formAddContrato.js";
 //firestore
 import { firebaseApp } from "../../dbConfig/firebaseApp.js";
-const { getFirestore, setDoc, getDocs, collection, getDoc, doc } = require("firebase/firestore");
+const { getFirestore,  getDoc, doc } = require("firebase/firestore");
 const db = getFirestore(firebaseApp);
-
 
 export function insertInfoContratoHTML(idContrato){
     insertElementHTML("#contratos_content", "./components/contratos/infoContrato.html",  ()=>{eventsInfoContrato(idContrato)}, null, true)
@@ -16,7 +15,6 @@ function eventsInfoContrato(idContrato){
     .then((contratoInfo)=>{
         document.querySelector("#form_info_contrato").addEventListener('submit', (e)=>{
 e.preventDefault();
-console.log('submit');
 submitFormContratoPDF(e)
         });
         insertValuesInputs(contratoInfo)

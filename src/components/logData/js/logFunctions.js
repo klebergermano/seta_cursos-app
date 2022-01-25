@@ -6,8 +6,8 @@ const {getAuth} = require("firebase/auth");
 const auth = getAuth(firebaseApp);
 
 
-export async function addLogInfo(logName, action, error){
-    let levelMessage = setLevelMessageLogData(action, error)
+export async function addLogInfo(logName, action, reference,  error){
+    let levelMessage = setLevelMessageLogData(action, reference, error)
     let newIdDoc = await generateDocFieldNumberLog(logName);
       setDoc(doc(db, 'log_data', logName),
       {
@@ -24,18 +24,18 @@ export async function addLogInfo(logName, action, error){
       ); 
   }
 
-  function setLevelMessageLogData(action, error){
+  function setLevelMessageLogData(action, reference,  error){
     let levelMessage = {}; 
     if(action === 'delete'){
         levelMessage.level = 'alerta',
-        levelMessage.message = `Objeto foi deletado com sucesso do banco de dados`
+        levelMessage.message = `Objeto ref.:${reference}), foi deletado com sucesso do banco de dados`
     }else if(action === 'update'){
         levelMessage.level = 'info',
-        levelMessage.message = `Objeto foi atualizado com sucesso no banco de dados`
+        levelMessage.message = `Objeto ref.:${reference}), foi atualizado com sucesso no banco de dados`
     }
     else if(action === 'insert'){
         levelMessage.level = 'info',
-        levelMessage.message = `Objeto foi adicionado com sucesso no banco de dados`
+        levelMessage.message = `Objeto ref.:${reference}), foi adicionado com sucesso no banco de dados`
     }
     else if(action === 'error' || action === 'erro' || action === 'err'){
         levelMessage.level = 'erro',

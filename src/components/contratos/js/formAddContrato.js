@@ -72,6 +72,8 @@ let optionsSelect  = getDocs(collection(db, 'cursos_info'))
 }).then((res)=>{
   document.querySelector("#curso_nome").innerHTML = res;
   document.querySelector("#combo_curso_2").innerHTML = res;
+}).catch((error)=>{
+ console.log(error);
 })
 return optionsSelect;
 }
@@ -196,11 +198,15 @@ setDoc(doc(db, "contratos", formInfo.id_contrato),
 }, 
 { merge: true}
 ).then(()=>{
-  addLogInfo('log_contratos', 'insert');
-}).catch((error)=>{
-  addLogInfo('log_contratos', 'error', error);
+  addLogInfo('log_contratos', 'insert', formInfo.id_contrato);
+})
+.then(()=>{
+  submitFormContratoPDF(e)
+})
+.catch((error)=>{
+  addLogInfo('log_contratos', 'error', formInfo.id_contrato,  error);
 }); 
-    submitFormContratoPDF(e)
+    
 }
 
 function createFormInfo(e){
@@ -266,5 +272,7 @@ export function submitFormContratoPDF(e) {
     result.then(() => {
       //loadinContrato.style.display = "none";
       commonFunc.removeSpinnerLoad("#page_content");
+    }).catch((error)=>{
+      addLogInfo('log_contratos', 'create_pdf', '', error);
     });
   }

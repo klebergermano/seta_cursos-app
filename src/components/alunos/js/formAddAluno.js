@@ -8,6 +8,7 @@ import {insertElementHTML, defaultEventsAfterSubmitFixedForm} from "../../js_com
 import {eventsAlunoRA} from "../../alunos/js/alunoRA.js";
 import {getContratoInfoDB,  createParcelas,  insertOptionsSelectContrato} from "./commonAlunos.js";
 //------------------------------------------------------------------------
+import { addLogInfo } from "../../logData/js/logFunctions.js";
 
 let $contratoInfo = {};
 
@@ -66,7 +67,7 @@ function eventsFormAddAluno(){
   //Salva o aluno no banco de dados.
   async function submitFormAddAluno(e) {
     e.preventDefault();
-    console.log($contratoInfo);
+   
     let form = e.target;
     let RA = (form.aluno_ra.value).toUpperCase()
     //Objecto utilizado para criar as parcelas com "createParcelas(parcelaInfo)".
@@ -143,7 +144,14 @@ function eventsFormAddAluno(){
     })
     .then(()=>{
       defaultEventsAfterSubmitFixedForm("#alunos_content", "Aluno salvo com sucesso!");
-    }).catch((error) => console.error("Erro ao adicionar Aluno:", error));
+    })
+    .then(()=>{
+      addLogInfo('log_alunato', 'insert', RA);
+    })
+    .catch((error) => {
+      addLogInfo('log_alunato', 'error', RA, error);
+      console.error("Erro ao adicionar Aluno:", error);
+    })
   }
 
 function setInfoAlunoAlunato(RA){

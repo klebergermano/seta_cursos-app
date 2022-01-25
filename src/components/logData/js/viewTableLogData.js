@@ -62,7 +62,7 @@ if(logInfo){
         <td class='td_user'>${value.user}</td>
         <td class='td_level ${value.level}'>${value.level}</td>
         <td class='td_action ${value.action}'>${value.action}</td>
-        <td class='td_msg'>${value.message}</td>
+        <td class='td_msg'><textarea readonly='true'>${value.message}</textarea></td>
         `
         tr.innerHTML = trContent;
         tbody.appendChild(tr)

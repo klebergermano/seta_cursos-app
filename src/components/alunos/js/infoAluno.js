@@ -1,5 +1,4 @@
 const { ipcRenderer } = require("electron");
-
 //firestore
 import { firebaseApp } from "../../dbConfig/firebaseApp.js";
 const { getFirestore, setDoc, getDocs, collection, getDoc, doc } = require("firebase/firestore");
@@ -7,6 +6,7 @@ const db = getFirestore(firebaseApp);
 
 //Components
 import { insertElementHTML, displaySpinnerLoad, removeSpinnerLoad } from "../../js_common/commonFunctions.js";
+import { addLogInfo } from "../../logData/js/logFunctions.js";
 import { insertFormAddCertificadoHTML } from "./formAddCertificado.js";
 //------------------------------------------------------------------------
 //Others libraries
@@ -78,7 +78,7 @@ function eventsInfoAluno(RA) {
                 VMasker(form.querySelector("#resp_rg")).maskPattern("99.999.999-S");
                 form.addEventListener('submit', (e) => {
                     e.preventDefault();
-                    submitFormsInfo(e)
+                    submitFormsInfoCurso(e)
                 });
                 form.querySelector("#checkbox_certificado_entregue")?.addEventListener('input', (e) => {
 
@@ -99,7 +99,7 @@ function activeSubmitOnChangeInput(e) {
     inputSubmit.style.opacity = '1';
 }
 
-function submitFormsInfo(e) {
+function submitFormsInfoCurso(e) {
     let form = e.target;
     let RA = form.aluno_ra.value;
     let curso = form.curso_nome.value;
@@ -136,6 +136,11 @@ function submitFormsInfo(e) {
         let inputSubmit = form.querySelector('input[type="submit"]');
         inputSubmit.setAttribute('disabled', true);
         inputSubmit.style.opacity = '0.5';
+    }).then(()=>{
+        addLogInfo('log_alunato', 'update', RA);
+    }).catch((error)=>{
+        addLogInfo('log_alunato', 'error', RA, error);
+
     })
 }
 
@@ -162,6 +167,11 @@ function submitFormInfoAluno(e) {
         let inputSubmit = form.querySelector('input[type="submit"]');
         inputSubmit.setAttribute('disabled', true);
         inputSubmit.style.opacity = '0.5';
+    }).then(()=>{
+        addLogInfo('log_alunato', 'update', RA);
+    }).catch((error)=>{
+        addLogInfo('log_alunato', 'error', RA, error);
+
     })
 
 }
@@ -178,7 +188,7 @@ async function getInfoAlunoDB(RA) {
             insertAlunoCursoInfo(RA, cursos);
         }).then(() => {
             return $alunoInfo;
-        })
+        }).catch((error)=>{ console.log(error)})
     return alunoInfo;
 }
 function getCursosInfoAlunoDB(RA) {
@@ -189,7 +199,7 @@ function getCursosInfoAlunoDB(RA) {
                 $alunoInfo.cursos[nomeCurso] = item.data();
             })
             return res;
-        })
+        }).catch((error)=>{ console.log(error)})
     return cursos;
 }
 
@@ -475,6 +485,7 @@ function createCursoCotentHTML(RA, curso) {
 }
 
 function submitTalaoPDF(talaoInfo) {
+    console.log(talaoInfo);
     displaySpinnerLoad("#page_content", true);
     let result = new Promise((resolve, reject) => {
         let res = ipcRenderer.invoke("createTalaoPDF", talaoInfo);
@@ -487,6 +498,10 @@ function submitTalaoPDF(talaoInfo) {
     result.then(() => {
         //loadinContrato.style.display = "none";
         removeSpinnerLoad("#page_content");
+    })
+    .catch((error)=>{ 
+        console.log(error)
+        addLogInfo('log_alunato', 'error', talaoInfo.RA, error );
     });
 }
 
