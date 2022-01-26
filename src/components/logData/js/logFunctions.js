@@ -28,15 +28,29 @@ export async function addLogInfo(logName, action, reference,  error){
     let levelMessage = {}; 
     if(action === 'delete'){
         levelMessage.level = 'alerta',
-        levelMessage.message = `Objeto ref.:${reference}), foi deletado com sucesso do banco de dados`
+        levelMessage.message = `Objeto ref.:"${reference}", foi deletado com sucesso do banco de dados.`
     }else if(action === 'update'){
         levelMessage.level = 'info',
-        levelMessage.message = `Objeto ref.:${reference}), foi atualizado com sucesso no banco de dados`
+        levelMessage.message = `Objeto ref.:"${reference}", foi atualizado com sucesso no banco de dados.`
     }
     else if(action === 'insert'){
         levelMessage.level = 'info',
-        levelMessage.message = `Objeto ref.:${reference}), foi adicionado com sucesso no banco de dados`
+        levelMessage.message = `Objeto ref.:"${reference}", foi adicionado com sucesso no banco de dados.`
     }
+    else if(action === 'curso_adicionado'){
+        levelMessage.level = 'info',
+        levelMessage.message = `Objeto ref.:"${reference}", curso foi vinculado com sucesso.`
+    }
+    else if(action === 'curso_deletado'){
+        levelMessage.level = 'alerta',
+        levelMessage.message = `Objeto ref.:"${reference}", curso foi deletado com sucesso.`
+    }
+
+    else if(action === 'pdf_gerado'){
+        levelMessage.level = 'info',
+        levelMessage.message = `Objeto ref.:"${reference}", PDF gerado com sucesso.`
+    }
+
     else if(action === 'error' || action === 'erro' || action === 'err'){
         levelMessage.level = 'erro',
         levelMessage.message = `Houve um erro no sistema: ${error.code}, ${error.message}`
@@ -60,17 +74,23 @@ export async function addLogInfo(logName, action, reference,  error){
 function generateDocFieldNumberLog(logName){
     let newIdDoc = getDoc(doc(db, 'log_data', logName))
     .then((res) => {
-     let log = res.data();
-        let id_numbers = [];
-        for( let key of Object.keys(log)){
-            let number = parseFloat(key.replace(/\D/g, ''));
-            id_numbers.push(number)
+        console.log('res', res.data());
+        if(res.data()){
+            let log = res.data();
+            let id_numbers = [];
+              for( let key of Object.keys(log)){
+                  let number = parseFloat(key.replace(/\D/g, ''));
+                  id_numbers.push(number)
+              }
+             let maxId = id_numbers.reduce(function (a, b) {
+                  return Math.max(a, b);
+               });
+               console.log(maxId + 1);
+           return maxId + 1;
+        }else{
+            return 1;
         }
-      let maxId = id_numbers.reduce(function (a, b) {
-            return Math.max(a, b);
-         });
-         console.log(maxId + 1);
-     return maxId + 1;
+
 
     })    
     return newIdDoc;
