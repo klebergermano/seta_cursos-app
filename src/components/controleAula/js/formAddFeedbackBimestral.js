@@ -6,7 +6,7 @@ const db = getFirestore(firebaseApp);
 
 import {removeBugExtraBgFormBLockScreen, insertElementHTML, btnCloseForm, defaultEventsAfterSubmitForm, showMessage} from "../../js_common/commonFunctions.js";
 import * as formAddAula from "./formAddAula.js";
-
+import { addLogInfo } from "../../logData/js/logFunctions.js";
 export function insertFormAddFeedbackBimestral(e){
 
     insertElementHTML('#page_content',
@@ -39,6 +39,7 @@ function submitformAddFeedbackBimestral(e) {
   let form = e.target;
   let RA = form.select_aluno.value;
   let curso = form.select_curso.value;
+  let bimestre = form.select_bimestre.value;
   setDoc(doc(db, 'alunato', RA, 'cursos', curso), 
   {
     bimestres: {
@@ -52,7 +53,13 @@ function submitformAddFeedbackBimestral(e) {
   },{ merge: true }
   ).then(() => {
     defaultEventsAfterSubmitForm("#form_add_feedback_bimestral", "Feedback adicionado com sucesso!");
-    showMessage("form_add_feedback_bimestral", "Feedback adicionado com sucesso!")
-  }).catch((error) => console.error("Erro ao adicionar feedback: ", error));
-
+    //showMessage("form_add_feedback_bimestral", "Feedback adicionado com sucesso!")
+  })
+  .then(()=>{
+    addLogInfo('log_alunato', 'update', `feedback-${RA}-${curso}-${bimestre}`);
+ })
+ .catch((error)=>{
+   console.log(error);
+   addLogInfo('log_alunato', 'error', `insert_feedback-${RA}-${curso}-${bimestre}`, error);
+ });
 }

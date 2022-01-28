@@ -4,13 +4,13 @@ import {insertFormEditAulaHTML} from "./formEditAula.js";
 import {insertFormReposicaoAula} from "./formAddReposicaoAula.js";
 import {insertFormAddPontoExtra} from "./formAddPontoExtra.js";
 import {insertFormAddFeedbackBimestral} from "./formAddFeedbackBimestral.js";
-import {eventDeleteCurso, eventsDeletarAula} from "./deleteFunc.js";
+import { eventsDeletarAula} from "./deleteFunc.js";
 import {eventsBaixarHistorico} from "./baixarHistoricoAluno.js";
 import {removeUnauthorizedElement} from "../../../appContent/adminContent/js/checkPermission.js";
 
 
 export function eventsAulas() {
-    eventDeleteCurso();
+    
     eventBtnAddAula();
     eventBtnAddReposicaoAula()
     eventBtnAddPontoExtra()

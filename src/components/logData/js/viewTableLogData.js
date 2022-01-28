@@ -60,7 +60,7 @@ if(logInfo){
         <td class='td_datetime'><span class='date_text'>${datetime.toLocaleDateString('pt-BR')}</span>
         <span>${datetime.toLocaleTimeString('pt-BR')}</span></td>
         <td class='td_user'>${value.user}</td>
-        <td class='td_level ${value.level}'>${value.level}</td>
+        <td class='td_level '><span class='${value.level}'>${value.level}</span></td>
         <td class='td_action ${value.action}'>${value.action}</td>
         <td class='td_msg'><textarea readonly='true'>${value.message}</textarea></td>
         `

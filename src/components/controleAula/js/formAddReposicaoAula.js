@@ -2,8 +2,8 @@
 
 import * as formAddAula from "./formAddAula.js";
 import * as commonFunc from "../../js_common/commonFunctions.js";
-import * as dateFunc from "../../js_common/dateFunc.js";
 
+import { addLogInfo } from "../../logData/js/logFunctions.js";
 export function insertFormReposicaoAula(eventClick){
     let form = commonFunc.insertElementHTML('#page_content',
     './components/controleAula/formAddAula.html');

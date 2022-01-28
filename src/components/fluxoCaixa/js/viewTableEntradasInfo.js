@@ -3,7 +3,7 @@ import {changeDateToDislayText} from "../../js_common/dateFunc.js";
 import {countEntradasTotal, somaValorTotalMes, setFluxoCaixaAno,  setAnoMesSelectFiltros, sortTbodyElementByDate, 
         getFiltroInfoAnoMes} from "./commonFluxoCaixa.js";
 import {createRadomIdLogBasedOnData, insertElementHTML, confirmBoxDelete} from "../../js_common/commonFunctions.js";
-
+import { addLogInfo } from "../../logData/js/logFunctions.js";
 //entradasInfoTable
 
 //firebase
@@ -223,16 +223,14 @@ function insertContentTableEntradaAvulsa(contentTable){
                 }
               }, { merge: true }
               );
-            }) .then(()=>{ 
-                let idLog = createRadomIdLogBasedOnData();
-                    setDoc(doc(db, "log", 'log_fluxo_caixa'),{
-                        [idLog]: `Deletado 'Entrada Pag. Mensalidade' "${RA} - ${data} - R$${valor}" deletado em ${new Date()} por ${auth.currentUser.email}`
-                        },
-                        { merge: true})
-                })
+            }) 
             .then(()=>{
                 insertFluxoCaixaInfoInTableHTML();
-            }).catch((err)=> console.log(err));
+            }).then(()=>{
+                addLogInfo('log_fluxo_caixa', 'delete', `pag_mensalidade -"${RA} - ${parcela} - R$${valor}"`);
+              }).catch((error)=>{
+                addLogInfo('log_fluxo_caixa', 'error', 'pag_mensalidade', error);
+              });
         }
 
         function  submitDeleteEntradaAvulsa(ano, mes, row, data, valor, descricao){
@@ -250,7 +248,11 @@ function insertContentTableEntradaAvulsa(contentTable){
             })
             .then(()=>{
                 insertFluxoCaixaInfoInTableHTML();
-            }).catch((err)=> console.log(err));
+            }).then(()=>{
+                addLogInfo('log_fluxo_caixa', 'delete', `entrada_avulsa -"${descricao} - R$${valor}"`);
+              }).catch((error)=>{
+                addLogInfo('log_fluxo_caixa', 'error', 'entrada_avulsa', error);
+              });
             }
 
 function createContentPagMensalTableHTML (fluxoCaixaAno, mes){
@@ -278,6 +280,8 @@ function createContentPagMensalTableHTML (fluxoCaixaAno, mes){
                 <td class='td_curso'>${value.curso}</td>
                 <td class='td_parcela'>${value.parcela}</td>
                 <td class='td_form_pag'>${value.form_pag}</td>
+                <td class='td_obs'><textarea readonly='true'>${value.obs}</textarea></td>
+
                 <td class='td_valor_total'>${value.valor_total}</td>
                 <td  class='td_controls'>
                 <button title="Deletar Pagamento" class='btn_delete_pag_mensal'>
@@ -293,7 +297,6 @@ function createContentPagMensalTableHTML (fluxoCaixaAno, mes){
                }//if
             }
          
-         
             if(entradas){
             //--------------------------------------
             let resEntradas = countEntradasTotal( fluxoCaixaAno, mes, 'pag_mensalidade');
@@ -302,14 +305,14 @@ function createContentPagMensalTableHTML (fluxoCaixaAno, mes){
             let trResumo = document.createElement('tr');
             trResumo.id='tr_resumo';
             trResumo.innerHTML = `
-            <td colspan='5'>Entradas: <span id='res_total_entradas'>${resEntradas}</span></td>
+            <td colspan='6'>Entradas: <span id='res_total_entradas'>${resEntradas}</span></td>
             <td colspan='2' class="td_valor_total" id="td_res_valor_total">${resValorTotal}</td>
-
             `;
             tbody.appendChild(trResumo)
             }else{
                 let tr = document.createElement('tr')
                 tr.innerHTML= `
+                <td>...</td>
                 <td>...</td>
                 <td>...</td>
                 <td>...</td>
@@ -321,7 +324,6 @@ function createContentPagMensalTableHTML (fluxoCaixaAno, mes){
                 ;
                 tbody.appendChild(tr)
             }
-           
     }else{
         let tr = document.createElement('tr')
         tr.innerHTML= `

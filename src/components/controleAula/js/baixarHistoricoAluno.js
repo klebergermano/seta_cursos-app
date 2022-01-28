@@ -1,7 +1,7 @@
 //imports
 import * as commonFunc from "../../js_common/commonFunctions.js";
 import {displaySpinnerLoad, removeSpinnerLoad } from "../../js_common/commonFunctions.js";
-
+import { addLogInfo } from "../../logData/js/logFunctions.js";
 //require Nodejs
 const { ipcRenderer } = require("electron");
 //Firebase
@@ -42,6 +42,11 @@ async function sendHistoricoAluno(alunoInfo) {
     setTimeout(()=>{
       removeSpinnerLoad("#page_content");
     }, 1500)
+  }).then(()=>{
+    addLogInfo("log_alunato", "create_pdf", `histórico_pdf-${alunoInfo.RA}-${alunoInfo.curso}`);
   })
-    .catch((err) => console.log('Ocorreu um erro ao enviar o Histórico do Aluno', err));
+    .catch((error) => {
+    addLogInfo("log_alunato", "error", `histórico_pdf-${alunoInfo.RA}-${alunoInfo.curso}`, error);
+      console.log('Ocorreu um erro ao enviar o Histórico do Aluno', err)
+    });
 }//-------------//rs

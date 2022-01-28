@@ -272,7 +272,7 @@ export function submitFormContratoPDF(e) {
     result.then(() => {
       //loadinContrato.style.display = "none";
       commonFunc.removeSpinnerLoad("#page_content");
-      addLogInfo('log_contratos', 'pdf_gerado', formValues.resp_nome + ' - ' + formValues.curso_nome);
+      addLogInfo('log_contratos', 'create_pdf', formValues.resp_nome + ' - ' + formValues.curso_nome);
 
     }).catch((error)=>{
       addLogInfo('log_contratos', 'error', formValues.resp_nome + ' - ' + formValues.curso_nome, error, error);

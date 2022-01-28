@@ -4,7 +4,6 @@ import {countEntradasTotal, somaValorTotalMes, setFluxoCaixaAno,
 
 } from "./commonFluxoCaixa.js";
 
-
 //--------------------------------------------------------------------
 import { insertElementHTML} from "../../js_common/commonFunctions.js";
 import { converteMesNumeroPorExtenso } from "../../js_common/dateFunc.js";
@@ -16,11 +15,8 @@ const VMasker = require("vanilla-masker");
 let $fluxoCaixaAno = {};
 export function insertResumoFluxoCaixaHTML() {
   insertElementHTML("#fluxo_caixa_content", "./components/fluxoCaixa/resumoFluxoCaixa.html", eventsResumoFluxoCaixa, null, true)
-
 }
-
-
-function eventsResumoFluxoCaixa() {
+function eventsResumoFluxoCaixa(){
   setAnoMesSelectFiltros()
   let filtroInfo = getFiltroInfoAnoMes()
   setFluxoCaixaAno(filtroInfo.ano)
