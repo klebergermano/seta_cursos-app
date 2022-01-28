@@ -5,11 +5,12 @@
         margin-bottom:20px;
     }
     table{
+        font-size:13px;
+
         caption{
             padding:8px;
             background:#333;
             color:#f0f0f0;
-            font-size:14px;
         }
         thead{
             th{
@@ -29,7 +30,7 @@
                     background: #f6f6e0;
                 }
                 td{
-                    padding:10px 5px;
+                    padding:0px 5px;
                 }
             }
             .td_linha{
@@ -37,12 +38,16 @@
                 background:#ccc;
                 color:#666;
             }
-            .td_data, .td_parcela, .td_valor_total, .td_controls{
+            .td_data, .td_parcela, .td_curso, .td_valor_total, .td_controls, .td_form_pag{
                 text-align: center;
+            }
+            .td_controls{
+                padding:5px;
             }
          
             .td_valor_total{
                 color:#247e24;
+                font-size: 14px;
             }
         }
     }
@@ -56,6 +61,7 @@
             text-align: center; 
             background: #bd4343;
             color:#fff;
+            padding:5px;
         }
     }
   
@@ -69,6 +75,7 @@
                     text-align: center;
                     background:#464; 
                     color:#fff;
+                    padding:5px;
                 }
             }
 
@@ -77,3 +84,16 @@
     margin-top:40px;
 }
     
+#pag_mensal_table_info{
+    .td_obs{
+        text-align: center;
+        font-size: 11px;
+        max-width: 100px;
+        min-width: 50px;
+        textarea{
+            width: 100%;
+            background: transparent;
+            padding:2px;
+        }
+    }
+}

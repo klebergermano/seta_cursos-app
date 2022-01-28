@@ -6,6 +6,7 @@ import {countEntradasTotal, somaValorTotalMes, setFluxoCaixaAno,
     setAnoMesSelectFiltros, sortTbodyElementByDate, 
     getFiltroInfoAnoMes} from "./commonFluxoCaixa.js";
 
+import { addLogInfo } from "../../logData/js/logFunctions.js";
 //firebase
 import {firebaseApp} from "../../dbConfig/firebaseApp.js";
 const {getFirestore, getDoc, doc, deleteField,setDoc, updateDoc} = require("firebase/firestore") 
@@ -191,7 +192,11 @@ table.querySelector('#tbody').innerHTML = contentTable.innerHTML;
         })
         .then(()=>{
             insertSaidasInfoTableHTML();
-        }).catch((err)=> console.log(err));
+        }).then(()=>{
+            addLogInfo('log_fluxo_caixa', 'delete', `saida_avulsa -"${descricao} - R$${valor}"`);
+          }).catch((error)=>{
+            addLogInfo('log_fluxo_caixa', 'error', 'saida_avulsa', error);
+          });
         }
 
 
