@@ -3491,7 +3491,7 @@ option[disabled] {
   margin-bottom: 20px;
 }
 .bg_info_tables table {
-  font-size: 13px;
+  font-size: 14px;
 }
 .bg_info_tables table caption {
   padding: 8px;
@@ -3513,15 +3513,16 @@ option[disabled] {
   background: #f6f6e0;
 }
 .bg_info_tables table tbody tr td {
-  padding: 0px 5px;
+  padding: 5px;
+  text-align: center;
+}
+.bg_info_tables table tbody #tr_resumo td {
+  padding: 10px;
 }
 .bg_info_tables table tbody .td_linha {
   text-align: center;
   background: #ccc;
   color: #666;
-}
-.bg_info_tables table tbody .td_data, .bg_info_tables table tbody .td_parcela, .bg_info_tables table tbody .td_curso, .bg_info_tables table tbody .td_valor_total, .bg_info_tables table tbody .td_controls, .bg_info_tables table tbody .td_form_pag {
-  text-align: center;
 }
 .bg_info_tables table tbody .td_controls {
   padding: 5px;
@@ -3538,17 +3539,14 @@ option[disabled] {
   text-align: center;
   background: #bd4343;
   color: #fff;
-  padding: 5px;
 }
 
 #bg_entradas_info_table caption {
   background: #4d794d;
 }
 #bg_entradas_info_table tr#tr_resumo #td_res_valor_total {
-  text-align: center;
   background: #464;
   color: #fff;
-  padding: 5px;
 }
 
 #entrada_avulsa_table_info {
@@ -3903,6 +3901,46 @@ form.forms_fluxo_caixa .div_submit input[type=submit] {
 }
 #bg_view_table_log_data table td .date_text {
   font-weight: bold;
+}
+#bg_view_table_log_data table td span {
+  display: block;
+  padding: 5px;
+  border-radius: 3px;
+  width: 100%;
+  max-width: 60px;
+  margin: 0 auto;
+}
+#bg_view_table_log_data table .td_level {
+  padding: 10px !important;
+}
+#bg_view_table_log_data table td.delete {
+  color: #b34132;
+}
+#bg_view_table_log_data table td.curso_deletado {
+  color: #b42c1a;
+}
+#bg_view_table_log_data table td.update {
+  color: #1856a7;
+}
+#bg_view_table_log_data table td.error {
+  color: red;
+}
+#bg_view_table_log_data table td.insert {
+  color: #03662f;
+}
+#bg_view_table_log_data table td.create_pdf {
+  color: #242836;
+}
+#bg_view_table_log_data table span.erro {
+  background: red;
+  color: #fff;
+}
+#bg_view_table_log_data table span.alerta {
+  background: #ec581d;
+  color: #fff;
+}
+#bg_view_table_log_data table span.info {
+  background: #89c5c2;
 }
 #bg_view_table_log_data table textarea {
   font-size: 10px;

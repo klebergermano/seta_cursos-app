@@ -21,6 +21,50 @@
        .date_text{
          font-weight: bold;
        }
+
+     
+        span{
+          display: block;
+          padding:5px; 
+          border-radius: 3px;
+          width: 100%;
+          max-width: 60px;
+          margin:0 auto;
+        }
+      }
+      
+      .td_level{
+        padding:10px !important;
+      }
+    td.delete{
+    color:rgb(179, 65, 50);
+    }
+    td.curso_deletado{
+    color:rgb(180, 44, 26);
+    }
+    td.update{
+      color:rgb(24, 86, 167);
+      }
+      td.error{
+        color:red;
+          } 
+          td.insert{
+            color:rgb(3, 102, 47);
+            }
+          td.create_pdf{
+            color:rgb(36, 40, 54);
+            }
+      span.erro{
+    background:red;
+    color:#fff;
+    }
+
+    span.alerta{
+background: rgb(236, 88, 29);
+color:#fff;
+    }
+    span.info{
+background: rgb(137, 197, 194);
     }
       textarea{
         font-size:10px;

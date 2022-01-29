@@ -46,7 +46,7 @@ export async function addLogInfo(logName, action, reference,  error){
         levelMessage.message = `Objeto ref.:"${reference}", curso foi deletado com sucesso.`
     }
 
-    else if(action === 'pdf_gerado'){
+    else if(action === 'create_pdf'){
         levelMessage.level = 'info',
         levelMessage.message = `Objeto ref.:"${reference}", PDF gerado com sucesso.`
     }

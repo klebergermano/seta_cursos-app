@@ -5,7 +5,7 @@
         margin-bottom:20px;
     }
     table{
-        font-size:13px;
+        font-size:14px;
 
         caption{
             padding:8px;
@@ -30,17 +30,19 @@
                     background: #f6f6e0;
                 }
                 td{
-                    padding:0px 5px;
+                    padding: 5px;
+                    text-align: center;
                 }
+            }
+            #tr_resumo{
+                td{padding:10px;}
             }
             .td_linha{
                 text-align: center;
                 background:#ccc;
                 color:#666;
             }
-            .td_data, .td_parcela, .td_curso, .td_valor_total, .td_controls, .td_form_pag{
-                text-align: center;
-            }
+         
             .td_controls{
                 padding:5px;
             }
@@ -61,10 +63,8 @@
             text-align: center; 
             background: #bd4343;
             color:#fff;
-            padding:5px;
         }
     }
-  
 }
 #bg_entradas_info_table{
         caption{
@@ -72,14 +72,12 @@
         } 
             tr#tr_resumo{
                 #td_res_valor_total{
-                    text-align: center;
                     background:#464; 
                     color:#fff;
-                    padding:5px;
                 }
             }
-
 }
+
 #entrada_avulsa_table_info{
     margin-top:40px;
 }
