@@ -8,7 +8,10 @@ import {insertInfoContratoHTML} from "./infoContrato.js";
 
 let $contratosLista = {};
 import { insertElementHTML, confirmBoxDelete, readableRandomStringMaker} from "../../js_common/commonFunctions.js";
-    function getContratosList(){
+import { addLogInfo } from "../../logData/js/logFunctions.js";
+
+
+function getContratosList(){
         let contratosList = getDocs(collection(db, 'contratos'));
         return contratosList;
     }
@@ -59,17 +62,15 @@ import { insertElementHTML, confirmBoxDelete, readableRandomStringMaker} from ".
 function  submitDeleteContrato(idContrato){
     deleteDoc(doc(db, 'contratos', idContrato))
     .then(()=>{
-        let data = new Date();
-        let id =  data.getFullYear()+''+(data.getMonth()+1)+''+data.getDate()+''+readableRandomStringMaker(5);
-      setDoc(doc(db, "log", 'log_contratos'),{
-        [id]: `Contrato ${idContrato} deletado em ${new Date()} por ${auth.currentUser.email}`
-        },
-        { merge: true})
-    })
-    .then(()=>{
         insertViewTableContratosHTML()
     })
-    .catch((err)=> console.log(err));
+    .then(()=>{
+        addLogInfo('log_contratos', 'delete', idContrato)
+    })
+    .catch((error)=>{
+        addLogInfo('log_contratos', 'error', idContrato, error)
+        console.log(err);
+    })
     }
  
     function createTableContratosHTML (contratosInfo){

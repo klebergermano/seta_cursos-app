@@ -10,6 +10,7 @@ import { insertElementHTML, confirmBoxDelete, readableRandomStringMaker} from ".
 import { insertFormAddCursoHTML } from "./formAddCurso.js";
 import { insertFormDeleteCursoHTML } from "./formDeleteCurso.js";
 import { insertInfoAlunoHTML } from "./infoAluno.js";
+import { addLogInfo } from "../../logData/js/logFunctions.js";
 //-----------------------------------------------------------------------
 
 
@@ -107,7 +108,13 @@ export function eventsInserViewTableAlunos() {
         .then(()=>{
             insertViewTableAlunosHTML()
         })
-        .catch((err)=> console.log(err));
+        .then(()=>{
+            addLogInfo('log_alunato', 'delete', RA);
+        })
+        .catch((error)=> {
+            addLogInfo('log_alunato', 'error', RA, error);
+
+        });
     
         }
 

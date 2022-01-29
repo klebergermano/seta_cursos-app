@@ -3,6 +3,7 @@ import {defaultEventsAfterSubmitFixedForm, insertElementHTML} from "../../js_com
 import insertInputValorTotal from "../../contratos/js/insertInputValorTotal.js";
 import { setCurrentDate, converteMesNumeroPorExtenso } from "../../js_common/dateFunc.js";
 import createNewRowFluxoCaixa from "./createNewRowFluxoCaixa.js";
+import { addLogInfo } from "../../logData/js/logFunctions.js";
 //Furebase
 import { firebaseApp } from "../../dbConfig/firebaseApp.js"
 const { getFirestore, doc, setDoc, onSnapshot, updateDoc, collection, getDocs, getDoc } = require("firebase/firestore")
@@ -162,6 +163,9 @@ function submitFormAddPagMensalidade(e) {
   let ano = (data.getFullYear()).toString();
   //let mes = setMonthDate(data);
   let mes = converteMesNumeroPorExtenso((data.getMonth() + 1));
+let valor_total = form.curso_valor_total.value;
+let parcela = form.select_parcelas.value;
+
   createNewRowFluxoCaixa(ano, mes)
     .then((row) => {
       setDoc(doc(db, "fluxo_caixa", ano),
@@ -218,6 +222,10 @@ function submitFormAddPagMensalidade(e) {
       }, { merge: true }
       );
 
+    }).then(()=>{
+      addLogInfo('log_fluxo_caixa', 'insert', `pag_mensalidade - ${RA} - ${parcela} - ${valor_total}`);
+    }).catch((error)=>{
+      addLogInfo('log_fluxo_caixa', 'error', `pag_mensalidade - ${RA} - ${parcela} - ${valor_total}`, error);
     });
 
 }

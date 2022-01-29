@@ -4,7 +4,7 @@ const db = getFirestore(firebaseApp);
 
 import {removeBugExtraBgFormBLockScreen, btnCloseForm, insertElementHTML, stringToID, defaultEventsAfterSubmitForm} from "../../js_common/commonFunctions.js";
 import {getAlunoHistCursosDB} from "../../js_common/dbAlunoHistoricoFunc.js";
-
+import { addLogInfo } from "../../logData/js/logFunctions.js";
 
   export async function insertFormAddAulaHTML() {
     insertElementHTML('#controle_aula_content',
@@ -224,13 +224,21 @@ function submitFormAddAula(e){
   let form = e.target;
   let RA = form.select_aluno.value;
   let curso =  form.select_curso.value;
+  let bimestre = form.select_bimestre.value
+  let aula = form.select_aula.value
   setDoc(doc(db, 'alunato', RA, 'cursos', curso),
         {bimestres: blocoAddAula(form)},
         { merge: true }
   )
   .then(()=>{
     defaultEventsAfterSubmitForm("#form_add_aula", "Aula adicionada com sucesso!")
-  }).catch((error) => console.error("Erro ao adicionar aula:", error));
+  }).then(()=>{
+     addLogInfo('log_alunato', 'update', `${RA} - ${curso} - ${bimestre} - insert_aula_${aula}`);
+  })
+  .catch((error)=>{
+    console.log(error);
+    addLogInfo('log_alunato', 'error', `${RA} - ${curso} - ${bimestre} - insert_aula_${aula}`, error);
+  });
 
 }
 

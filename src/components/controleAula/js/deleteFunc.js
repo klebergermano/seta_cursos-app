@@ -6,8 +6,10 @@ const db = getFirestore(firebaseApp);
 
 import * as commonFunc from "../../js_common/commonFunctions.js";
 import * as navCursosAluno from "./navCursosAluno.js";
+import { addLogInfo } from "../../logData/js/logFunctions.js";
 
-export function eventDeleteCurso(){
+/*
+ function eventDeleteCurso(){
     let btn_deletar_curso = document.querySelectorAll('.btn_deletar_curso');
     btn_deletar_curso.forEach((item)=>{
         item.addEventListener('click', (e)=>{
@@ -17,7 +19,7 @@ export function eventDeleteCurso(){
         });
     })
 }
-
+*/
 
 export function eventsDeletarAula(){
     let btn = document.querySelectorAll('.btn_deletar_aula');
@@ -59,14 +61,6 @@ function checkIfBimestreIsEmptyToDelete(aulaInfoDelete){
     }).catch((err)=> console.log(err));
 }
 
-function deleteCurso(btn){
-    let RA = btn.dataset.aluno_ra;
-    let curso =  btn.dataset.delete_curso;
-    deleteDoc(doc(db, 'alunato', RA, 'cursos', curso))
-    .then(()=>{
-        navCursosAluno.displayFirstCursoAluno();
-    }).catch((err)=> console.log(err));
-}
 
 function deleteBimestre(aulaInfoDelete){
     let RA = aulaInfoDelete.RA;
@@ -77,6 +71,14 @@ function deleteBimestre(aulaInfoDelete){
     deleteQuery[string] = deleteField();
     const docAula = doc(db, 'alunato', RA, 'cursos', curso);
     updateDoc(docAula, deleteQuery)
+    .then(()=>{
+        addLogInfo('log_alunato', 'delete', `${RA} - ${curso} - delete_${bimestre}`);
+     })
+     .catch((error)=>{
+       console.log(error);
+       addLogInfo('log_alunato', 'error', `${RA} - ${curso} - delete_${bimestre}`, error);
+     });
+    
 }
 
 function deleteDbAula(aulaInfoDelete){
@@ -90,6 +92,13 @@ function deleteDbAula(aulaInfoDelete){
     const docAula = doc(db, 'alunato', RA, 'cursos', curso);
     updateDoc(docAula, deleteQuery).then(()=>{
         checkIfBimestreIsEmptyToDelete(aulaInfoDelete)
-    }).catch((err)=> console.log(err));
+    })
+    .then(()=>{
+        addLogInfo('log_alunato', 'delete', `${RA} - ${curso} - ${bimestre} - delete_${aula}`);
+     })
+     .catch((error)=>{
+       console.log(error);
+       addLogInfo('log_alunato', 'error', `${RA} - ${curso} - ${bimestre} - delete_${aula}`, error);
+     });
 }
 

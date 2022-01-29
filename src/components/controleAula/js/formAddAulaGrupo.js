@@ -3,7 +3,7 @@ const { getFirestore, setDoc, doc, getDocs, collection } = require("firebase/fir
 const db = getFirestore(firebaseApp);
 
 import { removeBugExtraBgFormBLockScreen, btnCloseForm, insertElementHTML, stringToID, defaultEventsAfterSubmitForm } from "../../js_common/commonFunctions.js";
-
+import { addLogInfo } from "../../logData/js/logFunctions.js";
 
 export async function insertFormAddAulaGrupoHTML() {
   insertElementHTML('#controle_aula_content',
@@ -248,35 +248,26 @@ function submitFormAddAulaGrupo(e) {
     let curso =  item.querySelector('.select_curso').value;
     let bimestre =  item.querySelector('.select_bimestre').value;
     let aula =  item.querySelector('.select_aula').value;
-
     form.RA = RA; 
     form.bimestre = bimestre; 
     form.aula = aula;
     form.curso = curso;
 
   setDoc(doc(db, 'alunato', RA, 'cursos', curso),
-    { bimestres: blocoAddAula(form) },
-    { merge: true }
+    { bimestres: blocoAddAula(form)},
+    { merge: true}
   )
-    .then(() => {
-     
-    }).catch((error) => console.error("Erro ao adicionar aula:", error));
+  .then(()=>{
+    addLogInfo('log_alunato', 'update', `${RA} - ${curso} - ${bimestre} - insert_aula_${aula}`);
+  })
+  .catch((error)=>{
+    console.log(error);
+    addLogInfo('log_alunato', 'error', `${RA} - ${curso} - ${bimestre} - insert_aula_${aula}`, error);
+  });
 
 });
 defaultEventsAfterSubmitForm("#form_add_aula_grupo", "Aulas adicionadas com sucesso!")
-  
-  /*
-  let RA = form.select_aluno.value;
-  let curso = form.select_curso.value;
 
-  setDoc(doc(db, 'alunato', RA, 'cursos', curso),
-    { bimestres: blocoAddAula(form) },
-    { merge: true }
-  )
-    .then(() => {
-      defaultEventsAfterSubmitForm("#form_add_aula", "Aula adicionada com sucesso!")
-    }).catch((error) => console.error("Erro ao adicionar aula:", error));
-    */
 }
 
 

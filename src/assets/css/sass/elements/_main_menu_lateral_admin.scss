@@ -40,10 +40,24 @@
 
       }
     }
+    li[data-auth='users'], li[data-auth='contratos'] {
+      border-top:1px solid #111;
+      margin-top:10px;
+     
+      a{
+        padding-top:20px;
+      }
+    }
+
+    li[data-auth='log_data'], li[data-auth='users'] {
+
+    }
+
     .active{
       //color:#ff9;
       color: rgb(109, 172, 253);
       background:#1f1f1f;
+      opacity: 1 !important;
 
     }
   }

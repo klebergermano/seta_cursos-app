@@ -1,11 +1,13 @@
 //Firebase
 const { ipcRenderer } = require("electron");
 import {firebaseApp} from "../../dbConfig/firebaseApp.js";
-const {getFirestore, setDoc,  doc, getDocs, collection} = require("firebase/firestore") 
+const {getFirestore, setDoc,  doc, getDocs, getDoc, collection} = require("firebase/firestore") 
 const db = getFirestore(firebaseApp);
+
 //-----------------------------------------------------------------------
 //Components
 import * as commonFunc from "../../js_common/commonFunctions.js";
+import {addLogInfo} from "../../logData/js/logFunctions.js";
 import inputComboCheckbox from "./inputComboCheckbox.js";
 import insertComboTextarea from "./insertComboTextarea.js";
 import insertCursoInfo from "./insertCursoInfo.js";
@@ -70,6 +72,8 @@ let optionsSelect  = getDocs(collection(db, 'cursos_info'))
 }).then((res)=>{
   document.querySelector("#curso_nome").innerHTML = res;
   document.querySelector("#combo_curso_2").innerHTML = res;
+}).catch((error)=>{
+ console.log(error);
 })
 return optionsSelect;
 }
@@ -193,17 +197,27 @@ setDoc(doc(db, "contratos", formInfo.id_contrato),
    } 
 }, 
 { merge: true}
-); 
-    submitFormContratoPDF(e)
+).then(()=>{
+  addLogInfo('log_contratos', 'insert', formInfo.id_contrato);
+})
+.then(()=>{
+  submitFormContratoPDF(e)
+})
+.catch((error)=>{
+  addLogInfo('log_contratos', 'error', formInfo.id_contrato,  error);
+}); 
+    
 }
 
 function createFormInfo(e){
     const formData = [...e.target];
     let formInfo = {};
     let conclusao = new Date(e.target.curso_inicio.value);
+
     conclusao.setMonth(
          conclusao.getMonth() + parseInt(e.target.curso_duracao.value)
     );
+
     //Formata data
     let dia = String(conclusao.getDate() + 1).padStart(2, "0");
     let mes = String(conclusao.getMonth() + 1).padStart(2, "0");
@@ -240,6 +254,7 @@ function createFormInfo(e){
     return formInfo;
 }
 
+
 //Envia o objeto com as informações do formulário para a main stream index.js
 export function submitFormContratoPDF(e) {
   commonFunc.displaySpinnerLoad("#page_content", true);
@@ -257,5 +272,9 @@ export function submitFormContratoPDF(e) {
     result.then(() => {
       //loadinContrato.style.display = "none";
       commonFunc.removeSpinnerLoad("#page_content");
+      addLogInfo('log_contratos', 'create_pdf', formValues.resp_nome + ' - ' + formValues.curso_nome);
+
+    }).catch((error)=>{
+      addLogInfo('log_contratos', 'error', formValues.resp_nome + ' - ' + formValues.curso_nome, error, error);
     });
   }

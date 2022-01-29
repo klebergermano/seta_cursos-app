@@ -4,7 +4,7 @@ const {getFirestore, setDoc,  doc} = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
 import {insertOptionsInSelectAluno,insertOptionSelectCurso } from "./formAddAula.js";
 import {removeBugExtraBgFormBLockScreen, btnCloseForm, insertElementHTML, defaultEventsAfterSubmitForm} from "../../js_common/commonFunctions.js";
-
+import { addLogInfo } from "../../logData/js/logFunctions.js";
 
 export function insertFormAddPontoExtra(){
     let form = insertElementHTML('#page_content',
@@ -56,6 +56,7 @@ function submitformAddPontoExtra(e) {
   let RA = form.querySelector("#select_aluno").value;
   let curso = form.querySelector("#select_curso").value;
   let pontoExtra = "ponto extra " + form.querySelector("#data").value;
+  let bimestre = form.select_bimestre.value;
   setDoc(doc(db, 'alunato', RA, 'cursos', curso),
     {
       bimestres: {
@@ -72,7 +73,13 @@ function submitformAddPontoExtra(e) {
   .then(() => {
     defaultEventsAfterSubmitForm("#form_add_aula", "Ponto extra adicionado com sucesso!")
 
-  }).catch((error) => console.error("Erro ao adicionar Ponto Extra: ", error));
+  }).then(()=>{
+    addLogInfo('log_alunato', 'update', `ponto_extra - ${RA} - ${curso} - ${bimestre}`);
+ })
+ .catch((error)=>{
+   console.log(error);
+   addLogInfo('log_alunato', 'error', `ponto_extra - ${RA} - ${curso} - ${bimestre}`, error);
+ });
 
 ;
 }

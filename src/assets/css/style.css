@@ -800,6 +800,11 @@ inputs, .input-primary {
   width: 50px;
   height: 50px;
 }
+.tables th textarea, .table_info th textarea, #view_table_users th textarea, .view_table th textarea, .tables td textarea, .table_info td textarea, #view_table_users td textarea, .view_table td textarea {
+  font-size: 11px;
+  background: transparent;
+  padding: 2px;
+}
 .tables th button, .table_info th button, #view_table_users th button, .view_table th button, .tables td button, .table_info td button, #view_table_users td button, .view_table td button {
   padding: 5px;
   font-size: 12px;
@@ -973,9 +978,17 @@ menu.submenu_page ul li a {
 #bg_main_menu_lateral_admin nav ul li a span {
   opacity: 1;
 }
+#bg_main_menu_lateral_admin nav li[data-auth=users], #bg_main_menu_lateral_admin nav li[data-auth=contratos] {
+  border-top: 1px solid #111;
+  margin-top: 10px;
+}
+#bg_main_menu_lateral_admin nav li[data-auth=users] a, #bg_main_menu_lateral_admin nav li[data-auth=contratos] a {
+  padding-top: 20px;
+}
 #bg_main_menu_lateral_admin nav .active {
   color: #6dacfd;
   background: #1f1f1f;
+  opacity: 1 !important;
 }
 
 @media screen and (max-width: 1130px) {
@@ -3477,11 +3490,13 @@ option[disabled] {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+.bg_info_tables table {
+  font-size: 14px;
+}
 .bg_info_tables table caption {
   padding: 8px;
   background: #333;
   color: #f0f0f0;
-  font-size: 14px;
 }
 .bg_info_tables table thead th {
   height: 40px;
@@ -3498,18 +3513,23 @@ option[disabled] {
   background: #f6f6e0;
 }
 .bg_info_tables table tbody tr td {
-  padding: 10px 5px;
+  padding: 5px;
+  text-align: center;
+}
+.bg_info_tables table tbody #tr_resumo td {
+  padding: 10px;
 }
 .bg_info_tables table tbody .td_linha {
   text-align: center;
   background: #ccc;
   color: #666;
 }
-.bg_info_tables table tbody .td_data, .bg_info_tables table tbody .td_parcela, .bg_info_tables table tbody .td_valor_total, .bg_info_tables table tbody .td_controls {
-  text-align: center;
+.bg_info_tables table tbody .td_controls {
+  padding: 5px;
 }
 .bg_info_tables table tbody .td_valor_total {
   color: #247e24;
+  font-size: 14px;
 }
 
 #bg_saidas_info_table caption {
@@ -3525,13 +3545,24 @@ option[disabled] {
   background: #4d794d;
 }
 #bg_entradas_info_table tr#tr_resumo #td_res_valor_total {
-  text-align: center;
   background: #464;
   color: #fff;
 }
 
 #entrada_avulsa_table_info {
   margin-top: 40px;
+}
+
+#pag_mensal_table_info .td_obs {
+  text-align: center;
+  font-size: 11px;
+  max-width: 100px;
+  min-width: 50px;
+}
+#pag_mensal_table_info .td_obs textarea {
+  width: 100%;
+  background: transparent;
+  padding: 2px;
 }
 
 .bg_info_resumo h3 {
@@ -3620,6 +3651,9 @@ option[disabled] {
 .bg_info_resumo .td_total {
   background: #ccccce;
   color: #085f08;
+  text-align: center;
+}
+.bg_info_resumo .td_obs {
   text-align: center;
 }
 
@@ -3846,6 +3880,71 @@ form.forms_fluxo_caixa .div_submit input[type=submit] {
   padding: 2px;
   max-width: 15px !important;
   height: auto;
+}
+
+#bg_view_table_log_data {
+  position: relative;
+}
+#bg_view_table_log_data menu #select_log {
+  font-size: 12px;
+}
+#bg_view_table_log_data table th {
+  background: #dddfde;
+  color: #333;
+}
+#bg_view_table_log_data table td, #bg_view_table_log_data table th {
+  font-size: 12px;
+}
+#bg_view_table_log_data table td {
+  padding: 2px !important;
+  text-align: center;
+}
+#bg_view_table_log_data table td .date_text {
+  font-weight: bold;
+}
+#bg_view_table_log_data table td span {
+  display: block;
+  padding: 5px;
+  border-radius: 3px;
+  width: 100%;
+  max-width: 60px;
+  margin: 0 auto;
+}
+#bg_view_table_log_data table .td_level {
+  padding: 10px !important;
+}
+#bg_view_table_log_data table td.delete {
+  color: #b34132;
+}
+#bg_view_table_log_data table td.curso_deletado {
+  color: #b42c1a;
+}
+#bg_view_table_log_data table td.update {
+  color: #1856a7;
+}
+#bg_view_table_log_data table td.error {
+  color: red;
+}
+#bg_view_table_log_data table td.insert {
+  color: #03662f;
+}
+#bg_view_table_log_data table td.create_pdf {
+  color: #242836;
+}
+#bg_view_table_log_data table span.erro {
+  background: red;
+  color: #fff;
+}
+#bg_view_table_log_data table span.alerta {
+  background: #ec581d;
+  color: #fff;
+}
+#bg_view_table_log_data table span.info {
+  background: #89c5c2;
+}
+#bg_view_table_log_data table textarea {
+  font-size: 10px;
+  width: 100%;
 }
 
 @keyframes spinner-line-fade-more {

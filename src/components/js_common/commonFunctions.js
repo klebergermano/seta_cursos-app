@@ -159,9 +159,7 @@ export function confirmBoxDelete(target, msg, callback) {
   bgMsgBox.querySelector('.btn_close').addEventListener('click', (e) => {
     closeConfirmBox(e)
   });
-
-elementTarget.insertAdjacentElement('afterbegin', bgMsgBox);
-  
+  elementTarget.insertAdjacentElement('afterbegin', bgMsgBox);
 }
 
 //===========================================================================

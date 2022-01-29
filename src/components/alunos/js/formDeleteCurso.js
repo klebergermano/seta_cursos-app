@@ -9,7 +9,7 @@ const auth = getAuth(firebaseApp);
 import {  insertElementHTML, readableRandomStringMaker, btnCloseForm, defaultEventsAfterSubmitForm, confirmBoxDelete } from "../../js_common/commonFunctions.js";
 import { insertOptionsSelectCursos, createParcelas, } from "./commonAlunos.js";
 import { insertViewTableAlunosHTML} from "./viewTableAlunos.js";
-
+import {addLogInfo} from "../../logData/js/logFunctions.js"; 
 //---------------------------------------------------------------------
 let $contratosListInfo = {};
 let $contratoInfo = {};
@@ -109,8 +109,16 @@ let id =  data.getFullYear()+''+(data.getMonth()+1)+''+data.getDate()+''+readabl
   .then(() =>{
     defaultEventsAfterSubmitForm("#form_delete_curso", "Curso deletado com sucesso!");
    }).then(()=>{
-    insertViewTableAlunosHTML();
+     setTimeout(()=>{
+      insertViewTableAlunosHTML();
+     }, 2000)
+   }).then(()=>{
+     addLogInfo('log_alunato', 'curso_deletado', RA + '-' + curso);
    })
-  .catch((err)=> console.log(err));
+   .catch((error) => {
+    addLogInfo('log_alunato', 'error', RA, error);
+    console.error("Erro ao adicionar curso: ", error)
+    });
+ 
 }
 

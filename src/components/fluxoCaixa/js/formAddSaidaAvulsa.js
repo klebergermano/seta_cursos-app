@@ -5,7 +5,7 @@
 import { setCurrentDate, converteMesNumeroPorExtenso } from '../../js_common/dateFunc.js';
 import createNewRowFluxoCaixa from "./createNewRowFluxoCaixa.js";
 import {defaultEventsAfterSubmitFixedForm, insertElementHTML} from "../../js_common/commonFunctions.js";
-
+import { addLogInfo } from '../../logData/js/logFunctions.js';
 //Firebase
 import { firebaseApp } from "../../dbConfig/firebaseApp.js"
 const { getFirestore, doc, setDoc} = require("firebase/firestore")
@@ -29,7 +29,6 @@ function eventsFormAddSaidaAvulsa() {
     submitFormAddPagMensalidade(e)
   });
   setMasks() 
-
 }
 
 function submitFormAddPagMensalidade(e) {
@@ -40,6 +39,11 @@ function submitFormAddPagMensalidade(e) {
   let mes = converteMesNumeroPorExtenso((data.getMonth() + 1));
 
   let form = document.querySelector('#form_add_saida_avulsa');
+  console.log(form)
+  let valor = form.saida_valor.value; 
+  let descricao = form.descricao.value; 
+
+
   createNewRowFluxoCaixa(ano, mes)
     .then((row) => {
       setDoc(doc(db, "fluxo_caixa", ano),
@@ -52,7 +56,7 @@ function submitFormAddPagMensalidade(e) {
               descricao: form.descricao.value,
               tipo_saida: form.tipo_saida.value,
               valor: form.saida_valor.value,
-              descricao: form.descricao.value,
+              descricao: descricao,
               metadata: {
                 created: new Date(),
                 modified: new Date()
@@ -64,6 +68,10 @@ function submitFormAddPagMensalidade(e) {
       ).then(() => {
         defaultEventsAfterSubmitFixedForm("#form_add_saida_avulsa", "Saída de caixa adicionada com sucesso!");
       });
+    }).then(()=>{
+      addLogInfo('log_fluxo_caixa', 'insert', `saida_avulsa - ${descricao} - ${valor}`);
+    }).catch((error)=>{
+      addLogInfo('log_fluxo_caixa', 'error', `saida_avulsa - ${descricao} - ${valor}`, error);
     });
 
 }
