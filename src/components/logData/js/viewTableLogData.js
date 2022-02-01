@@ -4,6 +4,7 @@ const {getFirestore,  getDoc, doc} = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
 
 
+
 import { insertElementHTML, confirmBoxDelete, readableRandomStringMaker} from "../../js_common/commonFunctions.js";
  
     export function insertViewTableDataLogHTML(){
@@ -41,9 +42,16 @@ function getFiltroInfoLog() {
 }
 
 //---------------------------------------------------------------------------------
+
+function convertDateToNumber(d) {
+    var p = d.split("/");
+    return +(p[2] + p[1] + p[0]);
+}
+
 export function sortTbodyElementByDate(tableID) {
     let tbody = document.querySelector(`${tableID} tbody`);
     let rows = Array.from(tbody.querySelectorAll("tr"));
+
     rows.sort(function (a, b){
             return (
                 convertDateToNumber(a.querySelector('.td_data').innerHTML) -
@@ -51,7 +59,9 @@ export function sortTbodyElementByDate(tableID) {
             );
     });
     tbody.innerHTML = '';
-    rows.forEach((item) => {
+console.log(rows);
+    rows.reverse().forEach((item) => {
+        console.log(item);
         tbody.appendChild(item);
     });
 }
@@ -60,6 +70,7 @@ export function sortTbodyElementByDate(tableID) {
 function insertTableLogDataHTML(log){
     let contentTableLogData = createTableLogDataHTML(log);
     view_table_log_data.querySelector('tbody').innerHTML = contentTableLogData.innerHTML;
+    sortTbodyElementByDate('#view_table_log_data')
 }
 
 function createTableLogDataHTML(log){
