@@ -983,7 +983,7 @@ menu.submenu_page ul li a {
   margin-top: 10px;
 }
 #bg_main_menu_lateral_admin nav li[data-auth=users] a, #bg_main_menu_lateral_admin nav li[data-auth=contratos] a {
-  padding-top: 20px;
+  margin-top: 10px;
 }
 #bg_main_menu_lateral_admin nav .active {
   color: #6dacfd;
