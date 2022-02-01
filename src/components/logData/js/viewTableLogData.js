@@ -40,7 +40,22 @@ function getFiltroInfoLog() {
     return filtroInfo;
 }
 
-
+//---------------------------------------------------------------------------------
+export function sortTbodyElementByDate(tableID) {
+    let tbody = document.querySelector(`${tableID} tbody`);
+    let rows = Array.from(tbody.querySelectorAll("tr"));
+    rows.sort(function (a, b){
+            return (
+                convertDateToNumber(a.querySelector('.td_data').innerHTML) -
+                convertDateToNumber(b.querySelector('.td_data').innerHTML)
+            );
+    });
+    tbody.innerHTML = '';
+    rows.forEach((item) => {
+        tbody.appendChild(item);
+    });
+}
+//--------------------------------------------------------------------------------
 
 function insertTableLogDataHTML(log){
     let contentTableLogData = createTableLogDataHTML(log);
@@ -57,8 +72,12 @@ if(logInfo){
         let trContent = 
         `
         <td class='td_id'>${key}</td>
-        <td class='td_datetime'><span class='date_text'>${datetime.toLocaleDateString('pt-BR')}</span>
-        <span>${datetime.toLocaleTimeString('pt-BR')}</span></td>
+        <td class='td_data'>
+       ${datetime.toLocaleDateString('pt-BR')}
+        </td>
+        <td class='td_hora'>
+   ${datetime.toLocaleTimeString('pt-BR')}
+        </td>
         <td class='td_user'>${value.user}</td>
         <td class='td_level '><span class='${value.level}'>${value.level}</span></td>
         <td class='td_action ${value.action}'>${value.action}</td>

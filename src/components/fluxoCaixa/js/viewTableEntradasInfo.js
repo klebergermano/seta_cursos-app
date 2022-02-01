@@ -49,6 +49,7 @@ function eventsEntradasInfoTable(){
         let filtroInfo = getFiltroInfoAnoMes();
         setFluxoCaixaAno(filtroInfo.ano)
         .then((res)=>{
+            res.ano =  filtroInfo.ano;
             insertContentTables(res, filtroInfo.mes)
         }).then(()=>{
             btnsDeletePagMensal();
@@ -123,6 +124,7 @@ function insertContentTableEntradaAvulsa(contentTable){
    table.querySelector('#tbody').innerHTML = contentTable.innerHTML;
 }
   function createContentEntradaAvulsaTableHTML (fluxoCaixaAno, mes){
+      console.log('fluxoCaixaAno', fluxoCaixaAno);
     let fluxoCaixaMes = fluxoCaixaAno?.[mes];
     let tbody = document.createElement('tbody'); 
     if(fluxoCaixaMes){
@@ -234,18 +236,13 @@ function insertContentTableEntradaAvulsa(contentTable){
         }
 
         function  submitDeleteEntradaAvulsa(ano, mes, row, data, valor, descricao){
+            console.log(ano, mes, row, data, valor, descricao);
             let string = `${mes}.${row}`;
+            console.log(string);
             let deleteQuery = {};
             deleteQuery[string] = deleteField();
             const docAula = doc(db, 'fluxo_caixa', ano);
             updateDoc(docAula, deleteQuery)
-            .then(()=>{ 
-            let idLog = createRadomIdLogBasedOnData();
-                setDoc(doc(db, "log", 'log_fluxo_caixa'),{
-                    [idLog]: `Deletado 'Entrada de Fluxo de Caixa Avulsa' "${data} - R$${valor} - ${descricao}" deletado em ${new Date()} por ${auth.currentUser.email}`
-                    },
-                    { merge: true})
-            })
             .then(()=>{
                 insertFluxoCaixaInfoInTableHTML();
             }).then(()=>{
