@@ -1,27 +1,25 @@
 
-//Cria o menu nav_cursos_aluno
-import * as dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
-import * as commonFunc from "../../js_common/commonFunctions.js";
-
+//Components
+import { hideAllElementsByClassName, stringToID } from "../../jsCommon/commonFunctions.js";
+import { getAlunoHistCursosDB } from "../../jsCommon/dbAlunoHistoricoFunc.js";
+//---------------------------------------------------------------//
 export function insertNavCursosInBGCursos(RA, nomeDoCurso) {
   //Cria o menu nav_cursos_aluno
   createNavCursosAluno(RA)
     .then((navUL) => {
-     document.querySelector(".nav_cursos_aluno").innerHTML = navUL.outerHTML ;
-      //document.querySelector("#controle_aula_content").insertAdjacentElement('afterbegin', navUL);
+      document.querySelector(".nav_cursos_aluno").innerHTML = navUL.outerHTML;
     })
-  .then(()=>{
+    .then(() => {
       document.querySelectorAll(".nav_cursos_aluno a").forEach((item) => {
         item.addEventListener("click", (e) => {
           navCursosClick(e);
         });
       });
-    }) .then(() => {
+    }).then(() => {
       displayNavCursoAlunoUpdated(nomeDoCurso);
     })
     .catch((err) => { console.log(err) });
 }
-
 
 async function createNavCursosAluno(RA) {
   let cursos = arrayCursosAluno(RA);
@@ -30,18 +28,9 @@ async function createNavCursosAluno(RA) {
   let menuNavUl = cursos
     .then((res) => {
       res.forEach((item) => {
-        id_curso = commonFunc.stringToID(item);
+        id_curso = stringToID(item);
         ul.innerHTML += `<li><a data-active='${id_curso}'>${item}</a></li>`;
       });
-    })
-    .then(() => {
-      /*
-      ul.querySelectorAll("a").forEach((item) => {
-        item.addEventListener("click", (e) => {
-          navCursosClick(e);
-        });
-      });
-      */
     })
     .then(() => {
       return ul;
@@ -49,14 +38,14 @@ async function createNavCursosAluno(RA) {
   return menuNavUl;
 }
 
-export function displayFirstCursoAluno(){
+export function displayFirstCursoAluno() {
   let id = document.querySelectorAll('.bg_curso')[0].id;
   displayNavCursoAlunoUpdated(id)
 }
 
 function displayCursoById(idCurso) {
-  commonFunc.hideAllElementsByClassName('.bg_curso');
-  document.querySelector('#'+idCurso).style.display='block';
+  hideAllElementsByClassName('.bg_curso');
+  document.querySelector('#' + idCurso).style.display = 'block';
 }
 function removeActiveClassNavCursosElement() {
   let a = document.querySelector(".nav_cursos_aluno").getElementsByTagName("a");
@@ -75,7 +64,7 @@ function navCursosClick(e) {
 }
 
 function arrayCursosAluno(RA) {
-  let alunoHistCurso = dbAlunoHistFunc.getAlunoHistCursosDB(RA);
+  let alunoHistCurso = getAlunoHistCursosDB(RA);
   let result = alunoHistCurso.then((res) => {
     let cursos = [];
     res.forEach((e) => {
@@ -86,9 +75,8 @@ function arrayCursosAluno(RA) {
   return result;
 }
 
-
 function displayNavCursoAlunoUpdated(nomeCurso) {
-  let nomeCursoAtualizado = commonFunc.stringToID(nomeCurso);
+  let nomeCursoAtualizado = stringToID(nomeCurso);
   displayCursoById(nomeCursoAtualizado);
   removeActiveClassFromNavCursos()
   //Adiciona class "active" no navCursos a[data-active='nomecurso']
@@ -106,7 +94,5 @@ function removeActiveClassFromNavCursos() {
   }
 }
 
-
-//------------------------------------------------------------------------------
 
 

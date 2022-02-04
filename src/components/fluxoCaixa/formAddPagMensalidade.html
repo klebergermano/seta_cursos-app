@@ -1,86 +1,99 @@
-<form class='forms_fluxo_caixa' id='form_add_pag_mensalidade' >
+<form class='forms_fluxo_caixa' id='form_add_pag_mensalidade'>
     <h4>+ Pagamento de Mensalidade</h4>
-<fieldset>
-   <!--Hidden Inputs-->
-   <input  type='hidden' id='ra'/>
-   <input  type='hidden' id='aluno'/>
-<!------------->
-<div class='row'>
+    <fieldset>
+        <!--Hidden Inputs-->
+        <input type='hidden' id='ra'/>
+        <input
+        type='hidden' id='aluno'/>
+        <!------------->
+        <div class='row'>
 
-    <div  class='div_inputs div_aluno'>
-        <label>Aluno</label>
-        <select id='main_select_aluno'> 
-        </select>
-    </div>
-    <div  class='div_inputs div_curso'>
-        <label>Curso</label>
-        <select id='select_curso'>
-            <option></option>
-        </select>
-    </div>
-    <div class='div_inputs div_parcela'>
-        <label>Parcela</label>
-        <select id='select_parcelas'>
-            <option></option>
-        </select>
-    </div>
+            <div class='div_inputs div_aluno'>
+                <label>Aluno</label>
+                <select id='main_select_aluno'></select>
+            </div>
+            <div class='div_inputs div_curso'>
+                <label>Curso</label>
+                <select id='select_curso'>
+                    <option></option>
+                </select>
+            </div>
+            <div class='div_inputs div_parcela'>
+                <label>Parcela</label>
+                <select id='select_parcelas'>
+                    <option></option>
+                </select>
+            </div>
 
-  </div><!--row-->
-<div class='row'>
-    <div  class='div_inputs div_n_lanc'>
-        <label>Nº Lanc.: </label>
-        <input readonly='true' type='text' id='n_lanc' value=''/>
-    </div>
-    <div class='div_inputs div_resp'>
-        <label>Resp.: </label>
-        <input  type='text' readonly='true' id='resp'/>
-    </div>
-    <div class='div_inputs div_vencimento'>
-        <label>Vencimento: </label>
-        <input  readonly='true' type='Date' id='vencimento'/>
-    </div>
-    <div class='div_inputs  div_data'>
-        <label>Data: </label>
-        <input  type='Date' id='data'/>
-    </div>
-</div><!--row-->    
-<div class='row'>
-    <div  class='div_inputs div_curso_valor'>
-        <label>Valor: </label>
-        <input  readonly='true' type='text' id='curso_valor'  value='0,00'/>
-    </div>
-    <div  class='div_inputs div_curso_desconto'>
-        <label>Desc.: </label>
-        <input  type='text' id='curso_desconto'  value='0,00'/>
-    </div>
-    <div  class='div_inputs div_curso_valor_total'>
-        <label>Valor Total: </label>
-        <input  type='text' id='curso_valor_total' readonly='true' value='0,00'/>
-    </div>
-    <div  class='div_inputs div_forma_pag'>
-        <label>Forma de Pag.</label>
-        <select required='true' id='forma_pag'>
-            <option disabled selected></option>
-            <option value='dinheiro'>Dinheiro</option>
-            <option value='débito'>Débito</option>
-            <option value='crédito'>Crédito</option>
-            <option value='pix'>PIX</option>
-        </select>
-    </div>
-</div><!--row-->
-<div class='row'>
-    <div  class='div_inputs div_obs'>
-        <label>Observações: </label>
-        <textarea id='obs'></textarea>
-    </div>
+        </div>
+        <!--row-->
+        <div class='row'>
+            <div class='div_inputs div_n_lanc'>
+                <label>Nº Lanc.:
+                </label>
+                <input readonly='true' type='text' id='n_lanc' value=''/>
+            </div>
+            <div class='div_inputs div_resp'>
+                <label>Resp.:
+                </label>
+                <input type='text' readonly='true' id='resp'/>
+            </div>
+            <div class='div_inputs div_vencimento'>
+                <label>Vencimento:
+                </label>
+                <input readonly='true' type='Date' id='vencimento'/>
+            </div>
+            <div class='div_inputs  div_data'>
+                <label>Data:
+                </label>
+                <input type='Date' id='data'/>
+            </div>
+        </div>
+        <!--row-->
+        <div class='row'>
+            <div class='div_inputs div_curso_valor'>
+                <label>Valor:
+                </label>
+                <input readonly='true' type='text' id='curso_valor' value='0,00'/>
+            </div>
+            <div class='div_inputs div_curso_desconto'>
+                <label>Desc.:
+                </label>
+                <input type='text' id='curso_desconto' value='0,00'/>
+            </div>
+            <div class='div_inputs div_curso_valor_total'>
+                <label>Valor Total:
+                </label>
+                <input type='text' id='curso_valor_total' readonly='true' value='0,00'/>
+            </div>
+            <div class='div_inputs div_forma_pag'>
+                <label>Forma de Pag.</label>
+                <select required='true' id='forma_pag'>
+                    <option disabled selected></option>
+                    <option value='dinheiro'>Dinheiro</option>
+                    <option value='débito'>Débito</option>
+                    <option value='crédito'>Crédito</option>
+                    <option value='pix'>PIX</option>
+                </select>
+            </div>
+        </div>
+        <!--row-->
+        <div class='row'>
+            <div class='div_inputs div_obs'>
+                <label>Observações:
+                </label>
+                <textarea id='obs'></textarea>
+            </div>
 
-</div><!--row-->
-<div class='row'>
-<div class='div_inputs div_submit'>
-    <input type='submit' value="Salvar Pagamento"/>
-</div>
-</div><!--row-->
+        </div>
+        <!--row-->
+        <div class='row'>
+            <div class='div_inputs div_submit'>
+                <input type='submit' value="Salvar Pagamento"/>
+            </div>
+        </div>
+        <!--row-->
 
-</fieldset>
- 
+    </fieldset>
+
 </form>

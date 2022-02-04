@@ -1,22 +1,16 @@
 
-function changeDateToDislayText(dateString){
+function changeDateToDislayText(dateString) {
     let newDate = new Date(dateString + ',00:00:00');
     let day = newDate.getDate();
     let year = newDate.getFullYear();
-    let month = (newDate.getMonth() +1);
-    
+    let month = (newDate.getMonth() + 1);
     day = day.toString().padStart('2', '0');
     month = month.toString().padStart('2', '0');
     let changedDate = `${day}/${month}/${year}`;
-    /*
-    let n = ''+day;
-    let x = n.padStart('2', '0');
-    */
-        return changedDate;
-    }
+    return changedDate;
+}
 
-
-const TemplateCertificado = (certificadoInfo)=>{
+const TemplateCertificado = (certificadoInfo) => {
 
     console.log(certificadoInfo);
 
@@ -82,9 +76,6 @@ const TemplateCertificado = (certificadoInfo)=>{
                 #curso{ text-transform: uppercase; font-weight: bold;}
                 #aluno, #horas, #inicio, #site, #cod{font-weight: bold;}
                 #modulos{ line-height: 16pt; font-style:italic !important; font-weight:normal;}
-          
-               
-      
             </style>
             <script src='./scirpt.js' defer></script>
         </head>
@@ -102,24 +93,14 @@ const TemplateCertificado = (certificadoInfo)=>{
                 <p>Para verificar a validade desse certificado acesse</p>
                 <p><span id='site'>www.setacursos.com.br/certificados</span> e digite o código <span id='cod'>${certificadoInfo.certificado_cod}</span></p>
                 <p>Data de emissão:<b>${changeDateToDislayText(certificadoInfo.data_emissao)}</b></p>
-               
                       </div>
           </div><!--page-->
-    
-         
           <div class='model'>
-    
         </div><!--page-->
-          
-    
         </body>
     </html>
-    
-
     `);
-
 }
 
-
-module.exports = TemplateCertificado; 
+module.exports = TemplateCertificado;
 

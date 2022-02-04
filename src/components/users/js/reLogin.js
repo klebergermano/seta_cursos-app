@@ -1,12 +1,13 @@
-import * as commonFunc from "../../js_common/commonFunctions.js";
+//Firebase
 import { firebaseApp } from "../../dbConfig/firebaseApp.js";
 const { getAuth, signInWithEmailAndPassword, onAuthStateChanged } = require("firebase/auth");
 const auth = getAuth(firebaseApp);
+//---------------------------------------------------------------//
 export function reLoginUser(userInfo, callback) {
     let email = userInfo.email;
     let password = userInfo.password;
 
-
+    //TODO: refatorar;
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             onAuthStateChanged(auth, (userCredential) => {

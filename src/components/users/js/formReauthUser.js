@@ -1,12 +1,11 @@
-import * as commonFunc from "../../js_common/commonFunctions.js";
-import {insertElementHTML, btnCloseForm, removeElement } from "../../js_common/commonFunctions.js";
-import * as formAdduser from "./formAddUser.js"
-//----------------------------------------------------
+//Firebase
 import { firebaseApp } from "../../dbConfig/firebaseApp.js"
-import { insertFormAddUser } from "./formAddUser.js";
 const { getAuth, reauthenticateWithCredential, EmailAuthProvider } = require("firebase/auth");
 const auth = getAuth(firebaseApp);
-
+//---------------------------------------------------------------//
+//Components
+import {insertElementHTML, btnCloseForm, removeElement } from "../../jsCommon/commonFunctions.js";
+//---------------------------------------------------------------//
 
 export function insertFormReauthUser(){
     insertElementHTML('#page_users', './components/users/formReauthUser.html', eventsFormReauthUser);

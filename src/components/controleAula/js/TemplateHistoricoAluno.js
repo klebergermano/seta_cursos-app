@@ -1,51 +1,52 @@
+//Other libraries
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const document = new JSDOM('...').window.document;
+//---------------------------------------------------------------//
 
 function getReverseObjectKeys(obj) {
     let objKeys = Object.keys(obj);
     let sortedObjKeys = objKeys.sort();
-   // sortedObjKeys.reverse();
     return sortedObjKeys;
-  }
+}
 
-  function createTable(aluno, bimestresKeys, index){
+function createTable(aluno, bimestresKeys, index) {
     let bgTables = document.createElement('div');
     let tableAulas = document.createElement('table');
     tableAulas.className = 'table_aulas';
     tableAulas.setAttribute('border', '1');
     tableAulas.innerHTML = "<thead></thead><tbody></tbody>";
     let thAulas = `<th colspan="4">${bimestresKeys[index]} </th>`;
-    tableAulas.querySelector('thead').innerHTML= thAulas;
+    tableAulas.querySelector('thead').innerHTML = thAulas;
 
     let bimestreContent = aluno.bimestres[bimestresKeys[index]];
     let aulasKeys = getReverseObjectKeys(bimestreContent);
     let rowReposicaoAula = document.createElement('tr');
 
     let tableReposicao = document.createElement('table');
-    tableReposicao.className='table_reposicao';
+    tableReposicao.className = 'table_reposicao';
     tableReposicao.setAttribute('border', '1');
     tableReposicao.innerHTML = "<thead></thead><tbody></tbody>";
     let thRepo = `<th colspan="4">${bimestresKeys[index]} - Reposições</th>`;
-    tableReposicao.querySelector('thead').innerHTML= thRepo;
+    tableReposicao.querySelector('thead').innerHTML = thRepo;
 
     let tdPontoExtra = document.createElement('td');
-tdPontoExtra.style.opacity = '0';
-        let tr = document.createElement('tr');
-        let count = 1;
-        let countRepo = 1;
-        let countAulas = 0;
-        let aulaRepoExiste = false;  
-        for(let k = 0; k < aulasKeys.length; k++){
-            let aula = bimestreContent[aulasKeys[k]];
-            let td = document.createElement('td'); 
-            td.className = 'aula_'+aula.status;
+    tdPontoExtra.style.opacity = '0';
+    let tr = document.createElement('tr');
+    let count = 1;
+    let countRepo = 1;
+    let countAulas = 0;
+    let aulaRepoExiste = false;
+    for (let k = 0; k < aulasKeys.length; k++) {
+        let aula = bimestreContent[aulasKeys[k]];
+        let td = document.createElement('td');
+        td.className = 'aula_' + aula.status;
 
-            if(aulasKeys[k].includes('aula') && !aulasKeys[k].includes('reposição')){
-                countAulas ++; 
-               // td.className = 'aula_'+aula?.status; 
-               td.innerHTML = 
-               `<span>
+        if (aulasKeys[k].includes('aula') && !aulasKeys[k].includes('reposição')) {
+            countAulas++;
+            // td.className = 'aula_'+aula?.status; 
+            td.innerHTML =
+                `<span>
                 ${aulasKeys[k]} - ${aula.status}
                 </span>
                 <p>
@@ -59,108 +60,108 @@ tdPontoExtra.style.opacity = '0';
                 ${aula.detalhes}
                 </p>
                 `;
-                tr.appendChild(td);
-                if(count === 4){
-                    tableAulas.querySelector('tbody').appendChild(tr);
+            tr.appendChild(td);
+            if (count === 4) {
+                tableAulas.querySelector('tbody').appendChild(tr);
                 tr = document.createElement('tr');
                 count = 1;
-                }else{
-                    count ++;
-                }
-            }else if(aulasKeys[k].includes('feedback')){
-                    let rowFeedback =  document.createElement('tr');
-                    let tdFeedback = document.createElement('td');
-                    tdFeedback.className="Desempenho geral: "
-                    tdFeedback.setAttribute('colspan', '4');
-                    tdFeedback.innerHTML = `Feedback: ${aula.observacao}`;
-                    rowFeedback.appendChild(tdFeedback)
-                    tableAulas.querySelector('tbody').insertAdjacentElement('afterbegin', rowFeedback);
-            }else if(aulasKeys[k].includes('reposição')){
-                aulaRepoExiste = true; 
-                    let tdRepoAula = document.createElement('td');
-                    tdRepoAula.className="aula_reposicao"
-                    tdRepoAula.innerHTML = 
-                    `<span>
+            } else {
+                count++;
+            }
+        } else if (aulasKeys[k].includes('feedback')) {
+            let rowFeedback = document.createElement('tr');
+            let tdFeedback = document.createElement('td');
+            tdFeedback.className = "Desempenho geral: "
+            tdFeedback.setAttribute('colspan', '4');
+            tdFeedback.innerHTML = `Feedback: ${aula.observacao}`;
+            rowFeedback.appendChild(tdFeedback)
+            tableAulas.querySelector('tbody').insertAdjacentElement('afterbegin', rowFeedback);
+        } else if (aulasKeys[k].includes('reposição')) {
+            aulaRepoExiste = true;
+            let tdRepoAula = document.createElement('td');
+            tdRepoAula.className = "aula_reposicao"
+            tdRepoAula.innerHTML =
+                `<span>
                     ${aulasKeys[k]}
                     </span>
                     <p>${aula.data} - ${aula.horario}</p>
 
                     <p>${aula.detalhes}</p>
                     `
-                   // rowReposicaoAula.appendChild(tdRepoAula);
-                    rowReposicaoAula.insertAdjacentElement('afterbegin', tdRepoAula);
-                    if(countRepo === 4){
-                        tableReposicao.querySelector('tbody').appendChild(rowReposicaoAula);
-                        rowReposicaoAula = document.createElement('tr');
-                        countRepo = 1;
-                    }else{
-                        countRepo ++;
-                    }
-            }else if(aulasKeys[k].includes('ponto')){
-                aulaRepoExiste = true; 
-                tdPontoExtra.style.opacity = '1';
-                tableReposicao.querySelector('thead').innerHTML = `<th colspan='4'>${bimestresKeys[index]} - Reposições e Pontos Extras </th>`
-                    let spanPonto = document.createElement('span');
-                     spanPonto.className = 'ponto_extra'; 
-                     spanPonto.innerHTML = `
+            // rowReposicaoAula.appendChild(tdRepoAula);
+            rowReposicaoAula.insertAdjacentElement('afterbegin', tdRepoAula);
+            if (countRepo === 4) {
+                tableReposicao.querySelector('tbody').appendChild(rowReposicaoAula);
+                rowReposicaoAula = document.createElement('tr');
+                countRepo = 1;
+            } else {
+                countRepo++;
+            }
+        } else if (aulasKeys[k].includes('ponto')) {
+            aulaRepoExiste = true;
+            tdPontoExtra.style.opacity = '1';
+            tableReposicao.querySelector('thead').innerHTML = `<th colspan='4'>${bimestresKeys[index]} - Reposições e Pontos Extras </th>`
+            let spanPonto = document.createElement('span');
+            spanPonto.className = 'ponto_extra';
+            spanPonto.innerHTML = `
                     <span>+ 1 Ponto Extra - ${aula.data} </span>
                     <p>
                     ${aula.descricao}
                     </p>
                     `;
-                    tdPontoExtra.appendChild(spanPonto);
-    
-            }
-        }
-       let aulasPendentes = 16 - countAulas;
-       let aulaNumero = countAulas;
+            tdPontoExtra.appendChild(spanPonto);
 
-       for(let i = 0; i < aulasPendentes; i++){
-        aulaNumero ++; 
+        }
+    }
+    let aulasPendentes = 16 - countAulas;
+    let aulaNumero = countAulas;
+
+    for (let i = 0; i < aulasPendentes; i++) {
+        aulaNumero++;
         let td = document.createElement('td');
-        td.className='aula_pendente'
+        td.className = 'aula_pendente'
         td.innerHTML = "Aula Pendente " + aulaNumero;
         tr.appendChild(td)
-        if(count === 4){
+        if (count === 4) {
             tableAulas.querySelector('tbody').appendChild(tr);
             tr = document.createElement('tr');
             count = 1;
-        }else{
-            count ++;
+        } else {
+            count++;
         }
-       }
-       
-       if(aulaRepoExiste){tableReposicao.style.display='block'}else{
-        tableReposicao.style.display='none'
-       }
-       
-       tableReposicao.querySelector('tbody').appendChild(rowReposicaoAula);
-       tableReposicao.querySelector('tbody').lastChild.appendChild(tdPontoExtra);
+    }
 
-      bgTables.appendChild(tableAulas);
-      bgTables.appendChild(tableReposicao);
-        return bgTables;
+    if (aulaRepoExiste) { tableReposicao.style.display = 'block' } else {
+        tableReposicao.style.display = 'none'
+    }
+
+    tableReposicao.querySelector('tbody').appendChild(rowReposicaoAula);
+    tableReposicao.querySelector('tbody').lastChild.appendChild(tdPontoExtra);
+
+    bgTables.appendChild(tableAulas);
+    bgTables.appendChild(tableReposicao);
+    return bgTables;
 }
 
-function createContentAulaHTML(aluno){
+function createContentAulaHTML(aluno) {
 
     let bgPages = document.createElement('div');
     bgPages.className = "bg_pages";
 
     let bimestresKeys = getReverseObjectKeys(aluno.bimestres);
-    for(let index = 0; index < bimestresKeys.length; index++){
+    for (let index = 0; index < bimestresKeys.length; index++) {
         let pages = document.createElement('div');
-        pages.className="pages page_content";
+        pages.className = "pages page_content";
         let table = createTable(aluno, bimestresKeys, index)
         //Adiciona "table" em "pages"
         pages.appendChild(table);
         //Adiciona "pages" em "bgPages"
         bgPages.appendChild(pages);
     }
-    
 
 
-    return bgPages; 
+
+    return bgPages;
 }
 
 
@@ -411,12 +412,7 @@ function TemplateHistoricoAluno(aluno) {
     
         </body>
     </html>
-    
-    
     `
-    
-    
-      return templateHistorico;
-    };
-
+    return templateHistorico;
+};
 module.exports = TemplateHistoricoAluno;

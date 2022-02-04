@@ -1,9 +1,8 @@
-//-------------------------------------------------------------------------
 //Firebase
-import {firebaseApp} from "../../dbConfig/firebaseApp.js";
-const {getFirestore, doc, collection, getDocs, getDoc} = require("firebase/firestore") 
+import { firebaseApp } from "../../dbConfig/firebaseApp.js";
+const { getFirestore, doc, collection, getDocs, getDoc } = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
-//-------------------------------------------------------------------------
+//---------------------------------------------------------------//
 
 export function getContratoInfoDB(IDContrato) {
     let contratoInfo = getDoc(doc(db, 'contratos', IDContrato));
@@ -19,15 +18,15 @@ export function getContratosListDB() {
 export async function insertOptionsSelectCursos(RA) {
     let selectCursos = document.querySelector("#select_curso");
     let optionsSelect = "<option value='' disabled selected>Selectione o Curso</option>";
-     getDocs(collection(db, 'alunato', RA, 'cursos'))
-            .then((res)=>{
-                res.forEach((item)=>{
-                    optionsSelect += `<option data-id_contrato='${item.data().curso_info.id_contrato}' value="${item.data().curso_info.nome}"> ${item.data().curso_info.nome}</option>`;
-                })
-              
-            }).then(()=>{
-                selectCursos.innerHTML = optionsSelect;
+    getDocs(collection(db, 'alunato', RA, 'cursos'))
+        .then((res) => {
+            res.forEach((item) => {
+                optionsSelect += `<option data-id_contrato='${item.data().curso_info.id_contrato}' value="${item.data().curso_info.nome}"> ${item.data().curso_info.nome}</option>`;
             })
+
+        }).then(() => {
+            selectCursos.innerHTML = optionsSelect;
+        })
 }
 
 export async function insertOptionsSelectContrato() {
@@ -35,8 +34,8 @@ export async function insertOptionsSelectContrato() {
     let contratosList = await getContratosListDB();
     let optionsSelect = "<option value='' disabled selected>Selectione um contrato</option>";
     contratosList.forEach((contrato) => {
-        let disabled =''; 
-        if(contrato.data().metadata.aluno_associado !== 'pendente'){
+        let disabled = '';
+        if (contrato.data().metadata.aluno_associado !== 'pendente') {
             disabled = "disabled='true'";
         }
         optionsSelect += `<option ${disabled} value='${contrato.id}'>${contrato.id} - <b>${contrato.data().resp_info.nome} (${contrato.data().curso_info.nome})</option>`;
@@ -67,9 +66,9 @@ export function createParcelas(parcelaInfo) {
         parcelas[num_parcela] = {
             n_lanc: createNumeroLancamento(parcelaInfo.id_contrato, (num_parcela)),
             vencimento: p_vencimento,
-            valor:parcelaInfo.valor_mes,
-            desconto:parcelaInfo.desconto_mes,
-            valor_total:parcelaInfo.valor_total_mes,
+            valor: parcelaInfo.valor_mes,
+            desconto: parcelaInfo.desconto_mes,
+            valor_total: parcelaInfo.valor_total_mes,
             pagamento: {
                 status: "pendente",
                 form_pag: "",
@@ -83,7 +82,7 @@ export function createParcelas(parcelaInfo) {
 }
 
 //--------------n_lanc---------------------------------------------------------------
- function createNumeroLancamento(idContrato, n_parcela) {
+function createNumeroLancamento(idContrato, n_parcela) {
     console.log(idContrato, n_parcela);
     let n_lanc = idContrato + 'F' + n_parcela;
     return n_lanc;
@@ -140,4 +139,3 @@ function addDateMonth(num_mes, date) {
     return data_final;
 }
 
-  

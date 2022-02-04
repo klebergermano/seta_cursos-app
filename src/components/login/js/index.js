@@ -1,10 +1,16 @@
-import { importHTMLWithScript, insertElementHTML } from "../../js_common/commonFunctions.js";
+//Electron
+var appVersion = require("electron").remote.app.getVersion();
+//---------------------------------------------------------------//
+//Firebase
 import { firebaseApp } from "../../dbConfig/firebaseApp.js";
 const { getAuth, signInWithEmailAndPassword, onAuthStateChanged } = require("firebase/auth");
-const { getFirestore, doc, getDoc, setDoc } = require("firebase/firestore")
+const { getFirestore, doc, getDoc } = require("firebase/firestore");
 const db = getFirestore(firebaseApp);
 const auth = getAuth(firebaseApp);
-var appVersion = require("electron").remote.app.getVersion();
+//---------------------------------------------------------------//
+//Componentes
+import { importHTMLWithScript, insertElementHTML } from "../../jsCommon/commonFunctions.js";
+//---------------------------------------------------------------//
 
 export function onload() {
   let form = document.querySelector('#form_login');
@@ -15,14 +21,9 @@ export function onload() {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         onAuthStateChanged(auth, (userCredential) => {
-          if (userCredential) {
-            // User is signed in, see docs for a list of available properties
-            // https://firebase.google.com/docs/reference/js/firebase.User
-            const uid = userCredential.uid;
-            // ...
-          } else {
-            // User is signed out
-            importHTMLWithScript('#app', './components/login/index.html', "../login/js/index.js")
+          if (!userCredential){
+           // User is signed out
+           importHTMLWithScript('#app', './components/login/index.html', "../login/js/index.js")
           }
         });
         // Signed in 

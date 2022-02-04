@@ -1,25 +1,24 @@
 
-
-
-//--------------------------------------------------------------------
-import { setCurrentDate, converteMesNumeroPorExtenso } from '../../js_common/dateFunc.js';
-import createNewRowFluxoCaixa from "./createNewRowFluxoCaixa.js";
-import {defaultEventsAfterSubmitFixedForm, insertElementHTML} from "../../js_common/commonFunctions.js";
-import {addLogInfo} from "../../logData/js/logFunctions.js"; 
 //Firebase
 import { firebaseApp } from "../../dbConfig/firebaseApp.js"
-const { getFirestore, doc, setDoc, onSnapshot, updateDoc, collection, getDocs, getDoc } = require("firebase/firestore")
+const { getFirestore, doc, setDoc } = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
-
+//---------------------------------------------------------------//
+//Components
+import { defaultEventsAfterSubmitFixedForm, insertElementHTML } from "../../jsCommon/commonFunctions.js";
+import { setCurrentDate, converteMesNumeroPorExtenso } from '../../jsCommon/dateFunc.js';
+import createNewRowFluxoCaixa from "./createNewRowFluxoCaixa.js";
+import { addLogInfo } from "../../logData/js/logFunctions.js";
+//---------------------------------------------------------------//
 //Others libraries
 const VMasker = require("vanilla-masker");
-//--------------------------------------------------------------------
+//---------------------------------------------------------------//
+
 export function insertFormAddEntradaAvulsa() {
   insertElementHTML("#entradas_content", "./components/fluxoCaixa/formAddEntradaAvulsa.html", eventsFormAddEntradaAvulsa, null, true)
 }
 
-function setMasks(){
-  
+function setMasks() {
   let valor = document.querySelector("#entrada_avulsa_valor");
   VMasker(valor).maskMoney();
 }
@@ -27,10 +26,10 @@ function setMasks(){
 function eventsFormAddEntradaAvulsa() {
   setCurrentDate('#data');
   document.querySelector('#form_add_entrada_avulsa').addEventListener('submit', (e) => {
-  e.preventDefault();
+    e.preventDefault();
     submitFormAddEntradaAvulsa(e)
   });
-  setMasks() 
+  setMasks()
 }
 
 function submitFormAddEntradaAvulsa(e) {
@@ -42,7 +41,7 @@ function submitFormAddEntradaAvulsa(e) {
 
   let form = document.querySelector('#form_add_entrada_avulsa');
   let valor = form.entrada_avulsa_valor.value;
-  let descricao = form.descricao.value; 
+  let descricao = form.descricao.value;
   createNewRowFluxoCaixa(ano, mes)
     .then((row) => {
       setDoc(doc(db, "fluxo_caixa", ano),
@@ -66,11 +65,10 @@ function submitFormAddEntradaAvulsa(e) {
         { merge: true }
       ).then(() => {
         defaultEventsAfterSubmitFixedForm("#form_add_entrada_avulsa", "Saída de caixa adicionada com sucesso!");
-      }).then(()=>{
+      }).then(() => {
         addLogInfo('log_fluxo_caixa', 'insert', `entradata_avulsa - ${descricao} - ${valor}`);
-      }).catch((error)=>{
-        addLogInfo('log_fluxo_caixa', 'error',  `entradata_avulsa - ${descricao} - ${valor}`, error);
+      }).catch((error) => {
+        addLogInfo('log_fluxo_caixa', 'error', `entradata_avulsa - ${descricao} - ${valor}`, error);
       });
     });
-
 }

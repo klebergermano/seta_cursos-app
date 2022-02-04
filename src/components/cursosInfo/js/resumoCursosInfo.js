@@ -1,44 +1,42 @@
 
-import {firebaseApp} from "../../dbConfig/firebaseApp.js";
-const {getFirestore, setDoc,  doc, getDocs, collection} = require("firebase/firestore") 
+//Firebase
+import { firebaseApp } from "../../dbConfig/firebaseApp.js";
+const { getFirestore, getDocs, collection } = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
-
-import {insertElementHTML}  from "../../js_common/commonFunctions.js";
-
+//---------------------------------------------------------------//
+//Components
+import { insertElementHTML } from "../../jsCommon/commonFunctions.js";
+//---------------------------------------------------------------//
 export function insertResumoCursosInfo() {
- insertElementHTML('#home_content', './components/cursosInfo/resumoCursosInfo.html', eventsResumoCursosInfo, null, true);    
+    insertElementHTML('#home_content', './components/cursosInfo/resumoCursosInfo.html', eventsResumoCursosInfo, null, true);
 }
 
-function eventsResumoCursosInfo(){
-     createContentResumoCursosInfo().then((bgCursosInfo)=>{
+function eventsResumoCursosInfo() {
+    createContentResumoCursosInfo().then((bgCursosInfo) => {
         document.querySelector('#cursos_info .page_content').innerHTML = bgCursosInfo.innerHTML;
-     }); 
-
+    });
 }
 
-function getCursosInfo(){
+function getCursosInfo() {
     return getDocs(collection(db, 'cursos_info'))
 }
 
-function listaModulos(modulos){
-
-    let lista = document.createElement('ul'); 
+function listaModulos(modulos) {
+    let lista = document.createElement('ul');
     lista.innerHTML = '<li>';
-     lista.innerHTML += modulos.replace(/,/g, '</li><li>');
+    lista.innerHTML += modulos.replace(/,/g, '</li><li>');
     lista.innerHTML += '</li>';
-
-   return lista.outerHTML;
-
+    return lista.outerHTML;
 }
 
-function createContentResumoCursosInfo(){
+function createContentResumoCursosInfo() {
 
-let bgCursosInfo = getCursosInfo().then((res)=>{
-    let bgCursosInfo = document.createElement('div');
-    res.forEach((item)=>{
+    let bgCursosInfo = getCursosInfo().then((res) => {
+        let bgCursosInfo = document.createElement('div');
+        res.forEach((item) => {
 
-        listaModulos(item.data().modulos)
-        let cursoInfo = `
+            listaModulos(item.data().modulos)
+            let cursoInfo = `
         <div class='curso_content  border_${item.data().nome}>${item.data().nome}'>
                 <h2 class='color_${item.data().nome}'>${item.data().nome}</h2>
                 <div class='categoria'>
@@ -61,15 +59,12 @@ let bgCursosInfo = getCursosInfo().then((res)=>{
 
             </div>
         
-        `; 
-        bgCursosInfo.innerHTML += cursoInfo;
+        `;
+            bgCursosInfo.innerHTML += cursoInfo;
 
+        })
+        return bgCursosInfo;
     })
-   
+
     return bgCursosInfo;
-
-})
-
-return bgCursosInfo;
-
 }

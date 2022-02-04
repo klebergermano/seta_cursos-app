@@ -1,47 +1,48 @@
-
-
-import { insertElementHTML, displaySpinnerLoad, removeSpinnerLoad} from "../../js_common/commonFunctions.js";
-import {submitFormContratoPDF} from "./formAddContrato.js";
-//firestore
+//Firebase
 import { firebaseApp } from "../../dbConfig/firebaseApp.js";
-const { getFirestore,  getDoc, doc } = require("firebase/firestore");
+const { getFirestore, getDoc, doc } = require("firebase/firestore");
 const db = getFirestore(firebaseApp);
+//---------------------------------------------------------------//
+//Components
+import { insertElementHTML } from "../../jsCommon/commonFunctions.js";
+import { submitFormContratoPDF } from "./formAddContrato.js";
+//---------------------------------------------------------------//
 
-export function insertInfoContratoHTML(idContrato){
-    insertElementHTML("#contratos_content", "./components/contratos/infoContrato.html",  ()=>{eventsInfoContrato(idContrato)}, null, true)
+export function insertInfoContratoHTML(idContrato) {
+    insertElementHTML("#contratos_content", "./components/contratos/infoContrato.html", () => { eventsInfoContrato(idContrato) }, null, true)
 }
-function eventsInfoContrato(idContrato){
+function eventsInfoContrato(idContrato) {
     getDoc(doc(db, 'contratos', idContrato))
-    .then((contratoInfo)=>{
-        document.querySelector("#form_info_contrato").addEventListener('submit', (e)=>{
-e.preventDefault();
-submitFormContratoPDF(e)
-        });
-        insertValuesInputs(contratoInfo)
-    }).catch((err)=> console.log(err));
+        .then((contratoInfo) => {
+            document.querySelector("#form_info_contrato").addEventListener('submit', (e) => {
+                e.preventDefault();
+                submitFormContratoPDF(e)
+            });
+            insertValuesInputs(contratoInfo)
+        }).catch((err) => console.log(err));
 }
 
-function insertValuesInputs(contratoInfo){
+function insertValuesInputs(contratoInfo) {
     contratoInfo = contratoInfo.data();
-let parentesco_resp = contratoInfo.aluno_info.parentesco_resp;
-if(parentesco_resp === 'IDEM'){
-    document.querySelector("#checkbox_resp_aluno").setAttribute('checked', true);
-}
-   
-        //Resp
-        document.querySelector('#resp_nome').value = contratoInfo.resp_info.nome;
-        document.querySelector('#resp_genero').value = contratoInfo.resp_info.genero;
-        document.querySelector('#resp_end').value = contratoInfo.resp_info.end;
-        document.querySelector('#resp_end_numero').value = contratoInfo.resp_info.end_numero;
-        document.querySelector('#resp_bairro').value = contratoInfo.resp_info.bairro;
-        document.querySelector('#resp_cep').value = contratoInfo.resp_info.cep;
-        document.querySelector('#resp_data_nasc').value = contratoInfo.resp_info.data_nasc;
-        document.querySelector('#resp_email').value = contratoInfo.resp_info.email;
-        document.querySelector('#resp_rg').value = contratoInfo.resp_info.rg;
-        document.querySelector('#resp_cel').value = contratoInfo.resp_info.cel;
-        document.querySelector('#resp_tel').value = contratoInfo.resp_info.tel;
+    let parentesco_resp = contratoInfo.aluno_info.parentesco_resp;
+    if (parentesco_resp === 'IDEM') {
+        document.querySelector("#checkbox_resp_aluno").setAttribute('checked', true);
+    }
+
+    //Resp
+    document.querySelector('#resp_nome').value = contratoInfo.resp_info.nome;
+    document.querySelector('#resp_genero').value = contratoInfo.resp_info.genero;
+    document.querySelector('#resp_end').value = contratoInfo.resp_info.end;
+    document.querySelector('#resp_end_numero').value = contratoInfo.resp_info.end_numero;
+    document.querySelector('#resp_bairro').value = contratoInfo.resp_info.bairro;
+    document.querySelector('#resp_cep').value = contratoInfo.resp_info.cep;
+    document.querySelector('#resp_data_nasc').value = contratoInfo.resp_info.data_nasc;
+    document.querySelector('#resp_email').value = contratoInfo.resp_info.email;
+    document.querySelector('#resp_rg').value = contratoInfo.resp_info.rg;
+    document.querySelector('#resp_cel').value = contratoInfo.resp_info.cel;
+    document.querySelector('#resp_tel').value = contratoInfo.resp_info.tel;
     //Aluno
-  
+
     document.querySelector('#aluno_parentesco').value = contratoInfo.aluno_info.parentesco_resp;
     document.querySelector('#aluno_nome').value = contratoInfo.aluno_info.nome;
     document.querySelector('#aluno_genero').value = contratoInfo.aluno_info.genero;

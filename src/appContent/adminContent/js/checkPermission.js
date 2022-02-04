@@ -1,5 +1,7 @@
+//Components
 import * as users from "../../../components/users/js/index.js";
 import * as permissionsFunc from "../../../components/users/js/permissions.js";
+//---------------------------------------------------------------//
 
 //Remove elementos não autorizados usando o "data-auth";
 //Qualquer elemento que tenha o data-auth e não esteja na lista de 
