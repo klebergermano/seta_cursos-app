@@ -40,10 +40,7 @@ let month = (newDate.getMonth() +1);
 day = day.toString().padStart('2', '0');
 month = month.toString().padStart('2', '0');
 let changedDate = `${day}/${month}/${year}`;
-/*
-let n = ''+day;
-let x = n.padStart('2', '0');
-*/
+
     return changedDate;
 }
 
