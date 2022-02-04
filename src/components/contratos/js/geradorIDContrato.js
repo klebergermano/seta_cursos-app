@@ -1,11 +1,11 @@
-
+//Firebase
 import { firebaseApp } from "../../dbConfig/firebaseApp.js";
-const { getFirestore, setDoc, getDocs, doc, collection } = require("firebase/firestore")
+const { getFirestore, getDocs, collection } = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
+//---------------------------------------------------------------//
 
 export function eventsIDContrato() {
     let id_contrato = document.querySelector("#id_contrato");
-
     document.querySelector('#checkbox_id_automatico_contrato')
         .addEventListener('click', toggleIDAutomaticoContrato);
     insertOptionslistIdContrato();
@@ -40,28 +40,28 @@ function checkInputIDContrato() {
     let idInputValue = document.querySelector("#id_contrato").value;
     getIdContratos()
         .then((idContratos) => {
-            let valida = true; 
-          idContratos.forEach((idContrato) => {
+            let valida = true;
+            idContratos.forEach((idContrato) => {
                 if (idContrato === idInputValue || idInputValue === "C000") {
-                   valida = false;
+                    valida = false;
                 }
             })
-            if(!valida) invalidateInputIDContrato();
+            if (!valida) invalidateInputIDContrato();
             else validateInputIDContrato();
         });
 }
 
-function invalidateInputIDContrato(){
+function invalidateInputIDContrato() {
     let idInput = document.querySelector("#id_contrato");
     idInput.setCustomValidity("ID em uso ou inválida");
     idInput.classList.add('input_invalido');
-} 
+}
 
-function validateInputIDContrato(){
+function validateInputIDContrato() {
     let idInput = document.querySelector("#id_contrato");
     idInput.classList.remove('input_invalido');
     idInput.setCustomValidity("");
-} 
+}
 
 function insertOptionslistIdContrato() {
     let listIdContrato = document.querySelector("#list_id_contrato");

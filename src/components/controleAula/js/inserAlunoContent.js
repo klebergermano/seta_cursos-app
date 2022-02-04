@@ -1,14 +1,15 @@
 
-//-------------------------------------------------------------------------
 //Firebase
 import { firebaseApp } from "../../dbConfig/firebaseApp.js"
 const { getFirestore, onSnapshot, collection, getDocs } = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
-//Imports -------------------------------------------------------------------
+//---------------------------------------------------------------//
+//Components
 import { eventsAulas } from "./eventsAula.js";
-import {insertNavCursosInBGCursos} from "./navCursosAluno.js";
-import {createAlunoContentHTML} from "./createAlunoContentHTML.js";
-//-------------------------------------------------------------------------
+import { insertNavCursosInBGCursos } from "./navCursosAluno.js";
+import { createAlunoContentHTML } from "./createAlunoContentHTML.js";
+//---------------------------------------------------------------//
+
 export function getAlunoCursosDB(RA) {
   let alunoHistorico = getDocs(collection(db, 'alunato', RA, 'cursos'));
   if (alunoHistorico === 'undefined') {
@@ -49,10 +50,10 @@ export function insertAlunoContent(RA, alunoCursosDB) {
   document.querySelector("#controle_aula_content").style.opacity = '0';
   if (alunoCursosDB.length !== 0) {
     createAlunoContentHTML(alunoCursosDB, RA);
-    let nomeCurso =  alunoCursosDB[0].doc.data().curso_info.nome;
+    let nomeCurso = alunoCursosDB[0].doc.data().curso_info.nome;
     insertNavCursosInBGCursos(RA, nomeCurso);
   } else {
-   document.querySelector("#controle_aula_content").innerHTML = alunoSemCursoContent();
+    document.querySelector("#controle_aula_content").innerHTML = alunoSemCursoContent();
   }
   let spiner = document.querySelector('.spinner');
   if (spiner) {

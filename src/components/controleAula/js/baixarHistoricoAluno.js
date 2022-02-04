@@ -1,14 +1,15 @@
-//imports
-import * as commonFunc from "../../js_common/commonFunctions.js";
-import {displaySpinnerLoad, removeSpinnerLoad } from "../../js_common/commonFunctions.js";
-import { addLogInfo } from "../../logData/js/logFunctions.js";
-//require Nodejs
+//Electron
 const { ipcRenderer } = require("electron");
+//---------------------------------------------------------------//
 //Firebase
 import { firebaseApp } from "../../dbConfig/firebaseApp.js";
 const { getFirestore, doc, getDoc } = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
-//-----------------------------------------------------------------
+//---------------------------------------------------------------//
+//Components
+import { displaySpinnerLoad, removeSpinnerLoad } from "../../jsCommon/commonFunctions.js";
+import { addLogInfo } from "../../logData/js/logFunctions.js";
+//---------------------------------------------------------------//
 
 export function eventsBaixarHistorico(e) {
   let mainSelectAluno = document.querySelector('#main_select_aluno');
@@ -33,20 +34,20 @@ async function sendHistoricoAluno(alunoInfo) {
     res.nome = alunoInfo.nome;
     return res;
   }).then((res) => {
-  ipcRenderer.invoke("baixarHistoricoAluno", res)
+    ipcRenderer.invoke("baixarHistoricoAluno", res)
 
-  }).then(()=>{
+  }).then(() => {
     //TODO: retirar setTimeout.
     //Response esta sendo executado antes da mensagem de conclusão aparecer
     //setTimeout esta servindo para fazer um delay na remoção do spinner
-    setTimeout(()=>{
+    setTimeout(() => {
       removeSpinnerLoad("#page_content");
     }, 1500)
-  }).then(()=>{
+  }).then(() => {
     addLogInfo("log_alunato", "create_pdf", `histórico_pdf-${alunoInfo.RA}-${alunoInfo.curso}`);
   })
     .catch((error) => {
-    addLogInfo("log_alunato", "error", `histórico_pdf-${alunoInfo.RA}-${alunoInfo.curso}`, error);
+      addLogInfo("log_alunato", "error", `histórico_pdf-${alunoInfo.RA}-${alunoInfo.curso}`, error);
       console.log('Ocorreu um erro ao enviar o Histórico do Aluno', err)
     });
 }//-------------//rs

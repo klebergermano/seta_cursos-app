@@ -1,62 +1,65 @@
-//-------------------------------------------------------------------
-import {confirmBoxDelete, insertElementHTML, createRadomIdLogBasedOnData} from "../../js_common/commonFunctions.js";
-import {changeDateToDislayText} from "../../js_common/dateFunc.js";
 
-import {countEntradasTotal, somaValorTotalMes, setFluxoCaixaAno, 
-    setAnoMesSelectFiltros, sortTbodyElementByDate, 
-    getFiltroInfoAnoMes} from "./commonFluxoCaixa.js";
-
-import { addLogInfo } from "../../logData/js/logFunctions.js";
-//firebase
-import {firebaseApp} from "../../dbConfig/firebaseApp.js";
-const {getFirestore, getDoc, doc, deleteField,setDoc, updateDoc} = require("firebase/firestore") 
-const {getAuth} = require("firebase/auth");
+//Firebase
+import { firebaseApp } from "../../dbConfig/firebaseApp.js";
+const { getFirestore, getDoc, doc, deleteField, setDoc, updateDoc } = require("firebase/firestore")
+const { getAuth } = require("firebase/auth");
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
+//---------------------------------------------------------------//
+//Components
+import { confirmBoxDelete, insertElementHTML, createRadomIdLogBasedOnData } from "../../jsCommon/commonFunctions.js";
+import { changeDateToDislayText } from "../../jsCommon/dateFunc.js";
+import { addLogInfo } from "../../logData/js/logFunctions.js";
+//---------------------------------------------------------------//
+//Funções do componente
+import {
+    countEntradasTotal, somaValorTotalMes, setFluxoCaixaAno,
+    setAnoMesSelectFiltros, sortTbodyElementByDate,
+    getFiltroInfoAnoMes
+} from "./commonFluxoCaixa.js";
+//---------------------------------------------------------------//
 
-//Others libraries
-const VMasker = require("vanilla-masker");
 //--------------------------------------------------------------------
 var $fluxoCaixaAno = {};
-export function insertSaidasInfoTableHTML(){
+export function insertSaidasInfoTableHTML() {
     insertElementHTML('#saidas_content', './components/fluxoCaixa/viewTableSaidasInfo.html', eventsSaidasInfoTable, null, true);
 }
-function eventsSaidasInfoTable(){
+function eventsSaidasInfoTable() {
     setAnoMesSelectFiltros()
     let filtroInfo = getFiltroInfoAnoMes()
     setFluxoCaixaAno(filtroInfo.ano)
-    .then((res)=>{
-        $fluxoCaixaAno = res; 
-        $fluxoCaixaAno.ano = filtroInfo.ano;
-        insertContentTables(res, filtroInfo.mes)
-    }).then(()=>{
-        btnsDeleteEntradaAvulsa()
-    }).catch(err => console.log(err))
-
-    document.querySelector("#select_ano").addEventListener('change', (e)=>{
-        let filtroInfo = getFiltroInfoAnoMes()
-        setFluxoCaixaAno(filtroInfo.ano)
-        .then((res)=>{
-            res.ano = filtroInfo.ano;
-             insertContentTables(res, filtroInfo.mes)
-        }).then(()=>{
+        .then((res) => {
+            $fluxoCaixaAno = res;
+            $fluxoCaixaAno.ano = filtroInfo.ano;
+            insertContentTables(res, filtroInfo.mes)
+        }).then(() => {
             btnsDeleteEntradaAvulsa()
         }).catch(err => console.log(err))
-     })
-     document.querySelector("#select_mes").addEventListener('change', (e)=>{
+
+    document.querySelector("#select_ano").addEventListener('change', (e) => {
         let filtroInfo = getFiltroInfoAnoMes()
         setFluxoCaixaAno(filtroInfo.ano)
-.then((res)=>{
-    res.ano =  filtroInfo.ano;
-    insertContentTables(res, filtroInfo.mes)
-}).then(()=>{
-    btnsDeleteEntradaAvulsa()
-})
+            .then((res) => {
+                res.ano = filtroInfo.ano;
+                insertContentTables(res, filtroInfo.mes)
+            }).then(() => {
+                btnsDeleteEntradaAvulsa()
+            }).catch(err => console.log(err))
+    })
+    document.querySelector("#select_mes").addEventListener('change', (e) => {
+        let filtroInfo = getFiltroInfoAnoMes()
+        setFluxoCaixaAno(filtroInfo.ano)
+            .then((res) => {
+                res.ano = filtroInfo.ano;
+                insertContentTables(res, filtroInfo.mes)
+            }).then(() => {
+                btnsDeleteEntradaAvulsa()
+            })
         insertContentTables($fluxoCaixaAno, filtroInfo.mes)
-     })
+    })
 }
 
-function insertContentTables(fluxoCaixaAno, mes){
+function insertContentTables(fluxoCaixaAno, mes) {
 
     let contentTableSaidaAvulsa = createContentSaidaAvulsaTableHTML(fluxoCaixaAno, mes);
     insertContentTableSaidaAvulsaMensal(contentTableSaidaAvulsa);
@@ -70,32 +73,32 @@ function insertContentTables(fluxoCaixaAno, mes){
 
 }
 
-function insertContentTableSaidaAvulsaMensal(contentTable){
-let table = document.querySelector('#saida_avulsa_table_info');
-table.querySelector('#tbody').innerHTML = contentTable.innerHTML;
+function insertContentTableSaidaAvulsaMensal(contentTable) {
+    let table = document.querySelector('#saida_avulsa_table_info');
+    table.querySelector('#tbody').innerHTML = contentTable.innerHTML;
 }
-function insertContentTableSaidasAvulsa(contentTable){
-let table = document.querySelector('#saida_avulsa_table_info');
-table.querySelector('#tbody').innerHTML = contentTable.innerHTML;
+function insertContentTableSaidasAvulsa(contentTable) {
+    let table = document.querySelector('#saida_avulsa_table_info');
+    table.querySelector('#tbody').innerHTML = contentTable.innerHTML;
 }
 
-  function createContentSaidaAvulsaTableHTML (fluxoCaixaAno, mes){
-    
+function createContentSaidaAvulsaTableHTML(fluxoCaixaAno, mes) {
+
     let fluxoCaixaMes = fluxoCaixaAno?.[mes];
-   
-    let tbody = document.createElement('tbody'); 
-    if(fluxoCaixaMes){
-        let saidas = false; 
-        for( let value of Object.values(fluxoCaixaMes)){
-            if(value?.categoria === "saida_avulsa"){
+
+    let tbody = document.createElement('tbody');
+    if (fluxoCaixaMes) {
+        let saidas = false;
+        for (let value of Object.values(fluxoCaixaMes)) {
+            if (value?.categoria === "saida_avulsa") {
                 saidas = true;
                 let tr = document.createElement('tr');
-                tr.id='tr_comum';
+                tr.id = 'tr_comum';
                 tr.setAttribute('data-ano', fluxoCaixaAno.ano);
                 tr.setAttribute('data-mes', mes);
                 tr.setAttribute('data-row', value.row);
-                let trContent = 
-                `
+                let trContent =
+                    `
                 <td class='td_data'>${changeDateToDislayText(value.data)}</td>
                 <td class='td_descricao'>${value.descricao}</td>
                 <td class='td_tipo_saida'>${value.tipo_saida}</td>
@@ -111,37 +114,37 @@ table.querySelector('#tbody').innerHTML = contentTable.innerHTML;
                 `
                 tr.innerHTML = trContent;
                 tbody.appendChild(tr)
-               }//if
-            }
+            }//if
+        }
 
-            if(saidas){
-                //-----------Resumo---------------------------
-                let resEntradas = countEntradasTotal(fluxoCaixaAno, mes, 'saida_avulsa');
-                let resValorTotal = somaValorTotalMes(fluxoCaixaAno, mes, 'saida_avulsa');
-                let trResumo = document.createElement('tr');
-                trResumo.id='tr_resumo';
-                trResumo.innerHTML = `
+        if (saidas) {
+            //-----------Resumo---------------------------
+            let resEntradas = countEntradasTotal(fluxoCaixaAno, mes, 'saida_avulsa');
+            let resValorTotal = somaValorTotalMes(fluxoCaixaAno, mes, 'saida_avulsa');
+            let trResumo = document.createElement('tr');
+            trResumo.id = 'tr_resumo';
+            trResumo.innerHTML = `
                 <td colspan='3'>Entradas: <span id='res_total_saida'>${resEntradas}</span></td>
                 <td colspan='2' class="td_valor_total" id="td_res_valor_total">${resValorTotal}</td>
                 `;
-                tbody.appendChild(trResumo)
-                //-----------------------------------------
-            }else{
-                let tr = document.createElement('tr')
-                tr.innerHTML= `
+            tbody.appendChild(trResumo)
+            //-----------------------------------------
+        } else {
+            let tr = document.createElement('tr')
+            tr.innerHTML = `
                 <td>...</td>
                 <td>...</td>
                 <td>...</td>
                 <td>R$ 0,00</td>
                 <td>...</td>
                 `;
-                ;
-                tbody.appendChild(tr)
-            }
-    
-    }else{
+            ;
+            tbody.appendChild(tr)
+        }
+
+    } else {
         let tr = document.createElement('tr')
-        tr.innerHTML= `
+        tr.innerHTML = `
         <td>...</td>
         <td>...</td>
         <td>...</td>
@@ -151,53 +154,53 @@ table.querySelector('#tbody').innerHTML = contentTable.innerHTML;
         ;
         tbody.appendChild(tr)
     }
-       return tbody;
-    }
+    return tbody;
+}
 
 
-    function btnsDeleteEntradaAvulsa(){
-        let btnsPagMensal = document.querySelectorAll('#saida_avulsa_table_info .btn_delete_saida_avulsa');
-        btnsPagMensal.forEach((item)=>{
-            item.addEventListener('click', (e)=>{
-                let tr = e.target.closest('tr');
-                let data = tr.querySelector('.td_data').innerHTML;
-                let valor = tr.querySelector('.td_valor_total').innerHTML;
-                let descricao = tr.querySelector('.td_descricao').innerHTML;
-                let ano = tr.dataset.ano; 
-                let mes = tr.dataset.mes; 
-                let row = tr.dataset.row; 
-                let msg = `<span style='color:red'><b>ATENÇÃO</b></span>
+function btnsDeleteEntradaAvulsa() {
+    let btnsPagMensal = document.querySelectorAll('#saida_avulsa_table_info .btn_delete_saida_avulsa');
+    btnsPagMensal.forEach((item) => {
+        item.addEventListener('click', (e) => {
+            let tr = e.target.closest('tr');
+            let data = tr.querySelector('.td_data').innerHTML;
+            let valor = tr.querySelector('.td_valor_total').innerHTML;
+            let descricao = tr.querySelector('.td_descricao').innerHTML;
+            let ano = tr.dataset.ano;
+            let mes = tr.dataset.mes;
+            let row = tr.dataset.row;
+            let msg = `<span style='color:red'><b>ATENÇÃO</b></span>
                 <br/>Tem certeza que deseja deletar a saida de caixa "<b>${data} - ${descricao} - ${valor}</b>"?
                 <br/>Essa ação não podera ser desfeita!`;
-                confirmBoxDelete(".bg_tables", msg, ()=>{
-                 submitDeleteSaidaAvulsa(ano, mes, row, data, valor, descricao); 
-                })
-            });
+            confirmBoxDelete(".bg_tables", msg, () => {
+                submitDeleteSaidaAvulsa(ano, mes, row, data, valor, descricao);
+            })
         });
-    }
+    });
+}
 
 
-    function  submitDeleteSaidaAvulsa(ano, mes, row, data, valor, descricao){
-        let string = `${mes}.${row}`;
-        let deleteQuery = {};
-        deleteQuery[string] = deleteField();
-        const docAula = doc(db, 'fluxo_caixa', ano);
-        updateDoc(docAula, deleteQuery)
-        .then(()=>{ 
-        let idLog = createRadomIdLogBasedOnData();
-            setDoc(doc(db, "log", 'log_fluxo_caixa'),{
+function submitDeleteSaidaAvulsa(ano, mes, row, data, valor, descricao) {
+    let string = `${mes}.${row}`;
+    let deleteQuery = {};
+    deleteQuery[string] = deleteField();
+    const docAula = doc(db, 'fluxo_caixa', ano);
+    updateDoc(docAula, deleteQuery)
+        .then(() => {
+            let idLog = createRadomIdLogBasedOnData();
+            setDoc(doc(db, "log", 'log_fluxo_caixa'), {
                 [idLog]: `Deletado 'Saida de Fluxo de Caixa Avulsa' "${data} - R$${valor} - ${descricao}" deletado em ${new Date()} por ${auth.currentUser.email}`
-                },
-                { merge: true})
+            },
+                { merge: true })
         })
-        .then(()=>{
+        .then(() => {
             insertSaidasInfoTableHTML();
-        }).then(()=>{
+        }).then(() => {
             addLogInfo('log_fluxo_caixa', 'delete', `saida_avulsa -"${descricao} - R$${valor}"`);
-          }).catch((error)=>{
+        }).catch((error) => {
             addLogInfo('log_fluxo_caixa', 'error', 'saida_avulsa', error);
-          });
-        }
+        });
+}
 
 
 

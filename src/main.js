@@ -1,6 +1,7 @@
-
-
-const { app, BrowserWindow, Menu, ipcMain, globalShortcut, Tray, dialog,  shell } = require("electron");
+//TODO: Refatorar.
+//Electron
+const { app, BrowserWindow, ipcMain, dialog, shell } = require("electron");
+//---------------------------------------------------------------//
 
 const pdf = require("html-pdf");
 const fs = require("fs");
@@ -10,6 +11,7 @@ const TemplateTalao = require("./components/alunos/js/TemplateTalao.js");
 const TemplateContrato = require("./components/contratos/js/TemplateContrato.js");
 const TemplateHistoricoAluno = require("./components/controleAula/js/TemplateHistoricoAluno.js");
 const TemplateCertificado = require("./components/alunos/js/TemplateCertificado.js");
+//---------------------------------------------------------------//
 
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -41,24 +43,23 @@ const createWindow = () => {
 
 
   //Btn close App
-  ipcMain.on('closeApp', ()=>{
+  ipcMain.on('closeApp', () => {
     mainWindow.close();
   });
   //Btn minimize App
-  ipcMain.on('minimizeApp', ()=>{
+  ipcMain.on('minimizeApp', () => {
     mainWindow.minimize();
   });
   //Btn minimize App
-  ipcMain.on('maxRestoreApp', ()=>{
-  console.log('maxRestoreApp');
-    if(mainWindow.isMaximized()){
+  ipcMain.on('maxRestoreApp', () => {
+    console.log('maxRestoreApp');
+    if (mainWindow.isMaximized()) {
       mainWindow.restore();
-    }else{
+    } else {
       mainWindow.maximize();
 
     }
   });
-
 
   mainWindow.webContents.setWindowOpenHandler(({ url }) => {
     shell.openExternal(url);
@@ -90,24 +91,20 @@ app.on('activate', () => {
 });
 
 
-
-
-
 //TODO: Refatorar funções PDF
-
 
 //-------------------------------------------------------------------------------------//
 //-----------------------------------------CERTIFICADOS PDF ------------------------//
 //-------------------------------------------------------------------------------------//
 
 function createPDFCertificado(certificadoInfo) {
-  var options = { 
-    "height": "21cm",        
-    "width": "29.6cm",            
+  var options = {
+    "height": "21cm",
+    "width": "29.6cm",
     "base": "file:///D:/#KG/seta_cursos-app/src/assets/"
-    }
+  }
 
- // const templateTalao = TemplateTalao(docAlunoHistorico); // create template from the form inputs
+  // const templateTalao = TemplateTalao(docAlunoHistorico); // create template from the form inputs
   const templateCertificado = TemplateCertificado(certificadoInfo) // create template from the form inputs
   return new Promise((resolve, reject) => {
     pdf
@@ -122,7 +119,7 @@ function createPDFCertificado(certificadoInfo) {
 ipcMain.handle("createCertificadoPDF", async (event, certificadoInfo) => {
   let novoPDF = createPDFCertificado(certificadoInfo); // call the createPDF function
   novoPDF.then((pdf) => {
-   let filename = `certificado-${certificadoInfo.aluno_ra}-${certificadoInfo.aluno_nome}-${certificadoInfo.curso_nome}.pdf`;
+    let filename = `certificado-${certificadoInfo.aluno_ra}-${certificadoInfo.aluno_nome}-${certificadoInfo.curso_nome}.pdf`;
     filename = filename.toUpperCase();
     let oldpath = `${__dirname}/certificado.pdf`;
     let newpath = `${downloadPath}/${filename}`;
@@ -153,12 +150,12 @@ ipcMain.handle("createCertificadoPDF", async (event, certificadoInfo) => {
 //-------------------------------------------------------------------------------------//
 
 function createPDFTalao(talaoInfo) {
-  var options = { 
+  var options = {
     "format": "A4",
     "base": "file:///D:/#KG/seta_cursos-app/src/assets/"
-    }
+  }
 
- // const templateTalao = TemplateTalao(docAlunoHistorico); // create template from the form inputs
+  // const templateTalao = TemplateTalao(docAlunoHistorico); // create template from the form inputs
   const templateTalao = TemplateTalao(talaoInfo) // create template from the form inputs
   return new Promise((resolve, reject) => {
     pdf
@@ -174,7 +171,7 @@ ipcMain.handle("createTalaoPDF", async (event, talaoInfo) => {
   let novoPDF = createPDFTalao(talaoInfo); // call the createPDF function
 
   novoPDF.then((pdf) => {
-   let filename = `talao-${talaoInfo[0].ra}-${talaoInfo[0].aluno}-${talaoInfo[0].curso}.pdf`;
+    let filename = `talao-${talaoInfo[0].ra}-${talaoInfo[0].aluno}-${talaoInfo[0].curso}.pdf`;
     filename = filename.toUpperCase();
     let oldpath = `${__dirname}/talao.pdf`;
     let newpath = `${downloadPath}/${filename}`;
@@ -201,18 +198,16 @@ ipcMain.handle("createTalaoPDF", async (event, talaoInfo) => {
 });
 
 
-
-
 //-------------------------------------------------------------------------------------//
 //-----------------------------------------ALUNO HISTORICO PDF ------------------------//
 //-------------------------------------------------------------------------------------//
 
 
 function createPDFHistoricoAluno(docAlunoHistorico) {
-  var options = { 
+  var options = {
     "format": "A4",
     "base": "file:///D:/#KG/seta_cursos-app/src/assets/"
-    }
+  }
 
   const templateHistorico = TemplateHistoricoAluno(docAlunoHistorico); // create template from the form inputs
   return new Promise((resolve, reject) => {
@@ -303,7 +298,7 @@ ipcMain.handle("submit", async (event, data_info) => {
           if (err) throw err;
           console.log("File deleted!");
         });
-      return true;
+        return true;
 
       });
       return true;
@@ -312,6 +307,6 @@ ipcMain.handle("submit", async (event, data_info) => {
       console.log(err);
       return false;
     });
-    
+
 });
 

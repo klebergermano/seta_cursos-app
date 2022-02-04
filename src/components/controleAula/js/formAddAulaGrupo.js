@@ -1,9 +1,13 @@
+//---------------------------------------------------------------//
+//Firebase
 import { firebaseApp } from "../../dbConfig/firebaseApp.js";
 const { getFirestore, setDoc, doc, getDocs, collection } = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
-
-import { removeBugExtraBgFormBLockScreen, btnCloseForm, insertElementHTML, stringToID, defaultEventsAfterSubmitForm } from "../../js_common/commonFunctions.js";
+//---------------------------------------------------------------//
+//Components
+import { removeBugExtraBgFormBLockScreen, btnCloseForm, insertElementHTML, defaultEventsAfterSubmitForm } from "../../jsCommon/commonFunctions.js";
 import { addLogInfo } from "../../logData/js/logFunctions.js";
+//---------------------------------------------------------------//
 
 export async function insertFormAddAulaGrupoHTML() {
   insertElementHTML('#controle_aula_content',
@@ -31,7 +35,7 @@ function eventsFormAddAulaGrupo(form) {
   });
 
 
-  let divAluno = document.querySelector('.div_aluno_adicionado'); 
+  let divAluno = document.querySelector('.div_aluno_adicionado');
   eventsDivAlunoAdicinado(divAluno)
 }
 
@@ -40,33 +44,33 @@ function setCursoSelect(e) {
   let divAluno = e.target.closest('.div_aluno_adicionado');
   let selectCurso = divAluno.querySelector('.select_curso');
   console.log(selectCurso)
-    getDocs(collection(db, 'alunato', RA, 'cursos'))
-      .then((res) => {
-        let option = '<option disabled selected value="">Selecione o Curso</option>';
-        res.forEach((item) => {
-          console.log(item.data())
-          option += `<option value='${item.data().curso_info.nome}'>${item.data().curso_info.nome}</option>`;
-        })
-
-        return option;
-
-      }).then((res)=>{
-        console.log(res)
-        selectCurso.innerHTML = res;
+  getDocs(collection(db, 'alunato', RA, 'cursos'))
+    .then((res) => {
+      let option = '<option disabled selected value="">Selecione o Curso</option>';
+      res.forEach((item) => {
+        console.log(item.data())
+        option += `<option value='${item.data().curso_info.nome}'>${item.data().curso_info.nome}</option>`;
       })
+
+      return option;
+
+    }).then((res) => {
+      console.log(res)
+      selectCurso.innerHTML = res;
+    })
 
 }
 
-function eventsDivAlunoAdicinado(divAluno){
+function eventsDivAlunoAdicinado(divAluno) {
   divAluno.querySelector('.select_aluno_adicionado').addEventListener('input', (e) => {
     validaSelectAlunoAdicionado(e);
   });
-  divAluno.querySelector('.select_curso').addEventListener('change', (e)=>{
+  divAluno.querySelector('.select_curso').addEventListener('change', (e) => {
     console.log('change curso');
     enableSelectBimestre(e)
   })
-  divAluno.querySelector('.select_bimestre').addEventListener('change', (e)=>{
-console.log('change')
+  divAluno.querySelector('.select_bimestre').addEventListener('change', (e) => {
+    console.log('change')
     validaSelectAula(e)
   })
 }
@@ -79,7 +83,7 @@ function adicionaAluno() {
   divAluno.querySelector(".select_curso").setAttribute('disabled', true);
   divAluno.querySelector(".select_bimestre").setAttribute('disabled', true);
   divAluno.querySelector(".select_aula").setAttribute('disabled', true);
-  
+
   let btnDel = document.createElement('button');
   btnDel.classList = 'btn_del_aluno'
   btnDel.innerHTML = " x ";
@@ -96,21 +100,21 @@ function adicionaAluno() {
 
 }
 
-function enableSelectBimestre(e){
+function enableSelectBimestre(e) {
   let divAluno = e.target.closest('.div_aluno_adicionado');
   divAluno.querySelector('.select_bimestre').removeAttribute('disabled');
 }
-function disableSelectBimestre(e){
+function disableSelectBimestre(e) {
   let divAluno = e.target.closest('.div_aluno_adicionado');
   let selectBimestre = divAluno.querySelector('.select_bimestre')
   selectBimestre.setAttribute('disabled', true);
-  selectBimestre.selectedIndex = 0; 
+  selectBimestre.selectedIndex = 0;
 }
-function disableSelectAula(e){
+function disableSelectAula(e) {
   let divAluno = e.target.closest('.div_aluno_adicionado');
   let selectBimestre = divAluno.querySelector('.select_aula')
   selectBimestre.setAttribute('disabled', true);
-  selectBimestre.selectedIndex = 0; 
+  selectBimestre.selectedIndex = 0;
 }
 
 
@@ -133,7 +137,7 @@ function validaSelectAlunoAdicionado(e) {
     divAluno.querySelector('.select_curso').innerHTML = "<option selected disabled>Selecione o Curso</option>";
     disableSelectBimestre(e)
     disableSelectAula(e)
-  
+
   } else {
     setCursoSelect(e)
     divAluno.querySelector('.select_curso').removeAttribute('disabled')
@@ -165,8 +169,8 @@ function validaSelectAula(e) {
   let divAluno = e.target.closest('.div_aluno_adicionado');
   let infoAula;
   infoAula = getInfoFormAddAula(divAluno);
- blockSelectOptionsAddAulas(divAluno, infoAula);
- console.log(infoAula);
+  blockSelectOptionsAddAulas(divAluno, infoAula);
+  console.log(infoAula);
 }
 
 function getInfoFormAddAula(divAluno) {
@@ -242,31 +246,31 @@ function submitFormAddAulaGrupo(e) {
   let form = e.target;
   console.log(form);
   let divAlunos = form.querySelectorAll('.div_aluno_adicionado');
-  divAlunos.forEach((item)=>{
+  divAlunos.forEach((item) => {
 
-    let RA =  item.querySelector('.select_aluno_adicionado').value.split('-')[0];
-    let curso =  item.querySelector('.select_curso').value;
-    let bimestre =  item.querySelector('.select_bimestre').value;
-    let aula =  item.querySelector('.select_aula').value;
-    form.RA = RA; 
-    form.bimestre = bimestre; 
+    let RA = item.querySelector('.select_aluno_adicionado').value.split('-')[0];
+    let curso = item.querySelector('.select_curso').value;
+    let bimestre = item.querySelector('.select_bimestre').value;
+    let aula = item.querySelector('.select_aula').value;
+    form.RA = RA;
+    form.bimestre = bimestre;
     form.aula = aula;
     form.curso = curso;
 
-  setDoc(doc(db, 'alunato', RA, 'cursos', curso),
-    { bimestres: blocoAddAula(form)},
-    { merge: true}
-  )
-  .then(()=>{
-    addLogInfo('log_alunato', 'update', `${RA} - ${curso} - ${bimestre} - insert_aula_${aula}`);
-  })
-  .catch((error)=>{
-    console.log(error);
-    addLogInfo('log_alunato', 'error', `${RA} - ${curso} - ${bimestre} - insert_aula_${aula}`, error);
-  });
+    setDoc(doc(db, 'alunato', RA, 'cursos', curso),
+      { bimestres: blocoAddAula(form) },
+      { merge: true }
+    )
+      .then(() => {
+        addLogInfo('log_alunato', 'update', `${RA} - ${curso} - ${bimestre} - insert_aula_${aula}`);
+      })
+      .catch((error) => {
+        console.log(error);
+        addLogInfo('log_alunato', 'error', `${RA} - ${curso} - ${bimestre} - insert_aula_${aula}`, error);
+      });
 
-});
-defaultEventsAfterSubmitForm("#form_add_aula_grupo", "Aulas adicionadas com sucesso!")
+  });
+  defaultEventsAfterSubmitForm("#form_add_aula_grupo", "Aulas adicionadas com sucesso!")
 
 }
 

@@ -1,87 +1,88 @@
-//-------------------------------------------------------------------------
 //Firebase
-import {firebaseApp} from "../../dbConfig/firebaseApp.js";
-const {getFirestore, setDoc,  doc, collection, getDocs, getDoc} = require("firebase/firestore") 
+import { firebaseApp } from "../../dbConfig/firebaseApp.js";
+const { getFirestore, setDoc, doc } = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
+//---------------------------------------------------------------//
 //Components
-import {insertElementHTML, defaultEventsAfterSubmitFixedForm} from "../../js_common/commonFunctions.js";
-import {eventsAlunoRA} from "../../alunos/js/alunoRA.js";
-import {getContratoInfoDB,  createParcelas,  insertOptionsSelectContrato} from "./commonAlunos.js";
-//------------------------------------------------------------------------
+import { insertElementHTML, defaultEventsAfterSubmitFixedForm } from "../../jsCommon/commonFunctions.js";
+import { eventsAlunoRA } from "../../alunos/js/alunoRA.js";
+import { getContratoInfoDB, createParcelas, insertOptionsSelectContrato } from "./commonAlunos.js";
 import { addLogInfo } from "../../logData/js/logFunctions.js";
+//---------------------------------------------------------------//
+
 
 let $contratoInfo = {};
 
-export function insertFormAddAlunoHTML(){
-   insertElementHTML('#alunos_content',
-  './components/alunos/formAddAluno.html', eventsFormAddAluno, null, true
+export function insertFormAddAlunoHTML() {
+  insertElementHTML('#alunos_content',
+    './components/alunos/formAddAluno.html', eventsFormAddAluno, null, true
   );
 }
 
-function eventsFormAddAluno(){
+function eventsFormAddAluno() {
   let form = document.querySelector('#form_add_aluno');
   eventsAlunoRA();
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-      submitFormAddAluno(e);
+    submitFormAddAluno(e);
   });
   insertOptionsSelectContrato()
-  form.querySelector("#select_contrato").addEventListener('change', (e)=>{
+  form.querySelector("#select_contrato").addEventListener('change', (e) => {
     insertInfoContrato(e)
   })
 }
 
-  function insertInfoContrato(e){
-    let IDContrato = e.target.value;
-    const formAddAluno =  document.querySelector("#form_add_aluno");
-    getContratoInfoDB(IDContrato).then((res)=>{
+function insertInfoContrato(e) {
+  let IDContrato = e.target.value;
+  const formAddAluno = document.querySelector("#form_add_aluno");
+  getContratoInfoDB(IDContrato).then((res) => {
 
-      let id_contrato = res.id; 
-      let contrato = res.data();
-          $contratoInfo = res.data();
+    let id_contrato = res.id;
+    let contrato = res.data();
+    $contratoInfo = res.data();
 
-      //Aluno
-      formAddAluno.querySelector("#aluno_nome").value = contrato.aluno_info.nome;
-      formAddAluno.querySelector("#aluno_genero").value = contrato.aluno_info.genero;
-      formAddAluno.querySelector("#aluno_end").value = contrato.aluno_info.end;
-      formAddAluno.querySelector("#aluno_end_numero").value = contrato.aluno_info.end_numero;
-      formAddAluno.querySelector("#aluno_bairro").value = contrato.aluno_info.bairro;
-      formAddAluno.querySelector("#aluno_cep").value = contrato.aluno_info.cep;
-      formAddAluno.querySelector("#aluno_data_nasc").value = contrato.aluno_info.data_nasc;
-      formAddAluno.querySelector("#aluno_rg").value = contrato.aluno_info.rg;
-      formAddAluno.querySelector("#aluno_cel").value = contrato.aluno_info.cel;
-      formAddAluno.querySelector("#aluno_tel").value = contrato.aluno_info.tel;
-      formAddAluno.querySelector("#aluno_email").value = contrato.aluno_info.email;
-      //Resp
-      formAddAluno.querySelector("#resp_nome").value = contrato.resp_info.nome;
-      formAddAluno.querySelector("#resp_rg").value = contrato.resp_info.rg;
-      formAddAluno.querySelector("#resp_cpf").value = contrato.resp_info.cpf;
+    //Aluno
+    formAddAluno.querySelector("#aluno_nome").value = contrato.aluno_info.nome;
+    formAddAluno.querySelector("#aluno_genero").value = contrato.aluno_info.genero;
+    formAddAluno.querySelector("#aluno_end").value = contrato.aluno_info.end;
+    formAddAluno.querySelector("#aluno_end_numero").value = contrato.aluno_info.end_numero;
+    formAddAluno.querySelector("#aluno_bairro").value = contrato.aluno_info.bairro;
+    formAddAluno.querySelector("#aluno_cep").value = contrato.aluno_info.cep;
+    formAddAluno.querySelector("#aluno_data_nasc").value = contrato.aluno_info.data_nasc;
+    formAddAluno.querySelector("#aluno_rg").value = contrato.aluno_info.rg;
+    formAddAluno.querySelector("#aluno_cel").value = contrato.aluno_info.cel;
+    formAddAluno.querySelector("#aluno_tel").value = contrato.aluno_info.tel;
+    formAddAluno.querySelector("#aluno_email").value = contrato.aluno_info.email;
+    //Resp
+    formAddAluno.querySelector("#resp_nome").value = contrato.resp_info.nome;
+    formAddAluno.querySelector("#resp_rg").value = contrato.resp_info.rg;
+    formAddAluno.querySelector("#resp_cpf").value = contrato.resp_info.cpf;
 
-      //Curso
-      formAddAluno.querySelector("#curso_nome").value = contrato.curso_info.nome;
+    //Curso
+    formAddAluno.querySelector("#curso_nome").value = contrato.curso_info.nome;
 
-    })
-  }
+  })
+}
 
 //-----------------------------------------------
-  //Salva o aluno no banco de dados.
-  async function submitFormAddAluno(e) {
-    e.preventDefault();
-   
-    let form = e.target;
-    let RA = (form.aluno_ra.value).toUpperCase()
-    //Objecto utilizado para criar as parcelas com "createParcelas(parcelaInfo)".
-    let parcelaInfo = {
-      id_contrato: $contratoInfo.metadata.id,
-      inicio: $contratoInfo.curso_info.inicio, 
-      vencimento: $contratoInfo.curso_info.vencimento,
-      parcelas: $contratoInfo.curso_info.parcelas,
-      valor_mes: $contratoInfo.curso_info.valor_mes,
-      desconto_mes: $contratoInfo.curso_info.desconto_mes,
-      valor_total_mes: $contratoInfo.curso_info.valor_total_mes,
+//Salva o aluno no banco de dados.
+async function submitFormAddAluno(e) {
+  e.preventDefault();
+
+  let form = e.target;
+  let RA = (form.aluno_ra.value).toUpperCase()
+  //Objecto utilizado para criar as parcelas com "createParcelas(parcelaInfo)".
+  let parcelaInfo = {
+    id_contrato: $contratoInfo.metadata.id,
+    inicio: $contratoInfo.curso_info.inicio,
+    vencimento: $contratoInfo.curso_info.vencimento,
+    parcelas: $contratoInfo.curso_info.parcelas,
+    valor_mes: $contratoInfo.curso_info.valor_mes,
+    desconto_mes: $contratoInfo.curso_info.desconto_mes,
+    valor_total_mes: $contratoInfo.curso_info.valor_total_mes,
   }
-     setDoc(doc(db, "alunato", RA, "cursos", $contratoInfo.curso_info.nome),
-    { 
+  setDoc(doc(db, "alunato", RA, "cursos", $contratoInfo.curso_info.nome),
+    {
       bimestres: {},
       curso_info: {
 
@@ -92,7 +93,7 @@ function eventsFormAddAluno(){
         vencimento: $contratoInfo.curso_info.vencimento,
         carga_horaria: $contratoInfo.curso_info.carga_horaria,
         horas_aula: $contratoInfo.curso_info.horas_aula,
-        parcelas_total: $contratoInfo.curso_info.parcelas,      
+        parcelas_total: $contratoInfo.curso_info.parcelas,
         parcelas: createParcelas(parcelaInfo),
         valor_mes: $contratoInfo.curso_info.valor_mes,
         desconto_mes: $contratoInfo.curso_info.desconto_mes,
@@ -128,57 +129,57 @@ function eventsFormAddAluno(){
         modified: new Date()
       }
     })
-    .then(()=>{
-      setDoc(doc(db, "contratos",  $contratoInfo.metadata.id), 
-      { 
-        metadata:{
-          aluno_associado: RA
-        }
-     },
-      { merge: true}
-      ); 
+    .then(() => {
+      setDoc(doc(db, "contratos", $contratoInfo.metadata.id),
+        {
+          metadata: {
+            aluno_associado: RA
+          }
+        },
+        { merge: true }
+      );
     })
-    .then(()=>{
+    .then(() => {
       //Cria as informações do aluno em Alunato
       setInfoAlunoAlunato(RA)
     })
-    .then(()=>{
+    .then(() => {
       defaultEventsAfterSubmitFixedForm("#alunos_content", "Aluno salvo com sucesso!");
     })
-    .then(()=>{
+    .then(() => {
       addLogInfo('log_alunato', 'insert', RA);
     })
     .catch((error) => {
       addLogInfo('log_alunato', 'error', RA, error);
       console.error("Erro ao adicionar Aluno:", error);
     })
-  }
+}
 
-function setInfoAlunoAlunato(RA){
-  setDoc(doc(db, "alunato", RA), 
-  { 
-    aluno: {
-      ra: RA,
-      genero: $contratoInfo.aluno_info.genero,
-      nome: $contratoInfo.aluno_info.nome,
-      rg: $contratoInfo.aluno_info.rg,
-      email: $contratoInfo.aluno_info.email,
-      end: $contratoInfo.aluno_info.end,
-      end_numero: $contratoInfo.aluno_info.end_numero,
-      bairro: $contratoInfo.aluno_info.bairro,
-      cep: $contratoInfo.aluno_info.cep,
-      data_nasc: $contratoInfo.aluno_info.data_nasc,
-      cel: $contratoInfo.aluno_info.cel,
-      tel: $contratoInfo.aluno_info.tel,
-     metadata:{
-       created: new Date(),
-       modified: new Date()
-     }
-    },
+function setInfoAlunoAlunato(RA) {
+  setDoc(doc(db, "alunato", RA),
+    {
+      aluno: {
+        ra: RA,
+        genero: $contratoInfo.aluno_info.genero,
+        nome: $contratoInfo.aluno_info.nome,
+        rg: $contratoInfo.aluno_info.rg,
+        email: $contratoInfo.aluno_info.email,
+        end: $contratoInfo.aluno_info.end,
+        end_numero: $contratoInfo.aluno_info.end_numero,
+        bairro: $contratoInfo.aluno_info.bairro,
+        cep: $contratoInfo.aluno_info.cep,
+        data_nasc: $contratoInfo.aluno_info.data_nasc,
+        cel: $contratoInfo.aluno_info.cel,
+        tel: $contratoInfo.aluno_info.tel,
+        metadata: {
+          created: new Date(),
+          modified: new Date()
+        }
+      },
 
 
-    
- },{ merge: true}
+
+    }, { merge: true }
   );
 }
-    
+
