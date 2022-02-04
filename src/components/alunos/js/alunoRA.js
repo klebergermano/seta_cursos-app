@@ -1,7 +1,8 @@
-
+//Firebase
 import { firebaseApp } from "../../dbConfig/firebaseApp.js";
-const { getFirestore, setDoc, getDocs, doc, collection } = require("firebase/firestore")
+const { getFirestore, getDocs, collection } = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
+//---------------------------------------------------------------//
 
 //TODO: REFATORAR FUNÇÕES
 export function eventsAlunoRA() {
@@ -25,8 +26,6 @@ export function eventsAlunoRA() {
     });
 
 }
-
-
 
 function toggleRAAutomaticoAluno() {
     let checkbox_ra_automatico = document.querySelector("#checkbox_ra_automatico_aluno");

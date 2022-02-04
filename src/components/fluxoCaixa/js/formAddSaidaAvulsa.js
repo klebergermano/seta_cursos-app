@@ -1,19 +1,21 @@
 
 
-
-//--------------------------------------------------------------------
-import { setCurrentDate, converteMesNumeroPorExtenso } from '../../js_common/dateFunc.js';
-import createNewRowFluxoCaixa from "./createNewRowFluxoCaixa.js";
-import {defaultEventsAfterSubmitFixedForm, insertElementHTML} from "../../js_common/commonFunctions.js";
-import { addLogInfo } from '../../logData/js/logFunctions.js';
 //Firebase
 import { firebaseApp } from "../../dbConfig/firebaseApp.js"
-const { getFirestore, doc, setDoc} = require("firebase/firestore")
+const { getFirestore, doc, setDoc } = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
-
+//---------------------------------------------------------------//
+import { setCurrentDate, converteMesNumeroPorExtenso } from '../../jsCommon/dateFunc.js';
+import { defaultEventsAfterSubmitFixedForm, insertElementHTML } from "../../jsCommon/commonFunctions.js";
+import { addLogInfo } from '../../logData/js/logFunctions.js';
+//---------------------------------------------------------------//
 //Others libraries
 const VMasker = require("vanilla-masker");
-//--------------------------------------------------------------------
+//---------------------------------------------------------------//
+//Funções do componente
+import createNewRowFluxoCaixa from "./createNewRowFluxoCaixa.js";
+//---------------------------------------------------------------//
+
 export function insertFormAddSaidaAvulsa() {
   insertElementHTML("#saidas_content", "./components/fluxoCaixa/formAddSaidaAvulsa.html", eventsFormAddSaidaAvulsa, null, true)
 }
@@ -25,10 +27,10 @@ function setMasks() {
 function eventsFormAddSaidaAvulsa() {
   setCurrentDate('#data');
   document.querySelector('#form_add_saida_avulsa').addEventListener('submit', (e) => {
-  e.preventDefault();
+    e.preventDefault();
     submitFormAddPagMensalidade(e)
   });
-  setMasks() 
+  setMasks()
 }
 
 function submitFormAddPagMensalidade(e) {
@@ -39,10 +41,8 @@ function submitFormAddPagMensalidade(e) {
   let mes = converteMesNumeroPorExtenso((data.getMonth() + 1));
 
   let form = document.querySelector('#form_add_saida_avulsa');
-  console.log(form)
-  let valor = form.saida_valor.value; 
-  let descricao = form.descricao.value; 
-
+  let valor = form.saida_valor.value;
+  let descricao = form.descricao.value;
 
   createNewRowFluxoCaixa(ano, mes)
     .then((row) => {
@@ -68,9 +68,9 @@ function submitFormAddPagMensalidade(e) {
       ).then(() => {
         defaultEventsAfterSubmitFixedForm("#form_add_saida_avulsa", "Saída de caixa adicionada com sucesso!");
       });
-    }).then(()=>{
+    }).then(() => {
       addLogInfo('log_fluxo_caixa', 'insert', `saida_avulsa - ${descricao} - ${valor}`);
-    }).catch((error)=>{
+    }).catch((error) => {
       addLogInfo('log_fluxo_caixa', 'error', `saida_avulsa - ${descricao} - ${valor}`, error);
     });
 

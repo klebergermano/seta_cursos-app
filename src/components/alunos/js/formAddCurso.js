@@ -1,19 +1,15 @@
-//---------------------------------------------------------------------
-//Firestore
-import {firebaseApp } from "../../dbConfig/firebaseApp.js";
-const {getFirestore, setDoc, doc, getDocs, collection } = require("firebase/firestore")
-
+//Firebase
+import { firebaseApp } from "../../dbConfig/firebaseApp.js";
+const { getFirestore, setDoc, doc } = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
-
-
-
+//---------------------------------------------------------------//
 //Components
-import * as dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
-import {  insertElementHTML, btnCloseForm, defaultEventsAfterSubmitForm } from "../../js_common/commonFunctions.js";
-import {getContratosListDB,  createParcelas,  insertOptionsSelectContrato} from "./commonAlunos.js";
-import {insertViewTableAlunosHTML} from "./viewTableAlunos.js";
-import {addLogInfo} from "../../logData/js/logFunctions.js"; 
-//---------------------------------------------------------------------
+import { insertElementHTML, btnCloseForm, defaultEventsAfterSubmitForm } from "../../jsCommon/commonFunctions.js";
+import { getContratosListDB, createParcelas, insertOptionsSelectContrato } from "./commonAlunos.js";
+import { insertViewTableAlunosHTML } from "./viewTableAlunos.js";
+import { addLogInfo } from "../../logData/js/logFunctions.js";
+//---------------------------------------------------------------//
+
 
 let $contratosListInfo = {};
 let $contratoInfo = {};
@@ -42,34 +38,34 @@ function eventsFormAddCurso(RA, alunoNome, RG) {
     $contratoInfo = contratoInfo;
     $alunoInfo = alunoInfo;
 
-    if(validaContrato(contratoInfo, alunoInfo)){
+    if (validaContrato(contratoInfo, alunoInfo)) {
       removeBlockSubmit();
-    }else{
+    } else {
       blockSubmit()
     }
   });
 
   document.querySelector("#form_add_curso").addEventListener('submit', (e) => {
     e.preventDefault();
-    if(validaContrato($contratoInfo, $alunoInfo)){
+    if (validaContrato($contratoInfo, $alunoInfo)) {
       removeBlockSubmit();
       submitformAddCurso(e)
-    }else{
+    } else {
       blockSubmit()
     }
   });
 }
 
-function blockSubmit(){
+function blockSubmit() {
   let fieldsetInfo = document.querySelector('#contrato_info');
   let formSubmit = document.querySelector('#form_add_curso input[type="submit"]');
-  fieldsetInfo.classList="blocked";
+  fieldsetInfo.classList = "blocked";
   formSubmit.setAttribute('disabled', true);
 }
-function removeBlockSubmit(){
+function removeBlockSubmit() {
   let fieldsetInfo = document.querySelector('#contrato_info');
   let formSubmit = document.querySelector('#form_add_curso input[type="submit"]');
-  fieldsetInfo.classList="";
+  fieldsetInfo.classList = "";
   formSubmit.removeAttribute('disabled');
 }
 function setContratosListInfo() {
@@ -85,24 +81,24 @@ function setInputsContratoInfo(contratoInfo) {
   document.querySelector("#info_aluno_rg").value = contratoInfo.aluno_info.rg;
 }
 
-function validaContrato(contratoInfo, alunoInfo){
+function validaContrato(contratoInfo, alunoInfo) {
   let alunoNome = (contratoInfo?.aluno_info?.nome).toLowerCase().trim();
   let alunoRG = (contratoInfo?.aluno_info?.rg);
-  if(alunoNome === alunoInfo.nome.toLowerCase().trim() && alunoRG === alunoInfo.rg && alunoNome !== undefined && alunoRG !== undefined){
+  if (alunoNome === alunoInfo.nome.toLowerCase().trim() && alunoRG === alunoInfo.rg && alunoNome !== undefined && alunoRG !== undefined) {
     return true;
-  }else{
-    if(alunoNome.trim() === alunoInfo.nome.trim()){
+  } else {
+    if (alunoNome.trim() === alunoInfo.nome.trim()) {
     }
     return false;
   }
 }
 
 function setContratoInfo(IDContrato) {
-  let contratoInfo; 
+  let contratoInfo;
   $contratosListInfo.forEach((item) => {
     if (item.id === IDContrato) {
       setInputsContratoInfo(item.data())
-     contratoInfo = item.data();
+      contratoInfo = item.data();
     }
   })
   return contratoInfo;
@@ -111,17 +107,17 @@ function setContratoInfo(IDContrato) {
 function submitformAddCurso(e) {
   e.preventDefault();
   let form = e.target;
-  let cursoNome = $contratoInfo.curso_info.nome; 
+  let cursoNome = $contratoInfo.curso_info.nome;
   let RA = (form.aluno_ra.value).toUpperCase()
-    //Objecto utilizado para criar as parcelas com "createParcelas(parcelaInfo)".
-    let parcelaInfo = {
-      id_contrato: $contratoInfo.metadata.id,
-      inicio: $contratoInfo.curso_info.inicio, 
-      vencimento: $contratoInfo.curso_info.vencimento,
-      parcelas: $contratoInfo.curso_info.parcelas,
-      valor_mes: $contratoInfo.curso_info.valor_mes,
-      desconto_mes: $contratoInfo.curso_info.desconto_mes,
-      valor_total_mes: $contratoInfo.curso_info.valor_total_mes,
+  //Objecto utilizado para criar as parcelas com "createParcelas(parcelaInfo)".
+  let parcelaInfo = {
+    id_contrato: $contratoInfo.metadata.id,
+    inicio: $contratoInfo.curso_info.inicio,
+    vencimento: $contratoInfo.curso_info.vencimento,
+    parcelas: $contratoInfo.curso_info.parcelas,
+    valor_mes: $contratoInfo.curso_info.valor_mes,
+    desconto_mes: $contratoInfo.curso_info.desconto_mes,
+    valor_total_mes: $contratoInfo.curso_info.valor_total_mes,
   }
   setDoc(doc(db, "alunato", RA, "cursos", $contratoInfo.curso_info.nome),
     {
@@ -134,7 +130,7 @@ function submitformAddCurso(e) {
         vencimento: $contratoInfo.curso_info.vencimento,
         carga_horaria: $contratoInfo.curso_info.carga_horaria,
         horas_aula: $contratoInfo.curso_info.horas_aula,
-        parcelas_total: $contratoInfo.curso_info.parcelas,      
+        parcelas_total: $contratoInfo.curso_info.parcelas,
         parcelas: createParcelas(parcelaInfo),
         valor_mes: $contratoInfo.curso_info.valor_mes,
         desconto_mes: $contratoInfo.curso_info.desconto_mes,
@@ -169,31 +165,31 @@ function submitformAddCurso(e) {
         created: new Date(),
         modified: new Date()
       }
-    }, {merge: true})
-    .then(()=>{
-      setDoc(doc(db, "contratos",  $contratoInfo.metadata.id), 
-      { 
-        metadata:{
-          aluno_associado: RA
-        }
-     },
-      { merge: true}
-      ); 
+    }, { merge: true })
+    .then(() => {
+      setDoc(doc(db, "contratos", $contratoInfo.metadata.id),
+        {
+          metadata: {
+            aluno_associado: RA
+          }
+        },
+        { merge: true }
+      );
     })
-  .then(() =>{
-    defaultEventsAfterSubmitForm("#form_add_curso", "Curso adicionado com sucesso!");
-   }).then(()=>{
-     setTimeout(()=>{
-      insertViewTableAlunosHTML();
-     }, 2000)
-   }).then(()=>{
-     addLogInfo('log_alunato', 'curso_adicionado', RA + '-' + cursoNome);
-   })
-   .catch((error) => {
-    addLogInfo('log_alunato', 'error', RA, error);
-    console.error("Erro ao adicionar curso: ", error)
+    .then(() => {
+      defaultEventsAfterSubmitForm("#form_add_curso", "Curso adicionado com sucesso!");
+    }).then(() => {
+      setTimeout(() => {
+        insertViewTableAlunosHTML();
+      }, 2000)
+    }).then(() => {
+      addLogInfo('log_alunato', 'curso_adicionado', RA + '-' + cursoNome);
+    })
+    .catch((error) => {
+      addLogInfo('log_alunato', 'error', RA, error);
+      console.error("Erro ao adicionar curso: ", error)
     });
 
 
-  
+
 }

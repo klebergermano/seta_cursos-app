@@ -1,12 +1,15 @@
-import * as formAddAula from "./formAddAula.js";
-import { insertElementHTML } from "../../js_common/commonFunctions.js";
-import * as dateFunc from "../../js_common/dateFunc.js";
-//TODO:-----------------------------EDIT Aulas------------------------------------
+//Components
+import { insertElementHTML } from "../../jsCommon/commonFunctions.js";
+import {changeDateTextToYYYYMMDD} from "../../jsCommon/dateFunc.js";
+//---------------------------------------------------------------//
+//Funções do componente
+import { eventsFormAddAula, setClassBtnStatus } from "./formAddAula.js";
+//---------------------------------------------------------------//
+
 export function insertFormEditAulaHTML(eventClick) {
   let form = insertElementHTML('#page_content',
     './components/controleAula/formAddAula.html');
-  form.then((bgformRes) => 
-  {
+  form.then((bgformRes) => {
     let aula_categoria = eventClick.target.closest('[data-aula_categoria]').dataset.aula_categoria;
     if (aula_categoria === "reposição" || aula_categoria === "reposição de prova") {
       bgformRes.querySelector('#select_aula').innerHTML = `
@@ -28,20 +31,16 @@ export function insertFormEditAulaHTML(eventClick) {
         <option value='reposição da aula 15'>Reposição da Aula 15</option>
         <option value='reposição da aula 16'>Reposição da Aula 16 - Prova</option>
         `
-    } 
-    formAddAula.eventsFormAddAula(bgformRes);
+    }
+    eventsFormAddAula(bgformRes);
     eventsFormEditAula(eventClick)
     if (aula_categoria === 'prova' || aula_categoria === 'reposição de prova') {
       showInputsProva(bgformRes)
     }
   });
-
 }
 
-
 function eventsFormEditAula(eventClick) {
-
-
   let form = document.querySelector('#form_add_aula');
   //Insere as informações da aula em "#form_add_aula".
   insertInfoInputsFormAddAula(form, eventClick);
@@ -70,7 +69,7 @@ function setCheckedStatusAula(form, aulaInfo) {
     } else {
       item.removeAttribute('checked');
     }
-    formAddAula.setClassBtnStatus(form)
+    setClassBtnStatus(form)
   });
 }
 function insertTextElementsEditAula() {
@@ -121,7 +120,7 @@ function insertInfoInputsFormAddAula(formAddAula, eventClick) {
     }
   }
 
-  if(aulaCategoria.value === 'reposição de prova'){
+  if (aulaCategoria.value === 'reposição de prova') {
 
 
   }
@@ -130,8 +129,8 @@ function getInfoInputsFormAddAula(eventClick) {
   let aula = eventClick.target.closest('.aulas');
   let aulaInfo = {}
   aulaInfo.categoria = aula.dataset.aula_categoria;
-  if (aulaInfo.categoria === "prova" || aulaInfo.categoria === "reposição de prova" ) {
-   
+  if (aulaInfo.categoria === "prova" || aulaInfo.categoria === "reposição de prova") {
+
     aulaInfo.nota_prova = aula.querySelector('.aula_nota_prova')?.textContent;
     aulaInfo.numero_questoes = aula.querySelector('.aula_numero_questoes')?.textContent;
     aulaInfo.observacao = aula.querySelector('.aula_detalhes_info')?.textContent;
@@ -142,7 +141,7 @@ function getInfoInputsFormAddAula(eventClick) {
   aulaInfo.status = aula.querySelectorAll('.status')[0]?.textContent;
   aulaInfo.tema = aula.querySelectorAll('.aula_tema_info')[0]?.textContent;
   aulaInfo.horario = aula.querySelectorAll('.aula_horario_info')[0]?.textContent;
-  let newDate = dateFunc.changeDateTextToYYYYMMDD(aula.querySelectorAll('.aula_data_info')[0]?.textContent);
+  let newDate = changeDateTextToYYYYMMDD(aula.querySelectorAll('.aula_data_info')[0]?.textContent);
   aulaInfo.data = newDate;
   aulaInfo.detalhes = aula.querySelectorAll('.aula_detalhes_info')[0]?.textContent;
 

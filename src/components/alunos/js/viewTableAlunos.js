@@ -1,18 +1,18 @@
 
-//firestore
+//Firebase
 import { firebaseApp } from "../../dbConfig/firebaseApp.js";
 const { getFirestore, getDocs, collection, where, deleteDoc, setDoc, query , doc} = require("firebase/firestore");
 const db = getFirestore(firebaseApp);
 const {getAuth} = require("firebase/auth");
 const auth = getAuth(firebaseApp);
-//imports
-import { insertElementHTML, confirmBoxDelete, readableRandomStringMaker} from "../../js_common/commonFunctions.js";
+//---------------------------------------------------------------//
+//Components
+import { insertElementHTML, confirmBoxDelete, readableRandomStringMaker} from "../../jsCommon/commonFunctions.js";
 import { insertFormAddCursoHTML } from "./formAddCurso.js";
 import { insertFormDeleteCursoHTML } from "./formDeleteCurso.js";
 import { insertInfoAlunoHTML } from "./infoAluno.js";
 import { addLogInfo } from "../../logData/js/logFunctions.js";
-//-----------------------------------------------------------------------
-
+//---------------------------------------------------------------//
 
 export function insertViewTableAlunosHTML() {
     insertElementHTML("#alunos_content", "./components/alunos/viewTableAlunos.html", eventsInserViewTableAlunos, null, true)

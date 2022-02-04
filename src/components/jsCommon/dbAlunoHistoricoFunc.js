@@ -1,9 +1,9 @@
-
+//Firebase
 import {firebaseApp} from "../dbConfig/firebaseApp.js";
-const {getFirestore, collection, getDocs, doc, getDoc, onSnapshot,  where, query  } = require("firebase/firestore") 
-export const db = getFirestore(firebaseApp);
+const {getFirestore, collection, getDocs, onSnapshot} = require("firebase/firestore") 
+const db = getFirestore(firebaseApp);
+//---------------------------------------------------------------//
 
-//---------------
 export function alunoHistCursosRealTimeDB(RA, callback) {
   onSnapshot(
     collection(db, 'alunato', RA, 'cursos'), 

@@ -1,17 +1,20 @@
-//---------------------------------------------------------------------
-import {defaultEventsAfterSubmitFixedForm, insertElementHTML} from "../../js_common/commonFunctions.js";
-import insertInputValorTotal from "../../contratos/js/insertInputValorTotal.js";
-import { setCurrentDate, converteMesNumeroPorExtenso } from "../../js_common/dateFunc.js";
-import createNewRowFluxoCaixa from "./createNewRowFluxoCaixa.js";
-import { addLogInfo } from "../../logData/js/logFunctions.js";
 //Furebase
 import { firebaseApp } from "../../dbConfig/firebaseApp.js"
-const { getFirestore, doc, setDoc, onSnapshot, updateDoc, collection, getDocs, getDoc } = require("firebase/firestore")
+const { getFirestore, doc, setDoc, onSnapshot, collection, getDocs } = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
+//---------------------------------------------------------------//
+//Components
+import { defaultEventsAfterSubmitFixedForm, insertElementHTML } from "../../jsCommon/commonFunctions.js";
+import { setCurrentDate, converteMesNumeroPorExtenso } from "../../jsCommon/dateFunc.js";
+import insertInputValorTotal from "../../contratos/js/insertInputValorTotal.js";
+import { addLogInfo } from "../../logData/js/logFunctions.js";
+//---------------------------------------------------------------//
 //Others libraries
 const VMasker = require("vanilla-masker");
-//--------------------------------------------------------------------
-
+//---------------------------------------------------------------//
+//Funções do Componente
+import createNewRowFluxoCaixa from "./createNewRowFluxoCaixa.js";
+//---------------------------------------------------------------//
 var $alunoInfo = {
   RA: '',
   nome: ''
@@ -163,8 +166,8 @@ function submitFormAddPagMensalidade(e) {
   let ano = (data.getFullYear()).toString();
   //let mes = setMonthDate(data);
   let mes = converteMesNumeroPorExtenso((data.getMonth() + 1));
-let valor_total = form.curso_valor_total.value;
-let parcela = form.select_parcelas.value;
+  let valor_total = form.curso_valor_total.value;
+  let parcela = form.select_parcelas.value;
 
   createNewRowFluxoCaixa(ano, mes)
     .then((row) => {
@@ -201,7 +204,7 @@ let parcela = form.select_parcelas.value;
         });
       return row;
     }).then((row) => {
-      
+
       setDoc(doc(db, 'alunato', RA, 'cursos', curso), {
         curso_info: {
           parcelas: {
@@ -222,9 +225,9 @@ let parcela = form.select_parcelas.value;
       }, { merge: true }
       );
 
-    }).then(()=>{
+    }).then(() => {
       addLogInfo('log_fluxo_caixa', 'insert', `pag_mensalidade - ${RA} - ${parcela} - ${valor_total}`);
-    }).catch((error)=>{
+    }).catch((error) => {
       addLogInfo('log_fluxo_caixa', 'error', `pag_mensalidade - ${RA} - ${parcela} - ${valor_total}`, error);
     });
 

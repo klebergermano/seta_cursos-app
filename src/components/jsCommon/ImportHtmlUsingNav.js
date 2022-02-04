@@ -1,6 +1,4 @@
-//Dependecies
-const ImportHtml = require("./ImportHtml");
-//Importa o index.html de cada component dentro do folder "components".
+//Importa o index.html de cada component dentro do folder "Components".
 //usa pra isso o atributo 'data-path' como nome de cada component.
 //'data-path' pode ser usado em qualquer elemento filho de um menu.
 async function ImportHtmlUsingNav(navName, target) {

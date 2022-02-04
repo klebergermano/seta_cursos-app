@@ -1,13 +1,10 @@
-const folhasTalao = require ('./TemplateTalaoFolhas.js');
-
-const TemplateTalao = (talaoInfo)=>{
- let talao = ''; 
-    talaoInfo.forEach((item)=>{
-      talao += folhasTalao(item)
-    });
-    
-
-    return (`
+const folhasTalao = require('./TemplateTalaoFolhas.js');
+const TemplateTalao = (talaoInfo) => {
+  let talao = '';
+  talaoInfo.forEach((item) => {
+    talao += folhasTalao(item)
+  });
+  return (`
     <!DOCTYPE >
     <html>
       <head>
@@ -16,7 +13,6 @@ const TemplateTalao = (talaoInfo)=>{
         <meta charset="UTF-8">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Archivo+Black|Roboto:500&display=swap" rel="stylesheet" />
-       
           <style>
           @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
           @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
@@ -70,11 +66,9 @@ const TemplateTalao = (talaoInfo)=>{
         </div>
       </body>
     </html>
-    
     `);
-
 }
 
 
-module.exports = TemplateTalao; 
+module.exports = TemplateTalao;
 

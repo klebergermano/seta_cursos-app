@@ -1,102 +1,102 @@
 
-import {firebaseApp} from "../../dbConfig/firebaseApp.js";
-const {getFirestore, getDocs, collection, deleteDoc, doc, setDoc} = require("firebase/firestore") 
+//Firebase
+import { firebaseApp } from "../../dbConfig/firebaseApp.js";
+const { getFirestore, getDocs, collection, deleteDoc, doc, setDoc } = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
-const {getAuth} = require("firebase/auth");
+const { getAuth } = require("firebase/auth");
 const auth = getAuth(firebaseApp);
+//---------------------------------------------------------------//
+//Components
+import { insertElementHTML, confirmBoxDelete, readableRandomStringMaker } from "../../jsCommon/commonFunctions.js";
 import { insertFormAddCursosInfoHTML } from "./formAddCursoInfo.js";
-import {removeUnauthorizedElement} from "../../../appContent/adminContent/js/checkPermission.js";
-import {addLogInfo} from "../../logData/js/logFunctions.js"
-
+import { removeUnauthorizedElement } from "../../../appContent/adminContent/js/checkPermission.js";
+import { addLogInfo } from "../../logData/js/logFunctions.js"
+//---------------------------------------------------------------//
 let $cursosList = {};
-import { insertElementHTML, confirmBoxDelete, readableRandomStringMaker} from "../../js_common/commonFunctions.js";
-    function getCusosInfoList(){
-        let cursosInfoList = getDocs(collection(db, 'cursos_info'));
-        return cursosInfoList;
-    }
-    export async function insertViewTableCursosInfoHTML(){
-        insertElementHTML("#cursos_info_content", "./components/cursosInfo/viewTableCursosInfo.html",  eventsViewTableCursosInfo, null, true)
-    }
+function getCusosInfoList() {
+    let cursosInfoList = getDocs(collection(db, 'cursos_info'));
+    return cursosInfoList;
+}
+export async function insertViewTableCursosInfoHTML() {
+    insertElementHTML("#cursos_info_content", "./components/cursosInfo/viewTableCursosInfo.html", eventsViewTableCursosInfo, null, true)
+}
 
-    function eventsViewTableCursosInfo(){
-        getCusosInfoList()
+function eventsViewTableCursosInfo() {
+    getCusosInfoList()
         .then((res) => {
-         $cursosList = res;
-           return createTableCursosInfoHTML(res)
+            $cursosList = res;
+            return createTableCursosInfoHTML(res)
         })
-        .then((tbody)=>{
-          document.querySelector('#view_table_cursos_info tbody').outerHTML = tbody.outerHTML;
-        }).then(()=>{
+        .then((tbody) => {
+            document.querySelector('#view_table_cursos_info tbody').outerHTML = tbody.outerHTML;
+        }).then(() => {
             eventBtnDeleteCursoInfo();
             eventsEditCursoInfo();
-    removeUnauthorizedElement(window.$PERMISSIONS);
+            removeUnauthorizedElement(window.$PERMISSIONS);
 
         })
         .catch(err => console.log(err))
-    }
+}
 
-    function setEditCursoInfo(trInfo){
-        
-        setTimeout(()=>{
-            let formEdit = document.querySelector('#form_add_curso_info');
-            formEdit.classList.add('form_edit_curso_info');
-            formEdit.querySelector('#nome').setAttribute('readonly', true);
-            formEdit.querySelector('#nome').value = trInfo.querySelector('#td_nome').innerHTML;
-            formEdit.querySelector('#valor_mes').value = trInfo.querySelector('#td_valor').innerHTML;
-            formEdit.querySelector('#parcelas').value = trInfo.querySelector('#td_parcelas').innerHTML;
-            formEdit.querySelector('#modulos').value = trInfo.querySelector('#td_modulos textarea').innerHTML;
-            formEdit.querySelector('#duracao').value = trInfo.querySelector('#td_duracao').innerHTML;
-            formEdit.querySelector('#carga_horaria').value = trInfo.querySelector('#td_carga_horaria').innerHTML;
-            formEdit.querySelector('#id_curso').value = trInfo.querySelector('#td_id_curso').innerHTML;
-
-            let selectCategoria = formEdit.querySelector('#categoria')
-            let arrOptions = Array.from(selectCategoria.options); 
-            arrOptions.forEach((item)=>{
-            if(item.value === trInfo.querySelector('#td_categoria').innerHTML){
+function setEditCursoInfo(trInfo) {
+    setTimeout(() => {
+        let formEdit = document.querySelector('#form_add_curso_info');
+        formEdit.classList.add('form_edit_curso_info');
+        formEdit.querySelector('#nome').setAttribute('readonly', true);
+        formEdit.querySelector('#nome').value = trInfo.querySelector('#td_nome').innerHTML;
+        formEdit.querySelector('#valor_mes').value = trInfo.querySelector('#td_valor').innerHTML;
+        formEdit.querySelector('#parcelas').value = trInfo.querySelector('#td_parcelas').innerHTML;
+        formEdit.querySelector('#modulos').value = trInfo.querySelector('#td_modulos textarea').innerHTML;
+        formEdit.querySelector('#duracao').value = trInfo.querySelector('#td_duracao').innerHTML;
+        formEdit.querySelector('#carga_horaria').value = trInfo.querySelector('#td_carga_horaria').innerHTML;
+        formEdit.querySelector('#id_curso').value = trInfo.querySelector('#td_id_curso').innerHTML;
+        let selectCategoria = formEdit.querySelector('#categoria')
+        let arrOptions = Array.from(selectCategoria.options);
+        arrOptions.forEach((item) => {
+            if (item.value === trInfo.querySelector('#td_categoria').innerHTML) {
                 item.setAttribute('selected', true);
             }
         });
-        }, 100);
-    }
+    }, 100);
+}
 
-    function eventsEditCursoInfo(){
-        let btns = document.querySelectorAll('.btn_edit_curso_info');
-       
-        btns.forEach((item)=>{
-          item.addEventListener('click', (e)=>{
-              let trInfo = e.target.closest('tr');
+function eventsEditCursoInfo() {
+    let btns = document.querySelectorAll('.btn_edit_curso_info');
+
+    btns.forEach((item) => {
+        item.addEventListener('click', (e) => {
+            let trInfo = e.target.closest('tr');
             insertFormAddCursosInfoHTML();
             setEditCursoInfo(trInfo)
-          })
-        
-        });
-    }
+        })
+    });
+}
 
-    function eventBtnDeleteCursoInfo(){
-        let btns = document.querySelectorAll('.btn_delete_curso_info');
-        btns.forEach((item)=>{
-          item.addEventListener('click', (e)=>{
+function eventBtnDeleteCursoInfo() {
+    let btns = document.querySelectorAll('.btn_delete_curso_info');
+    btns.forEach((item) => {
+        item.addEventListener('click', (e) => {
             let cursoNome = e.target.closest('tr').dataset.curso_info_nome;
             let idCurso = e.target.closest('tr').dataset.id_curso;
             let msg = `<span style='color:red'><b>ATENÇÃO</b></span>
             <br/>Tem certeza que deseja deletar o Curso Info <b>${cursoNome}</b>?
             <br/>Essa ação não podera ser desfeita!`;
-            confirmBoxDelete("#bg_cursos_info_content", msg, ()=>{
+            confirmBoxDelete("#bg_cursos_info_content", msg, () => {
                 submitDeleteCursoInfo(idCurso, cursoNome)
             })
-          })
         })
-    }
- 
-    function createTableCursosInfoHTML (cursosInfo){
-    let tbody = document.createElement('tbody'); 
-        cursosInfo.forEach((item)=>{
-            let curso = item.data();
-            let tr = document.createElement('tr');
-            tr.setAttribute('data-id_curso', curso.cod );
-            tr.setAttribute('data-curso_info_nome', curso.nome)
-    
-            let trContent = 
+    })
+}
+
+function createTableCursosInfoHTML(cursosInfo) {
+    let tbody = document.createElement('tbody');
+    cursosInfo.forEach((item) => {
+        let curso = item.data();
+        let tr = document.createElement('tr');
+        tr.setAttribute('data-id_curso', curso.cod);
+        tr.setAttribute('data-curso_info_nome', curso.nome)
+
+        let trContent =
             `
             <td id='td_id_curso'>${curso.cod}</td>
             <td id='td_nome' class='color_${curso.nome}'>${curso.nome}</td>
@@ -106,7 +106,6 @@ import { insertElementHTML, confirmBoxDelete, readableRandomStringMaker} from ".
             <td id='td_parcelas'>${curso.parcelas}</td>
             <td id='td_carga_horaria'>${curso.carga_horaria}</td>
             <td id='td_valor'>${curso.valor}</td>
-
             <td>
             <button data-auth='admin' class='btn_edit_curso_info'>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
@@ -123,27 +122,27 @@ import { insertElementHTML, confirmBoxDelete, readableRandomStringMaker} from ".
             </button>
     </td>
             `
-            tr.innerHTML = trContent;
-            tbody.appendChild(tr);
-        })
-        return tbody;
-    }
+        tr.innerHTML = trContent;
+        tbody.appendChild(tr);
+    })
+    return tbody;
+}
 
-    function  submitDeleteCursoInfo(idCurso, cursoNome){
-        deleteDoc(doc(db, 'cursos_info', idCurso))
-        .then(()=>{
+function submitDeleteCursoInfo(idCurso, cursoNome) {
+    deleteDoc(doc(db, 'cursos_info', idCurso))
+        .then(() => {
             let data = new Date();
-            let id =  data.getFullYear()+''+(data.getMonth()+1)+''+data.getDate()+''+readableRandomStringMaker(5);
-          setDoc(doc(db, "log", 'log_cursos_info'),{
-            [id]: `Curso Info '${idCurso}, ${cursoNome}' deletado em ${new Date()} por ${auth.currentUser.email}`
+            let id = data.getFullYear() + '' + (data.getMonth() + 1) + '' + data.getDate() + '' + readableRandomStringMaker(5);
+            setDoc(doc(db, "log", 'log_cursos_info'), {
+                [id]: `Curso Info '${idCurso}, ${cursoNome}' deletado em ${new Date()} por ${auth.currentUser.email}`
             },
-            { merge: true})
+                { merge: true })
         })
-        .then(()=>{
+        .then(() => {
             insertViewTableCursosInfoHTML();
-        }).then(()=>{
+        }).then(() => {
             addLogInfo("log_cursos_info", 'delete', idCurso);
-        }).catch((error)=>{
+        }).catch((error) => {
             addLogInfo("log_cursos_info", 'error', idCurso, error)
         })
-    }  
+}  

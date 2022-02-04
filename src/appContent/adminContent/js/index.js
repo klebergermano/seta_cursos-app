@@ -1,36 +1,33 @@
-import { getUserCompleteInfo } from "../../../components/users/js/index.js";
-import { importHTMLWithScript } from "../../../components/js_common/commonFunctions.js";
-import { checkRolePermission } from "./checkPermission.js";
-import { timerIdleMouseMoveFunc } from "./timerIdle.js";
-//----------------------------------------------------
+//Electron
+var appVersion = require("electron").remote.app.getVersion();
+//Firebase
 import { firebaseApp } from "../../../components/dbConfig/firebaseApp.js";
 const { getAuth, signOut } = require("firebase/auth");
 const auth = getAuth(firebaseApp);
-//-----------------------------------------------------
-
-import {getRolePermission} from "../../../components/users/js/permissions.js";
-
-var appVersion = require("electron").remote.app.getVersion();
-
-
-
-//------------------------------------------------------
-
+//---------------------------------------------------------------//
+//Components
+import { importHTMLWithScript } from "../../../components/jsCommon/commonFunctions.js";
+import { getUserCompleteInfo } from "../../../components/users/js/index.js";
+import { getRolePermission } from "../../../components/users/js/permissions.js";
+//---------------------------------------------------------------//
+//Funções do AdminContent
+import { timerIdleMouseMoveFunc } from "./timerIdle.js";
+import { checkRolePermission } from "./checkPermission.js";
+//---------------------------------------------------------------//
 
 export function onload() {
-  (function setGlobalPermissionInfo(){
-    getUserCompleteInfo(auth.currentUser).then((userCompleteInfo)=>{
-      getRolePermission(userCompleteInfo.role).then((res)=>{
+  (function setGlobalPermissionInfo() {
+    getUserCompleteInfo(auth.currentUser).then((userCompleteInfo) => {
+      getRolePermission(userCompleteInfo.role).then((res) => {
         window.$PERMISSIONS = res.data();
       });
     });
   })();
 
-
   //timer conta em segundos 5 * 60 = 5 min
   timerIdleMouseMoveFunc(10 * 60, () => {
     signOut(auth)
-    .catch(err => console.log(err));
+      .catch(err => console.log(err));
   });
 
   //Remove os elementos sem autorização
@@ -49,8 +46,6 @@ export function onload() {
   document.querySelector("#logout_user").addEventListener('click', () => {
     signOut(auth)
       .catch(err => console.log(err));
-
-
   })
 
   //Cerrega página principal da home
@@ -59,8 +54,6 @@ export function onload() {
   //Seta a versão no footer
   document.querySelector('footer').innerHTML = `<p class='app_version'>Versão: ${appVersion}</p>`;
 }
-
-
 
 
 //Função usada no lugar do importHTMLWithScript 

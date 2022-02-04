@@ -1,12 +1,16 @@
-import {insertElementHTML, btnCloseForm, defaultEventsAfterSubmitForm } from "../../js_common/commonFunctions.js";
-import * as relogin from "./reLogin.js";
-//----------------------------------------------------
+//Firebase
 import { firebaseApp } from "../../../components/dbConfig/firebaseApp.js"
-const { getAuth, updatePassword, updateProfile, createUserWithEmailAndPassword } = require("firebase/auth");
+const { getAuth, createUserWithEmailAndPassword } = require("firebase/auth");
 const { getFirestore, doc, setDoc } = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
 const auth = getAuth(firebaseApp);
-//------------------------------------------------------
+//---------------------------------------------------------------//
+//Components
+import { insertElementHTML, btnCloseForm, defaultEventsAfterSubmitForm } from "../../jsCommon/commonFunctions.js";
+//---------------------------------------------------------------//
+//Funções do componente
+import { reLoginUser } from "./reLogin.js";
+//---------------------------------------------------------------//
 
 export function insertFormAddUser(userReauthInfo) {
     insertElementHTML('#bg_form_add_user', './components/users/formAddUser.html', () => {
@@ -14,8 +18,8 @@ export function insertFormAddUser(userReauthInfo) {
     });
 }
 function eventsFormAddUser(userReauthInfo) {
-   btnCloseForm('#form_add_user');
-   document.querySelector('#form_add_user').addEventListener('submit', (e) => {
+    btnCloseForm('#form_add_user');
+    document.querySelector('#form_add_user').addEventListener('submit', (e) => {
         e.preventDefault();
         let form = e.target;
         submitFormAddUser(form, userReauthInfo)
@@ -25,7 +29,6 @@ function eventsFormAddUser(userReauthInfo) {
 //-------------------------------------------------------
 //createNewUser()
 //-------------------------------------------------------
-
 function submitFormAddUser(form, userReauthInfo) {
     let newUserInfo = {
         name: form.username.value,
@@ -42,7 +45,7 @@ function submitFormAddUser(form, userReauthInfo) {
 
         })
         .then(() => {
-            relogin.reLoginUser(userReauthInfo, () => {
+            reLoginUser(userReauthInfo, () => {
                 saveUserExtraInfo(newUserInfo)
             })
         })
@@ -53,7 +56,6 @@ function submitFormAddUser(form, userReauthInfo) {
 }
 
 function saveUserExtraInfo(newUser) {
-
     setDoc(doc(db, 'users', newUser.uid),
         {
             photoURL: newUser.photoURL,

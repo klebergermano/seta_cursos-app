@@ -1,4 +1,4 @@
-
+//Components
 import {insertFormAddAulaHTML} from "./formAddAula.js";
 import {insertFormEditAulaHTML} from "./formEditAula.js";
 import {insertFormReposicaoAula} from "./formAddReposicaoAula.js";
@@ -7,7 +7,7 @@ import {insertFormAddFeedbackBimestral} from "./formAddFeedbackBimestral.js";
 import { eventsDeletarAula} from "./deleteFunc.js";
 import {eventsBaixarHistorico} from "./baixarHistoricoAluno.js";
 import {removeUnauthorizedElement} from "../../../appContent/adminContent/js/checkPermission.js";
-
+//---------------------------------------------------------------//
 
 export function eventsAulas() {
     
@@ -17,7 +17,6 @@ export function eventsAulas() {
     eventBtnAddFeedbackBimestral();
     //Carrega a função de click no btn_edit_aulas
     eventBtnEditAula()
- 
     //Funções de delete aula
     eventsDeletarAula()
     

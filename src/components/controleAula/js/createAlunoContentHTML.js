@@ -1,7 +1,8 @@
-import { getReverseObjectKeys, stringToID } from "../../js_common/commonFunctions.js";
+//Components
+import { getReverseObjectKeys, stringToID } from "../../jsCommon/commonFunctions.js";
+import { changeDateToDislayText } from "../../jsCommon/dateFunc.js";
 import { resumoBimestreBD } from "./resumoBimestreBD.js";
-import { changeDateToDislayText } from "../../js_common/dateFunc.js";
-import {removeUnauthorizedElement} from "../../../appContent/adminContent/js/checkPermission.js";
+//---------------------------------------------------------------//
 
 
 function insertBgCursoHTML(cursoHTMLContent) {
@@ -14,11 +15,11 @@ function insertBgCursoHTML(cursoHTMLContent) {
   }
 }
 
-function removeBgCursosAnteriosOutrosAlunos(RA){
+function removeBgCursosAnteriosOutrosAlunos(RA) {
   let controleAulaContent = document.querySelector("#controle_aula_content");
   let bgCurso = controleAulaContent.querySelectorAll('.bg_curso');
-  bgCurso.forEach((item)=>{
-    if(RA !==  item.dataset.aluno_ra){
+  bgCurso.forEach((item) => {
+    if (RA !== item.dataset.aluno_ra) {
       controleAulaContent.removeChild(item);
     }
   });
@@ -27,7 +28,7 @@ function removeBgCursosAnteriosOutrosAlunos(RA){
 export function createAlunoContentHTML(alunoDataFromDB, RA) {
   removeBgCursosAnteriosOutrosAlunos(RA)
 
- // document.querySelector("#controle_aula_content").innerHTML = '';
+  // document.querySelector("#controle_aula_content").innerHTML = '';
 
   alunoDataFromDB.forEach((resCursoDB) => {
     resCursoDB = resCursoDB.doc.data();
@@ -123,7 +124,7 @@ function createCursoHTMLContent(bgCursoHTML, cursoDB) {
         if (aula.categoria === "reposição") {
           divColumnReposicao.innerHTML += createAulaHTML(aula, aulaSortedKeys[j], bimSortedKeys[i]);
         }
-        else if(aula.categoria === "reposição de prova"){
+        else if (aula.categoria === "reposição de prova") {
           divColumnReposicao.innerHTML += createHTMLProva(aula, aulaSortedKeys[j], bimSortedKeys[i]);
 
         }
@@ -381,7 +382,7 @@ function cursoVazioHTML(curso_nome_bd, RA) {
       </div>
       </div>
   `
-  return bgCursoHTML; 
+  return bgCursoHTML;
 }
 
 function checkIfBimestresIsEmpty(bimestres) {

@@ -1,21 +1,23 @@
-import {firebaseApp} from "../../dbConfig/firebaseApp.js";
-const {getFirestore, setDoc,  doc, getDocs, collection} = require("firebase/firestore") 
+//Firebase
+import { firebaseApp } from "../../dbConfig/firebaseApp.js";
+const { getFirestore, setDoc, doc, getDocs, collection } = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
-
-import {removeBugExtraBgFormBLockScreen, btnCloseForm, insertElementHTML, stringToID, defaultEventsAfterSubmitForm} from "../../js_common/commonFunctions.js";
-import {getAlunoHistCursosDB} from "../../js_common/dbAlunoHistoricoFunc.js";
+//---------------------------------------------------------------//
+//Components
+import { removeBugExtraBgFormBLockScreen, btnCloseForm, insertElementHTML, stringToID, defaultEventsAfterSubmitForm } from "../../jsCommon/commonFunctions.js";
 import { addLogInfo } from "../../logData/js/logFunctions.js";
+//---------------------------------------------------------------//
 
-  export async function insertFormAddAulaHTML() {
-    insertElementHTML('#controle_aula_content',
-      './components/controleAula/formAddAula.html', eventsFormAddAula);
-  }
+export async function insertFormAddAulaHTML() {
+  insertElementHTML('#controle_aula_content',
+    './components/controleAula/formAddAula.html', eventsFormAddAula);
+}
 
- export function eventsFormAddAula(form) {
+export function eventsFormAddAula(form) {
   removeBugExtraBgFormBLockScreen()
-   btnCloseForm("#form_add_aula");
+  btnCloseForm("#form_add_aula");
   form.addEventListener("submit", (e) => {
-    submitFormAddAula(e);  
+    submitFormAddAula(e);
   });
 
   //Copia as opções do "#main_select_aluno" e insere no select_aluno
@@ -30,64 +32,64 @@ import { addLogInfo } from "../../logData/js/logFunctions.js";
   setInputsProva(form)
 }
 
-function eventClickBtnStatus(form){
+function eventClickBtnStatus(form) {
   let btns = form.querySelector('#div_status_aula').querySelectorAll('label');;
-  btns.forEach((item)=>{
-    item.addEventListener('click', ()=>{
-    setClassBtnStatus(form)
+  btns.forEach((item) => {
+    item.addEventListener('click', () => {
+      setClassBtnStatus(form)
     });
   });
 }
 
-function setInputsProva(form){
-let selectAula = form.querySelector("#select_aula");
-let aula_categoria = form.querySelector("#aula_categoria");
+function setInputsProva(form) {
+  let selectAula = form.querySelector("#select_aula");
+  let aula_categoria = form.querySelector("#aula_categoria");
 
-selectAula.addEventListener('change', (e)=>{
-  if(e.target.value === "aula 16" || e.target.value === "reposição da aula 16"){
-    form.querySelector("#bg_prova_inputs").style.display = "flex";
-    form.querySelector("#div_detalhes").style.display = "none";
-    form.querySelector("#nota_prova").setAttribute("required", true);
-    form.querySelector("#numero_questoes").setAttribute("required", true);
-    form.querySelector("#obs_prova").setAttribute("required", true);
-    form.querySelector("#detalhes").removeAttribute("required");
-    aula_categoria.value='prova'
+  selectAula.addEventListener('change', (e) => {
+    if (e.target.value === "aula 16" || e.target.value === "reposição da aula 16") {
+      form.querySelector("#bg_prova_inputs").style.display = "flex";
+      form.querySelector("#div_detalhes").style.display = "none";
+      form.querySelector("#nota_prova").setAttribute("required", true);
+      form.querySelector("#numero_questoes").setAttribute("required", true);
+      form.querySelector("#obs_prova").setAttribute("required", true);
+      form.querySelector("#detalhes").removeAttribute("required");
+      aula_categoria.value = 'prova'
 
-  }else {
-    aula_categoria.value = "comum"
-    form.querySelector("#div_detalhes").style.display = "flex";
-    form.querySelector("#bg_prova_inputs").style.display = "none";
-    form.querySelector("#nota_prova").removeAttribute("required");
-    form.querySelector("#numero_questoes").removeAttribute("required");
-    form.querySelector("#obs_prova").removeAttribute("required");
-    form.querySelector("#detalhes").setAttribute("required", true);
-  }
-})
+    } else {
+      aula_categoria.value = "comum"
+      form.querySelector("#div_detalhes").style.display = "flex";
+      form.querySelector("#bg_prova_inputs").style.display = "none";
+      form.querySelector("#nota_prova").removeAttribute("required");
+      form.querySelector("#numero_questoes").removeAttribute("required");
+      form.querySelector("#obs_prova").removeAttribute("required");
+      form.querySelector("#detalhes").setAttribute("required", true);
+    }
+  })
 }
 
-export function setClassBtnStatus(form){
+export function setClassBtnStatus(form) {
   removeClassActivedBtnStatus();
   let btns = form.querySelector('#div_status_aula').querySelectorAll('label');
-  btns.forEach((item)=>{
-    if(item.querySelector('input').checked === true){
-      item.classList.add('actived_'+item.id);
+  btns.forEach((item) => {
+    if (item.querySelector('input').checked === true) {
+      item.classList.add('actived_' + item.id);
       let tema = form.querySelector("#tema");
       let detalhes = form.querySelector("#detalhes");
-      if(item.querySelector('input').value !== 'concluida'){
+      if (item.querySelector('input').value !== 'concluida') {
         tema.setAttribute('disabled', true); tema.value = "";
-       detalhes.setAttribute('disabled', true); detalhes.value = "";
-      }else{
+        detalhes.setAttribute('disabled', true); detalhes.value = "";
+      } else {
         tema.removeAttribute('disabled');
         detalhes.removeAttribute('disabled');
       }
-      }
+    }
   });
 }
 
-function removeClassActivedBtnStatus(){
+function removeClassActivedBtnStatus() {
   let btns = document.querySelectorAll('label');
-  btns.forEach((item)=>{
-      item.className = '';
+  btns.forEach((item) => {
+    item.className = '';
   });
 }
 
@@ -97,21 +99,21 @@ export function insertOptionsInSelectAluno(form) {
   select.innerHTML = mainSelect.innerHTML;
   select.selectedIndex = mainSelect.selectedIndex;
   select.setAttribute('disabled', true);
- form.querySelector('#aluno_nome').innerHTML = '<span>Aluno: </span>'+  select.options[select.selectedIndex].textContent;
+  form.querySelector('#aluno_nome').innerHTML = '<span>Aluno: </span>' + select.options[select.selectedIndex].textContent;
 }
 
-export  async function insertOptionSelectCurso(form){
+export async function insertOptionSelectCurso(form) {
   let select = form.querySelector('#select_curso');
   let option = ``;
-let bg_curso = document.querySelectorAll(".bg_curso");
-let navCursos = document.querySelector('.nav_cursos_aluno');
-let activeCurso = navCursos.querySelector('.active').dataset.active;
-bg_curso.forEach((curso)=>{
+  let bg_curso = document.querySelectorAll(".bg_curso");
+  let navCursos = document.querySelector('.nav_cursos_aluno');
+  let activeCurso = navCursos.querySelector('.active').dataset.active;
+  bg_curso.forEach((curso) => {
     if (stringToID(curso.dataset.curso) === activeCurso) {
-     select.innerHTML = `<option value='${curso.dataset.curso}' selected>${curso.dataset.curso}</option>`
+      select.innerHTML = `<option value='${curso.dataset.curso}' selected>${curso.dataset.curso}</option>`
     }
-})
-  form.querySelector('#curso_nome').innerHTML = '<span>Curso: </span>'+select.options[select.selectedIndex].textContent;
+  })
+  form.querySelector('#curso_nome').innerHTML = '<span>Curso: </span>' + select.options[select.selectedIndex].textContent;
 }
 
 function validaSelectAula(form) {
@@ -135,7 +137,7 @@ function getInfoFormAddAula(form) {
   let bimestre = selectBimestre.options[
     selectBimestre.selectedIndex
   ].value;
-  
+
   infoAddAula.RA = RA;
   infoAddAula.curso = curso;
   infoAddAula.bimestre = bimestre;
@@ -167,7 +169,7 @@ function blockSelectOptionsAddAulas(RA, curso, bimestre) {
 
 function blocoAddAula(dados) {
   let aula = {};
-  if( dados.aula_categoria.value === "prova" || dados.aula_categoria.value === "reposição de prova"){
+  if (dados.aula_categoria.value === "prova" || dados.aula_categoria.value === "reposição de prova") {
     aula = {
       [dados.select_bimestre.value]: {
         [dados.select_aula.value]: {
@@ -182,7 +184,7 @@ function blocoAddAula(dados) {
         },
       },
     };
-  }else{
+  } else {
     aula = {
       [dados.select_bimestre.value]: {
         [dados.select_aula.value]: {
@@ -219,26 +221,26 @@ function getKeysAulas(RA, idCurso, bimestre) {
 }
 
 
-function submitFormAddAula(e){
+function submitFormAddAula(e) {
   e.preventDefault();
   let form = e.target;
   let RA = form.select_aluno.value;
-  let curso =  form.select_curso.value;
+  let curso = form.select_curso.value;
   let bimestre = form.select_bimestre.value
   let aula = form.select_aula.value
   setDoc(doc(db, 'alunato', RA, 'cursos', curso),
-        {bimestres: blocoAddAula(form)},
-        { merge: true }
+    { bimestres: blocoAddAula(form) },
+    { merge: true }
   )
-  .then(()=>{
-    defaultEventsAfterSubmitForm("#form_add_aula", "Aula adicionada com sucesso!")
-  }).then(()=>{
-     addLogInfo('log_alunato', 'update', `${RA} - ${curso} - ${bimestre} - insert_aula_${aula}`);
-  })
-  .catch((error)=>{
-    console.log(error);
-    addLogInfo('log_alunato', 'error', `${RA} - ${curso} - ${bimestre} - insert_aula_${aula}`, error);
-  });
+    .then(() => {
+      defaultEventsAfterSubmitForm("#form_add_aula", "Aula adicionada com sucesso!")
+    }).then(() => {
+      addLogInfo('log_alunato', 'update', `${RA} - ${curso} - ${bimestre} - insert_aula_${aula}`);
+    })
+    .catch((error) => {
+      console.log(error);
+      addLogInfo('log_alunato', 'error', `${RA} - ${curso} - ${bimestre} - insert_aula_${aula}`, error);
+    });
 
 }
 

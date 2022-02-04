@@ -1,4 +1,6 @@
+//Other libraries
 import { Spinner } from '../../../node_modules/spin.js/spin.js';
+//---------------------------------------------------------------//
 
 export function importHTMLWithScript(target, htmlSRC, scriptSRC, callback) {
   let element = document.querySelector(target);
@@ -130,16 +132,16 @@ function closeConfirmBox(e) {
   let confirmBox = e.target.closest('.confirm_box')
   parent = confirmBox.parentElement;
   parent.removeChild(confirmBox);
-  if(parent.className.includes('block_screen')){
+  if (parent.className.includes('block_screen')) {
     let block_screen = parent;
     let parent_block_screen = block_screen.parentElement;
     parent_block_screen.removeChild(block_screen);
-    }
+  }
 };
 export function confirmBoxDelete(target, msg, callback) {
   let elementTarget = document.querySelector(target);
   let bgMsgBox = document.createElement('div');
-  bgMsgBox.className='block_screen';
+  bgMsgBox.className = 'block_screen';
 
   let msgBox = document.createElement('div');
   msgBox.className = 'confirm_box confirm_box_deletar';
@@ -152,7 +154,7 @@ export function confirmBoxDelete(target, msg, callback) {
     callback();
     closeConfirmBox(e)
   });
-  
+
   bgMsgBox.querySelector('.btn-default-cancel').addEventListener('click', (e) => {
     closeConfirmBox(e)
   });
@@ -255,21 +257,21 @@ export function hideAllElementsByClassName(className) {
 }
 
 export function readableRandomStringMaker(length) {
-  for (var s=''; s.length < length; s += 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.charAt(Math.random()*62|0));
+  for (var s = ''; s.length < length; s += 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.charAt(Math.random() * 62 | 0));
   return s;
 }
 
-export function removeBugExtraBgFormBLockScreen(){
+export function removeBugExtraBgFormBLockScreen() {
   let formBlocks = document.querySelectorAll(".bg_form_block_screen");
-  for(let i = 0; i < formBlocks.length -1; i++){
-    let item = formBlocks[i]; 
+  for (let i = 0; i < formBlocks.length - 1; i++) {
+    let item = formBlocks[i];
     let parent = item.parentElement;
     parent.removeChild(item);
   }
 }
 
-export function createRadomIdLogBasedOnData(){
+export function createRadomIdLogBasedOnData() {
   let data = new Date();
-  let idLog =  data.getFullYear()+''+(data.getMonth()+1)+''+data.getDate()+''+readableRandomStringMaker(5);
-return idLog;
+  let idLog = data.getFullYear() + '' + (data.getMonth() + 1) + '' + data.getDate() + '' + readableRandomStringMaker(5);
+  return idLog;
 }

@@ -1,14 +1,16 @@
+//Electron
 const { ipcRenderer } = require("electron");
-//---------------------------------------------------------------------
-//Firestore
+//---------------------------------------------------------------//
+//Firebase
 import {firebaseApp } from "../../dbConfig/firebaseApp.js";
-const {getFirestore, setDoc, doc, getDocs, collection } = require("firebase/firestore")
+const {getFirestore, setDoc, doc} = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
-
+//---------------------------------------------------------------//
 //Components
-import {  insertElementHTML, displaySpinnerLoad,removeSpinnerLoad, btnCloseForm,  defaultEventsAfterSubmitForm } from "../../js_common/commonFunctions.js";
-import { setCurrentDate } from "../../js_common/dateFunc.js";
-//---------------------------------------------------------------------
+import {  insertElementHTML, displaySpinnerLoad,removeSpinnerLoad, btnCloseForm,  defaultEventsAfterSubmitForm } from "../../jsCommon/commonFunctions.js";
+import { setCurrentDate } from "../../jsCommon/dateFunc.js";
+//---------------------------------------------------------------//
+
 export function insertFormAddCertificadoHTML(certificadoInfo) {
   insertElementHTML('#page_content',
     './components/alunos/formAddCertificado.html', () => {
