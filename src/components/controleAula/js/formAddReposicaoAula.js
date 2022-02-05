@@ -1,7 +1,8 @@
 
 //Components
 import { eventsFormAddAula } from "./formAddAula.js";
-import { insertElementHTML } from "../../jsCommon/commonFunctions.js";
+import insertElementHTML from "../../jsCommon/insertElementHTML.js";
+
 //---------------------------------------------------------------//
 
 export function insertFormReposicaoAula(eventClick) {

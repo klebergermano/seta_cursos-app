@@ -6,7 +6,7 @@ const { getAuth, signOut } = require("firebase/auth");
 const auth = getAuth(firebaseApp);
 //---------------------------------------------------------------//
 //Components
-import { importHTMLWithScript } from "../../../components/jsCommon/commonFunctions.js";
+import importHTMLWithScript from "../../../components/jsCommon/importHTMLWithScript.js";
 import { getUserCompleteInfo } from "../../../components/users/js/index.js";
 import { getRolePermission } from "../../../components/users/js/permissions.js";
 //---------------------------------------------------------------//

@@ -24,7 +24,19 @@ export function eventsAlunoRA() {
         maskValueAlunoRA()
         checkInputRAAluno()
     });
+}
 
+
+export function getAlunosRA() {
+    let alunosRA = getDocs(collection(db, 'alunato'))
+        .then((alunos) => {
+            let RAs = [];
+            alunos.forEach((item) => {
+                RAs.push(item.id)
+            })
+            return RAs;
+        })
+    return alunosRA;
 }
 
 function toggleRAAutomaticoAluno() {
@@ -129,16 +141,4 @@ function formatToAlunoRA(numbers) {
 function getNumbersFromString(string) {
     let numbers = (string).replace(/\D/g, '');
     return numbers
-}
-
-export function getAlunosRA() {
-    let alunosRA = getDocs(collection(db, 'alunato'))
-        .then((alunos) => {
-            let RAs = [];
-            alunos.forEach((item) => {
-                RAs.push(item.id)
-            })
-            return RAs;
-        })
-    return alunosRA;
 }

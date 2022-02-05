@@ -5,7 +5,8 @@ const { getFirestore, doc, setDoc } = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
 //---------------------------------------------------------------//
 //Components
-import { defaultEventsAfterSubmitFixedForm, insertElementHTML } from "../../jsCommon/commonFunctions.js";
+import { defaultEventsAfterSubmitFixedForm } from "../../jsCommon/formsFunc.js";
+import insertElementHTML from "../../jsCommon/insertElementHTML.js";
 import { setCurrentDate, converteMesNumeroPorExtenso } from '../../jsCommon/dateFunc.js';
 import createNewRowFluxoCaixa from "./createNewRowFluxoCaixa.js";
 import { addLogInfo } from "../../logData/js/logFunctions.js";

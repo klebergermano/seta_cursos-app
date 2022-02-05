@@ -7,7 +7,9 @@ const {getFirestore, setDoc, doc} = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
 //---------------------------------------------------------------//
 //Components
-import {  insertElementHTML, displaySpinnerLoad,removeSpinnerLoad, btnCloseForm,  defaultEventsAfterSubmitForm } from "../../jsCommon/commonFunctions.js";
+import { btnCloseForm, defaultEventsAfterSubmitForm } from "../../jsCommon/formsFunc.js";
+import insertElementHTML from "../../jsCommon/insertElementHTML.js";
+import { displaySpinnerLoad, removeSpinnerLoad } from "../../jsCommon/spinnerJS.js";
 import { setCurrentDate } from "../../jsCommon/dateFunc.js";
 //---------------------------------------------------------------//
 

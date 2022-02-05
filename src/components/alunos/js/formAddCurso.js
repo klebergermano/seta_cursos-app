@@ -4,7 +4,8 @@ const { getFirestore, setDoc, doc } = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
 //---------------------------------------------------------------//
 //Components
-import { insertElementHTML, btnCloseForm, defaultEventsAfterSubmitForm } from "../../jsCommon/commonFunctions.js";
+import { btnCloseForm, defaultEventsAfterSubmitForm} from "../../jsCommon/formsFunc.js";
+import  insertElementHTML from "../../jsCommon/insertElementHTML.js";
 import { getContratosListDB, createParcelas, insertOptionsSelectContrato } from "./commonAlunos.js";
 import { insertViewTableAlunosHTML } from "./viewTableAlunos.js";
 import { addLogInfo } from "../../logData/js/logFunctions.js";

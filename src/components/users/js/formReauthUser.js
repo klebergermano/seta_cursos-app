@@ -4,7 +4,9 @@ const { getAuth, reauthenticateWithCredential, EmailAuthProvider } = require("fi
 const auth = getAuth(firebaseApp);
 //---------------------------------------------------------------//
 //Components
-import {insertElementHTML, btnCloseForm, removeElement } from "../../jsCommon/commonFunctions.js";
+import { btnCloseForm } from "../../jsCommon/formsFunc.js";
+import insertElementHTML from "../../jsCommon/insertElementHTML.js";
+
 //---------------------------------------------------------------//
 
 export function insertFormReauthUser(){
@@ -25,6 +27,13 @@ function eventsFormReauthUser(){
 function insertAuthEmailInput(){
     document.querySelector("#form_reauth_user").querySelector("#user_email").value = auth.currentUser.email;
     document.querySelector("#form_reauth_user").querySelector("#user_email").setAttribute('readonly', true);
+}
+
+function removeElement(childElementID, callback) {
+  let child = document.querySelector(childElementID);
+  let parent = child.parentElement;
+  parent.removeChild(child);
+  if (callback) callback();
 }
 
 function submitFormReauthUser(form){

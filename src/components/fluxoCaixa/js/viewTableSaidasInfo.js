@@ -7,7 +7,9 @@ const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
 //---------------------------------------------------------------//
 //Components
-import { confirmBoxDelete, insertElementHTML, createRadomIdLogBasedOnData } from "../../jsCommon/commonFunctions.js";
+
+import insertElementHTML from "../../jsCommon/insertElementHTML.js";
+import { confirmBoxDelete } from "../../jsCommon/confirmBoxFunc.js";
 import { changeDateToDislayText } from "../../jsCommon/dateFunc.js";
 import { addLogInfo } from "../../logData/js/logFunctions.js";
 //---------------------------------------------------------------//
@@ -186,13 +188,6 @@ function submitDeleteSaidaAvulsa(ano, mes, row, data, valor, descricao) {
     deleteQuery[string] = deleteField();
     const docAula = doc(db, 'fluxo_caixa', ano);
     updateDoc(docAula, deleteQuery)
-        .then(() => {
-            let idLog = createRadomIdLogBasedOnData();
-            setDoc(doc(db, "log", 'log_fluxo_caixa'), {
-                [idLog]: `Deletado 'Saida de Fluxo de Caixa Avulsa' "${data} - R$${valor} - ${descricao}" deletado em ${new Date()} por ${auth.currentUser.email}`
-            },
-                { merge: true })
-        })
         .then(() => {
             insertSaidasInfoTableHTML();
         }).then(() => {

@@ -1,13 +1,14 @@
 
 //Firebase
 import { firebaseApp } from "../../dbConfig/firebaseApp.js";
-const { getFirestore, getDocs, collection, where, deleteDoc, setDoc, query , doc} = require("firebase/firestore");
+const { getFirestore, getDocs, collection, where, deleteDoc, query , doc} = require("firebase/firestore");
 const db = getFirestore(firebaseApp);
 const {getAuth} = require("firebase/auth");
 const auth = getAuth(firebaseApp);
 //---------------------------------------------------------------//
 //Components
-import { insertElementHTML, confirmBoxDelete, readableRandomStringMaker} from "../../jsCommon/commonFunctions.js";
+import  insertElementHTML from "../../jsCommon/insertElementHTML.js";
+import { confirmBoxDelete } from "../../jsCommon/confirmBoxFunc.js";
 import { insertFormAddCursoHTML } from "./formAddCurso.js";
 import { insertFormDeleteCursoHTML } from "./formDeleteCurso.js";
 import { insertInfoAlunoHTML } from "./infoAluno.js";
@@ -97,14 +98,6 @@ export function eventsInserViewTableAlunos() {
 
     function  submitDeleteAluno(RA){
         deleteDoc(doc(db, 'alunato', RA))
-        .then(()=>{
-            let data = new Date();
-            let id =  data.getFullYear()+''+(data.getMonth()+1)+''+data.getDate()+''+readableRandomStringMaker(5);
-          setDoc(doc(db, "log", 'log_alunato'),{
-            [id]: `Aluno ${RA} deletado em ${new Date()} por ${auth.currentUser.email}`
-            },
-            { merge: true})
-        })
         .then(()=>{
             insertViewTableAlunosHTML()
         })
