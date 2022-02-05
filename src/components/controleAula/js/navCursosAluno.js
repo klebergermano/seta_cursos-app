@@ -1,8 +1,10 @@
 
 //Components
-import { hideAllElementsByClassName, stringToID } from "../../jsCommon/commonFunctions.js";
+import { stringToID } from "../../jsCommon/commonFunctions.js";
 import { getAlunoHistCursosDB } from "../../jsCommon/dbAlunoHistoricoFunc.js";
 //---------------------------------------------------------------//
+
+
 export function insertNavCursosInBGCursos(RA, nomeDoCurso) {
   //Cria o menu nav_cursos_aluno
   createNavCursosAluno(RA)
@@ -94,5 +96,10 @@ function removeActiveClassFromNavCursos() {
   }
 }
 
+function hideAllElementsByClassName(className) {
+  document.querySelectorAll(className).forEach((item) => {
+    item.style.display = "none";
+  });
+}
 
 

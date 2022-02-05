@@ -6,8 +6,11 @@ const { getFirestore, setDoc, doc, getDocs, collection } = require("firebase/fir
 const db = getFirestore(firebaseApp);
 //---------------------------------------------------------------//
 //Components
-import { insertElementHTML, displaySpinnerLoad, removeSpinnerLoad } from "../../jsCommon/commonFunctions.js";
+import insertElementHTML from "../../jsCommon/insertElementHTML.js";
+import { displaySpinnerLoad, removeSpinnerLoad } from "../../jsCommon/spinnerJS.js";
 import { addLogInfo } from "../../logData/js/logFunctions.js";
+//---------------------------------------------------------------//
+//Funções do componente
 import inputComboCheckbox from "./inputComboCheckbox.js";
 import insertComboTextarea from "./insertComboTextarea.js";
 import insertCursoInfo from "./insertCursoInfo.js";

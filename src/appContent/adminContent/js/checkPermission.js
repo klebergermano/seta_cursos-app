@@ -37,11 +37,12 @@ item.setAttribute('disabled', true);
         }           
     })
 }
+/*
 function removeElement(item){
     let parent = item.parentElement;
     parent.removeChild(item);
 }
-/*
+
 function removeUnauthorizedElementXX(currentUser){
     users.getUserCompleteInfo(currentUser)
      .then((userInfo)=>{

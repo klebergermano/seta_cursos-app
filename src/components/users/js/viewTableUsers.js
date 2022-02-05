@@ -4,7 +4,9 @@ const { getFirestore, getDocs, collection } = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
 //---------------------------------------------------------------//
 //Components
-import { insertElementHTML, confirmBoxDelete } from "../../jsCommon/commonFunctions.js";
+
+import insertElementHTML from "../../jsCommon/insertElementHTML.js";
+import { confirmBoxDelete } from "../../jsCommon/confirmBoxFunc.js";
 //---------------------------------------------------------------//
 export function insertViewTableUsersHTML() {
     insertElementHTML("#users_content", "./components/users/viewTableUsers.html", eventsViewTableUsers, null, true)

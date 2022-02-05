@@ -1,5 +1,5 @@
 //Components
-import { insertElementHTML } from "../../jsCommon/commonFunctions.js";
+import insertElementHTML from "../../jsCommon/insertElementHTML.js";
 //---------------------------------------------------------------//
 //Funções do componente
 import { insertSaidasInfoTableHTML } from "./viewTableSaidasInfo.js";

@@ -4,7 +4,8 @@ const { getFirestore, doc, setDoc, onSnapshot, collection, getDocs } = require("
 const db = getFirestore(firebaseApp);
 //---------------------------------------------------------------//
 //Components
-import { defaultEventsAfterSubmitFixedForm, insertElementHTML } from "../../jsCommon/commonFunctions.js";
+import { defaultEventsAfterSubmitFixedForm } from "../../jsCommon/formsFunc.js";
+import insertElementHTML from "../../jsCommon/insertElementHTML.js";
 import { setCurrentDate, converteMesNumeroPorExtenso } from "../../jsCommon/dateFunc.js";
 import insertInputValorTotal from "../../contratos/js/insertInputValorTotal.js";
 import { addLogInfo } from "../../logData/js/logFunctions.js";

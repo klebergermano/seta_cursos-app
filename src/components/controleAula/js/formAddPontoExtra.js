@@ -6,7 +6,9 @@ const db = getFirestore(firebaseApp);
 //---------------------------------------------------------------//
 //Components
 import { insertOptionsInSelectAluno, insertOptionSelectCurso } from "./formAddAula.js";
-import { removeBugExtraBgFormBLockScreen, btnCloseForm, insertElementHTML, defaultEventsAfterSubmitForm } from "../../jsCommon/commonFunctions.js";
+import { removeBugExtraBgFormBLockScreen} from "../../jsCommon/commonFunctions.js";
+import { btnCloseForm, defaultEventsAfterSubmitForm } from "../../jsCommon/formsFunc.js";
+import insertElementHTML from "../../jsCommon/insertElementHTML.js";
 import { addLogInfo } from "../../logData/js/logFunctions.js";
 //---------------------------------------------------------------//
 

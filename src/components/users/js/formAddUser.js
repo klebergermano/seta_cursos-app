@@ -6,7 +6,8 @@ const db = getFirestore(firebaseApp);
 const auth = getAuth(firebaseApp);
 //---------------------------------------------------------------//
 //Components
-import { insertElementHTML, btnCloseForm, defaultEventsAfterSubmitForm } from "../../jsCommon/commonFunctions.js";
+import { btnCloseForm, defaultEventsAfterSubmitForm } from "../../jsCommon/formsFunc.js";
+import insertElementHTML from "../../jsCommon/insertElementHTML.js";
 //---------------------------------------------------------------//
 //Funções do componente
 import { reLoginUser } from "./reLogin.js";

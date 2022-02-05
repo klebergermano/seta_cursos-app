@@ -5,7 +5,7 @@ const { getFirestore, doc, updateDoc, deleteField, getDoc } = require("firebase/
 const db = getFirestore(firebaseApp);
 //---------------------------------------------------------------//
 //Components
-import { confirmBoxDelete } from "../../jsCommon/commonFunctions.js";
+import { confirmBoxDelete } from "../../jsCommon/confirmBoxFunc.js";
 import { addLogInfo } from "../../logData/js/logFunctions.js";
 //---------------------------------------------------------------//
 

@@ -7,7 +7,7 @@ const { getFirestore, doc, getDoc } = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
 //---------------------------------------------------------------//
 //Components
-import { displaySpinnerLoad, removeSpinnerLoad } from "../../jsCommon/commonFunctions.js";
+import { displaySpinnerLoad, removeSpinnerLoad } from "../../jsCommon/spinnerJS.js";
 import { addLogInfo } from "../../logData/js/logFunctions.js";
 //---------------------------------------------------------------//
 

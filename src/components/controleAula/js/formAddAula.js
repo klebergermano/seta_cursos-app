@@ -4,7 +4,11 @@ const { getFirestore, setDoc, doc, getDocs, collection } = require("firebase/fir
 const db = getFirestore(firebaseApp);
 //---------------------------------------------------------------//
 //Components
-import { removeBugExtraBgFormBLockScreen, btnCloseForm, insertElementHTML, stringToID, defaultEventsAfterSubmitForm } from "../../jsCommon/commonFunctions.js";
+import { removeBugExtraBgFormBLockScreen, stringToID } from "../../jsCommon/commonFunctions.js";
+import { btnCloseForm , defaultEventsAfterSubmitForm } from "../../jsCommon/formsFunc.js";
+import insertElementHTML from "../../jsCommon/insertElementHTML.js";
+
+
 import { addLogInfo } from "../../logData/js/logFunctions.js";
 //---------------------------------------------------------------//
 
