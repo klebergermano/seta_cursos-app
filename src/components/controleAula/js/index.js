@@ -4,7 +4,7 @@ const { getFirestore, collection, getDocs } = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
 //---------------------------------------------------------------//
 //Components
-import { displaySpinnerLoad } from "../../jsCommon/commonFunctions.js";
+import { displaySpinnerLoad } from "../../jsCommon/spinnerJS.js";
 import { insertAlunoContent, getSnapshotAlunoCursosDB } from "./inserAlunoContent.js";
 import { insertFormAddAulaGrupoHTML } from "./formAddAulaGrupo.js";
 //---------------------------------------------------------------//

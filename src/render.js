@@ -2,7 +2,7 @@
 const { ipcRenderer } = require("electron");
 //---------------------------------------------------------------//
 //Components
-import {importHTMLWithScript} from "./components/jsCommon/commonFunctions.js";
+import importHTMLWithScript from "./components/jsCommon/importHTMLWithScript.js";
 //---------------------------------------------------------------//
 
 //Window Bar Events

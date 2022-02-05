@@ -7,7 +7,9 @@ const { getFirestore, setDoc, getDocs, collection, getDoc, doc } = require("fire
 const db = getFirestore(firebaseApp);
 //---------------------------------------------------------------//
 //Components
-import { insertElementHTML, displaySpinnerLoad, removeSpinnerLoad } from "../../jsCommon/commonFunctions.js";
+
+import  insertElementHTML from "../../jsCommon/insertElementHTML.js";
+import { displaySpinnerLoad, removeSpinnerLoad } from "../../jsCommon/spinnerJS.js";
 import { addLogInfo } from "../../logData/js/logFunctions.js";
 import { insertFormAddCertificadoHTML } from "./formAddCertificado.js";
 //---------------------------------------------------------------//

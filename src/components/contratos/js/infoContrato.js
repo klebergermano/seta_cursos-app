@@ -4,7 +4,7 @@ const { getFirestore, getDoc, doc } = require("firebase/firestore");
 const db = getFirestore(firebaseApp);
 //---------------------------------------------------------------//
 //Components
-import { insertElementHTML } from "../../jsCommon/commonFunctions.js";
+import insertElementHTML from "../../jsCommon/insertElementHTML.js";
 import { submitFormContratoPDF } from "./formAddContrato.js";
 //---------------------------------------------------------------//
 

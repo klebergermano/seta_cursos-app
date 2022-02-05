@@ -1,5 +1,6 @@
 //Components
-import { insertElementHTML } from "../../jsCommon/commonFunctions.js";
+
+import insertElementHTML from "../../jsCommon/insertElementHTML.js";
 import {changeDateTextToYYYYMMDD} from "../../jsCommon/dateFunc.js";
 //---------------------------------------------------------------//
 //Funções do componente

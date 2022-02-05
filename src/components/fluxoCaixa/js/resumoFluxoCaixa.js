@@ -1,5 +1,5 @@
 //Components
-import { insertElementHTML } from "../../jsCommon/commonFunctions.js";
+import insertElementHTML from "../../jsCommon/insertElementHTML.js";
 import { converteMesNumeroPorExtenso } from "../../jsCommon/dateFunc.js";
 //---------------------------------------------------------------//
 //Funções do componente

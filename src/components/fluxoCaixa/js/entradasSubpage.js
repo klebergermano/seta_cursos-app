@@ -1,5 +1,5 @@
 //Components
-import { insertElementHTML } from "../../jsCommon/commonFunctions.js";
+import insertElementHTML from "../../jsCommon/insertElementHTML.js";
 import { insertFluxoCaixaInfoInTableHTML } from "./viewTableEntradasInfo.js"
 import { insertFormPagMensalidade } from "./formAddPagMensalidade.js"
 import { insertFormAddEntradaAvulsa } from "./formAddEntradaAvulsa.js"
