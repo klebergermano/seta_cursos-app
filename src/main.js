@@ -38,7 +38,7 @@ const createWindow = () => {
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  //mainWindow.webContents.openDevTools();
 
 
 
@@ -52,7 +52,6 @@ const createWindow = () => {
   });
   //Btn minimize App
   ipcMain.on('maxRestoreApp', () => {
-    console.log('maxRestoreApp');
     if (mainWindow.isMaximized()) {
       mainWindow.restore();
     } else {
@@ -270,11 +269,13 @@ function createPDF(data) {
   });
 }
 ipcMain.handle("submit", async (event, data_info) => {
+
+
   const novoPDF = createPDF(data_info); // call the createPDF function
   return novoPDF
     .then((pdf) => {
       // Read the file
-      let filename = `CONTRATO-${data_info.resp_nome}-(${data_info.aluno_nome}-${data_info.curso_nome}).pdf`;
+      let filename = `CONTRATO-${data_info.id_contrato}-${data_info.resp_nome}-(${data_info.aluno_nome})-${(data_info.curso_nome).toUpperCase()}.pdf`;
       //filename = filename.toUpperCase();
       let oldpath = `${__dirname}/result.pdf`;
       let newpath = `${downloadPath}/${filename}`;

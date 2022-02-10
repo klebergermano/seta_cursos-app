@@ -141,6 +141,7 @@ export function eventsFormAddContrato() {
 export function submitFormContrato(e) {
   e.preventDefault();
   let formInfo = createFormInfo(e);
+ 
   setDoc(doc(db, "contratos", formInfo.id_contrato),
     {
       resp_info: {
@@ -212,6 +213,8 @@ export function submitFormContrato(e) {
 
 function createFormInfo(e) {
   const formData = [...e.target];
+ 
+
   let formInfo = {};
   let conclusao = new Date(e.target.curso_inicio.value);
 
@@ -236,6 +239,7 @@ function createFormInfo(e) {
 
   //Caso o Aluno seja o próprio responsável 
   if (e.target.checkbox_resp_aluno.checked) {
+   
     formInfo.checkbox_resp_aluno = true;
     formInfo.aluno_nome = formInfo.resp_nome;
     formInfo.aluno_genero = formInfo.resp_genero;
