@@ -12,8 +12,6 @@ function changeDateToDislayText(dateString) {
 
 const TemplateCertificado = (certificadoInfo) => {
 
-    console.log(certificadoInfo);
-
     return (`
     <!DOCTYPE html>
     <html lang="pt-br">

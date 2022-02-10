@@ -274,8 +274,8 @@ ipcMain.handle("submit", async (event, data_info) => {
   return novoPDF
     .then((pdf) => {
       // Read the file
-      let filename = `${data_info.resp_nome}-${data_info.curso_nome}-CONTRATO.pdf`;
-      filename = filename.toUpperCase();
+      let filename = `CONTRATO-${data_info.resp_nome}-(${data_info.aluno_nome}-${data_info.curso_nome}).pdf`;
+      //filename = filename.toUpperCase();
       let oldpath = `${__dirname}/result.pdf`;
       let newpath = `${downloadPath}/${filename}`;
 

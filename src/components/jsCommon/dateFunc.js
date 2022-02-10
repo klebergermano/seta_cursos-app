@@ -16,8 +16,6 @@ export function setCurrentDate(idInput) {
 
 export function changeDateToDislayTextDatetime(datetime) {
 
-  console.log(datetime.toLocaleDateString('pt-BR'));
-  let time = new Date(datetime.getTime()).toLocaleTimeString("en-US");
   let day = datetime.getDate();
   let year = datetime.getFullYear();
   let month = (datetime.getMonth() + 1);

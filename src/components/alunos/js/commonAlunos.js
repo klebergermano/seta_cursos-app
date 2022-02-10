@@ -83,7 +83,7 @@ export function createParcelas(parcelaInfo) {
 
 //--------------n_lanc---------------------------------------------------------------
 function createNumeroLancamento(idContrato, n_parcela) {
-    console.log(idContrato, n_parcela);
+ 
     let n_lanc = idContrato + 'F' + n_parcela;
     return n_lanc;
 }

@@ -491,7 +491,7 @@ function createCursoCotentHTML(RA, curso) {
 }
 
 function submitTalaoPDF(talaoInfo) {
-    console.log(talaoInfo);
+    
     displaySpinnerLoad("#page_content", true);
     let result = new Promise((resolve, reject) => {
         let res = ipcRenderer.invoke("createTalaoPDF", talaoInfo);

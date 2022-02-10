@@ -43,8 +43,7 @@ return certificadoCod;
 };
 
 function insertCertificadoInfoInputs(certificadoInfo){
-  console.log(certificadoInfo);
-
+ 
   let form = document.querySelector("#form_add_certificado");
   form.querySelector("#certificado_cod").value = createCertificadoCod(certificadoInfo);
   form.querySelector("#aluno_ra").value = certificadoInfo.ra;
