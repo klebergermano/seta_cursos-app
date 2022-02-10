@@ -28,6 +28,9 @@ function insertValuesInputs(contratoInfo) {
     if (parentesco_resp === 'IDEM') {
         document.querySelector("#checkbox_resp_aluno").setAttribute('checked', true);
     }
+    
+    //ID_CONTRATO
+    document.querySelector('#id_contrato').value = contratoInfo.metadata.id;
 
     //Resp
     document.querySelector('#resp_nome').value = contratoInfo.resp_info.nome;
@@ -41,8 +44,8 @@ function insertValuesInputs(contratoInfo) {
     document.querySelector('#resp_rg').value = contratoInfo.resp_info.rg;
     document.querySelector('#resp_cel').value = contratoInfo.resp_info.cel;
     document.querySelector('#resp_tel').value = contratoInfo.resp_info.tel;
-    //Aluno
 
+    //Aluno
     document.querySelector('#aluno_parentesco').value = contratoInfo.aluno_info.parentesco_resp;
     document.querySelector('#aluno_nome').value = contratoInfo.aluno_info.nome;
     document.querySelector('#aluno_genero').value = contratoInfo.aluno_info.genero;

@@ -2583,9 +2583,12 @@ option[disabled] {
   justify-content: flex-end;
   padding: 6px 0;
 }
-#info_contrato #div_resp_end,
+#info_contrato #div_resp_end, #info_contrato #div_id_contrato,
 #info_contrato #div_aluno_end {
   width: 100% !important;
+}
+#info_contrato #id_contrato {
+  max-width: 100px;
 }
 
 .red {

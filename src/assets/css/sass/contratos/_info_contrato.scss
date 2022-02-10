@@ -87,9 +87,13 @@
     }
 
     // Campos com 100% width
-    #div_resp_end,
+    #div_resp_end, #div_id_contrato,
     #div_aluno_end {
         width: 100% !important;
+    }
+    #id_contrato{
+        max-width: 100px;
+        
     }
 
 }
@@ -155,7 +159,6 @@ option[disabled] {
 #fieldset_resp {
     padding-top: 70px !important;
     border-color: lighten($primary-color, 10%) !important;
-
 }
 
 #div_resp_obs,
@@ -169,7 +172,6 @@ option[disabled] {
 }
 #fieldset_curso {
     border-color: #454 !important;
-
     & > div{
         padding: 6px 0px
     }
