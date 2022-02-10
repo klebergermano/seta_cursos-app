@@ -45,19 +45,19 @@ function setCursoSelect(e) {
   let RA = (e.target.value).split('-')[0];
   let divAluno = e.target.closest('.div_aluno_adicionado');
   let selectCurso = divAluno.querySelector('.select_curso');
-  console.log(selectCurso)
+
   getDocs(collection(db, 'alunato', RA, 'cursos'))
     .then((res) => {
       let option = '<option disabled selected value="">Selecione o Curso</option>';
       res.forEach((item) => {
-        console.log(item.data())
+    
         option += `<option value='${item.data().curso_info.nome}'>${item.data().curso_info.nome}</option>`;
       })
 
       return option;
 
     }).then((res) => {
-      console.log(res)
+  
       selectCurso.innerHTML = res;
     })
 
@@ -68,11 +68,11 @@ function eventsDivAlunoAdicinado(divAluno) {
     validaSelectAlunoAdicionado(e);
   });
   divAluno.querySelector('.select_curso').addEventListener('change', (e) => {
-    console.log('change curso');
+   
     enableSelectBimestre(e)
   })
   divAluno.querySelector('.select_bimestre').addEventListener('change', (e) => {
-    console.log('change')
+
     validaSelectAula(e)
   })
 }
@@ -172,7 +172,7 @@ function validaSelectAula(e) {
   let infoAula;
   infoAula = getInfoFormAddAula(divAluno);
   blockSelectOptionsAddAulas(divAluno, infoAula);
-  console.log(infoAula);
+ 
 }
 
 function getInfoFormAddAula(divAluno) {
@@ -246,7 +246,6 @@ function getKeysAulas(RA, idCurso, bimestre) {
 function submitFormAddAulaGrupo(e) {
   e.preventDefault();
   let form = e.target;
-  console.log(form);
   let divAlunos = form.querySelectorAll('.div_aluno_adicionado');
   divAlunos.forEach((item) => {
 
@@ -336,7 +335,7 @@ async function createOptionsSelectAlunos() {
       let arrRAList = [];
       let selectAluno = ``;
       snap.forEach((doc) => {
-        console.log(doc.data())
+       
         arrRAList.push(doc.id);
         selectAluno += `<option  data-ra='${doc.id}' value='${doc.id}-${doc.data().aluno.nome}'/>`;
       });

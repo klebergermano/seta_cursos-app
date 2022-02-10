@@ -48,7 +48,6 @@ export function submitConfigPerm() {
     let permissions = JSON.parse(form.textarea_permissions.value);
 
     for (let item in permissions) {
-        console.log(item);
         setDoc(doc(db, 'permissions', item), permissions[item])
             .then(() => {
                 defaultEventsAfterSubmitForm('#form_config_perm', "Permissões adicionadas com sucesso!");

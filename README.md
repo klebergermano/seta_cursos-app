@@ -43,7 +43,7 @@ Aplicativo de gerenciamento de cursos livres.
 
 ## Stack utilizada
 
-**Front-end:** Electron, HTML, CSS/SASS, Vanilla J.S
+**Front-end:** Electron, HTML, CSS/SASS, Vanilla JS.
 
 **Back-end:** Electron, NodeJS, Firebase.
 

@@ -17,7 +17,6 @@ btn_minimize_window.addEventListener('click', ()=>{
 
 //Window Bar Events
 btn_max_restore_window.addEventListener('click', ()=>{
-        console.log('click');
         ipcRenderer.send('maxRestoreApp')
 });
 
