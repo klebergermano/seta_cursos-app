@@ -68,9 +68,7 @@ function eventsInfoAluno(RA) {
                 })
             });
         }).then(() => {
-
-
-            let inputs = document.querySelectorAll('#form_info_aluno input, .form_info input, .form_info textarea');
+            let inputs = document.querySelectorAll('#form_info_aluno input, #form_info_aluno textarea, .form_info input, .form_info textarea');
             inputs.forEach((item) => {
                 item.addEventListener('input', (e) => {
                     activeSubmitOnChangeInput(e)
@@ -121,18 +119,18 @@ function submitFormsInfoCurso(e) {
                 certificado: {
                     entregue: valueCerticadoEntregue
                 },
-                obs: form.curso_obs.value
+                obs: (form.curso_obs.value).trim()
             },
             resp_info: {
-                email: form.resp_email.value,
-                end: form.resp_end.value,
-                end_numero: form.resp_end_numero.value,
-                bairro: form.resp_bairro.value,
-                cep: form.resp_cep.value,
-                cpf: form.resp_cpf.value,
-                data_nasc: form.resp_data_nasc.value,
-                cel: form.resp_cel.value,
-                tel: form.resp_tel.value,
+                email:(form.resp_email.value).trim(),
+                end:(form.resp_end.value).trim(),
+                end_numero:(form.resp_end_numero.value).trim(),
+                bairro:(form.resp_bairro.value).trim(),
+                cep:(form.resp_cep.value).trim(),
+                cpf:(form.resp_cpf.value).trim(),
+                data_nasc:(form.resp_data_nasc.value).trim(),
+                cel:(form.resp_cel.value).trim(),
+                tel:(form.resp_tel.value).trim(),
             },
             metadata: {
                 modified: new Date()
@@ -156,14 +154,15 @@ function submitFormInfoAluno(e) {
     setDoc(doc(db, "alunato", RA),
         {
             aluno: {
-                email: form.aluno_email.value,
-                end: form.aluno_end.value,
-                end_numero: form.aluno_end_numero.value,
-                bairro: form.aluno_bairro.value,
-                cep: form.aluno_cep.value,
-                data_nasc: form.aluno_data_nasc.value,
-                cel: form.aluno_cel.value,
-                tel: form.aluno_tel.value,
+                email: (form.aluno_email.value).trim(),
+                end:(form.aluno_end.value).trim(),
+                end_numero:(form.aluno_end_numero.value).trim(),
+                bairro:(form.aluno_bairro.value).trim(),
+                cep:(form.aluno_cep.value).trim(),
+                data_nasc:(form.aluno_data_nasc.value).trim(),
+                cel:(form.aluno_cel.value).trim(),
+                tel:(form.aluno_tel.value).trim(),
+                obs:(form.aluno_obs.value).trim(),
                 metadata: {
                     modified: new Date()
                 }
@@ -223,6 +222,7 @@ function insertAlunoInfo(alunoInfo) {
     document.querySelector('#aluno_rg').value = alunoInfo.aluno.rg;
     document.querySelector('#aluno_cel').value = alunoInfo.aluno.cel;
     document.querySelector('#aluno_tel').value = alunoInfo.aluno.tel;
+    document.querySelector('#aluno_obs').value = alunoInfo.aluno.obs;
 }
 function insertAlunoCursoInfo(RA, cursos) {
     cursos.forEach((item) => {

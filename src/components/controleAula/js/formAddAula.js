@@ -224,7 +224,6 @@ function getKeysAulas(RA, idCurso, bimestre) {
   return keys;
 }
 
-
 function submitFormAddAula(e) {
   e.preventDefault();
   let form = e.target;
