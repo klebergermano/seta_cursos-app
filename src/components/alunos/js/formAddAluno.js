@@ -71,7 +71,8 @@ async function submitFormAddAluno(e) {
   e.preventDefault();
 
   let form = e.target;
-  let RA = (form.aluno_ra.value).toUpperCase()
+  let RA = (form.aluno_ra.value).toUpperCase();
+  let aluno_obs = form.aluno_obs.value;
   //Objecto utilizado para criar as parcelas com "createParcelas(parcelaInfo)".
   let parcelaInfo = {
     id_contrato: $contratoInfo.metadata.id,
@@ -142,7 +143,7 @@ async function submitFormAddAluno(e) {
     })
     .then(() => {
       //Cria as informações do aluno em Alunato
-      setInfoAlunoAlunato(RA)
+      setInfoAlunoAlunato(RA, aluno_obs)
     })
     .then(() => {
       defaultEventsAfterSubmitFixedForm("#alunos_content", "Aluno salvo com sucesso!");
@@ -156,22 +157,23 @@ async function submitFormAddAluno(e) {
     })
 }
 
-function setInfoAlunoAlunato(RA) {
+function setInfoAlunoAlunato(RA,  aluno_obs) {
   setDoc(doc(db, "alunato", RA),
     {
       aluno: {
         ra: RA,
-        genero: $contratoInfo.aluno_info.genero,
-        nome: $contratoInfo.aluno_info.nome,
-        rg: $contratoInfo.aluno_info.rg,
-        email: $contratoInfo.aluno_info.email,
-        end: $contratoInfo.aluno_info.end,
-        end_numero: $contratoInfo.aluno_info.end_numero,
-        bairro: $contratoInfo.aluno_info.bairro,
-        cep: $contratoInfo.aluno_info.cep,
-        data_nasc: $contratoInfo.aluno_info.data_nasc,
-        cel: $contratoInfo.aluno_info.cel,
-        tel: $contratoInfo.aluno_info.tel,
+        genero: ($contratoInfo.aluno_info.genero).trim(),
+        nome: ($contratoInfo.aluno_info.nome).trim(),
+        rg: ($contratoInfo.aluno_info.rg).trim(),
+        email: ($contratoInfo.aluno_info.email).trim(),
+        end: ($contratoInfo.aluno_info.end).trim(),
+        end_numero: ($contratoInfo.aluno_info.end_numero).trim(),
+        bairro: ($contratoInfo.aluno_info.bairro).trim(),
+        cep: ($contratoInfo.aluno_info.cep).trim(),
+        data_nasc: ($contratoInfo.aluno_info.data_nasc).trim(),
+        cel: ($contratoInfo.aluno_info.cel).trim(),
+        tel: ($contratoInfo.aluno_info.tel).trim(),
+        obs: (aluno_obs).trim(),
         metadata: {
           created: new Date(),
           modified: new Date()

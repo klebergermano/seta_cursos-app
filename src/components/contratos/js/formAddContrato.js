@@ -226,13 +226,13 @@ function createFormInfo(e) {
   let f_conclusao = ano + "-" + mes + "-" + dia;
   //Foreach que pega todos dos elementos inputs do submit e amazena em formInfo.
   formData.forEach((element) => {
-    formInfo[`${element.id}`] = element.value;
+    formInfo[`${element.id}`] = (element.value).trim();
   });
   //É necessário pegar o combo_textarea via selector por que ele não é um imput.
   let comboTextarea = document.querySelector("#combo_textarea");
 
-  formInfo.curso_combo = comboTextarea.innerHTML;
-  formInfo.curso_conclusao = f_conclusao;
+  formInfo.curso_combo = (comboTextarea.innerHTML).trim();
+  formInfo.curso_conclusao = (f_conclusao).trim();
 
   //Caso o Aluno seja o próprio responsável 
   if (e.target.checkbox_resp_aluno.checked) {
@@ -254,7 +254,6 @@ function createFormInfo(e) {
   }
   return formInfo;
 }
-
 
 //Envia o objeto com as informações do formulário para a main stream index.js
 export function submitFormContratoPDF(e) {

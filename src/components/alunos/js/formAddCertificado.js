@@ -85,10 +85,10 @@ function submitformAddCertificado(e) {
       curso_info: {
         certificado:{
           entregue: "",
-          cod: certificadoInfo.certificado_cod, 
-          data_emissao: certificadoInfo.data_emissao, 
-          local: certificadoInfo.endereco, 
-          obs: certificadoInfo.obs, 
+          cod: (certificadoInfo.certificado_cod).trim(), 
+          data_emissao: (certificadoInfo.data_emissao).trim(), 
+          local: (certificadoInfo.endereco).trim(), 
+          obs: (certificadoInfo.obs).trim(), 
         }
       },
 

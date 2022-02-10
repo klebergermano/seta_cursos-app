@@ -3066,9 +3066,9 @@ option[disabled] {
 }
 #form_info_aluno .fieldset #div_desconto_combo,
 #form_info_aluno .fieldset #div_curso_obs,
-#form_info_aluno .fieldset #div_modulos, .form_info .fieldset #div_desconto_combo,
+#form_info_aluno .fieldset #div_modulos, #form_info_aluno .fieldset #div_aluno_obs, .form_info .fieldset #div_desconto_combo,
 .form_info .fieldset #div_curso_obs,
-.form_info .fieldset #div_modulos {
+.form_info .fieldset #div_modulos, .form_info .fieldset #div_aluno_obs {
   min-width: 100%;
 }
 #form_info_aluno .fieldset #div_desconto_combo div, .form_info .fieldset #div_desconto_combo div {
