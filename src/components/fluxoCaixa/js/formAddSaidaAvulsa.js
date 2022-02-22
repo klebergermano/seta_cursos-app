@@ -26,7 +26,7 @@ function setMasks() {
 }
 
 function eventsFormAddSaidaAvulsa() {
-  setCurrentDate('#data');
+ // setCurrentDate('#data');
   document.querySelector('#form_add_saida_avulsa').addEventListener('submit', (e) => {
     e.preventDefault();
     submitFormAddPagMensalidade(e)

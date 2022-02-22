@@ -131,7 +131,7 @@ export function eventsFormAddContrato() {
   //Insere a data corrente do dia como possível inicio do curso.
   insertInputDateValue(new Date(), "#curso_inicio");
   //Insere a dia atual como como possível dia de vencimento do curso.
-  vencimento.value = String(new Date().getDate()).padStart(2, "0");
+  //vencimento.value = String(new Date().getDate()).padStart(2, "0");
 
   eventsIDContrato();
 
