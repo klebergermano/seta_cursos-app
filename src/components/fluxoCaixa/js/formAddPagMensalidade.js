@@ -25,7 +25,7 @@ export async function insertSelectAlunos() {
   onSnapshot(
     collection(db, "alunato"),
     (snap) => {
-      let selectAluno = `<option disabled selected>Selecione o Aluno</option>`;
+      let selectAluno = `<option disabled selected value=''>Selecione o Aluno</option>`;
       snap.forEach((doc) => {
         selectAluno += `<option value='${doc.id}-${doc.data().aluno.nome}'>${doc.id} - ${doc.data().aluno.nome}</option>`;
       });
@@ -35,7 +35,7 @@ export async function insertSelectAlunos() {
 
 function eventsFormPagMensalidade() {
   setMasks()
-  setCurrentDate('#data')
+  //setCurrentDate('#data')
   insertSelectAlunos()
   document.querySelector('#main_select_aluno').addEventListener('change', (e) => {
     setSelectCursos()
@@ -76,7 +76,7 @@ function setSelectCursos() {
   setAlunoInfoRANome()
   setNomeAndRAInput()
   let selectCurso = document.querySelector("#select_curso");
-  let optionsCurso = '<option disabled selected>Selecione o Curso</option>';
+  let optionsCurso = '<option disabled selected value="">Selecione o Curso</option>';
   getDocs(collection(db, 'alunato', $alunoInfo.RA, 'cursos'))
     .then((res) => {
       let cursos = {};
@@ -94,7 +94,7 @@ function setPadStart(num) {
   return num.toString().padStart(2, '0');
 }
 function getParcelas(nomeCurso) {
-  let options = `<option disabled selected>Selecione a Parcela</option>`;
+  let options = `<option disabled selected value="" >Selecione a Parcela</option>`;
   let parcelas = $alunoInfo.cursos[nomeCurso].parcelas;
   let parcelas_total = $alunoInfo.cursos[nomeCurso].parcelas_total;
 

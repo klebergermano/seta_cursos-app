@@ -10,18 +10,18 @@
 
             <div class='div_inputs div_aluno'>
                 <label>Aluno</label>
-                <select id='main_select_aluno'></select>
+                <select required id='main_select_aluno'></select>
             </div>
             <div class='div_inputs div_curso'>
                 <label>Curso</label>
-                <select id='select_curso'>
-                    <option></option>
+                <select required id='select_curso'>
+                    <option  disabled selected value='' ></option>
                 </select>
             </div>
             <div class='div_inputs div_parcela'>
                 <label>Parcela</label>
-                <select id='select_parcelas'>
-                    <option></option>
+                <select required id='select_parcelas'>
+                    <option disabled selected value=''></option>
                 </select>
             </div>
 
@@ -31,22 +31,22 @@
             <div class='div_inputs div_n_lanc'>
                 <label>Nº Lanc.:
                 </label>
-                <input readonly='true' type='text' id='n_lanc' value=''/>
+                <input required readonly='true' type='text' id='n_lanc' value=''/>
             </div>
             <div class='div_inputs div_resp'>
                 <label>Resp.:
                 </label>
-                <input type='text' readonly='true' id='resp'/>
+                <input required type='text' readonly='true' id='resp'/>
             </div>
             <div class='div_inputs div_vencimento'>
                 <label>Vencimento:
                 </label>
-                <input readonly='true' type='Date' id='vencimento'/>
+                <input required readonly='true' type='Date' id='vencimento'/>
             </div>
             <div class='div_inputs  div_data'>
                 <label>Data:
                 </label>
-                <input type='Date' id='data'/>
+                <input required type='Date' id='data'/>
             </div>
         </div>
         <!--row-->
@@ -54,7 +54,7 @@
             <div class='div_inputs div_curso_valor'>
                 <label>Valor:
                 </label>
-                <input readonly='true' type='text' id='curso_valor' value='0,00'/>
+                <input required readonly='true' type='text' id='curso_valor' value='0,00'/>
             </div>
             <div class='div_inputs div_curso_desconto'>
                 <label>Desc.:
@@ -64,7 +64,7 @@
             <div class='div_inputs div_curso_valor_total'>
                 <label>Valor Total:
                 </label>
-                <input type='text' id='curso_valor_total' readonly='true' value='0,00'/>
+                <input required type='text' id='curso_valor_total' readonly='true' value='0,00'/>
             </div>
             <div class='div_inputs div_forma_pag'>
                 <label>Forma de Pag.</label>

@@ -25,7 +25,7 @@ function setMasks() {
 }
 
 function eventsFormAddEntradaAvulsa() {
-  setCurrentDate('#data');
+  //setCurrentDate('#data');
   document.querySelector('#form_add_entrada_avulsa').addEventListener('submit', (e) => {
     e.preventDefault();
     submitFormAddEntradaAvulsa(e)
