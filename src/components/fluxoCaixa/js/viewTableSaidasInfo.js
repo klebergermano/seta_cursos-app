@@ -1,9 +1,8 @@
 
 //Firebase
 import { firebaseApp } from "../../dbConfig/firebaseApp.js";
-const { getFirestore, getDoc, doc, deleteField, setDoc, updateDoc } = require("firebase/firestore")
-const { getAuth } = require("firebase/auth");
-const auth = getAuth(firebaseApp);
+const { getFirestore,  doc, deleteField,  updateDoc } = require("firebase/firestore")
+
 const db = getFirestore(firebaseApp);
 //---------------------------------------------------------------//
 //Components
