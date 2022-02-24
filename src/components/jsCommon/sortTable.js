@@ -1,53 +1,8 @@
-import "./styles.css";
+/*
 
-document.getElementById("app").innerHTML = `
-<h1>Hello Vanilla!</h1>
-<div>
-<input id='nome_search' type='text' />
-<table id='my_table'  border='1' style="width:100%; border-collapse: collapse;">
-  <thead>
-    <th>id <button id='sort_id'>
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
-  </svg>
-</button></th>
-    <th>Nome
-    <button id='sort_nome'>
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
-  </svg>
-</button>
-    </th>
-    <th>Contact</th>
-    <th>Country</th>
-  <thead>
-<tbody>
-<tr>
-<td id='td_id'>7 </td>
-  <td id='td_nome'>Maria da Conceição</td>
-  <td>Maria Anders</td>
-  <td>Germany</td>
-</tr>
-<tr>
-<td id='td_id'>2</td>
-  <td id='td_nome'>Alexandre de Silva</td>
-  <td>teste</td>
-  <td>Mexico</td>
-</tr>
-<td id='td_id'>13</td>
-  <td id='td_nome'>Caroline Albuquerque</td>
-  <td>Francisco Chang</td>
-  <td>Brasil</td>
-</tr>
-<td id='td_id'>12</td>
-  <td id='td_nome'>Denis Silva</td>
-  <td> Chang</td>
-  <td>Mexico</td>
-</tr>
-</tbody>
-</table>
-</div>
-`;
+document.querySelector("#sort_date").addEventListener("click", (e) => {
+  sortTable.sortByDate("#my_table", "#td_data", e);
+});
 
 document.querySelector("#sort_id").addEventListener("click", (e) => {
   sortTable.sortByIntTD("#my_table", "#td_id", e);
@@ -60,8 +15,31 @@ document.querySelector("#sort_nome").addEventListener("click", (e) => {
 document.querySelector("#nome_search").addEventListener("input", (e) => {
   sortTable.filterTableByInputText("#my_table", "#td_nome", e);
 });
-
+*/
 const sortTable = () => {};
+export default  sortTable; 
+
+function invertOrderDate(d) {
+  var p = d.split("/");
+  return +(p[2] + p[1] + p[0]);
+}
+sortTable.sortByDate = function (tableID, tdID, e) {
+  let order = e.target.dataset.sort_order;
+  let table = document.querySelector(tableID + " tbody");
+  let rows = Array.from(table.rows);
+
+  rows.sort((a, b) => {
+    let aINT = invertOrderDate(a.querySelector(tdID).innerHTML);
+    let bINT = invertOrderDate(b.querySelector(tdID).innerHTML);
+
+    return aINT - bINT;
+  });
+  alternateBtnDataOrder(e);
+  orderRowsAscDesc(rows, order);
+  rows.forEach((item) => {
+    table.appendChild(item);
+  });
+};
 
 sortTable.sortByIntTD = function (tableID, tdID, e) {
   let order = e.target.dataset.sort_order;
@@ -71,6 +49,7 @@ sortTable.sortByIntTD = function (tableID, tdID, e) {
   rows.sort((a, b) => {
     let aINT = parseInt(a.querySelector(tdID).innerHTML);
     let bINT = parseInt(b.querySelector(tdID).innerHTML);
+    console.log("data:", aINT);
     return aINT - bINT;
   });
   alternateBtnDataOrder(e);
@@ -137,7 +116,3 @@ function orderRowsAscDesc(rows, order) {
     rows.sort().reverse();
   }
 }
-
-
-
-
