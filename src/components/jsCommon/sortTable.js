@@ -19,19 +19,19 @@ document.querySelector("#nome_search").addEventListener("input", (e) => {
 const sortTable = () => {};
 export default  sortTable; 
 
-function invertOrderDate(d) {
+function invertDateOrder(d) {
   var p = d.split("/");
   return +(p[2] + p[1] + p[0]);
 }
+
 sortTable.sortByDate = function (tableID, tdID, e) {
   let order = e.target.dataset.sort_order;
   let table = document.querySelector(tableID + " tbody");
   let rows = Array.from(table.rows);
 
   rows.sort((a, b) => {
-    let aINT = invertOrderDate(a.querySelector(tdID).innerHTML);
-    let bINT = invertOrderDate(b.querySelector(tdID).innerHTML);
-
+    let aINT = invertDateOrder(a.querySelector(tdID).innerHTML);
+    let bINT = invertDateOrder(b.querySelector(tdID).innerHTML);
     return aINT - bINT;
   });
   alternateBtnDataOrder(e);
