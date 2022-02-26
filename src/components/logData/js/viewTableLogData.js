@@ -73,10 +73,10 @@ function createTableLogDataHTML(log) {
                 `
         <td class='td_id'>${key}</td>
         <td class='td_data'>
-       ${datetime.toLocaleDateString('pt-BR')}
+           ${datetime.toLocaleDateString('pt-BR')}
         </td>
         <td class='td_hora'>
-   ${datetime.toLocaleTimeString('pt-BR')}
+             ${datetime.toLocaleTimeString('pt-BR')}
         </td>
         <td class='td_user'>${value.user}</td>
         <td class='td_level '><span class='${value.level}'>${value.level}</span></td>
