@@ -16,8 +16,8 @@ document.querySelector("#nome_search").addEventListener("input", (e) => {
   sortTable.filterTableByInputText("#my_table", "#td_nome", e);
 });
 */
-const sortTable = () => {};
-export default  sortTable; 
+const sortTable = () => { };
+export default sortTable;
 
 function invertDateOrder(d) {
   var p = d.split("/");
@@ -25,7 +25,6 @@ function invertDateOrder(d) {
 }
 
 sortTable.sortByDate = function (tableID, tdID, e) {
-  let order = e.target.dataset.sort_order;
   let table = document.querySelector(tableID + " tbody");
   let rows = Array.from(table.rows);
 
@@ -34,36 +33,50 @@ sortTable.sortByDate = function (tableID, tdID, e) {
     let bINT = invertDateOrder(b.querySelector(tdID).innerHTML);
     return aINT - bINT;
   });
-  alternateBtnDataOrder(e);
-  orderRowsAscDesc(rows, order);
-  rows.forEach((item) => {
-    table.appendChild(item);
-  });
+
+  communEventsOfSortTableFunctions(tableID, tdID, e, rows)
 };
 
 sortTable.sortByIntTD = function (tableID, tdID, e) {
-  let order = e.target.dataset.sort_order;
-  let table = document.querySelector(tableID + " tbody");
-  let rows = Array.from(table.rows);
-
+  let tableTbody = document.querySelector(tableID + " tbody");
+  let rows = Array.from(tableTbody.rows);
   rows.sort((a, b) => {
-    let aINT = parseInt(a.querySelector(tdID).innerHTML);
-    let bINT = parseInt(b.querySelector(tdID).innerHTML);
-    console.log("data:", aINT);
-    return aINT - bINT;
+    a = a.querySelector(tdID).innerHTML.replace(/\D+/g, '');
+    b = b.querySelector(tdID).innerHTML.replace(/\D+/g, '');
+    return a - b;
   });
-  alternateBtnDataOrder(e);
-  orderRowsAscDesc(rows, order);
-  rows.forEach((item) => {
-    table.appendChild(item);
-  });
+
+  communEventsOfSortTableFunctions(tableID, tdID, e, rows)
 };
 
+//Bloco de código comum compartilhado pelas funções sortTable.
+function communEventsOfSortTableFunctions(tableID, tdID, e, rows){
+  let order = e?.target?.dataset?.sort_order;
+  let tableTbody = document.querySelector(tableID + " tbody");
+
+  //Testa se há "Event Button".
+  if (e) {
+    //Alterna o data-sort_order do botão para "ASC/DESC".
+    alternateBtnDatasetSortOrder(e);
+    //Set a classe btn_sort_active no botão clicado.
+    setClassBtnSortActive(tableID, e);
+  }
+  //Ordena as linhas da tabela baseado na variável 'order' que deve ser ASC/DESC.
+  orderRowsAscDesc(rows, order);
+  //Remove a classe 'td_sort_active' de todos os elementos TD setados anteriormente.
+  removeAllTDSortActiveClass(tableID)
+  rows.forEach((item) => {
+    //Adiciona a classe 'td_sort_active' para o elemento TD passado.
+    addTDSortActiveClass(item.querySelector(tdID));
+    //Re-adiciona as linhas do tbody que foram ordenadas.
+    tableTbody.appendChild(item);
+  });
+
+}
 sortTable.sortByTextTD = function (tableID, tdID, e) {
-  let order = e.target.dataset.sort_order;
+  let order = e?.target?.dataset?.sort_order;
   let table = document.querySelector(tableID + " tbody");
   let rows = Array.from(table.rows);
-
   rows.sort((a, b) => {
     let aText = a.querySelector(tdID).innerHTML;
     let bText = b.querySelector(tdID).innerHTML;
@@ -74,34 +87,127 @@ sortTable.sortByTextTD = function (tableID, tdID, e) {
     }
     return 0;
   });
-  alternateBtnDataOrder(e);
-  orderRowsAscDesc(rows, order);
+
+  communEventsOfSortTableFunctions(tableID, tdID, e, rows)
+};
+
+
+sortTable.filterTableByInputText = function (tableID, tdID, e) {
+  cleanInputsSearch(tableID, e)
+  removeAllActiveBtnSortClass(tableID)
+  let inputValue = ((e.target.value).toLowerCase()).trim();
+  let table = document.querySelector(tableID + " tbody");
+  let rows = Array.from(table.rows);
+  let newRows = [];
   rows.forEach((item) => {
+    let nome = ((item.querySelector(tdID).innerHTML).toLowerCase()).trim();
+    if (inputValue !== '' && nome.includes(inputValue)) {
+      item.querySelector(tdID).classList.add('match_search')
+      newRows.unshift(item);
+    } else {
+      item.querySelector(tdID).classList.remove('match_search')
+      newRows.push(item);
+    }
+  });
+
+    //Remove a classe 'td_sort_active' de todos os elementos TD setados anteriormente.
+    removeAllTDSortActiveClass(tableID)
+  newRows.forEach((item) => {
     table.appendChild(item);
   });
 };
 
+
+
+
+/*
 sortTable.filterTableByInputText = function (tableID, tdID, e) {
-  let nameValue = e.target.value;
+  cleanInputsSearch(tableID, e)
+  removeAllActiveBtnSortClass(tableID)
+  let inputValue = ((e.target.value).toLowerCase()).trim();
   let table = document.querySelector(tableID + " tbody");
   let rows = Array.from(table.rows);
-
   let nRows = [];
   rows.forEach((item) => {
-    let nome = item.querySelector(tdID).innerHTML;
-    if (nome.toLowerCase().includes(nameValue)) {
+    let nome = ((item.querySelector(tdID).innerHTML).toLowerCase()).trim();
+    if (inputValue !== '' && nome.includes(inputValue)) {
+      item.querySelector(tdID).classList.add('match_search')
       nRows.unshift(item);
     } else {
+      item.querySelector(tdID).classList.remove('match_search')
       nRows.push(item);
     }
   });
-  table.innerHTML = "";
+
   nRows.forEach((item) => {
     table.appendChild(item);
   });
 };
 
-function alternateBtnDataOrder(e) {
+
+*/
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+
+//Adicona a classe 'td_sort_active' para o elemento TD.
+function addTDSortActiveClass(TD) {
+  TD.classList.add('td_sort_active');
+}
+
+//Remove a classe 'td_sort_active' de todos os elementos da tabela.
+function removeAllTDSortActiveClass(tableID) {
+  let tdActiveSort = document.querySelectorAll(tableID + ' .td_sort_active');
+  tdActiveSort.forEach((item) => {
+    item.classList.remove('td_sort_active');
+  });
+}
+
+//Remove todas as classe'btn_sort_active' de todos os elementos da tabela.
+function removeAllActiveBtnSortClass(tableID) {
+  let table = document.querySelector(tableID);
+  let btns = table.querySelectorAll('.btn_sort');
+  btns.forEach((item) => {
+    item.classList.remove('btn_sort_active');
+  })
+}
+
+//Adiciona a classe 'btn_sort_active' ao elemento clicado.
+//Essa classe é usada para mostrar o "botão sort" que está ativo.
+function setClassBtnSortActive(tableID, e) {
+  removeAllMatchSearchClass(tableID, e)
+  let table = document.querySelector(tableID);
+  let btns = table.querySelectorAll('.btn_sort');
+  btns.forEach((item) => {
+    item.classList.remove('btn_sort_active');
+  })
+  e.target.classList.add('btn_sort_active')
+}
+
+//Remove a classe 'match_search' de todos os elementos da tabela.
+function removeAllMatchSearchClass(tableID, e) {
+  let table = document.querySelector(tableID);
+  let matchs = table.querySelectorAll('.match_search');
+  matchs.forEach((item) => {
+    item.classList.remove('match_search')
+  });
+}
+
+//Limpa o valor de todos os inputs que possuam a classe 'input_search'.
+function cleanInputsSearch(tableID, e) {
+  let inputAtual = e.target;
+  let table = document.querySelector(tableID);
+  let inputs = table.querySelectorAll('.input_search');
+  removeAllMatchSearchClass(tableID, e)
+  inputs.forEach((item) => {
+    if (item.id !== inputAtual.id) {
+      item.value = '';
+    }
+  });
+}
+
+//Alterna o 'data-sort_order' do elemento clicado para "ASC/DESC".
+function alternateBtnDatasetSortOrder(e) {
   let btn = e?.target;
   if (btn?.dataset?.sort_order === "ASC") {
     btn.setAttribute("data-sort_order", "DESC");
@@ -109,6 +215,8 @@ function alternateBtnDataOrder(e) {
     btn.setAttribute("data-sort_order", "ASC");
   }
 }
+
+//Ordena as linhas da tabela baseado na variável 'order' que deve ser ASC/DESC.
 function orderRowsAscDesc(rows, order) {
   if (order === "ASC") {
     rows.sort();

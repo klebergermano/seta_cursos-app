@@ -5,6 +5,7 @@ const { getFirestore, getDocs, collection, deleteDoc, doc } = require("firebase/
 const db = getFirestore(firebaseApp);
 //---------------------------------------------------------------//
 //Components
+import sortTable from "../../jsCommon/sortTable.js";
 import insertElementHTML from "../../jsCommon/insertElementHTML.js";
 import { confirmBoxDelete } from "../../jsCommon/confirmBoxFunc.js";
 import { addLogInfo } from "../../logData/js/logFunctions.js";
@@ -20,6 +21,9 @@ export function insertViewTableContratosHTML() {
     insertElementHTML("#contratos_content", "./components/contratos/viewTableContratos.html", eventsViewTableContratos, null, true)
 }
 
+
+
+
 function eventsViewTableContratos() {
     getContratosList()
         .then((res) => {
@@ -28,19 +32,56 @@ function eventsViewTableContratos() {
         })
         .then((tbody) => {
             document.querySelector('#view_table_contratos tbody').outerHTML = tbody.outerHTML;
+           sortTable.sortByIntTD('#bg_view_table_contratos', '.td_contrato_id', false);
+
         }).then(() => {
             eventBtnDeleteContrato()
         }).then(() => {
             let btns = document.querySelectorAll('.btn_info_aluno');
             btns.forEach((item) => {
                 item.addEventListener('click', (e) => {
-
                     let idContrato = e.target.closest('tr').dataset.id_contrato;
                     insertInfoContratoHTML(idContrato)
                 });
             });
+        }).then(()=>{
+            eventsFilters();
         })
         .catch(err => console.log(err))
+}
+
+function eventsFilters(){
+document.querySelector('#sort_id').addEventListener('click', (e)=>{
+    sortTable.sortByIntTD('#bg_view_table_contratos', '.td_contrato_id', e);
+
+})
+
+document.querySelector('#sort_resp').addEventListener('click', (e)=>{
+    sortTable.sortByTextTD('#bg_view_table_contratos', '.td_resp_nome', e);
+
+})
+
+
+document.querySelector('#sort_aluno').addEventListener('click', (e)=>{
+    sortTable.sortByTextTD('#bg_view_table_contratos', '.td_aluno_nome', e);
+
+})
+
+
+document.querySelector('#sort_aluno_assoc').addEventListener('click', (e)=>{
+    sortTable.sortByIntTD('#bg_view_table_contratos', '.td_aluno_assoc', e);
+
+})
+
+//Inputs Search Table
+document.querySelector('#input_search_aluno').addEventListener('input', (e)=>{
+    sortTable.filterTableByInputText('#bg_view_table_contratos', '.td_aluno_nome', e);
+})
+
+document.querySelector('#input_search_resp').addEventListener('input', (e)=>{
+    sortTable.filterTableByInputText('#bg_view_table_contratos', '.td_resp_nome', e);
+})
+
 }
 
 function eventBtnDeleteContrato() {

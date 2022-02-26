@@ -11,7 +11,7 @@
 @use 'fluxo_caixa';
 @use 'window_bar';
 @use 'log_data';
-
+ 
 
 
 @keyframes spinner-line-fade-more {
@@ -114,7 +114,8 @@ a {
   cursor: pointer;
 } 
 
-svg{ margin-bottom:-2px; margin: 0px 2px -2px 2px;}
+svg{ margin-bottom:-2px; margin: 0px 2px -2px 2px;
+pointer-events: none;}
 body, html{
   overflow: hidden;
 }
