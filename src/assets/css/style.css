@@ -805,9 +805,6 @@ inputs, .input-primary {
   border-collapse: collapse;
   padding: 5px;
 }
-.tables .td_sort_active, .table_info .td_sort_active, #view_table_users .td_sort_active, .view_table .td_sort_active {
-  background: #00001111;
-}
 .tables .match_search, .table_info .match_search, #view_table_users .match_search, .view_table .match_search {
   background: #ffe;
 }
@@ -852,6 +849,9 @@ inputs, .input-primary {
 }
 .tables th .btn_sort_active, .table_info th .btn_sort_active, #view_table_users th .btn_sort_active, .view_table th .btn_sort_active {
   background: #00000055;
+}
+.tables .td_sort_active, .table_info .td_sort_active, #view_table_users .td_sort_active, .view_table .td_sort_active {
+  background: #00002f19;
 }
 .tables td button, .table_info td button, #view_table_users td button, .view_table td button {
   padding: 5px;

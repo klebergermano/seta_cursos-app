@@ -40,9 +40,7 @@
     border-collapse: collapse;
     padding:5px;
 
-    .td_sort_active{
-        background: #00001111;
-    }
+
     .match_search{
         background:#ffe;
     }
@@ -88,6 +86,9 @@
         .btn_sort_active{
             background: #00000055;
         }
+    }
+    .td_sort_active{
+        background: #00002f19;
     }
     td{
         button{

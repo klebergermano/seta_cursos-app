@@ -32,7 +32,7 @@ function eventsViewTableContratos() {
         })
         .then((tbody) => {
             document.querySelector('#view_table_contratos tbody').outerHTML = tbody.outerHTML;
-           sortTable.sortByIntTD('#bg_view_table_contratos', '.td_contrato_id', false);
+            sortTable.sortByIntTD('#bg_view_table_contratos', '.td_contrato_id', false);
 
         }).then(() => {
             eventBtnDeleteContrato()
@@ -44,43 +44,43 @@ function eventsViewTableContratos() {
                     insertInfoContratoHTML(idContrato)
                 });
             });
-        }).then(()=>{
+        }).then(() => {
             eventsFilters();
         })
         .catch(err => console.log(err))
 }
 
-function eventsFilters(){
-document.querySelector('#sort_id').addEventListener('click', (e)=>{
-    sortTable.sortByIntTD('#bg_view_table_contratos', '.td_contrato_id', e);
+function eventsFilters() {
+    let table = document.querySelector('#view_table_contratos');
 
-})
+    table.querySelector('#sort_id').addEventListener('click', (e) => {
+        sortTable.sortByIntTD('#view_table_contratos', '.td_contrato_id', e);
+    })
 
-document.querySelector('#sort_resp').addEventListener('click', (e)=>{
-    sortTable.sortByTextTD('#bg_view_table_contratos', '.td_resp_nome', e);
+    table.querySelector('#sort_resp').addEventListener('click', (e) => {
+        sortTable.sortByTextTD('#view_table_contratos', '.td_resp_nome', e);
+    })
 
-})
+    table.querySelector('#sort_aluno').addEventListener('click', (e) => {
+        sortTable.sortByTextTD('#view_table_contratos', '.td_aluno_nome', e);
+    })
 
+    table.querySelector('#sort_aluno_assoc').addEventListener('click', (e) => {
+        sortTable.sortByIntTD('#view_table_contratos', '.td_aluno_assoc', e);
+    })
 
-document.querySelector('#sort_aluno').addEventListener('click', (e)=>{
-    sortTable.sortByTextTD('#bg_view_table_contratos', '.td_aluno_nome', e);
+    table.querySelector('#sort_data').addEventListener('click', (e) => {
+        sortTable.sortByDate('#view_table_contratos', '.td_contrato_data', e);
+    })
 
-})
+    //Inputs Search Table
+    table.querySelector('#input_search_aluno').addEventListener('input', (e) => {
+        sortTable.filterTableByInputText('#view_table_contratos', '.td_aluno_nome', e);
+    })
 
-
-document.querySelector('#sort_aluno_assoc').addEventListener('click', (e)=>{
-    sortTable.sortByIntTD('#bg_view_table_contratos', '.td_aluno_assoc', e);
-
-})
-
-//Inputs Search Table
-document.querySelector('#input_search_aluno').addEventListener('input', (e)=>{
-    sortTable.filterTableByInputText('#bg_view_table_contratos', '.td_aluno_nome', e);
-})
-
-document.querySelector('#input_search_resp').addEventListener('input', (e)=>{
-    sortTable.filterTableByInputText('#bg_view_table_contratos', '.td_resp_nome', e);
-})
+    table.querySelector('#input_search_resp').addEventListener('input', (e) => {
+        sortTable.filterTableByInputText('#view_table_contratos', '.td_resp_nome', e);
+    })
 
 }
 
@@ -126,6 +126,8 @@ function createTableContratosHTML(contratosInfo) {
         let disabled;
         let title = "Deletar contrato";
         let buttonDelete = "";
+        let data_contrato = new Date(contrato.curso_info.data_contrato + ' 00:00:00');
+        data_contrato = data_contrato.toLocaleDateString("pt-BR");
         if (contrato.metadata.aluno_associado !== 'pendente') {
             disabled = 'disabled="true"';
             title = "Somente contratos sem aluno associado podem ser deletados";
@@ -146,6 +148,7 @@ function createTableContratosHTML(contratosInfo) {
         let trContent =
             `
             <td class='td_contrato_id'>${contrato.metadata.id}</td>
+            <td class='td_contrato_data'>${data_contrato}</td>
             <td class='td_resp_nome'>${contrato.resp_info.nome}</td>
             <td class='td_aluno_nome'>${contrato.aluno_info.nome}</td>
             <td class='td_aluno_assoc'>${contrato.metadata.aluno_associado}</td>
