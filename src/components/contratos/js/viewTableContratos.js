@@ -74,11 +74,11 @@ function eventsFilters() {
     })
 
     //Inputs Search Table
-    table.querySelector('#input_search_aluno').addEventListener('input', (e) => {
+    document.querySelector('#bg_view_table_contratos #input_search_aluno').addEventListener('input', (e) => {
         sortTable.filterTableByInputText('#view_table_contratos', '.td_aluno_nome', e);
     })
 
-    table.querySelector('#input_search_resp').addEventListener('input', (e) => {
+    document.querySelector('#bg_view_table_contratos #input_search_resp').addEventListener('input', (e) => {
         sortTable.filterTableByInputText('#view_table_contratos', '.td_resp_nome', e);
     })
 
