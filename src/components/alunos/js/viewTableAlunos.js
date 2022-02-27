@@ -7,6 +7,7 @@ const {getAuth} = require("firebase/auth");
 const auth = getAuth(firebaseApp);
 //---------------------------------------------------------------//
 //Components
+import sortTable from "../../jsCommon/sortTable.js";
 import  insertElementHTML from "../../jsCommon/insertElementHTML.js";
 import { confirmBoxDelete } from "../../jsCommon/confirmBoxFunc.js";
 import { insertFormAddCursoHTML } from "./formAddCurso.js";
@@ -26,10 +27,14 @@ export function eventsInserViewTableAlunos() {
         .then((tbody) => {
             document.querySelector('#view_table_alunos tbody').innerHTML = "";
             document.querySelector('#view_table_alunos tbody').innerHTML = tbody.innerHTML;
+            sortTable.sortByIntTD('#view_table_alunos', '.td_ra', false);
+        
         }).then(() => {
             insertCursosList()
             eventsButtonsInfoTableAlunos();
             eventBtnDeleteAluno()
+        }).then(()=>{
+            eventsFilters() 
         }).catch(err => console.log(err))
 }
 
@@ -61,6 +66,19 @@ export function eventsInserViewTableAlunos() {
             });
         })
     }
+
+function eventsFilters() {
+    let table = document.querySelector('#view_table_alunos');
+    table.querySelector('#sort_ra').addEventListener('click', (e) => {
+        sortTable.sortByIntTD('#view_table_alunos', '.td_ra', e);
+    })
+    table.querySelector('#sort_aluno').addEventListener('click', (e) => {
+        sortTable.sortByTextTD('#view_table_alunos', '.td_nome', e);
+    })
+      document.querySelector('#bg_view_table_alunos #input_search_aluno').addEventListener('input', (e) => {
+        sortTable.filterTableByInputText('#view_table_alunos', '.td_nome', e);
+    })
+}
 
     function getAlunosList() {
         let alunatoList = getDocs(query(collection(db, 'alunato'), where('aluno', '!=', 'undefined')))
