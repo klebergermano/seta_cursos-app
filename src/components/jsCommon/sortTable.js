@@ -29,20 +29,21 @@ sortTable.sortByDate = function (tableID, tdID, e) {
   let rows = Array.from(table.rows);
 
   rows.sort((a, b) => {
-    let aINT = invertDateOrder(a.querySelector(tdID).innerHTML);
-    let bINT = invertDateOrder(b.querySelector(tdID).innerHTML);
-    return aINT - bINT;
+    if(a.querySelector(tdID) && b.querySelector(tdID)){
+       let aINT = invertDateOrder(a.querySelector(tdID).innerHTML);
+       let bINT = invertDateOrder(b.querySelector(tdID).innerHTML);
+       return aINT - bINT;
+    }
   });
-
-  communEventsOfSortTableFunctions(tableID, tdID, e, rows)
+   communEventsOfSortTableFunctions(tableID, tdID, e, rows)
 };
 
 sortTable.sortByIntTD = function (tableID, tdID, e) {
   let tableTbody = document.querySelector(tableID + " tbody");
   let rows = Array.from(tableTbody.rows);
   rows.sort((a, b) => {
-    a = a.querySelector(tdID).innerHTML.replace(/\D+/g, '');
-    b = b.querySelector(tdID).innerHTML.replace(/\D+/g, '');
+    a = a?.querySelector(tdID)?.innerHTML?.replace(/\D+/g, '');
+    b = b?.querySelector(tdID)?.innerHTML?.replace(/\D+/g, '');
     return a - b;
   });
 
@@ -51,9 +52,9 @@ sortTable.sortByIntTD = function (tableID, tdID, e) {
 
 //Bloco de código comum compartilhado pelas funções sortTable.
 function communEventsOfSortTableFunctions(tableID, tdID, e, rows){
+
   let order = e?.target?.dataset?.sort_order;
   let tableTbody = document.querySelector(tableID + " tbody");
-
   //Testa se há "Event Button".
   if (e) {
     //Alterna o data-sort_order do botão para "ASC/DESC".
@@ -67,10 +68,19 @@ function communEventsOfSortTableFunctions(tableID, tdID, e, rows){
   removeAllTDSortActiveClass(tableID)
   rows.forEach((item) => {
     //Adiciona a classe 'td_sort_active' para o elemento TD passado.
-    addTDSortActiveClass(item.querySelector(tdID));
+    if(item?.querySelector(tdID)){
+      addTDSortActiveClass(item.querySelector(tdID));
+    }
     //Re-adiciona as linhas do tbody que foram ordenadas.
     tableTbody.appendChild(item);
   });
+
+  let sortTolastRowTR = tableTbody.querySelector('.sort_to_last_row');
+  if(sortTolastRowTR){
+    console.log(sortTolastRowTR)
+    tableTbody.appendChild(sortTolastRowTR);
+
+  }
 
 }
 sortTable.sortByTextTD = function (tableID, tdID, e) {
@@ -112,40 +122,11 @@ sortTable.filterTableByInputText = function (tableID, tdID, e) {
 
     //Remove a classe 'td_sort_active' de todos os elementos TD setados anteriormente.
     removeAllTDSortActiveClass(tableID)
-  newRows.forEach((item) => {
-    table.appendChild(item);
-  });
+    newRows.forEach((item) => {
+     table.appendChild(item);
+    });
 };
 
-
-
-
-/*
-sortTable.filterTableByInputText = function (tableID, tdID, e) {
-  cleanInputsSearch(tableID, e)
-  removeAllActiveBtnSortClass(tableID)
-  let inputValue = ((e.target.value).toLowerCase()).trim();
-  let table = document.querySelector(tableID + " tbody");
-  let rows = Array.from(table.rows);
-  let nRows = [];
-  rows.forEach((item) => {
-    let nome = ((item.querySelector(tdID).innerHTML).toLowerCase()).trim();
-    if (inputValue !== '' && nome.includes(inputValue)) {
-      item.querySelector(tdID).classList.add('match_search')
-      nRows.unshift(item);
-    } else {
-      item.querySelector(tdID).classList.remove('match_search')
-      nRows.push(item);
-    }
-  });
-
-  nRows.forEach((item) => {
-    table.appendChild(item);
-  });
-};
-
-
-*/
 
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------

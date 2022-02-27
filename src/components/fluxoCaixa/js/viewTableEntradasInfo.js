@@ -4,6 +4,7 @@ const { getFirestore, doc, deleteField, updateDoc, setDoc } = require("firebase/
 const db = getFirestore(firebaseApp);
 //---------------------------------------------------------------//
 //Components
+import sortTable from "../../jsCommon/sortTable.js";
 import insertElementHTML from "../../jsCommon/insertElementHTML.js";
 import { confirmBoxDelete } from "../../jsCommon/confirmBoxFunc.js";
 import { changeDateToDislayText } from "../../jsCommon/dateFunc.js";
@@ -29,6 +30,10 @@ function eventsEntradasInfoTable() {
         }).then(() => {
             btnsDeletePagMensal()
             btnsDeleteEntradaAvulsa()
+        }).then(()=>{
+            setTimeout(()=>{
+                eventsFilters()
+          }, 2000); 
         }).catch(err => console.log(err))
 
     document.querySelector("#select_ano").addEventListener('change', (e) => {
@@ -52,9 +57,29 @@ function eventsEntradasInfoTable() {
                 btnsDeletePagMensal();
                 btnsDeleteEntradaAvulsa()
             }).catch(err => console.log(err))
+    })
 
+}
+
+function eventsFilters(){
+
+    let table = document.querySelector('#pag_mensal_table_info');
+    console.log(table)
+    table.querySelector('#sort_data').addEventListener('click', (e) => {
+       sortTable.sortByDate('#pag_mensal_table_info', '.td_data', e);
+  
+    })
+/*
+    table.querySelector('#sort_data').addEventListener('click', (e) => {
+        sortTable.sortByDate('#view_table_contratos', '.td_contrato_data', e);
+    })
+*/
+    //Inputs Search Table
+    document.querySelector('#bg_entradas_info_table #input_search_aluno').addEventListener('input', (e) => {
+        sortTable.filterTableByInputText('#pag_mensal_table_info', '.td_aluno', e);
     })
 }
+
 
 function btnsDeleteEntradaAvulsa() {
     let btnsPagMensal = document.querySelectorAll('#entrada_avulsa_table_info .btn_delete_entrada_avulsa');
@@ -103,14 +128,15 @@ function btnsDeletePagMensal() {
 function insertContentTables(fluxoCaixaAno, mes) {
     let contentTablePagMensal = createContentPagMensalTableHTML(fluxoCaixaAno, mes);
     insertContentTablePagMensal(contentTablePagMensal);
-    sortTbodyElementByDate("#pag_mensal_table_info");
+    //sortTbodyElementByDate("#pag_mensal_table_info");
     //-----------------------------------------
 
     let contentTableEntradaAvulsa = createContentEntradaAvulsaTableHTML(fluxoCaixaAno, mes);
     insertContentTableEntradaAvulsa(contentTableEntradaAvulsa);
-    sortTbodyElementByDate("#entrada_avulsa_table_info");
+    //sortTbodyElementByDate("#entrada_avulsa_table_info");
     //-----------------------------------------
 }
+
 
 function insertContentTablePagMensal(contentTable) {
     let table = document.querySelector('#pag_mensal_table_info');
@@ -127,7 +153,6 @@ function createContentEntradaAvulsaTableHTML(fluxoCaixaAno, mes) {
         let entradas = false;
         for (let value of Object.values(fluxoCaixaMes)) {
             if (value.categoria === "entrada_avulsa") {
-
                 entradas = true;
                 let tr = document.createElement('tr');
                 tr.id = 'tr_comum';
@@ -293,6 +318,7 @@ function createContentPagMensalTableHTML(fluxoCaixaAno, mes) {
 
             let trResumo = document.createElement('tr');
             trResumo.id = 'tr_resumo';
+            trResumo.classList.add('sort_to_last_row');
             trResumo.innerHTML = `
             <td colspan='6'>Entradas: <span id='res_total_entradas'>${resEntradas}</span></td>
             <td colspan='2' class="td_valor_total" id="td_res_valor_total">${resValorTotal}</td>
