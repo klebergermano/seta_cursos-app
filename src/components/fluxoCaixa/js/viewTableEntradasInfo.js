@@ -31,9 +31,7 @@ function eventsEntradasInfoTable() {
             btnsDeletePagMensal()
             btnsDeleteEntradaAvulsa()
         }).then(()=>{
-            setTimeout(()=>{
                 eventsFilters()
-          }, 2000); 
         }).catch(err => console.log(err))
 
     document.querySelector("#select_ano").addEventListener('change', (e) => {
@@ -65,15 +63,31 @@ function eventsFilters(){
 
     let table = document.querySelector('#pag_mensal_table_info');
     console.log(table)
-    table.querySelector('#sort_data').addEventListener('click', (e) => {
+    table.querySelector('#pag_mensal_table_info #sort_data').addEventListener('click', (e) => {
        sortTable.sortByDate('#pag_mensal_table_info', '.td_data', e);
-  
     })
-/*
-    table.querySelector('#sort_data').addEventListener('click', (e) => {
-        sortTable.sortByDate('#view_table_contratos', '.td_contrato_data', e);
+
+    table.querySelector('#pag_mensal_table_info  #sort_ra').addEventListener('click', (e) => {
+        sortTable.sortByTextTD('#pag_mensal_table_info', '.td_ra', e);
     })
-*/
+
+    table.querySelector('#pag_mensal_table_info  #sort_aluno').addEventListener('click', (e) => {
+        sortTable.sortByTextTD('#pag_mensal_table_info', '.td_aluno', e);
+    })
+
+    table.querySelector('#pag_mensal_table_info #sort_curso').addEventListener('click', (e) => {
+        sortTable.sortByTextTD('#pag_mensal_table_info', '.td_curso', e);
+    })
+
+    table.querySelector('#pag_mensal_table_info #sort_parcela').addEventListener('click', (e) => {
+        sortTable.sortByIntTD('#pag_mensal_table_info', '.td_parcela', e);
+    })
+    
+    table.querySelector('#pag_mensal_table_info #sort_form_pag').addEventListener('click', (e) => {
+        sortTable.sortByTextTD('#pag_mensal_table_info', '.td_form_pag', e);
+    })
+
+
     //Inputs Search Table
     document.querySelector('#bg_entradas_info_table #input_search_aluno').addEventListener('input', (e) => {
         sortTable.filterTableByInputText('#pag_mensal_table_info', '.td_aluno', e);
@@ -290,6 +304,7 @@ function createContentPagMensalTableHTML(fluxoCaixaAno, mes) {
                 let trContent =
                     `
                 <td class='td_data'>${changeDateToDislayText(value.data)}</td>
+                <td class='td_ra'>${value.ra}</td>
                 <td class='td_aluno'>${value.aluno}</td>
                 <td class='td_curso'>${value.curso}</td>
                 <td class='td_parcela'>${value.parcela}</td>
@@ -320,10 +335,10 @@ function createContentPagMensalTableHTML(fluxoCaixaAno, mes) {
             trResumo.id = 'tr_resumo';
             trResumo.classList.add('sort_to_last_row');
             trResumo.innerHTML = `
-            <td colspan='6'>Entradas: <span id='res_total_entradas'>${resEntradas}</span></td>
+            <td colspan='7'>Entradas: <span id='res_total_entradas'>${resEntradas}</span></td>
             <td colspan='2' class="td_valor_total" id="td_res_valor_total">${resValorTotal}</td>
             `;
-            tbody.appendChild(trResumo)
+           tbody.appendChild(trResumo)
         } else {
             let tr = document.createElement('tr')
             tr.innerHTML = `

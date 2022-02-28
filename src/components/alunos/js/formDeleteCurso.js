@@ -48,7 +48,6 @@ function submitformDeleteCurso(e) {
   let curso = selectCurso.value;
   let idContrato = form.querySelector('#select_curso').options[selectCurso.selectedIndex].dataset.id_contrato;
   deleteDoc(doc(db, 'alunato', RA, 'cursos', curso))
-    
     .then(() => {
       setDoc(doc(db, "contratos", idContrato),
         {

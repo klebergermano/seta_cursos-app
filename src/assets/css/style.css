@@ -3565,7 +3565,7 @@ option[disabled] {
   margin-bottom: 20px;
 }
 .bg_info_tables table {
-  font-size: 14px;
+  font-size: 13px;
 }
 .bg_info_tables table caption {
   padding: 8px;
@@ -3574,8 +3574,9 @@ option[disabled] {
 }
 .bg_info_tables table thead th {
   height: 40px;
-  background: #ccc;
-  color: #333;
+  background: #464;
+  color: #fff;
+  padding: 2px 3px;
 }
 .bg_info_tables table tbody tr {
   background: #f0f0f0;
