@@ -6,7 +6,7 @@ const { getFirestore,  doc, deleteField,  updateDoc } = require("firebase/firest
 const db = getFirestore(firebaseApp);
 //---------------------------------------------------------------//
 //Components
-
+import sortTable from "../../jsCommon/sortTable.js";
 import insertElementHTML from "../../jsCommon/insertElementHTML.js";
 import { confirmBoxDelete } from "../../jsCommon/confirmBoxFunc.js";
 import { changeDateToDislayText } from "../../jsCommon/dateFunc.js";
@@ -35,7 +35,10 @@ function eventsSaidasInfoTable() {
             insertContentTables(res, filtroInfo.mes)
         }).then(() => {
             btnsDeleteEntradaAvulsa()
-        }).catch(err => console.log(err))
+        }).then(()=>{
+            eventsFilters()
+        })
+        .catch(err => console.log(err))
 
     document.querySelector("#select_ano").addEventListener('change', (e) => {
         let filtroInfo = getFiltroInfoAnoMes()
@@ -60,6 +63,20 @@ function eventsSaidasInfoTable() {
     })
 }
 
+function eventsFilters() {
+    document.querySelector('#saida_avulsa_table_info #sort_data').addEventListener('click', (e) => {
+        sortTable.sortByDate('#saida_avulsa_table_info', '.td_data', e);
+    })
+
+    document.querySelector('#saida_avulsa_table_info #sort_tipo_saida').addEventListener('click', (e) => {
+        sortTable.sortByTextTD('#saida_avulsa_table_info', '.td_tipo_saida', e);
+    })
+
+    document.querySelector('#bg_saidas_info_table #input_search_desc').addEventListener('input', (e) => {
+        sortTable.filterTableByInputText('#saida_avulsa_table_info', '.td_descricao', e);
+    })
+   
+}
 function insertContentTables(fluxoCaixaAno, mes) {
 
     let contentTableSaidaAvulsa = createContentSaidaAvulsaTableHTML(fluxoCaixaAno, mes);
@@ -124,6 +141,7 @@ function createContentSaidaAvulsaTableHTML(fluxoCaixaAno, mes) {
             let resValorTotal = somaValorTotalMes(fluxoCaixaAno, mes, 'saida_avulsa');
             let trResumo = document.createElement('tr');
             trResumo.id = 'tr_resumo';
+            trResumo.classList.add('sort_to_last_row');
             trResumo.innerHTML = `
                 <td colspan='3'>Entradas: <span id='res_total_saida'>${resEntradas}</span></td>
                 <td colspan='2' class="td_valor_total" id="td_res_valor_total">${resValorTotal}</td>

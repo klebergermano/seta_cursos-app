@@ -30,8 +30,8 @@ function eventsEntradasInfoTable() {
         }).then(() => {
             btnsDeletePagMensal()
             btnsDeleteEntradaAvulsa()
-        }).then(()=>{
-                eventsFilters()
+        }).then(() => {
+            eventsFilters()
         }).catch(err => console.log(err))
 
     document.querySelector("#select_ano").addEventListener('change', (e) => {
@@ -59,12 +59,11 @@ function eventsEntradasInfoTable() {
 
 }
 
-function eventsFilters(){
+function eventsFilters() {
 
     let table = document.querySelector('#pag_mensal_table_info');
-    console.log(table)
     table.querySelector('#pag_mensal_table_info #sort_data').addEventListener('click', (e) => {
-       sortTable.sortByDate('#pag_mensal_table_info', '.td_data', e);
+        sortTable.sortByDate('#pag_mensal_table_info', '.td_data', e);
     })
 
     table.querySelector('#pag_mensal_table_info  #sort_ra').addEventListener('click', (e) => {
@@ -82,7 +81,7 @@ function eventsFilters(){
     table.querySelector('#pag_mensal_table_info #sort_parcela').addEventListener('click', (e) => {
         sortTable.sortByIntTD('#pag_mensal_table_info', '.td_parcela', e);
     })
-    
+
     table.querySelector('#pag_mensal_table_info #sort_form_pag').addEventListener('click', (e) => {
         sortTable.sortByTextTD('#pag_mensal_table_info', '.td_form_pag', e);
     })
@@ -92,6 +91,24 @@ function eventsFilters(){
     document.querySelector('#bg_entradas_info_table #input_search_aluno').addEventListener('input', (e) => {
         sortTable.filterTableByInputText('#pag_mensal_table_info', '.td_aluno', e);
     })
+
+
+    //---Table Avulso----------------------------------------
+
+    document.querySelector('#entrada_avulsa_table_info #sort_form_pag').addEventListener('click', (e) => {
+        console.log('click2')
+        sortTable.sortByTextTD('#entrada_avulsa_table_info', '.td_form_pag', e);
+    })
+
+    document.querySelector('#entrada_avulsa_table_info #sort_data').addEventListener('click', (e) => {
+        console.log('click')
+        sortTable.sortByTextTD('#entrada_avulsa_table_info', '.td_data', e);
+    })
+    //Inputs Search Table
+    document.querySelector('#bg_entradas_info_table #input_search_desc').addEventListener('input', (e) => {
+        sortTable.filterTableByInputText('#entrada_avulsa_table_info', '.td_descricao', e);
+    })
+
 }
 
 
@@ -199,6 +216,7 @@ function createContentEntradaAvulsaTableHTML(fluxoCaixaAno, mes) {
             let resValorTotal = somaValorTotalMes(fluxoCaixaAno, mes, 'entrada_avulsa');
             let trResumo = document.createElement('tr');
             trResumo.id = 'tr_resumo';
+            trResumo.classList.add('sort_to_last_row');
             trResumo.innerHTML = `
          <td colspan='3'>Entradas: <span id='res_total_entradas'>${resEntradas}</span></td>
          <td colspan='2' class="td_valor_total" id="td_res_valor_total">${resValorTotal}</td>
@@ -270,7 +288,7 @@ function submitDeletePagMensal(ano, mes, row, RA, curso, parcela, data, valor) {
 
 function submitDeleteEntradaAvulsa(ano, mes, row, data, valor, descricao) {
     let string = `${mes}.${row}`;
-    
+
     let deleteQuery = {};
     deleteQuery[string] = deleteField();
     const docAula = doc(db, 'fluxo_caixa', ano);
@@ -338,10 +356,11 @@ function createContentPagMensalTableHTML(fluxoCaixaAno, mes) {
             <td colspan='7'>Entradas: <span id='res_total_entradas'>${resEntradas}</span></td>
             <td colspan='2' class="td_valor_total" id="td_res_valor_total">${resValorTotal}</td>
             `;
-           tbody.appendChild(trResumo)
+            tbody.appendChild(trResumo)
         } else {
             let tr = document.createElement('tr')
             tr.innerHTML = `
+                <td>...</td>
                 <td>...</td>
                 <td>...</td>
                 <td>...</td>
