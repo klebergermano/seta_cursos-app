@@ -3560,12 +3560,16 @@ option[disabled] {
   background: #45803f;
 }
 
+.bg_info_tables #bg_search_inputs_table_entrada_avulso {
+  margin-bottom: -35px;
+}
 .bg_info_tables h3 {
   margin-top: 20px;
   margin-bottom: 20px;
 }
 .bg_info_tables table {
   font-size: 13px;
+  margin-bottom: 30px;
 }
 .bg_info_tables table caption {
   padding: 8px;
@@ -3610,7 +3614,10 @@ option[disabled] {
 #bg_saidas_info_table caption {
   background: #bd4343;
 }
-#bg_saidas_info_table tr#tr_resumo #td_res_valor_total {
+#bg_saidas_info_table table th {
+  background: #644;
+}
+#bg_saidas_info_table table tr#tr_resumo #td_res_valor_total {
   text-align: center;
   background: #bd4343;
   color: #fff;

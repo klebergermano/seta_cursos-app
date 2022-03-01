@@ -1,12 +1,17 @@
 
 .bg_info_tables{
+
+    #bg_search_inputs_table_entrada_avulso{
+        margin-bottom:-35px;
+    }
+
     h3{
         margin-top:20px;
         margin-bottom:20px;
     }
     table{
         font-size:13px;
-
+        margin-bottom:30px;
         caption{
             padding:8px;
             background:#333;
@@ -59,13 +64,19 @@
     caption{
         background:#bd4343;
     }
-    tr#tr_resumo{
-        #td_res_valor_total{
-            text-align: center; 
-            background: #bd4343;
-            color:#fff;
+    table{
+    th{
+        background: #644;
+    }
+        tr#tr_resumo{
+            #td_res_valor_total{
+                text-align: center; 
+                background: #bd4343;
+                color:#fff;
+            }
         }
     }
+ 
 }
 #bg_entradas_info_table{
         caption{
