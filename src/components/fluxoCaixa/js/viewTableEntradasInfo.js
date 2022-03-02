@@ -4,6 +4,7 @@ const { getFirestore, doc, deleteField, updateDoc, setDoc } = require("firebase/
 const db = getFirestore(firebaseApp);
 //---------------------------------------------------------------//
 //Components
+import sortTable from "../../jsCommon/sortTable.js";
 import insertElementHTML from "../../jsCommon/insertElementHTML.js";
 import { confirmBoxDelete } from "../../jsCommon/confirmBoxFunc.js";
 import { changeDateToDislayText } from "../../jsCommon/dateFunc.js";
@@ -29,6 +30,9 @@ function eventsEntradasInfoTable() {
         }).then(() => {
             btnsDeletePagMensal()
             btnsDeleteEntradaAvulsa()
+        }).then(() => {
+            sortTable.sortByDate('#pag_mensal_table_info', '.td_data');
+            eventsFilters()
         }).catch(err => console.log(err))
 
     document.querySelector("#select_ano").addEventListener('change', (e) => {
@@ -52,9 +56,61 @@ function eventsEntradasInfoTable() {
                 btnsDeletePagMensal();
                 btnsDeleteEntradaAvulsa()
             }).catch(err => console.log(err))
-
     })
 }
+
+function eventsFilters() {
+
+    let table = document.querySelector('#pag_mensal_table_info');
+    table.querySelector('#pag_mensal_table_info #sort_data').addEventListener('click', (e) => {
+        sortTable.sortByDate('#pag_mensal_table_info', '.td_data', e);
+    })
+
+    table.querySelector('#pag_mensal_table_info  #sort_ra').addEventListener('click', (e) => {
+        sortTable.sortByTextTD('#pag_mensal_table_info', '.td_ra', e);
+    })
+
+    table.querySelector('#pag_mensal_table_info  #sort_aluno').addEventListener('click', (e) => {
+        sortTable.sortByTextTD('#pag_mensal_table_info', '.td_aluno', e);
+    })
+
+    table.querySelector('#pag_mensal_table_info #sort_curso').addEventListener('click', (e) => {
+        sortTable.sortByTextTD('#pag_mensal_table_info', '.td_curso', e);
+    })
+
+    table.querySelector('#pag_mensal_table_info #sort_parcela').addEventListener('click', (e) => {
+        sortTable.sortByIntTD('#pag_mensal_table_info', '.td_parcela', e);
+    })
+
+    table.querySelector('#pag_mensal_table_info #sort_form_pag').addEventListener('click', (e) => {
+        sortTable.sortByTextTD('#pag_mensal_table_info', '.td_form_pag', e);
+    })
+
+
+    //Inputs Search Table
+    document.querySelector('#bg_entradas_info_table #input_search_aluno').addEventListener('input', (e) => {
+        sortTable.filterTableByInputText('#pag_mensal_table_info', '.td_aluno', e);
+    })
+
+
+    //---Table Avulso----------------------------------------
+
+    document.querySelector('#entrada_avulsa_table_info #sort_form_pag').addEventListener('click', (e) => {
+        console.log('click2')
+        sortTable.sortByTextTD('#entrada_avulsa_table_info', '.td_form_pag', e);
+    })
+
+    document.querySelector('#entrada_avulsa_table_info #sort_data').addEventListener('click', (e) => {
+        console.log('click')
+        sortTable.sortByTextTD('#entrada_avulsa_table_info', '.td_data', e);
+    })
+    //Inputs Search Table
+    document.querySelector('#bg_entradas_info_table #input_search_desc').addEventListener('input', (e) => {
+        sortTable.filterTableByInputText('#entrada_avulsa_table_info', '.td_descricao', e);
+    })
+
+}
+
 
 function btnsDeleteEntradaAvulsa() {
     let btnsPagMensal = document.querySelectorAll('#entrada_avulsa_table_info .btn_delete_entrada_avulsa');
@@ -103,14 +159,15 @@ function btnsDeletePagMensal() {
 function insertContentTables(fluxoCaixaAno, mes) {
     let contentTablePagMensal = createContentPagMensalTableHTML(fluxoCaixaAno, mes);
     insertContentTablePagMensal(contentTablePagMensal);
-    sortTbodyElementByDate("#pag_mensal_table_info");
+    //sortTbodyElementByDate("#pag_mensal_table_info");
     //-----------------------------------------
 
     let contentTableEntradaAvulsa = createContentEntradaAvulsaTableHTML(fluxoCaixaAno, mes);
     insertContentTableEntradaAvulsa(contentTableEntradaAvulsa);
-    sortTbodyElementByDate("#entrada_avulsa_table_info");
+    //sortTbodyElementByDate("#entrada_avulsa_table_info");
     //-----------------------------------------
 }
+
 
 function insertContentTablePagMensal(contentTable) {
     let table = document.querySelector('#pag_mensal_table_info');
@@ -127,7 +184,6 @@ function createContentEntradaAvulsaTableHTML(fluxoCaixaAno, mes) {
         let entradas = false;
         for (let value of Object.values(fluxoCaixaMes)) {
             if (value.categoria === "entrada_avulsa") {
-
                 entradas = true;
                 let tr = document.createElement('tr');
                 tr.id = 'tr_comum';
@@ -160,6 +216,7 @@ function createContentEntradaAvulsaTableHTML(fluxoCaixaAno, mes) {
             let resValorTotal = somaValorTotalMes(fluxoCaixaAno, mes, 'entrada_avulsa');
             let trResumo = document.createElement('tr');
             trResumo.id = 'tr_resumo';
+            trResumo.classList.add('sort_to_last_row');
             trResumo.innerHTML = `
          <td colspan='3'>Entradas: <span id='res_total_entradas'>${resEntradas}</span></td>
          <td colspan='2' class="td_valor_total" id="td_res_valor_total">${resValorTotal}</td>
@@ -231,7 +288,7 @@ function submitDeletePagMensal(ano, mes, row, RA, curso, parcela, data, valor) {
 
 function submitDeleteEntradaAvulsa(ano, mes, row, data, valor, descricao) {
     let string = `${mes}.${row}`;
-    
+
     let deleteQuery = {};
     deleteQuery[string] = deleteField();
     const docAula = doc(db, 'fluxo_caixa', ano);
@@ -265,6 +322,7 @@ function createContentPagMensalTableHTML(fluxoCaixaAno, mes) {
                 let trContent =
                     `
                 <td class='td_data'>${changeDateToDislayText(value.data)}</td>
+                <td class='td_ra'>${value.ra}</td>
                 <td class='td_aluno'>${value.aluno}</td>
                 <td class='td_curso'>${value.curso}</td>
                 <td class='td_parcela'>${value.parcela}</td>
@@ -293,14 +351,16 @@ function createContentPagMensalTableHTML(fluxoCaixaAno, mes) {
 
             let trResumo = document.createElement('tr');
             trResumo.id = 'tr_resumo';
+            trResumo.classList.add('sort_to_last_row');
             trResumo.innerHTML = `
-            <td colspan='6'>Entradas: <span id='res_total_entradas'>${resEntradas}</span></td>
+            <td colspan='7'>Entradas: <span id='res_total_entradas'>${resEntradas}</span></td>
             <td colspan='2' class="td_valor_total" id="td_res_valor_total">${resValorTotal}</td>
             `;
             tbody.appendChild(trResumo)
         } else {
             let tr = document.createElement('tr')
             tr.innerHTML = `
+                <td>...</td>
                 <td>...</td>
                 <td>...</td>
                 <td>...</td>

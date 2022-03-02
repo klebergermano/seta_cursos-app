@@ -5,6 +5,7 @@ const { getFirestore, getDocs, collection, deleteDoc, doc } = require("firebase/
 const db = getFirestore(firebaseApp);
 //---------------------------------------------------------------//
 //Components
+import sortTable from "../../jsCommon/sortTable.js";
 import insertElementHTML from "../../jsCommon/insertElementHTML.js";
 import { confirmBoxDelete } from "../../jsCommon/confirmBoxFunc.js";
 import { addLogInfo } from "../../logData/js/logFunctions.js";
@@ -20,6 +21,9 @@ export function insertViewTableContratosHTML() {
     insertElementHTML("#contratos_content", "./components/contratos/viewTableContratos.html", eventsViewTableContratos, null, true)
 }
 
+
+
+
 function eventsViewTableContratos() {
     getContratosList()
         .then((res) => {
@@ -28,19 +32,56 @@ function eventsViewTableContratos() {
         })
         .then((tbody) => {
             document.querySelector('#view_table_contratos tbody').outerHTML = tbody.outerHTML;
+            sortTable.sortByIntTD('#bg_view_table_contratos', '.td_contrato_id', false);
+
         }).then(() => {
             eventBtnDeleteContrato()
         }).then(() => {
             let btns = document.querySelectorAll('.btn_info_aluno');
             btns.forEach((item) => {
                 item.addEventListener('click', (e) => {
-
                     let idContrato = e.target.closest('tr').dataset.id_contrato;
                     insertInfoContratoHTML(idContrato)
                 });
             });
+        }).then(() => {
+            eventsFilters();
         })
         .catch(err => console.log(err))
+}
+
+function eventsFilters() {
+    let table = document.querySelector('#view_table_contratos');
+
+    table.querySelector('#sort_id').addEventListener('click', (e) => {
+        sortTable.sortByIntTD('#view_table_contratos', '.td_contrato_id', e);
+    })
+
+    table.querySelector('#sort_resp').addEventListener('click', (e) => {
+        sortTable.sortByTextTD('#view_table_contratos', '.td_resp_nome', e);
+    })
+
+    table.querySelector('#sort_aluno').addEventListener('click', (e) => {
+        sortTable.sortByTextTD('#view_table_contratos', '.td_aluno_nome', e);
+    })
+
+    table.querySelector('#sort_aluno_assoc').addEventListener('click', (e) => {
+        sortTable.sortByIntTD('#view_table_contratos', '.td_aluno_assoc', e);
+    })
+
+    table.querySelector('#sort_data').addEventListener('click', (e) => {
+        sortTable.sortByDate('#view_table_contratos', '.td_contrato_data', e);
+    })
+
+    //Inputs Search Table
+    document.querySelector('#bg_view_table_contratos #input_search_aluno').addEventListener('input', (e) => {
+        sortTable.filterTableByInputText('#view_table_contratos', '.td_aluno_nome', e);
+    })
+
+    document.querySelector('#bg_view_table_contratos #input_search_resp').addEventListener('input', (e) => {
+        sortTable.filterTableByInputText('#view_table_contratos', '.td_resp_nome', e);
+    })
+
 }
 
 function eventBtnDeleteContrato() {
@@ -85,6 +126,8 @@ function createTableContratosHTML(contratosInfo) {
         let disabled;
         let title = "Deletar contrato";
         let buttonDelete = "";
+        let data_contrato = new Date(contrato.curso_info.data_contrato + ' 00:00:00');
+        data_contrato = data_contrato.toLocaleDateString("pt-BR");
         if (contrato.metadata.aluno_associado !== 'pendente') {
             disabled = 'disabled="true"';
             title = "Somente contratos sem aluno associado podem ser deletados";
@@ -105,6 +148,7 @@ function createTableContratosHTML(contratosInfo) {
         let trContent =
             `
             <td class='td_contrato_id'>${contrato.metadata.id}</td>
+            <td class='td_contrato_data'>${data_contrato}</td>
             <td class='td_resp_nome'>${contrato.resp_info.nome}</td>
             <td class='td_aluno_nome'>${contrato.aluno_info.nome}</td>
             <td class='td_aluno_assoc'>${contrato.metadata.aluno_associado}</td>

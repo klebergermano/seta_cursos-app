@@ -204,6 +204,9 @@ export function submitFormContrato(e) {
   })
     .then(() => {
       submitFormContratoPDF(e)
+    }).then(()=>{
+      //Reseta o valor do id_contrato depois de cadastrar para evitar sobreposição.
+      document.querySelector("#id_contrato").value = '';
     })
     .catch((error) => {
       addLogInfo('log_contratos', 'error', formInfo.id_contrato, error);

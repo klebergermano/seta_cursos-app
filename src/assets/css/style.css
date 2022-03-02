@@ -772,6 +772,18 @@ inputs, .input-primary {
   border: 1px solid #444;
   padding: 10px;
 }
+.bg_tables .bg_search_inputs {
+  background: #ddd;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+.bg_tables .bg_search_inputs label {
+  padding: 5px;
+}
+.bg_tables .bg_search_inputs input {
+  padding: 3px;
+  margin-right: 5px;
+}
 
 .filtro_table {
   display: flex;
@@ -793,6 +805,9 @@ inputs, .input-primary {
   border-collapse: collapse;
   padding: 5px;
 }
+.tables .match_search, .table_info .match_search, #view_table_users .match_search, .view_table .match_search {
+  background: #ffe;
+}
 .tables th, .table_info th, #view_table_users th, .view_table th, .tables td, .table_info td, #view_table_users td, .view_table td {
   padding: 5px 10px;
 }
@@ -805,7 +820,40 @@ inputs, .input-primary {
   background: transparent;
   padding: 2px;
 }
-.tables th button, .table_info th button, #view_table_users th button, .view_table th button, .tables td button, .table_info td button, #view_table_users td button, .view_table td button {
+.tables th, .table_info th, #view_table_users th, .view_table th {
+  white-space: nowrap;
+}
+.tables th .btn_sort, .table_info th .btn_sort, #view_table_users th .btn_sort, .view_table th .btn_sort {
+  background: transparent;
+  width: 25px;
+  height: 20px;
+  display: flex;
+  float: right;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+}
+.tables th .btn_sort:hover, .table_info th .btn_sort:hover, #view_table_users th .btn_sort:hover, .view_table th .btn_sort:hover {
+  background: #2d74d1;
+  color: #fff;
+}
+.tables th .btn_sort:active, .table_info th .btn_sort:active, #view_table_users th .btn_sort:active, .view_table th .btn_sort:active {
+  background: #1b467d;
+}
+.tables th .btn_sort svg, .table_info th .btn_sort svg, #view_table_users th .btn_sort svg, .view_table th .btn_sort svg {
+  width: 15px;
+  height: 10px;
+}
+.tables th .btn_sort_active, .table_info th .btn_sort_active, #view_table_users th .btn_sort_active, .view_table th .btn_sort_active {
+  background: #00000055;
+}
+.tables .td_sort_active, .table_info .td_sort_active, #view_table_users .td_sort_active, .view_table .td_sort_active {
+  background: #00002f19;
+}
+.tables td button, .table_info td button, #view_table_users td button, .view_table td button {
   padding: 5px;
   font-size: 12px;
   float: none !important;
@@ -834,6 +882,15 @@ inputs, .input-primary {
   width: 100%;
 }
 
+@media (max-width: 750px) {
+  .tables th, .table_info th, #view_table_users th, .view_table th {
+    font-size: 11px !important;
+  }
+  .tables td, .table_info td, #view_table_users td, .view_table td {
+    font-size: 11px !important;
+    padding: 1px;
+  }
+}
 menu.submenu_page {
   background: #ccc;
   border-radius: 3px 3px 0px 0px;
@@ -2508,7 +2565,21 @@ option[disabled] {
 #bg_contrato_content table .td_contrato_id, #bg_contrato_content table .td_aluno_assoc, #bg_contrato_content table .td_contrato_status, #bg_contrato_content table .td_contrato_info {
   text-align: center;
 }
+#bg_contrato_content table .td_aluno_assoc {
+  min-width: 120px;
+}
+#bg_contrato_content table .td_contrato_id {
+  min-width: 70px;
+}
 
+@media (max-width: 750px) {
+  #bg_contrato_content table .td_aluno_assoc {
+    min-width: auto;
+  }
+  #bg_contrato_content table .td_contrato_id {
+    min-width: auto;
+  }
+}
 * {
   box-sizing: border-box;
 }
@@ -3492,12 +3563,16 @@ option[disabled] {
   background: #45803f;
 }
 
+.bg_info_tables #bg_search_inputs_table_entrada_avulso {
+  margin-bottom: -35px;
+}
 .bg_info_tables h3 {
   margin-top: 20px;
   margin-bottom: 20px;
 }
 .bg_info_tables table {
-  font-size: 14px;
+  font-size: 13px;
+  margin-bottom: 30px;
 }
 .bg_info_tables table caption {
   padding: 8px;
@@ -3506,8 +3581,9 @@ option[disabled] {
 }
 .bg_info_tables table thead th {
   height: 40px;
-  background: #ccc;
-  color: #333;
+  background: #464;
+  color: #fff;
+  padding: 2px 3px;
 }
 .bg_info_tables table tbody tr {
   background: #f0f0f0;
@@ -3541,7 +3617,10 @@ option[disabled] {
 #bg_saidas_info_table caption {
   background: #bd4343;
 }
-#bg_saidas_info_table tr#tr_resumo #td_res_valor_total {
+#bg_saidas_info_table table th {
+  background: #644;
+}
+#bg_saidas_info_table table tr#tr_resumo #td_res_valor_total {
   text-align: center;
   background: #bd4343;
   color: #fff;
@@ -4050,6 +4129,7 @@ a {
 svg {
   margin-bottom: -2px;
   margin: 0px 2px -2px 2px;
+  pointer-events: none;
 }
 
 body, html {
