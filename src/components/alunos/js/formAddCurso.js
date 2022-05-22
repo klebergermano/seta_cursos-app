@@ -107,6 +107,7 @@ function setContratoInfo(IDContrato) {
 
 function submitformAddCurso(e) {
   e.preventDefault();
+  
   let form = e.target;
   let cursoNome = $contratoInfo.curso_info.nome;
   let RA = (form.aluno_ra.value).toUpperCase()
@@ -132,7 +133,7 @@ function submitformAddCurso(e) {
         carga_horaria:($contratoInfo.curso_info.carga_horaria).trim(),
         horas_aula:($contratoInfo.curso_info.horas_aula).trim(),
         parcelas_total:($contratoInfo.curso_info.parcelas).trim(),
-        parcelas:(createParcelas(parcelaInfo)).trim(),
+        parcelas:((createParcelas(parcelaInfo)).toString()).trim(),
         valor_mes:($contratoInfo.curso_info.valor_mes).trim(),
         desconto_mes:($contratoInfo.curso_info.desconto_mes).trim(),
         valor_total_mes:($contratoInfo.curso_info.valor_total_mes).trim(),
