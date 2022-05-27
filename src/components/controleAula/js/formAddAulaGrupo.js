@@ -16,6 +16,10 @@ export async function insertFormAddAulaGrupoHTML() {
     './components/controleAula/formAddAulaGrupo.html', eventsFormAddAulaGrupo);
 }
 
+function addClassHoverDeleteDivAlunoAdicionado(){
+
+}
+
 function eventsFormAddAulaGrupo(form) {
   removeBugExtraBgFormBLockScreen()
   btnCloseForm("#form_add_aula_grupo");
@@ -39,6 +43,9 @@ function eventsFormAddAulaGrupo(form) {
 
   let divAluno = document.querySelector('.div_aluno_adicionado');
   eventsDivAlunoAdicinado(divAluno)
+
+
+
 }
 
 function setCursoSelect(e) {
@@ -64,6 +71,13 @@ function setCursoSelect(e) {
 }
 
 function eventsDivAlunoAdicinado(divAluno) {
+  divAluno.querySelector('.btn_del_aluno').addEventListener('mouseover', (e)=>{
+    divAluno.classList.add('hover_btn_del_aluno');
+  });
+  divAluno.querySelector('.btn_del_aluno').addEventListener('mouseout', (e)=>{
+    divAluno.classList.remove('hover_btn_del_aluno');
+  });
+
   divAluno.querySelector('.select_aluno_adicionado').addEventListener('input', (e) => {
     validaSelectAlunoAdicionado(e);
   });
@@ -121,32 +135,35 @@ function disableSelectAula(e) {
 
 
 function validaSelectAlunoAdicionado(e) {
-  let divAluno = e.target.closest('.div_aluno_adicionado');
-  let select_aluno = e.target;
-  let datalist = document.querySelector('#bg_grupo_alunos #alunos_datalist');
-  let datalistOpt = Array.from(datalist.options);
-  let valorExisteNaLista = false;
-
-  datalistOpt.forEach((option) => {
-    if (select_aluno.value.trim() === option.value.trim()) {
-      valorExisteNaLista = true;
+  if(e){
+    let divAluno = e.target.closest('.div_aluno_adicionado');
+    let select_aluno = e.target;
+    let datalist = document.querySelector('#bg_grupo_alunos #alunos_datalist');
+    let datalistOpt = Array.from(datalist.options);
+    let valorExisteNaLista = false;
+  
+    datalistOpt.forEach((option) => {
+      if (select_aluno.value.trim() === option.value.trim()) {
+        valorExisteNaLista = true;
+      }
+    });
+    if (!valorExisteNaLista) {
+      select_aluno.setCustomValidity("Nome inválido");
+      select_aluno.classList.add('input_invalido');
+      divAluno.querySelector('.select_curso').setAttribute('disabled', true)
+      divAluno.querySelector('.select_curso').innerHTML = "<option selected disabled>Selecione o Curso</option>";
+      disableSelectBimestre(e)
+      disableSelectAula(e)
+  
+    } else {
+      setCursoSelect(e)
+      divAluno.querySelector('.select_curso').removeAttribute('disabled')
+      select_aluno.setCustomValidity("");
+      select_aluno.classList.remove('input_invalido');
     }
-  });
-  if (!valorExisteNaLista) {
-    select_aluno.setCustomValidity("Nome inválido");
-    select_aluno.classList.add('input_invalido');
-    divAluno.querySelector('.select_curso').setAttribute('disabled', true)
-    divAluno.querySelector('.select_curso').innerHTML = "<option selected disabled>Selecione o Curso</option>";
-    disableSelectBimestre(e)
-    disableSelectAula(e)
-
-  } else {
-    setCursoSelect(e)
-    divAluno.querySelector('.select_curso').removeAttribute('disabled')
-    select_aluno.setCustomValidity("");
-    select_aluno.classList.remove('input_invalido');
+    removeOptionsSelectionadosDatalist()
   }
-  removeOptionsSelectionadosDatalist()
+ 
 }
 
 function removeOptionsSelectionadosDatalist() {

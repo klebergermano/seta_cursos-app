@@ -8,14 +8,15 @@ display:flex;
 max-width: 800px;
 #bg_aula_info{
   max-width: 100%;
-  border:2px solid #333;
+  border:1px solid #333;
   padding:20px 60px;
   display: flex;
   flex-wrap: wrap;
   float:left;
 }
 #bg_grupo_alunos{
-  border:2px solid #333;
+  border:1px solid #333;
+  background: #fffaef;
   padding:20px 10px;
   display: flex;
   flex-wrap: wrap;
@@ -187,7 +188,14 @@ max-width: 800px;
 
   .div_aluno_adicionado{
     border: 1px dotted #aaa;
+    padding:3px 3px;
+    margin-top:0px;
+    margin-bottom:0px;
+    &:hover{
+      background: #ffe8dd;
+    }
   }
+
 
   #btn_add_aluno_grupo{
     @extend .btn-default;
@@ -195,9 +203,24 @@ max-width: 800px;
     right:0px; 
     bottom:0px;
     font-size: 12px;
+    background: rgb(197, 90, 57);
+    color:#fff;
+    &:hover{
+      background: rgb(212, 95, 59);
+
+    }
   }
   .btn_del_aluno{
     padding:5px;
+    &:hover{
+      background: $red-color-tone;
+      color:#fff;
+      
+    }
+  }
+  //classe adicionada e removida via JS para alterar ".div_aluno_adicionado".
+  .hover_btn_del_aluno{
+    background-color: #ffcccc !important; 
   }
   input[type='submit']{
     position: absolute;

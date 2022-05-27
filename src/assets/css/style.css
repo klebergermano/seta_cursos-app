@@ -872,9 +872,6 @@ inputs, .input-primary {
 .tables tr:hover, .table_info tr:hover, #view_table_users tr:hover, .view_table tr:hover {
   background: #ffe;
 }
-.tables .btn_sort, .table_info .btn_sort, #view_table_users .btn_sort, .view_table .btn_sort {
-  background: #f90;
-}
 
 .table_info, #view_table_users, .view_table {
   background: #f0f0f0;
@@ -1863,14 +1860,15 @@ input:disabled, textarea:disabled {
 }
 #form_add_aula_grupo #bg_aula_info {
   max-width: 100%;
-  border: 2px solid #333;
+  border: 1px solid #333;
   padding: 20px 60px;
   display: flex;
   flex-wrap: wrap;
   float: left;
 }
 #form_add_aula_grupo #bg_grupo_alunos {
-  border: 2px solid #333;
+  border: 1px solid #333;
+  background: #fffaef;
   padding: 20px 10px;
   display: flex;
   flex-wrap: wrap;
@@ -2026,15 +2024,33 @@ input:disabled, textarea:disabled {
 }
 #form_add_aula_grupo .div_aluno_adicionado {
   border: 1px dotted #aaa;
+  padding: 3px 3px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+#form_add_aula_grupo .div_aluno_adicionado:hover {
+  background: #ffe8dd;
 }
 #form_add_aula_grupo #btn_add_aluno_grupo {
   position: absolute;
   right: 0px;
   bottom: 0px;
   font-size: 12px;
+  background: #c55a39;
+  color: #fff;
+}
+#form_add_aula_grupo #btn_add_aluno_grupo:hover {
+  background: #d45f3b;
 }
 #form_add_aula_grupo .btn_del_aluno {
   padding: 5px;
+}
+#form_add_aula_grupo .btn_del_aluno:hover {
+  background: #db1e1e;
+  color: #fff;
+}
+#form_add_aula_grupo .hover_btn_del_aluno {
+  background-color: #ffcccc !important;
 }
 #form_add_aula_grupo input[type=submit] {
   position: absolute;
