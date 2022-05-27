@@ -256,6 +256,7 @@ function createTableParcelasTable(parcelas, cursoNome) {
     </tbody>
     `
     let arr = [];
+
     for (let p of Object.entries(parcelas)) {
         arr.push(p);
     }
