@@ -50,25 +50,25 @@
 }
 //Background
 *[class*='background_inform'], *[class*="background_Inform"] {
-    background: $color-informatica !important; color:#fff;
+    background-color: desaturate(lighten($color-informatica, 15%), 20%) !important; color:#fff;
 }
 *[class*='background_excel'], *[class*="background_Excel"] {
-    background: $color-excel !important; color:#fff;
+    background-color: desaturate(lighten($color-excel, 15%), 20%) !important; color:#fff;
 }
 *[class*='background_desenvolvimento web'], *[class*="background_Desenvolvimento Web"] {
-    background: $color-web !important; color:#fff;
+    background-color: desaturate(lighten($color-web, 15%), 20%) !important; color:#fff;
 }
 *[class*='background_inglês'], *[class*="background_Inglês"] {
-    background: $color-ingles !important; color:#fff;
+    background-color: desaturate(lighten($color-ingles, 15%), 20%) !important; color:#fff;
 }
 *[class*='background_espanhol'], *[class*="background_Espanhol"] {
-    background: $color-espanhol !important; color:#fff;
+    background-color: desaturate(lighten($color-espanhol, 15%), 20%) !important; color:#fff;
 }
 *[class*='background_adm'], *[class*="background_Adm"] {
-    background: $color-adm !important; color:#fff;
+    background-color: desaturate(lighten($color-adm, 15%), 20%) !important; color:#fff;
 }
 *[class*='background_banco'], *[class*="background_Banco"] {
-    background: $color-banco !important; color:#fff;
+    background-color: desaturate(lighten($color-banco, 15%), 20%) !important; color:#fff;
 }
 
 *[class*="background_Desenvolvimento Web"]{
