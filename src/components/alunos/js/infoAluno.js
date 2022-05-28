@@ -29,7 +29,7 @@ export function insertInfoAlunoHTML(RA) {
 
 function getCertificadoInfo(e) {
     let certificadoInfo = {};
-    let formInfo = e.target.closest('.form_info');
+    let formInfo = e.target.closest('.form_info_curso');
     certificadoInfo.aluno = document.querySelector("#aluno_nome").value
     certificadoInfo.ra = document.querySelector("#aluno_ra").value
     certificadoInfo.curso_cod = formInfo.querySelector("#curso_cod").value;
@@ -41,6 +41,12 @@ function getCertificadoInfo(e) {
     return certificadoInfo;
 }
 
+
+function showFormInfoCurso(e){
+let parentFormInfoCurso = e.target.closest('form');
+    parentFormInfoCurso.classList.toggle('hide_form_info_curso');
+
+}
 function eventsInfoAluno(RA) {
     document.querySelector('#form_info_aluno').addEventListener('submit', (e) => {
         e.preventDefault();
@@ -56,6 +62,14 @@ function eventsInfoAluno(RA) {
                     insertFormAddCertificadoHTML(certificadoInfo);
                 })
             });
+            // Adicionas o evento de expandir o formulário aluno_info_info
+            let titleCursosInfo = document.querySelectorAll('.title_info_cursos');
+           
+            titleCursosInfo.forEach((item)=>{
+            item.addEventListener('click', (e)=>{
+                showFormInfoCurso(e);
+            })
+            })
         })
         .then(() => {
             let btns = document.querySelectorAll('.btn_create_talao');
@@ -68,14 +82,14 @@ function eventsInfoAluno(RA) {
                 })
             });
         }).then(() => {
-            let inputs = document.querySelectorAll('#form_info_aluno input, #form_info_aluno textarea, .form_info input, .form_info textarea');
+            let inputs = document.querySelectorAll('#form_info_aluno input, #form_info_aluno textarea, .form_info_curso input, .form_info_curso textarea');
             inputs.forEach((item) => {
                 item.addEventListener('input', (e) => {
                     activeSubmitOnChangeInput(e)
                 });
             })
         }).then(() => {
-            let formsInfo = document.querySelectorAll('.form_info');
+            let formsInfo = document.querySelectorAll('.form_info_curso');
             formsInfo.forEach((form) => {
                 VMasker(form.querySelector("#resp_cep")).maskPattern("99999-999");
                 VMasker(form.querySelector("#resp_cpf")).maskPattern("999.999.999-99");
@@ -94,6 +108,8 @@ function eventsInfoAluno(RA) {
             VMasker(document.querySelector("#form_info_aluno #aluno_rg")).maskPattern("99.999.999-S");
             VMasker(document.querySelector("#form_info_aluno #aluno_cep")).maskPattern("99999-999");
         })
+
+
 }
 
 function activeSubmitOnChangeInput(e) {
@@ -312,9 +328,14 @@ function setBtnCheckboxCertificado(input) {
 
 }
 
+function openCursoInfo(e){
+
+
+}
+
 function createCursoCotentHTML(RA, curso) {
     let form = document.createElement('form');
-    form.classList = 'form_info';
+    form.classList = `form_info_curso hide_form_info_curso  border_${curso.curso_info.nome}`;
     form.setAttribute('data-curso_nome', curso.curso_info.nome);
     form.setAttribute('data-curso_cod', curso.curso_info.cod);
 
@@ -348,11 +369,15 @@ function createCursoCotentHTML(RA, curso) {
     }
     let bg_curso = document.createElement('div');
     bg_curso.className = `bg_curso`;
+
+    let icon_title = `<svg class='arrow_down' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+    </svg>` 
     bg_curso.innerHTML =
         `
         <input id='aluno_ra' readonly="true" type='hidden' value="${RA}"/>
         <input id='curso_nome' readonly="true" type='hidden' value="${curso.curso_info.nome}"/>
-        <h4 class='color_${curso.curso_info.nome}'>${curso.curso_info.nome}</h4>
+        <h4 class='title_info_cursos background_${curso.curso_info.nome}'>${curso.curso_info.nome} ${icon_title}</h4>
         <div class='fieldset fieldset_certificado_status'>
         <legend>Certificado Status</legend>
         <button class='btn_create_certificado'>
