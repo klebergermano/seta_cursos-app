@@ -19,11 +19,16 @@ document.querySelector("#nome_search").addEventListener("input", (e) => {
 const sortTable = () => { };
 export default sortTable;
 
+function cleanAnyHTMLFromTD(){
+
+}
+
 function invertDateOrder(d) {
   var p = d.split("/");
   return +(p[2] + p[1] + p[0]);
 }
-//------------------------------Filters by input--------------------------------
+
+//------------------------------Filters by input------------------------------------
 sortTable.filterTableByInputText = function (tableID, tdID, e) {
   cleanInputsSearch(tableID, e)
   removeAllActiveBtnSortClass(tableID)
@@ -32,7 +37,7 @@ sortTable.filterTableByInputText = function (tableID, tdID, e) {
   let rows = Array.from(tableTbody.rows);
   let newRows = [];
   rows.forEach((item) => {
-    if (item.querySelector(tdID)?.innerHTML) {
+    if (item.querySelector(tdID)?.innerHTML){
       let nome = ((item.querySelector(tdID).innerHTML).toLowerCase()).trim();
       if (inputValue !== '' && nome.includes(inputValue)) {
         item.querySelector(tdID).classList.add('match_search')

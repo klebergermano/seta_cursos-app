@@ -5,6 +5,8 @@ const { getFirestore, getDoc, doc } = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
 //---------------------------------------------------------------//
 //Components
+import sortTable from "../../jsCommon/sortTable.js"; 
+
 import insertElementHTML from "../../jsCommon/insertElementHTML.js";
 //---------------------------------------------------------------//
 
@@ -17,17 +19,57 @@ function getLogData(logId) {
     return getDoc(doc(db, 'log_data', logId))
 }
 
+function eventsFilters() {
+    sortTable.sortByIntTD('#view_table_log_data', '.td_id', false);
+
+    let table = document.querySelector('#view_table_log_data');
+    table.querySelector('#sort_id').addEventListener('click', (e) => {
+        sortTable.sortByIntTD('#view_table_log_data', '.td_id', e);
+    })
+    table.querySelector('#sort_data').addEventListener('click', (e) => {
+        sortTable.sortByDate('#view_table_log_data', '.td_data', e);
+    })
+
+    table.querySelector('#sort_user').addEventListener('click', (e) => {
+        sortTable.sortByTextTD('#view_table_log_data', '.td_user', e);
+    })
+
+    table.querySelector('#sort_level').addEventListener('click', (e) => {
+        sortTable.sortByTextTD('#view_table_log_data', '.td_level', e);
+    })
+    table.querySelector('#sort_action').addEventListener('click', (e) => {
+        sortTable.sortByTextTD('#view_table_log_data', '.td_action', e);
+    })
+
+    document.querySelector('#bg_view_table_log_data #input_search_message').addEventListener('input', (e) => {
+        sortTable.filterTableByInputText('#view_table_log_data', '.td_msg', e);
+    })
+}
+
 function eventsViewTableLogData() {
     let filtroInfo = getFiltroInfoLog();
+        
+        
+
     getLogData(filtroInfo)
         .then((res) => {
             insertTableLogDataHTML(res);
+        }).then(()=>{
+   //Esse sortTable seta o estado inicial de organização da tabela.
+   // sortTable.sortByDate('#view_table_log_data', '.td_data', false);
+   eventsFilters();
+
         })
-    select_log.addEventListener('change', (e) => {
+     select_log.addEventListener('change', (e) => {
         let logId = e.target.value;
         getLogData(logId).then((res) => {
             insertTableLogDataHTML(res);
-        });
+        }).then(()=>{
+     //Esse sortTable seta o estado inicial de organização da tabela depois do select
+           // sortTable.sortByDate('#view_table_log_data', '.td_data', false);
+           eventsFilters();
+
+        })
     });
 }
 
@@ -41,7 +83,7 @@ function convertDateToNumber(d) {
     return +(p[2] + p[1] + p[0]);
 }
 
-export function sortTbodyElementByDate(tableID) {
+function sortTbodyElementByDate(tableID) {
     let tbody = document.querySelector(`${tableID} tbody`);
     let rows = Array.from(tbody.querySelectorAll("tr"));
     rows.sort(function (a, b) {
@@ -59,7 +101,9 @@ export function sortTbodyElementByDate(tableID) {
 function insertTableLogDataHTML(log) {
     let contentTableLogData = createTableLogDataHTML(log);
     view_table_log_data.querySelector('tbody').innerHTML = contentTableLogData.innerHTML;
-    sortTbodyElementByDate('#view_table_log_data')
+   // sortTbodyElementByDate('#view_table_log_data')
+
+
 }
 
 function createTableLogDataHTML(log) {
