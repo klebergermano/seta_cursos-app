@@ -21,17 +21,6 @@ var $alunoInfo = {
   nome: ''
 };
 
-export async function insertSelectAlunos() {
-  onSnapshot(
-    collection(db, "alunato"),
-    (snap) => {
-      let selectAluno = `<option disabled selected value=''>Selecione o Aluno</option>`;
-      snap.forEach((doc) => {
-        selectAluno += `<option value='${doc.id}-${doc.data().aluno.nome}'>${doc.id} - ${doc.data().aluno.nome}</option>`;
-      });
-      document.querySelector("#main_select_aluno").innerHTML = selectAluno;
-    })
-}
 
 
 async function createOptionsSelectAlunos() {
@@ -101,10 +90,6 @@ function resetFieldsAfterSelectAlunoChange() {
   document.querySelector('#curso_valor_total').value = ''
   document.querySelector('#forma_pag').selectedIndex =  0;
 
-
-
-
-
 }
 
 
@@ -116,7 +101,6 @@ function eventsFormPagMensalidade(){
     alunoDatalist.innerHTML = options;
   });
 
-   insertSelectAlunos()
     document.querySelector('#select_aluno_pag').addEventListener('input', (e) => {
       setInfoAfterAlunoChange(e)
     });
