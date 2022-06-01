@@ -225,9 +225,6 @@ ipcMain.handle("baixarHistoricoAluno", async (event, docAlunoHistorico) => {
 
   novoPDF.then((pdf) => {
     // Read the file
-    console.log('**********************************************************');
-    console.log(docAlunoHistorico);
-    console.log('**********************************************************');
 
     let filename = `HISTÓRICO-${docAlunoHistorico.nome}-${docAlunoHistorico.curso}.pdf`;
     filename = filename.toUpperCase();

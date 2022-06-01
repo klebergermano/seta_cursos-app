@@ -33,15 +33,94 @@ export async function insertSelectAlunos() {
     })
 }
 
-function eventsFormPagMensalidade() {
-  setMasks()
-  //setCurrentDate('#data')
-  insertSelectAlunos()
-  document.querySelector('#main_select_aluno').addEventListener('change', (e) => {
+
+async function createOptionsSelectAlunos() {
+  let options = getDocs(collection(db, "alunato"))
+    .then((snap) => {
+      let arrRAList = [];
+      let selectAluno = ``;
+      snap.forEach((doc) => {
+       
+        arrRAList.push(doc.id);
+        selectAluno += `<option  data-ra='${doc.id}' value='${doc.id}-${doc.data().aluno.nome}'/>`;
+      });
+      return selectAluno;
+    })
+  return options;
+}
+
+
+function setAlunoInvalido(){
+  document.querySelector('#select_aluno_pag').setCustomValidity("Nome inválido");
+  document.querySelector('#select_aluno_pag').classList.add('input_invalido');
+ 
+  resetFieldsAfterSelectAlunoChange()
+}
+
+function setInfoAfterAlunoChange(e){
+  if(validaSelectAlunoPag(e)){
+  document.querySelector('#select_aluno_pag').setCustomValidity("");
+  document.querySelector('#select_aluno_pag').classList.remove('input_invalido');
+  document.querySelector('#select_curso').removeAttribute('disabled')
+
     setSelectCursos()
-    resetFieldsAfterSelectAlunoChange()
+
+   }else{
+    setAlunoInvalido()
+    document.querySelector('#select_curso').innerHTML = ''; 
+    document.querySelector('#select_curso').setAttribute('disabled', true)
+
+   }
+    //
+    
+}
+
+function validaSelectAlunoPag(e) {
+  let select_aluno = e.target;
+  let datalist = document.querySelector('#alunos_pag_datalist');
+  let datalistOpt = Array.from(datalist.options);
+  let valorExisteNaLista = false;
+
+  datalistOpt.forEach((option) => {
+    if (select_aluno.value.trim() === option.value.trim()) {
+      valorExisteNaLista = true;
+    }
   });
-  document.querySelector('#select_curso').addEventListener('change', (e) => {
+return valorExisteNaLista; 
+
+}
+function resetFieldsAfterSelectAlunoChange() {
+  document.querySelector('#select_parcelas').setAttribute('disabled', true)
+  document.querySelector('#select_parcelas').innerHTML = ""
+  document.querySelector('#n_lanc').value = ''
+  document.querySelector('#resp').value = ''
+  document.querySelector('#vencimento').value = ''
+  document.querySelector('#data').value = ''
+  document.querySelector('#curso_valor').value = ''
+  document.querySelector('#curso_desconto').value = ''
+  document.querySelector('#curso_valor_total').value = ''
+  document.querySelector('#forma_pag').selectedIndex =  0;
+
+
+
+
+
+}
+
+
+function eventsFormPagMensalidade(){
+  setMasks()
+    createOptionsSelectAlunos()
+    .then((options) => {
+    let alunoDatalist = document.querySelector('#alunos_pag_datalist');
+    alunoDatalist.innerHTML = options;
+  });
+
+   insertSelectAlunos()
+    document.querySelector('#select_aluno_pag').addEventListener('input', (e) => {
+      setInfoAfterAlunoChange(e)
+    });
+    document.querySelector('#select_curso').addEventListener('change', (e) => {
     getParcelas(e.target.value)
     document.querySelector('#select_parcelas').removeAttribute('disabled')
   });
@@ -60,10 +139,10 @@ function eventsFormPagMensalidade() {
 }
 
 function getValueFromMainSelectAluno() {
-  let select = document.querySelector("#main_select_aluno");
-  let RA = select.options[select.selectedIndex].value;
-  return RA;
+  let select = document.querySelector("#select_aluno_pag");
+  return select.value;;
 }
+
 
 function setAlunoInfoRANome() {
   let valueMainSelect = getValueFromMainSelectAluno();
@@ -141,11 +220,6 @@ function getNumeroParcela() {
   return parcela;
 }
 
-function resetFieldsAfterSelectAlunoChange() {
-  document.querySelector('#select_parcelas').setAttribute('disabled', true)
-  document.querySelector('#select_parcelas').innerHTML = ""
-  document.querySelector('#n_lanc').value = ''
-}
 
 function setMasks() {
   VMasker(document.querySelector('#curso_valor')).maskMoney();

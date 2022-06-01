@@ -10,17 +10,21 @@
 
             <div class='div_inputs div_aluno'>
                 <label>Aluno</label>
-                <select required id='main_select_aluno'></select>
+            <input required id='select_aluno_pag' style='border:1px solid #ccc' type='text' list='alunos_pag_datalist'>
+                <datalist id='alunos_pag_datalist'>
+                </datalist>
+               
+                <select style='display:none;' required id='main_select_aluno'></select>
             </div>
             <div class='div_inputs div_curso'>
                 <label>Curso</label>
-                <select required id='select_curso'>
+                <select required id='select_curso' disabled>
                     <option  disabled selected value='' ></option>
                 </select>
             </div>
             <div class='div_inputs div_parcela'>
                 <label>Parcela</label>
-                <select required id='select_parcelas'>
+                <select required id='select_parcelas' disabled>
                     <option disabled selected value=''></option>
                 </select>
             </div>
