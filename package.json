@@ -1,7 +1,11 @@
 {
   "name": "seta_cursos-app",
   "productName": "seta_cursos-app",
+<<<<<<< HEAD
   "version": "1.0.3",
+=======
+  "version": "1.0.5",
+>>>>>>> 59bef82 (feat: input pesquisa aluno em mesalidade)
   "description": "Aplicativo de gerenciamento da SETA CURSOS",
   "main": "src/main.js",
   "scripts": {
