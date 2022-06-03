@@ -42,7 +42,6 @@ async function createOptionsSelectAlunos() {
 function setAlunoInvalido(){
   document.querySelector('#select_aluno_pag').setCustomValidity("Nome inválido");
   document.querySelector('#select_aluno_pag').classList.add('input_invalido');
- 
   resetFieldsAfterSelectAlunoChange()
 }
 
