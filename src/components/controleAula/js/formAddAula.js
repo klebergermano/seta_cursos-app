@@ -23,8 +23,8 @@ export function eventsFormAddAula(form) {
   form.addEventListener("submit", (e) => {
     submitFormAddAula(e);
   });
-
-  //Copia as opções do "#main_select_aluno" e insere no select_aluno
+  // Copia as opções do "#main_select_aluno" e insere 
+  // no "select_aluno" do form_add_aula
   insertOptionsInSelectAluno(form)
   //insere as opções de curso e seta o selecionado.
   insertOptionSelectCurso(form)
@@ -36,6 +36,9 @@ export function eventsFormAddAula(form) {
   setInputsProva(form)
 }
 
+
+
+
 function eventClickBtnStatus(form) {
   let btns = form.querySelector('#div_status_aula').querySelectorAll('label');;
   btns.forEach((item) => {
@@ -44,6 +47,24 @@ function eventClickBtnStatus(form) {
     });
   });
 }
+
+
+async function createOptionsSelectAlunos() {
+  let options = getDocs(collection(db, "alunato"))
+    .then((snap) => {
+      let arrRAList = [];
+      let selectAluno = ``;
+      snap.forEach((doc) => {
+       
+        arrRAList.push(doc.id);
+        selectAluno += `<option  data-ra='${doc.id}' value='${doc.id}-${doc.data().aluno.nome}'/>`;
+      });
+      return selectAluno;
+    })
+  return options;
+}
+
+
 
 function setInputsProva(form) {
   let selectAula = form.querySelector("#select_aula");

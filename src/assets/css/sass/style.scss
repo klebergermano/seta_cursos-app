@@ -180,7 +180,9 @@ grid-template-columns: minmax(160px, 14%) 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   }
   }
 //-------------------------------
-
+.hide{
+  display:none;
+}
 .components{
   h3{text-align: center;}
 }

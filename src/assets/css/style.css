@@ -1357,13 +1357,17 @@ menu.submenu_page ul li a {
   padding: 10px;
   border-right: 0px;
 }
+#controle_aula #bg_select_aluno #btn_alter_tipo_selecao {
+  font-size: 10px;
+  padding: 5px;
+}
 #controle_aula #bg_select_aluno .div_input {
   display: flex;
   float: left;
   justify-content: flex-start;
   flex-grow: 1;
 }
-#controle_aula #bg_select_aluno .div_input select {
+#controle_aula #bg_select_aluno .div_input select, #controle_aula #bg_select_aluno .div_input input {
   padding: 10px;
   border: 1px solid #999;
   font-weight: bold;
@@ -1371,7 +1375,7 @@ menu.submenu_page ul li a {
   flex-grow: 1;
   max-width: 500px;
 }
-#controle_aula #bg_select_aluno .div_input select:focus {
+#controle_aula #bg_select_aluno .div_input select:focus, #controle_aula #bg_select_aluno .div_input input:focus {
   outline: 0;
   border-color: #245da7;
   background: #ffe;
@@ -4236,6 +4240,10 @@ h1 {
     margin: 0px 20px 0px 20px !important;
   }
 }
+.hide {
+  display: none;
+}
+
 .components h3 {
   text-align: center;
 }

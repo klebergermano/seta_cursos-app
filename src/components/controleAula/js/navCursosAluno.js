@@ -6,6 +6,7 @@ import { getAlunoHistCursosDB } from "../../jsCommon/dbAlunoHistoricoFunc.js";
 
 
 export function insertNavCursosInBGCursos(RA, nomeDoCurso) {
+  console.log('NAV:', RA, nomeDoCurso )
   //Cria o menu nav_cursos_aluno
   createNavCursosAluno(RA)
     .then((navUL) => {
