@@ -15,7 +15,9 @@ import { insertFormAddAulaGrupoHTML } from "./formAddAulaGrupo.js";
 //=========================================================================
 
 
-
+// Busca os alunos em Alunato no BD
+// cria a opções de select com o resultado
+// e Insere as opções criadas no #main_selec_aluno. 
 async function insertOptionsInMainSelectAlunos() {
   let lastRA = getDocs(collection(db, "alunato"))
     .then((snap) => {
