@@ -1,0 +1,34 @@
+#bg_contrato_content{
+    position: relative;
+
+    table{
+        th{
+            background:#889099;
+        }
+        
+        .td_contrato_id, .td_aluno_assoc, .td_contrato_status, .td_contrato_info{
+            text-align: center;
+        }
+        .td_aluno_assoc{
+            min-width: 120px;
+        }
+        .td_contrato_id{
+            min-width: 70px;
+        }
+    }
+} 
+
+@media(max-width: 750px) {
+    #bg_contrato_content{
+
+    table{
+  
+        .td_aluno_assoc{
+            min-width: auto;
+        }
+        .td_contrato_id{
+            min-width: auto;
+        }
+    }
+    }
+   }

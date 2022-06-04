@@ -1,124 +1,91 @@
 
-import {firebaseApp} from "../../dbConfig/firebaseApp.js";
-const {getFirestore, setDoc,  doc} = require("firebase/firestore") 
+//Firebase
+import { firebaseApp } from "../../dbConfig/firebaseApp.js";
+const { getFirestore, setDoc, doc } = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
+//---------------------------------------------------------------//
+//Components
+import { insertOptionsInSelectAluno, insertOptionSelectCurso } from "./formAddAula.js";
+import { removeBugExtraBgFormBLockScreen} from "../../jsCommon/commonFunctions.js";
+import { btnCloseForm, defaultEventsAfterSubmitForm } from "../../jsCommon/formsFunc.js";
+import insertElementHTML from "../../jsCommon/insertElementHTML.js";
+import { addLogInfo } from "../../logData/js/logFunctions.js";
+//---------------------------------------------------------------//
 
-
-import * as formAddAula from "./formAddAula.js";
-import * as commonFunc from "../../js_common/commonFunctions.js";
-import * as dbAlunoHistFunc from "../../js_common/dbAlunoHistoricoFunc.js";
-
-import * as dateFunc from "../../js_common/dateFunc.js";
-
-export function insertFormAddPontoExtra(){
-    let form = commonFunc.insertElementHTML('#page_content',
+export function insertFormAddPontoExtra() {
+  let form = insertElementHTML('#page_content',
     './components/controleAula/formAddAula.html');
-    form.then((form)=>{
-      eventsFormAddPontoExtra(form)
-      commonFunc.changeCSSDisplay('#block_screen', 'block')
-
-    });
-  }
-  
-function eventsFormAddPontoExtra(form){
-  commonFunc.btnCloseForm("#form_add_aula");
-
-  form.addEventListener("submit", (e) => {
-    submitformAddPontoExtra(e);  
+  form.then((form) => {
+    eventsFormAddPontoExtra(form)
   });
-  formAddAula.insertOptionsInSelectAluno(form)
-  formAddAula.insertOptionSelectCurso(form).then((res)=>{
-  })
-  displayAlunoCursoNome(form)
-  removeFiledFormAddAula(form)
 }
 
-function removeFiledFormAddAula(form){
+function eventsFormAddPontoExtra(form) {
+  removeBugExtraBgFormBLockScreen();
+  btnCloseForm("#form_add_aula");
+  form.addEventListener("submit", (e) => {
+    submitformAddPontoExtra(e);
+  });
+  insertOptionsInSelectAluno(form)
+  insertOptionSelectCurso(form).then((res) => {
+  })
+  displayAlunoCursoNome(form)
+  removeFieldFormAddAula(form)
+}
+
+function removeFieldFormAddAula(form) {
   form.querySelector("h3").textContent = "Adicionar Ponto Extra";
   form.querySelector("#select_aula").removeAttribute("required");
   form.querySelector("#horario").removeAttribute("required");
   form.querySelector("#tema").removeAttribute("required");
+  form.querySelector("#aula_categoria").removeAttribute("required");
 
   form.querySelector("#div_status_aula").style.display = "none";
   form.querySelector("#div_horario").style.display = "none";
   form.querySelector("#div_select_aula").style.display = "none";
   form.querySelector("#div_tema").style.display = "none";
 }
-function displayAlunoCursoNome(form){
-  setTimeout(()=>{
+function displayAlunoCursoNome(form) {
+  setTimeout(() => {
     let selectAluno = form.querySelector('#select_aluno');
     let selectCurso = form.querySelector('#select_curso');
     let aluno = selectAluno.options[selectAluno.selectedIndex].innerHTML;
     let curso = selectCurso.options[selectCurso.selectedIndex].innerHTML;
-  form.querySelector('#aluno_nome').innerHTML = '<span>Aluno: </span>'+aluno;
-  form.querySelector('#curso_nome').innerHTML = '<span>Curso: </span>'+curso;
+    form.querySelector('#aluno_nome').innerHTML = '<span>Aluno: </span>' + aluno;
+    form.querySelector('#curso_nome').innerHTML = '<span>Curso: </span>' + curso;
   }, 100)
 }
 
 function submitformAddPontoExtra(e) {
   e.preventDefault();
   let form = e.target;
-  let RA = form.select_aluno.value;
-  let curso = form.select_curso.value;
-  let pontoExtra = "ponto extra " + form.data.value;
+  let RA = form.querySelector("#select_aluno").value;
+  let curso = form.querySelector("#select_curso").value;
+  let pontoExtra = "ponto extra " + form.querySelector("#data").value;
+  let bimestre = form.select_bimestre.value;
   setDoc(doc(db, 'alunato', RA, 'cursos', curso),
     {
       bimestres: {
-        [form.select_bimestre.value]:{
-            [pontoExtra]:{
+        [form.select_bimestre.value]: {
+          [pontoExtra]: {
             categoria: 'ponto extra',
             data: form.data.value,
             descricao: form.detalhes.value
-            }
+          }
         }
       }
     }, { merge: true }
   )
-  .then(() => {
-  commonFunc.showMessage("form_add_aula", "Ponto Extra adicionado com sucesso!")
-  setTimeout(() => {
-    commonFunc.removeElementChild('#page_content', '#form_add_aula',()=>{
-      commonFunc.changeCSSDisplay('#block_screen', 'none')
-    });
-  }, 1500);
-  }).catch((error) => console.error("Erro ao adicionar Ponto Extra: ", error));
-
-;
-}
-function submitformAddPontoExtraXXXXX(e) {
-  e.preventDefault();
-  let form = e.target;
-  let RA = form.select_aluno.value;
-  let aulaHistorico;
- // let pontoExtra = "ponto extra #" +  Math.ceil(Math.random() * 1000000);;
-  let pontoExtra = "ponto extra " + form.data.value;
-  aulaHistorico = db
-    .collection("alunato")
-    .doc(RA)
-    .collection("cursos")
-    .doc(form.select_curso.value)
-    .set(
-      {
-        bimestres: {
-          [form.select_bimestre.value]:{
-              [pontoExtra]:{
-               categoria: 'ponto extra',
-               data: form.data.value,
-               descricao: form.detalhes.value
-              }
-          }
-        }
-      },
-      { merge: true }
-    )
-    .then(() =>
-      commonFunc.showMessage("form_add_aula", "Ponto Extra adicionado com sucesso!")
-    )
     .then(() => {
-      commonFunc.defaultEventsAfterSubmitForm("#form_add_aula");
- 
-    }).catch((error) => console.error("Erro ao adicionar Ponto Extra: ", error));
+      defaultEventsAfterSubmitForm("#form_add_aula", "Ponto extra adicionado com sucesso!")
 
+    }).then(() => {
+      addLogInfo('log_alunato', 'update', `ponto_extra - ${RA} - ${curso} - ${bimestre}`);
+    })
+    .catch((error) => {
+      console.log(error);
+      addLogInfo('log_alunato', 'error', `ponto_extra - ${RA} - ${curso} - ${bimestre}`, error);
+    });
 
-
+  ;
 }

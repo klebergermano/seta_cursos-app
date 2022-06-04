@@ -1,8 +1,8 @@
 {
   "name": "seta_cursos-app",
   "productName": "seta_cursos-app",
-  "version": "1.0.0",
-  "description": "My Electron application description",
+  "version": "1.0.5",
+  "description": "Aplicativo de gerenciamento da SETA CURSOS",
   "main": "src/main.js",
   "scripts": {
     "start": "electron-forge start",
@@ -55,9 +55,6 @@
     "html-pdf": "^3.0.1",
     "jsdom": "^17.0.0",
     "spin.js": "^4.1.1",
-   
-   
-
     "vanilla-masker": "^1.2.0"
   },
   "devDependencies": {

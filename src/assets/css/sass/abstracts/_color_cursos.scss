@@ -1,0 +1,76 @@
+@use 'variables' as *;
+//COLORS
+*[class*='color_inform'], *[class*="color_Inform"] {
+    color: $color-informatica !important;
+}
+*[class*='color_excel'], *[class*="color_Excel"] {
+    color: $color-excel !important;
+}
+*[class*='color_desenvolvimento web'], *[class*="color_Desenvolvimento Web"] {
+    color: $color-web !important;
+}
+*[class*='color_inglês'], *[class*="color_Inglês"] {
+    color: $color-ingles !important;
+}
+*[class*='color_espanhol'], *[class*="color_Espanhol"] {
+    color: $color-espanhol !important;
+}
+*[class*='color_adm'], *[class*="color_Adm"] {
+    color: $color-adm !important;
+}
+*[class*='color_banco'], *[class*="color_Banco"] {
+    color: $color-banco !important;
+}
+
+//BORDERS
+*[class*='border_inform'], *[class*="border_Inform"] {
+    border-color: $color-informatica !important;
+}
+*[class*='border_excel'], *[class*="border_Excel"] {
+    border-color: $color-excel !important;
+}
+*[class*='border_desenvolvimento web'], *[class*="border_Desenvolvimento Web"] {
+    border-color: $color-web !important;
+}
+*[class*='border_inglês'], *[class*="border_Inglês"] {
+    border-color: $color-ingles !important;
+}
+*[class*='border_espanhol'], *[class*="border_Espanhol"] {
+    border-color: $color-espanhol !important;
+}
+*[class*='border_adm'], *[class*="border_Adm"] {
+    border-color: $color-adm !important;
+}
+*[class*='border_banco'], *[class*="border_Banco"] {
+    border-color: $color-banco !important;
+}
+
+*[class*="border_Desenvolvimento Web"]{
+    //border-color: #f90 !important;
+}
+//Background
+*[class*='background_inform'], *[class*="background_Inform"] {
+    background-color: desaturate(lighten($color-informatica, 15%), 20%) !important; color:#fff;
+}
+*[class*='background_excel'], *[class*="background_Excel"] {
+    background-color: desaturate(lighten($color-excel, 15%), 20%) !important; color:#fff;
+}
+*[class*='background_desenvolvimento web'], *[class*="background_Desenvolvimento Web"] {
+    background-color: desaturate(lighten($color-web, 15%), 20%) !important; color:#fff;
+}
+*[class*='background_inglês'], *[class*="background_Inglês"] {
+    background-color: desaturate(lighten($color-ingles, 15%), 20%) !important; color:#fff;
+}
+*[class*='background_espanhol'], *[class*="background_Espanhol"] {
+    background-color: desaturate(lighten($color-espanhol, 15%), 20%) !important; color:#fff;
+}
+*[class*='background_adm'], *[class*="background_Adm"] {
+    background-color: desaturate(lighten($color-adm, 15%), 20%) !important; color:#fff;
+}
+*[class*='background_banco'], *[class*="background_Banco"] {
+    background-color: desaturate(lighten($color-banco, 15%), 20%) !important; color:#fff;
+}
+
+*[class*="background_Desenvolvimento Web"]{
+    //border-color: #f90 !important; color:#fff;
+}

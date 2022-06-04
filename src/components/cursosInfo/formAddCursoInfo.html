@@ -1,0 +1,68 @@
+<div class='bg_form_block_screen'>
+<form id='form_add_curso_info' >
+    <h3>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+            <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+            <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+        </svg>
+        Adicionar Curso</h3>
+    <span class="btn_close_form">X</span>
+<div  id='div_id_curso'>
+    <label>Cod.: </label>
+    <input  required='true' list='list_id_cursos_info' id='id_curso' placeholder="ex.: IFC"/>
+    <datalist id='list_id_cursos_info'>
+        <option></option>
+
+    </datalist>
+</div>
+    <div>
+      
+        <label>Nome: </label>
+        <input required='true' type='text' id='nome' value=''/>
+    </div>
+    <div id='div_categoria'>
+        <label>Categoria: </label>
+        <select id='categoria'>
+        <option></option>
+        <option value='informática'>Informática</option>
+        <option value='inglês'>Inglês</option>
+        <option value='espanhol'>Espanhol</option>
+        <option value='administração'>Administração</option>
+        <option value='programação'>Programação</option>
+        <option value='design'>Design</option>
+        <option value='office'>Office</option>
+        <option value='reforço'>Reforço</option>
+        <option value='recreativo'>Recreativo</option>
+    </select>
+    </div>
+    <div  id='div_duracao'>
+        <label>Duração: </label>
+        <input  required='true' type='number' id='duracao' />
+    </div>
+
+    <div id='div_modulos'>
+        <label>Módulos: </label>
+        <textarea  required='true' id='modulos'></textarea>
+    </div>
+
+    <div id='div_carga_horaria'>
+        <label>C. Hr.: </label>
+        <input  required='true' type='number' id='carga_horaria' />
+        
+    </div>
+
+    <div id='div_parcelas'>
+        <label>Parcelas: </label>
+        <input  required='true' type='number' id='parcelas' />
+    </div>
+    <div id='div_valor_mes'>
+        <label>Valor: </label>
+        <input  required='true' type='text' id='valor_mes' value='0,00'/>
+    </div>
+
+ 
+
+    <div class='div_submit'><input type='submit' value="Salvar"/></div>
+
+</form>
+</div>

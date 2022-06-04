@@ -1,0 +1,135 @@
+@use '../abstracts/' as *;
+@use './fieldset_resp_aluno.scss' as *;
+@use './fieldset_curso.scss' as *;
+@use './loading_contrato.scss' as *;
+@use './id_contrato.scss' as *;
+ 
+* {
+    box-sizing: border-box;
+}
+#form_add_contrato {
+    display: flex;
+    box-shadow: 0 1px 3px #666;
+    background: #f8f8f8;
+    position: relative;
+    padding: 40px;
+    width: 900px;
+    max-width: 100%;
+    margin: 20px auto;
+    display: block;
+    height: auto;
+    font-size: 14px;
+    color: #333;
+    overflow: hidden;
+
+    .fieldset {
+        transition: all 1s;
+        max-width: 100%;
+        margin: 10px 20px;
+        border: 1px solid #aaa;
+        padding: 20px 30px;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+      
+        label {
+            display: flex;
+            border-radius: 3px 0 0 3px;
+            flex-shrink: 1;
+            flex-grow: 1;
+            padding: 0 10px 0 15px;
+            height: auto;
+            align-items: center;
+            max-width:100px;
+            min-width: 100px;
+        }
+   
+        input,
+        select,
+        textarea {
+            min-width: auto !important;
+            border-radius: 0 3px 3px 0;
+            min-height: 35px;
+            padding: 5px;
+            border: $border-set-default;
+            font-size: 16px;
+            flex-grow: 1;
+            flex-shrink: 1;
+            resize: vertical;
+            &:focus {
+                outline: 2px solid lighten($primary-color, 20%);
+                outline-offset: -2px;
+            }
+
+        }
+
+        .div_input {
+            margin: 0 5px 3px 0;
+            display: flex;
+            flex-grow: 1;
+            flex-shrink: 1;
+            justify-content: flex-end;
+            padding: 6px 0;
+       
+
+        }
+    }
+
+    // Campos com 100% width
+    
+    #div_resp_end,
+
+    #div_aluno_end {
+        width: 100% !important;
+    }
+
+    .aluno_off {
+        height: 2px !important;
+        padding: 0;
+        opacity: 0 !important;
+        margin-bottom: 0;
+    }
+    .display_off {
+        overflow: hidden;
+        height: 1px !important;
+        padding: 0 !important;
+        opacity: 0 !important;
+        margin: 0 0 -10px !important;
+       
+    }
+
+    #btn_salvar {
+        float: right;
+        margin-right: 0;
+        margin-top: 40px;
+        background: $primary-color;
+        color: #fff;
+        border: 0;
+        padding: 15px 30px;
+        cursor: pointer;
+        &:hover {
+            background: lighten($primary-color, 10%);
+        }
+        &:active {
+            background: darken($primary-color, 5%);
+        }
+    }
+}
+
+.red {
+    color: red !important;
+}
+.green {
+    color: green !important;
+}
+
+
+option[disabled] {
+    color: #ccc !important;
+}
+
+.required {
+    color: red;
+    margin-left: -10px;
+    margin-right: 5px;
+}

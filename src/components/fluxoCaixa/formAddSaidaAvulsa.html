@@ -1,0 +1,49 @@
+<form class='forms_fluxo_caixa' id='form_add_saida_avulsa'>
+    <h4>- Saida Avulsa</h4>
+    <fieldset>
+        <div class='row'>
+            <div class='div_inputs' id='div_data'>
+                <label>Data:
+                </label>
+                <input required type='Date' id='data'/>
+            </div>
+            <div class='div_inputs' div='div_descricao'>
+                <label>Descrição:
+                </label>
+                <textarea required id='descricao'></textarea>
+            </div>
+
+            <div class='div_inputs' id='div_tipo_saida'>
+                <label>Tipo de Saída.</label>
+                <select required id='tipo_saida'>
+                    <option disabled selected></option>
+                    <option value='conta'>Conta</option>
+                    <option value='pró-labore'>Pró-labore</option>
+                    <option value='marketing'>Marketing</option>
+                    <option value='limpeza'>Limpeza</option>
+                    <option value='alimentação'>Alimentação</option>
+                    <option value='material'>Material</option>
+                    <option value='manutenção'>Manutenção</option>
+                    <option value='aparelhagem'>Aparelhagem</option>
+                    <option value='outro'>Outro</option>
+
+
+                </select>
+            </div>
+            <div class='div_inputs ' id='div_saida_valor'>
+                <label>Valor:
+                </label>
+                <input required type='text' id='saida_valor' value=''/>
+            </div>
+        </div>
+        <!--row-->
+        <div class='row'>
+            <div class='div_inputs div_submit'>
+                <input type='submit' value="Salvar Saída"/>
+            </div>
+        </div>
+        <!--row-->
+
+    </fieldset>
+
+</form>

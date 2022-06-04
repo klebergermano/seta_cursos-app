@@ -6,7 +6,7 @@ dialog{
   
   
   .forms_controle_aula{
-    @extend .form_flex;
+    @extend .form_flex_absolute;
     #aluno_nome, #curso_nome, #bimestre_nome{
       margin-top:10px;
       padding:$padding-light;

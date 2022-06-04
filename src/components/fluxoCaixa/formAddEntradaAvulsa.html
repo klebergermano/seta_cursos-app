@@ -1,0 +1,37 @@
+<form class='forms_fluxo_caixa' id='form_add_entrada_avulsa' >
+    <h4>+ Entrada Avulsa</h4>
+<fieldset>
+<div class='row'>
+    <div class='div_inputs' id='div_data'>
+        <label>Data: </label>
+        <input  required  type='Date' id='data'/>
+    </div>
+    <div  class='div_inputs' div='div_descricao'>
+        <label>Descrição: </label>
+        <textarea required  id='descricao' ></textarea>
+    </div>
+
+    <div  class='div_inputs' id='div_tipo_entrada_avulsa'>
+        <label>Form. Pag</label>
+        <select required id='form_pag'>
+            <option disabled selected></option>
+            <option value='dinheiro'>Dinheiro</option>
+            <option value='débito'>Débito</option>
+            <option value='crédito'>Crédito</option>
+            <option value='pix'>Pix</option>
+        </select>
+    </div>
+    <div  class='div_inputs ' id='div_entrada_avulsa_valor'>
+        <label>Valor: </label>
+        <input  required   type='text' id='entrada_avulsa_valor'  value=''/>
+    </div>
+    </div><!--row-->
+<div class='row'>
+    <div class='div_inputs div_submit'>
+        <input type='submit' value="Salvar Entrada"/>
+    </div>
+</div><!--row-->
+
+</fieldset>
+ 
+</form>

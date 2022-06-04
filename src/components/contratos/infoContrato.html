@@ -1,0 +1,234 @@
+<div class='components' id='info_contrato'>
+    <h3>Informações sobre o Contrato</h3>
+
+    <form id="form_info_contrato">
+        <input type='checkbox' style='display:none' id='checkbox_resp_aluno'>
+        <form id='bg_div_id_contrato' class='fieldset'>
+
+            <div id='div_btn_salvar_contrato_pdf'>
+                <input type='submit' id='btn_salvar_contrato_pdf' value='Salvar Contrato PDF'/>
+            </div>
+            <!-------------------------Fieldset Responsável----------------------->
+            <div class='fieldset' id='fieldset_resp'>
+                <div class='div_input' id='div_id_contrato'>
+                    <label>ID Contrato:</label>
+                    <input id="id_contrato" readonly='true' type="text"/>
+                </div>
+                <div class='div_input' id='div_resp_nome'>
+                    <label>Responsável:</label>
+                    <input id="resp_nome" readonly='true' type="text"/>
+                </div>
+                <div class='div_input' id='div_resp_genero'>
+                    <label>Genero:
+                    </label>
+                    <input type='text' readonly='true' id='resp_genero'/>
+                </div>
+                <div class='div_input' id='div_resp_end'>
+                    <label>Endereço:
+                    </label>
+                    <input readonly='true' id="resp_end" type="text"/>
+                    &nbsp;
+                    <label class='label_numero'>Nº:
+                    </label>
+                    <input readonly='true' class="end_numero" id='resp_end_numero' type="text"/>
+                </div>
+                <div class='div_input' id='div_resp_bairro'>
+                    <label>Bairro:
+                    </label>
+                    <input readonly='true' id="resp_bairro" type="text"/>
+                </div>
+                <div class='div_input' id='div_resp_cep'>
+                    <label>CEP:
+                    </label>
+                    <input readonly='true' id="resp_cep" type="text"/>
+                </div>
+                <div class='div_input' id='div_resp_cpf'>
+                    <label>CPF:
+                    </label>
+                    <input readonly='true' id="resp_cpf" type="text"/>
+                </div>
+                <div class='div_input' id='div_resp_rg'>
+                    <label>RG:
+                    </label>
+                    <input readonly='true' id="resp_rg" type="text"/>
+                </div>
+
+                <div class='div_input' id='div_resp_data_nasc'>
+                    <label>Data Nasc.:
+                    </label>
+                    <input id="resp_data_nasc" readonly='true' type="date"/>
+                </div>
+                <div class='div_input' id='div_resp_cel'>
+                    <label>Cel.:
+                    </label>
+                    <input id="resp_cel" type="text" readonly='true'/></div>
+
+                <div class='div_input' id='div_resp_tel'>
+                    <label>Tel.:
+                    </label>
+                    <input id="resp_tel" readonly='true' type="text"/>
+                </div>
+                <div class='div_input' id='div_resp_email'>
+                    <label>Email:
+                    </label>
+                    <input id="resp_email" readonly='true' type="text"/>
+                </div>
+            </div>
+            <!-------------------------Fieldset ALUNO----------------------->
+
+            <div class='fieldset' id='fieldset_aluno'>
+                <div class='div_input' id='div_aluno_parentesco'>
+                    <label id='label_parentesco'>Parentesco c/ o Responsável:
+                    </label>
+                    <input id='aluno_parentesco' type='text' readonly='true'/>
+                </div>
+                <div class='div_input' id='div_aluno_nome'>
+                    <div id='block_aluno'></div>
+                    <label>Aluno(a):
+                    </label>
+                    <input readonly='true' id="aluno_nome" type="text"/>
+                    &nbsp;
+                </div>
+                <div class='div_input' id='div_aluno_genero'>
+                    <label>Genero:
+                    </label>
+                    <input id='aluno_genero' readonly='true' type='text'>
+                </div>
+
+                <div class='div_input' id='div_aluno_end'>
+                    <label>Endereço:
+                    </label>
+                    <input id="aluno_end" readonly='true' type="text"/>
+                    &nbsp;
+                    <label class='label_numero'>Nº:
+                    </label>
+                    <input class="end_numero" id='aluno_end_numero' readonly='true' type="text"/>
+                </div>
+                <div class='div_input' id='div_aluno_bairro'>
+                    <label>Bairro:
+                    </label>
+                    <input id="aluno_bairro" readonly='true' type="text"/>
+                </div>
+                <div class='div_input' id='div_aluno_cep'>
+                    <label>CEP:
+                    </label>
+                    <input id="aluno_cep" readonly='true' type="text"/>
+                </div>
+                <div class='div_input' id='div_aluno_rg'>
+                    <label>RG:
+                    </label>
+                    <input readonly='true' id="aluno_rg" type="text"/>
+                </div>
+                <div class='div_input' id='div_aluno_data_nasc'>
+                    <label>Data Nasc.:
+                    </label>
+                    <input id="aluno_data_nasc" readonly='true' type="date"/>
+                </div>
+                <div class='div_input' id='div_aluno_cel'>
+                    <label>Cel.:
+                    </label>
+                    <input id="aluno_cel" readonly='true' type="text"/>
+                </div>
+                <div class='div_input' id='div_aluno_tel'>
+                    <label>Tel.:
+                    </label>
+                    <input id="aluno_tel" readonly='true' type="text"/></div>
+                <div class='div_input' id='div_aluno_email'>
+                    <label>Email:
+                    </label>
+                    <input id="aluno_email" readonly='true' type="text"/>
+                </div>
+
+            </div>
+            <!--div fieldset-->
+            <!------------------------------ FIELDSET CURSO------------------------------->
+            <div class='fieldset' id='fieldset_curso'>
+                <div class='div_input' id='div_curso_nome'>
+                    <label>Curso:
+                    </label>
+                    <input readonly='true' id='curso_nome' type='text'>
+                    <input id='curso_cod' readonly='true' type='text'/>
+
+                </div>
+
+                <div class='div_input' id='div_curso_modulos'>
+                    <label id='label_curso_modulos'>Módulos:
+                    </label>
+                    <textarea id="curso_modulos" readonly='true' spellcheck="false"></textarea>
+                </div>
+                <div class='row'>
+                    <div id='div_curso_duracao'>
+                        <label>D. Meses:</label>
+                        <input id="curso_duracao" readonly='true' type="number"/>
+                    </div>
+                    <div id='div_curso_parcelas'>
+                        <label>Parcelas:
+                        </label>
+                        <input readonly='true' id="curso_parcelas" type="number"/>
+                    </div>
+                    <div id='div_curso_horas_aula'>
+                        <label>Horas p/ Aula:
+                        </label>
+                        <input readonly='true' id="curso_horas_aula" type="number"/>
+                    </div>
+                    <div id='div_curso_carga_horaria'>
+                        <label>Carga Horária:
+                        </label>
+                        <input readonly='true' id="curso_carga_horaria" type="number"/>
+                    </div>
+
+                </div>
+                <!--row-->
+                <div class='row'>
+                    <div id='div_curso_valor'>
+                        <label>Valor R$:
+                        </label>
+                        <input curso_valor readonly='true' id="curso_valor" type="text" value='0,00'/>
+                    </div>
+                    <div id='div_curso_desconto'>
+                        <label for='curso_desconto'>
+                            Desc. R$:
+                        </label>
+                        <input id="curso_desconto" readonly='true' type="text" value='0,00'/>
+                    </div>
+                    <div id='div_curso_valor_total'>
+                        <label>Total R$:
+                        </label>
+                        <input id="curso_valor_total" readonly='true' type="text" value='0,00'/>
+                    </div>
+                </div>
+                <!--row-->
+                <div class='row'>
+                    <div id='div_curso_vencimento'>
+                        <label>Dia Venc.:
+                        </label>
+                        <input readonly='true' id="curso_vencimento" type="number"/>
+                    </div>
+                    <div id='div_curso_inicio'>
+                        <label>Data de Início:
+                        </label>
+                        <input id="curso_inicio" readonly='true' type="date"/>
+                    </div>
+                    <div id='div_curso_data'>
+                        <label>Data Contrato:
+                        </label>
+                        <input id="curso_data_contrato" readonly='true' type="date"/>
+                    </div>
+                </div>
+                <!--row-->
+                <div class='div_input' id='div_curso_desconto_combo'>
+                    <label>Combo:
+                    </label>
+                    <div id='combo_textarea'></div>
+                </div>
+                <!--row-->
+                <div class='div_input' id='div_curso_obs'>
+                    <label>Observações:
+                    </label>
+                    <textarea readonly='true' id='curso_obs'></textarea>
+                </div>
+            </div>
+            <!--div fieldset-->
+        </form>
+    </div>
+    <!--pagina-->

@@ -1,0 +1,26 @@
+  @use "variables" as *;
+  @use "buttons";
+
+  menu.submenu_page{
+    background: #ccc;
+    border-radius: 3px 3px 0px 0px;
+    margin-bottom:20px;
+    width:100%;
+border-bottom:1px solid #333;
+    display: flex;
+  
+    ul{
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      li{
+        display: block;
+        list-style: none;
+        a{
+          @extend .btn-default;
+          text-decoration: none;
+            }  
+      }
+    }
+  
+  }

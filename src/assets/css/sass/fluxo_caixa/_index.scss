@@ -1,0 +1,163 @@
+
+@use "./formAddPagMensalidade.scss" ;
+@use "./formAddSaidaAvulsa.scss" ;
+@use "./formAddEntradaAvulsa.scss" ;
+@use "./infoTables.scss" ;
+@use "./resumoFluxoCaixa.scss" ;
+@use "../abstracts/" as *;
+
+
+#fluxo_caixa_content {
+    padding: 20px;
+    background: #fff;
+    #sub_menu_entradas {
+
+    }
+}
+#submenu_fluxo_caixa{
+   
+    #btn_form_saida_caixa{
+        color:red;
+    }
+    #btn_entradas_caixa{
+        color:green;
+    }
+a{
+    &:focus{
+        outline:0px;
+    }
+} 
+}
+
+form.forms_fluxo_caixa{
+    margin: 0 auto;
+    max-width: 1000px;
+    h3 {
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    h4{
+        text-align: center;
+        font-weight: normal;
+        background:#ccc;
+        padding:5px;
+
+    }
+
+    fieldset{
+        border:1px solid #ccc;
+        background: rgb(117, 141, 115);
+        //border:1px solid #333;
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 100%;
+        padding:0px;
+        .row{
+            min-width: 100%;
+            display: flex; 
+            flex-wrap: wrap;
+            border:1px solid #565;
+        }
+
+        .div_inputs {
+            margin: 0;
+            background: #ccc;
+            flex-shrink: 1;
+            flex-grow: 1;
+            padding: 0;
+            box-shadow: 0 0 1px #111;
+            min-width: 100px;
+            width: auto;
+
+            label {
+                width: 100%;
+                border-radius: 0;
+                padding: 5px;
+                display: flex;
+                justify-content: center;
+                background: #d3ddd3;
+                border-bottom: 1px solid #aaa;
+            }
+
+            input,
+            select,
+            textarea {
+                width: 100%;
+                height: 50px;
+                padding: 12px 10px;
+                border-radius: 0;
+                border: 0 solid #aaa;
+                resize: vertical;
+                &:focus {
+                    outline: 1px solid $primary-color;
+                    outline-offset: -1px;
+                }
+            }
+            input,
+            select {
+                text-align: center;
+            }
+
+            select {}
+            textarea {
+                margin-right: 1px;
+                border-right: 1px solid #ddd;
+                min-height: 50px;
+                margin-bottom: -3px !important;
+            }
+
+
+            input[readonly='true'] {
+                background: #eee;
+                user-select: none;
+            }
+
+
+        }
+        
+    }
+
+    .div_submit {
+        padding: 20px;
+        background: #f0f0f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 0 0 #666;
+        input[type='submit'] {
+            @extend .btn-default;
+            
+            color: #fff;
+            max-width: 180px;
+            &:hover {
+                
+
+            }
+        }
+    }
+}
+
+.sub_menu_fluxo_caixa{
+    border: 1px solid #333;
+    margin:20px 0px;
+    ul {
+        display: flex;
+
+        li {
+            list-style: none;
+            a {
+                &:focus {
+                    outline: 0;
+                }
+                text-decoration: none;
+                @extend .btn-default;
+
+            }
+        }
+
+    }
+
+}
+

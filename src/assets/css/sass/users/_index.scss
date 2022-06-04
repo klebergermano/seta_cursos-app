@@ -17,16 +17,15 @@
 }  
 
 
-#users_table_info{
+#view_table_users{
   @extend .table_info;
-  .user_foto {
+  .td_user_foto {
     text-align: center;
-    img{width: 50px; height: 50px; border-radius: 50%; }
+    img{ border-radius: 50%; }
   }
-  .user_level{ text-align: center;
-  width: 20px;
-
-}
+  .td_user_level{ text-align: center;
+     width: 20px;
+  }
 }
 
 

@@ -1,6 +1,117 @@
 @use "../abstracts" as *;
 
+.forms_fixed{
+    box-shadow: 0 1px 3px #666;
+    background: #f8f8f8;
+    position: relative;
+    padding: 40px;
+    width: 100%;
+    margin: 20px auto;
+    height: auto;
+    font-size: 14px;
+    overflow: hidden;
+
+
+    fieldset, .fieldset {
+        transition: all 1s;
+        max-width: 100%;
+        margin: 10px 20px;
+        border: 1px solid #aaa;
+        padding: 20px 30px;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+     
+        & > div{
+          margin: 0 5px 3px 0;
+          display: flex;
+          flex-grow: 1;
+          flex-shrink: 1;
+          justify-content: flex-end;
+          padding: 6px 0;
+        }
+        
+     
+        label {
+          background: #ddd;
+            display: flex;
+            border-radius: 3px 0 0 3px;
+            flex-shrink: 1;
+            flex-grow: 1;
+            padding: 0 10px 0 15px;
+            height: auto;
+            align-items: center;
+            max-width:100px;
+            min-width: 100px;
+        }
+        input,
+        select,
+        textarea {
+            min-width: auto !important;
+            border-radius: 0 3px 3px 0;
+            min-height: 35px;
+            padding: 5px;
+            border: $border-set-default;
+            font-size: 16px;
+            flex-grow: 1;
+            flex-shrink: 1;
+            resize: vertical;
+            &:focus {
+                outline: 2px solid lighten($primary-color, 20%);
+                outline-offset: -2px;
+            }
+
+        }
+
+        #aluno_genero, #aluno_end_numero{
+          max-width:80px !important;
+          min-width: none;
+        }
+    
+        .div_input_readonly{
+          margin-bottom: 0px;
+          padding-bottom: 0px;
+          
+       
+
+        }
+    }
+    .label_btn_checkbox {
+      transition: all 0.3s;
+      @extend .btn-default;
+      max-width: 300px;
+      width: 200px;
+      user-select: none;
+      input {
+          display: none;
+      }
+  }
+  .actived_label_btn_checkbox{
+    background: $primary-color; color:#fff; 
+  }
+
+    input[type="submit"]{
+      @extend .btn-primary;
+      width:250px; 
+      margin: 0 auto;
+    }
+
+    input[readonly='true'] {
+      background: #eee ;
+      border:1px solid #ddd;
+      
+  }
+
+
+
+}
+
 #form_add_aluno{
+  @extend .forms_fixed;
+ 
+  #div_select_contrato{
+    width:100%;
+  }
     #add_aluno_ra{
       text-transform: uppercase;
     }

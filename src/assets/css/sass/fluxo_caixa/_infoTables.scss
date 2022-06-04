@@ -1,0 +1,109 @@
+
+.bg_info_tables{
+
+    #bg_search_inputs_table_entrada_avulso{
+        margin-bottom:-35px;
+    }
+
+    h3{
+        margin-top:20px;
+        margin-bottom:20px;
+    }
+    table{
+        font-size:13px;
+        margin-bottom:30px;
+        caption{
+            padding:8px;
+            background:#333;
+            color:#f0f0f0;
+        }
+        thead{
+            th{
+                height:40px;
+                background:#464;
+                color:#fff;
+                padding:2px 3px;
+            }  
+        }
+        tbody{
+            tr{
+                background:#f0f0f0;
+
+                &:nth-child(even){
+                    background:#e6e6e6;
+                }
+                &:hover{
+                    background: #f6f6e0;
+                }
+                td{
+                    padding: 5px;
+                    text-align: center;
+                }
+            }
+            #tr_resumo{
+                td{padding:10px;}
+            }
+            .td_linha{
+                text-align: center;
+                background:#ccc;
+                color:#666;
+            }
+         
+            .td_controls{
+                padding:5px;
+            }
+         
+            .td_valor_total{
+                color:#247e24;
+                font-size: 14px;
+            }
+        }
+    }
+}
+#bg_saidas_info_table{
+    caption{
+        background:#bd4343;
+    }
+    table{
+    th{
+        background: #644;
+    }
+        tr#tr_resumo{
+            #td_res_valor_total{
+                text-align: center; 
+                background: #bd4343;
+                color:#fff;
+            }
+        }
+    }
+ 
+}
+#bg_entradas_info_table{
+        caption{
+            background:#4d794d;
+        } 
+            tr#tr_resumo{
+                #td_res_valor_total{
+                    background:#464; 
+                    color:#fff;
+                }
+            }
+}
+
+#entrada_avulsa_table_info{
+    margin-top:40px;
+}
+    
+#pag_mensal_table_info{
+    .td_obs{
+        text-align: center;
+        font-size: 11px;
+        max-width: 100px;
+        min-width: 50px;
+        textarea{
+            width: 100%;
+            background: transparent;
+            padding:2px;
+        }
+    }
+}

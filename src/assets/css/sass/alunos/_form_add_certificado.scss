@@ -1,0 +1,22 @@
+@use "../abstracts/" as *;
+
+#form_add_certificado{
+    @extend .form_flex_absolute;
+    fieldset{
+        min-width: 100%;
+        margin-bottom:10px;
+    }
+    div{
+        overflow: hidden;
+        display: flex;
+        max-width: 100%;
+        select{
+            min-width: 300px;
+            flex-grow: 1;
+        }
+    }
+    #certificado_cod, #aluno_ra{
+        max-width:110px !important;
+    }
+
+}
