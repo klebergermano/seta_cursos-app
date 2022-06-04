@@ -71,21 +71,22 @@ function setCursoSelect(e) {
 }
 
 function eventsDivAlunoAdicinado(divAluno) {
-  divAluno.querySelector('.btn_del_aluno').addEventListener('mouseover', (e)=>{
+  console.log(divAluno);
+  divAluno.querySelector('.btn_del_aluno')?.addEventListener('mouseover', (e)=>{
     divAluno.classList.add('hover_btn_del_aluno');
   });
-  divAluno.querySelector('.btn_del_aluno').addEventListener('mouseout', (e)=>{
+  divAluno.querySelector('.btn_del_aluno')?.addEventListener('mouseout', (e)=>{
     divAluno.classList.remove('hover_btn_del_aluno');
   });
 
-  divAluno.querySelector('.select_aluno_adicionado').addEventListener('input', (e) => {
+  divAluno.querySelector('.select_aluno_adicionado')?.addEventListener('input', (e) => {
     validaSelectAlunoAdicionado(e);
   });
-  divAluno.querySelector('.select_curso').addEventListener('change', (e) => {
+  divAluno.querySelector('.select_curso')?.addEventListener('change', (e) => {
    
     enableSelectBimestre(e)
   })
-  divAluno.querySelector('.select_bimestre').addEventListener('change', (e) => {
+  divAluno.querySelector('.select_bimestre')?.addEventListener('change', (e) => {
 
     validaSelectAula(e)
   })
