@@ -10,7 +10,12 @@ function changeDateToDislayText(dateString) {
     return changedDate;
 }
 
+
 const TemplateCertificado = (certificadoInfo) => {
+    console.log('--------------------------------------------------------------------');
+    console.log(certificadoInfo);
+    console.log('--------------------------------------------------------------------');
+
 
     return (`
     <!DOCTYPE html>
