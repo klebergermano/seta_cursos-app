@@ -12,37 +12,37 @@
         <fieldset id='fildset_add_certificado' class='fieldset' >
             <div>
                 <label for="certificado_cod">Cod:</label>
-                <input id='certificado_cod' type="text" />
+                <input id='certificado_cod' type="text" required="true"/>
                 <label for="data_expedicao">Emissão:</label>
-                <input id='data_emissao' type="date" >
+                <input id='data_emissao' type="date" required="true">
             </div>
             <div id="div_aluno">
                 <label for="aluno_ra">RA:</label>
-                <input id='aluno_ra' type="text"/>
+                <input id='aluno_ra' type="text" required="true"/>
                 <label for="aluno_nome">Aluno:</label>
-                <input id='aluno_nome' type="text"/>
+                <input id='aluno_nome' type="text" required="true"/>
             </div>
             <!--bg_div_id_aluno-->
             <div>
                 <label for="curso_nome">Curso:</label>
-                <input id='curso_nome' type="text" />
+                <input id='curso_nome' type="text"  required="true"/>
+                <label for="curso_carga_horaria">C. Horária:</label>
+                <input id='curso_carga_horaria' required="true" />
             </div>
             <div>
                 <label for="curso_modulos">Módulos:</label>
-                <textarea id='curso_modulos'></textarea>
+                <textarea id='curso_modulos' required="true"></textarea>
             </div>
-            <div>
-                <label for="curso_carga_horaria">C. Horária:</label>
-                <input id='curso_carga_horaria'/>
+            <div id="div_datas">
+               
                 <label for="curso_inicio">Início:</label>
-                <input id='curso_inicio' type="date" >
-                <label for="curso_conclusao">Conclusão:</label>
-                <input id='curso_conclusao' type="date" >
-
+                <input id='curso_inicio' type="date" required="true">
+                <label for="curso_conclusao" >Conclusão:</label>
+                <input id='curso_conclusao' type="date" required="true">
             </div>
             <div>
                 <label for="endereco">Local:</label>
-                <input id='endereco' value="Rua Gustavo Bacarisas, nº 8 - Sala 3 - Jd. Zilda, São Paulo - SP"/>
+                <input id='endereco' value="Rua Gustavo Bacarisas, nº 8 - Sala 3 - Jd. Zilda, São Paulo - SP" required="true"/>
             </div>
             <div>
                 <label for="obs">Obs.:</label>

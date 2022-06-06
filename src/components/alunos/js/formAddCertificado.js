@@ -52,6 +52,7 @@ function insertCertificadoInfoInputs(certificadoInfo){
   form.querySelector("#curso_modulos").value = certificadoInfo.modulos;
   form.querySelector("#curso_carga_horaria").value = certificadoInfo.carga_horaria;
   form.querySelector("#curso_inicio").value = certificadoInfo.inicio;
+  form.querySelector("#curso_conclusao").value = certificadoInfo.conclusao;
    setCurrentDate("#form_add_certificado #data_emissao");
 }
 function submitCertificadoPDF(certificadoInfo) {
@@ -65,7 +66,6 @@ function submitCertificadoPDF(certificadoInfo) {
       }
   });
   result.then(() => {
-      //loadinContrato.style.display = "none";
       removeSpinnerLoad("#form_add_certificado");
   });
 }

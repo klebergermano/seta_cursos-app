@@ -3,9 +3,9 @@ const TemplateTalao = (talaoInfo) => {
   let talao = '';
   talaoInfo.forEach((item) => {
     talao += folhasTalao(item)
-  });
+  });  
   return (`
-    <!DOCTYPE >
+    <!DOCTYPE>
     <html>
       <head>
         <title></title>
@@ -61,7 +61,7 @@ const TemplateTalao = (talaoInfo) => {
           </style>
       </head>
       <body>
-        <div class="a4">
+        <div class="a4"> 
         ${talao}
         </div>
       </body>
