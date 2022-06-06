@@ -3024,6 +3024,11 @@ option[disabled] {
   min-width: 300px;
   flex-grow: 1;
 }
+#form_add_certificado #curso_carga_horaria {
+  width: 50px !important;
+  max-width: 50px !important;
+  min-width: auto !important;
+}
 #form_add_certificado #certificado_cod, #form_add_certificado #aluno_ra {
   max-width: 110px !important;
 }
