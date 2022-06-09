@@ -7,8 +7,7 @@ const { getFirestore, setDoc, getDocs, collection, getDoc, doc } = require("fire
 const db = getFirestore(firebaseApp);
 //---------------------------------------------------------------//
 //Components
-
-import  insertElementHTML from "../../jsCommon/insertElementHTML.js";
+import insertElementHTML from "../../jsCommon/insertElementHTML.js";
 import { displaySpinnerLoad, removeSpinnerLoad } from "../../jsCommon/spinnerJS.js";
 import { addLogInfo } from "../../logData/js/logFunctions.js";
 import { insertFormAddCertificadoHTML } from "./formAddCertificado.js";
@@ -17,14 +16,17 @@ import { insertFormAddCertificadoHTML } from "./formAddCertificado.js";
 const VMasker = require("vanilla-masker");
 //---------------------------------------------------------------//
 
-let $alunoInfo = {
+//==================================================================================================================
+//TODO: REFATORAR E ADICIONAR COMENTÁRIOS
+//==================================================================================================================
+
+let $alunoInfoGlobal = {
     cursos: {}
 }
 export function insertInfoAlunoHTML(RA) {
     insertElementHTML('#alunos_content',
         './components/alunos/infoAluno.html', () => { eventsInfoAluno(RA) }, null, true
     );
-
 }
 
 function getCertificadoInfo(e) {
@@ -41,12 +43,11 @@ function getCertificadoInfo(e) {
     return certificadoInfo;
 }
 
-
-function showFormInfoCurso(e){
-let parentFormInfoCurso = e.target.closest('form');
+function showFormInfoCurso(e) {
+    let parentFormInfoCurso = e.target.closest('form');
     parentFormInfoCurso.classList.toggle('hide_form_info_curso');
-
 }
+
 function eventsInfoAluno(RA) {
     document.querySelector('#form_info_aluno').addEventListener('submit', (e) => {
         e.preventDefault();
@@ -56,19 +57,21 @@ function eventsInfoAluno(RA) {
         .then(() => {
             let btns = document.querySelectorAll('.btn_create_certificado');
             btns.forEach((item) => {
+
                 item.addEventListener('click', (e) => {
-                    e.preventDefault();
+                    e.preventDefault(); //TODO: Conferir utilidade do "e.preventDefault()""; .
                     let certificadoInfo = getCertificadoInfo(e);
                     insertFormAddCertificadoHTML(certificadoInfo);
                 })
+
             });
             // Adicionas o evento de expandir o formulário aluno_info_info
             let titleCursosInfo = document.querySelectorAll('.title_info_cursos');
-           
-            titleCursosInfo.forEach((item)=>{
-            item.addEventListener('click', (e)=>{
-                showFormInfoCurso(e);
-            })
+
+            titleCursosInfo.forEach((item) => {
+                item.addEventListener('click', (e) => {
+                    showFormInfoCurso(e);
+                })
             })
         })
         .then(() => {
@@ -108,8 +111,6 @@ function eventsInfoAluno(RA) {
             VMasker(document.querySelector("#form_info_aluno #aluno_rg")).maskPattern("99.999.999-S");
             VMasker(document.querySelector("#form_info_aluno #aluno_cep")).maskPattern("99999-999");
         })
-
-
 }
 
 function activeSubmitOnChangeInput(e) {
@@ -138,15 +139,15 @@ function submitFormsInfoCurso(e) {
                 obs: (form.curso_obs.value).trim()
             },
             resp_info: {
-                email:(form.resp_email.value).trim(),
-                end:(form.resp_end.value).trim(),
-                end_numero:(form.resp_end_numero.value).trim(),
-                bairro:(form.resp_bairro.value).trim(),
-                cep:(form.resp_cep.value).trim(),
-                cpf:(form.resp_cpf.value).trim(),
-                data_nasc:(form.resp_data_nasc.value).trim(),
-                cel:(form.resp_cel.value).trim(),
-                tel:(form.resp_tel.value).trim(),
+                email: (form.resp_email.value).trim(),
+                end: (form.resp_end.value).trim(),
+                end_numero: (form.resp_end_numero.value).trim(),
+                bairro: (form.resp_bairro.value).trim(),
+                cep: (form.resp_cep.value).trim(),
+                cpf: (form.resp_cpf.value).trim(),
+                data_nasc: (form.resp_data_nasc.value).trim(),
+                cel: (form.resp_cel.value).trim(),
+                tel: (form.resp_tel.value).trim(),
             },
             metadata: {
                 modified: new Date()
@@ -171,14 +172,14 @@ function submitFormInfoAluno(e) {
         {
             aluno: {
                 email: (form.aluno_email.value).trim(),
-                end:(form.aluno_end.value).trim(),
-                end_numero:(form.aluno_end_numero.value).trim(),
-                bairro:(form.aluno_bairro.value).trim(),
-                cep:(form.aluno_cep.value).trim(),
-                data_nasc:(form.aluno_data_nasc.value).trim(),
-                cel:(form.aluno_cel.value).trim(),
-                tel:(form.aluno_tel.value).trim(),
-                obs:(form.aluno_obs.value).trim(),
+                end: (form.aluno_end.value).trim(),
+                end_numero: (form.aluno_end_numero.value).trim(),
+                bairro: (form.aluno_bairro.value).trim(),
+                cep: (form.aluno_cep.value).trim(),
+                data_nasc: (form.aluno_data_nasc.value).trim(),
+                cel: (form.aluno_cel.value).trim(),
+                tel: (form.aluno_tel.value).trim(),
+                obs: (form.aluno_obs.value).trim(),
                 metadata: {
                     modified: new Date()
                 }
@@ -194,38 +195,49 @@ function submitFormInfoAluno(e) {
         addLogInfo('log_alunato', 'error', RA, error);
 
     })
-
 }
-
 
 async function getInfoAlunoDB(RA) {
+    //Pega as informações do aluno em alunato no BD.
     let alunoInfo = getDoc(doc(db, 'alunato', RA))
-        .then((res) => {
-            $alunoInfo.aluno = res.data().aluno;
-            return res.data();
-        }).then(async (res) => {
-            insertAlunoInfo(res);
-            let cursos = await getCursosInfoAlunoDB(RA)
+        .then(async (res) => {
+
+            //Acrescenta a informação do aluno no $alunoInfoGlobal.
+            $alunoInfoGlobal.aluno = res.data().aluno;
+            // Insere as informações do aluno nos inputs da página.
+            insertAlunoInfo(res.data());
+
+            // Pega os cursos que o aluno faz utilizando o RA.
+            let cursos = await getCursosInfoAlunoDB(RA);
+            console.log(cursos)
+            // Insere os cursos que o aluno faz na página.
             insertAlunoCursoInfo(RA, cursos);
+        
         }).then(() => {
-            return $alunoInfo;
-        }).catch((error) => { console.log(error) })
-    return alunoInfo;
+            //retorna o $alunoInfoGlobal.
+            return $alunoInfoGlobal;
+        })
+        .catch((error) => { console.log(error) })
+
+        console.log(await alunoInfo);
+    return await alunoInfo;
 }
+
+// Pega os cursos que o aluno faz utilizando o RA.
 function getCursosInfoAlunoDB(RA) {
     let cursos = getDocs(collection(db, 'alunato', RA, 'cursos'))
         .then((res) => {
             res.forEach((item) => {
                 let nomeCurso = item.data().curso_info.nome;
-                $alunoInfo.cursos[nomeCurso] = item.data();
+                $alunoInfoGlobal.cursos[nomeCurso] = item.data();
             })
             return res;
         }).catch((error) => { console.log(error) })
     return cursos;
 }
 
+// Insere as informações do aluno nos inputs da página.
 function insertAlunoInfo(alunoInfo) {
-
     document.querySelector('#aluno_ra').value = alunoInfo.aluno.ra;
     document.querySelector('#aluno_nome').value = alunoInfo.aluno.nome;
     document.querySelector('#aluno_genero').value = alunoInfo.aluno.genero;
@@ -240,6 +252,8 @@ function insertAlunoInfo(alunoInfo) {
     document.querySelector('#aluno_tel').value = alunoInfo.aluno.tel;
     document.querySelector('#aluno_obs').value = alunoInfo.aluno.obs;
 }
+
+// Insere os cursos que o aluno faz na página.
 function insertAlunoCursoInfo(RA, cursos) {
     cursos.forEach((item) => {
         let curso = item.data();
@@ -311,8 +325,6 @@ function createTableParcelasTable(parcelas, cursoNome) {
 }
 
 
-
-
 function setBtnCheckboxCertificado(input) {
     let labelCheckbox = input?.closest("#label_checkbox_certificado_entregue");
     if (input) {
@@ -322,16 +334,17 @@ function setBtnCheckboxCertificado(input) {
         } else {
             labelCheckbox.classList.remove("active");
             labelCheckbox.querySelector('span').innerHTML = 'Marcar Certificado Entregue'
-
         }
     }
+}
+
+
+
+function checkStatusCurso(){
+    let cursoStatus = get
 
 }
 
-function openCursoInfo(e){
-
-
-}
 
 function createCursoCotentHTML(RA, curso) {
     let form = document.createElement('form');
@@ -365,33 +378,53 @@ function createCursoCotentHTML(RA, curso) {
     <textarea>${curso.curso_info.certificado.obs}</textarea>
     </div>
     `
-
     }
+
     let bg_curso = document.createElement('div');
     bg_curso.className = `bg_curso`;
 
     let icon_title = `<svg class='arrow_down' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-    </svg>` 
+                      <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                      </svg>`
     bg_curso.innerHTML =
         `
         <input id='aluno_ra' readonly="true" type='hidden' value="${RA}"/>
         <input id='curso_nome' readonly="true" type='hidden' value="${curso.curso_info.nome}"/>
-        <h4 class='title_info_cursos background_${curso.curso_info.nome}'>${curso.curso_info.nome} ${icon_title}</h4>
+        <h4 class='title_info_cursos background_${curso.curso_info.nome}'>${curso.curso_info.nome}  ${icon_title} <span class='title_status'>ATIVO</span> </h4>
+        <div class='fieldset fieldset_curso_status curso_ativo'>
+            <div class='div_select_curso_status'>
+                <label>Status:</label>
+                <select>
+                    <option value='ativo'>Ativo</option>
+                    <option value='pausado'>Pausado</option>
+                    <option value='cancelado'>Cancelado</option>
+                    <option value='concluido'>Concluido</option>
+                </select>
+            </div>
+            <div class='div_data_status'>
+                    <label>Data:</label>
+                    <input type='date' id='data_status'/>
+                </div>
+                <div class='div_obs_status'>
+                <label>Obs.:</label>
+                <textarea id='obg_status'></textarea>
+            </div>
+        </div>
+
         <div class='fieldset fieldset_certificado_status'>
-        <legend>Certificado Status</legend>
-        <button class='btn_create_certificado'>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-heading" viewBox="0 0 16 16">
-        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
-        <path d="M3 8.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm0-5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1z"/>
-      </svg>
-      Salvar Certificado PDF
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-pdf" viewBox="0 0 16 16">
-        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
-        <path d="M4.603 14.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.697 19.697 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.712 5.712 0 0 1-.911-.95 11.651 11.651 0 0 0-1.997.406 11.307 11.307 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.266.266 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.71 12.71 0 0 1 1.01-.193 11.744 11.744 0 0 1-.51-.858 20.801 20.801 0 0 1-.5 1.05zm2.446.45c.15.163.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.876 3.876 0 0 0-.612-.053zM8.078 7.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"/>
-         </svg>
-        </button>
-        ${certificadoHTML}
+            <legend>Certificado Status</legend>
+            <button class='btn_create_certificado'>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-heading" viewBox="0 0 16 16">
+                    <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+                    <path d="M3 8.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm0-5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1z"/>
+                </svg> 
+                Salvar Certificado PDF
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-pdf" viewBox="0 0 16 16">
+                    <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                    <path d="M4.603 14.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.697 19.697 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.712 5.712 0 0 1-.911-.95 11.651 11.651 0 0 0-1.997.406 11.307 11.307 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.266.266 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.71 12.71 0 0 1 1.01-.193 11.744 11.744 0 0 1-.51-.858 20.801 20.801 0 0 1-.5 1.05zm2.446.45c.15.163.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.876 3.876 0 0 0-.612-.053zM8.078 7.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"/>
+                </svg>
+            </button>
+            ${certificadoHTML}
         </div>
         <div class='fieldset fieldset_curso_info'>
             <legend>Curso Info.</legend>
@@ -447,7 +480,7 @@ function createCursoCotentHTML(RA, curso) {
             <div class='div_input_info' id='div_desconto_combo'>
                 <label>Desconto Combo:</label>
                  <div id='curso_combo_value'>${curso.curso_info.desconto_combo}</div>
-                 </div>
+            </div>
             <div class='div_input_info' id='div_modulos' >
                 <label>Módulos:</label>
                 <textarea  id='modulos' readonly='true'>${curso.curso_info.modulos}</textarea>
@@ -517,7 +550,7 @@ function createCursoCotentHTML(RA, curso) {
 }
 
 function submitTalaoPDF(talaoInfo) {
-    
+
     displaySpinnerLoad("#page_content", true);
     let result = new Promise((resolve, reject) => {
         let res = ipcRenderer.invoke("createTalaoPDF", talaoInfo);
@@ -539,11 +572,11 @@ function submitTalaoPDF(talaoInfo) {
 
 function createInfoTalao(cursoNome) {
     let talaoInfo = [];
-    let alunoNome = $alunoInfo.aluno.nome;
-    let RA = $alunoInfo.aluno.ra;
-    let respNome = $alunoInfo.cursos[cursoNome].resp_info.nome;
-    let parcelas_total = $alunoInfo.cursos[cursoNome].curso_info.parcelas_total;
-    let parcelas = $alunoInfo.cursos[cursoNome].curso_info.parcelas;
+    let alunoNome = $alunoInfoGlobal.aluno.nome;
+    let RA = $alunoInfoGlobal.aluno.ra;
+    let respNome = $alunoInfoGlobal.cursos[cursoNome].resp_info.nome;
+    let parcelas_total = $alunoInfoGlobal.cursos[cursoNome].curso_info.parcelas_total;
+    let parcelas = $alunoInfoGlobal.cursos[cursoNome].curso_info.parcelas;
     let arr = [];
     for (let p of Object.entries(parcelas)) {
         arr.push(p);
