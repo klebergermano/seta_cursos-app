@@ -145,8 +145,24 @@
       }  
     }
 
+    .fieldset_curso_status{
+        
+        .div_select_curso_status{
+            max-width: 240px;
+        }
+        .div_data_status{
+            max-width: 240px;
+        }
+        .div_datas_status{
+            display:none !important;
+        }
+    }
+        .curso_ativo{
+           // background: #cef7ce;
+        }
     .fieldset_certificado_status{
         background: #fffff6;
+        
     }
     .fieldset_curso_info{
     }
@@ -159,20 +175,11 @@
         margin-bottom:20px;
         display: block;
         color:#333;
-
         backdrop-filter: grayscale(30%) !important;
-
-        h4 {
-
+        h4.title_info_cursos {
+            user-select: none;
             width:100%;
-            svg{
-                margin-top:-5px;
-                float:right;
-                margin-right: 60px;
-                width:32px !important; 
-                height: 32px !important;
-            }
-            cursor:pointer; 
+            cursor:pointer;
             text-transform: uppercase;
             width: calc(100% + 20px);
             text-align: center;
@@ -181,7 +188,30 @@
             margin-left:-25px; 
             margin-right: -25px;
             margin-bottom:20px;
-            width: calc(100% + 100px)
+            width: calc(100% + 100px);
+             
+            svg{
+                margin-top:-5px;
+                float:right;
+                margin-right: 60px;
+                width:32px !important; 
+                height: 32px !important;
+            }
+            .title_status{
+              margin-top: -5px;
+              margin-right:20px;
+                float:right;
+                border:1px solid #ccc;
+                border-radius: 5px;
+                padding:5px; text-align: center;
+            }
+            
+            &:active{
+                box-shadow: 1px 0px 3px #000 inset ;
+            }
+       
+
+            
         
         }
         fieldset {

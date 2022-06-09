@@ -3184,6 +3184,15 @@ option[disabled] {
 #form_info_aluno .fieldset #aluno_ra, #form_info_aluno .fieldset #resp_end_numero, #form_info_aluno .fieldset #aluno_end_numero, #form_info_aluno .fieldset #aluno_genero, #form_info_aluno .fieldset #resp_genero, .form_info_curso .fieldset #aluno_ra, .form_info_curso .fieldset #resp_end_numero, .form_info_curso .fieldset #aluno_end_numero, .form_info_curso .fieldset #aluno_genero, .form_info_curso .fieldset #resp_genero {
   max-width: 80px;
 }
+#form_info_aluno .fieldset_curso_status .div_select_curso_status, .form_info_curso .fieldset_curso_status .div_select_curso_status {
+  max-width: 240px;
+}
+#form_info_aluno .fieldset_curso_status .div_data_status, .form_info_curso .fieldset_curso_status .div_data_status {
+  max-width: 240px;
+}
+#form_info_aluno .fieldset_curso_status .div_datas_status, .form_info_curso .fieldset_curso_status .div_datas_status {
+  display: none !important;
+}
 #form_info_aluno .fieldset_certificado_status, .form_info_curso .fieldset_certificado_status {
   background: #fffff6;
 }
@@ -3195,7 +3204,8 @@ option[disabled] {
   color: #333;
   backdrop-filter: grayscale(30%) !important;
 }
-#form_info_aluno .bg_curso h4, .form_info_curso .bg_curso h4 {
+#form_info_aluno .bg_curso h4.title_info_cursos, .form_info_curso .bg_curso h4.title_info_cursos {
+  user-select: none;
   width: 100%;
   cursor: pointer;
   text-transform: uppercase;
@@ -3208,12 +3218,24 @@ option[disabled] {
   margin-bottom: 20px;
   width: calc(100% + 100px);
 }
-#form_info_aluno .bg_curso h4 svg, .form_info_curso .bg_curso h4 svg {
+#form_info_aluno .bg_curso h4.title_info_cursos svg, .form_info_curso .bg_curso h4.title_info_cursos svg {
   margin-top: -5px;
   float: right;
   margin-right: 60px;
   width: 32px !important;
   height: 32px !important;
+}
+#form_info_aluno .bg_curso h4.title_info_cursos .title_status, .form_info_curso .bg_curso h4.title_info_cursos .title_status {
+  margin-top: -5px;
+  margin-right: 20px;
+  float: right;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+}
+#form_info_aluno .bg_curso h4.title_info_cursos:active, .form_info_curso .bg_curso h4.title_info_cursos:active {
+  box-shadow: 1px 0px 3px #000 inset;
 }
 #form_info_aluno .bg_curso fieldset, .form_info_curso .bg_curso fieldset {
   width: 100%;
