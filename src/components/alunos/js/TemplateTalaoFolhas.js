@@ -33,7 +33,6 @@ let f_parcela = talaoInfo.num_parcela + '/'+ talaoInfo.parcelas_total;
               <span class="label_top"><b>Nº Lanç.</b></span>
              <span class='n_lanc_cliente'> ${talaoInfo.n_lanc}</span>
             </td>
-  
             <td colspan="1">
               <span class="label_top"><b>Parcela</b></span>
              ${f_parcela}
@@ -75,9 +74,8 @@ let f_parcela = talaoInfo.num_parcela + '/'+ talaoInfo.parcelas_total;
             <td colspan="2">
               <span class="RA_cliente">Via da escola: ${talaoInfo.ra}</span>
             </td>
-  
             <td colspan="5">
-              <br /><span class="data_cliente"> Data ____/____/____</span><br />
+              <span class="data_cliente">Data ____/____/____</span><br />
             </td>
           </tr>
         </table>
@@ -136,12 +134,11 @@ let f_parcela = talaoInfo.num_parcela + '/'+ talaoInfo.parcelas_total;
           </tr>
           <tr>
             <td colspan="4"></td>
-            <td><span class="RA">Via do aluno: RA${talaoInfo.ra}</span></td>
+            <td><span class="RA">Via do aluno: ${talaoInfo.ra}</span></td>
           </tr>
           <tr>
             <td colspan="5" class="ass">
-              <span class="ass_label">Ass.: </span
-              ><span class="data_destaque">Data ___/___/____</span>
+              <span class="ass_label">Ass.: </span><span class="data_destaque">Data ___/___/____</span>
               <hr />
             </td>
           </tr>

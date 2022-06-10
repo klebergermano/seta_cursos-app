@@ -27,8 +27,8 @@ const TemplateTalao = (talaoInfo) => {
             }
            
             .bg_boleto {width: 21cm;  border-bottom: 1px dotted #fff; height: 7.42cm; background: #fff;  overflow: hidden; border-bottom:1px dotted #ccc}
-            .bloco_cliente {  padding: 10px 15px 10px 30px;  float: left; width: 7.72cm; height: 7.43cm; border-right: 1px dotted #ccc; }
-            .bloco_destaque {  padding: 10px 20px 10px 10px;  background: #fff; float: right;  width: 13.12cm; height: 7.43cm; border-right: 1px dotted #fff; }
+            .bloco_cliente {  padding: 10px 15px 10px 30px;  float: left; width: 7.72cm;  height: 7.42cm; border-right: 1px dotted #ccc; }
+            .bloco_destaque {  padding: 10px 20px 10px 10px;  float: right; background:rgba(255, 255, 00, 0.15); width: 13.12cm; height: 7.42cm; border-right: 1px dotted #fff; }
             th {} table,th,td { border: 1px solid #bbb; border-collapse: collapse; }
             th,td { padding: 0px 4px 0px 10px; height: 25px; overflow: hidden; font-size: 13px; }
             .font_6 { font-size: 10px; }
@@ -39,7 +39,7 @@ const TemplateTalao = (talaoInfo) => {
             .seta_nome span { font-weight: bold;  height: 35px; }
             .RA { font-size: 8px; }
             hr {  margin-top: 25px;}
-            .ass {padding: 8px; border-bottom: 0px; border-left: 0px !important; }
+            .ass {padding: 4px 8px; border-bottom: 0px; border-left: 0px !important; }
             .ass_label { margin-top: 10px; float: left;  padding: 0 10px 0px 0px;}
             .data_destaque {margin-top: 10px; float: right; padding: 0px 10px; }
             .curso { font-size: 13px;  padding: 0 5px;  text-transform: uppercase; }
@@ -48,7 +48,7 @@ const TemplateTalao = (talaoInfo) => {
             .bloco_cliente td { font-size: 11px;  padding: 4px 5px 4px 5px; }
             .cifrao_total {font-size: 13px;}
             .bloco_cliente b { font-size: 10px;}
-            .data_cliente { height: 50px; }
+            .data_cliente { height: 30px;}
             .RA_cliente { font-size: 9px !important;}
             .n_lanc_cliente { font-size: 10px !important;}
             .n_lanc { font-size: 10px !important;}
