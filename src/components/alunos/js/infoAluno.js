@@ -20,14 +20,179 @@ const VMasker = require("vanilla-masker");
 //TODO: REFATORAR E ADICIONAR COMENTÁRIOS
 //==================================================================================================================
 
-let $alunoInfoGlobal = {
-    cursos: {}
-}
+
 export function insertInfoAlunoHTML(RA) {
     insertElementHTML('#alunos_content',
         './components/alunos/infoAluno.html', () => { eventsInfoAluno(RA) }, null, true
     );
 }
+
+// Retorna um objecto com os cursos que o aluno faz.
+async function getCursosInfoObj(RA) {
+       let cursos = getDocs(collection(db, 'alunato', RA, 'cursos'))
+        .then(async (res) => {
+            let cursosInfoObj = {};
+            res.forEach((item) => {
+                let nomeCurso = item.data().curso_info.nome;
+                cursosInfoObj[nomeCurso] = item.data();
+            })
+            return cursosInfoObj;
+        }).catch((error) => { console.log(error) })
+    return cursos;
+}
+//Retorna um objeto com todas as informações do aluno, incluindo os cursos que faz.
+async function getAlunoCompleteInfo(RA){
+    let alunoCompleteInfo = {}; 
+    let alunoBasicInfo = getAlunoBasicInfo(RA)
+    let cursosInfoObj = getCursosInfoObj(RA)
+    //cria o objeto aluno dentro do alunoCompleteInfo
+        alunoCompleteInfo = await alunoBasicInfo;
+    //cria o objeto cursos dentro do alunoCompleteInfo
+        alunoCompleteInfo.cursos = await cursosInfoObj;
+
+    return alunoCompleteInfo;
+}
+
+//Retorna as informações de cadastro do aluno como: RA, nome, endereço, etc.
+async function getAlunoBasicInfo(RA){
+    let alunoInfo = getDoc(doc(db, 'alunato', RA))
+        .then(async (res)=>{
+            let alunoObj = {};
+            alunoObj = res.data();
+            return alunoObj;
+        })
+        console.log(alunoInfo)
+        return alunoInfo;
+}
+
+//Cria o evento de click para os botões que abrem o formulário de salvar o certificado do curso.
+function eventsBtnsCreateCertificado(){
+    let btns = document.querySelectorAll('.btn_create_certificado');
+            btns.forEach((item) => {
+                item.addEventListener('click', (e) => {
+                    insertFormAddCertificadoHTML(getCertificadoInfo(e));
+                })
+            });
+}
+
+//Cria o evento de click para os títulos do cursos.
+function eventsTitleInfoCusos(){
+            // Adiciona o evento de expandir o formulário ".aluno_info_info".
+            document.querySelectorAll('.title_info_cursos').forEach((item) => {
+                item.addEventListener('click', (e) => {
+                    //Mostra e oculta as informações do curso alternando a cada execução.
+                    showAndHideFormInfoCurso(e);
+                })
+            })
+}
+
+//Cria os eventos de click para salvar o PDF do talão de pagamento.
+function eventsBtnsSalvarTaloesPDF(alunoCompleteInfo){
+    let btns = document.querySelectorAll('.btn_create_talao');
+    btns.forEach((item) => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            let cursoNome = e.target.closest('table').dataset.curso_nome;
+            //Cria a informação do Talão.
+            let talaoInfo = createInfoTalao(cursoNome, alunoCompleteInfo);
+            //Faz o submit do talão.
+            submitTalaoPDF(talaoInfo);
+        })
+    });
+}
+//Cria o evento de input no campos de formulário do aluno. 
+function eventsFields(){
+    let inputs = document.querySelectorAll('#form_info_aluno input, #form_info_aluno textarea, .form_info_curso input, .form_info_curso textarea');
+    inputs.forEach((item) => {
+        item.addEventListener('input', (e) => {
+            activeSubmitOnChangeInput(e)
+        });
+    })
+}
+
+//Seta mascaras dos campos do Responsável de cada curso.
+function setMasksFormRespCursos(form){
+    VMasker(form.querySelector("#resp_cep")).maskPattern("99999-999");
+    VMasker(form.querySelector("#resp_cpf")).maskPattern("999.999.999-99");
+    VMasker(form.querySelector("#resp_rg")).maskPattern("99.999.999-S");
+}
+
+//Aplica as mascaras de input do formulário do aluno.
+function setMasksFormAluno(){
+    VMasker(document.querySelector("#form_info_aluno #aluno_rg")).maskPattern("99.999.999-S");
+    VMasker(document.querySelector("#form_info_aluno #aluno_cep")).maskPattern("99999-999");
+}
+
+//Eventos de submição dos formulário dos Cursos
+function eventsSubmitFormsInfoCurso(){
+    let formsInfo = document.querySelectorAll('.form_info_curso');
+    formsInfo.forEach((form) => {
+        //Seta mascaras dos campos do Responsável de cada curso.
+        setMasksFormRespCursos(form)
+        //Adiciona o event de submição de formulário de cada curso.
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            submitFormsInfoCurso(e)
+        });
+        form.querySelector("#checkbox_certificado_entregue")?.addEventListener('input', (e) => {
+            setBtnCheckboxCertificado(e.target);
+        });
+    })
+}
+
+//Evento de envio do formulário para atualização das informações do aluno
+function eventSubmitFormAlunoInfo(){
+    document.querySelector('#form_info_aluno').addEventListener('submit', (e) => {
+        e.preventDefault();
+        submitFormInfoAluno(e);
+    })
+}
+
+
+// Insere os cursos que o aluno faz na página.
+function insertAlunoCursoInfo(alunoCompleteInfo) {
+    let RA = alunoCompleteInfo.aluno.ra; 
+    let cursos = alunoCompleteInfo.cursos;
+        for(const [key, value] of Object.entries(cursos)){
+            let formCurso = createCursoCotentHTML(RA, value);
+            document.querySelector("#bg_info_aluno").appendChild(formCurso);
+            let checkboxCertificado = formCurso.querySelector("#checkbox_certificado_entregue")
+            setBtnCheckboxCertificado(checkboxCertificado);
+        }
+
+}
+
+
+function eventsInfoAluno(RA) {
+    getAlunoCompleteInfo(RA)
+    .then((alunoCompleteInfo)=>{
+        // insere as informações do aluno no formulário de aluno.
+        insertAlunoInfo(alunoCompleteInfo);
+        // Insere os cursos que o aluno faz em formato de formulário na página.
+         insertAlunoCursoInfo(alunoCompleteInfo);
+         return alunoCompleteInfo
+    }).then((alunoCompleteInfo) => {
+        //---------------------------------------------------------------------
+        //Eventos dos formulários.
+        //---------------------------------------------------------------------
+        //Cria o evento de click para os botões que abrem o formulário de salvar o certificado do curso.
+        eventsBtnsCreateCertificado();
+        //Cria o evento de click para os títulos do cursos.
+        eventsTitleInfoCusos()
+        //Cria os eventos de click para salvar o PDF do talão de pagamento.
+        eventsBtnsSalvarTaloesPDF(alunoCompleteInfo)
+        //Cria o evento de input no campos de formulário do aluno. 
+        eventsFields()
+        //Aplica as mascaras de input do formulário do aluno.
+        setMasksFormAluno()
+        //Eventos de submição dos formulário dos Cursos
+        eventsSubmitFormsInfoCurso()
+        //Evento de envio do formulário para atualização das informações do aluno
+        eventSubmitFormAlunoInfo()
+    });
+   
+}
+
 
 function getCertificadoInfo(e) {
     let certificadoInfo = {};
@@ -43,75 +208,11 @@ function getCertificadoInfo(e) {
     return certificadoInfo;
 }
 
-function showFormInfoCurso(e) {
+function showAndHideFormInfoCurso(e) {
     let parentFormInfoCurso = e.target.closest('form');
     parentFormInfoCurso.classList.toggle('hide_form_info_curso');
 }
 
-function eventsInfoAluno(RA) {
-    document.querySelector('#form_info_aluno').addEventListener('submit', (e) => {
-        e.preventDefault();
-        submitFormInfoAluno(e);
-    })
-    getInfoAlunoDB(RA)
-        .then(() => {
-            let btns = document.querySelectorAll('.btn_create_certificado');
-            btns.forEach((item) => {
-
-                item.addEventListener('click', (e) => {
-                    e.preventDefault(); //TODO: Conferir utilidade do "e.preventDefault()""; .
-                    let certificadoInfo = getCertificadoInfo(e);
-                    insertFormAddCertificadoHTML(certificadoInfo);
-                })
-
-            });
-            // Adicionas o evento de expandir o formulário aluno_info_info
-            let titleCursosInfo = document.querySelectorAll('.title_info_cursos');
-
-            titleCursosInfo.forEach((item) => {
-                item.addEventListener('click', (e) => {
-                    showFormInfoCurso(e);
-                })
-            })
-        })
-        .then(() => {
-            let btns = document.querySelectorAll('.btn_create_talao');
-            btns.forEach((item) => {
-                item.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    let cursoNome = e.target.closest('table').dataset.curso_nome;
-                    let talaoInfo = createInfoTalao(cursoNome);
-                    submitTalaoPDF(talaoInfo);
-                })
-            });
-        }).then(() => {
-            let inputs = document.querySelectorAll('#form_info_aluno input, #form_info_aluno textarea, .form_info_curso input, .form_info_curso textarea');
-            inputs.forEach((item) => {
-                item.addEventListener('input', (e) => {
-                    activeSubmitOnChangeInput(e)
-                });
-            })
-        }).then(() => {
-            let formsInfo = document.querySelectorAll('.form_info_curso');
-            formsInfo.forEach((form) => {
-                VMasker(form.querySelector("#resp_cep")).maskPattern("99999-999");
-                VMasker(form.querySelector("#resp_cpf")).maskPattern("999.999.999-99");
-                VMasker(form.querySelector("#resp_rg")).maskPattern("99.999.999-S");
-                form.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    submitFormsInfoCurso(e)
-                });
-                form.querySelector("#checkbox_certificado_entregue")?.addEventListener('input', (e) => {
-
-                    setBtnCheckboxCertificado(e.target)
-                });
-            })
-        }).then(() => {
-
-            VMasker(document.querySelector("#form_info_aluno #aluno_rg")).maskPattern("99.999.999-S");
-            VMasker(document.querySelector("#form_info_aluno #aluno_cep")).maskPattern("99999-999");
-        })
-}
 
 function activeSubmitOnChangeInput(e) {
     let form = e.target.closest('form');
@@ -197,47 +298,12 @@ function submitFormInfoAluno(e) {
     })
 }
 
-async function getInfoAlunoDB(RA) {
-    //Pega as informações do aluno em alunato no BD.
-    let alunoInfo = getDoc(doc(db, 'alunato', RA))
-        .then(async (res) => {
 
-            //Acrescenta a informação do aluno no $alunoInfoGlobal.
-            $alunoInfoGlobal.aluno = res.data().aluno;
-            // Insere as informações do aluno nos inputs da página.
-            insertAlunoInfo(res.data());
 
-            // Pega os cursos que o aluno faz utilizando o RA.
-            let cursos = await getCursosInfoAlunoDB(RA);
-            console.log(cursos)
-            // Insere os cursos que o aluno faz na página.
-            insertAlunoCursoInfo(RA, cursos);
-        
-        }).then(() => {
-            //retorna o $alunoInfoGlobal.
-            return $alunoInfoGlobal;
-        })
-        .catch((error) => { console.log(error) })
-
-        console.log(await alunoInfo);
-    return await alunoInfo;
-}
-
-// Pega os cursos que o aluno faz utilizando o RA.
-function getCursosInfoAlunoDB(RA) {
-    let cursos = getDocs(collection(db, 'alunato', RA, 'cursos'))
-        .then((res) => {
-            res.forEach((item) => {
-                let nomeCurso = item.data().curso_info.nome;
-                $alunoInfoGlobal.cursos[nomeCurso] = item.data();
-            })
-            return res;
-        }).catch((error) => { console.log(error) })
-    return cursos;
-}
 
 // Insere as informações do aluno nos inputs da página.
 function insertAlunoInfo(alunoInfo) {
+    console.log(alunoInfo);
     document.querySelector('#aluno_ra').value = alunoInfo.aluno.ra;
     document.querySelector('#aluno_nome').value = alunoInfo.aluno.nome;
     document.querySelector('#aluno_genero').value = alunoInfo.aluno.genero;
@@ -253,16 +319,6 @@ function insertAlunoInfo(alunoInfo) {
     document.querySelector('#aluno_obs').value = alunoInfo.aluno.obs;
 }
 
-// Insere os cursos que o aluno faz na página.
-function insertAlunoCursoInfo(RA, cursos) {
-    cursos.forEach((item) => {
-        let curso = item.data();
-        let formCurso = createCursoCotentHTML(RA, curso);
-        document.querySelector("#bg_info_aluno").appendChild(formCurso);
-        let checkboxCertificado = formCurso.querySelector("#checkbox_certificado_entregue")
-        setBtnCheckboxCertificado(checkboxCertificado);
-    })
-}
 
 
 function createTableParcelasTable(parcelas, cursoNome) {
@@ -339,14 +395,64 @@ function setBtnCheckboxCertificado(input) {
 }
 
 
+function submitTalaoPDF(talaoInfo) {
 
-function checkStatusCurso(){
-    let cursoStatus = get
+    displaySpinnerLoad("#page_content", true);
+    let result = new Promise((resolve, reject) => {
+        let res = ipcRenderer.invoke("createTalaoPDF", talaoInfo);
+        if (res) {
+            resolve(res);
+        } else {
+            reject();
+        }
+    });
+    result.then(() => {
+        //loadinContrato.style.display = "none";
+        removeSpinnerLoad("#page_content");
+    })
+        .catch((error) => {
+            console.log(error)
+            addLogInfo('log_alunato', 'error', talaoInfo.RA, error);
+        });
+}
+
+function createInfoTalao(cursoNome, alunoCompleteInfo) {
+    let talaoInfo = [];
+
+    let alunoNome = alunoCompleteInfo.aluno.nome;
+    let RA = alunoCompleteInfo.aluno.ra;
+    let respNome = alunoCompleteInfo.cursos[cursoNome].resp_info.nome;
+    let parcelas_total = alunoCompleteInfo.cursos[cursoNome].curso_info.parcelas_total;
+    let parcelas = alunoCompleteInfo.cursos[cursoNome].curso_info.parcelas;
+    let arr = [];
+    for (let p of Object.entries(parcelas)) {
+        arr.push(p);
+    }
+
+    let parcelasOrdered = arr.sort();
+    parcelasOrdered.forEach((item) => {
+        item[1].num_parcela = item[0];
+        item[1].responsavel = respNome;
+        item[1].aluno = alunoNome;
+        item[1].ra = RA;
+        item[1].curso = cursoNome;
+        item[1].parcelas_total = parcelas_total;
+        let folha = item[1];
+        talaoInfo.push(folha);
+    });
+    return talaoInfo;
 
 }
 
 
+
+//======================================================================================================
+//======================================================================================================
+//======================================================================================================
+//======================================================================================================
+
 function createCursoCotentHTML(RA, curso) {
+    console.log('CURSO:', curso)
     let form = document.createElement('form');
     form.classList = `form_info_curso hide_form_info_curso  border_${curso.curso_info.nome}`;
     form.setAttribute('data-curso_nome', curso.curso_info.nome);
@@ -513,15 +619,15 @@ function createCursoCotentHTML(RA, curso) {
             </div>
             <div class='div_input_info'>
                 <label>CEP</label>
-                <input id='resp_cep'  type='text'  value="${curso.resp_info.cep}"/>
+                <input id='resp_cep'  class='resp_cep' type='text'  value="${curso.resp_info.cep}"/>
             </div>
             <div class='div_input_info'>
                 <label>CPF</label>
-                <input id='resp_cpf'  type='text' readonly="true" value="${curso.resp_info.cpf}"/>
+                <input id='resp_cpf' class='resp_cpf' type='text' readonly="true" value="${curso.resp_info.cpf}"/>
             </div>
             <div class='div_input_info'>
                 <label>RG</label>
-                <input id='resp_rg'  type='text' readonly="true" value="${curso.resp_info.rg}"/>
+                <input id='resp_rg' class='resp_rg' type='text' readonly="true" value="${curso.resp_info.rg}"/>
             </div>
             <div class='div_input_info'>
                 <label>Data Nasc.</label>
@@ -548,52 +654,3 @@ function createCursoCotentHTML(RA, curso) {
     form.appendChild(bg_curso);
     return form;
 }
-
-function submitTalaoPDF(talaoInfo) {
-
-    displaySpinnerLoad("#page_content", true);
-    let result = new Promise((resolve, reject) => {
-        let res = ipcRenderer.invoke("createTalaoPDF", talaoInfo);
-        if (res) {
-            resolve(res);
-        } else {
-            reject();
-        }
-    });
-    result.then(() => {
-        //loadinContrato.style.display = "none";
-        removeSpinnerLoad("#page_content");
-    })
-        .catch((error) => {
-            console.log(error)
-            addLogInfo('log_alunato', 'error', talaoInfo.RA, error);
-        });
-}
-
-function createInfoTalao(cursoNome) {
-    let talaoInfo = [];
-    let alunoNome = $alunoInfoGlobal.aluno.nome;
-    let RA = $alunoInfoGlobal.aluno.ra;
-    let respNome = $alunoInfoGlobal.cursos[cursoNome].resp_info.nome;
-    let parcelas_total = $alunoInfoGlobal.cursos[cursoNome].curso_info.parcelas_total;
-    let parcelas = $alunoInfoGlobal.cursos[cursoNome].curso_info.parcelas;
-    let arr = [];
-    for (let p of Object.entries(parcelas)) {
-        arr.push(p);
-    }
-
-    let parcelasOrdered = arr.sort();
-    parcelasOrdered.forEach((item) => {
-        item[1].num_parcela = item[0];
-        item[1].responsavel = respNome;
-        item[1].aluno = alunoNome;
-        item[1].ra = RA;
-        item[1].curso = cursoNome;
-        item[1].parcelas_total = parcelas_total;
-        let folha = item[1];
-        talaoInfo.push(folha);
-    });
-    return talaoInfo;
-
-}
-
