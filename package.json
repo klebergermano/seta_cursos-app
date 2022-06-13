@@ -2,10 +2,14 @@
   "name": "seta_cursos-app",
   "productName": "seta_cursos-app",
 <<<<<<< HEAD
+<<<<<<< HEAD
   "version": "1.0.3",
 =======
   "version": "1.0.5",
 >>>>>>> 59bef82 (feat: input pesquisa aluno em mesalidade)
+=======
+  "version": "1.0.6",
+>>>>>>> ccc77de (fix: template talão de pagamento)
   "description": "Aplicativo de gerenciamento da SETA CURSOS",
   "main": "src/main.js",
   "scripts": {
