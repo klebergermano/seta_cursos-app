@@ -7,7 +7,7 @@ const {getAuth} = require("firebase/auth");
 const auth = getAuth(firebaseApp);
 //---------------------------------------------------------------//
 //Components
-import sortTable from "../../jsCommon/sortTable.js";
+import sortTable from "../../jsCommon/sortTable.js"; 
 import  insertElementHTML from "../../jsCommon/insertElementHTML.js";
 import { confirmBoxDelete } from "../../jsCommon/confirmBoxFunc.js";
 import { insertFormAddCursoHTML } from "./formAddCurso.js";

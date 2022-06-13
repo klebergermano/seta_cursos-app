@@ -13,7 +13,16 @@ let f_parcela = talaoInfo.num_parcela + '/'+ talaoInfo.parcelas_total;
     return (
         `
       <div class="bg_boleto">
+      <!================================================================================================================>
+      <!------------------------------------------- VIA DO ALUNO ------------------------------------------------------->
+      <!================================================================================================================>
       <div class="bloco_cliente">
+      <div class='margen_grampo'>
+      <span>&#166;</span>
+      <span>&#166;</span>
+      <span>&#166;</span>
+      <span>&#166;</span>
+      </div>
         <table style="width:100%">
           <tr width="100%">
             <td colspan="10">
@@ -33,7 +42,6 @@ let f_parcela = talaoInfo.num_parcela + '/'+ talaoInfo.parcelas_total;
               <span class="label_top"><b>Nº Lanç.</b></span>
              <span class='n_lanc_cliente'> ${talaoInfo.n_lanc}</span>
             </td>
-  
             <td colspan="1">
               <span class="label_top"><b>Parcela</b></span>
              ${f_parcela}
@@ -51,39 +59,39 @@ let f_parcela = talaoInfo.num_parcela + '/'+ talaoInfo.parcelas_total;
             </td>
             <td colspan="1">
               <span class="label_top"><b>Desconto</b></span>
-  
               R$ ${f_desconto}
             </td>
             <td colspan="1">
               <span class="label_top"><b>Valor Total</b></span>
-  
              <b> R$ ${f_valor_total}</b>
             </td>
           </tr>
           <tr>
             <td colspan="5">
-              <b>Curso:</b><span class="curso_cliente"> ${talaoInfo.curso}</span>
+              <b>Curso: </b><span class="curso_cliente">${talaoInfo.curso}</span>
             </td>
           </tr>
           <tr>
             <td colspan="5"><b>Obs.: </b></td>
           </tr>
-          <tr>
+          <tr >
             <td colspan="3"></td>
           </tr>
           <tr>
             <td colspan="2">
-              <span class="RA_cliente">Via da escola: ${talaoInfo.ra}</span>
+              <span class="RA_cliente">Via do aluno: ${talaoInfo.ra}</span>
             </td>
-  
             <td colspan="5">
-              <br /><span class="data_cliente"> Data ____/____/____</span><br />
+              <span class="data_cliente">Data ____/____/____</span><br />
             </td>
           </tr>
         </table>
       </div>
-      <!-------------------------------------------------------------->
-      <div class="bloco_destaque">
+
+      <!================================================================================================================>
+      <!------------------------------------------- VIA DA ESCOLA ------------------------------------------------------>
+      <!================================================================================================================>
+      <div class="bloco_escola">
         <table style="width:100%">
           <tr width="100%">
             <td colspan="4" class="seta_nome">
@@ -93,8 +101,7 @@ let f_parcela = talaoInfo.num_parcela + '/'+ talaoInfo.parcelas_total;
           </tr>
           <tr>
             <td colspan="5">
-              <b>Responsável: </b
-              ><span class="responsavel">${talaoInfo.responsavel}</span>
+              <b>Responsável: </b><span class="responsavel">${talaoInfo.responsavel}</span>
             </td>
           </tr>
           <tr>
@@ -132,17 +139,15 @@ let f_parcela = talaoInfo.num_parcela + '/'+ talaoInfo.parcelas_total;
             </td>
           </tr>
           <tr>
-            <td colspan="5"><b>Obs.: </b></td>
+            <td colspan="5"><b>Obs.: </td>
           </tr>
           <tr>
-            <td colspan="4"></td>
-            <td><span class="RA">Via do aluno: RA${talaoInfo.ra}</span></td>
+            <td colspan="5"></td>
           </tr>
           <tr>
-            <td colspan="5" class="ass">
-              <span class="ass_label">Ass.: </span
-              ><span class="data_destaque">Data ___/___/____</span>
-              <hr />
+            <td colspan="3"><span class="RA">Via da escola: ${talaoInfo.ra}</span></td>
+            <td colspan="2" class="data_escola">
+             <span id='data_folha_escola'>Data ___/___/____</span>
             </td>
           </tr>
         </table>

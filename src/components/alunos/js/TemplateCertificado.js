@@ -10,7 +10,12 @@ function changeDateToDislayText(dateString) {
     return changedDate;
 }
 
+
 const TemplateCertificado = (certificadoInfo) => {
+    console.log('--------------------------------------------------------------------');
+    console.log(certificadoInfo);
+    console.log('--------------------------------------------------------------------');
+
 
     return (`
     <!DOCTYPE html>
@@ -34,6 +39,9 @@ const TemplateCertificado = (certificadoInfo) => {
                 body {
                   
                     font-family: 'Noto Sans', sans-serif;
+                }
+                p{
+                    font-style: normal !important;
                 }
            
                 #logo {
@@ -72,7 +80,7 @@ const TemplateCertificado = (certificadoInfo) => {
                   font-size:13pt;
                 }
                 #curso{ text-transform: uppercase; font-weight: bold;}
-                #aluno, #horas, #inicio, #site, #cod{font-weight: bold;}
+                #aluno, #horas, #inicio, #conclusao, #site, #cod{font-weight: bold;}
                 #modulos{ line-height: 16pt; font-style:italic !important; font-weight:normal;}
             </style>
             <script src='./scirpt.js' defer></script>
@@ -85,6 +93,7 @@ const TemplateCertificado = (certificadoInfo) => {
               <p  class='p_modulos'>Módulos: <span id='modulos'>${certificadoInfo.curso_modulos}</span></p>
               <p>Carga horária: <span id='horas'>${certificadoInfo.curso_carga_horaria} horas</span></p>
               <p>Início: <span id='inicio'>${changeDateToDislayText(certificadoInfo.curso_inicio)}</span></p>
+              <p>Conclusão: <span id='conclusao'>${changeDateToDislayText(certificadoInfo.curso_conclusao)}</span></p>
               <p>Local: <span id='endereco'>${certificadoInfo.endereco}</span></p>
             </div>
             <div id='bg_info_2' class='bg_info'>
