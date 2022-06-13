@@ -146,6 +146,7 @@
     }
 
     .fieldset_curso_status{
+        display:none;
         
         .div_select_curso_status{
             max-width: 240px;
@@ -198,6 +199,7 @@
                 height: 32px !important;
             }
             .title_status{
+                display: none;
               margin-top: -5px;
               margin-right:20px;
                 float:right;
