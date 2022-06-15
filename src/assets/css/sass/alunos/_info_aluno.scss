@@ -153,13 +153,9 @@
         .div_data_status{
             max-width: 240px;
         }
-        .div_datas_status{
-            display:none !important;
-        }
+      
     }
-        .curso_ativo{
-           // background: #cef7ce;
-        }
+     
     .fieldset_certificado_status{
         background: #fffff6;
         
@@ -205,8 +201,20 @@
                 background:#fafafa;
                 border-radius: 5px;
                 padding:5px; text-align: center;
-                color:green;
+                
             }
+            .status_ativo{
+                color: green;
+              }
+            .status_pausado{
+                color: rgb(48, 64, 99);
+              }
+            .status_cancelado{
+                color: red;
+              }
+            .status_concluido{
+                color: rgb(92, 92, 92);
+              }
             
             &:active{
                 box-shadow: 1px 0px 3px #000 inset ;

@@ -3190,9 +3190,6 @@ option[disabled] {
 #form_info_aluno .fieldset_curso_status .div_data_status, .form_info_curso .fieldset_curso_status .div_data_status {
   max-width: 240px;
 }
-#form_info_aluno .fieldset_curso_status .div_datas_status, .form_info_curso .fieldset_curso_status .div_datas_status {
-  display: none !important;
-}
 #form_info_aluno .fieldset_certificado_status, .form_info_curso .fieldset_certificado_status {
   background: #fffff6;
 }
@@ -3234,7 +3231,18 @@ option[disabled] {
   border-radius: 5px;
   padding: 5px;
   text-align: center;
+}
+#form_info_aluno .bg_curso h4.title_info_cursos .status_ativo, .form_info_curso .bg_curso h4.title_info_cursos .status_ativo {
   color: green;
+}
+#form_info_aluno .bg_curso h4.title_info_cursos .status_pausado, .form_info_curso .bg_curso h4.title_info_cursos .status_pausado {
+  color: #304063;
+}
+#form_info_aluno .bg_curso h4.title_info_cursos .status_cancelado, .form_info_curso .bg_curso h4.title_info_cursos .status_cancelado {
+  color: red;
+}
+#form_info_aluno .bg_curso h4.title_info_cursos .status_concluido, .form_info_curso .bg_curso h4.title_info_cursos .status_concluido {
+  color: #5c5c5c;
 }
 #form_info_aluno .bg_curso h4.title_info_cursos:active, .form_info_curso .bg_curso h4.title_info_cursos:active {
   box-shadow: 1px 0px 3px #000 inset;
