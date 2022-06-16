@@ -51,6 +51,9 @@ function eventsInfoAluno(RA) {
             // Evento de envio do formulário para atualização das informações do aluno.
             eventSubmitFormAlunoInfo();
 
+            //Subnav menus cursos info
+            eventSubnavCursoInfo();
+
         }).catch((error) => console.log(error));
 }
 
@@ -86,7 +89,7 @@ async function getAlunoBasicInfo(RA) {
             let alunoObj = {};
             alunoObj = res.data();
             return alunoObj;
-        }).catch((error)=> console.log(error));
+        }).catch((error) => console.log(error));
     return alunoInfo;
 }
 
@@ -112,9 +115,9 @@ function eventsTitleInfoCusos() {
     })
 }
 
-// Cria o evento de input no campos de formulário do aluno. 
+// Cria o evento de input nos campos de formulário do aluno. 
 function eventsFields() {
-    let inputs = document.querySelectorAll('#form_info_aluno input, #form_info_aluno textarea, .form_info_curso input, .form_info_curso textarea');
+    let inputs = document.querySelectorAll('#form_info_aluno input, #form_info_aluno textarea, .form_info_curso select, .form_info_curso input, .form_info_curso textarea');
     inputs.forEach((item) => {
         item.addEventListener('input', (e) => {
             // Habilita o botão de submissão do formulário.
@@ -210,14 +213,14 @@ function eventSubmitFormAlunoInfo() {
 }
 
 // Confere se o valor do checkbox do certificado esta marcado. 
-   function verificaCheckboxCertificado(form){
+function verificaCheckboxCertificado(form) {
     let checkboxCertificadoEntregue = form.querySelector("#checkbox_certificado_entregue");
-      let valueCerticadoEntregue = "";
-      if (checkboxCertificadoEntregue.checked) {
-          valueCerticadoEntregue = "sim";
-      }
-      return valueCerticadoEntregue;
-  }
+    let valueCerticadoEntregue = "";
+    if (checkboxCertificadoEntregue.checked) {
+        valueCerticadoEntregue = "sim";
+    }
+    return valueCerticadoEntregue;
+}
 
 
 
@@ -233,10 +236,9 @@ function submitFormsInfoCurso(e) {
         {
             status_info: {
                 situacao: (form.status_situacao.value).trim(),
-                data: form.status_data.value, 
+                data: form.status_data.value,
                 obs: (form.status_obs.value).trim(),
-
-            }, 
+            },
             curso_info: {
                 certificado: {
                     entregue: valueCerticadoEntregue
@@ -264,6 +266,9 @@ function submitFormsInfoCurso(e) {
         inputSubmit.style.opacity = '0.5';
     }).then(() => {
         addLogInfo('log_alunato', 'update', RA);
+        //Reinsere a página infoAluno.
+        insertInfoAlunoHTML(RA)
+
     }).catch((error) => {
         addLogInfo('log_alunato', 'error', RA, error);
     })
@@ -296,9 +301,10 @@ function submitFormInfoAluno(e) {
         inputSubmit.style.opacity = '0.5';
     }).then(() => {
         addLogInfo('log_alunato', 'update', RA);
+        //Reinsere a página infoAluno.
+        insertInfoAlunoHTML(RA)
     }).catch((error) => {
         addLogInfo('log_alunato', 'error', RA, error);
-
     })
 }
 
@@ -394,8 +400,8 @@ function submitTalaoPDF(talaoInfo) {
     result.then(() => {
         removeSpinnerLoad("#page_content");
     }).catch((error) => {
-            console.log(error)
-            addLogInfo('log_alunato', 'error', talaoInfo.RA, error);
+        console.log(error)
+        addLogInfo('log_alunato', 'error', talaoInfo.RA, error);
     });
 }
 
@@ -449,26 +455,45 @@ function createTableParcelasTable(parcelas, cursoNome) {
         `<td colspan='10'>
         <button class='btn_create_talao'>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-pdf" viewBox="0 0 16 16">
-        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
-        <path d="M4.603 14.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.697 19.697 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.712 5.712 0 0 1-.911-.95 11.651 11.651 0 0 0-1.997.406 11.307 11.307 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.266.266 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.71 12.71 0 0 1 1.01-.193 11.744 11.744 0 0 1-.51-.858 20.801 20.801 0 0 1-.5 1.05zm2.446.45c.15.163.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.876 3.876 0 0 0-.612-.053zM8.078 7.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"/>
+         <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+         <path d="M4.603 14.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.697 19.697 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.712 5.712 0 0 1-.911-.95 11.651 11.651 0 0 0-1.997.406 11.307 11.307 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.266.266 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.71 12.71 0 0 1 1.01-.193 11.744 11.744 0 0 1-.51-.858 20.801 20.801 0 0 1-.5 1.05zm2.446.45c.15.163.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.876 3.876 0 0 0-.612-.053zM8.078 7.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"/>
          </svg>
         Salvar Talão PDF</button>
     </td>
     `;
     tableParcelas.querySelector('tbody').appendChild(trBtnTalao);
-    return tableParcelas;
+
+    let fieldsetParcelas = `
+    <div class='fieldset fieldset_curso_info fieldset_parcelas_info'>
+        <legend>Parcelas Info.</legend>
+        <div class='bg_table'>
+        <!-- Tabela de pagamento das parcelas do curso -->
+        ${tableParcelas.outerHTML}
+        </div>
+    </div>
+    `; 
+    console.log('fieldsetParcelas', fieldsetParcelas);
+    return fieldsetParcelas;
 }
 
 //------------------------------------------------------------------------------------------------------------------
 //--------------------------------------------- Conteúdo do Curso HTML ---------------------------------------------
 //------------------------------------------------------------------------------------------------------------------
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/
+function createMenuCursoInfo() {
+
+
+
+}
+
 // Cria o filedset do responsável para inserção HTML.
 function createCertificadoStatusFieldsetHTML(curso) {
     //Cria o html do certificado.
     let certificadoContentHTML = createCertificadoContentHTML(curso);
     let certificadoFieldsetHTML = `
-        <div class='fieldset fieldset_certificado_status'>
-        <legend>Certificado Status</legend>
+        <div class='fieldset fieldset_curso_info fieldset_certificado_info' >
+        <legend>Certificado Info.</legend>
         <button class='btn_create_certificado'>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-heading" viewBox="0 0 16 16">
                 <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
@@ -515,7 +540,7 @@ function createCertificadoContentHTML(curso) {
 // Cria o filedset do responsável para inserção HTML.
 function createResponsavelFieldsetHTML(curso) {
     let respFieldsetHTML = `
-    <div class='fieldset fieldset_resp_info'>
+    <div class='fieldset fieldset_curso_info fieldset_resp_info'>
         <legend>Responsável Info.</legend>
         <div class='div_input_info'>
             <label>Responsável: </label>
@@ -570,9 +595,8 @@ function createResponsavelFieldsetHTML(curso) {
 // Cria o filedset com informações do curso para inserção HTML.
 function createCursoFieldsetHTML(curso) {
     // Parcelas de pagamento do curso em formato de tabela.
-    let tableParcelas = (createTableParcelasTable(curso.curso_info.parcelas, curso.curso_info.nome)).outerHTML;
     let cursoFieldsetHTML = `
-    <div class='fieldset fieldset_curso_info'>
+    <div class='fieldset fieldset_curso_info fieldset_curso_dados'>
         <legend>Curso Info.</legend>
         <div class='div_input_info'>
             <label>ID Contrato: </label>
@@ -634,59 +658,55 @@ function createCursoFieldsetHTML(curso) {
             <label>Obs.:</label>
             <textarea id='curso_obs' >${curso.curso_info.obs}</textarea>
         </div>
-        <div class='bg_table'>
-            <!-- Tabela de pagamento das parcelas do curso -->
-            ${tableParcelas}
-        </div>
+     
     </div> <!--fieldset-->
     `;
 
     return cursoFieldsetHTML;
 }
 
-function getInfoStatusCurso(curso){
-    let statusInfo = {}
-    console.log(curso);
-    statusInfo.obs = curso.status_info.obs; 
-    statusInfo.data = curso.status_info.data;
-    statusInfo.situacao = curso.status_info.situacao; 
+function getInfoStatusCurso(curso) {
+    let statusInfo = {
+        obs: '', 
+        data: '', 
+        situacao: '', 
+    }
+    if(curso.status_info){
+        statusInfo.obs = curso.status_info.obs;
+        statusInfo.data = curso.status_info.data;
+        statusInfo.situacao = curso.status_info.situacao;
+    }
 
-    console.log('**************************************');
-    console.log('curso:', curso.status_info);
-    console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
     return statusInfo;
-
 }
 
-function createSelectStatusCursoHTML(status_situacao){
-let select = document.createElement('select'); 
+function createSelectStatusCursoHTML(status_situacao) {
+    let select = document.createElement('select');
     select.id = 'status_situacao';
     select.innerHTML = `
             <option value='ativo'>Ativo</option>
             <option value='pausado'>Pausado</option>
             <option value='cancelado'>Cancelado</option>
             <option value='concluido'>Concluido</option>
-    `; 
+    `;
     let arrOption = Array.from(select.options);
-    arrOption.forEach((item)=>{
-        console.log(item.value, status_situacao);
-        if(item.value === status_situacao ){
-            console.log('ok')
+    arrOption.forEach((item) => {
+        if (item.value === status_situacao) {
             item.setAttribute('selected', true);
         }
     });
 
-    return select.outerHTML; 
+    return select.outerHTML;
 
 }
 
 // Cria fieldset com o status do curso para inserção HTML.
 function createStatusFieldsetHTML(curso) {
-let statusInfo = getInfoStatusCurso(curso); 
-console.log(statusInfo);
-let selectStatusHTML = createSelectStatusCursoHTML(statusInfo.situacao);
+    let statusInfo = getInfoStatusCurso(curso);
+    let selectStatusHTML = createSelectStatusCursoHTML(statusInfo.situacao);
     let statusFieldsetHTML = `
-    <div class='fieldset fieldset_curso_status curso_ativo'>
+    <div class='fieldset fieldset_curso_info fieldset_curso_status' style='display:flex'>
+    <legend>Status Info.</legend>
     <div class='div_select_curso_status'>
         <label>Status:</label>
        ${selectStatusHTML}
@@ -704,9 +724,65 @@ let selectStatusHTML = createSelectStatusCursoHTML(statusInfo.situacao);
 
     return statusFieldsetHTML;
 }
+
+function eventSubnavCursoInfo() {
+    let subnaves = document.querySelectorAll('.subnav_curso_info');
+
+    //Adiciona os eventos de clicks no links através do "DOM Event delegation".
+    subnaves.forEach((item) => {
+        function hideAllFieldset() {
+            let form = item.closest('.form_info_curso');
+            let fieldsets = form.querySelectorAll('.fieldset_curso_info');
+            fieldsets.forEach((item) => {
+                item.style.display = 'none';
+            })
+        }
+
+        function removeActiveNav(e){
+            let subnav = e.target.closest('.subnav_curso_info');
+            let a = subnav.querySelectorAll('a'); 
+            a.forEach((item)=>{
+                item.classList.remove('active')
+            })
+            e.target.classList.add('active');
+        }
+
+        item.addEventListener('click', (e) => {
+            function displayFieldset() {
+                let form = item.closest('.form_info_curso');
+                if (e.target && e.target.nodeName === 'A') {
+                    removeActiveNav(e)
+                    hideAllFieldset();
+                    let fieldset_info = e.target.dataset.fieldset;
+                    let fieldset = form.querySelector('.' + fieldset_info);
+                    fieldset.style.display = 'flex';
+                }
+            }
+            displayFieldset(e);
+        })
+    });
+
+}
+function createSubnavCursoInfoHTML() {
+    let nav = document.createElement('nav');
+    nav.className = 'subnav_curso_info';
+    nav.innerHTML = `
+    <ul>
+        <li><a href='#' data-fieldset='fieldset_curso_status' class='status_info active' >Status</a></li>
+        <li><a href='#' data-fieldset='fieldset_curso_dados' class='certificado_curso_dados'>Dados</a></li>
+        <li><a href='#' data-fieldset='fieldset_resp_info' class='resp_info' >Responsável</a></li>
+        <li><a href='#' data-fieldset='fieldset_parcelas_info' class='parcelas_info'>Parcelas</a></li>
+        <li><a href='#' data-fieldset='fieldset_certificado_info' class='certificado_info' >Certificado</a></li>
+        
+`;
+
+    return nav.outerHTML;
+}
+
 // Cria o conteúdo com as informações do curso em formulário para ser inserido na página.
 function createCursoCotentHTML(RA, curso) {
 
+    let subnavCursoInfo = createSubnavCursoInfoHTML();
 
     // Fieldset do Status do curso em HTML.
     let statusFieldsetHTML = createStatusFieldsetHTML(curso);
@@ -717,15 +793,20 @@ function createCursoCotentHTML(RA, curso) {
     // Filedset do curso.
     let cursoFieldsetHTML = createCursoFieldsetHTML(curso);
 
-    let statusCurso= getInfoStatusCurso(curso)
+    //*************/
+    let parcelasFieldset = createTableParcelasTable(curso.curso_info.parcelas, curso.curso_info.nome);
+   console.log('parcelasFieldset', parcelasFieldset);
+
+   //****************/
+    let statusCurso = getInfoStatusCurso(curso);
     //Cria o elemento formulário do curso.
     let form = document.createElement('form');
-        form.classList = `form_info_curso hide_form_info_curso  border_${curso.curso_info.nome}`;
-        form.setAttribute('data-curso_nome', curso.curso_info.nome);
-        form.setAttribute('data-curso_cod', curso.curso_info.cod);
+    form.classList = `form_info_curso hide_form_info_curso  border_${curso.curso_info.nome}`;
+    form.setAttribute('data-curso_nome', curso.curso_info.nome);
+    form.setAttribute('data-curso_cod', curso.curso_info.cod);
 
     let bg_curso = document.createElement('div');
-        bg_curso.className = `bg_curso`;
+    bg_curso.className = `bg_curso`;
     let icon_title = `<svg class='arrow_down' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
                       <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                       </svg>`
@@ -735,6 +816,10 @@ function createCursoCotentHTML(RA, curso) {
         <input id='curso_nome' readonly="true" type='hidden' value="${curso.curso_info.nome}"/>
         <h4 class='title_info_cursos background_${curso.curso_info.nome}'>${curso.curso_info.nome}  ${icon_title} <span class='title_status status_${statusCurso.situacao}'>${statusCurso.situacao}</span> </h4>
         
+        <!--Subnav do curso info-->
+        ${subnavCursoInfo}
+        <!------------------------>
+
         <!----Status fieldset----->
          ${statusFieldsetHTML}
         <!------------------------>
@@ -745,6 +830,10 @@ function createCursoCotentHTML(RA, curso) {
         
         <!-----Curso filedset----->
          ${cursoFieldsetHTML}
+        <!------------------------>
+
+        <!----Parcelas filedset--->
+        ${parcelasFieldset}
         <!------------------------>
 
         <!--Responsável fieldset-->
