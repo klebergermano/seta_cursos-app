@@ -4,7 +4,6 @@
 #form_info_aluno, .form_info_curso {
     @extend .form_flex_static;
     background: #f0f0f0; 
-
     overflow: hidden;
     box-shadow: none;
     border:2px solid $primary-color;
@@ -43,9 +42,48 @@
             cursor: pointer;
             &:hover{
                background: lighten($primary-color, 10%);
-
             }
         }}
+    }
+
+    .subnav_curso_info{
+        overflow: hidden;
+        height:auto;
+        margin-bottom:30px;
+        padding: 5px;
+        border:1px solid #ccc; 
+        width:100%; clear:both;
+        ul{ display: flex;
+            justify-content: center;
+            height:auto; width:100%; 
+            padding:10px;
+           
+         li{
+            display: inline;
+            margin: 0px 3px;
+            a{
+                padding:8px 12px; text-align: center;
+                background-color: #eee;
+                color:#333;
+                border-radius: 3px;
+                text-decoration: none;
+           user-select: none;
+            }
+            a:hover{
+                background: #444;
+                color:#fff;
+                }
+            a:active{
+                background-color: lighten(#444, 5%);
+                box-shadow: inset 1px 0px 4px #111 ;
+            }
+          
+         }
+         .active{
+            background: #444 !important;
+            color:#fff;
+         }
+        }
     }
     .fieldset {
         position: relative;
@@ -156,11 +194,12 @@
       
     }
      
-    .fieldset_certificado_status{
+    .fieldset_certificado_info{
         background: #fffff6;
         
     }
     .fieldset_curso_info{
+        display: none;
     }
     .fieldset_resp_info{
     }
@@ -282,7 +321,10 @@
 
 .hide_form_info_curso {
     transition: all 1s ease-in-out;
+  
     max-height:60px; 
+    max-height:auto; 
+  
     overflow: hidden;
     h4{
         svg{

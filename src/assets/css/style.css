@@ -3105,6 +3105,47 @@ option[disabled] {
 #form_info_aluno table td button:hover, .form_info_curso table td button:hover {
   background: #2d74d1;
 }
+#form_info_aluno .subnav_curso_info, .form_info_curso .subnav_curso_info {
+  overflow: hidden;
+  height: auto;
+  margin-bottom: 30px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  clear: both;
+}
+#form_info_aluno .subnav_curso_info ul, .form_info_curso .subnav_curso_info ul {
+  display: flex;
+  justify-content: center;
+  height: auto;
+  width: 100%;
+  padding: 10px;
+}
+#form_info_aluno .subnav_curso_info ul li, .form_info_curso .subnav_curso_info ul li {
+  display: inline;
+  margin: 0px 3px;
+}
+#form_info_aluno .subnav_curso_info ul li a, .form_info_curso .subnav_curso_info ul li a {
+  padding: 8px 12px;
+  text-align: center;
+  background-color: #eee;
+  color: #333;
+  border-radius: 3px;
+  text-decoration: none;
+  user-select: none;
+}
+#form_info_aluno .subnav_curso_info ul li a:hover, .form_info_curso .subnav_curso_info ul li a:hover {
+  background: #444;
+  color: #fff;
+}
+#form_info_aluno .subnav_curso_info ul li a:active, .form_info_curso .subnav_curso_info ul li a:active {
+  background-color: #515151;
+  box-shadow: inset 1px 0px 4px #111;
+}
+#form_info_aluno .subnav_curso_info ul .active, .form_info_curso .subnav_curso_info ul .active {
+  background: #444 !important;
+  color: #fff;
+}
 #form_info_aluno .fieldset, .form_info_curso .fieldset {
   position: relative;
   background: #fff;
@@ -3190,8 +3231,11 @@ option[disabled] {
 #form_info_aluno .fieldset_curso_status .div_data_status, .form_info_curso .fieldset_curso_status .div_data_status {
   max-width: 240px;
 }
-#form_info_aluno .fieldset_certificado_status, .form_info_curso .fieldset_certificado_status {
+#form_info_aluno .fieldset_certificado_info, .form_info_curso .fieldset_certificado_info {
   background: #fffff6;
+}
+#form_info_aluno .fieldset_curso_info, .form_info_curso .fieldset_curso_info {
+  display: none;
 }
 #form_info_aluno .bg_curso, .form_info_curso .bg_curso {
   padding: 10px;
@@ -3288,6 +3332,7 @@ option[disabled] {
 .hide_form_info_curso {
   transition: all 1s ease-in-out;
   max-height: 60px;
+  max-height: auto;
   overflow: hidden;
 }
 .hide_form_info_curso h4 svg {
