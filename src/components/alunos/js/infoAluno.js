@@ -143,9 +143,14 @@ function setMasksFormAluno() {
 function insertAlunoCursoInfo(alunoCompleteInfo) {
     let RA = alunoCompleteInfo.aluno.ra;
     let cursos = alunoCompleteInfo.cursos;
-    for (const [key, curso] of Object.entries(cursos)) {
+
+    //Faz um loop pelos cursos dentro do objeto "aluncoCompleteInfo.cursos".
+    for (const curso of Object.values(cursos)) {
+        // Adiciona o conteúdo do curso na página.
         let formCurso = createCursoCotentHTML(RA, curso);
         document.querySelector("#bg_info_aluno").appendChild(formCurso);
+
+        // Adiciona o texto "certificado entregue" no botão (label) caso a opção esteja marcada (checked). 
         let checkboxCertificado = formCurso.querySelector("#checkbox_certificado_entregue");
         setBtnCheckboxCertificado(checkboxCertificado);
     }
@@ -186,7 +191,6 @@ function insertAlunoInfo(alunoInfo) {
 //------------------------------------------SUBMISSÃO-----------------------------------------------
 //--------------------------------------------------------------------------------------------------
 
-
 // Eventos de submição dos formulário dos Cursos.
 function eventsSubmitFormsInfoCurso() {
     let formsInfo = document.querySelectorAll('.form_info_curso');
@@ -199,6 +203,7 @@ function eventsSubmitFormsInfoCurso() {
             submitFormsInfoCurso(e)
         });
         form.querySelector("#checkbox_certificado_entregue")?.addEventListener('input', (e) => {
+            // Adiciona o texto "certificado entregue" no botão (label) caso a opção esteja marcada (checked). 
             setBtnCheckboxCertificado(e.target);
         });
     })
@@ -221,8 +226,6 @@ function verificaCheckboxCertificado(form) {
     }
     return valueCerticadoEntregue;
 }
-
-
 
 // Submit das informações do curso.
 function submitFormsInfoCurso(e) {
@@ -308,7 +311,6 @@ function submitFormInfoAluno(e) {
     })
 }
 
-
 //--------------------------------------------------------------------------------------------------
 // ------------------------------------- CERTIFICADO -----------------------------------------------
 //--------------------------------------------------------------------------------------------------
@@ -328,7 +330,7 @@ function getCertificadoInfo(e) {
     return certificadoInfo;
 }
 
-// ******
+// Adiciona o texto "certificado entregue" no botão (label) caso a opção esteja marcada (checked). 
 function setBtnCheckboxCertificado(input) {
     let labelCheckbox = input?.closest("#label_checkbox_certificado_entregue");
     if (input) {
@@ -341,7 +343,6 @@ function setBtnCheckboxCertificado(input) {
         }
     }
 }
-
 
 //--------------------------------------------------------------------------------------------------
 // ------------------------------------- TALÕES ----------------------------------------------------
@@ -427,7 +428,6 @@ function createTableParcelasTable(parcelas, cursoNome) {
     </tbody>
     `
     let arr = [];
-
     for (let p of Object.entries(parcelas)) {
         arr.push(p);
     }
@@ -462,7 +462,6 @@ function createTableParcelasTable(parcelas, cursoNome) {
     </td>
     `;
     tableParcelas.querySelector('tbody').appendChild(trBtnTalao);
-
     let fieldsetParcelas = `
     <div class='fieldset fieldset_curso_info fieldset_parcelas_info'>
         <legend>Parcelas Info.</legend>
@@ -471,7 +470,7 @@ function createTableParcelasTable(parcelas, cursoNome) {
         ${tableParcelas.outerHTML}
         </div>
     </div>
-    `; 
+    `;
     console.log('fieldsetParcelas', fieldsetParcelas);
     return fieldsetParcelas;
 }
@@ -479,13 +478,6 @@ function createTableParcelasTable(parcelas, cursoNome) {
 //------------------------------------------------------------------------------------------------------------------
 //--------------------------------------------- Conteúdo do Curso HTML ---------------------------------------------
 //------------------------------------------------------------------------------------------------------------------
-
-//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/
-function createMenuCursoInfo() {
-
-
-
-}
 
 // Cria o filedset do responsável para inserção HTML.
 function createCertificadoStatusFieldsetHTML(curso) {
@@ -591,7 +583,6 @@ function createResponsavelFieldsetHTML(curso) {
     return respFieldsetHTML;
 }
 
-
 // Cria o filedset com informações do curso para inserção HTML.
 function createCursoFieldsetHTML(curso) {
     // Parcelas de pagamento do curso em formato de tabela.
@@ -661,17 +652,16 @@ function createCursoFieldsetHTML(curso) {
      
     </div> <!--fieldset-->
     `;
-
     return cursoFieldsetHTML;
 }
 
 function getInfoStatusCurso(curso) {
     let statusInfo = {
-        obs: '', 
-        data: '', 
-        situacao: '', 
+        obs: '',
+        data: '',
+        situacao: '',
     }
-    if(curso.status_info){
+    if (curso.status_info) {
         statusInfo.obs = curso.status_info.obs;
         statusInfo.data = curso.status_info.data;
         statusInfo.situacao = curso.status_info.situacao;
@@ -725,6 +715,8 @@ function createStatusFieldsetHTML(curso) {
     return statusFieldsetHTML;
 }
 
+
+//Adiciona os eventos do submenu dos cursos.
 function eventSubnavCursoInfo() {
     let subnaves = document.querySelectorAll('.subnav_curso_info');
 
@@ -738,11 +730,11 @@ function eventSubnavCursoInfo() {
             })
         }
 
-        function removeActiveNav(e){
+        function removeActiveNav(e) {
             let subnav = e.target.closest('.subnav_curso_info');
-            let a = subnav.querySelectorAll('a'); 
-            a.forEach((item)=>{
-                item.classList.remove('active')
+            let a = subnav.querySelectorAll('a');
+            a.forEach((item) => {
+                item.classList.remove('active');
             })
             e.target.classList.add('active');
         }
@@ -751,7 +743,7 @@ function eventSubnavCursoInfo() {
             function displayFieldset() {
                 let form = item.closest('.form_info_curso');
                 if (e.target && e.target.nodeName === 'A') {
-                    removeActiveNav(e)
+                    removeActiveNav(e);
                     hideAllFieldset();
                     let fieldset_info = e.target.dataset.fieldset;
                     let fieldset = form.querySelector('.' + fieldset_info);
@@ -761,8 +753,9 @@ function eventSubnavCursoInfo() {
             displayFieldset(e);
         })
     });
-
 }
+
+//Cria o sub menu dos cursos em HTML.
 function createSubnavCursoInfoHTML() {
     let nav = document.createElement('nav');
     nav.className = 'subnav_curso_info';
@@ -775,14 +768,17 @@ function createSubnavCursoInfoHTML() {
         <li><a href='#' data-fieldset='fieldset_certificado_info' class='certificado_info' >Certificado</a></li>
         
 `;
-
     return nav.outerHTML;
 }
 
 // Cria o conteúdo com as informações do curso em formulário para ser inserido na página.
 function createCursoCotentHTML(RA, curso) {
 
+    // Submenu dos cursos HTML.
     let subnavCursoInfo = createSubnavCursoInfoHTML();
+
+    //Informações do status do curso.
+    let statusCurso = getInfoStatusCurso(curso);
 
     // Fieldset do Status do curso em HTML.
     let statusFieldsetHTML = createStatusFieldsetHTML(curso);
@@ -792,13 +788,9 @@ function createCursoCotentHTML(RA, curso) {
     let respFieldsetHTML = createResponsavelFieldsetHTML(curso);
     // Filedset do curso.
     let cursoFieldsetHTML = createCursoFieldsetHTML(curso);
-
-    //*************/
+    //Filedset das parcelas.
     let parcelasFieldset = createTableParcelasTable(curso.curso_info.parcelas, curso.curso_info.nome);
-   console.log('parcelasFieldset', parcelasFieldset);
 
-   //****************/
-    let statusCurso = getInfoStatusCurso(curso);
     //Cria o elemento formulário do curso.
     let form = document.createElement('form');
     form.classList = `form_info_curso hide_form_info_curso  border_${curso.curso_info.nome}`;
