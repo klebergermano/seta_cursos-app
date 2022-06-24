@@ -50,7 +50,6 @@ function eventsInfoAluno(RA) {
             eventsSubmitFormsInfoCurso();
             // Evento de envio do formulário para atualização das informações do aluno.
             eventSubmitFormAlunoInfo();
-
             //Subnav menus cursos info
             eventSubnavCursoInfo();
 
@@ -143,7 +142,6 @@ function setMasksFormAluno() {
 function insertAlunoCursoInfo(alunoCompleteInfo) {
     let RA = alunoCompleteInfo.aluno.ra;
     let cursos = alunoCompleteInfo.cursos;
-
     //Faz um loop pelos cursos dentro do objeto "aluncoCompleteInfo.cursos".
     for (const curso of Object.values(cursos)) {
         // Adiciona o conteúdo do curso na página.
@@ -188,7 +186,7 @@ function insertAlunoInfo(alunoInfo) {
 }
 
 //--------------------------------------------------------------------------------------------------
-//------------------------------------------SUBMISSÃO-----------------------------------------------
+//----------------------------------------- SUBMISSÃO ----------------------------------------------
 //--------------------------------------------------------------------------------------------------
 
 // Eventos de submição dos formulário dos Cursos.
@@ -221,7 +219,7 @@ function eventSubmitFormAlunoInfo() {
 function verificaCheckboxCertificado(form) {
     let checkboxCertificadoEntregue = form.querySelector("#checkbox_certificado_entregue");
     let valueCerticadoEntregue = "";
-    if (checkboxCertificadoEntregue.checked) {
+    if (checkboxCertificadoEntregue?.checked) {
         valueCerticadoEntregue = "sim";
     }
     return valueCerticadoEntregue;
@@ -371,7 +369,7 @@ function createInfoTalao(cursoNome, alunoCompleteInfo) {
     let parcelas_total = alunoCompleteInfo.cursos[cursoNome].curso_info.parcelas_total;
     let parcelas = alunoCompleteInfo.cursos[cursoNome].curso_info.parcelas;
     let arr = [];
-    for (let p of Object.entries(parcelas)) {
+    for (let p of Object.entries(parcelas)){
         arr.push(p);
     }
     let parcelasOrdered = arr.sort();
@@ -674,6 +672,7 @@ function createSelectStatusCursoHTML(status_situacao) {
     let select = document.createElement('select');
     select.id = 'status_situacao';
     select.innerHTML = `
+            <option disabled selected></option>
             <option value='ativo'>Ativo</option>
             <option value='pausado'>Pausado</option>
             <option value='cancelado'>Cancelado</option>

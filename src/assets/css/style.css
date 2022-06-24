@@ -3452,6 +3452,149 @@ option[disabled] {
   height: 40px;
   text-align: center;
 }
+#bg_view_table_status_cursos {
+  position: relative;
+}
+#bg_view_table_status_cursos #select_status_cursos {
+  max-width: 150px;
+}
+#bg_view_table_status_cursos #resumo_cursos {
+  display: flex;
+  width: 100%;
+  background: #222;
+  margin-bottom: 20px;
+}
+#bg_view_table_status_cursos #resumo_cursos div {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px 20px;
+  border-right: 1px dotted #ccc;
+  color: #fff;
+}
+#bg_view_table_status_cursos #resumo_cursos div .total {
+  color: greenyellow;
+}
+#bg_view_table_status_cursos #resumo_cursos div p {
+  display: block;
+  width: 100%;
+  padding: 3px 0px;
+  width: 100%;
+}
+
+#view_table_status_cursos td, #view_table_status_cursos th {
+  font-size: 12px;
+}
+#view_table_status_cursos td {
+  padding: 2px 4px;
+}
+#view_table_status_cursos td .pagamento_atrasado {
+  background-color: #eb4b01 !important;
+  color: #fff;
+}
+#view_table_status_cursos td .pagamento_muito_atrasado {
+  background-color: #dd0000 !important;
+  color: #fff;
+}
+#view_table_status_cursos td .dia_de_pagamento {
+  background-color: #eca76e !important;
+}
+#view_table_status_cursos td .pagamento_em_dia {
+  background-color: #baf7cc !important;
+}
+#view_table_status_cursos th {
+  background: #027e6d;
+}
+#view_table_status_cursos tr[data-status=ativo] .td_status {
+  color: green;
+}
+#view_table_status_cursos tr[data-status=cancelado] {
+  background-color: #ccc;
+}
+#view_table_status_cursos tr[data-status=cancelado] span {
+  background-color: transparent !important;
+  color: #333 !important;
+}
+#view_table_status_cursos tr[data-status=pausado] {
+  background-color: #b4e0de;
+}
+#view_table_status_cursos tr[data-status=concluido] {
+  background-color: #bac3d4;
+}
+#view_table_status_cursos tr[data-status=concluido] span {
+  background-color: transparent !important;
+  color: #333 !important;
+}
+#view_table_status_cursos tr[data-status=undefined] {
+  background-color: #e9ccf0;
+}
+#view_table_status_cursos tr:hover td {
+  background-color: #ffff000f !important;
+}
+#view_table_status_cursos .td_status {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+#view_table_status_cursos .td_ra {
+  text-align: center;
+}
+#view_table_status_cursos .td_parcelas, #view_table_status_cursos .td_ultima_parcela {
+  text-align: center;
+}
+#view_table_status_cursos .td_parcelas span, #view_table_status_cursos .td_ultima_parcela span {
+  padding: 5px 2px;
+  display: block;
+  width: 100%;
+}
+#view_table_status_cursos .td_cursos {
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  padding: 0px 5px;
+}
+#view_table_status_cursos .td_cursos div {
+  display: flex;
+  width: 100%;
+}
+#view_table_status_cursos .td_cursos div span {
+  min-height: 100%;
+  flex-grow: 1;
+  text-align: center;
+  padding: 5px;
+  background: #ddddddcc;
+}
+#view_table_status_cursos .td_cursos div span:nth-child(even) {
+  margin-left: 3px;
+}
+#view_table_status_cursos .td_cursos div span[class*=Informática] {
+  color: #245da7;
+}
+#view_table_status_cursos .td_cursos div span[class*=web] {
+  color: #1111ff;
+}
+#view_table_status_cursos .td_cursos div span[class*=Inglês] {
+  color: #cf0675;
+}
+#view_table_status_cursos .td_cursos div span[class*=Excel] {
+  color: green;
+}
+#view_table_status_cursos .td_cursos div span[class*=Banco] {
+  color: #ad593a;
+}
+#view_table_status_cursos .td_cursos div span[class*=Espanhol] {
+  color: #70152c;
+}
+#view_table_status_cursos .td_cursos div span[class*=Adm] {
+  color: #157055;
+}
+#view_table_status_cursos .td_cursos div .re {
+  color: #702e70;
+}
+#view_table_status_cursos .td_controles {
+  text-align: center;
+}
+
 #page_login {
   opacity: 1;
   transition: opacity 10s ease-in-out;
