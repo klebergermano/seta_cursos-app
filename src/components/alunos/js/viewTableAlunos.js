@@ -16,11 +16,15 @@ import { insertInfoAlunoHTML } from "./infoAluno.js";
 import { addLogInfo } from "../../logData/js/logFunctions.js";
 //---------------------------------------------------------------//
 
+//==========================================================================
+//TODO: Refatorar e comentar.
+//==========================================================================
+
 export function insertViewTableAlunosHTML() {
     insertElementHTML("#alunos_content", "./components/alunos/viewTableAlunos.html", eventsInserViewTableAlunos, null, true)
 }
 export function eventsInserViewTableAlunos() {
-    getAlunosList()
+        getAlunosList()
         .then((res) => {
             return createTableAlunosHTML(res)
         })
@@ -28,7 +32,6 @@ export function eventsInserViewTableAlunos() {
             document.querySelector('#view_table_alunos tbody').innerHTML = "";
             document.querySelector('#view_table_alunos tbody').innerHTML = tbody.innerHTML;
             sortTable.sortByIntTD('#view_table_alunos', '.td_ra', false);
-        
         }).then(() => {
             insertCursosList()
             eventsButtonsInfoTableAlunos();
@@ -37,7 +40,6 @@ export function eventsInserViewTableAlunos() {
             eventsFilters() 
         }).catch(err => console.log(err))
 }
-
 
     function eventsButtonsInfoTableAlunos() {
         let btnsDeleteCurso = document.querySelectorAll(".btn_delete_curso");
@@ -155,7 +157,7 @@ function eventsFilters() {
     }
 function createTableAlunosHTML(alunosInfo) {
         let tbody = document.createElement('tbody');
-        alunosInfo.forEach(async (item) => {
+        alunosInfo.forEach((item) => {
             let aluno = item.data().aluno;
             let tr = document.createElement('tr');
             tr.setAttribute('data-aluno_ra', aluno.ra);
