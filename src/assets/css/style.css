@@ -3514,6 +3514,7 @@ option[disabled] {
 #view_table_status_cursos tr[data-status=cancelado] span {
   background-color: transparent !important;
   color: #333 !important;
+  border: 1px solid #999;
 }
 #view_table_status_cursos tr[data-status=pausado] {
   background-color: #b4e0de;
@@ -3524,6 +3525,7 @@ option[disabled] {
 #view_table_status_cursos tr[data-status=concluido] span {
   background-color: transparent !important;
   color: #333 !important;
+  border: 1px solid #999;
 }
 #view_table_status_cursos tr[data-status=undefined] {
   background-color: #e9ccf0;
