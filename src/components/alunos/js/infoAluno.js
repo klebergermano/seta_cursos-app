@@ -352,36 +352,36 @@ function eventsBtnsSalvarTaloesPDF(alunoCompleteInfo) {
         item.addEventListener('click', (e) => {
             e.preventDefault();
             let cursoNome = e.target.closest('table').dataset.curso_nome;
-            // Cria a informação do Talão.
-            let talaoInfo = createInfoTalao(cursoNome, alunoCompleteInfo);
+            // Cria a informação do Talão para serem enviadas para gerar o PDF.
+            let talaoInfo = createInfoTalaoPDF(cursoNome, alunoCompleteInfo);
             // Faz o submit do talão.
             submitTalaoPDF(talaoInfo);
         })
     });
 }
 
-// Cria a informação do talão 
-function createInfoTalao(cursoNome, alunoCompleteInfo) {
-    let talaoInfo = [];
+// Cria a informação do talão para serem enviadas para gerar o PDF. 
+function createInfoTalaoPDF(cursoNome, alunoCompleteInfo) {
     let alunoNome = alunoCompleteInfo.aluno.nome;
     let RA = alunoCompleteInfo.aluno.ra;
     let respNome = alunoCompleteInfo.cursos[cursoNome].resp_info.nome;
     let parcelas_total = alunoCompleteInfo.cursos[cursoNome].curso_info.parcelas_total;
     let parcelas = alunoCompleteInfo.cursos[cursoNome].curso_info.parcelas;
-    let arr = [];
-    for (let p of Object.entries(parcelas)){
-        arr.push(p);
-    }
-    let parcelasOrdered = arr.sort();
-    parcelasOrdered.forEach((item) => {
-        item[1].num_parcela = item[0];
-        item[1].responsavel = respNome;
-        item[1].aluno = alunoNome;
-        item[1].ra = RA;
-        item[1].curso = cursoNome;
-        item[1].parcelas_total = parcelas_total;
+ 
+    // Converte o objeto parcelas em array.
+    let arrParcelas = Object.entries(parcelas)
+    // Ordena o array parcelas.
+    let arrParcelasOrdered = arrParcelas.sort();
+    // cria o objecto com as informações necessários para o talão PDF.
+    let talaoInfo = arrParcelasOrdered.map((item)=>{
         let folha = item[1];
-        talaoInfo.push(folha);
+        folha.num_parcela = item[0];
+        folha.responsavel = respNome;
+        folha.aluno = alunoNome;
+        folha.ra = RA;
+        folha.curso = cursoNome;
+        folha.parcelas_total = parcelas_total;
+        return folha; 
     });
     return talaoInfo;
 }
@@ -404,49 +404,58 @@ function submitTalaoPDF(talaoInfo) {
     });
 }
 
-//Cria a tabela de parcelas do formulário.
-function createTableParcelasTable(parcelas, cursoNome) {
+//Cria o fieldset das parcelas de pagamento.
+function createFieldsetParcelas(parcelas, cursoNome) {
+    let fieldsetDiv = document.createElement('div');
+    fieldsetDiv.className = 'fieldset fieldset_curso_info fieldset_parcelas_info';
+    let tableParcelas = createTableParcelas(parcelas, cursoNome)
+    fieldsetDiv.innerHTML = `
+        <legend>Parcelas Info.</legend>
+        <div class='bg_table'>
+        <!-- Tabela de pagamento das parcelas do curso -->
+        ${tableParcelas.outerHTML}
+        </div>
+    `;
+   
+    return fieldsetDiv.outerHTML;
+}
+
+//Parcelas Content
+function createTableParcelas(parcelas, cursoNome) {
     let tableParcelas = document.createElement('table');
     tableParcelas.className = 'table_parcelas';
     tableParcelas.setAttribute('data-curso_nome', cursoNome);
     tableParcelas.innerHTML = `
-    <thead>
-        <th>Parcela</th>
-        <th>Nº Lanc.</th>
-        <th>Valor</th>
-        <th>Desconto</th>
-        <th>Valor Total</th>
-        <th>Vencimento</th>
-        <th>Status</th>
-        <th>Pago em:</th>
-        <th>Form. Pag:</th>
-        <th>Obs:</th>
-    </thead>
-    <tbody>
-    </tbody>
-    `
-    let arr = [];
-    for (let p of Object.entries(parcelas)) {
-        arr.push(p);
-    }
-    let arrOrdered = arr.sort();
-    arrOrdered.forEach((item) => {
-        let tr = document.createElement('tr');
-        tr.innerHTML = `
-        <td>${item[0]}</td>
-        <td>${item[1].n_lanc}</td>
-        <td>${item[1].valor}</td>
-        <td>${item[1].desconto}</td>
-        <td>${item[1].valor_total}</td>
-        <td>${item[1].vencimento}</td>
-        <td>${item[1].pagamento.status}</td>
-        <td>${item[1].pagamento.pago_em}</td>
-        <td>${item[1].pagamento.form_pag}</td>
-        <td>${item[1].pagamento.obs}</td>
-        `
-        tableParcelas.querySelector('tbody').appendChild(tr);
-    })
+        <thead>
+            <th>Parcela</th>
+            <th>Nº Lanc.</th>
+            <th>Valor</th>
+            <th>Desconto</th>
+            <th>Valor Total</th>
+            <th>Vencimento</th>
+            <th>Status</th>
+            <th>Pago em:</th>
+            <th>Form. Pag:</th>
+            <th>Obs:</th>
+        </thead>
+        <tbody>
+        </tbody>
+        `;
+    // Cria as linhas (TR) da tabela parcelas.
+    let arrTRParcelas = createContentTBodyParcelas(parcelas);
 
+    // Insere o as linhas (TR) no tbody da tabela.
+    insertTRTbodyTable(tableParcelas, arrTRParcelas)
+
+     // Adiciona a ultima linha (TR) da tabela com o botão de "salvar talão".
+     let TRSalvarTalaoHTML = createTRBtnSalvarTalaoHTML();
+     tableParcelas.querySelector('tbody').appendChild(TRSalvarTalaoHTML);
+
+    return tableParcelas;
+}
+
+
+function createTRBtnSalvarTalaoHTML() {
     let trBtnTalao = document.createElement('tr');
     trBtnTalao.className = 'tr_btn_talao';
     trBtnTalao.innerHTML =
@@ -459,18 +468,41 @@ function createTableParcelasTable(parcelas, cursoNome) {
         Salvar Talão PDF</button>
     </td>
     `;
-    tableParcelas.querySelector('tbody').appendChild(trBtnTalao);
-    let fieldsetParcelas = `
-    <div class='fieldset fieldset_curso_info fieldset_parcelas_info'>
-        <legend>Parcelas Info.</legend>
-        <div class='bg_table'>
-        <!-- Tabela de pagamento das parcelas do curso -->
-        ${tableParcelas.outerHTML}
-        </div>
-    </div>
+    return trBtnTalao;
+}
+
+function createContentTBodyParcelas(parcelas) {
+    let arrParcelas = Object.entries(parcelas)
+    let arrParcelasOrdered = arrParcelas.sort();
+
+    let arrTRParcelas = arrParcelasOrdered.map((item) => {
+        let tr = document.createElement('tr');
+        tr.innerHTML = `
+    <td>${item[0]}</td>
+    <td>${item[1].n_lanc}</td>
+    <td>${item[1].valor}</td>
+    <td>${item[1].desconto}</td>
+    <td>${item[1].valor_total}</td>
+    <td>${item[1].vencimento}</td>
+    <td>${item[1].pagamento.status}</td>
+    <td>${item[1].pagamento.pago_em}</td>
+    <td>${item[1].pagamento.form_pag}</td>
+    <td>${item[1].pagamento.obs}</td>
     `;
-    console.log('fieldsetParcelas', fieldsetParcelas);
-    return fieldsetParcelas;
+        return tr;
+    })
+    return arrTRParcelas;
+
+
+
+}
+
+function insertTRTbodyTable(tableParcelas, arrTRParcelas) {
+    //Faz um loop pelas TRs.
+    arrTRParcelas.forEach((tr) => {
+        // Insere a linha (TR) no tbody da tabela parcelas.
+        tableParcelas.querySelector('tbody').appendChild(tr);
+    });
 }
 
 //------------------------------------------------------------------------------------------------------------------
@@ -581,9 +613,8 @@ function createResponsavelFieldsetHTML(curso) {
     return respFieldsetHTML;
 }
 
-// Cria o filedset com informações do curso para inserção HTML.
+// Cria o fieldset com informações do curso para inserção HTML.
 function createCursoFieldsetHTML(curso) {
-    // Parcelas de pagamento do curso em formato de tabela.
     let cursoFieldsetHTML = `
     <div class='fieldset fieldset_curso_info fieldset_curso_dados'>
         <legend>Curso Info.</legend>
@@ -772,13 +803,10 @@ function createSubnavCursoInfoHTML() {
 
 // Cria o conteúdo com as informações do curso em formulário para ser inserido na página.
 function createCursoCotentHTML(RA, curso) {
-
     // Submenu dos cursos HTML.
     let subnavCursoInfo = createSubnavCursoInfoHTML();
-
     //Informações do status do curso.
     let statusCurso = getInfoStatusCurso(curso);
-
     // Fieldset do Status do curso em HTML.
     let statusFieldsetHTML = createStatusFieldsetHTML(curso);
     // Fieldset do Certificado do curso em HTML.
@@ -788,7 +816,7 @@ function createCursoCotentHTML(RA, curso) {
     // Filedset do curso.
     let cursoFieldsetHTML = createCursoFieldsetHTML(curso);
     //Filedset das parcelas.
-    let parcelasFieldset = createTableParcelasTable(curso.curso_info.parcelas, curso.curso_info.nome);
+    let parcelasFieldsetHTML = createFieldsetParcelas(curso.curso_info.parcelas, curso.curso_info.nome);
 
     //Cria o elemento formulário do curso.
     let form = document.createElement('form');
@@ -824,7 +852,7 @@ function createCursoCotentHTML(RA, curso) {
         <!------------------------>
 
         <!----Parcelas filedset--->
-        ${parcelasFieldset}
+        ${parcelasFieldsetHTML}
         <!------------------------>
 
         <!--Responsável fieldset-->

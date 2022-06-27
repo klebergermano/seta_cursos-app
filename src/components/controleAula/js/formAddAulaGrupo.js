@@ -67,7 +67,6 @@ function setCursoSelect(e) {
   
       selectCurso.innerHTML = res;
     })
-
 }
 
 function eventsDivAlunoAdicinado(divAluno) {
