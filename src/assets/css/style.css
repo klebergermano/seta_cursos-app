@@ -3105,6 +3105,29 @@ option[disabled] {
 #form_info_aluno table td button:hover, .form_info_curso table td button:hover {
   background: #2d74d1;
 }
+#form_info_aluno table .td_parcela_vencimento input, .form_info_curso table .td_parcela_vencimento input {
+  min-width: auto;
+  max-width: 130px;
+  margin: 0 auto;
+}
+#form_info_aluno table .td_parcela_desconto input, #form_info_aluno table .td_parcela_valor input, #form_info_aluno table .td_parcela_valor_total input, .form_info_curso table .td_parcela_desconto input, .form_info_curso table .td_parcela_valor input, .form_info_curso table .td_parcela_valor_total input {
+  min-width: auto;
+  max-width: 50px;
+  margin: 0 auto;
+}
+#form_info_aluno table .td_parcela_valor input, #form_info_aluno table .td_parcela_valor_total input, .form_info_curso table .td_parcela_valor input, .form_info_curso table .td_parcela_valor_total input {
+  border: 0px;
+  background-color: transparent !important;
+}
+#form_info_aluno table input[data-change=true], .form_info_curso table input[data-change=true] {
+  background: #ffff99;
+}
+#form_info_aluno table textarea, .form_info_curso table textarea {
+  margin: 0 auto;
+}
+#form_info_aluno table textarea[data-change=true], .form_info_curso table textarea[data-change=true] {
+  background: #ffff99;
+}
 #form_info_aluno .subnav_curso_info, .form_info_curso .subnav_curso_info {
   overflow: hidden;
   height: auto;
