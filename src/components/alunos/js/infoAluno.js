@@ -42,8 +42,13 @@ function eventsInfoAluno(RA) {
             eventsTitleInfoCusos();
             // Cria os eventos de click para salvar o PDF do talão de pagamento.
             eventsBtnsSalvarTaloesPDF(alunoCompleteInfo)
+
+            //**************
+            eventsParcelasTable();
+
+
             // Cria o evento de input no campos de formulário do aluno. 
-            eventsFields();
+            eventsFieldsAluno();
             // Aplica as mascaras de input do formulário do aluno.
             setMasksFormAluno();
             // Eventos de submição dos formulário dos Cursos.
@@ -115,7 +120,8 @@ function eventsTitleInfoCusos() {
 }
 
 // Cria o evento de input nos campos de formulário do aluno. 
-function eventsFields() {
+function eventsFieldsAluno() {
+
     let inputs = document.querySelectorAll('#form_info_aluno input, #form_info_aluno textarea, .form_info_curso select, .form_info_curso input, .form_info_curso textarea');
     inputs.forEach((item) => {
         item.addEventListener('input', (e) => {
@@ -137,6 +143,7 @@ function setMasksFormAluno() {
     VMasker(document.querySelector("#form_info_aluno #aluno_rg")).maskPattern("99.999.999-S");
     VMasker(document.querySelector("#form_info_aluno #aluno_cep")).maskPattern("99999-999");
 }
+
 
 // Insere os cursos que o aluno faz na página.
 function insertAlunoCursoInfo(alunoCompleteInfo) {
@@ -225,14 +232,42 @@ function verificaCheckboxCertificado(form) {
     return valueCerticadoEntregue;
 }
 
+function createObjectParcelaForUpdate(trUpdated){
+    let objParcelaForUpdate = {};
+     trUpdated.forEach((item)=>{
+        let tr = item; 
+        let numero_parcela = tr.dataset.numero_parcela; 
+        let vencimento_value = tr.querySelector('.parcela_vencimento').value;
+        let desconto_value = tr.querySelector('.parcela_desconto').value;
+        let valor_total_value = tr.querySelector('.parcela_valor_total').value;
+        let obs_value = tr.querySelector('.parcela_obs').value;
+            objParcelaForUpdate[numero_parcela] = {
+                vencimento: vencimento_value,
+                desconto: desconto_value,
+                valor_total: valor_total_value,
+                pagamento:{
+                    obs: obs_value
+                },
+            }
+    });
+    return objParcelaForUpdate;
+   }
+
 // Submit das informações do curso.
 function submitFormsInfoCurso(e) {
     let form = e.target;
     let RA = form.aluno_ra.value;
     let curso = form.curso_nome.value;
 
+    let tableParcelas = form.querySelector('.table_parcelas');
+    let trUpdated = tableParcelas.querySelectorAll('tr[data-update="true"]');
+    let parcelaObjetoUpdate = createObjectParcelaForUpdate(trUpdated);
+
+
+    //------------------------------------------------------------
     // Confere se o valor do checkbox do certificado esta marcado. 
     let valueCerticadoEntregue = verificaCheckboxCertificado(form);
+
     setDoc(doc(db, "alunato", RA, 'cursos', curso),
         {
             status_info: {
@@ -244,8 +279,12 @@ function submitFormsInfoCurso(e) {
                 certificado: {
                     entregue: valueCerticadoEntregue
                 },
-                obs: (form.curso_obs.value).trim()
+                parcelas: parcelaObjetoUpdate,
+
+                obs: (form.curso_obs.value).trim(),
+          
             },
+
             resp_info: {
                 email: (form.resp_email.value).trim(),
                 end: (form.resp_end.value).trim(),
@@ -275,6 +314,26 @@ function submitFormsInfoCurso(e) {
     })
 }
 
+/* Modelo do objeto parcelas de pagamento.
+      parcelas:{
+
+                    '01': { 
+                        desconto: "40,00",
+                        n_lanc: "C0001F01",
+                        valor: "160,00",
+                        valor_total: "120,00", 
+                        vencimento: "2022-05-24",
+                        pagamento:{
+                            form_pag: "",
+                                obs: "",
+                                pago_em:"",
+                                status:"pendente",
+                                valor_pago:"",
+                                valor:"110,00",
+                        }
+                    },
+                },
+*/
 // Submit do formulário de aluno.
 function submitFormInfoAluno(e) {
     let form = e.target;
@@ -345,6 +404,43 @@ function setBtnCheckboxCertificado(input) {
 //--------------------------------------------------------------------------------------------------
 // ------------------------------------- TALÕES ----------------------------------------------------
 //--------------------------------------------------------------------------------------------------
+
+//**************************/
+function setUpdateAttributeInClosestTR(e){
+let tr = e.target.closest('tr'); 
+    tr.setAttribute('data-update', true)
+}
+
+//Eventos da tabela de parcelas. /**********************/
+function eventsParcelasTable(){
+    let tablesParcelas = document.querySelectorAll('.table_parcelas');
+    tablesParcelas.forEach((tParcelas)=>{
+        let inputs = tParcelas.querySelectorAll('textarea, input, select');
+    
+        inputs.forEach((item)=>{
+        console.log(inputs)
+            item.addEventListener('change', (e)=>{
+                console.log(e.target.value)
+                e.target.setAttribute('data-change', true)
+                setUpdateAttributeInClosestTR(e)
+                if(item.classList.contains('parcela_desconto')|| item.classList.contains('parcela_valor')){
+                    let tr = e.target.closest('tr');
+                    let valor = tr.querySelector('.parcela_valor').value;
+                    let desconto = tr.querySelector('.parcela_desconto').value;
+                    let valor_total_input = tr.querySelector('.parcela_valor_total')
+                    let valor_total = VMasker.toMoney(geraValorTotalParcelas(valor, desconto), { showSignal: true });
+                    valor_total_input.value = valor_total;
+                }
+            });
+
+            if(item.classList.contains('parcela_desconto')|| item.classList.contains('parcela_valor')){
+                VMasker(item).maskMoney();
+            }
+        })
+    })
+
+}
+
 // Cria os eventos de click para salvar o PDF do talão de pagamento.
 function eventsBtnsSalvarTaloesPDF(alunoCompleteInfo) {
     let btns = document.querySelectorAll('.btn_create_talao');
@@ -443,7 +539,6 @@ function createTableParcelas(parcelas, cursoNome) {
         `;
     // Cria as linhas (TR) da tabela parcelas.
     let arrTRParcelas = createContentTBodyParcelas(parcelas);
-
     // Insere o as linhas (TR) no tbody da tabela.
     insertTRTbodyTable(tableParcelas, arrTRParcelas)
 
@@ -471,23 +566,44 @@ function createTRBtnSalvarTalaoHTML() {
     return trBtnTalao;
 }
 
+    function geraValorTotalParcelas(valor, desconto) {
+        let total = 0;
+        let v = parseInt(valor.replace(/,/g, ""));
+        let d = parseInt(desconto.replace(/,/g, ""));
+        total = v - d;
+        return total;
+      }
+
 function createContentTBodyParcelas(parcelas) {
     let arrParcelas = Object.entries(parcelas)
     let arrParcelasOrdered = arrParcelas.sort();
-
     let arrTRParcelas = arrParcelasOrdered.map((item) => {
+        let disabled = ''; 
+        if(item[1]?.pagamento?.status === 'pago'){
+            disabled = "disabled='true'";
+        }
         let tr = document.createElement('tr');
+            tr.setAttribute('data-numero_parcela', item[0]);
+            
         tr.innerHTML = `
-    <td>${item[0]}</td>
-    <td>${item[1].n_lanc}</td>
-    <td>${item[1].valor}</td>
-    <td>${item[1].desconto}</td>
-    <td>${item[1].valor_total}</td>
-    <td>${item[1].vencimento}</td>
-    <td>${item[1].pagamento.status}</td>
-    <td>${item[1].pagamento.pago_em}</td>
-    <td>${item[1].pagamento.form_pag}</td>
-    <td>${item[1].pagamento.obs}</td>
+            <td>${item[0]}</td>
+            <td>${item[1].n_lanc}</td>
+            <td class='td_parcela_valor'>
+                <input class='inputs_table parcela_valor' type='text' value='${item[1].valor}' ${disabled} />
+            </td>
+            <td class='td_parcela_desconto'>
+                <input class='inputs_table parcela_desconto' type='text' value='${item[1].desconto}' ${disabled} />
+            </td>
+            <td class='td_parcela_valor_total'>
+                 <input class='inputs_table parcela_valor_total' type='text' value='${item[1].valor_total}' ${disabled}  readonly />
+            </td>
+            <td  class='td_parcela_vencimento' >
+                <input class='inputs_table parcela_vencimento' type='date' value='${item[1].vencimento}' ${disabled}  />
+            </td>
+            <td>${item[1].pagamento?.status}</td>
+            <td>${item[1].pagamento?.pago_em}</td>
+            <td>${item[1].pagamento?.form_pag}</td>
+            <td><textarea class='parcela_obs' ${disabled}  >${item[1].pagamento?.obs}</textarea></td>
     `;
         return tr;
     })
@@ -544,17 +660,17 @@ function createCertificadoContentHTML(curso) {
     if (curso.curso_info.certificado) {
         certificadoHTML = `
             <label id='label_checkbox_certificado_entregue' for='checkbox_certificado_entregue'><span>Marcar Certificado Entregue</span> 
-            <input id='checkbox_certificado_entregue' ${valueCheckboxCertificado} type='checkbox' "/>
-            </label>
+                <input id='checkbox_certificado_entregue' ${valueCheckboxCertificado} type='checkbox' "/>
+                </label>
             <div>
             <label>Emissão</label>
-            <input type='date' value="${curso.curso_info.certificado.data_emissao}"/>
+                <input type='date' value="${curso.curso_info.certificado.data_emissao}"/>
             <label>Cod</label>
-            <input type='text' value="${curso.curso_info.certificado.cod}" />
+                <input type='text' value="${curso.curso_info.certificado.cod}" />
             </div>
             <div>
-            <label>Obs</label>
-            <textarea>${curso.curso_info.certificado.obs}</textarea>
+                <label>Obs</label>
+                <textarea>${curso.curso_info.certificado.obs}</textarea>
             </div>`;
     }
     return certificadoHTML;

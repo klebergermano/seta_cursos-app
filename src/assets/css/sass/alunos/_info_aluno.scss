@@ -44,6 +44,24 @@
                background: lighten($primary-color, 10%);
             }
         }}
+        .td_parcela_vencimento{ 
+         input{  min-width: auto; max-width: 130px ; margin: 0 auto;}
+        }
+        .td_parcela_desconto, .td_parcela_valor, .td_parcela_valor_total{
+        input{ min-width: auto; max-width: 50px ; margin: 0 auto; }
+        }
+        .td_parcela_valor, .td_parcela_valor_total{
+            input{ border:0px; background-color: transparent !important;}
+        }
+
+        input[data-change='true']{
+            background:#ffff99; 
+        }
+        textarea{ margin: 0 auto;}
+textarea[data-change='true']{
+    background:#ffff99; 
+}
+      
     }
 
     .subnav_curso_info{
