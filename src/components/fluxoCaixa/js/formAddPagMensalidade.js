@@ -188,13 +188,14 @@ function setValoresParcela() {
   let desconto = document.querySelector('#curso_desconto');
   let resp = document.querySelector('#resp');
   let n_lanc = document.querySelector('#n_lanc');
-
+  let obs = document.querySelector('#obs');
   valor.value = $alunoInfo.cursos[curso].parcelas[parcela].valor;
   vencimento.value = $alunoInfo.cursos[curso].parcelas[parcela].vencimento;
   valor_total.value = $alunoInfo.cursos[curso].parcelas[parcela].valor_total;
   desconto.value = $alunoInfo.cursos[curso].parcelas[parcela].desconto;
   resp.value = $alunoInfo.cursos[curso]['resp'].nome;
   n_lanc.value = $alunoInfo.cursos[curso].parcelas[parcela].n_lanc;
+  obs.value = $alunoInfo.cursos[curso].parcelas[parcela].pagamento.obs;
 }
 
 function getNumeroParcela() {

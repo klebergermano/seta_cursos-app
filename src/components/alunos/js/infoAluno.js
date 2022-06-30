@@ -603,7 +603,7 @@ function createContentTBodyParcelas(parcelas) {
             <td>${item[1].pagamento?.status}</td>
             <td>${item[1].pagamento?.pago_em}</td>
             <td>${item[1].pagamento?.form_pag}</td>
-            <td><textarea class='parcela_obs' ${disabled}  >${item[1].pagamento?.obs}</textarea></td>
+            <td><textarea class='parcela_obs'  >${item[1].pagamento?.obs}</textarea></td>
     `;
         return tr;
     })
