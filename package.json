@@ -3,6 +3,7 @@
   "productName": "seta_cursos-app",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "version": "1.0.3",
 =======
   "version": "1.0.5",
@@ -10,6 +11,9 @@
 =======
   "version": "1.0.6",
 >>>>>>> ccc77de (fix: template talão de pagamento)
+=======
+  "version": "1.0.7",
+>>>>>>> 45bc7ad (chore: release v1.0.7)
   "description": "Aplicativo de gerenciamento da SETA CURSOS",
   "main": "src/main.js",
   "scripts": {
