@@ -134,7 +134,11 @@ export function submitFormEditCursoInfo(e) {
 
 export function submitFormAddCursoInfo(e) {
   let form = e.target;
+<<<<<<< HEAD
   let idCurso = (form.id_curso.value).toUpperCase();
+=======
+  let idCurso = form.id_curso.value;
+>>>>>>> dev
   setDoc(doc(db, "cursos_info", idCurso),
     {
       cod: idCurso,

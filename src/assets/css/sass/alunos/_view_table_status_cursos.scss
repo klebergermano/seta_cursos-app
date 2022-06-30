@@ -1,0 +1,150 @@
+@use "../abstracts/" as *;
+
+#bg_view_table_status_cursos{
+    position: relative;
+    #select_status_cursos{
+        max-width: 150px ;
+    }
+    #resumo_cursos{
+        display: flex;
+        width:100%;
+        background:#222;
+        margin-bottom:20px;
+        div{
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            padding:10px 20px; 
+            border-right:1px dotted #ccc; 
+            color:#fff ;
+            .total{ color:greenyellow}
+            p{  display: block;
+                width: 100%;
+                padding: 3px 0px;
+                width:100%; 
+                
+            }
+        }
+    }
+}
+#view_table_status_cursos
+{
+    td, th{font-size: 12px; };
+    td{
+        padding: 2px 4px;
+        .pagamento_atrasado{
+            background-color: rgb(235, 75, 1) !important;
+            color:#fff; 
+        }
+        .pagamento_muito_atrasado{
+            background-color: rgb(221, 0, 0) !important;
+            color:#fff; 
+    
+        }
+        .dia_de_pagamento{
+            background-color: rgb(236, 167, 110) !important;
+        }
+        .pagamento_em_dia{
+            background-color: rgb(186, 247, 204) !important;
+        }
+    }
+    th{
+        background:rgb(2, 126, 109);
+    }
+    tr[data-status='ativo']{
+        //background-color: #eef6ee;
+        .td_status{ color:green}
+    }
+    tr[data-status='cancelado']{
+        background-color: #ccc;
+        span{
+            background-color: transparent !important;
+            color:#333 !important; 
+            border:1px solid #999;
+        }
+    }
+    tr[data-status='pausado']{
+        //background-color: rgb(160, 226, 223);
+        background-color: rgb(180, 224, 222);
+    }
+    tr[data-status='concluido']{
+        background-color: rgb(186, 195, 212);
+        span{
+            background-color: transparent !important;
+            color:#333 !important; 
+            border:1px solid #999;
+
+        }
+    }
+    tr[data-status='undefined']{
+        background-color: rgb(233, 204, 240);
+       
+    }
+    tr:hover{
+        td{background-color: #ffff000f !important};
+    }
+    .td_status{
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 11px;
+    }
+    .td_ra{
+        text-align: center;
+    }
+    .td_parcelas, .td_ultima_parcela{
+        text-align: center;
+        span{padding:5px 2px; display: block; width:100%; }
+    }
+
+    .td_cursos{
+        justify-content: center;
+        align-items: center;
+        vertical-align: middle;
+        padding:0px 5px;
+       div{
+           display: flex;
+           width: 100%;
+        span{
+            min-height:100%;
+            flex-grow: 1;
+            text-align: center;
+            padding:5px;
+            background: #ddddddcc;
+        }
+        span:nth-child(even){
+            margin-left:3px;
+        };
+
+        span[class *='Informática'] {
+            color: $primary-color;
+        }
+        span[class *='web'] {
+            color: #1111ff;
+        }
+        span[class *='Inglês'] {
+            color: rgb(207, 6, 117);
+        }
+        span[class *='Excel'] {
+            color: green;
+        }
+        span[class *='Banco'] {
+            color: rgb(173, 89, 58);
+        }
+        span[class *='Espanhol'] {
+            color: rgb(112, 21, 44);
+        }
+        span[class *='Adm'] {
+            color: rgb(21, 112, 85);
+        }
+        .re {
+            color: rgb(112, 46, 112);
+        }
+
+       }
+ 
+    }
+    .td_controles{
+        text-align: center;
+    }
+
+}

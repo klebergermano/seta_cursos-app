@@ -3105,6 +3105,73 @@ option[disabled] {
 #form_info_aluno table td button:hover, .form_info_curso table td button:hover {
   background: #2d74d1;
 }
+<<<<<<< HEAD
+=======
+#form_info_aluno table .td_parcela_vencimento input, .form_info_curso table .td_parcela_vencimento input {
+  min-width: auto;
+  max-width: 130px;
+  margin: 0 auto;
+}
+#form_info_aluno table .td_parcela_desconto input, #form_info_aluno table .td_parcela_valor input, #form_info_aluno table .td_parcela_valor_total input, .form_info_curso table .td_parcela_desconto input, .form_info_curso table .td_parcela_valor input, .form_info_curso table .td_parcela_valor_total input {
+  min-width: auto;
+  max-width: 50px;
+  margin: 0 auto;
+}
+#form_info_aluno table .td_parcela_valor input, #form_info_aluno table .td_parcela_valor_total input, .form_info_curso table .td_parcela_valor input, .form_info_curso table .td_parcela_valor_total input {
+  border: 0px;
+  background-color: transparent !important;
+}
+#form_info_aluno table input[data-change=true], .form_info_curso table input[data-change=true] {
+  background: #ffff99;
+}
+#form_info_aluno table textarea, .form_info_curso table textarea {
+  margin: 0 auto;
+}
+#form_info_aluno table textarea[data-change=true], .form_info_curso table textarea[data-change=true] {
+  background: #ffff99;
+}
+#form_info_aluno .subnav_curso_info, .form_info_curso .subnav_curso_info {
+  overflow: hidden;
+  height: auto;
+  margin-bottom: 30px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  clear: both;
+}
+#form_info_aluno .subnav_curso_info ul, .form_info_curso .subnav_curso_info ul {
+  display: flex;
+  justify-content: center;
+  height: auto;
+  width: 100%;
+  padding: 10px;
+}
+#form_info_aluno .subnav_curso_info ul li, .form_info_curso .subnav_curso_info ul li {
+  display: inline;
+  margin: 0px 3px;
+}
+#form_info_aluno .subnav_curso_info ul li a, .form_info_curso .subnav_curso_info ul li a {
+  padding: 8px 12px;
+  text-align: center;
+  background-color: #eee;
+  color: #333;
+  border-radius: 3px;
+  text-decoration: none;
+  user-select: none;
+}
+#form_info_aluno .subnav_curso_info ul li a:hover, .form_info_curso .subnav_curso_info ul li a:hover {
+  background: #444;
+  color: #fff;
+}
+#form_info_aluno .subnav_curso_info ul li a:active, .form_info_curso .subnav_curso_info ul li a:active {
+  background-color: #515151;
+  box-shadow: inset 1px 0px 4px #111;
+}
+#form_info_aluno .subnav_curso_info ul .active, .form_info_curso .subnav_curso_info ul .active {
+  background: #444 !important;
+  color: #fff;
+}
+>>>>>>> dev
 #form_info_aluno .fieldset, .form_info_curso .fieldset {
   position: relative;
   background: #fff;
@@ -3184,21 +3251,33 @@ option[disabled] {
 #form_info_aluno .fieldset #aluno_ra, #form_info_aluno .fieldset #resp_end_numero, #form_info_aluno .fieldset #aluno_end_numero, #form_info_aluno .fieldset #aluno_genero, #form_info_aluno .fieldset #resp_genero, .form_info_curso .fieldset #aluno_ra, .form_info_curso .fieldset #resp_end_numero, .form_info_curso .fieldset #aluno_end_numero, .form_info_curso .fieldset #aluno_genero, .form_info_curso .fieldset #resp_genero {
   max-width: 80px;
 }
+<<<<<<< HEAD
 #form_info_aluno .fieldset_curso_status, .form_info_curso .fieldset_curso_status {
   display: none;
 }
+=======
+>>>>>>> dev
 #form_info_aluno .fieldset_curso_status .div_select_curso_status, .form_info_curso .fieldset_curso_status .div_select_curso_status {
   max-width: 240px;
 }
 #form_info_aluno .fieldset_curso_status .div_data_status, .form_info_curso .fieldset_curso_status .div_data_status {
   max-width: 240px;
 }
+<<<<<<< HEAD
 #form_info_aluno .fieldset_curso_status .div_datas_status, .form_info_curso .fieldset_curso_status .div_datas_status {
   display: none !important;
 }
 #form_info_aluno .fieldset_certificado_status, .form_info_curso .fieldset_certificado_status {
   background: #fffff6;
 }
+=======
+#form_info_aluno .fieldset_certificado_info, .form_info_curso .fieldset_certificado_info {
+  background: #fffff6;
+}
+#form_info_aluno .fieldset_curso_info, .form_info_curso .fieldset_curso_info {
+  display: none;
+}
+>>>>>>> dev
 #form_info_aluno .bg_curso, .form_info_curso .bg_curso {
   padding: 10px;
   margin-top: 20px;
@@ -3229,15 +3308,37 @@ option[disabled] {
   height: 32px !important;
 }
 #form_info_aluno .bg_curso h4.title_info_cursos .title_status, .form_info_curso .bg_curso h4.title_info_cursos .title_status {
+<<<<<<< HEAD
   display: none;
+=======
+>>>>>>> dev
   margin-top: -5px;
   margin-right: 20px;
   float: right;
   border: 1px solid #ccc;
+<<<<<<< HEAD
+=======
+  background: #fafafa;
+>>>>>>> dev
   border-radius: 5px;
   padding: 5px;
   text-align: center;
 }
+<<<<<<< HEAD
+=======
+#form_info_aluno .bg_curso h4.title_info_cursos .status_ativo, .form_info_curso .bg_curso h4.title_info_cursos .status_ativo {
+  color: green;
+}
+#form_info_aluno .bg_curso h4.title_info_cursos .status_pausado, .form_info_curso .bg_curso h4.title_info_cursos .status_pausado {
+  color: #304063;
+}
+#form_info_aluno .bg_curso h4.title_info_cursos .status_cancelado, .form_info_curso .bg_curso h4.title_info_cursos .status_cancelado {
+  color: red;
+}
+#form_info_aluno .bg_curso h4.title_info_cursos .status_concluido, .form_info_curso .bg_curso h4.title_info_cursos .status_concluido {
+  color: #5c5c5c;
+}
+>>>>>>> dev
 #form_info_aluno .bg_curso h4.title_info_cursos:active, .form_info_curso .bg_curso h4.title_info_cursos:active {
   box-shadow: 1px 0px 3px #000 inset;
 }
@@ -3282,6 +3383,10 @@ option[disabled] {
 .hide_form_info_curso {
   transition: all 1s ease-in-out;
   max-height: 60px;
+<<<<<<< HEAD
+=======
+  max-height: auto;
+>>>>>>> dev
   overflow: hidden;
 }
 .hide_form_info_curso h4 svg {
@@ -3401,6 +3506,151 @@ option[disabled] {
   height: 40px;
   text-align: center;
 }
+#bg_view_table_status_cursos {
+  position: relative;
+}
+#bg_view_table_status_cursos #select_status_cursos {
+  max-width: 150px;
+}
+#bg_view_table_status_cursos #resumo_cursos {
+  display: flex;
+  width: 100%;
+  background: #222;
+  margin-bottom: 20px;
+}
+#bg_view_table_status_cursos #resumo_cursos div {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px 20px;
+  border-right: 1px dotted #ccc;
+  color: #fff;
+}
+#bg_view_table_status_cursos #resumo_cursos div .total {
+  color: greenyellow;
+}
+#bg_view_table_status_cursos #resumo_cursos div p {
+  display: block;
+  width: 100%;
+  padding: 3px 0px;
+  width: 100%;
+}
+
+#view_table_status_cursos td, #view_table_status_cursos th {
+  font-size: 12px;
+}
+#view_table_status_cursos td {
+  padding: 2px 4px;
+}
+#view_table_status_cursos td .pagamento_atrasado {
+  background-color: #eb4b01 !important;
+  color: #fff;
+}
+#view_table_status_cursos td .pagamento_muito_atrasado {
+  background-color: #dd0000 !important;
+  color: #fff;
+}
+#view_table_status_cursos td .dia_de_pagamento {
+  background-color: #eca76e !important;
+}
+#view_table_status_cursos td .pagamento_em_dia {
+  background-color: #baf7cc !important;
+}
+#view_table_status_cursos th {
+  background: #027e6d;
+}
+#view_table_status_cursos tr[data-status=ativo] .td_status {
+  color: green;
+}
+#view_table_status_cursos tr[data-status=cancelado] {
+  background-color: #ccc;
+}
+#view_table_status_cursos tr[data-status=cancelado] span {
+  background-color: transparent !important;
+  color: #333 !important;
+  border: 1px solid #999;
+}
+#view_table_status_cursos tr[data-status=pausado] {
+  background-color: #b4e0de;
+}
+#view_table_status_cursos tr[data-status=concluido] {
+  background-color: #bac3d4;
+}
+#view_table_status_cursos tr[data-status=concluido] span {
+  background-color: transparent !important;
+  color: #333 !important;
+  border: 1px solid #999;
+}
+#view_table_status_cursos tr[data-status=undefined] {
+  background-color: #e9ccf0;
+}
+#view_table_status_cursos tr:hover td {
+  background-color: #ffff000f !important;
+}
+#view_table_status_cursos .td_status {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+#view_table_status_cursos .td_ra {
+  text-align: center;
+}
+#view_table_status_cursos .td_parcelas, #view_table_status_cursos .td_ultima_parcela {
+  text-align: center;
+}
+#view_table_status_cursos .td_parcelas span, #view_table_status_cursos .td_ultima_parcela span {
+  padding: 5px 2px;
+  display: block;
+  width: 100%;
+}
+#view_table_status_cursos .td_cursos {
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  padding: 0px 5px;
+}
+#view_table_status_cursos .td_cursos div {
+  display: flex;
+  width: 100%;
+}
+#view_table_status_cursos .td_cursos div span {
+  min-height: 100%;
+  flex-grow: 1;
+  text-align: center;
+  padding: 5px;
+  background: #ddddddcc;
+}
+#view_table_status_cursos .td_cursos div span:nth-child(even) {
+  margin-left: 3px;
+}
+#view_table_status_cursos .td_cursos div span[class*=Informática] {
+  color: #245da7;
+}
+#view_table_status_cursos .td_cursos div span[class*=web] {
+  color: #1111ff;
+}
+#view_table_status_cursos .td_cursos div span[class*=Inglês] {
+  color: #cf0675;
+}
+#view_table_status_cursos .td_cursos div span[class*=Excel] {
+  color: green;
+}
+#view_table_status_cursos .td_cursos div span[class*=Banco] {
+  color: #ad593a;
+}
+#view_table_status_cursos .td_cursos div span[class*=Espanhol] {
+  color: #70152c;
+}
+#view_table_status_cursos .td_cursos div span[class*=Adm] {
+  color: #157055;
+}
+#view_table_status_cursos .td_cursos div .re {
+  color: #702e70;
+}
+#view_table_status_cursos .td_controles {
+  text-align: center;
+}
+
 #page_login {
   opacity: 1;
   transition: opacity 10s ease-in-out;

@@ -31,7 +31,6 @@ function eventsEntradasInfoTable() {
             btnsDeletePagMensal()
             btnsDeleteEntradaAvulsa()
         }).then(() => {
-            sortTable.sortByDate('#pag_mensal_table_info', '.td_data');
             eventsFilters()
         }).catch(err => console.log(err))
 
@@ -57,6 +56,7 @@ function eventsEntradasInfoTable() {
                 btnsDeleteEntradaAvulsa()
             }).catch(err => console.log(err))
     })
+
 }
 
 function eventsFilters() {

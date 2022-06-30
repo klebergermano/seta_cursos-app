@@ -67,7 +67,10 @@ function setCursoSelect(e) {
   
       selectCurso.innerHTML = res;
     })
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
 }
 
 function eventsDivAlunoAdicinado(divAluno) {
