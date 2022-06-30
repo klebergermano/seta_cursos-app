@@ -537,8 +537,8 @@ function createTableParcelas(parcelas, cursoNome) {
         <tbody>
         </tbody>
         `;
-    // Cria as linhas (TR) da tabela parcelas.
-    let arrTRParcelas = createContentTBodyParcelas(parcelas);
+    // Cria um array de TRs com as parcelas.
+    let arrTRParcelas = createArrTRParcelas(parcelas);
     // Insere o as linhas (TR) no tbody da tabela.
     insertTRTbodyTable(tableParcelas, arrTRParcelas)
 
@@ -566,15 +566,16 @@ function createTRBtnSalvarTalaoHTML() {
     return trBtnTalao;
 }
 
-    function geraValorTotalParcelas(valor, desconto) {
-        let total = 0;
-        let v = parseInt(valor.replace(/,/g, ""));
-        let d = parseInt(desconto.replace(/,/g, ""));
-        total = v - d;
-        return total;
-      }
+function geraValorTotalParcelas(valor, desconto) {
+    let total = 0;
+    let v = parseInt(valor.replace(/,/g, ""));
+    let d = parseInt(desconto.replace(/,/g, ""));
+    total = v - d;
+    return total;
+    }
 
-function createContentTBodyParcelas(parcelas) {
+// Cria um array de TRs com as parcelas.
+function createArrTRParcelas(parcelas) {
     let arrParcelas = Object.entries(parcelas)
     let arrParcelasOrdered = arrParcelas.sort();
     let arrTRParcelas = arrParcelasOrdered.map((item) => {
@@ -584,7 +585,6 @@ function createContentTBodyParcelas(parcelas) {
         }
         let tr = document.createElement('tr');
             tr.setAttribute('data-numero_parcela', item[0]);
-            
         tr.innerHTML = `
             <td>${item[0]}</td>
             <td>${item[1].n_lanc}</td>
@@ -608,9 +608,6 @@ function createContentTBodyParcelas(parcelas) {
         return tr;
     })
     return arrTRParcelas;
-
-
-
 }
 
 function insertTRTbodyTable(tableParcelas, arrTRParcelas) {
