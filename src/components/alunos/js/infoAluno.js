@@ -33,30 +33,27 @@ function eventsInfoAluno(RA) {
             insertAlunoCursoInfo(alunoCompleteInfo);
             return alunoCompleteInfo;
         }).then((alunoCompleteInfo) => {
-            //--------------------------
-            // Eventos dos formulários.
-            //--------------------------
-            // Cria o evento de click para os botões que abrem o formulário de salvar o certificado do curso.
-            eventsBtnsCreateCertificado();
-            // Cria o evento de click para os títulos do cursos.
-            eventsTitleInfoCusos();
-            // Cria os eventos de click para salvar o PDF do talão de pagamento.
-            eventsBtnsSalvarTaloesPDF(alunoCompleteInfo)
-
-            //**************
-            eventsParcelasTable();
-
-
+            /*aluno Info events*/
             // Cria o evento de input no campos de formulário do aluno. 
             eventsFieldsAluno();
             // Aplica as mascaras de input do formulário do aluno.
             setMasksFormAluno();
-            // Eventos de submição dos formulário dos Cursos.
-            eventsSubmitFormsInfoCurso();
             // Evento de envio do formulário para atualização das informações do aluno.
             eventSubmitFormAlunoInfo();
+
+            /*Info. curso events*/
+            // Cria o evento de click para os títulos do cursos.
+            eventsTitleCursosInfo();
             //Subnav menus cursos info
             eventSubnavCursoInfo();
+            // Cria os eventos de click para salvar o PDF do talão de pagamento.
+            eventsBtnsSalvarTaloesPDF(alunoCompleteInfo)
+            // Carrega os eventos da tabela de parcelas.
+            eventsParcelasTable();
+            // Cria o evento de click para os botões que abrem o formulário de salvar o certificado do curso.
+            eventsBtnsOpenFormCertificado();
+            // Eventos de submição dos formulário dos Cursos.
+            eventsSubmitFormsInfoCurso();
 
         }).catch((error) => console.log(error));
 }
@@ -98,7 +95,7 @@ async function getAlunoBasicInfo(RA) {
 }
 
 // Cria o evento de click para os botões que abrem o formulário de salvar o certificado do curso.
-function eventsBtnsCreateCertificado() {
+function eventsBtnsOpenFormCertificado() {
     let btns = document.querySelectorAll('.btn_create_certificado');
     btns.forEach((item) => {
         item.addEventListener('click', (e) => {
@@ -109,7 +106,7 @@ function eventsBtnsCreateCertificado() {
 }
 
 // Cria o evento de click para os títulos do cursos.
-function eventsTitleInfoCusos() {
+function eventsTitleCursosInfo() {
     // Adiciona o evento de expandir o formulário ".aluno_info_info".
     document.querySelectorAll('.title_info_cursos').forEach((item) => {
         item.addEventListener('click', (e) => {
@@ -232,26 +229,27 @@ function verificaCheckboxCertificado(form) {
     return valueCerticadoEntregue;
 }
 
-function createObjectParcelaForUpdate(trUpdated){
+//Cria um objeto com a informação da parcela a ser atualizada.
+function createObjectParcelaForUpdate(trUpdated) {
     let objParcelaForUpdate = {};
-     trUpdated.forEach((item)=>{
-        let tr = item; 
-        let numero_parcela = tr.dataset.numero_parcela; 
+    trUpdated.forEach((item) => {
+        let tr = item;
+        let numero_parcela = tr.dataset.numero_parcela;
         let vencimento_value = tr.querySelector('.parcela_vencimento').value;
         let desconto_value = tr.querySelector('.parcela_desconto').value;
         let valor_total_value = tr.querySelector('.parcela_valor_total').value;
         let obs_value = tr.querySelector('.parcela_obs').value;
-            objParcelaForUpdate[numero_parcela] = {
-                vencimento: vencimento_value,
-                desconto: desconto_value,
-                valor_total: valor_total_value,
-                pagamento:{
-                    obs: obs_value
-                },
-            }
+        objParcelaForUpdate[numero_parcela] = {
+            vencimento: vencimento_value,
+            desconto: desconto_value,
+            valor_total: valor_total_value,
+            pagamento: {
+                obs: obs_value
+            },
+        }
     });
     return objParcelaForUpdate;
-   }
+}
 
 // Submit das informações do curso.
 function submitFormsInfoCurso(e) {
@@ -261,8 +259,8 @@ function submitFormsInfoCurso(e) {
 
     let tableParcelas = form.querySelector('.table_parcelas');
     let trUpdated = tableParcelas.querySelectorAll('tr[data-update="true"]');
+    // objeto com a informação da parcela a ser atualizada.
     let parcelaObjetoUpdate = createObjectParcelaForUpdate(trUpdated);
-
 
     //------------------------------------------------------------
     // Confere se o valor do checkbox do certificado esta marcado. 
@@ -282,7 +280,7 @@ function submitFormsInfoCurso(e) {
                 parcelas: parcelaObjetoUpdate,
 
                 obs: (form.curso_obs.value).trim(),
-          
+
             },
 
             resp_info: {
@@ -316,7 +314,6 @@ function submitFormsInfoCurso(e) {
 
 /* Modelo do objeto parcelas de pagamento.
       parcelas:{
-
                     '01': { 
                         desconto: "40,00",
                         n_lanc: "C0001F01",
@@ -334,6 +331,7 @@ function submitFormsInfoCurso(e) {
                     },
                 },
 */
+
 // Submit do formulário de aluno.
 function submitFormInfoAluno(e) {
     let form = e.target;
@@ -405,40 +403,61 @@ function setBtnCheckboxCertificado(input) {
 // ------------------------------------- TALÕES ----------------------------------------------------
 //--------------------------------------------------------------------------------------------------
 
-//**************************/
-function setUpdateAttributeInClosestTR(e){
-let tr = e.target.closest('tr'); 
-    tr.setAttribute('data-update', true)
+// Adiciona o atributo "data-update=true" no elemento TR mais próximo.
+function setUpdateAttributeInClosestTR(e) {
+    e.target.closest('tr').setAttribute('data-update', true)
 }
+// Adiciona o atributo "data-update=true" no elemento TR mais próximo.
+function setDataChangeAttributeInTargetElement(e) {
+    e.target.setAttribute('data-change', true);
+}
+// Gera o valor total e aplica a mascará de formatação.
+function createValorTotalInputTR(e){
+    let tr = e.target.closest('tr');
+    let valorValue = tr.querySelector('.parcela_valor').value;
+    let descontoValue = tr.querySelector('.parcela_desconto').value;
+    let valorTotalInt = geraValorTotalParcelas(valorValue, descontoValue);
+    let valorTotaDecimalMoney = VMasker.toMoney( valorTotalInt, { showSignal: true });
+    return valorTotaDecimalMoney;
+}
+// Insere o valor total no input.
+function insertValorTotalInputTR(e, valorTotaDecimalMoney){
+    let tr = e.target.closest('tr');
+    let inputValorTotal = tr.querySelector('.parcela_valor_total')
+    inputValorTotal.value = valorTotaDecimalMoney;
+};
 
-//Eventos da tabela de parcelas. /**********************/
-function eventsParcelasTable(){
+//Carrega os eventos da tabela de parcelas.
+function eventsParcelasTable() {
     let tablesParcelas = document.querySelectorAll('.table_parcelas');
-    tablesParcelas.forEach((tParcelas)=>{
+    // Faz um loop por todas as tabelas de parcelas da página.
+    tablesParcelas.forEach((tParcelas) => {
+        // Pega todos os campos do tipo 'textarea, input e select'.
         let inputs = tParcelas.querySelectorAll('textarea, input, select');
-    
-        inputs.forEach((item)=>{
-        console.log(inputs)
-            item.addEventListener('change', (e)=>{
-                console.log(e.target.value)
-                e.target.setAttribute('data-change', true)
-                setUpdateAttributeInClosestTR(e)
-                if(item.classList.contains('parcela_desconto')|| item.classList.contains('parcela_valor')){
-                    let tr = e.target.closest('tr');
-                    let valor = tr.querySelector('.parcela_valor').value;
-                    let desconto = tr.querySelector('.parcela_desconto').value;
-                    let valor_total_input = tr.querySelector('.parcela_valor_total')
-                    let valor_total = VMasker.toMoney(geraValorTotalParcelas(valor, desconto), { showSignal: true });
-                    valor_total_input.value = valor_total;
-                }
-            });
-
-            if(item.classList.contains('parcela_desconto')|| item.classList.contains('parcela_valor')){
+        // Faz um loop em todos os itens encontrados adicionando o 'eventListener'.
+        inputs.forEach((item) => {
+            //Adiciona a mascará de valor em desconto e valor.
+            if (item.classList.contains('parcela_desconto') || item.classList.contains('parcela_valor')) {
                 VMasker(item).maskMoney();
             }
+
+            // Adiciona o evento "change" nos elementos de input.
+            item.addEventListener('change', (e) => {
+                // Adiciona o atributo "data-change=true" no target element.
+                setDataChangeAttributeInTargetElement(e);
+                // Adiciona o atributo "data-update=true" no elemento TR mais próximo.
+                setUpdateAttributeInClosestTR(e);
+                // Testa se o item é o valor ou desconto. 
+                if (item.classList.contains('parcela_desconto') || item.classList.contains('parcela_valor')) {
+                    // Cria o valor total em decimal formatado.
+                    let valorTotaDecimalMoney =  createValorTotalInputTR(e)
+                    // Insere o valor total no input.
+                    insertValorTotalInputTR(e, valorTotaDecimalMoney)
+                }
+            });
+          
         })
     })
-
 }
 
 // Cria os eventos de click para salvar o PDF do talão de pagamento.
@@ -463,13 +482,13 @@ function createInfoTalaoPDF(cursoNome, alunoCompleteInfo) {
     let respNome = alunoCompleteInfo.cursos[cursoNome].resp_info.nome;
     let parcelas_total = alunoCompleteInfo.cursos[cursoNome].curso_info.parcelas_total;
     let parcelas = alunoCompleteInfo.cursos[cursoNome].curso_info.parcelas;
- 
+
     // Converte o objeto parcelas em array.
     let arrParcelas = Object.entries(parcelas)
     // Ordena o array parcelas.
     let arrParcelasOrdered = arrParcelas.sort();
     // cria o objecto com as informações necessários para o talão PDF.
-    let talaoInfo = arrParcelasOrdered.map((item)=>{
+    let talaoInfo = arrParcelasOrdered.map((item) => {
         let folha = item[1];
         folha.num_parcela = item[0];
         folha.responsavel = respNome;
@@ -477,7 +496,7 @@ function createInfoTalaoPDF(cursoNome, alunoCompleteInfo) {
         folha.ra = RA;
         folha.curso = cursoNome;
         folha.parcelas_total = parcelas_total;
-        return folha; 
+        return folha;
     });
     return talaoInfo;
 }
@@ -504,7 +523,7 @@ function submitTalaoPDF(talaoInfo) {
 function createFieldsetParcelas(parcelas, cursoNome) {
     let fieldsetDiv = document.createElement('div');
     fieldsetDiv.className = 'fieldset fieldset_curso_info fieldset_parcelas_info';
-    let tableParcelas = createTableParcelas(parcelas, cursoNome)
+    let tableParcelas = createTableParcelasHTML(parcelas, cursoNome)
     fieldsetDiv.innerHTML = `
         <legend>Parcelas Info.</legend>
         <div class='bg_table'>
@@ -512,12 +531,12 @@ function createFieldsetParcelas(parcelas, cursoNome) {
         ${tableParcelas.outerHTML}
         </div>
     `;
-   
+
     return fieldsetDiv.outerHTML;
 }
 
-//Parcelas Content
-function createTableParcelas(parcelas, cursoNome) {
+//Cria a tabela parcelas.
+function createTableParcelasHTML(parcelas, cursoNome) {
     let tableParcelas = document.createElement('table');
     tableParcelas.className = 'table_parcelas';
     tableParcelas.setAttribute('data-curso_nome', cursoNome);
@@ -541,15 +560,15 @@ function createTableParcelas(parcelas, cursoNome) {
     let arrTRParcelas = createArrTRParcelas(parcelas);
     // Insere o as linhas (TR) no tbody da tabela.
     insertTRTbodyTable(tableParcelas, arrTRParcelas)
-
-     // Adiciona a ultima linha (TR) da tabela com o botão de "salvar talão".
-     let TRSalvarTalaoHTML = createTRBtnSalvarTalaoHTML();
-     tableParcelas.querySelector('tbody').appendChild(TRSalvarTalaoHTML);
+    // Adiciona a ultima linha (TR) da tabela com o botão de "salvar talão".
+    let TRSalvarTalaoHTML = createTRBtnSalvarTalaoHTML();
+    tableParcelas.querySelector('tbody').appendChild(TRSalvarTalaoHTML);
 
     return tableParcelas;
 }
 
 
+// Cria a última linha (TR) da tabela com o botão de "salvar talão".
 function createTRBtnSalvarTalaoHTML() {
     let trBtnTalao = document.createElement('tr');
     trBtnTalao.className = 'tr_btn_talao';
@@ -572,19 +591,19 @@ function geraValorTotalParcelas(valor, desconto) {
     let d = parseInt(desconto.replace(/,/g, ""));
     total = v - d;
     return total;
-    }
+}
 
 // Cria um array de TRs com as parcelas.
 function createArrTRParcelas(parcelas) {
     let arrParcelas = Object.entries(parcelas)
     let arrParcelasOrdered = arrParcelas.sort();
     let arrTRParcelas = arrParcelasOrdered.map((item) => {
-        let disabled = ''; 
-        if(item[1]?.pagamento?.status === 'pago'){
+        let disabled = '';
+        if (item[1]?.pagamento?.status === 'pago') {
             disabled = "disabled='true'";
         }
         let tr = document.createElement('tr');
-            tr.setAttribute('data-numero_parcela', item[0]);
+        tr.setAttribute('data-numero_parcela', item[0]);
         tr.innerHTML = `
             <td>${item[0]}</td>
             <td>${item[1].n_lanc}</td>
@@ -909,7 +928,6 @@ function createSubnavCursoInfoHTML() {
         <li><a href='#' data-fieldset='fieldset_resp_info' class='resp_info' >Responsável</a></li>
         <li><a href='#' data-fieldset='fieldset_parcelas_info' class='parcelas_info'>Parcelas</a></li>
         <li><a href='#' data-fieldset='fieldset_certificado_info' class='certificado_info' >Certificado</a></li>
-        
 `;
     return nav.outerHTML;
 }

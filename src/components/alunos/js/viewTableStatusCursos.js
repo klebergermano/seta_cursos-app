@@ -237,7 +237,12 @@ function getParcelaPendenteProxima(parcelas) {
 function getUltimaParcelaCurso(parcelas){
     let keys = Object.keys(parcelas).sort();
     let lastKey = keys[keys.length - 1];
-    parcelas[lastKey].numero_parcela = lastKey;
+    if(parcelas[lastKey]){
+        parcelas[lastKey].numero_parcela = lastKey;
+
+    }else{
+        console.log('parcelas:', parcelas)
+    }
     return parcelas[lastKey]; 
 }
 //Gera o status da parcela baseado na data do vencimento e a data atual.
