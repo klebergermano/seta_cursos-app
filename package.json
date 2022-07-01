@@ -1,9 +1,6 @@
 {
   "name": "seta_cursos-app",
   "productName": "seta_cursos-app",
-
-
-
   "version": "1.0.7",
   "description": "Aplicativo de gerenciamento da SETA CURSOS",
   "main": "src/main.js",
