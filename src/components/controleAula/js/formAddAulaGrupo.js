@@ -67,10 +67,6 @@ function setCursoSelect(e) {
   
       selectCurso.innerHTML = res;
     })
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
 }
 
 function eventsDivAlunoAdicinado(divAluno) {
@@ -298,11 +294,6 @@ function submitFormAddAulaGrupo(e) {
 
 
 
-
-
-
-
-
 //----------------------------------------------------------------------
 //----------------------------------------------------------------------
 
@@ -412,21 +403,6 @@ function insertOptionsInSelectAluno(form) {
   select.setAttribute('disabled', true);
   form.querySelector('#aluno_nome').innerHTML = '<span>Aluno: </span>' + select.options[select.selectedIndex].textContent;
 }
-/*
-export async function insertOptionSelectCurso(form) {
-  let select = form.querySelector('.select_curso');
-  let option = ``;
-  let bg_curso = document.querySelectorAll(".bg_curso");
-  let navCursos = document.querySelector('.nav_cursos_aluno');
-  let activeCurso = navCursos.querySelector('.active').dataset.active;
-  bg_curso.forEach((curso) => {
-    if (stringToID(curso.dataset.curso) === activeCurso) {
-      select.innerHTML = `<option value='${curso.dataset.curso}' selected>${curso.dataset.curso}</option>`
-    }
-  })
-  form.querySelector('#curso_nome').innerHTML = '<span>Curso: </span>' + select.options[select.selectedIndex].textContent;
-}
-*/
 
 
 
