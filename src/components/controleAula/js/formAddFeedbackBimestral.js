@@ -8,7 +8,7 @@ const db = getFirestore(firebaseApp);
 import { removeBugExtraBgFormBLockScreen} from "../../jsCommon/commonFunctions.js";
 import { btnCloseForm, defaultEventsAfterSubmitForm } from "../../jsCommon/formsFunc.js";
 import insertElementHTML from "../../jsCommon/insertElementHTML.js";
-import { insertOptionsInSelectAluno, insertOptionSelectCurso } from "./formAddAula.js";
+import { insertAlunoNomeValue, insertCursoNomeValue } from "./formAddAula.js";
 import { addLogInfo } from "../../logData/js/logFunctions.js";
 //---------------------------------------------------------------//
 export function insertFormAddFeedbackBimestral(e) {
@@ -22,8 +22,8 @@ function eventsFormAddFeedbackBimestral(form, event) {
   form.addEventListener("submit", (e) => {
     submitformAddFeedbackBimestral(e);
   });
-  insertOptionsInSelectAluno(form)
-  insertOptionSelectCurso(form)
+  insertAlunoNomeValue(form)
+  insertCursoNomeValue(form)
   insertOptionSelectBimestre(form, event)
 }
 

@@ -2,37 +2,45 @@
 import { firebaseApp } from "../../dbConfig/firebaseApp.js";
 const { getFirestore, setDoc, doc, getDocs, collection } = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
-//---------------------------------------------------------------//
+//---------------------------------------------------------------------//
+
 //Components
 import { removeBugExtraBgFormBLockScreen, stringToID } from "../../jsCommon/commonFunctions.js";
 import { btnCloseForm , defaultEventsAfterSubmitForm } from "../../jsCommon/formsFunc.js";
 import insertElementHTML from "../../jsCommon/insertElementHTML.js";
-
-
 import { addLogInfo } from "../../logData/js/logFunctions.js";
-//---------------------------------------------------------------//
+//---------------------------------------------------------------------//
 
-export async function insertFormAddAulaHTML() {
-  insertElementHTML('#controle_aula_content',
-    './components/controleAula/formAddAula.html', eventsFormAddAula);
+
+//----------------------------------------------------------------------+
+//TODO: Refatorar e comentar                                            |
+//----------------------------------------------------------------------+
+
+export async function insertFormAddAulaHTML(){
+  insertElementHTML('#controle_aula_content', './components/controleAula/formAddAula.html', eventsFormAddAula);
 }
 
 export function eventsFormAddAula(form) {
   removeBugExtraBgFormBLockScreen()
   btnCloseForm("#form_add_aula");
+
   form.addEventListener("submit", (e) => {
     submitFormAddAula(e);
   });
-  // Copia as opções do "#main_select_aluno" e insere 
-  // no "select_aluno" do form_add_aula
-  insertOptionsInSelectAluno(form)
+
+  // Copia as opções do "#main_select_aluno" e insere no "select_aluno" do form_add_aula
+  insertAlunoNomeValue(form)
+  
   //insere as opções de curso e seta o selecionado.
-  insertOptionSelectCurso(form)
+  insertCursoNomeValue(form)
+
   form.querySelector('#select_bimestre').addEventListener('change', (e) => {
     form.querySelector('#select_aula').removeAttribute('disabled');
     validaSelectAula(form)
   });
+  
   eventClickBtnStatus(form)
+  
   setInputsProva(form)
 }
 
@@ -63,8 +71,6 @@ async function createOptionsSelectAlunos() {
     })
   return options;
 }
-
-
 
 function setInputsProva(form) {
   let selectAula = form.querySelector("#select_aula");
@@ -111,34 +117,44 @@ export function setClassBtnStatus(form) {
   });
 }
 
-function removeClassActivedBtnStatus() {
+function removeClassActivedBtnStatus(){
   let btns = document.querySelectorAll('label');
   btns.forEach((item) => {
     item.className = '';
   });
 }
 
-export function insertOptionsInSelectAluno(form) {
-  let select = form.querySelector('#select_aluno');
-  let mainSelect = document.querySelector('#main_select_aluno');
-  select.innerHTML = mainSelect.innerHTML;
-  select.selectedIndex = mainSelect.selectedIndex;
-  select.setAttribute('disabled', true);
-  form.querySelector('#aluno_nome').innerHTML = '<span>Aluno: </span>' + select.options[select.selectedIndex].textContent;
+// Recebe o nome do aluno com o formato "RA0001-Nome Aluno", faz um split retornando
+// somente o RA.
+function getRaFromStringAlunoNome(alunoNome){
+  // Gera um array dividindo a string apartir do hífen(-) retornando a primeira posição do array.
+  let RA = (alunoNome.split('-', 1)[0]).trim();
+return RA;
 }
-
-export async function insertOptionSelectCurso(form) {
-  let select = form.querySelector('#select_curso');
-  let option = ``;
-  let bg_curso = document.querySelectorAll(".bg_curso");
+// Pega o valor do select "#main_select_aluno" ou do input "#main_select_aluno_datalist"
+// e insere o valor no input "#'aluno_nome". 
+export function insertAlunoNomeValue(form){
+  let inputAluno = form.querySelector('#aluno_nome');
+  let mainAlunoSelect = document.querySelector('#main_select_aluno');
+  let alunoNome; 
+  // Testa se o "#main_select_aluno" esta oculto com o classe "hide" caso estiver
+  // insere o valor do "#main_select_aluno_datalist".
+  if(mainAlunoSelect.classList.contains('hide')){
+    let mainAlunoInputDatalist = document.querySelector('#main_select_aluno_datalist');
+    alunoNome = mainAlunoInputDatalist.value; 
+  }else{
+    alunoNome  =  mainAlunoSelect.options[mainAlunoSelect.selectedIndex].textContent; 
+  }
+  inputAluno.value = alunoNome; 
+  let RA = getRaFromStringAlunoNome(alunoNome); 
+  inputAluno.setAttribute('data-ra', RA)
+}
+// Pega o textContent do curso com a classe active e insere no "#curso_nome".
+export async function insertCursoNomeValue(form) {
+  let cursoNome = form.querySelector('#curso_nome');
   let navCursos = document.querySelector('.nav_cursos_aluno');
-  let activeCurso = navCursos.querySelector('.active').dataset.active;
-  bg_curso.forEach((curso) => {
-    if (stringToID(curso.dataset.curso) === activeCurso) {
-      select.innerHTML = `<option value='${curso.dataset.curso}' selected>${curso.dataset.curso}</option>`
-    }
-  })
-  form.querySelector('#curso_nome').innerHTML = '<span>Curso: </span>' + select.options[select.selectedIndex].textContent;
+  let activeCurso = (navCursos.querySelector('.active').textContent).trim();
+  cursoNome.value = activeCurso;
 }
 
 function validaSelectAula(form) {
@@ -149,14 +165,11 @@ function validaSelectAula(form) {
 
 function getInfoFormAddAula(form) {
   let infoAddAula = {};
-  let selectAluno = form.querySelector("#select_aluno");
+  let alunoNome = form.querySelector("#aluno_nome");
 
-  let RA = selectAluno.options[selectAluno.selectedIndex].value;
-
-  let selectCurso = form.querySelector("#select_curso");
-  let curso = selectCurso.options[
-    selectCurso.selectedIndex
-  ].value;
+  let RA = alunoNome.dataset.ra;
+  let selectCurso = form.querySelector("#curso_nome");
+  let cursoValue = selectCurso.value;
 
   let selectBimestre = form.querySelector("#select_bimestre");
   let bimestre = selectBimestre.options[
@@ -164,7 +177,7 @@ function getInfoFormAddAula(form) {
   ].value;
 
   infoAddAula.RA = RA;
-  infoAddAula.curso = curso;
+  infoAddAula.curso = cursoValue;
   infoAddAula.bimestre = bimestre;
   return infoAddAula;
 }
@@ -228,11 +241,9 @@ function blocoAddAula(dados) {
 
 function getKeysAulas(RA, idCurso, bimestre) {
   let keysAulas = [];
-  let nomeCursoBD;
   let aluno = getDocs(collection(db, 'alunato', RA, 'cursos'));
   let keys = aluno.then((res) => {
     res.forEach((item) => {
-      //nomeCursoBD = commonFunc.stringToID(e.data().curso);
       if (item.data().curso_info.nome === idCurso) {
         if (item.data().bimestres[bimestre]) {
           keysAulas = Object.keys(item.data().bimestres[bimestre]);
@@ -248,8 +259,8 @@ function getKeysAulas(RA, idCurso, bimestre) {
 function submitFormAddAula(e) {
   e.preventDefault();
   let form = e.target;
-  let RA = form.select_aluno.value;
-  let curso = form.select_curso.value;
+  let RA = form.aluno_nome.dataset.ra;
+  let curso = form.curso_nome.value;
   let bimestre = form.select_bimestre.value
   let aula = form.select_aula.value
   setDoc(doc(db, 'alunato', RA, 'cursos', curso),
