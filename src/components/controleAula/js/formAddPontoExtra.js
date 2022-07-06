@@ -5,7 +5,7 @@ const { getFirestore, setDoc, doc } = require("firebase/firestore")
 const db = getFirestore(firebaseApp);
 //---------------------------------------------------------------//
 //Components
-import { insertOptionsInSelectAluno, insertOptionSelectCurso } from "./formAddAula.js";
+import { insertAlunoNomeValue, insertCursoNomeValue } from "./formAddAula.js";
 import { removeBugExtraBgFormBLockScreen} from "../../jsCommon/commonFunctions.js";
 import { btnCloseForm, defaultEventsAfterSubmitForm } from "../../jsCommon/formsFunc.js";
 import insertElementHTML from "../../jsCommon/insertElementHTML.js";
@@ -26,8 +26,8 @@ function eventsFormAddPontoExtra(form) {
   form.addEventListener("submit", (e) => {
     submitformAddPontoExtra(e);
   });
-  insertOptionsInSelectAluno(form)
-  insertOptionSelectCurso(form).then((res) => {
+  insertAlunoNomeValue(form)
+  insertCursoNomeValue(form).then((res) => {
   })
   displayAlunoCursoNome(form)
   removeFieldFormAddAula(form)
