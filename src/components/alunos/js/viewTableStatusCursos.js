@@ -115,7 +115,6 @@ function getResumoCursos(){
     // Formata o "valor_total_cursos_ativos" para o formato de string decimal.
     resumo_cursos.valor_total_cursos_ativos = VMasker.toMoney( resumo_cursos.valor_total_cursos_ativos, { showSignal: true });
 
-    console.log(resumo_cursos)
     return resumo_cursos; 
 }
 
@@ -240,8 +239,6 @@ function getUltimaParcelaCurso(parcelas){
     if(parcelas[lastKey]){
         parcelas[lastKey].numero_parcela = lastKey;
 
-    }else{
-        console.log('parcelas:', parcelas)
     }
     return parcelas[lastKey]; 
 }
