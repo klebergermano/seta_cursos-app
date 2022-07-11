@@ -1,4 +1,4 @@
-const folhasTalao = require('./TemplateTalaoFolhas.js');
+const folhasTalao = require('./TemplateTalaoFolhas.cjs');
 const TemplateTalao = (talaoInfo) => {
   let talao = '';
   talaoInfo.forEach((item) => {
