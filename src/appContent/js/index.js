@@ -1,14 +1,14 @@
 //Electron
 var appVersion = require("electron").remote.app.getVersion();
 //Firebase
-import { firebaseApp } from "../../../components/dbConfig/firebaseApp.js";
+import { firebaseApp } from "../../components/dbConfig/firebaseApp.js";
 const { getAuth, signOut } = require("firebase/auth");
 const auth = getAuth(firebaseApp);
 //---------------------------------------------------------------//
 //Components
-import importHTMLWithScript from "../../../components/jsCommon/importHTMLWithScript.js";
-import { getUserCompleteInfo } from "../../../components/users/js/index.js";
-import { getRolePermission } from "../../../components/users/js/permissions.js";
+import importHTMLWithScript from "../../components/jsCommon/importHTMLWithScript.js";
+import { getUserCompleteInfo } from "../../components/users/js/index.js";
+import { getRolePermission } from "../../components/users/js/permissions.js";
 //---------------------------------------------------------------//
 //Funções do AdminContent
 import { timerIdleMouseMoveFunc } from "./timerIdle.js";
@@ -82,13 +82,13 @@ function setLoginInfo(userCompleteInfo) {
 function eventsMainMenu() {
   let childs = document.querySelector('#nav_main_menu_lateral_admin').querySelectorAll("a");
   document.querySelector('#bg_logo').addEventListener('click', () => {
-    importHTML('#page_content', '../src/components/home/index.html', '../../../components/home/js/index.js')
+    importHTML('#page_content', '../src/components/home/index.html', '../../components/home/js/index.js')
   })
   childs.forEach((item) => {
     item.addEventListener("click", (e) => {
       removeActiveNavMainMenuLateral();
       let htmlSRC = '../src/components/' + item.dataset.path + '/index.html';
-      let scriptSRC = '../../../components/' + item.dataset.script_src + '/js/index.js';
+      let scriptSRC = '../../components/' + item.dataset.script_src + '/js/index.js';
       importHTML('#page_content', htmlSRC, scriptSRC);
       item.classList.add('active');
 

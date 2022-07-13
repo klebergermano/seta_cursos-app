@@ -10,7 +10,7 @@ const auth = getAuth(firebaseApp);
 import insertElementHTML from "../../jsCommon/insertElementHTML.js";
 import { confirmBoxDelete } from "../../jsCommon/confirmBoxFunc.js";
 import { insertFormAddCursosInfoHTML } from "./formAddCursoInfo.js";
-import { removeUnauthorizedElement } from "../../../appContent/adminContent/js/checkPermission.js";
+import { removeUnauthorizedElement } from "../../../appContent/js/checkPermission.js";
 import { addLogInfo } from "../../logData/js/logFunctions.js"
 //---------------------------------------------------------------//
 let $cursosList = {};

@@ -6,7 +6,7 @@ import {insertFormAddPontoExtra} from "./formAddPontoExtra.js";
 import {insertFormAddFeedbackBimestral} from "./formAddFeedbackBimestral.js";
 import { eventsDeletarAula} from "./deleteFunc.js";
 import {eventsBaixarHistorico} from "./baixarHistoricoAluno.js";
-import {removeUnauthorizedElement} from "../../../appContent/adminContent/js/checkPermission.js";
+import {removeUnauthorizedElement} from "../../../appContent/js/checkPermission.js";
 //---------------------------------------------------------------//
 
 export function eventsAulas() {
