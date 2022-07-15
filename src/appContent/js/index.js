@@ -18,8 +18,6 @@ import { checkRolePermission } from "./checkPermission.js";
 //---------------------------------------------------------------//
 
 
-
-
 export function onload() {
   (function setGlobalPermissionInfo() {
     getUserCompleteInfo(auth.currentUser).then((userCompleteInfo) => {
@@ -51,7 +49,7 @@ export function onload() {
 // Carrega os eventos do header.
 function eventsHeaderAppContent() {
   //carrega função de logout no header buttom.
-  document.querySelector("#logout_user").addEventListener('click', () => {
+  document.querySelector("#btn_logout_user").addEventListener('click', () => {
     signOut(auth)
       .catch(err => console.log(err));
   })

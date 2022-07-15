@@ -930,16 +930,32 @@ menu.submenu_page ul li a {
 }
 #header_admin #header_admin_center #login_info {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   color: #333;
 }
-#header_admin #header_admin_center #login_info #user_info {
-  margin-right: 30px;
-  border-right: 1px dotted #ccc;
+#header_admin #header_admin_center #login_info li {
+  list-style: none;
+}
+#header_admin #header_admin_center #login_info li a {
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 3px;
+}
+#header_admin #header_admin_center #login_info li a:hover {
+  background: #eee;
+}
+#header_admin #header_admin_center #login_info li a:hover svg {
+  color: #ed1860 !important;
+}
+#header_admin #header_admin_center #login_info #user_menu, #header_admin #header_admin_center #login_info #user_info, #header_admin #header_admin_center #login_info #bg_logout_user {
   display: flex;
   align-items: center;
-  padding: 5px 10px;
   width: auto;
+  border-left: 1px dotted #ccc;
+  padding: 10px;
+}
+#header_admin #header_admin_center #login_info #user_menu svg, #header_admin #header_admin_center #login_info #user_info svg, #header_admin #header_admin_center #login_info #bg_logout_user svg {
+  color: #333;
 }
 #header_admin #header_admin_center #login_info #user_info #user_icon {
   overflow: hidden;
@@ -982,7 +998,7 @@ menu.submenu_page ul li a {
   font-size: 14px;
   color: #999;
 }
-#header_admin #header_admin_center #logout_user {
+#header_admin #header_admin_center #bg_logout_user #btn_logout_user {
   color: #444;
   background: transparent;
   padding: 5px 10px;
@@ -991,11 +1007,11 @@ menu.submenu_page ul li a {
   border-radius: 5px;
   font-size: 14px;
 }
-#header_admin #header_admin_center #logout_user:hover {
+#header_admin #header_admin_center #bg_logout_user #btn_logout_user:hover {
   color: #245da7;
   background: #fff;
 }
-#header_admin #header_admin_center #logout_user:active {
+#header_admin #header_admin_center #bg_logout_user #btn_logout_user:active {
   background: #eee;
 }
 
