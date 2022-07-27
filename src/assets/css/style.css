@@ -3540,6 +3540,32 @@ option[disabled] {
   height: 40px;
   text-align: center;
 }
+#view_table_alunos .td_controles button {
+  border: 0px solid #333;
+  border-radius: 3px;
+}
+#view_table_alunos .td_controles .btn_info_aluno {
+  background-color: #245da7;
+  color: #fff;
+}
+#view_table_alunos .td_controles .btn_info_aluno:hover {
+  background-color: #2969bc;
+}
+#view_table_alunos .td_controles .btn_delete_curso {
+  background-color: #b83535;
+  color: #fff;
+}
+#view_table_alunos .td_controles .btn_delete_curso:hover {
+  background-color: #ae3a3a;
+}
+#view_table_alunos .td_controles .btn_add_curso {
+  background-color: #579257;
+  color: #fff;
+}
+#view_table_alunos .td_controles .btn_add_curso:hover {
+  background-color: #61a161;
+}
+
 #bg_view_table_status_cursos {
   position: relative;
 }

@@ -126,6 +126,7 @@ function submitformAddCurso(e) {
       status_info: {
         situacao: 'ativo',
         data: new Date(),
+        obs: '',
        
     },
 
