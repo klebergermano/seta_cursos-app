@@ -32,11 +32,11 @@ export function onload() {
         getDoc(doc(db, "metadata", "last_version")).then((res) => {
           if (res.data().version !== appVersion) {
             //Cerrega página de updateVersion
-            insertElementHTML('#app', './appContent/adminContent/updateAppVersion.html', () => {
+            insertElementHTML('#app', './appContent/updateAppVersion.html', () => {
               eventsUpdateAppVersion(res.data(), appVersion)
             }, null, true);
           } else {
-            importHTMLWithScript('#app', './appContent/adminContent/index.html', "../../appContent/adminContent/js/index.js");
+            importHTMLWithScript('#app', './appContent/index.html', "../../appContent/js/index.js");
           };
         })
         // ...

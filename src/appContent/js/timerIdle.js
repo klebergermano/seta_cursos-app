@@ -1,5 +1,5 @@
 //----------------------------------------------------
-import {firebaseApp} from "../../../components/dbConfig/firebaseApp.js";
+import {firebaseApp} from "../../components/dbConfig/firebaseApp.js";
 const {getAuth, signOut } =  require("firebase/auth");
 const {getFirestore, doc, getDoc, setDoc} = require("firebase/firestore") 
 const db = getFirestore(firebaseApp);

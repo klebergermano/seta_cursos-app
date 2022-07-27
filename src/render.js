@@ -5,6 +5,8 @@ const { ipcRenderer } = require("electron");
 import importHTMLWithScript from "./components/jsCommon/importHTMLWithScript.js";
 //---------------------------------------------------------------//
 
+
+
 //Window Bar Events
 btn_close_app.addEventListener('click', ()=>{
         ipcRenderer.send('closeApp')

@@ -6,9 +6,11 @@ const auth = getAuth(firebaseApp);
 //Components
 import { btnCloseForm } from "../../jsCommon/formsFunc.js";
 import insertElementHTML from "../../jsCommon/insertElementHTML.js";
-
+import {insertFormAddUser} from "./formAddUser.js" 
 //---------------------------------------------------------------//
-
+//----------------------------------------------------------------------+
+//TODO: Refatorar e comentar                                            |     
+//----------------------------------------------------------------------+
 export function insertFormReauthUser(){
     insertElementHTML('#page_users', './components/users/formReauthUser.html', eventsFormReauthUser);
 }
@@ -53,8 +55,9 @@ let credentials = EmailAuthProvider.credential( userReauthInfo.email, userReauth
         removeElement('.bg_form_block_screen');
       }, 300);
     }).then(()=>{
+      //TODO: Função não existe
         setTimeout(()=>{
-          formAdduser.insertFormAddUser(userReauthInfo)
+          insertFormAddUser(userReauthInfo)
           }, 300);
     })
     .catch((error) => {

@@ -2,6 +2,7 @@
 @use 'abstracts' as *;
 @use 'elements';
 @use 'update_app';
+@use 'todolist';
 @use 'cursos_info';
 @use 'controle_aula';
 @use 'contratos';
@@ -134,7 +135,7 @@ h1{text-align: center;}
 }
 
 
-#adminContent{
+#appContent{
   max-height: calc(100vh - 80px);
   overflow: scroll;
   overflow-x: hidden;
@@ -170,7 +171,7 @@ grid-template-columns: minmax(160px, 14%) 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 @media screen and (max-width: 1000px) {
-  #adminContent{
+  #appContent{
     grid-template-columns:60px 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   
   }
@@ -200,16 +201,29 @@ grid-template-columns: minmax(160px, 14%) 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 
 }
 
+.window_bar{
+  position: absolute;
+  top:0; 
+  left:0; 
+  right:0; 
+  width:auto; 
+  height:30px; 
+  background:#ccc; 
+}
 .btn_close{
   right:0px;
   top:0px;
-  padding: 5px 10px;
+  padding: 3px 8px;
   position:absolute;
   cursor:pointer;
-
   &:hover{
     background:rgb(221, 79, 79);
   color:#fff;
+  border:1px solid #333;
+  }
+  &:active{
+    background:rgb(255, 0, 0);
+
   }
 }
 

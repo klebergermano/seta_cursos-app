@@ -7,10 +7,10 @@ const pdf = require("html-pdf");
 const fs = require("fs");
 const path = require("path");
 const downloadPath = app.getPath("downloads");
-const TemplateTalao = require("./components/alunos/js/TemplateTalao.js");
-const TemplateContrato = require("./components/contratos/js/TemplateContrato.js");
-const TemplateHistoricoAluno = require("./components/controleAula/js/TemplateHistoricoAluno.js");
-const TemplateCertificado = require("./components/alunos/js/TemplateCertificado.js");
+const TemplateTalao = require("./components/alunos/js/TemplateTalao.cjs");
+const TemplateContrato = require("./components/contratos/js/TemplateContrato.cjs");
+const TemplateHistoricoAluno = require("./components/controleAula/js/TemplateHistoricoAluno.cjs");
+const TemplateCertificado = require("./components/alunos/js/TemplateCertificado.cjs");
 //---------------------------------------------------------------//
 
 
