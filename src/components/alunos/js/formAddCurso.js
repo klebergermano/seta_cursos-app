@@ -123,6 +123,12 @@ function submitformAddCurso(e) {
   }
   setDoc(doc(db, "alunato", RA, "cursos", $contratoInfo.curso_info.nome),
     {
+      status_info: {
+        situacao: 'ativo',
+        data: new Date(),
+       
+    },
+
       bimestres: {},
       curso_info: {
         id_contrato:($contratoInfo.metadata.id).trim(),

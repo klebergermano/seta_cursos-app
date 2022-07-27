@@ -259,13 +259,19 @@ function submitFormsInfoCurso(e) {
 
     let tableParcelas = form.querySelector('.table_parcelas');
     let trUpdated = tableParcelas.querySelectorAll('tr[data-update="true"]');
+    console.log('trUpdated', trUpdated)
     // objeto com a informação da parcela a ser atualizada.
-    let parcelaObjetoUpdate = createObjectParcelaForUpdate(trUpdated);
+    let parcelaObjetoUpdate = false;
+    if (trUpdated.length > 0) {
+        parcelaObjetoUpdate = createObjectParcelaForUpdate(trUpdated);
+    } else {
+        console.log('Nop')
+
+    }
 
     //------------------------------------------------------------
     // Confere se o valor do checkbox do certificado esta marcado. 
     let valueCerticadoEntregue = verificaCheckboxCertificado(form);
-
     setDoc(doc(db, "alunato", RA, 'cursos', curso),
         {
             status_info: {
@@ -277,11 +283,11 @@ function submitFormsInfoCurso(e) {
                 certificado: {
                     entregue: valueCerticadoEntregue
                 },
-                parcelas: parcelaObjetoUpdate,
-
+          
                 obs: (form.curso_obs.value).trim(),
 
             },
+
 
             resp_info: {
                 email: (form.resp_email.value).trim(),
@@ -298,18 +304,34 @@ function submitFormsInfoCurso(e) {
                 modified: new Date()
             },
         }, { merge: true }
-    ).then(() => {
-        let inputSubmit = form.querySelector('input[type="submit"]');
-        inputSubmit.setAttribute('disabled', true);
-        inputSubmit.style.opacity = '0.5';
-    }).then(() => {
-        addLogInfo('log_alunato', 'update', RA);
-        //Reinsere a página infoAluno.
-        insertInfoAlunoHTML(RA)
+    )
+        .then(() => {
+            if (parcelaObjetoUpdate) {
+                setDoc(doc(db, "alunato", RA, 'cursos', curso),
+                    {
+                        curso_info: {
+                            parcelas: parcelaObjetoUpdate,
+                        },
+                        metadata: {
+                            modified: new Date()
+                        },
+                    },
+                    { merge: true }
+                )
+            }
+        }
+        ).then(() => {
+            let inputSubmit = form.querySelector('input[type="submit"]');
+            inputSubmit.setAttribute('disabled', true);
+            inputSubmit.style.opacity = '0.5';
+        }).then(() => {
+            addLogInfo('log_alunato', 'update', RA);
+            //Reinsere a página infoAluno.
+            insertInfoAlunoHTML(RA)
 
-    }).catch((error) => {
-        addLogInfo('log_alunato', 'error', RA, error);
-    })
+        }).catch((error) => {
+            addLogInfo('log_alunato', 'error', RA, error);
+        })
 }
 
 /* Modelo do objeto parcelas de pagamento.
@@ -412,16 +434,16 @@ function setDataChangeAttributeInTargetElement(e) {
     e.target.setAttribute('data-change', true);
 }
 // Gera o valor total e aplica a mascará de formatação.
-function createValorTotalInputTR(e){
+function createValorTotalInputTR(e) {
     let tr = e.target.closest('tr');
     let valorValue = tr.querySelector('.parcela_valor').value;
     let descontoValue = tr.querySelector('.parcela_desconto').value;
     let valorTotalInt = geraValorTotalParcelas(valorValue, descontoValue);
-    let valorTotaDecimalMoney = VMasker.toMoney( valorTotalInt, { showSignal: true });
+    let valorTotaDecimalMoney = VMasker.toMoney(valorTotalInt, { showSignal: true });
     return valorTotaDecimalMoney;
 }
 // Insere o valor total no input.
-function insertValorTotalInputTR(e, valorTotaDecimalMoney){
+function insertValorTotalInputTR(e, valorTotaDecimalMoney) {
     let tr = e.target.closest('tr');
     let inputValorTotal = tr.querySelector('.parcela_valor_total')
     inputValorTotal.value = valorTotaDecimalMoney;
@@ -450,12 +472,12 @@ function eventsParcelasTable() {
                 // Testa se o item é o valor ou desconto. 
                 if (item.classList.contains('parcela_desconto') || item.classList.contains('parcela_valor')) {
                     // Cria o valor total em decimal formatado.
-                    let valorTotaDecimalMoney =  createValorTotalInputTR(e)
+                    let valorTotaDecimalMoney = createValorTotalInputTR(e)
                     // Insere o valor total no input.
                     insertValorTotalInputTR(e, valorTotaDecimalMoney)
                 }
             });
-          
+
         })
     })
 }
@@ -638,7 +660,7 @@ function insertTRTbodyTable(tableParcelas, arrTRParcelas) {
 }
 
 //------------------------------------------------------------------------------------------------------------------
-//--------------------------------------------- Conteúdo do Curso HTML ---------------------------------------------
+// Conteúdo do Curso HTML                                                                                          |
 //------------------------------------------------------------------------------------------------------------------
 
 // Cria o filedset do responsável para inserção HTML.

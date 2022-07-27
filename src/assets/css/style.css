@@ -957,6 +957,9 @@ menu.submenu_page ul li a {
 #header_admin #header_admin_center #login_info #user_menu svg, #header_admin #header_admin_center #login_info #user_info svg, #header_admin #header_admin_center #login_info #bg_logout_user svg {
   color: #333;
 }
+#header_admin #header_admin_center #login_info #user_menu {
+  display: none;
+}
 #header_admin #header_admin_center #login_info #user_info #user_icon {
   overflow: hidden;
   margin: 5px;
@@ -1114,6 +1117,52 @@ menu.submenu_page ul li a {
 #update_app_content #update_message {
   max-width: 550px;
   margin: 0 auto;
+}
+
+#block_screen_view_todolist {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #11111199;
+  right: 0;
+  left: 0;
+  top: 0;
+  z-index: 5;
+}
+
+#bg_view_table_todolist {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 100px;
+  position: absolute;
+  border: 1px solid #333;
+  box-shadow: 1px 6px 6px #00000099;
+  background: #dddddf;
+  padding: 40px;
+}
+#bg_view_table_todolist .window_bar {
+  background-color: #333;
+}
+#bg_view_table_todolist #view_todolist {
+  position: absolute;
+  width: 600px;
+  height: 400px;
+  border: 2px solid red;
+  top: 40px;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0px 6px 4px #00000099;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
 }
 
 #cursos_info .page_content {
@@ -4469,7 +4518,7 @@ h1 {
   background: #f1c0c0 !important;
 }
 
-#adminContent {
+#appContent {
   max-height: calc(100vh - 80px);
   overflow: scroll;
   overflow-x: hidden;
@@ -4498,7 +4547,7 @@ h1 {
   }
 }
 @media screen and (max-width: 1000px) {
-  #adminContent {
+  #appContent {
     grid-template-columns: 60px 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   }
 
@@ -4525,16 +4574,30 @@ h1 {
   z-index: 5;
 }
 
+.window_bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: 30px;
+  background: #ccc;
+}
+
 .btn_close {
   right: 0px;
   top: 0px;
-  padding: 5px 10px;
+  padding: 3px 8px;
   position: absolute;
   cursor: pointer;
 }
 .btn_close:hover {
   background: #dd4f4f;
   color: #fff;
+  border: 1px solid #333;
+}
+.btn_close:active {
+  background: red;
 }
 
 .block_screen {
