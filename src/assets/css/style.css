@@ -957,9 +957,6 @@ menu.submenu_page ul li a {
 #header_admin #header_admin_center #login_info #user_menu svg, #header_admin #header_admin_center #login_info #user_info svg, #header_admin #header_admin_center #login_info #bg_logout_user svg {
   color: #333;
 }
-#header_admin #header_admin_center #login_info #user_menu {
-  display: none;
-}
 #header_admin #header_admin_center #login_info #user_info #user_icon {
   overflow: hidden;
   margin: 5px;
