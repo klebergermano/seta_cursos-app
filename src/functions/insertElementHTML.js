@@ -7,20 +7,17 @@ const fetchElement = (pathHTML) => {
       (htmlString) => new DOMParser().parseFromString(htmlString, "text/html").body.firstElementChild
     ).catch(err => console.log(err));
 }
+const appendElementHTML = (element) => (target) => target.appendChild(element);
 
 //------------------curriedAppendExternalElementHTML----------------------------------
 async function appendExternalElementHTML(pathToFetchElementHTML) {
   const elementToAppend = await fetchElement(pathToFetchElementHTML);
+  console.log('elementToAppend', elementToAppend)
   return (targetElementID) => {
     appendElementHTML(elementToAppend)($(targetElementID));
-    return (callback) => {
-      if (callback) callback();
-    };
+    return (callback) => { if (callback) callback(); };
   };
 }
-
-export default appendExternalElementHTML;
-
 /*
 async function callCurriedAppendExternalElementHTML() { (await appendExternalElementHTML("header.html"))("page"); }
 */
@@ -65,3 +62,4 @@ async function appendExternalElementHTML(
 }
 */
 
+export default appendExternalElementHTML;
