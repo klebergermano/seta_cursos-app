@@ -10,7 +10,7 @@ import importHTMLWithScript from "../../components/jsCommon/importHTMLWithScript
 import { getUserCompleteInfo } from "../../components/users/js/index.js";
 import { getRolePermission } from "../../components/users/js/permissions.js";
 import insertElementHTML from "../../components/jsCommon/insertElementHTML.js";
-import viewTodolist from "./viewTodolist.js"; 
+import viewTodolist from "../../components/todoList/js/viewTodolist.js"; 
 //---------------------------------------------------------------//
 //Funções do AdminContent
 import { timerIdleMouseMoveFunc } from "./timerIdle.js";
