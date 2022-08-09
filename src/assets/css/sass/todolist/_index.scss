@@ -13,7 +13,7 @@
     z-index: 5;
 }
 #bg_view_table_todolist{
-        width: 80%;
+        width: 100%;
         margin-left: auto; 
         margin-right: auto; 
         left:0; 
@@ -22,12 +22,18 @@
         position: absolute;
         border:1px solid #333; 
         box-shadow: 1px 6px 6px #00000099;
-        background: #dddddf;
-        padding:40px;
+        background: #f7f7b0;
+        padding:80px;
+        border-radius: 5px;
+
+        resize: both;
+        overflow: auto;
      .window_bar{
         background-color: #333;
      }
-
+     #btn_add_tarefa{
+       
+     }
     #view_todolist{
         position: absolute;
         width:600px;

@@ -357,6 +357,7 @@ template {
   padding: 10px 15px;
   margin: 5px;
   border: 0px;
+  user-select: none;
   cursor: pointer;
 }
 .btn svg, #fieldset_resp div #btn_marcar_resp_aluno svg, .btn-secondary svg, .btn-primary svg, .forms_fixed input[type=submit] svg, #form_add_aluno input[type=submit] svg, #controle_aula_content .btn_add_curso svg, .form_flex_absolute input[type=submit] svg, .form_flex_static input[type=submit] svg, #form_config_perm input[type=submit] svg, #form_reauth_user input[type=submit] svg, #form_add_user input[type=submit] svg, #form_delete_curso input[type=submit] svg, #form_add_certificado input[type=submit] svg, #form_add_curso input[type=submit] svg, .forms_controle_aula input[type=submit] svg, #form_add_curso_info input[type=submit] svg, #form_info_aluno input[type=submit] svg, .form_info_curso input[type=submit] svg, .btn-default-delete svg, #form_add_saida_avulsa fieldset .div_submit input[type=submit] svg, .btn-default svg, form.forms_fluxo_caixa .div_submit input[type=submit] svg, .sub_menu_fluxo_caixa ul li a svg, .nav_forms ul li a svg, #page_login #login_content #form_login input[type=submit] svg, #form_info_aluno .btn_create_certificado svg, .form_info_curso .btn_create_certificado svg, #form_info_aluno #label_checkbox_certificado_entregue svg, .form_info_curso #label_checkbox_certificado_entregue svg, .forms_fixed .label_btn_checkbox svg, #form_add_aluno .label_btn_checkbox svg, #info_contrato #div_btn_salvar_contrato_pdf #btn_salvar_contrato_pdf svg, #bg_div_id_contrato #label_id_automatico_contrato svg, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo svg, #form_add_aula_grupo #btn_add_aluno_grupo svg, #controle_aula_content .btn_add svg, #controle_aula #bg_select_aluno button svg, menu.submenu_page ul li a svg {
@@ -408,15 +409,15 @@ template {
 }
 
 .btn-secondary {
-  background: #245da7;
+  background: #da1155;
   color: #fafafa;
 }
 .btn-secondary:hover {
-  background: #2969bc;
+  background: #ed1860;
 }
 .btn-secondary:active {
-  background: #1f5192;
-  box-shadow: inset 0px 1px 3px #122e53;
+  background: #c30f4c;
+  box-shadow: inset 0px 1px 3px #7c0a30;
 }
 
 .btn-default-cancel {
@@ -773,9 +774,14 @@ inputs, .input-primary {
   padding: 10px;
 }
 .bg_tables .bg_search_inputs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background: #ddd;
   padding: 5px;
   margin-bottom: 5px;
+  height: auto;
+  overflow: hidden;
 }
 .bg_tables .bg_search_inputs label {
   padding: 5px;
@@ -1132,7 +1138,7 @@ menu.submenu_page ul li a {
 }
 
 #bg_view_table_todolist {
-  width: 80%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   left: 0;
@@ -1141,8 +1147,11 @@ menu.submenu_page ul li a {
   position: absolute;
   border: 1px solid #333;
   box-shadow: 1px 6px 6px #00000099;
-  background: #dddddf;
-  padding: 40px;
+  background: #f7f7b0;
+  padding: 80px;
+  border-radius: 5px;
+  resize: both;
+  overflow: auto;
 }
 #bg_view_table_todolist .window_bar {
   background-color: #333;
