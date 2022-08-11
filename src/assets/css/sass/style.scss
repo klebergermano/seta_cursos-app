@@ -6,7 +6,7 @@
 @use 'cursos_info';
 @use 'controle_aula';
 @use 'contratos';
-@use 'alunos';
+@use '../../../components/alunos/sass/index';
 @use 'login';
 @use 'users';
 @use 'fluxo_caixa';
