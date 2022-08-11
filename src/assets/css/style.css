@@ -1122,55 +1122,6 @@ menu.submenu_page ul li a {
   margin: 0 auto;
 }
 
-#block_screen_view_todolist {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #11111199;
-  right: 0;
-  left: 0;
-  top: 0;
-  z-index: 5;
-}
-
-#bg_view_table_todolist {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  top: 100px;
-  position: absolute;
-  border: 1px solid #333;
-  box-shadow: 1px 6px 6px #00000099;
-  background: #f7f7b0;
-  padding: 80px;
-  border-radius: 5px;
-  resize: both;
-  overflow: auto;
-}
-#bg_view_table_todolist .window_bar {
-  background-color: #333;
-}
-#bg_view_table_todolist #view_todolist {
-  position: absolute;
-  width: 600px;
-  height: 400px;
-  border: 2px solid red;
-  top: 40px;
-  background: #fff;
-  padding: 20px;
-  box-shadow: 0px 6px 4px #00000099;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-}
-
 #cursos_info .page_content {
   padding-bottom: 20px;
   display: grid;
@@ -4429,6 +4380,56 @@ form.forms_fluxo_caixa .div_submit input[type=submit] {
 #bg_view_table_log_data table textarea {
   font-size: 10px;
   width: 100%;
+}
+
+#block_screen_view_todolist {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #11111199;
+  right: 0;
+  left: 0;
+  top: 0;
+  z-index: 5;
+}
+
+#bg_view_table_todolist {
+  max-height: 80vh;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 100px;
+  position: absolute;
+  border: 1px solid #333;
+  box-shadow: 1px 6px 6px #00000099;
+  background: #f7f7b0;
+  padding: 80px;
+  border-radius: 5px;
+  resize: both;
+  overflow: auto;
+}
+#bg_view_table_todolist .window_bar {
+  background-color: #333;
+}
+#bg_view_table_todolist #view_todolist {
+  position: absolute;
+  width: 600px;
+  height: 400px;
+  border: 2px solid red;
+  top: 40px;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0px 6px 4px #00000099;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
 }
 
 @keyframes spinner-line-fade-more {

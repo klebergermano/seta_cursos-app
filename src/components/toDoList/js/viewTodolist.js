@@ -36,7 +36,34 @@ const viewTodolist = (() => {
     return todoList[0].data();
   }
 
+  function _marginViewTodolist(){
+    const el = $('bg_view_table_todolist');
+    const appContent = $('appContent')
+    let top =  20 + appContent.scrollTop + 'px'; 
+    el.style.top = top ; 
+    //------------------------
+    watchScrollEvent(appContent)
+
+  }
+  function changeMarginTop(el, val){
+    el.style.top = 20 + val + 'px'
+  }
+  function watchScrollEvent(el, callback){
+    let table = $('bg_view_table_todolist'); 
+   el.addEventListener('scroll', (e)=>{
+    if(table && table.offsetTop <= (20 + e.target.scrollTop)){
+      changeMarginTop(table, e.target.scrollTop)
+    }else{
+      
+    }
+   })
+    
+  }
+  
   const _eventsTodolist = async () => {
+ 
+ 
+    _marginViewTodolist()
     _btnCloseViewTodolist()
     dragElementAbsolute($('bg_view_table_todolist'));
     _insertContentTableViewHTML(await _getUserTodoList())
@@ -45,7 +72,6 @@ const viewTodolist = (() => {
 
   const _insertContentTableViewHTML = (userTodolist) => {
     $('view_table_todolist').querySelector('tbody').innerHTML = createContrentTableTodolistHTML(userTodolist);
-
   }
 
 
@@ -89,36 +115,32 @@ const viewTodolist = (() => {
   const _doubleClickWindowBarEvent = () => {
     const bgViewTableTodolist = $('bg_view_table_todolist');
     bgViewTableTodolist.querySelector('.window_bar').addEventListener('dblclick', () => {
-      addOrRemoveClassElMaximized(bgViewTableTodolist);
+      maxOrMinimizeElement(bgViewTableTodolist, $('appContent'));
     })
   }
 
-  const addOrRemoveClassElMaximized = (el) => {
-
-
+  const maxOrMinimizeElement = (el, scrolledElement) => {
+  const maxHeight = window.innerHeight; 
 
     function setDataPrevWidhtHeightEl(el) {
       el.setAttribute('data-prev_width', `${el.offsetWidth}px`);
       el.setAttribute('data-prev_height', `${el.offsetHeight}px`);
     }
+    let elBoundings = el.getBoundingClientRect(); 
+    
     if (!el.dataset?.prev_width || !el.dataset?.prev_height) setDataPrevWidhtHeightEl(el)
-
     if (!el.classList.contains('el_maximized')) {
       el.classList.add('el_maximized');
-      console.log('add class');
       el.style.left = '0';
-      el.style.top = '0';
+      el.style.top = scrolledElement.scrollTop + 'px';
       el.style.width = '100%';
-      el.style.height = '90vh';
+      el.style.height = maxHeight + 'px';
     } else {
-      console.log('remove class')
-      console.log('w', el.dataset.prev_width, 'h', el.dataset.prev_height)
       el.classList.remove('el_maximized')
       el.style.width = el.dataset.prev_width;
       el.style.height = el.dataset.prev_height;
 
     }
-    console.log(el)
 
 
   }
