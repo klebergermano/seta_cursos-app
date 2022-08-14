@@ -1,0 +1,78 @@
+@use "../../../assets/css/sass/abstracts/" as *;
+@use './form_add_aula.scss/' as *;
+
+
+.fadeOut{
+  opacity: 1;
+}
+#controle_aula {
+  position:relative;
+  opacity: 1;
+  overflow: hidden;
+  transition: all 0.5s;
+
+
+  #bg_select_aluno {
+    background: #ccc;
+    border-bottom:1px solid #444;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    border-radius: 3px 3px 0px 0px;
+    margin-bottom:20px;
+    label{
+      display: block;
+      padding: 10px;
+      border-right:0px;
+    }
+    #btn_alter_tipo_selecao{
+      font-size: 10px;
+      padding:5px;
+    }
+    .div_input {
+      display:flex;
+      float: left;
+      justify-content: flex-start;
+      flex-grow: 1;
+      select, input{
+          padding: 10px;
+          border: $border-set-default;
+          font-weight: bold;
+          font-size:16px;
+      flex-grow: 1;
+      max-width: 500px;
+      &:focus{
+        outline: 0;
+        border-color: $primary-color;
+        background:#ffe;
+
+      }
+          
+        }
+    }
+    button {
+      @extend .btn-default;
+      float: left;
+      margin:0px;
+      margin-left:10px;
+      padding:14px;
+      svg{
+        margin-bottom:-2px;
+        margin-right:5px;
+      }
+    }
+    #btn_add_aula_grupo{
+      background: rgb(197, 90, 57);
+      color:#fff;
+    &:hover{
+      background: rgb(212, 85, 46);
+
+    }
+    }
+  }
+  
+}

@@ -1,0 +1,284 @@
+@use "../../../assets/css/sass/abstracts/" as *;
+
+@use './fieldset_resp_aluno.scss' as *;
+@use './fieldset_curso.scss' as *;
+@use './loading_contrato.scss' as *;
+@use './id_contrato.scss' as *;
+
+* {
+    box-sizing: border-box;
+}
+#info_contrato{
+
+    display: flex;
+    box-shadow: 0 1px 3px #666;
+    background: #f8f8f8;
+    position: relative;
+    padding: 40px;
+    width: 900px;
+    max-width: 100%;
+    margin: 20px auto;
+    display: block;
+    height: auto;
+    font-size: 14px;
+    color: #333;
+    overflow: hidden;
+    #div_btn_salvar_contrato_pdf{
+        margin:0 auto;
+        #btn_salvar_contrato_pdf{
+            @extend .btn-default;
+            width:200px;
+            margin-left: calc(50% - 100px);
+        }
+        
+    }
+
+    .fieldset {
+        transition: all 1s;
+        max-width: 100%;
+        margin: 10px 20px;
+        border: 1px solid #aaa;
+        padding: 20px 30px;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+      
+        label {
+            background: #ccc;
+            display: flex;
+            border-radius: 3px 0 0 3px;
+            flex-shrink: 1;
+            flex-grow: 1;
+            padding: 0 10px 0 15px;
+            height: auto;
+            align-items: center;
+            max-width:100px;
+            min-width: 100px;
+        }
+   
+        input,
+        textarea {
+            min-width: auto !important;
+            border-radius: 0 3px 3px 0;
+            min-height: 35px;
+            padding: 5px;
+            border: $border-set-default;
+            font-size: 16px;
+            flex-grow: 1;
+            flex-shrink: 1;
+            resize: vertical;
+            &:focus {
+                outline: 2px solid lighten($primary-color, 20%);
+                outline-offset: -2px;
+            }
+        }
+        input[readonly='true'], textarea[readonly='true'] {
+            background: #dfdfdf;
+            border:0px;
+        }
+        .div_input {
+            margin: 0 5px 3px 0;
+            display: flex;
+            flex-grow: 1;
+            flex-shrink: 1;
+            justify-content: flex-end;
+            padding: 6px 0;
+        }
+ 
+    }
+
+    // Campos com 100% width
+    #div_resp_end, #div_id_contrato,
+    #div_aluno_end {
+        width: 100% !important;
+    }
+    #id_contrato{
+        max-width: 100px;
+        
+    }
+
+}
+
+.red {
+    color: red !important;
+}
+.green {
+    color: green !important;
+}
+
+
+option[disabled] {
+    color: #ccc !important;
+}
+
+.required {
+    color: red;
+    margin-left: -10px;
+    margin-right: 5px;
+}
+
+
+#fieldset_resp,
+#fieldset_aluno {
+    position: relative;
+    .label_numero {
+        max-width: 45px !important;
+        padding-left: 20px;
+    }
+    .end_numero {
+        max-width: 60px !important;
+    }
+}
+#fieldset_aluno {
+    display: block;
+    overflow: hidden;
+    height: 260px;
+    border-color: lighten($secondary-color, 10%) !important;
+    transition: height 1s, padding 1s, opacity 0.8s;
+    opacity: 1;
+
+    // bloqueia o input aluno nome;
+    #block_aluno {
+        display: none;
+        width: 100%;
+        min-height: 300px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.1);
+    }
+    #div_aluno_parentesco {
+        width: 100%;
+        #label_parentesco {
+            width: auto;
+            padding-left: 20px;
+            flex-grow: 0;
+        }
+      
+    }
+}
+#fieldset_resp {
+    padding-top: 70px !important;
+    border-color: lighten($primary-color, 10%) !important;
+}
+
+#div_resp_obs,
+#div_aluno_obs {
+    min-width: 100%;
+}
+
+#div_resp_genero,
+#div_aluno_genero {
+    max-width: 160px;
+}
+#fieldset_curso {
+    border-color: #454 !important;
+    & > div{
+        padding: 6px 0px
+    }
+
+    #div_curso_nome,
+    #div_curso_modulos {
+        width: 100%;
+        textarea {
+            font-size: 14px;
+            min-height: 80px;
+        };
+    }
+    .row {
+        width: 100%;
+        display: flex;
+        div {
+            flex-shrink: 1;
+            flex-grow: 1;
+            margin-right: 5px;
+            display: flex;
+            padding: 5px 0;
+            &:first-child {
+                label {
+                    text-align: left;
+                }
+            }
+            label {
+                min-width: 100px;
+                max-width: 60px;
+            }
+        }
+        #div_curso_vencimento,
+        #div_curso_duracao,
+        #div_curso_parcelas,
+        #div_curso_valor,
+        #div_curso_desconto,
+        #div_curso_valor_total {
+
+            label {
+                width: 40%;
+                max-width: 50%;
+            }
+            input {
+                width: 60%;
+            }
+        }
+
+        #div_curso_inicio,
+        #div_curso_data {
+            flex-shrink: 1;
+            max-width:50% !important;
+
+            label {
+                width: 40%;
+                max-width: 50%;
+                min-width: auto;
+            }
+            input {
+                width: 60%;
+                min-width: auto;
+
+            }
+        }
+
+        #curso_valor,
+        #curso_desconto,
+        #curso_valor_total {
+            font-size: 16px;
+        }
+        #curso_valor_total {
+            color: green;
+        }
+        #curso_desconto {
+            color: red;
+        }
+  
+  
+
+        #div_curso_obs {
+            margin-top: 5px;
+            #curso_obs {
+                min-height: 60px !important;
+                padding: 5px;
+            }
+        }
+     
+
+    }
+
+    #div_curso_desconto_combo{
+        div{
+            background: #dfdfdf;
+            padding:5px;
+        }
+    }
+ #div_curso_obs{
+    margin-top:10px;
+    width: 100%;
+    display: flex;
+    textarea{
+        min-width:80% !important;
+        min-height: 80px;
+    
+    }
+}
+    
+
+} // fieldset_cursos
+

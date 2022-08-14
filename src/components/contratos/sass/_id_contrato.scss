@@ -1,0 +1,50 @@
+
+@use "../../../assets/css/sass/abstracts/" as *;
+
+#bg_div_id_contrato {
+    label {
+     background:#ddd;
+    }
+
+ 
+
+    #label_id_automatico_contrato {
+        margin:0px;
+        margin-left:20px;
+        transition: all 0.5s;
+        @extend .btn-default;
+        max-width: 250px;
+        width: 180px;
+        user-select: none;
+
+        #checkbox_id_automatico_contrato {
+            display: none;
+        }
+
+    }
+    .active {
+        max-width: 350px;
+        width: 350px;
+        background: $primary-color !important;
+        color: #fff !important;
+    }
+    #div_id_contrato {
+        display: flex;
+        input {
+            border:$border-set-default;
+            transition: all 0.2s;
+            padding: 5px;
+            font-size: 18px;
+            background:#fff;
+            &:focus {
+                outline: 2px solid $primary-color;
+                outline-offset: -2px;
+            }
+        }
+        input[readonly="true"] {
+            border: 1px solid $primary-color;
+            background: #c3cad3;
+        }
+    }
+
+}
