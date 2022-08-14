@@ -1,0 +1,61 @@
+@use "../../../assets/css/sass/abstracts/" as *;
+
+$verde-claro: "#d3ddd3";
+
+#form_add_pag_mensalidade {
+
+
+    fieldset {
+        background: rgb(115, 141, 115);
+
+        .div_n_lanc {
+            max-width: 150px;
+            min-width: 100px;
+            width: auto;
+        }
+        .div_aluno,
+        .div_curso,
+        .div_resp {
+            min-width: 100px;
+        }
+        .div_curso_valor,
+        .div_curso_valor_total,
+        .div_curso_desconto,
+        .div_forma_pag {
+            width: auto;
+            max-width: 25%;
+            flex-grow: 1;
+            flex-shrink: 1;
+            min-width: none;
+            input {
+                font-size: 18px;
+                width: 100%;
+            }
+        }
+
+        .div_vencimento {}
+        .div_data {};
+        .div_curso_desconto{
+            input{ color:red}
+        }
+        .div_curso_valor, .div_curso_valor_total{
+           input{
+            color:green;
+           } 
+        }
+        .div_submit {
+           
+            input[type='submit'] {
+                background: #396635;
+
+                &:hover {
+                    background: #45803f;
+
+                }
+            }
+        }
+
+    }
+
+
+}

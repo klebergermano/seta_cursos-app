@@ -2,17 +2,21 @@
 @use 'abstracts' as *;
 @use 'elements';
 @use 'update_app';
-@use 'todolist';
-@use 'cursos_info';
-@use 'controle_aula';
-@use 'contratos';
 
 
-@use '../../../components/alunos/sass/index';
-@use 'login';
-@use 'users';
-@use 'fluxo_caixa';
-@use 'log_data';
+//Componentes
+@use '../../../components/alunos/sass/' as alunos;
+@use '../../../components/contratos/sass/' as contratos;
+@use '../../../components/controleAula/sass' as controleAula;
+@use '../../../components/cursosInfo/sass' as cursosInfo;
+@use '../../../components/fluxoCaixa/sass' as fluxoCaixa;
+@use '../../../components/logData/sass' as logData;
+@use '../../../components/login/sass/' as login;
+@use '../../../components/todoList/sass' as todoList;
+@use '../../../components/users/sass' as users;
+
+
+
  
 
 

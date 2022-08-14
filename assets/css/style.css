@@ -349,7 +349,7 @@ template {
   display: none;
 }
 
-.btn, #fieldset_resp div #btn_marcar_resp_aluno, .btn-secondary, .btn-primary, .forms_fixed input[type=submit], #form_add_aluno input[type=submit], #controle_aula_content .btn_add_curso, .form_flex_absolute input[type=submit], .form_flex_static input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], #form_delete_curso input[type=submit], #form_add_certificado input[type=submit], #form_add_curso input[type=submit], .forms_controle_aula input[type=submit], #form_add_curso_info input[type=submit], #form_info_aluno input[type=submit], .form_info_curso input[type=submit], .btn-default-delete, #form_add_saida_avulsa fieldset .div_submit input[type=submit], .btn-default, form.forms_fluxo_caixa .div_submit input[type=submit], .sub_menu_fluxo_caixa ul li a, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], #form_info_aluno .btn_create_certificado, .form_info_curso .btn_create_certificado, #form_info_aluno #label_checkbox_certificado_entregue, .form_info_curso #label_checkbox_certificado_entregue, .forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox, #info_contrato #div_btn_salvar_contrato_pdf #btn_salvar_contrato_pdf, #bg_div_id_contrato #label_id_automatico_contrato, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo, #form_add_aula_grupo #btn_add_aluno_grupo, #controle_aula_content .btn_add, #controle_aula #bg_select_aluno button, menu.submenu_page ul li a {
+.btn, #fieldset_resp div #btn_marcar_resp_aluno, .btn-secondary, .btn-primary, #controle_aula_content .btn_add_curso, .forms_fixed input[type=submit], #form_add_aluno input[type=submit], .form_flex_absolute input[type=submit], .form_flex_static input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], #form_add_curso_info input[type=submit], .forms_controle_aula input[type=submit], #form_delete_curso input[type=submit], #form_add_certificado input[type=submit], #form_add_curso input[type=submit], #form_info_aluno input[type=submit], .form_info_curso input[type=submit], .btn-default-delete, #form_add_saida_avulsa fieldset .div_submit input[type=submit], .btn-default, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], form.forms_fluxo_caixa .div_submit input[type=submit], .sub_menu_fluxo_caixa ul li a, #form_add_aula_grupo #btn_add_aluno_grupo, #controle_aula_content .btn_add, #controle_aula #bg_select_aluno button, #info_contrato #div_btn_salvar_contrato_pdf #btn_salvar_contrato_pdf, #bg_div_id_contrato #label_id_automatico_contrato, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo, #form_info_aluno .btn_create_certificado, .form_info_curso .btn_create_certificado, #form_info_aluno #label_checkbox_certificado_entregue, .form_info_curso #label_checkbox_certificado_entregue, .forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox, menu.submenu_page ul li a {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -359,22 +359,22 @@ template {
   border: 0px;
   cursor: pointer;
 }
-.btn svg, #fieldset_resp div #btn_marcar_resp_aluno svg, .btn-secondary svg, .btn-primary svg, .forms_fixed input[type=submit] svg, #form_add_aluno input[type=submit] svg, #controle_aula_content .btn_add_curso svg, .form_flex_absolute input[type=submit] svg, .form_flex_static input[type=submit] svg, #form_config_perm input[type=submit] svg, #form_reauth_user input[type=submit] svg, #form_add_user input[type=submit] svg, #form_delete_curso input[type=submit] svg, #form_add_certificado input[type=submit] svg, #form_add_curso input[type=submit] svg, .forms_controle_aula input[type=submit] svg, #form_add_curso_info input[type=submit] svg, #form_info_aluno input[type=submit] svg, .form_info_curso input[type=submit] svg, .btn-default-delete svg, #form_add_saida_avulsa fieldset .div_submit input[type=submit] svg, .btn-default svg, form.forms_fluxo_caixa .div_submit input[type=submit] svg, .sub_menu_fluxo_caixa ul li a svg, .nav_forms ul li a svg, #page_login #login_content #form_login input[type=submit] svg, #form_info_aluno .btn_create_certificado svg, .form_info_curso .btn_create_certificado svg, #form_info_aluno #label_checkbox_certificado_entregue svg, .form_info_curso #label_checkbox_certificado_entregue svg, .forms_fixed .label_btn_checkbox svg, #form_add_aluno .label_btn_checkbox svg, #info_contrato #div_btn_salvar_contrato_pdf #btn_salvar_contrato_pdf svg, #bg_div_id_contrato #label_id_automatico_contrato svg, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo svg, #form_add_aula_grupo #btn_add_aluno_grupo svg, #controle_aula_content .btn_add svg, #controle_aula #bg_select_aluno button svg, menu.submenu_page ul li a svg {
+.btn svg, #fieldset_resp div #btn_marcar_resp_aluno svg, .btn-secondary svg, .btn-primary svg, #controle_aula_content .btn_add_curso svg, .forms_fixed input[type=submit] svg, #form_add_aluno input[type=submit] svg, .form_flex_absolute input[type=submit] svg, .form_flex_static input[type=submit] svg, #form_config_perm input[type=submit] svg, #form_reauth_user input[type=submit] svg, #form_add_user input[type=submit] svg, #form_add_curso_info input[type=submit] svg, .forms_controle_aula input[type=submit] svg, #form_delete_curso input[type=submit] svg, #form_add_certificado input[type=submit] svg, #form_add_curso input[type=submit] svg, #form_info_aluno input[type=submit] svg, .form_info_curso input[type=submit] svg, .btn-default-delete svg, #form_add_saida_avulsa fieldset .div_submit input[type=submit] svg, .btn-default svg, .nav_forms ul li a svg, #page_login #login_content #form_login input[type=submit] svg, form.forms_fluxo_caixa .div_submit input[type=submit] svg, .sub_menu_fluxo_caixa ul li a svg, #form_add_aula_grupo #btn_add_aluno_grupo svg, #controle_aula_content .btn_add svg, #controle_aula #bg_select_aluno button svg, #info_contrato #div_btn_salvar_contrato_pdf #btn_salvar_contrato_pdf svg, #bg_div_id_contrato #label_id_automatico_contrato svg, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo svg, #form_info_aluno .btn_create_certificado svg, .form_info_curso .btn_create_certificado svg, #form_info_aluno #label_checkbox_certificado_entregue svg, .form_info_curso #label_checkbox_certificado_entregue svg, .forms_fixed .label_btn_checkbox svg, #form_add_aluno .label_btn_checkbox svg, menu.submenu_page ul li a svg {
   max-width: 100px;
   max-height: 100px;
   height: auto;
   width: 20px;
 }
 
-.btn-default, form.forms_fluxo_caixa .div_submit input[type=submit], .sub_menu_fluxo_caixa ul li a, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], #form_info_aluno .btn_create_certificado, .form_info_curso .btn_create_certificado, #form_info_aluno #label_checkbox_certificado_entregue, .form_info_curso #label_checkbox_certificado_entregue, .forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox, #info_contrato #div_btn_salvar_contrato_pdf #btn_salvar_contrato_pdf, #bg_div_id_contrato #label_id_automatico_contrato, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo, #form_add_aula_grupo #btn_add_aluno_grupo, #controle_aula_content .btn_add, #controle_aula #bg_select_aluno button, menu.submenu_page ul li a {
+.btn-default, .nav_forms ul li a, #page_login #login_content #form_login input[type=submit], form.forms_fluxo_caixa .div_submit input[type=submit], .sub_menu_fluxo_caixa ul li a, #form_add_aula_grupo #btn_add_aluno_grupo, #controle_aula_content .btn_add, #controle_aula #bg_select_aluno button, #info_contrato #div_btn_salvar_contrato_pdf #btn_salvar_contrato_pdf, #bg_div_id_contrato #label_id_automatico_contrato, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo, #form_info_aluno .btn_create_certificado, .form_info_curso .btn_create_certificado, #form_info_aluno #label_checkbox_certificado_entregue, .form_info_curso #label_checkbox_certificado_entregue, .forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox, menu.submenu_page ul li a {
   background: #f0f0f0;
   color: #333;
   border: 1px solid #666;
 }
-.btn-default:hover, form.forms_fluxo_caixa .div_submit input[type=submit]:hover, .sub_menu_fluxo_caixa ul li a:hover, .nav_forms ul li a:hover, #page_login #login_content #form_login input[type=submit]:hover, #form_info_aluno .btn_create_certificado:hover, .form_info_curso .btn_create_certificado:hover, #form_info_aluno #label_checkbox_certificado_entregue:hover, .form_info_curso #label_checkbox_certificado_entregue:hover, .forms_fixed .label_btn_checkbox:hover, #form_add_aluno .label_btn_checkbox:hover, #info_contrato #div_btn_salvar_contrato_pdf #btn_salvar_contrato_pdf:hover, #bg_div_id_contrato #label_id_automatico_contrato:hover, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo:hover, #form_add_aula_grupo #btn_add_aluno_grupo:hover, #controle_aula_content .btn_add:hover, #controle_aula #bg_select_aluno button:hover, menu.submenu_page ul li a:hover {
+.btn-default:hover, .nav_forms ul li a:hover, #page_login #login_content #form_login input[type=submit]:hover, form.forms_fluxo_caixa .div_submit input[type=submit]:hover, .sub_menu_fluxo_caixa ul li a:hover, #form_add_aula_grupo #btn_add_aluno_grupo:hover, #controle_aula_content .btn_add:hover, #controle_aula #bg_select_aluno button:hover, #info_contrato #div_btn_salvar_contrato_pdf #btn_salvar_contrato_pdf:hover, #bg_div_id_contrato #label_id_automatico_contrato:hover, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo:hover, #form_info_aluno .btn_create_certificado:hover, .form_info_curso .btn_create_certificado:hover, #form_info_aluno #label_checkbox_certificado_entregue:hover, .form_info_curso #label_checkbox_certificado_entregue:hover, .forms_fixed .label_btn_checkbox:hover, #form_add_aluno .label_btn_checkbox:hover, menu.submenu_page ul li a:hover {
   background: #fdfdfd;
 }
-.btn-default:active, form.forms_fluxo_caixa .div_submit input[type=submit]:active, .sub_menu_fluxo_caixa ul li a:active, .nav_forms ul li a:active, #page_login #login_content #form_login input[type=submit]:active, #form_info_aluno .btn_create_certificado:active, .form_info_curso .btn_create_certificado:active, #form_info_aluno #label_checkbox_certificado_entregue:active, .form_info_curso #label_checkbox_certificado_entregue:active, .forms_fixed .label_btn_checkbox:active, #form_add_aluno .label_btn_checkbox:active, #info_contrato #div_btn_salvar_contrato_pdf #btn_salvar_contrato_pdf:active, #bg_div_id_contrato #label_id_automatico_contrato:active, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo:active, #form_add_aula_grupo #btn_add_aluno_grupo:active, #controle_aula_content .btn_add:active, #controle_aula #bg_select_aluno button:active, menu.submenu_page ul li a:active {
+.btn-default:active, .nav_forms ul li a:active, #page_login #login_content #form_login input[type=submit]:active, form.forms_fluxo_caixa .div_submit input[type=submit]:active, .sub_menu_fluxo_caixa ul li a:active, #form_add_aula_grupo #btn_add_aluno_grupo:active, #controle_aula_content .btn_add:active, #controle_aula #bg_select_aluno button:active, #info_contrato #div_btn_salvar_contrato_pdf #btn_salvar_contrato_pdf:active, #bg_div_id_contrato #label_id_automatico_contrato:active, #fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo:active, #form_info_aluno .btn_create_certificado:active, .form_info_curso .btn_create_certificado:active, #form_info_aluno #label_checkbox_certificado_entregue:active, .form_info_curso #label_checkbox_certificado_entregue:active, .forms_fixed .label_btn_checkbox:active, #form_add_aluno .label_btn_checkbox:active, menu.submenu_page ul li a:active {
   background: #e3e3e3;
   box-shadow: inset 0px 1px 3px #bdbdbd;
 }
@@ -395,14 +395,14 @@ template {
   background: #fc4646;
 }
 
-.btn-primary, .forms_fixed input[type=submit], #form_add_aluno input[type=submit], #controle_aula_content .btn_add_curso, .form_flex_absolute input[type=submit], .form_flex_static input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], #form_delete_curso input[type=submit], #form_add_certificado input[type=submit], #form_add_curso input[type=submit], .forms_controle_aula input[type=submit], #form_add_curso_info input[type=submit], #form_info_aluno input[type=submit], .form_info_curso input[type=submit] {
+.btn-primary, #controle_aula_content .btn_add_curso, .forms_fixed input[type=submit], #form_add_aluno input[type=submit], .form_flex_absolute input[type=submit], .form_flex_static input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], #form_add_curso_info input[type=submit], .forms_controle_aula input[type=submit], #form_delete_curso input[type=submit], #form_add_certificado input[type=submit], #form_add_curso input[type=submit], #form_info_aluno input[type=submit], .form_info_curso input[type=submit] {
   background: #245da7;
   color: #fafafa;
 }
-.btn-primary:hover, .forms_fixed input[type=submit]:hover, #form_add_aluno input[type=submit]:hover, #controle_aula_content .btn_add_curso:hover, .form_flex_absolute input[type=submit]:hover, .form_flex_static input[type=submit]:hover, #form_config_perm input[type=submit]:hover, #form_reauth_user input[type=submit]:hover, #form_add_user input[type=submit]:hover, #form_delete_curso input[type=submit]:hover, #form_add_certificado input[type=submit]:hover, #form_add_curso input[type=submit]:hover, .forms_controle_aula input[type=submit]:hover, #form_add_curso_info input[type=submit]:hover, #form_info_aluno input[type=submit]:hover, .form_info_curso input[type=submit]:hover {
+.btn-primary:hover, #controle_aula_content .btn_add_curso:hover, .forms_fixed input[type=submit]:hover, #form_add_aluno input[type=submit]:hover, .form_flex_absolute input[type=submit]:hover, .form_flex_static input[type=submit]:hover, #form_config_perm input[type=submit]:hover, #form_reauth_user input[type=submit]:hover, #form_add_user input[type=submit]:hover, #form_add_curso_info input[type=submit]:hover, .forms_controle_aula input[type=submit]:hover, #form_delete_curso input[type=submit]:hover, #form_add_certificado input[type=submit]:hover, #form_add_curso input[type=submit]:hover, #form_info_aluno input[type=submit]:hover, .form_info_curso input[type=submit]:hover {
   background: #2969bc;
 }
-.btn-primary:active, .forms_fixed input[type=submit]:active, #form_add_aluno input[type=submit]:active, #controle_aula_content .btn_add_curso:active, .form_flex_absolute input[type=submit]:active, .form_flex_static input[type=submit]:active, #form_config_perm input[type=submit]:active, #form_reauth_user input[type=submit]:active, #form_add_user input[type=submit]:active, #form_delete_curso input[type=submit]:active, #form_add_certificado input[type=submit]:active, #form_add_curso input[type=submit]:active, .forms_controle_aula input[type=submit]:active, #form_add_curso_info input[type=submit]:active, #form_info_aluno input[type=submit]:active, .form_info_curso input[type=submit]:active {
+.btn-primary:active, #controle_aula_content .btn_add_curso:active, .forms_fixed input[type=submit]:active, #form_add_aluno input[type=submit]:active, .form_flex_absolute input[type=submit]:active, .form_flex_static input[type=submit]:active, #form_config_perm input[type=submit]:active, #form_reauth_user input[type=submit]:active, #form_add_user input[type=submit]:active, #form_add_curso_info input[type=submit]:active, .forms_controle_aula input[type=submit]:active, #form_delete_curso input[type=submit]:active, #form_add_certificado input[type=submit]:active, #form_add_curso input[type=submit]:active, #form_info_aluno input[type=submit]:active, .form_info_curso input[type=submit]:active {
   background: #1f5192;
   box-shadow: inset 0px 1px 3px #122e53;
 }
@@ -524,7 +524,7 @@ inputs, .input-primary {
   color: #444;
 }
 
-.forms, .form_flex_static, #form_info_aluno, .form_info_curso, .form_flex_absolute, #form_config_perm, #form_reauth_user, #form_add_user, #form_delete_curso, #form_add_certificado, #form_add_curso, .forms_controle_aula, #form_add_curso_info {
+.forms, .form_flex_static, #form_info_aluno, .form_info_curso, .form_flex_absolute, #form_config_perm, #form_reauth_user, #form_add_user, #form_add_curso_info, .forms_controle_aula, #form_delete_curso, #form_add_certificado, #form_add_curso {
   border: 1px solid #999;
   right: 0;
   left: 0;
@@ -532,18 +532,18 @@ inputs, .input-primary {
   z-index: 5;
   box-shadow: 0 1px 2px #666;
 }
-.forms .btn_close_form, .form_flex_static .btn_close_form, #form_info_aluno .btn_close_form, .form_info_curso .btn_close_form, .form_flex_absolute .btn_close_form, #form_config_perm .btn_close_form, #form_reauth_user .btn_close_form, #form_add_user .btn_close_form, #form_delete_curso .btn_close_form, #form_add_certificado .btn_close_form, #form_add_curso .btn_close_form, .forms_controle_aula .btn_close_form, #form_add_curso_info .btn_close_form {
+.forms .btn_close_form, .form_flex_static .btn_close_form, #form_info_aluno .btn_close_form, .form_info_curso .btn_close_form, .form_flex_absolute .btn_close_form, #form_config_perm .btn_close_form, #form_reauth_user .btn_close_form, #form_add_user .btn_close_form, #form_add_curso_info .btn_close_form, .forms_controle_aula .btn_close_form, #form_delete_curso .btn_close_form, #form_add_certificado .btn_close_form, #form_add_curso .btn_close_form {
   right: 0;
   top: 0;
   padding: 5px 10px;
   position: absolute;
   cursor: pointer;
 }
-.forms .btn_close_form:hover, .form_flex_static .btn_close_form:hover, #form_info_aluno .btn_close_form:hover, .form_info_curso .btn_close_form:hover, .form_flex_absolute .btn_close_form:hover, #form_config_perm .btn_close_form:hover, #form_reauth_user .btn_close_form:hover, #form_add_user .btn_close_form:hover, #form_delete_curso .btn_close_form:hover, #form_add_certificado .btn_close_form:hover, #form_add_curso .btn_close_form:hover, .forms_controle_aula .btn_close_form:hover, #form_add_curso_info .btn_close_form:hover {
+.forms .btn_close_form:hover, .form_flex_static .btn_close_form:hover, #form_info_aluno .btn_close_form:hover, .form_info_curso .btn_close_form:hover, .form_flex_absolute .btn_close_form:hover, #form_config_perm .btn_close_form:hover, #form_reauth_user .btn_close_form:hover, #form_add_user .btn_close_form:hover, #form_add_curso_info .btn_close_form:hover, .forms_controle_aula .btn_close_form:hover, #form_delete_curso .btn_close_form:hover, #form_add_certificado .btn_close_form:hover, #form_add_curso .btn_close_form:hover {
   background: #dd4f4f;
   color: #fff;
 }
-.forms input:focus, .form_flex_static input:focus, #form_info_aluno input:focus, .form_info_curso input:focus, .form_flex_absolute input:focus, #form_config_perm input:focus, #form_reauth_user input:focus, #form_add_user input:focus, #form_delete_curso input:focus, #form_add_certificado input:focus, #form_add_curso input:focus, .forms_controle_aula input:focus, #form_add_curso_info input:focus,
+.forms input:focus, .form_flex_static input:focus, #form_info_aluno input:focus, .form_info_curso input:focus, .form_flex_absolute input:focus, #form_config_perm input:focus, #form_reauth_user input:focus, #form_add_user input:focus, #form_add_curso_info input:focus, .forms_controle_aula input:focus, #form_delete_curso input:focus, #form_add_certificado input:focus, #form_add_curso input:focus,
 .forms textarea:focus,
 .form_flex_static textarea:focus,
 #form_info_aluno textarea:focus,
@@ -552,11 +552,11 @@ inputs, .input-primary {
 #form_config_perm textarea:focus,
 #form_reauth_user textarea:focus,
 #form_add_user textarea:focus,
+#form_add_curso_info textarea:focus,
+.forms_controle_aula textarea:focus,
 #form_delete_curso textarea:focus,
 #form_add_certificado textarea:focus,
 #form_add_curso textarea:focus,
-.forms_controle_aula textarea:focus,
-#form_add_curso_info textarea:focus,
 .forms select:focus,
 .form_flex_static select:focus,
 #form_info_aluno select:focus,
@@ -565,11 +565,11 @@ inputs, .input-primary {
 #form_config_perm select:focus,
 #form_reauth_user select:focus,
 #form_add_user select:focus,
+#form_add_curso_info select:focus,
+.forms_controle_aula select:focus,
 #form_delete_curso select:focus,
 #form_add_certificado select:focus,
-#form_add_curso select:focus,
-.forms_controle_aula select:focus,
-#form_add_curso_info select:focus {
+#form_add_curso select:focus {
   outline: 2px solid #5690db;
   outline-offset: -2px;
 }
@@ -588,7 +588,7 @@ inputs, .input-primary {
   z-index: 5;
 }
 
-.form_flex_absolute, #form_config_perm, #form_reauth_user, #form_add_user, #form_delete_curso, #form_add_certificado, #form_add_curso, .forms_controle_aula, #form_add_curso_info {
+.form_flex_absolute, #form_config_perm, #form_reauth_user, #form_add_user, #form_add_curso_info, .forms_controle_aula, #form_delete_curso, #form_add_certificado, #form_add_curso {
   display: flex;
   position: relative;
   flex-wrap: wrap;
@@ -601,20 +601,20 @@ inputs, .input-primary {
   transition: all 2s;
   z-index: 7;
 }
-.form_flex_absolute h3, #form_config_perm h3, #form_reauth_user h3, #form_add_user h3, #form_delete_curso h3, #form_add_certificado h3, #form_add_curso h3, .forms_controle_aula h3, #form_add_curso_info h3 {
+.form_flex_absolute h3, #form_config_perm h3, #form_reauth_user h3, #form_add_user h3, #form_add_curso_info h3, .forms_controle_aula h3, #form_delete_curso h3, #form_add_certificado h3, #form_add_curso h3 {
   text-transform: uppercase;
   flex-basis: 100%;
   text-align: center;
   margin-bottom: 30px;
   margin-top: -5px;
 }
-.form_flex_absolute h3 svg, #form_config_perm h3 svg, #form_reauth_user h3 svg, #form_add_user h3 svg, #form_delete_curso h3 svg, #form_add_certificado h3 svg, #form_add_curso h3 svg, .forms_controle_aula h3 svg, #form_add_curso_info h3 svg {
+.form_flex_absolute h3 svg, #form_config_perm h3 svg, #form_reauth_user h3 svg, #form_add_user h3 svg, #form_add_curso_info h3 svg, .forms_controle_aula h3 svg, #form_delete_curso h3 svg, #form_add_certificado h3 svg, #form_add_curso h3 svg {
   margin-bottom: -5px;
   margin-right: 2px;
   height: 25px;
   width: auto;
 }
-.form_flex_absolute div, #form_config_perm div, #form_reauth_user div, #form_add_user div, #form_delete_curso div, #form_add_certificado div, #form_add_curso div, .forms_controle_aula div, #form_add_curso_info div {
+.form_flex_absolute div, #form_config_perm div, #form_reauth_user div, #form_add_user div, #form_add_curso_info div, .forms_controle_aula div, #form_delete_curso div, #form_add_certificado div, #form_add_curso div {
   display: flex;
   padding: 5px;
   flex-grow: 1;
@@ -624,23 +624,23 @@ inputs, .input-primary {
   margin-top: 5px;
   justify-content: center;
 }
-.form_flex_absolute div label, #form_config_perm div label, #form_reauth_user div label, #form_add_user div label, #form_delete_curso div label, #form_add_certificado div label, #form_add_curso div label, .forms_controle_aula div label, #form_add_curso_info div label {
+.form_flex_absolute div label, #form_config_perm div label, #form_reauth_user div label, #form_add_user div label, #form_add_curso_info div label, .forms_controle_aula div label, #form_delete_curso div label, #form_add_certificado div label, #form_add_curso div label {
   display: flex;
   align-items: center;
   min-width: 85px;
   background: #f0f0f0;
   padding: 5px 10px;
 }
-.form_flex_absolute div input, #form_config_perm div input, #form_reauth_user div input, #form_add_user div input, #form_delete_curso div input, #form_add_certificado div input, #form_add_curso div input, .forms_controle_aula div input, #form_add_curso_info div input,
+.form_flex_absolute div input, #form_config_perm div input, #form_reauth_user div input, #form_add_user div input, #form_add_curso_info div input, .forms_controle_aula div input, #form_delete_curso div input, #form_add_certificado div input, #form_add_curso div input,
 .form_flex_absolute div textarea,
 #form_config_perm div textarea,
 #form_reauth_user div textarea,
 #form_add_user div textarea,
+#form_add_curso_info div textarea,
+.forms_controle_aula div textarea,
 #form_delete_curso div textarea,
 #form_add_certificado div textarea,
-#form_add_curso div textarea,
-.forms_controle_aula div textarea,
-#form_add_curso_info div textarea {
+#form_add_curso div textarea {
   width: auto;
   max-width: 500px;
   min-width: 100px;
@@ -651,14 +651,14 @@ inputs, .input-primary {
   padding: 5px;
   color: #444;
 }
-.form_flex_absolute select, #form_config_perm select, #form_reauth_user select, #form_add_user select, #form_delete_curso select, #form_add_certificado select, #form_add_curso select, .forms_controle_aula select, #form_add_curso_info select {
+.form_flex_absolute select, #form_config_perm select, #form_reauth_user select, #form_add_user select, #form_add_curso_info select, .forms_controle_aula select, #form_delete_curso select, #form_add_certificado select, #form_add_curso select {
   display: block;
   flex-grow: 1;
 }
-.form_flex_absolute .div_submit, #form_config_perm .div_submit, #form_reauth_user .div_submit, #form_add_user .div_submit, #form_delete_curso .div_submit, #form_add_certificado .div_submit, #form_add_curso .div_submit, .forms_controle_aula .div_submit, #form_add_curso_info .div_submit {
+.form_flex_absolute .div_submit, #form_config_perm .div_submit, #form_reauth_user .div_submit, #form_add_user .div_submit, #form_add_curso_info .div_submit, .forms_controle_aula .div_submit, #form_delete_curso .div_submit, #form_add_certificado .div_submit, #form_add_curso .div_submit {
   width: 100%;
 }
-.form_flex_absolute input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], #form_delete_curso input[type=submit], #form_add_certificado input[type=submit], #form_add_curso input[type=submit], .forms_controle_aula input[type=submit], #form_add_curso_info input[type=submit] {
+.form_flex_absolute input[type=submit], #form_config_perm input[type=submit], #form_reauth_user input[type=submit], #form_add_user input[type=submit], #form_add_curso_info input[type=submit], .forms_controle_aula input[type=submit], #form_delete_curso input[type=submit], #form_add_certificado input[type=submit], #form_add_curso input[type=submit] {
   display: block;
   clear: both;
   max-width: 300px;
@@ -1184,137 +1184,1551 @@ menu.submenu_page ul li a {
   margin: 0 auto;
 }
 
-#block_screen_view_todolist {
+.forms_fixed, #form_add_aluno {
+  box-shadow: 0 1px 3px #666;
+  background: #f8f8f8;
   position: relative;
-  width: 100%;
-  min-height: 100vh;
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #11111199;
-  right: 0;
-  left: 0;
-  top: 0;
-  z-index: 5;
-}
-
-#bg_view_table_todolist {
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  top: 100px;
-  position: absolute;
-  border: 1px solid #333;
-  box-shadow: 1px 6px 6px #00000099;
-  background: #dddddf;
   padding: 40px;
+  width: 100%;
+  margin: 20px auto;
+  height: auto;
+  font-size: 14px;
+  overflow: hidden;
 }
-#bg_view_table_todolist .window_bar {
-  background-color: #333;
+.forms_fixed fieldset, #form_add_aluno fieldset, .forms_fixed .fieldset, #form_add_aluno .fieldset {
+  transition: all 1s;
+  max-width: 100%;
+  margin: 10px 20px;
+  border: 1px solid #aaa;
+  padding: 20px 30px;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
 }
-#bg_view_table_todolist #view_todolist {
-  position: absolute;
-  width: 600px;
-  height: 400px;
-  border: 2px solid red;
-  top: 40px;
-  background: #fff;
-  padding: 20px;
-  box-shadow: 0px 6px 4px #00000099;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
+.forms_fixed fieldset > div, #form_add_aluno fieldset > div, .forms_fixed .fieldset > div, #form_add_aluno .fieldset > div {
+  margin: 0 5px 3px 0;
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  justify-content: flex-end;
+  padding: 6px 0;
 }
-
-#cursos_info .page_content {
-  padding-bottom: 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, auto));
-  gap: 20px;
+.forms_fixed fieldset label, #form_add_aluno fieldset label, .forms_fixed .fieldset label, #form_add_aluno .fieldset label {
+  background: #ddd;
+  display: flex;
+  border-radius: 3px 0 0 3px;
+  flex-shrink: 1;
+  flex-grow: 1;
+  padding: 0 10px 0 15px;
+  height: auto;
+  align-items: center;
+  max-width: 100px;
+  min-width: 100px;
 }
-#cursos_info .page_content .curso_content {
-  padding: 20px;
-  border: 2px solid #333;
-  border-radius: 5px;
-  background: #f0f0f0;
+.forms_fixed fieldset input, #form_add_aluno fieldset input,
+.forms_fixed fieldset select,
+#form_add_aluno fieldset select,
+.forms_fixed fieldset textarea,
+#form_add_aluno fieldset textarea, .forms_fixed .fieldset input, #form_add_aluno .fieldset input,
+.forms_fixed .fieldset select,
+#form_add_aluno .fieldset select,
+.forms_fixed .fieldset textarea,
+#form_add_aluno .fieldset textarea {
+  min-width: auto !important;
+  border-radius: 0 3px 3px 0;
+  min-height: 35px;
+  padding: 5px;
+  border: 1px solid #999;
+  font-size: 16px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  resize: vertical;
 }
-#cursos_info .page_content .curso_content h2 {
-  margin-bottom: 20px;
-  text-align: center;
-  text-transform: uppercase;
+.forms_fixed fieldset input:focus, #form_add_aluno fieldset input:focus,
+.forms_fixed fieldset select:focus,
+#form_add_aluno fieldset select:focus,
+.forms_fixed fieldset textarea:focus,
+#form_add_aluno fieldset textarea:focus, .forms_fixed .fieldset input:focus, #form_add_aluno .fieldset input:focus,
+.forms_fixed .fieldset select:focus,
+#form_add_aluno .fieldset select:focus,
+.forms_fixed .fieldset textarea:focus,
+#form_add_aluno .fieldset textarea:focus {
+  outline: 2px solid #5690db;
+  outline-offset: -2px;
 }
-#cursos_info .page_content .curso_content .categoria {
+.forms_fixed fieldset #aluno_genero, #form_add_aluno fieldset #aluno_genero, .forms_fixed fieldset #aluno_end_numero, #form_add_aluno fieldset #aluno_end_numero, .forms_fixed .fieldset #aluno_genero, #form_add_aluno .fieldset #aluno_genero, .forms_fixed .fieldset #aluno_end_numero, #form_add_aluno .fieldset #aluno_end_numero {
+  max-width: 80px !important;
+  min-width: none;
+}
+.forms_fixed fieldset .div_input_readonly, #form_add_aluno fieldset .div_input_readonly, .forms_fixed .fieldset .div_input_readonly, #form_add_aluno .fieldset .div_input_readonly {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+.forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox {
+  transition: all 0.3s;
+  max-width: 300px;
+  width: 200px;
+  user-select: none;
+}
+.forms_fixed .label_btn_checkbox input, #form_add_aluno .label_btn_checkbox input {
   display: none;
 }
-#cursos_info .page_content .curso_content .modulos {
-  font-size: 12px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  margin-bottom: 20px;
+.forms_fixed .actived_label_btn_checkbox, #form_add_aluno .actived_label_btn_checkbox {
+  background: #245da7;
+  color: #fff;
 }
-#cursos_info .page_content .curso_content .modulos h3 {
-  margin-bottom: 10px;
-  font-size: 16px;
-  text-align: left;
+.forms_fixed input[type=submit], #form_add_aluno input[type=submit] {
+  width: 250px;
+  margin: 0 auto;
 }
-#cursos_info .page_content .curso_content .modulos ul li {
-  margin-left: 20px;
-}
-#cursos_info .page_content .curso_content .div_valor, #cursos_info .page_content .curso_content .div_duracao, #cursos_info .page_content .curso_content .div_carga_horaria {
-  margin-top: 10px;
-  font-size: 20px !important;
-}
-#cursos_info .page_content .curso_content .div_valor p, #cursos_info .page_content .curso_content .div_duracao p, #cursos_info .page_content .curso_content .div_carga_horaria p {
-  font-weight: bold;
+.forms_fixed input[readonly=true], #form_add_aluno input[readonly=true] {
+  background: #eee;
+  border: 1px solid #ddd;
 }
 
-#form_add_curso_info #div_modulos {
+#form_add_aluno #div_select_contrato {
   width: 100%;
 }
-#form_add_curso_info #id_curso {
+#form_add_aluno #add_aluno_ra {
   text-transform: uppercase;
 }
-#form_add_curso_info #div_valor_mes, #form_add_curso_info #div_duracao, #form_add_curso_info #div_parcelas, #form_add_curso_info #div_carga_horaria, #form_add_curso_info #div_id_curso {
-  padding: 3px;
-  max-width: 33.3333%;
+#form_add_aluno .blocked {
+  border: 1px solid #db1e1e;
+  background: #fee;
 }
-#form_add_curso_info #div_valor_mes input, #form_add_curso_info #div_duracao input, #form_add_curso_info #div_parcelas input, #form_add_curso_info #div_carga_horaria input, #form_add_curso_info #div_id_curso input {
-  max-width: 100%;
-  min-width: 50px !important;
+#form_add_aluno div {
+  display: flex;
 }
-#form_add_curso_info #modulos {
-  min-height: 150px;
+#form_add_aluno div #ra {
+  max-width: 20px;
+  flex-shrink: 1;
 }
-#form_add_curso_info input[readonly=true] {
-  background: #ddd;
+#form_add_aluno div select {
+  padding: 0px !important;
+  margin-top: 0px !important;
 }
 
-#bg_view_table_cursos_info {
-  position: relative;
+#form_add_curso fieldset {
+  min-width: 100%;
+  margin-bottom: 10px;
 }
-#bg_view_table_cursos_info table th {
-  background: #45856a;
+#form_add_curso div {
+  overflow: hidden;
+  display: flex;
+  max-width: 100%;
 }
-#bg_view_table_cursos_info table td, #bg_view_table_cursos_info table th {
-  font-size: 13px;
+#form_add_curso div select {
+  min-width: 300px;
+  flex-grow: 1;
 }
-#bg_view_table_cursos_info table td {
+#form_add_curso #aluno_ra {
+  max-width: 80px;
+  min-width: 50px;
+}
+#form_add_curso #div_contrato {
+  min-width: 100%;
+}
+#form_add_curso #div_info_aluno_nome {
+  min-width: 100%;
+}
+#form_add_curso #div_submit {
+  width: 100%;
+}
+#form_add_curso .blocked {
+  background: #fee;
+  border: 1px solid red;
+}
+
+#form_add_certificado fieldset {
+  min-width: 100%;
+  margin-bottom: 10px;
+}
+#form_add_certificado div {
+  overflow: hidden;
+  display: flex;
+  max-width: 100%;
+}
+#form_add_certificado div select {
+  min-width: 300px;
+  flex-grow: 1;
+}
+#form_add_certificado #curso_carga_horaria {
+  width: 50px !important;
+  max-width: 50px !important;
+  min-width: auto !important;
+}
+#form_add_certificado #certificado_cod, #form_add_certificado #aluno_ra {
+  max-width: 110px !important;
+}
+
+#form_delete_curso {
+  border: 1px solid red;
+}
+#form_delete_curso fieldset {
+  min-width: 100%;
+  margin-bottom: 10px;
+}
+#form_delete_curso div {
+  overflow: hidden;
+  display: flex;
+  max-width: 100%;
+}
+#form_delete_curso div select {
+  min-width: 300px;
+  flex-grow: 1;
+}
+#form_delete_curso #aluno_ra {
+  max-width: 80px;
+  min-width: 50px;
+}
+#form_delete_curso #div_submit {
+  width: 100%;
+}
+#form_delete_curso #div_submit input {
+  background: #aa3f3f;
+}
+
+#form_info_aluno, .form_info_curso {
+  background: #f0f0f0;
+  overflow: hidden;
+  box-shadow: none;
+  border: 2px solid #245da7;
+  padding: 20px 40px;
+  max-width: 1200px;
+}
+#form_info_aluno input[readonly=true], .form_info_curso input[readonly=true] {
+  background: #ccc;
+}
+#form_info_aluno table, #form_info_aluno td, #form_info_aluno th, .form_info_curso table, .form_info_curso td, .form_info_curso th {
+  padding: 5px;
+  text-align: center;
+  border: 1px solid #333;
+  border-collapse: collapse;
+}
+#form_info_aluno table, .form_info_curso table {
+  width: 100%;
+  font-size: 12px;
+}
+#form_info_aluno table th, .form_info_curso table th {
+  background: #cdc;
+  color: #444;
+  font-weight: normal;
+}
+#form_info_aluno table tr:hover, .form_info_curso table tr:hover {
+  background: #ffe;
+}
+#form_info_aluno table .tr_btn_talao:hover, .form_info_curso table .tr_btn_talao:hover {
+  background: transparent;
+}
+#form_info_aluno table td, .form_info_curso table td {
   text-align: center;
 }
-#bg_view_table_cursos_info table #td_nome {
+#form_info_aluno table td button, .form_info_curso table td button {
+  background: #245da7;
+  color: #fff;
+  border: 0px;
+  padding: 10px;
+  cursor: pointer;
+}
+#form_info_aluno table td button:hover, .form_info_curso table td button:hover {
+  background: #2d74d1;
+}
+#form_info_aluno table .td_parcela_vencimento input, .form_info_curso table .td_parcela_vencimento input {
+  min-width: auto;
+  max-width: 130px;
+  margin: 0 auto;
+}
+#form_info_aluno table .td_parcela_desconto input, #form_info_aluno table .td_parcela_valor input, #form_info_aluno table .td_parcela_valor_total input, .form_info_curso table .td_parcela_desconto input, .form_info_curso table .td_parcela_valor input, .form_info_curso table .td_parcela_valor_total input {
+  min-width: auto;
+  max-width: 50px;
+  margin: 0 auto;
+}
+#form_info_aluno table .td_parcela_valor input, #form_info_aluno table .td_parcela_valor_total input, .form_info_curso table .td_parcela_valor input, .form_info_curso table .td_parcela_valor_total input {
+  border: 0px;
+  background-color: transparent !important;
+}
+#form_info_aluno table input[data-change=true], .form_info_curso table input[data-change=true] {
+  background: #ffff99;
+}
+#form_info_aluno table textarea, .form_info_curso table textarea {
+  margin: 0 auto;
+}
+#form_info_aluno table textarea[data-change=true], .form_info_curso table textarea[data-change=true] {
+  background: #ffff99;
+}
+#form_info_aluno .subnav_curso_info, .form_info_curso .subnav_curso_info {
+  overflow: hidden;
+  height: auto;
+  margin-bottom: 30px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  clear: both;
+}
+#form_info_aluno .subnav_curso_info ul, .form_info_curso .subnav_curso_info ul {
+  display: flex;
+  justify-content: center;
+  height: auto;
+  width: 100%;
+  padding: 10px;
+}
+#form_info_aluno .subnav_curso_info ul li, .form_info_curso .subnav_curso_info ul li {
+  display: inline;
+  margin: 0px 3px;
+}
+#form_info_aluno .subnav_curso_info ul li a, .form_info_curso .subnav_curso_info ul li a {
+  padding: 8px 12px;
+  text-align: center;
+  background-color: #eee;
+  color: #333;
+  border-radius: 3px;
+  text-decoration: none;
+  user-select: none;
+}
+#form_info_aluno .subnav_curso_info ul li a:hover, .form_info_curso .subnav_curso_info ul li a:hover {
+  background: #444;
+  color: #fff;
+}
+#form_info_aluno .subnav_curso_info ul li a:active, .form_info_curso .subnav_curso_info ul li a:active {
+  background-color: #515151;
+  box-shadow: inset 1px 0px 4px #111;
+}
+#form_info_aluno .subnav_curso_info ul .active, .form_info_curso .subnav_curso_info ul .active {
+  background: #444 !important;
+  color: #fff;
+}
+#form_info_aluno .fieldset, .form_info_curso .fieldset {
+  position: relative;
+  background: #fff;
+  max-width: 100%;
+  margin: 20px 0px;
+  border: 1px solid #aaa;
+  padding: 30px 30px;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+#form_info_aluno .fieldset legend, .form_info_curso .fieldset legend {
+  background: #f0f0f0;
+  padding: 5px 8px;
+  position: absolute;
+  top: -15px;
+  left: 20px;
+  border-radius: 5px;
+}
+#form_info_aluno .fieldset .row, .form_info_curso .fieldset .row {
+  max-width: 100%;
+  display: flex;
+  flex-shrink: 1;
+  flex-grow: 1;
+}
+#form_info_aluno .fieldset .row div, .form_info_curso .fieldset .row div {
+  min-width: 50px;
+  flex-shrink: 1;
+  flex-grow: 1;
+  display: flex;
+  padding: 5px 0;
+}
+#form_info_aluno .fieldset .row div label, .form_info_curso .fieldset .row div label {
+  text-align: center;
+  min-width: 60px;
+  max-width: 60%;
+  width: 60%;
+  flex-grow: 1;
+}
+#form_info_aluno .fieldset .row div input, .form_info_curso .fieldset .row div input {
+  max-width: 40%;
+}
+#form_info_aluno .fieldset .div_input, .form_info_curso .fieldset .div_input {
+  flex-shrink: 1;
+  margin: 0;
+}
+#form_info_aluno .fieldset .div_input input,
+#form_info_aluno .fieldset .div_input textarea, .form_info_curso .fieldset .div_input input,
+.form_info_curso .fieldset .div_input textarea {
+  max-width: none;
+}
+#form_info_aluno .fieldset .div_input label, .form_info_curso .fieldset .div_input label {
+  background: #ddd;
+}
+#form_info_aluno .fieldset .div_input input[readonly=true], .form_info_curso .fieldset .div_input input[readonly=true] {
+  background: #fff;
+  border: 0;
+}
+#form_info_aluno .fieldset .div_input input[readonly=true]:focus, .form_info_curso .fieldset .div_input input[readonly=true]:focus {
+  outline: 0;
+}
+#form_info_aluno .fieldset #div_desconto_combo,
+#form_info_aluno .fieldset #div_curso_obs,
+#form_info_aluno .fieldset #div_modulos, #form_info_aluno .fieldset #div_aluno_obs, .form_info_curso .fieldset #div_desconto_combo,
+.form_info_curso .fieldset #div_curso_obs,
+.form_info_curso .fieldset #div_modulos, .form_info_curso .fieldset #div_aluno_obs {
+  min-width: 100%;
+}
+#form_info_aluno .fieldset #div_desconto_combo div, .form_info_curso .fieldset #div_desconto_combo div {
+  padding: 5px;
+  display: block;
+  background: #fff;
+}
+#form_info_aluno .fieldset #modulos, #form_info_aluno .fieldset #curso_obs, .form_info_curso .fieldset #modulos, .form_info_curso .fieldset #curso_obs {
+  max-width: none !important;
+}
+#form_info_aluno .fieldset #aluno_ra, #form_info_aluno .fieldset #resp_end_numero, #form_info_aluno .fieldset #aluno_end_numero, #form_info_aluno .fieldset #aluno_genero, #form_info_aluno .fieldset #resp_genero, .form_info_curso .fieldset #aluno_ra, .form_info_curso .fieldset #resp_end_numero, .form_info_curso .fieldset #aluno_end_numero, .form_info_curso .fieldset #aluno_genero, .form_info_curso .fieldset #resp_genero {
+  max-width: 80px;
+}
+#form_info_aluno .fieldset_curso_status .div_select_curso_status, .form_info_curso .fieldset_curso_status .div_select_curso_status {
+  max-width: 240px;
+}
+#form_info_aluno .fieldset_curso_status .div_data_status, .form_info_curso .fieldset_curso_status .div_data_status {
+  max-width: 240px;
+}
+#form_info_aluno .fieldset_certificado_info, .form_info_curso .fieldset_certificado_info {
+  background: #fffff6;
+}
+#form_info_aluno .fieldset_curso_info, .form_info_curso .fieldset_curso_info {
+  display: none;
+}
+#form_info_aluno .bg_curso, .form_info_curso .bg_curso {
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: block;
+  color: #333;
+  backdrop-filter: grayscale(30%) !important;
+}
+#form_info_aluno .bg_curso h4.title_info_cursos, .form_info_curso .bg_curso h4.title_info_cursos {
+  user-select: none;
+  width: 100%;
+  cursor: pointer;
+  text-transform: uppercase;
+  width: calc(100% + 20px);
+  text-align: center;
+  padding: 20px;
+  margin-top: -30px;
+  margin-left: -25px;
+  margin-right: -25px;
+  margin-bottom: 20px;
+  width: calc(100% + 100px);
+}
+#form_info_aluno .bg_curso h4.title_info_cursos svg, .form_info_curso .bg_curso h4.title_info_cursos svg {
+  margin-top: -5px;
+  float: right;
+  margin-right: 60px;
+  width: 32px !important;
+  height: 32px !important;
+}
+#form_info_aluno .bg_curso h4.title_info_cursos .title_status, .form_info_curso .bg_curso h4.title_info_cursos .title_status {
+  margin-top: -5px;
+  margin-right: 20px;
+  float: right;
+  border: 1px solid #ccc;
+  background: #fafafa;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+}
+#form_info_aluno .bg_curso h4.title_info_cursos .status_ativo, .form_info_curso .bg_curso h4.title_info_cursos .status_ativo {
+  color: green;
+}
+#form_info_aluno .bg_curso h4.title_info_cursos .status_pausado, .form_info_curso .bg_curso h4.title_info_cursos .status_pausado {
+  color: #304063;
+}
+#form_info_aluno .bg_curso h4.title_info_cursos .status_cancelado, .form_info_curso .bg_curso h4.title_info_cursos .status_cancelado {
+  color: red;
+}
+#form_info_aluno .bg_curso h4.title_info_cursos .status_concluido, .form_info_curso .bg_curso h4.title_info_cursos .status_concluido {
+  color: #5c5c5c;
+}
+#form_info_aluno .bg_curso h4.title_info_cursos:active, .form_info_curso .bg_curso h4.title_info_cursos:active {
+  box-shadow: 1px 0px 3px #000 inset;
+}
+#form_info_aluno .bg_curso fieldset, .form_info_curso .bg_curso fieldset {
+  width: 100%;
+}
+#form_info_aluno .bg_curso label, .form_info_curso .bg_curso label {
+  background: #ddd;
+}
+#form_info_aluno input[type=submit], .form_info_curso input[type=submit] {
+  margin: 0 auto;
+  opacity: 0.3;
+}
+#form_info_aluno #label_checkbox_certificado_entregue, .form_info_curso #label_checkbox_certificado_entregue {
+  background: #f0f0f0;
+  user-select: none;
+  margin: 5px;
+  max-width: 250px !important;
+  min-width: 180px;
+  color: #333;
+}
+#form_info_aluno #label_checkbox_certificado_entregue input, .form_info_curso #label_checkbox_certificado_entregue input {
+  display: none;
+}
+#form_info_aluno .active, .form_info_curso .active {
+  color: #fff !important;
+  background: #548b54 !important;
+}
+
+.form_info_curso {
+  padding: 0;
+  max-height: 2000px;
+  overflow: hidden;
+  background-color: #fff !important;
+}
+.form_info_curso h4 svg {
+  transition: all ease 0.3s;
+  transform: rotate(180deg);
+  /* Equal to rotateZ(45deg) */
+}
+
+.hide_form_info_curso {
+  transition: all 1s ease-in-out;
+  max-height: 60px;
+  max-height: auto;
+  overflow: hidden;
+}
+.hide_form_info_curso h4 svg {
+  transform: rotate(0deg) !important;
+  /* Equal to rotateZ(45deg) */
+}
+
+#div_ra_aluno {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start !important;
+  flex-shrink: 1;
+  flex-grow: 1;
+}
+#div_ra_aluno label {
+  display: flex;
+  max-height: auto;
+  align-items: center;
+  padding: 10px 20px;
+}
+#div_ra_aluno input {
+  max-width: 300px;
+  flex-shrink: 1;
+  border: 1px solid #999;
+  transition: all 0.2s;
+  padding: 5px;
+  font-size: 18px;
+  background: #fff;
+}
+#div_ra_aluno input:focus {
+  outline: 2px solid #245da7;
+  outline-offset: -2px;
+}
+#div_ra_aluno input[readonly=true] {
+  border: 1px solid #245da7;
+  background: #c3cad3;
+}
+#div_ra_aluno .input_invalido {
+  background: #f1c0c0 !important;
+}
+#div_ra_aluno #label_ra_automatico_aluno {
+  margin: 0px;
+  margin-left: 10px;
+  transition: all 0.5s;
+  border-radius: 3px;
+  max-width: 220px;
+  min-width: 180px;
+  user-select: none;
+}
+#div_ra_aluno #label_ra_automatico_aluno #checkbox_id_automatico_aluno {
+  display: none;
+}
+#div_ra_aluno .active {
+  max-width: 350px;
+  width: 350px;
+  background: #245da7 !important;
+  color: #fff !important;
+}
+
+#bg_view_table_alunos {
+  position: relative;
+}
+
+#view_table_alunos th {
+  background: #c46641;
+}
+#view_table_alunos .td_ra {
+  text-align: center;
+}
+#view_table_alunos .td_cursos {
+  font-size: 13px;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  padding: 0px 5px;
+}
+#view_table_alunos .td_cursos div {
+  display: flex;
+  width: 100%;
+}
+#view_table_alunos .td_cursos div span {
+  min-height: 100%;
+  flex-grow: 1;
+  text-align: center;
+  padding: 5px;
+  background: #ddddddcc;
+}
+#view_table_alunos .td_cursos div span:nth-child(even) {
+  margin-left: 3px;
+}
+#view_table_alunos .td_cursos div span[class*=Informática] {
+  color: #245da7;
+}
+#view_table_alunos .td_cursos div span[class*=web] {
+  color: #1111ff;
+}
+#view_table_alunos .td_cursos div span[class*=Inglês] {
+  color: #cf0675;
+}
+#view_table_alunos .td_cursos div span[class*=Excel] {
+  color: green;
+}
+#view_table_alunos .td_cursos div span[class*=Banco] {
+  color: #ad593a;
+}
+#view_table_alunos .td_cursos div span[class*=Espanhol] {
+  color: #70152c;
+}
+#view_table_alunos .td_cursos div span[class*=Adm] {
+  color: #157055;
+}
+#view_table_alunos .td_cursos div .re {
+  color: #702e70;
+}
+#view_table_alunos .td_controles {
+  width: 240px;
+  height: 40px;
+  text-align: center;
+}
+#view_table_alunos .td_controles button {
+  border: 0px solid #333;
+  border-radius: 3px;
+}
+#view_table_alunos .td_controles .btn_info_aluno {
+  background-color: #245da7;
+  color: #fff;
+}
+#view_table_alunos .td_controles .btn_info_aluno:hover {
+  background-color: #2969bc;
+}
+#view_table_alunos .td_controles .btn_delete_curso {
+  background-color: #b83535;
+  color: #fff;
+}
+#view_table_alunos .td_controles .btn_delete_curso:hover {
+  background-color: #ae3a3a;
+}
+#view_table_alunos .td_controles .btn_add_curso {
+  background-color: #579257;
+  color: #fff;
+}
+#view_table_alunos .td_controles .btn_add_curso:hover {
+  background-color: #61a161;
+}
+
+#bg_view_table_status_cursos {
+  position: relative;
+}
+#bg_view_table_status_cursos #select_status_cursos {
+  max-width: 150px;
+}
+#bg_view_table_status_cursos #resumo_cursos {
+  display: flex;
+  width: 100%;
+  background: #222;
+  margin-bottom: 20px;
+}
+#bg_view_table_status_cursos #resumo_cursos div {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px 20px;
+  border-right: 1px dotted #ccc;
+  color: #fff;
+}
+#bg_view_table_status_cursos #resumo_cursos div .total {
+  color: greenyellow;
+}
+#bg_view_table_status_cursos #resumo_cursos div p {
+  display: block;
+  width: 100%;
+  padding: 3px 0px;
+  width: 100%;
+}
+
+#view_table_status_cursos td, #view_table_status_cursos th {
+  font-size: 12px;
+}
+#view_table_status_cursos td {
+  padding: 2px 4px;
+}
+#view_table_status_cursos td .pagamento_atrasado {
+  background-color: #eb4b01 !important;
+  color: #fff;
+}
+#view_table_status_cursos td .pagamento_muito_atrasado {
+  background-color: #dd0000 !important;
+  color: #fff;
+}
+#view_table_status_cursos td .dia_de_pagamento {
+  background-color: #eca76e !important;
+}
+#view_table_status_cursos td .pagamento_em_dia {
+  background-color: #baf7cc !important;
+}
+#view_table_status_cursos th {
+  background: #027e6d;
+}
+#view_table_status_cursos tr[data-status=ativo] .td_status {
+  color: green;
+}
+#view_table_status_cursos tr[data-status=cancelado] {
+  background-color: #ccc;
+}
+#view_table_status_cursos tr[data-status=cancelado] span {
+  background-color: transparent !important;
+  color: #333 !important;
+  border: 1px solid #999;
+}
+#view_table_status_cursos tr[data-status=pausado] {
+  background-color: #b4e0de;
+}
+#view_table_status_cursos tr[data-status=concluido] {
+  background-color: #bac3d4;
+}
+#view_table_status_cursos tr[data-status=concluido] span {
+  background-color: transparent !important;
+  color: #333 !important;
+  border: 1px solid #999;
+}
+#view_table_status_cursos tr[data-status=undefined] {
+  background-color: #e9ccf0;
+}
+#view_table_status_cursos tr:hover td {
+  background-color: #ffff000f !important;
+}
+#view_table_status_cursos .td_status {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+#view_table_status_cursos .td_ra {
+  text-align: center;
+}
+#view_table_status_cursos .td_parcelas, #view_table_status_cursos .td_ultima_parcela {
+  text-align: center;
+}
+#view_table_status_cursos .td_parcelas span, #view_table_status_cursos .td_ultima_parcela span {
+  padding: 5px 2px;
+  display: block;
+  width: 100%;
+}
+#view_table_status_cursos .td_cursos {
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  padding: 0px 5px;
+}
+#view_table_status_cursos .td_cursos div {
+  display: flex;
+  width: 100%;
+}
+#view_table_status_cursos .td_cursos div span {
+  min-height: 100%;
+  flex-grow: 1;
+  text-align: center;
+  padding: 5px;
+  background: #ddddddcc;
+}
+#view_table_status_cursos .td_cursos div span:nth-child(even) {
+  margin-left: 3px;
+}
+#view_table_status_cursos .td_cursos div span[class*=Informática] {
+  color: #245da7;
+}
+#view_table_status_cursos .td_cursos div span[class*=web] {
+  color: #1111ff;
+}
+#view_table_status_cursos .td_cursos div span[class*=Inglês] {
+  color: #cf0675;
+}
+#view_table_status_cursos .td_cursos div span[class*=Excel] {
+  color: green;
+}
+#view_table_status_cursos .td_cursos div span[class*=Banco] {
+  color: #ad593a;
+}
+#view_table_status_cursos .td_cursos div span[class*=Espanhol] {
+  color: #70152c;
+}
+#view_table_status_cursos .td_cursos div span[class*=Adm] {
+  color: #157055;
+}
+#view_table_status_cursos .td_cursos div .re {
+  color: #702e70;
+}
+#view_table_status_cursos .td_controles {
+  text-align: center;
+}
+
+#teste {
+  border: 2px solid #f99;
+}
+
+#fieldset_resp,
+#fieldset_aluno {
+  position: relative;
+}
+#fieldset_resp .label_numero,
+#fieldset_aluno .label_numero {
+  max-width: 45px !important;
+  padding-left: 20px;
+}
+#fieldset_resp .end_numero,
+#fieldset_aluno .end_numero {
+  max-width: 60px !important;
+}
+
+#fieldset_aluno {
+  display: block;
+  overflow: hidden;
+  height: 260px;
+  border-color: #f14781 !important;
+  transition: height 1s, padding 1s, opacity 0.8s;
+  opacity: 1;
+}
+#fieldset_aluno div label {
+  background: #ddd7d3;
+}
+#fieldset_aluno #block_aluno {
+  display: none;
+  width: 100%;
+  min-height: 300px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.1);
+}
+#fieldset_aluno #div_aluno_parentesco {
+  width: 100%;
+}
+#fieldset_aluno #div_aluno_parentesco #label_parentesco {
+  max-width: 350px !important;
+  width: 350px;
+  padding-left: 20px;
+  flex-grow: 1;
+}
+#fieldset_aluno #div_aluno_parentesco #aluno_parentesco {
+  max-width: auto;
+}
+
+#fieldset_resp {
+  padding-top: 70px !important;
+  border-color: #2d74d1 !important;
+}
+#fieldset_resp div {
+  margin-bottom: 20px;
+}
+#fieldset_resp div label {
+  background: #d3d7dd;
+}
+#fieldset_resp div #btn_marcar_resp_aluno {
+  user-select: none;
+  top: 20px;
+  right: 35px;
+  position: absolute;
+  clear: both;
+  transition: all 0.5s;
+  border: 1px solid #444;
+  background: #f0f0f0;
+  margin: 0 0 0 10px;
+  max-width: 250px !important;
+  min-width: 180px;
+  color: #333;
+}
+#fieldset_resp div #btn_marcar_resp_aluno input {
+  display: none;
+}
+#fieldset_resp div #btn_marcar_resp_aluno:hover {
+  background: #fff;
+}
+#fieldset_resp div #btn_marcar_resp_aluno:active {
+  background: #2662af !important;
+  color: #fff !important;
+}
+#fieldset_resp div .active {
+  background: #2969bc !important;
+  color: #fff !important;
+}
+#fieldset_resp div .active:hover {
+  background: #2d74d1 !important;
+}
+
+#div_resp_obs,
+#div_aluno_obs {
+  min-width: 100%;
+}
+
+#div_resp_genero,
+#div_aluno_genero {
+  max-width: 160px;
+}
+
+#fieldset_curso {
+  border-color: #454 !important;
+}
+#fieldset_curso div label {
+  background: #d3ddd3;
+}
+#fieldset_curso > div {
+  padding: 6px 0px;
+}
+#fieldset_curso #div_curso_nome,
+#fieldset_curso #div_curso_modulos {
+  width: 100%;
+}
+#fieldset_curso #div_curso_nome textarea,
+#fieldset_curso #div_curso_modulos textarea {
+  font-size: 14px;
+  min-height: 80px;
+}
+#fieldset_curso .row {
+  width: 100%;
+  display: flex;
+}
+#fieldset_curso .row div {
+  flex-shrink: 1;
+  flex-grow: 1;
+  margin-right: 5px;
+  display: flex;
+  padding: 5px 0;
+}
+#fieldset_curso .row div:first-child label {
   text-align: left;
 }
-#bg_view_table_cursos_info table #td_categoria {
-  font-size: 12px;
-  text-transform: capitalize;
+#fieldset_curso .row div label {
+  min-width: 100px;
+  max-width: 60px;
 }
-#bg_view_table_cursos_info table textarea {
-  font-size: 12px;
+#fieldset_curso .row #div_curso_duracao label,
+#fieldset_curso .row #div_curso_parcelas label,
+#fieldset_curso .row #div_curso_carga_horaria label,
+#fieldset_curso .row #div_curso_horas_aula label,
+#fieldset_curso .row #div_curso_valor label,
+#fieldset_curso .row #div_curso_desconto label,
+#fieldset_curso .row #div_curso_valor_total label {
+  width: 40%;
+  max-width: 50%;
+}
+#fieldset_curso .row #div_curso_duracao input,
+#fieldset_curso .row #div_curso_parcelas input,
+#fieldset_curso .row #div_curso_carga_horaria input,
+#fieldset_curso .row #div_curso_horas_aula input,
+#fieldset_curso .row #div_curso_valor input,
+#fieldset_curso .row #div_curso_desconto input,
+#fieldset_curso .row #div_curso_valor_total input {
+  width: 60%;
+}
+#fieldset_curso .row #div_curso_vencimento {
+  max-width: 20% !important;
+  min-width: 130px;
+}
+#fieldset_curso .row #div_curso_vencimento label {
+  width: auto;
+  max-width: 40%;
+  min-width: 80px;
+  padding-right: 0px;
+}
+#fieldset_curso .row #div_curso_inicio,
+#fieldset_curso .row #div_curso_data {
+  flex-shrink: 1;
+  max-width: 40% !important;
+}
+#fieldset_curso .row #div_curso_inicio label,
+#fieldset_curso .row #div_curso_data label {
+  padding-right: 0px;
+  width: 40%;
+  max-width: 50%;
+  min-width: auto;
+}
+#fieldset_curso .row #div_curso_inicio input,
+#fieldset_curso .row #div_curso_data input {
+  width: 60%;
+  min-width: auto;
+}
+#fieldset_curso .row #curso_valor,
+#fieldset_curso .row #curso_desconto,
+#fieldset_curso .row #curso_valor_total {
+  font-size: 16px;
+}
+#fieldset_curso .row #curso_valor_total {
+  color: green;
+}
+#fieldset_curso .row #curso_desconto {
+  color: red;
+}
+#fieldset_curso .row #div_curso_obs {
+  margin-top: 5px;
+}
+#fieldset_curso .row #div_curso_obs #curso_obs {
+  min-height: 60px !important;
+  padding: 5px;
+}
+#fieldset_curso #div_curso_combo {
+  background: #d3ddd3;
+  padding: 10px;
+  margin: 10px 0px;
+  max-width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+#fieldset_curso #div_curso_combo .row_combo {
+  min-width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+#fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo {
+  transition: all 0.5s;
+  padding: 20px 0px;
+  margin-left: 0px;
+  min-width: 150px;
+}
+#fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo input {
+  display: none;
+}
+#fieldset_curso #div_curso_combo .row_combo .div_input_combo .check_combo_checked {
+  background: #ed1860 !important;
+  color: #fff !important;
+}
+#fieldset_curso #div_curso_combo .row_combo #div_combo_curso_1 input {
+  color: transparent;
   width: 100%;
+}
+#fieldset_curso #div_curso_combo .row_combo #div_combo_curso_1, #fieldset_curso #div_curso_combo .row_combo #div_combo_curso_2 {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#fieldset_curso #div_curso_combo .row_combo #div_combo_curso_1 label, #fieldset_curso #div_curso_combo .row_combo #div_combo_curso_2 label {
+  background: transparent;
+  height: 20px;
+  width: 100%;
+  display: flex;
+}
+#fieldset_curso #div_curso_combo .row_combo #combo_textarea {
+  transition: all 1s;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin: 0px !important;
+  padding: 5px;
+  height: auto;
+}
+#fieldset_curso #div_curso_obs {
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+}
+#fieldset_curso #div_curso_obs textarea {
+  min-width: 80% !important;
+  min-height: 80px;
+}
+
+select {
+  width: 100%;
+}
+select .informatica {
+  color: #245da7;
+}
+select .web {
+  color: #1111ff;
+}
+select .ingles {
+  color: #cf0675;
+}
+select .excel {
+  color: green;
+}
+select .bd {
+  color: #ad593a;
+}
+select .re {
+  color: #702e70;
+}
+
+#loading_contrato {
+  display: none;
+  z-index: 5;
+  top: -20px;
+  left: -50px;
+  width: 120%;
+  height: 1200px;
+  position: absolute;
+  background: rgba(80, 80, 90, 0.2);
+}
+#loading_contrato h3 {
+  font-size: 14px;
+  background: #245da7;
+  width: 30%;
+  color: #fff;
+  text-align: center;
+  left: 35%;
+  position: fixed;
+  padding: 20px 0;
+  position: absolute;
+  top: 30%;
+}
+#loading_contrato h3 img {
+  width: 45px;
+  height: auto;
+  margin: 0 20px;
+  float: left;
+}
+#loading_contrato h3 span {
+  margin-top: 15px;
+  margin-right: 20px;
+  display: block;
+}
+
+#bg_div_id_contrato label {
+  background: #ddd;
+}
+#bg_div_id_contrato #label_id_automatico_contrato {
+  margin: 0px;
+  margin-left: 20px;
+  transition: all 0.5s;
+  max-width: 250px;
+  width: 180px;
+  user-select: none;
+}
+#bg_div_id_contrato #label_id_automatico_contrato #checkbox_id_automatico_contrato {
+  display: none;
+}
+#bg_div_id_contrato .active {
+  max-width: 350px;
+  width: 350px;
+  background: #245da7 !important;
+  color: #fff !important;
+}
+#bg_div_id_contrato #div_id_contrato {
+  display: flex;
+}
+#bg_div_id_contrato #div_id_contrato input {
+  border: 1px solid #999;
+  transition: all 0.2s;
+  padding: 5px;
+  font-size: 18px;
+  background: #fff;
+}
+#bg_div_id_contrato #div_id_contrato input:focus {
+  outline: 2px solid #245da7;
+  outline-offset: -2px;
+}
+#bg_div_id_contrato #div_id_contrato input[readonly=true] {
+  border: 1px solid #245da7;
+  background: #c3cad3;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#form_add_contrato {
+  display: flex;
+  box-shadow: 0 1px 3px #666;
+  background: #f8f8f8;
+  position: relative;
+  padding: 40px;
+  width: 900px;
+  max-width: 100%;
+  margin: 20px auto;
+  display: block;
+  height: auto;
+  font-size: 14px;
+  color: #333;
+  overflow: hidden;
+}
+#form_add_contrato .fieldset {
+  transition: all 1s;
+  max-width: 100%;
+  margin: 10px 20px;
+  border: 1px solid #aaa;
+  padding: 20px 30px;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+#form_add_contrato .fieldset label {
+  display: flex;
+  border-radius: 3px 0 0 3px;
+  flex-shrink: 1;
+  flex-grow: 1;
+  padding: 0 10px 0 15px;
+  height: auto;
+  align-items: center;
+  max-width: 100px;
+  min-width: 100px;
+}
+#form_add_contrato .fieldset input,
+#form_add_contrato .fieldset select,
+#form_add_contrato .fieldset textarea {
+  min-width: auto !important;
+  border-radius: 0 3px 3px 0;
+  min-height: 35px;
+  padding: 5px;
+  border: 1px solid #999;
+  font-size: 16px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  resize: vertical;
+}
+#form_add_contrato .fieldset input:focus,
+#form_add_contrato .fieldset select:focus,
+#form_add_contrato .fieldset textarea:focus {
+  outline: 2px solid #5690db;
+  outline-offset: -2px;
+}
+#form_add_contrato .fieldset .div_input {
+  margin: 0 5px 3px 0;
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  justify-content: flex-end;
+  padding: 6px 0;
+}
+#form_add_contrato #div_resp_end,
+#form_add_contrato #div_aluno_end {
+  width: 100% !important;
+}
+#form_add_contrato .aluno_off {
+  height: 2px !important;
+  padding: 0;
+  opacity: 0 !important;
+  margin-bottom: 0;
+}
+#form_add_contrato .display_off {
+  overflow: hidden;
+  height: 1px !important;
+  padding: 0 !important;
+  opacity: 0 !important;
+  margin: 0 0 -10px !important;
+}
+#form_add_contrato #btn_salvar {
+  float: right;
+  margin-right: 0;
+  margin-top: 40px;
+  background: #245da7;
+  color: #fff;
+  border: 0;
+  padding: 15px 30px;
+  cursor: pointer;
+}
+#form_add_contrato #btn_salvar:hover {
+  background: #2d74d1;
+}
+#form_add_contrato #btn_salvar:active {
+  background: #1f5192;
+}
+
+.red {
+  color: red !important;
+}
+
+.green {
+  color: green !important;
+}
+
+option[disabled] {
+  color: #ccc !important;
+}
+
+.required {
+  color: red;
+  margin-left: -10px;
+  margin-right: 5px;
+}
+
+#bg_contrato_content {
+  position: relative;
+}
+#bg_contrato_content table th {
+  background: #889099;
+}
+#bg_contrato_content table .td_contrato_id, #bg_contrato_content table .td_aluno_assoc, #bg_contrato_content table .td_contrato_status, #bg_contrato_content table .td_contrato_info {
+  text-align: center;
+}
+#bg_contrato_content table .td_aluno_assoc {
+  min-width: 120px;
+}
+#bg_contrato_content table .td_contrato_id {
+  min-width: 70px;
+}
+
+@media (max-width: 750px) {
+  #bg_contrato_content table .td_aluno_assoc {
+    min-width: auto;
+  }
+  #bg_contrato_content table .td_contrato_id {
+    min-width: auto;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+
+#info_contrato {
+  display: flex;
+  box-shadow: 0 1px 3px #666;
+  background: #f8f8f8;
+  position: relative;
+  padding: 40px;
+  width: 900px;
+  max-width: 100%;
+  margin: 20px auto;
+  display: block;
+  height: auto;
+  font-size: 14px;
+  color: #333;
+  overflow: hidden;
+}
+#info_contrato #div_btn_salvar_contrato_pdf {
+  margin: 0 auto;
+}
+#info_contrato #div_btn_salvar_contrato_pdf #btn_salvar_contrato_pdf {
+  width: 200px;
+  margin-left: calc(50% - 100px);
+}
+#info_contrato .fieldset {
+  transition: all 1s;
+  max-width: 100%;
+  margin: 10px 20px;
+  border: 1px solid #aaa;
+  padding: 20px 30px;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+#info_contrato .fieldset label {
+  background: #ccc;
+  display: flex;
+  border-radius: 3px 0 0 3px;
+  flex-shrink: 1;
+  flex-grow: 1;
+  padding: 0 10px 0 15px;
+  height: auto;
+  align-items: center;
+  max-width: 100px;
+  min-width: 100px;
+}
+#info_contrato .fieldset input,
+#info_contrato .fieldset textarea {
+  min-width: auto !important;
+  border-radius: 0 3px 3px 0;
+  min-height: 35px;
+  padding: 5px;
+  border: 1px solid #999;
+  font-size: 16px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  resize: vertical;
+}
+#info_contrato .fieldset input:focus,
+#info_contrato .fieldset textarea:focus {
+  outline: 2px solid #5690db;
+  outline-offset: -2px;
+}
+#info_contrato .fieldset input[readonly=true], #info_contrato .fieldset textarea[readonly=true] {
+  background: #dfdfdf;
+  border: 0px;
+}
+#info_contrato .fieldset .div_input {
+  margin: 0 5px 3px 0;
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  justify-content: flex-end;
+  padding: 6px 0;
+}
+#info_contrato #div_resp_end, #info_contrato #div_id_contrato,
+#info_contrato #div_aluno_end {
+  width: 100% !important;
+}
+#info_contrato #id_contrato {
+  max-width: 100px;
+}
+
+.red {
+  color: red !important;
+}
+
+.green {
+  color: green !important;
+}
+
+option[disabled] {
+  color: #ccc !important;
+}
+
+.required {
+  color: red;
+  margin-left: -10px;
+  margin-right: 5px;
+}
+
+#fieldset_resp,
+#fieldset_aluno {
+  position: relative;
+}
+#fieldset_resp .label_numero,
+#fieldset_aluno .label_numero {
+  max-width: 45px !important;
+  padding-left: 20px;
+}
+#fieldset_resp .end_numero,
+#fieldset_aluno .end_numero {
+  max-width: 60px !important;
+}
+
+#fieldset_aluno {
+  display: block;
+  overflow: hidden;
+  height: 260px;
+  border-color: #f14781 !important;
+  transition: height 1s, padding 1s, opacity 0.8s;
+  opacity: 1;
+}
+#fieldset_aluno #block_aluno {
+  display: none;
+  width: 100%;
+  min-height: 300px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.1);
+}
+#fieldset_aluno #div_aluno_parentesco {
+  width: 100%;
+}
+#fieldset_aluno #div_aluno_parentesco #label_parentesco {
+  width: auto;
+  padding-left: 20px;
+  flex-grow: 0;
+}
+
+#fieldset_resp {
+  padding-top: 70px !important;
+  border-color: #2d74d1 !important;
+}
+
+#div_resp_obs,
+#div_aluno_obs {
+  min-width: 100%;
+}
+
+#div_resp_genero,
+#div_aluno_genero {
+  max-width: 160px;
+}
+
+#fieldset_curso {
+  border-color: #454 !important;
+}
+#fieldset_curso > div {
+  padding: 6px 0px;
+}
+#fieldset_curso #div_curso_nome,
+#fieldset_curso #div_curso_modulos {
+  width: 100%;
+}
+#fieldset_curso #div_curso_nome textarea,
+#fieldset_curso #div_curso_modulos textarea {
+  font-size: 14px;
+  min-height: 80px;
+}
+#fieldset_curso .row {
+  width: 100%;
+  display: flex;
+}
+#fieldset_curso .row div {
+  flex-shrink: 1;
+  flex-grow: 1;
+  margin-right: 5px;
+  display: flex;
+  padding: 5px 0;
+}
+#fieldset_curso .row div:first-child label {
+  text-align: left;
+}
+#fieldset_curso .row div label {
+  min-width: 100px;
+  max-width: 60px;
+}
+#fieldset_curso .row #div_curso_vencimento label,
+#fieldset_curso .row #div_curso_duracao label,
+#fieldset_curso .row #div_curso_parcelas label,
+#fieldset_curso .row #div_curso_valor label,
+#fieldset_curso .row #div_curso_desconto label,
+#fieldset_curso .row #div_curso_valor_total label {
+  width: 40%;
+  max-width: 50%;
+}
+#fieldset_curso .row #div_curso_vencimento input,
+#fieldset_curso .row #div_curso_duracao input,
+#fieldset_curso .row #div_curso_parcelas input,
+#fieldset_curso .row #div_curso_valor input,
+#fieldset_curso .row #div_curso_desconto input,
+#fieldset_curso .row #div_curso_valor_total input {
+  width: 60%;
+}
+#fieldset_curso .row #div_curso_inicio,
+#fieldset_curso .row #div_curso_data {
+  flex-shrink: 1;
+  max-width: 50% !important;
+}
+#fieldset_curso .row #div_curso_inicio label,
+#fieldset_curso .row #div_curso_data label {
+  width: 40%;
+  max-width: 50%;
+  min-width: auto;
+}
+#fieldset_curso .row #div_curso_inicio input,
+#fieldset_curso .row #div_curso_data input {
+  width: 60%;
+  min-width: auto;
+}
+#fieldset_curso .row #curso_valor,
+#fieldset_curso .row #curso_desconto,
+#fieldset_curso .row #curso_valor_total {
+  font-size: 16px;
+}
+#fieldset_curso .row #curso_valor_total {
+  color: green;
+}
+#fieldset_curso .row #curso_desconto {
+  color: red;
+}
+#fieldset_curso .row #div_curso_obs {
+  margin-top: 5px;
+}
+#fieldset_curso .row #div_curso_obs #curso_obs {
+  min-height: 60px !important;
+  padding: 5px;
+}
+#fieldset_curso #div_curso_desconto_combo div {
+  background: #dfdfdf;
+  padding: 5px;
+}
+#fieldset_curso #div_curso_obs {
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+}
+#fieldset_curso #div_curso_obs textarea {
+  min-width: 80% !important;
+  min-height: 80px;
 }
 
 #form_add_aula {
@@ -2233,1690 +3647,91 @@ input:disabled, textarea:disabled {
   content: " ";
 }
 
-#fieldset_resp,
-#fieldset_aluno {
-  position: relative;
-}
-#fieldset_resp .label_numero,
-#fieldset_aluno .label_numero {
-  max-width: 45px !important;
-  padding-left: 20px;
-}
-#fieldset_resp .end_numero,
-#fieldset_aluno .end_numero {
-  max-width: 60px !important;
-}
-
-#fieldset_aluno {
-  display: block;
-  overflow: hidden;
-  height: 260px;
-  border-color: #f14781 !important;
-  transition: height 1s, padding 1s, opacity 0.8s;
-  opacity: 1;
-}
-#fieldset_aluno div label {
-  background: #ddd7d3;
-}
-#fieldset_aluno #block_aluno {
-  display: none;
-  width: 100%;
-  min-height: 300px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.1);
-}
-#fieldset_aluno #div_aluno_parentesco {
-  width: 100%;
-}
-#fieldset_aluno #div_aluno_parentesco #label_parentesco {
-  max-width: 350px !important;
-  width: 350px;
-  padding-left: 20px;
-  flex-grow: 1;
-}
-#fieldset_aluno #div_aluno_parentesco #aluno_parentesco {
-  max-width: auto;
-}
-
-#fieldset_resp {
-  padding-top: 70px !important;
-  border-color: #2d74d1 !important;
-}
-#fieldset_resp div {
-  margin-bottom: 20px;
-}
-#fieldset_resp div label {
-  background: #d3d7dd;
-}
-#fieldset_resp div #btn_marcar_resp_aluno {
-  user-select: none;
-  top: 20px;
-  right: 35px;
-  position: absolute;
-  clear: both;
-  transition: all 0.5s;
-  border: 1px solid #444;
-  background: #f0f0f0;
-  margin: 0 0 0 10px;
-  max-width: 250px !important;
-  min-width: 180px;
-  color: #333;
-}
-#fieldset_resp div #btn_marcar_resp_aluno input {
-  display: none;
-}
-#fieldset_resp div #btn_marcar_resp_aluno:hover {
-  background: #fff;
-}
-#fieldset_resp div #btn_marcar_resp_aluno:active {
-  background: #2662af !important;
-  color: #fff !important;
-}
-#fieldset_resp div .active {
-  background: #2969bc !important;
-  color: #fff !important;
-}
-#fieldset_resp div .active:hover {
-  background: #2d74d1 !important;
-}
-
-#div_resp_obs,
-#div_aluno_obs {
-  min-width: 100%;
-}
-
-#div_resp_genero,
-#div_aluno_genero {
-  max-width: 160px;
-}
-
-#fieldset_curso {
-  border-color: #454 !important;
-}
-#fieldset_curso div label {
-  background: #d3ddd3;
-}
-#fieldset_curso > div {
-  padding: 6px 0px;
-}
-#fieldset_curso #div_curso_nome,
-#fieldset_curso #div_curso_modulos {
-  width: 100%;
-}
-#fieldset_curso #div_curso_nome textarea,
-#fieldset_curso #div_curso_modulos textarea {
-  font-size: 14px;
-  min-height: 80px;
-}
-#fieldset_curso .row {
-  width: 100%;
-  display: flex;
-}
-#fieldset_curso .row div {
-  flex-shrink: 1;
-  flex-grow: 1;
-  margin-right: 5px;
-  display: flex;
-  padding: 5px 0;
-}
-#fieldset_curso .row div:first-child label {
-  text-align: left;
-}
-#fieldset_curso .row div label {
-  min-width: 100px;
-  max-width: 60px;
-}
-#fieldset_curso .row #div_curso_duracao label,
-#fieldset_curso .row #div_curso_parcelas label,
-#fieldset_curso .row #div_curso_carga_horaria label,
-#fieldset_curso .row #div_curso_horas_aula label,
-#fieldset_curso .row #div_curso_valor label,
-#fieldset_curso .row #div_curso_desconto label,
-#fieldset_curso .row #div_curso_valor_total label {
-  width: 40%;
-  max-width: 50%;
-}
-#fieldset_curso .row #div_curso_duracao input,
-#fieldset_curso .row #div_curso_parcelas input,
-#fieldset_curso .row #div_curso_carga_horaria input,
-#fieldset_curso .row #div_curso_horas_aula input,
-#fieldset_curso .row #div_curso_valor input,
-#fieldset_curso .row #div_curso_desconto input,
-#fieldset_curso .row #div_curso_valor_total input {
-  width: 60%;
-}
-#fieldset_curso .row #div_curso_vencimento {
-  max-width: 20% !important;
-  min-width: 130px;
-}
-#fieldset_curso .row #div_curso_vencimento label {
-  width: auto;
-  max-width: 40%;
-  min-width: 80px;
-  padding-right: 0px;
-}
-#fieldset_curso .row #div_curso_inicio,
-#fieldset_curso .row #div_curso_data {
-  flex-shrink: 1;
-  max-width: 40% !important;
-}
-#fieldset_curso .row #div_curso_inicio label,
-#fieldset_curso .row #div_curso_data label {
-  padding-right: 0px;
-  width: 40%;
-  max-width: 50%;
-  min-width: auto;
-}
-#fieldset_curso .row #div_curso_inicio input,
-#fieldset_curso .row #div_curso_data input {
-  width: 60%;
-  min-width: auto;
-}
-#fieldset_curso .row #curso_valor,
-#fieldset_curso .row #curso_desconto,
-#fieldset_curso .row #curso_valor_total {
-  font-size: 16px;
-}
-#fieldset_curso .row #curso_valor_total {
-  color: green;
-}
-#fieldset_curso .row #curso_desconto {
-  color: red;
-}
-#fieldset_curso .row #div_curso_obs {
-  margin-top: 5px;
-}
-#fieldset_curso .row #div_curso_obs #curso_obs {
-  min-height: 60px !important;
-  padding: 5px;
-}
-#fieldset_curso #div_curso_combo {
-  background: #d3ddd3;
-  padding: 10px;
-  margin: 10px 0px;
-  max-width: 100%;
-  height: auto;
-  display: flex;
-  flex-wrap: wrap;
-}
-#fieldset_curso #div_curso_combo .row_combo {
-  min-width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-#fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo {
-  transition: all 0.5s;
-  padding: 20px 0px;
-  margin-left: 0px;
-  min-width: 150px;
-}
-#fieldset_curso #div_curso_combo .row_combo .div_input_combo #label_check_combo input {
-  display: none;
-}
-#fieldset_curso #div_curso_combo .row_combo .div_input_combo .check_combo_checked {
-  background: #ed1860 !important;
-  color: #fff !important;
-}
-#fieldset_curso #div_curso_combo .row_combo #div_combo_curso_1 input {
-  color: transparent;
-  width: 100%;
-}
-#fieldset_curso #div_curso_combo .row_combo #div_combo_curso_1, #fieldset_curso #div_curso_combo .row_combo #div_combo_curso_2 {
-  flex-grow: 1;
-  flex-shrink: 1;
-}
-#fieldset_curso #div_curso_combo .row_combo #div_combo_curso_1 label, #fieldset_curso #div_curso_combo .row_combo #div_combo_curso_2 label {
-  background: transparent;
-  height: 20px;
-  width: 100%;
-  display: flex;
-}
-#fieldset_curso #div_curso_combo .row_combo #combo_textarea {
-  transition: all 1s;
-  background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  margin: 0px !important;
-  padding: 5px;
-  height: auto;
-}
-#fieldset_curso #div_curso_obs {
-  margin-top: 10px;
-  width: 100%;
-  display: flex;
-}
-#fieldset_curso #div_curso_obs textarea {
-  min-width: 80% !important;
-  min-height: 80px;
-}
-
-select {
-  width: 100%;
-}
-select .informatica {
-  color: #245da7;
-}
-select .web {
-  color: #1111ff;
-}
-select .ingles {
-  color: #cf0675;
-}
-select .excel {
-  color: green;
-}
-select .bd {
-  color: #ad593a;
-}
-select .re {
-  color: #702e70;
-}
-
-#loading_contrato {
-  display: none;
-  z-index: 5;
-  top: -20px;
-  left: -50px;
-  width: 120%;
-  height: 1200px;
-  position: absolute;
-  background: rgba(80, 80, 90, 0.2);
-}
-#loading_contrato h3 {
-  font-size: 14px;
-  background: #245da7;
-  width: 30%;
-  color: #fff;
-  text-align: center;
-  left: 35%;
-  position: fixed;
-  padding: 20px 0;
-  position: absolute;
-  top: 30%;
-}
-#loading_contrato h3 img {
-  width: 45px;
-  height: auto;
-  margin: 0 20px;
-  float: left;
-}
-#loading_contrato h3 span {
-  margin-top: 15px;
-  margin-right: 20px;
-  display: block;
-}
-
-#bg_div_id_contrato label {
-  background: #ddd;
-}
-#bg_div_id_contrato #label_id_automatico_contrato {
-  margin: 0px;
-  margin-left: 20px;
-  transition: all 0.5s;
-  max-width: 250px;
-  width: 180px;
-  user-select: none;
-}
-#bg_div_id_contrato #label_id_automatico_contrato #checkbox_id_automatico_contrato {
-  display: none;
-}
-#bg_div_id_contrato .active {
-  max-width: 350px;
-  width: 350px;
-  background: #245da7 !important;
-  color: #fff !important;
-}
-#bg_div_id_contrato #div_id_contrato {
-  display: flex;
-}
-#bg_div_id_contrato #div_id_contrato input {
-  border: 1px solid #999;
-  transition: all 0.2s;
-  padding: 5px;
-  font-size: 18px;
-  background: #fff;
-}
-#bg_div_id_contrato #div_id_contrato input:focus {
-  outline: 2px solid #245da7;
-  outline-offset: -2px;
-}
-#bg_div_id_contrato #div_id_contrato input[readonly=true] {
-  border: 1px solid #245da7;
-  background: #c3cad3;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-#form_add_contrato {
-  display: flex;
-  box-shadow: 0 1px 3px #666;
-  background: #f8f8f8;
-  position: relative;
-  padding: 40px;
-  width: 900px;
-  max-width: 100%;
-  margin: 20px auto;
-  display: block;
-  height: auto;
-  font-size: 14px;
-  color: #333;
-  overflow: hidden;
-}
-#form_add_contrato .fieldset {
-  transition: all 1s;
-  max-width: 100%;
-  margin: 10px 20px;
-  border: 1px solid #aaa;
-  padding: 20px 30px;
-  height: auto;
-  display: flex;
-  flex-wrap: wrap;
-}
-#form_add_contrato .fieldset label {
-  display: flex;
-  border-radius: 3px 0 0 3px;
-  flex-shrink: 1;
-  flex-grow: 1;
-  padding: 0 10px 0 15px;
-  height: auto;
-  align-items: center;
-  max-width: 100px;
-  min-width: 100px;
-}
-#form_add_contrato .fieldset input,
-#form_add_contrato .fieldset select,
-#form_add_contrato .fieldset textarea {
-  min-width: auto !important;
-  border-radius: 0 3px 3px 0;
-  min-height: 35px;
-  padding: 5px;
-  border: 1px solid #999;
-  font-size: 16px;
-  flex-grow: 1;
-  flex-shrink: 1;
-  resize: vertical;
-}
-#form_add_contrato .fieldset input:focus,
-#form_add_contrato .fieldset select:focus,
-#form_add_contrato .fieldset textarea:focus {
-  outline: 2px solid #5690db;
-  outline-offset: -2px;
-}
-#form_add_contrato .fieldset .div_input {
-  margin: 0 5px 3px 0;
-  display: flex;
-  flex-grow: 1;
-  flex-shrink: 1;
-  justify-content: flex-end;
-  padding: 6px 0;
-}
-#form_add_contrato #div_resp_end,
-#form_add_contrato #div_aluno_end {
-  width: 100% !important;
-}
-#form_add_contrato .aluno_off {
-  height: 2px !important;
-  padding: 0;
-  opacity: 0 !important;
-  margin-bottom: 0;
-}
-#form_add_contrato .display_off {
-  overflow: hidden;
-  height: 1px !important;
-  padding: 0 !important;
-  opacity: 0 !important;
-  margin: 0 0 -10px !important;
-}
-#form_add_contrato #btn_salvar {
-  float: right;
-  margin-right: 0;
-  margin-top: 40px;
-  background: #245da7;
-  color: #fff;
-  border: 0;
-  padding: 15px 30px;
-  cursor: pointer;
-}
-#form_add_contrato #btn_salvar:hover {
-  background: #2d74d1;
-}
-#form_add_contrato #btn_salvar:active {
-  background: #1f5192;
-}
-
-.red {
-  color: red !important;
-}
-
-.green {
-  color: green !important;
-}
-
-option[disabled] {
-  color: #ccc !important;
-}
-
-.required {
-  color: red;
-  margin-left: -10px;
-  margin-right: 5px;
-}
-
-#bg_contrato_content {
-  position: relative;
-}
-#bg_contrato_content table th {
-  background: #889099;
-}
-#bg_contrato_content table .td_contrato_id, #bg_contrato_content table .td_aluno_assoc, #bg_contrato_content table .td_contrato_status, #bg_contrato_content table .td_contrato_info {
-  text-align: center;
-}
-#bg_contrato_content table .td_aluno_assoc {
-  min-width: 120px;
-}
-#bg_contrato_content table .td_contrato_id {
-  min-width: 70px;
-}
-
-@media (max-width: 750px) {
-  #bg_contrato_content table .td_aluno_assoc {
-    min-width: auto;
-  }
-  #bg_contrato_content table .td_contrato_id {
-    min-width: auto;
-  }
-}
-* {
-  box-sizing: border-box;
-}
-
-#info_contrato {
-  display: flex;
-  box-shadow: 0 1px 3px #666;
-  background: #f8f8f8;
-  position: relative;
-  padding: 40px;
-  width: 900px;
-  max-width: 100%;
-  margin: 20px auto;
-  display: block;
-  height: auto;
-  font-size: 14px;
-  color: #333;
-  overflow: hidden;
-}
-#info_contrato #div_btn_salvar_contrato_pdf {
-  margin: 0 auto;
-}
-#info_contrato #div_btn_salvar_contrato_pdf #btn_salvar_contrato_pdf {
-  width: 200px;
-  margin-left: calc(50% - 100px);
-}
-#info_contrato .fieldset {
-  transition: all 1s;
-  max-width: 100%;
-  margin: 10px 20px;
-  border: 1px solid #aaa;
-  padding: 20px 30px;
-  height: auto;
-  display: flex;
-  flex-wrap: wrap;
-}
-#info_contrato .fieldset label {
-  background: #ccc;
-  display: flex;
-  border-radius: 3px 0 0 3px;
-  flex-shrink: 1;
-  flex-grow: 1;
-  padding: 0 10px 0 15px;
-  height: auto;
-  align-items: center;
-  max-width: 100px;
-  min-width: 100px;
-}
-#info_contrato .fieldset input,
-#info_contrato .fieldset textarea {
-  min-width: auto !important;
-  border-radius: 0 3px 3px 0;
-  min-height: 35px;
-  padding: 5px;
-  border: 1px solid #999;
-  font-size: 16px;
-  flex-grow: 1;
-  flex-shrink: 1;
-  resize: vertical;
-}
-#info_contrato .fieldset input:focus,
-#info_contrato .fieldset textarea:focus {
-  outline: 2px solid #5690db;
-  outline-offset: -2px;
-}
-#info_contrato .fieldset input[readonly=true], #info_contrato .fieldset textarea[readonly=true] {
-  background: #dfdfdf;
-  border: 0px;
-}
-#info_contrato .fieldset .div_input {
-  margin: 0 5px 3px 0;
-  display: flex;
-  flex-grow: 1;
-  flex-shrink: 1;
-  justify-content: flex-end;
-  padding: 6px 0;
-}
-#info_contrato #div_resp_end, #info_contrato #div_id_contrato,
-#info_contrato #div_aluno_end {
-  width: 100% !important;
-}
-#info_contrato #id_contrato {
-  max-width: 100px;
-}
-
-.red {
-  color: red !important;
-}
-
-.green {
-  color: green !important;
-}
-
-option[disabled] {
-  color: #ccc !important;
-}
-
-.required {
-  color: red;
-  margin-left: -10px;
-  margin-right: 5px;
-}
-
-#fieldset_resp,
-#fieldset_aluno {
-  position: relative;
-}
-#fieldset_resp .label_numero,
-#fieldset_aluno .label_numero {
-  max-width: 45px !important;
-  padding-left: 20px;
-}
-#fieldset_resp .end_numero,
-#fieldset_aluno .end_numero {
-  max-width: 60px !important;
-}
-
-#fieldset_aluno {
-  display: block;
-  overflow: hidden;
-  height: 260px;
-  border-color: #f14781 !important;
-  transition: height 1s, padding 1s, opacity 0.8s;
-  opacity: 1;
-}
-#fieldset_aluno #block_aluno {
-  display: none;
-  width: 100%;
-  min-height: 300px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.1);
-}
-#fieldset_aluno #div_aluno_parentesco {
-  width: 100%;
-}
-#fieldset_aluno #div_aluno_parentesco #label_parentesco {
-  width: auto;
-  padding-left: 20px;
-  flex-grow: 0;
-}
-
-#fieldset_resp {
-  padding-top: 70px !important;
-  border-color: #2d74d1 !important;
-}
-
-#div_resp_obs,
-#div_aluno_obs {
-  min-width: 100%;
-}
-
-#div_resp_genero,
-#div_aluno_genero {
-  max-width: 160px;
-}
-
-#fieldset_curso {
-  border-color: #454 !important;
-}
-#fieldset_curso > div {
-  padding: 6px 0px;
-}
-#fieldset_curso #div_curso_nome,
-#fieldset_curso #div_curso_modulos {
-  width: 100%;
-}
-#fieldset_curso #div_curso_nome textarea,
-#fieldset_curso #div_curso_modulos textarea {
-  font-size: 14px;
-  min-height: 80px;
-}
-#fieldset_curso .row {
-  width: 100%;
-  display: flex;
-}
-#fieldset_curso .row div {
-  flex-shrink: 1;
-  flex-grow: 1;
-  margin-right: 5px;
-  display: flex;
-  padding: 5px 0;
-}
-#fieldset_curso .row div:first-child label {
-  text-align: left;
-}
-#fieldset_curso .row div label {
-  min-width: 100px;
-  max-width: 60px;
-}
-#fieldset_curso .row #div_curso_vencimento label,
-#fieldset_curso .row #div_curso_duracao label,
-#fieldset_curso .row #div_curso_parcelas label,
-#fieldset_curso .row #div_curso_valor label,
-#fieldset_curso .row #div_curso_desconto label,
-#fieldset_curso .row #div_curso_valor_total label {
-  width: 40%;
-  max-width: 50%;
-}
-#fieldset_curso .row #div_curso_vencimento input,
-#fieldset_curso .row #div_curso_duracao input,
-#fieldset_curso .row #div_curso_parcelas input,
-#fieldset_curso .row #div_curso_valor input,
-#fieldset_curso .row #div_curso_desconto input,
-#fieldset_curso .row #div_curso_valor_total input {
-  width: 60%;
-}
-#fieldset_curso .row #div_curso_inicio,
-#fieldset_curso .row #div_curso_data {
-  flex-shrink: 1;
-  max-width: 50% !important;
-}
-#fieldset_curso .row #div_curso_inicio label,
-#fieldset_curso .row #div_curso_data label {
-  width: 40%;
-  max-width: 50%;
-  min-width: auto;
-}
-#fieldset_curso .row #div_curso_inicio input,
-#fieldset_curso .row #div_curso_data input {
-  width: 60%;
-  min-width: auto;
-}
-#fieldset_curso .row #curso_valor,
-#fieldset_curso .row #curso_desconto,
-#fieldset_curso .row #curso_valor_total {
-  font-size: 16px;
-}
-#fieldset_curso .row #curso_valor_total {
-  color: green;
-}
-#fieldset_curso .row #curso_desconto {
-  color: red;
-}
-#fieldset_curso .row #div_curso_obs {
-  margin-top: 5px;
-}
-#fieldset_curso .row #div_curso_obs #curso_obs {
-  min-height: 60px !important;
-  padding: 5px;
-}
-#fieldset_curso #div_curso_desconto_combo div {
-  background: #dfdfdf;
-  padding: 5px;
-}
-#fieldset_curso #div_curso_obs {
-  margin-top: 10px;
-  width: 100%;
-  display: flex;
-}
-#fieldset_curso #div_curso_obs textarea {
-  min-width: 80% !important;
-  min-height: 80px;
-}
-
-.forms_fixed, #form_add_aluno {
-  box-shadow: 0 1px 3px #666;
-  background: #f8f8f8;
-  position: relative;
-  padding: 40px;
-  width: 100%;
-  margin: 20px auto;
-  height: auto;
-  font-size: 14px;
-  overflow: hidden;
-}
-.forms_fixed fieldset, #form_add_aluno fieldset, .forms_fixed .fieldset, #form_add_aluno .fieldset {
-  transition: all 1s;
-  max-width: 100%;
-  margin: 10px 20px;
-  border: 1px solid #aaa;
-  padding: 20px 30px;
-  height: auto;
-  display: flex;
-  flex-wrap: wrap;
-}
-.forms_fixed fieldset > div, #form_add_aluno fieldset > div, .forms_fixed .fieldset > div, #form_add_aluno .fieldset > div {
-  margin: 0 5px 3px 0;
-  display: flex;
-  flex-grow: 1;
-  flex-shrink: 1;
-  justify-content: flex-end;
-  padding: 6px 0;
-}
-.forms_fixed fieldset label, #form_add_aluno fieldset label, .forms_fixed .fieldset label, #form_add_aluno .fieldset label {
-  background: #ddd;
-  display: flex;
-  border-radius: 3px 0 0 3px;
-  flex-shrink: 1;
-  flex-grow: 1;
-  padding: 0 10px 0 15px;
-  height: auto;
-  align-items: center;
-  max-width: 100px;
-  min-width: 100px;
-}
-.forms_fixed fieldset input, #form_add_aluno fieldset input,
-.forms_fixed fieldset select,
-#form_add_aluno fieldset select,
-.forms_fixed fieldset textarea,
-#form_add_aluno fieldset textarea, .forms_fixed .fieldset input, #form_add_aluno .fieldset input,
-.forms_fixed .fieldset select,
-#form_add_aluno .fieldset select,
-.forms_fixed .fieldset textarea,
-#form_add_aluno .fieldset textarea {
-  min-width: auto !important;
-  border-radius: 0 3px 3px 0;
-  min-height: 35px;
-  padding: 5px;
-  border: 1px solid #999;
-  font-size: 16px;
-  flex-grow: 1;
-  flex-shrink: 1;
-  resize: vertical;
-}
-.forms_fixed fieldset input:focus, #form_add_aluno fieldset input:focus,
-.forms_fixed fieldset select:focus,
-#form_add_aluno fieldset select:focus,
-.forms_fixed fieldset textarea:focus,
-#form_add_aluno fieldset textarea:focus, .forms_fixed .fieldset input:focus, #form_add_aluno .fieldset input:focus,
-.forms_fixed .fieldset select:focus,
-#form_add_aluno .fieldset select:focus,
-.forms_fixed .fieldset textarea:focus,
-#form_add_aluno .fieldset textarea:focus {
-  outline: 2px solid #5690db;
-  outline-offset: -2px;
-}
-.forms_fixed fieldset #aluno_genero, #form_add_aluno fieldset #aluno_genero, .forms_fixed fieldset #aluno_end_numero, #form_add_aluno fieldset #aluno_end_numero, .forms_fixed .fieldset #aluno_genero, #form_add_aluno .fieldset #aluno_genero, .forms_fixed .fieldset #aluno_end_numero, #form_add_aluno .fieldset #aluno_end_numero {
-  max-width: 80px !important;
-  min-width: none;
-}
-.forms_fixed fieldset .div_input_readonly, #form_add_aluno fieldset .div_input_readonly, .forms_fixed .fieldset .div_input_readonly, #form_add_aluno .fieldset .div_input_readonly {
-  margin-bottom: 0px;
-  padding-bottom: 0px;
-}
-.forms_fixed .label_btn_checkbox, #form_add_aluno .label_btn_checkbox {
-  transition: all 0.3s;
-  max-width: 300px;
-  width: 200px;
-  user-select: none;
-}
-.forms_fixed .label_btn_checkbox input, #form_add_aluno .label_btn_checkbox input {
-  display: none;
-}
-.forms_fixed .actived_label_btn_checkbox, #form_add_aluno .actived_label_btn_checkbox {
-  background: #245da7;
-  color: #fff;
-}
-.forms_fixed input[type=submit], #form_add_aluno input[type=submit] {
-  width: 250px;
-  margin: 0 auto;
-}
-.forms_fixed input[readonly=true], #form_add_aluno input[readonly=true] {
-  background: #eee;
-  border: 1px solid #ddd;
-}
-
-#form_add_aluno #div_select_contrato {
-  width: 100%;
-}
-#form_add_aluno #add_aluno_ra {
-  text-transform: uppercase;
-}
-#form_add_aluno .blocked {
-  border: 1px solid #db1e1e;
-  background: #fee;
-}
-#form_add_aluno div {
-  display: flex;
-}
-#form_add_aluno div #ra {
-  max-width: 20px;
-  flex-shrink: 1;
-}
-#form_add_aluno div select {
-  padding: 0px !important;
-  margin-top: 0px !important;
-}
-
-#form_add_curso fieldset {
-  min-width: 100%;
-  margin-bottom: 10px;
-}
-#form_add_curso div {
-  overflow: hidden;
-  display: flex;
-  max-width: 100%;
-}
-#form_add_curso div select {
-  min-width: 300px;
-  flex-grow: 1;
-}
-#form_add_curso #aluno_ra {
-  max-width: 80px;
-  min-width: 50px;
-}
-#form_add_curso #div_contrato {
-  min-width: 100%;
-}
-#form_add_curso #div_info_aluno_nome {
-  min-width: 100%;
-}
-#form_add_curso #div_submit {
-  width: 100%;
-}
-#form_add_curso .blocked {
-  background: #fee;
-  border: 1px solid red;
-}
-
-#form_add_certificado fieldset {
-  min-width: 100%;
-  margin-bottom: 10px;
-}
-#form_add_certificado div {
-  overflow: hidden;
-  display: flex;
-  max-width: 100%;
-}
-#form_add_certificado div select {
-  min-width: 300px;
-  flex-grow: 1;
-}
-#form_add_certificado #curso_carga_horaria {
-  width: 50px !important;
-  max-width: 50px !important;
-  min-width: auto !important;
-}
-#form_add_certificado #certificado_cod, #form_add_certificado #aluno_ra {
-  max-width: 110px !important;
-}
-
-#form_delete_curso {
-  border: 1px solid red;
-}
-#form_delete_curso fieldset {
-  min-width: 100%;
-  margin-bottom: 10px;
-}
-#form_delete_curso div {
-  overflow: hidden;
-  display: flex;
-  max-width: 100%;
-}
-#form_delete_curso div select {
-  min-width: 300px;
-  flex-grow: 1;
-}
-#form_delete_curso #aluno_ra {
-  max-width: 80px;
-  min-width: 50px;
-}
-#form_delete_curso #div_submit {
-  width: 100%;
-}
-#form_delete_curso #div_submit input {
-  background: #aa3f3f;
-}
-
-#form_info_aluno, .form_info_curso {
-  background: #f0f0f0;
-  overflow: hidden;
-  box-shadow: none;
-  border: 2px solid #245da7;
-  padding: 20px 40px;
-  max-width: 1200px;
-}
-#form_info_aluno input[readonly=true], .form_info_curso input[readonly=true] {
-  background: #ccc;
-}
-#form_info_aluno table, #form_info_aluno td, #form_info_aluno th, .form_info_curso table, .form_info_curso td, .form_info_curso th {
-  padding: 5px;
-  text-align: center;
-  border: 1px solid #333;
-  border-collapse: collapse;
-}
-#form_info_aluno table, .form_info_curso table {
-  width: 100%;
-  font-size: 12px;
-}
-#form_info_aluno table th, .form_info_curso table th {
-  background: #cdc;
-  color: #444;
-  font-weight: normal;
-}
-#form_info_aluno table tr:hover, .form_info_curso table tr:hover {
-  background: #ffe;
-}
-#form_info_aluno table .tr_btn_talao:hover, .form_info_curso table .tr_btn_talao:hover {
-  background: transparent;
-}
-#form_info_aluno table td, .form_info_curso table td {
-  text-align: center;
-}
-#form_info_aluno table td button, .form_info_curso table td button {
-  background: #245da7;
-  color: #fff;
-  border: 0px;
-  padding: 10px;
-  cursor: pointer;
-}
-#form_info_aluno table td button:hover, .form_info_curso table td button:hover {
-  background: #2d74d1;
-}
-#form_info_aluno table .td_parcela_vencimento input, .form_info_curso table .td_parcela_vencimento input {
-  min-width: auto;
-  max-width: 130px;
-  margin: 0 auto;
-}
-#form_info_aluno table .td_parcela_desconto input, #form_info_aluno table .td_parcela_valor input, #form_info_aluno table .td_parcela_valor_total input, .form_info_curso table .td_parcela_desconto input, .form_info_curso table .td_parcela_valor input, .form_info_curso table .td_parcela_valor_total input {
-  min-width: auto;
-  max-width: 50px;
-  margin: 0 auto;
-}
-#form_info_aluno table .td_parcela_valor input, #form_info_aluno table .td_parcela_valor_total input, .form_info_curso table .td_parcela_valor input, .form_info_curso table .td_parcela_valor_total input {
-  border: 0px;
-  background-color: transparent !important;
-}
-#form_info_aluno table input[data-change=true], .form_info_curso table input[data-change=true] {
-  background: #ffff99;
-}
-#form_info_aluno table textarea, .form_info_curso table textarea {
-  margin: 0 auto;
-}
-#form_info_aluno table textarea[data-change=true], .form_info_curso table textarea[data-change=true] {
-  background: #ffff99;
-}
-#form_info_aluno .subnav_curso_info, .form_info_curso .subnav_curso_info {
-  overflow: hidden;
-  height: auto;
-  margin-bottom: 30px;
-  padding: 5px;
-  border: 1px solid #ccc;
-  width: 100%;
-  clear: both;
-}
-#form_info_aluno .subnav_curso_info ul, .form_info_curso .subnav_curso_info ul {
-  display: flex;
-  justify-content: center;
-  height: auto;
-  width: 100%;
-  padding: 10px;
-}
-#form_info_aluno .subnav_curso_info ul li, .form_info_curso .subnav_curso_info ul li {
-  display: inline;
-  margin: 0px 3px;
-}
-#form_info_aluno .subnav_curso_info ul li a, .form_info_curso .subnav_curso_info ul li a {
-  padding: 8px 12px;
-  text-align: center;
-  background-color: #eee;
-  color: #333;
-  border-radius: 3px;
-  text-decoration: none;
-  user-select: none;
-}
-#form_info_aluno .subnav_curso_info ul li a:hover, .form_info_curso .subnav_curso_info ul li a:hover {
-  background: #444;
-  color: #fff;
-}
-#form_info_aluno .subnav_curso_info ul li a:active, .form_info_curso .subnav_curso_info ul li a:active {
-  background-color: #515151;
-  box-shadow: inset 1px 0px 4px #111;
-}
-#form_info_aluno .subnav_curso_info ul .active, .form_info_curso .subnav_curso_info ul .active {
-  background: #444 !important;
-  color: #fff;
-}
-#form_info_aluno .fieldset, .form_info_curso .fieldset {
-  position: relative;
-  background: #fff;
-  max-width: 100%;
-  margin: 20px 0px;
-  border: 1px solid #aaa;
-  padding: 30px 30px;
-  height: auto;
-  display: flex;
-  flex-wrap: wrap;
-}
-#form_info_aluno .fieldset legend, .form_info_curso .fieldset legend {
-  background: #f0f0f0;
-  padding: 5px 8px;
-  position: absolute;
-  top: -15px;
-  left: 20px;
-  border-radius: 5px;
-}
-#form_info_aluno .fieldset .row, .form_info_curso .fieldset .row {
-  max-width: 100%;
-  display: flex;
-  flex-shrink: 1;
-  flex-grow: 1;
-}
-#form_info_aluno .fieldset .row div, .form_info_curso .fieldset .row div {
-  min-width: 50px;
-  flex-shrink: 1;
-  flex-grow: 1;
-  display: flex;
-  padding: 5px 0;
-}
-#form_info_aluno .fieldset .row div label, .form_info_curso .fieldset .row div label {
-  text-align: center;
-  min-width: 60px;
-  max-width: 60%;
-  width: 60%;
-  flex-grow: 1;
-}
-#form_info_aluno .fieldset .row div input, .form_info_curso .fieldset .row div input {
-  max-width: 40%;
-}
-#form_info_aluno .fieldset .div_input, .form_info_curso .fieldset .div_input {
-  flex-shrink: 1;
-  margin: 0;
-}
-#form_info_aluno .fieldset .div_input input,
-#form_info_aluno .fieldset .div_input textarea, .form_info_curso .fieldset .div_input input,
-.form_info_curso .fieldset .div_input textarea {
-  max-width: none;
-}
-#form_info_aluno .fieldset .div_input label, .form_info_curso .fieldset .div_input label {
-  background: #ddd;
-}
-#form_info_aluno .fieldset .div_input input[readonly=true], .form_info_curso .fieldset .div_input input[readonly=true] {
-  background: #fff;
-  border: 0;
-}
-#form_info_aluno .fieldset .div_input input[readonly=true]:focus, .form_info_curso .fieldset .div_input input[readonly=true]:focus {
-  outline: 0;
-}
-#form_info_aluno .fieldset #div_desconto_combo,
-#form_info_aluno .fieldset #div_curso_obs,
-#form_info_aluno .fieldset #div_modulos, #form_info_aluno .fieldset #div_aluno_obs, .form_info_curso .fieldset #div_desconto_combo,
-.form_info_curso .fieldset #div_curso_obs,
-.form_info_curso .fieldset #div_modulos, .form_info_curso .fieldset #div_aluno_obs {
-  min-width: 100%;
-}
-#form_info_aluno .fieldset #div_desconto_combo div, .form_info_curso .fieldset #div_desconto_combo div {
-  padding: 5px;
-  display: block;
-  background: #fff;
-}
-#form_info_aluno .fieldset #modulos, #form_info_aluno .fieldset #curso_obs, .form_info_curso .fieldset #modulos, .form_info_curso .fieldset #curso_obs {
-  max-width: none !important;
-}
-#form_info_aluno .fieldset #aluno_ra, #form_info_aluno .fieldset #resp_end_numero, #form_info_aluno .fieldset #aluno_end_numero, #form_info_aluno .fieldset #aluno_genero, #form_info_aluno .fieldset #resp_genero, .form_info_curso .fieldset #aluno_ra, .form_info_curso .fieldset #resp_end_numero, .form_info_curso .fieldset #aluno_end_numero, .form_info_curso .fieldset #aluno_genero, .form_info_curso .fieldset #resp_genero {
-  max-width: 80px;
-}
-#form_info_aluno .fieldset_curso_status .div_select_curso_status, .form_info_curso .fieldset_curso_status .div_select_curso_status {
-  max-width: 240px;
-}
-#form_info_aluno .fieldset_curso_status .div_data_status, .form_info_curso .fieldset_curso_status .div_data_status {
-  max-width: 240px;
-}
-#form_info_aluno .fieldset_certificado_info, .form_info_curso .fieldset_certificado_info {
-  background: #fffff6;
-}
-#form_info_aluno .fieldset_curso_info, .form_info_curso .fieldset_curso_info {
-  display: none;
-}
-#form_info_aluno .bg_curso, .form_info_curso .bg_curso {
-  padding: 10px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  display: block;
-  color: #333;
-  backdrop-filter: grayscale(30%) !important;
-}
-#form_info_aluno .bg_curso h4.title_info_cursos, .form_info_curso .bg_curso h4.title_info_cursos {
-  user-select: none;
-  width: 100%;
-  cursor: pointer;
-  text-transform: uppercase;
-  width: calc(100% + 20px);
-  text-align: center;
+#cursos_info .page_content {
+  padding-bottom: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, auto));
+  gap: 20px;
+}
+#cursos_info .page_content .curso_content {
   padding: 20px;
-  margin-top: -30px;
-  margin-left: -25px;
-  margin-right: -25px;
-  margin-bottom: 20px;
-  width: calc(100% + 100px);
-}
-#form_info_aluno .bg_curso h4.title_info_cursos svg, .form_info_curso .bg_curso h4.title_info_cursos svg {
-  margin-top: -5px;
-  float: right;
-  margin-right: 60px;
-  width: 32px !important;
-  height: 32px !important;
-}
-#form_info_aluno .bg_curso h4.title_info_cursos .title_status, .form_info_curso .bg_curso h4.title_info_cursos .title_status {
-  margin-top: -5px;
-  margin-right: 20px;
-  float: right;
-  border: 1px solid #ccc;
-  background: #fafafa;
+  border: 2px solid #333;
   border-radius: 5px;
-  padding: 5px;
-  text-align: center;
-}
-#form_info_aluno .bg_curso h4.title_info_cursos .status_ativo, .form_info_curso .bg_curso h4.title_info_cursos .status_ativo {
-  color: green;
-}
-#form_info_aluno .bg_curso h4.title_info_cursos .status_pausado, .form_info_curso .bg_curso h4.title_info_cursos .status_pausado {
-  color: #304063;
-}
-#form_info_aluno .bg_curso h4.title_info_cursos .status_cancelado, .form_info_curso .bg_curso h4.title_info_cursos .status_cancelado {
-  color: red;
-}
-#form_info_aluno .bg_curso h4.title_info_cursos .status_concluido, .form_info_curso .bg_curso h4.title_info_cursos .status_concluido {
-  color: #5c5c5c;
-}
-#form_info_aluno .bg_curso h4.title_info_cursos:active, .form_info_curso .bg_curso h4.title_info_cursos:active {
-  box-shadow: 1px 0px 3px #000 inset;
-}
-#form_info_aluno .bg_curso fieldset, .form_info_curso .bg_curso fieldset {
-  width: 100%;
-}
-#form_info_aluno .bg_curso label, .form_info_curso .bg_curso label {
-  background: #ddd;
-}
-#form_info_aluno input[type=submit], .form_info_curso input[type=submit] {
-  margin: 0 auto;
-  opacity: 0.3;
-}
-#form_info_aluno #label_checkbox_certificado_entregue, .form_info_curso #label_checkbox_certificado_entregue {
   background: #f0f0f0;
-  user-select: none;
-  margin: 5px;
-  max-width: 250px !important;
-  min-width: 180px;
-  color: #333;
 }
-#form_info_aluno #label_checkbox_certificado_entregue input, .form_info_curso #label_checkbox_certificado_entregue input {
-  display: none;
-}
-#form_info_aluno .active, .form_info_curso .active {
-  color: #fff !important;
-  background: #548b54 !important;
-}
-
-.form_info_curso {
-  padding: 0;
-  max-height: 2000px;
-  overflow: hidden;
-  background-color: #fff !important;
-}
-.form_info_curso h4 svg {
-  transition: all ease 0.3s;
-  transform: rotate(180deg);
-  /* Equal to rotateZ(45deg) */
-}
-
-.hide_form_info_curso {
-  transition: all 1s ease-in-out;
-  max-height: 60px;
-  max-height: auto;
-  overflow: hidden;
-}
-.hide_form_info_curso h4 svg {
-  transform: rotate(0deg) !important;
-  /* Equal to rotateZ(45deg) */
-}
-
-#div_ra_aluno {
-  width: 100%;
-  display: flex;
-  justify-content: flex-start !important;
-  flex-shrink: 1;
-  flex-grow: 1;
-}
-#div_ra_aluno label {
-  display: flex;
-  max-height: auto;
-  align-items: center;
-  padding: 10px 20px;
-}
-#div_ra_aluno input {
-  max-width: 300px;
-  flex-shrink: 1;
-  border: 1px solid #999;
-  transition: all 0.2s;
-  padding: 5px;
-  font-size: 18px;
-  background: #fff;
-}
-#div_ra_aluno input:focus {
-  outline: 2px solid #245da7;
-  outline-offset: -2px;
-}
-#div_ra_aluno input[readonly=true] {
-  border: 1px solid #245da7;
-  background: #c3cad3;
-}
-#div_ra_aluno .input_invalido {
-  background: #f1c0c0 !important;
-}
-#div_ra_aluno #label_ra_automatico_aluno {
-  margin: 0px;
-  margin-left: 10px;
-  transition: all 0.5s;
-  border-radius: 3px;
-  max-width: 220px;
-  min-width: 180px;
-  user-select: none;
-}
-#div_ra_aluno #label_ra_automatico_aluno #checkbox_id_automatico_aluno {
-  display: none;
-}
-#div_ra_aluno .active {
-  max-width: 350px;
-  width: 350px;
-  background: #245da7 !important;
-  color: #fff !important;
-}
-
-#bg_view_table_alunos {
-  position: relative;
-}
-
-#view_table_alunos th {
-  background: #c46641;
-}
-#view_table_alunos .td_ra {
-  text-align: center;
-}
-#view_table_alunos .td_cursos {
-  font-size: 13px;
-  justify-content: center;
-  align-items: center;
-  vertical-align: middle;
-  padding: 0px 5px;
-}
-#view_table_alunos .td_cursos div {
-  display: flex;
-  width: 100%;
-}
-#view_table_alunos .td_cursos div span {
-  min-height: 100%;
-  flex-grow: 1;
-  text-align: center;
-  padding: 5px;
-  background: #ddddddcc;
-}
-#view_table_alunos .td_cursos div span:nth-child(even) {
-  margin-left: 3px;
-}
-#view_table_alunos .td_cursos div span[class*=Informática] {
-  color: #245da7;
-}
-#view_table_alunos .td_cursos div span[class*=web] {
-  color: #1111ff;
-}
-#view_table_alunos .td_cursos div span[class*=Inglês] {
-  color: #cf0675;
-}
-#view_table_alunos .td_cursos div span[class*=Excel] {
-  color: green;
-}
-#view_table_alunos .td_cursos div span[class*=Banco] {
-  color: #ad593a;
-}
-#view_table_alunos .td_cursos div span[class*=Espanhol] {
-  color: #70152c;
-}
-#view_table_alunos .td_cursos div span[class*=Adm] {
-  color: #157055;
-}
-#view_table_alunos .td_cursos div .re {
-  color: #702e70;
-}
-#view_table_alunos .td_controles {
-  width: 240px;
-  height: 40px;
-  text-align: center;
-}
-#view_table_alunos .td_controles button {
-  border: 0px solid #333;
-  border-radius: 3px;
-}
-#view_table_alunos .td_controles .btn_info_aluno {
-  background-color: #245da7;
-  color: #fff;
-}
-#view_table_alunos .td_controles .btn_info_aluno:hover {
-  background-color: #2969bc;
-}
-#view_table_alunos .td_controles .btn_delete_curso {
-  background-color: #b83535;
-  color: #fff;
-}
-#view_table_alunos .td_controles .btn_delete_curso:hover {
-  background-color: #ae3a3a;
-}
-#view_table_alunos .td_controles .btn_add_curso {
-  background-color: #579257;
-  color: #fff;
-}
-#view_table_alunos .td_controles .btn_add_curso:hover {
-  background-color: #61a161;
-}
-
-#bg_view_table_status_cursos {
-  position: relative;
-}
-#bg_view_table_status_cursos #select_status_cursos {
-  max-width: 150px;
-}
-#bg_view_table_status_cursos #resumo_cursos {
-  display: flex;
-  width: 100%;
-  background: #222;
+#cursos_info .page_content .curso_content h2 {
   margin-bottom: 20px;
-}
-#bg_view_table_status_cursos #resumo_cursos div {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 10px 20px;
-  border-right: 1px dotted #ccc;
-  color: #fff;
-}
-#bg_view_table_status_cursos #resumo_cursos div .total {
-  color: greenyellow;
-}
-#bg_view_table_status_cursos #resumo_cursos div p {
-  display: block;
-  width: 100%;
-  padding: 3px 0px;
-  width: 100%;
-}
-
-#view_table_status_cursos td, #view_table_status_cursos th {
-  font-size: 12px;
-}
-#view_table_status_cursos td {
-  padding: 2px 4px;
-}
-#view_table_status_cursos td .pagamento_atrasado {
-  background-color: #eb4b01 !important;
-  color: #fff;
-}
-#view_table_status_cursos td .pagamento_muito_atrasado {
-  background-color: #dd0000 !important;
-  color: #fff;
-}
-#view_table_status_cursos td .dia_de_pagamento {
-  background-color: #eca76e !important;
-}
-#view_table_status_cursos td .pagamento_em_dia {
-  background-color: #baf7cc !important;
-}
-#view_table_status_cursos th {
-  background: #027e6d;
-}
-#view_table_status_cursos tr[data-status=ativo] .td_status {
-  color: green;
-}
-#view_table_status_cursos tr[data-status=cancelado] {
-  background-color: #ccc;
-}
-#view_table_status_cursos tr[data-status=cancelado] span {
-  background-color: transparent !important;
-  color: #333 !important;
-  border: 1px solid #999;
-}
-#view_table_status_cursos tr[data-status=pausado] {
-  background-color: #b4e0de;
-}
-#view_table_status_cursos tr[data-status=concluido] {
-  background-color: #bac3d4;
-}
-#view_table_status_cursos tr[data-status=concluido] span {
-  background-color: transparent !important;
-  color: #333 !important;
-  border: 1px solid #999;
-}
-#view_table_status_cursos tr[data-status=undefined] {
-  background-color: #e9ccf0;
-}
-#view_table_status_cursos tr:hover td {
-  background-color: #ffff000f !important;
-}
-#view_table_status_cursos .td_status {
   text-align: center;
   text-transform: uppercase;
-  font-size: 11px;
 }
-#view_table_status_cursos .td_ra {
-  text-align: center;
+#cursos_info .page_content .curso_content .categoria {
+  display: none;
 }
-#view_table_status_cursos .td_parcelas, #view_table_status_cursos .td_ultima_parcela {
-  text-align: center;
-}
-#view_table_status_cursos .td_parcelas span, #view_table_status_cursos .td_ultima_parcela span {
-  padding: 5px 2px;
-  display: block;
-  width: 100%;
-}
-#view_table_status_cursos .td_cursos {
-  justify-content: center;
-  align-items: center;
-  vertical-align: middle;
-  padding: 0px 5px;
-}
-#view_table_status_cursos .td_cursos div {
-  display: flex;
-  width: 100%;
-}
-#view_table_status_cursos .td_cursos div span {
-  min-height: 100%;
-  flex-grow: 1;
-  text-align: center;
-  padding: 5px;
-  background: #ddddddcc;
-}
-#view_table_status_cursos .td_cursos div span:nth-child(even) {
-  margin-left: 3px;
-}
-#view_table_status_cursos .td_cursos div span[class*=Informática] {
-  color: #245da7;
-}
-#view_table_status_cursos .td_cursos div span[class*=web] {
-  color: #1111ff;
-}
-#view_table_status_cursos .td_cursos div span[class*=Inglês] {
-  color: #cf0675;
-}
-#view_table_status_cursos .td_cursos div span[class*=Excel] {
-  color: green;
-}
-#view_table_status_cursos .td_cursos div span[class*=Banco] {
-  color: #ad593a;
-}
-#view_table_status_cursos .td_cursos div span[class*=Espanhol] {
-  color: #70152c;
-}
-#view_table_status_cursos .td_cursos div span[class*=Adm] {
-  color: #157055;
-}
-#view_table_status_cursos .td_cursos div .re {
-  color: #702e70;
-}
-#view_table_status_cursos .td_controles {
-  text-align: center;
-}
-
-#teste {
-  border: 2px solid #f99;
-}
-
-#page_login {
-  opacity: 1;
-  transition: opacity 10s ease-in-out;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 100%;
-  min-height: 100vh;
-  background: url("../img/background-login.jpg") no-repeat;
-  background-size: cover;
-}
-#page_login #login_content {
-  position: relative;
-  max-width: 400px;
-  margin-top: -15%;
-}
-#page_login #login_content #login_logo {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 40px;
-}
-#page_login #login_content #login_logo figure img {
-  max-width: 100%;
-}
-#page_login #login_content #form_login {
-  position: relative;
-  max-width: 400px;
-  min-height: 250px;
-  background: #ffffff66;
-  border-radius: 5px;
-  padding: 40px 30px;
-}
-#page_login #login_content #form_login #error_login_msg {
-  min-width: calc(100% - 10px);
-  position: absolute;
-  left: 5px;
-  color: #fa4b4b;
-  padding: 3px;
-  background: #00000099;
-  top: -15px;
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-}
-#page_login #login_content #form_login #error_login_msg p {
-  font-size: 11px;
-}
-#page_login #login_content #form_login h3 {
-  text-align: center;
-  padding-bottom: 10px;
-  color: #122e53;
-}
-#page_login #login_content #form_login div {
-  margin: auto;
-  border: 1px solid #444;
-  overflow: hidden;
-  border-radius: 3px;
-  display: flex;
-  margin-top: 20px;
-  max-width: 250px;
-}
-#page_login #login_content #form_login div:focus {
-  border-color: #f90 !important;
-  color: #f90 !important;
-}
-#page_login #login_content #form_login div label {
-  display: flex;
-  align-items: center;
-  color: #fff;
-  justify-content: center;
-  background: #17335e;
-  width: 40px;
-  border: 0px;
-}
-#page_login #login_content #form_login div input {
-  border-radius: 0px;
-  flex-grow: 1;
+#cursos_info .page_content .curso_content .modulos {
+  font-size: 12px;
   padding: 10px;
-  border: 0px;
-  border: 1px solid #bbbbc4;
-  background-color: #bbbbc4;
-}
-#page_login #login_content #form_login div input:focus {
-  outline: 0px;
-  border-color: #245da7;
-}
-#page_login #login_content #form_login input[type=submit] {
-  width: 50%;
-  max-width: 50%;
-  margin: 30px auto 0px auto;
-  color: #fff;
-  background: #17335e;
-}
-#page_login #login_content #form_login input[type=submit]:hover {
-  background: #214987;
-}
-
-#form_add_user #user_privilege {
-  width: 50px;
-}
-
-#form_config_perm textarea {
-  width: 100%;
-  min-height: 300px;
-}
-
-.nav_forms {
+  border: 1px solid #ccc;
   margin-bottom: 20px;
+}
+#cursos_info .page_content .curso_content .modulos h3 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  text-align: left;
+}
+#cursos_info .page_content .curso_content .modulos ul li {
+  margin-left: 20px;
+}
+#cursos_info .page_content .curso_content .div_valor, #cursos_info .page_content .curso_content .div_duracao, #cursos_info .page_content .curso_content .div_carga_horaria {
+  margin-top: 10px;
+  font-size: 20px !important;
+}
+#cursos_info .page_content .curso_content .div_valor p, #cursos_info .page_content .curso_content .div_duracao p, #cursos_info .page_content .curso_content .div_carga_horaria p {
+  font-weight: bold;
+}
+
+#form_add_curso_info #div_modulos {
   width: 100%;
-  display: flex;
-  justify-content: flex-end;
 }
-.nav_forms ul {
-  display: flex;
+#form_add_curso_info #id_curso {
+  text-transform: uppercase;
 }
-.nav_forms ul li {
-  list-style: none;
+#form_add_curso_info #div_valor_mes, #form_add_curso_info #div_duracao, #form_add_curso_info #div_parcelas, #form_add_curso_info #div_carga_horaria, #form_add_curso_info #div_id_curso {
+  padding: 3px;
+  max-width: 33.3333%;
 }
-.nav_forms ul li a {
-  margin-right: 0px;
+#form_add_curso_info #div_valor_mes input, #form_add_curso_info #div_duracao input, #form_add_curso_info #div_parcelas input, #form_add_curso_info #div_carga_horaria input, #form_add_curso_info #div_id_curso input {
+  max-width: 100%;
+  min-width: 50px !important;
 }
-
-#view_table_users .td_user_foto {
-  text-align: center;
+#form_add_curso_info #modulos {
+  min-height: 150px;
 }
-#view_table_users .td_user_foto img {
-  border-radius: 50%;
-}
-#view_table_users .td_user_level {
-  text-align: center;
-  width: 20px;
+#form_add_curso_info input[readonly=true] {
+  background: #ddd;
 }
 
-#users_content {
-  padding: 1px;
+#bg_view_table_cursos_info {
+  position: relative;
+}
+#bg_view_table_cursos_info table th {
+  background: #45856a;
+}
+#bg_view_table_cursos_info table td, #bg_view_table_cursos_info table th {
+  font-size: 13px;
+}
+#bg_view_table_cursos_info table td {
+  text-align: center;
+}
+#bg_view_table_cursos_info table #td_nome {
+  text-align: left;
+}
+#bg_view_table_cursos_info table #td_categoria {
+  font-size: 12px;
+  text-transform: capitalize;
+}
+#bg_view_table_cursos_info table textarea {
+  font-size: 12px;
+  width: 100%;
 }
 
 #form_add_pag_mensalidade fieldset {
@@ -4424,6 +4239,195 @@ form.forms_fluxo_caixa .div_submit input[type=submit] {
 #bg_view_table_log_data table textarea {
   font-size: 10px;
   width: 100%;
+}
+
+#page_login {
+  opacity: 1;
+  transition: opacity 10s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100%;
+  min-height: 100vh;
+  background: url("../img/background-login.jpg") no-repeat;
+  background-size: cover;
+}
+#page_login #login_content {
+  position: relative;
+  max-width: 400px;
+  margin-top: -15%;
+}
+#page_login #login_content #login_logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+#page_login #login_content #login_logo figure img {
+  max-width: 100%;
+}
+#page_login #login_content #form_login {
+  position: relative;
+  max-width: 400px;
+  min-height: 250px;
+  background: #ffffff66;
+  border-radius: 5px;
+  padding: 40px 30px;
+}
+#page_login #login_content #form_login #error_login_msg {
+  min-width: calc(100% - 10px);
+  position: absolute;
+  left: 5px;
+  color: #fa4b4b;
+  padding: 3px;
+  background: #00000099;
+  top: -15px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+#page_login #login_content #form_login #error_login_msg p {
+  font-size: 11px;
+}
+#page_login #login_content #form_login h3 {
+  text-align: center;
+  padding-bottom: 10px;
+  color: #122e53;
+}
+#page_login #login_content #form_login div {
+  margin: auto;
+  border: 1px solid #444;
+  overflow: hidden;
+  border-radius: 3px;
+  display: flex;
+  margin-top: 20px;
+  max-width: 250px;
+}
+#page_login #login_content #form_login div:focus {
+  border-color: #f90 !important;
+  color: #f90 !important;
+}
+#page_login #login_content #form_login div label {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  justify-content: center;
+  background: #17335e;
+  width: 40px;
+  border: 0px;
+}
+#page_login #login_content #form_login div input {
+  border-radius: 0px;
+  flex-grow: 1;
+  padding: 10px;
+  border: 0px;
+  border: 1px solid #bbbbc4;
+  background-color: #bbbbc4;
+}
+#page_login #login_content #form_login div input:focus {
+  outline: 0px;
+  border-color: #245da7;
+}
+#page_login #login_content #form_login input[type=submit] {
+  width: 50%;
+  max-width: 50%;
+  margin: 30px auto 0px auto;
+  color: #fff;
+  background: #17335e;
+}
+#page_login #login_content #form_login input[type=submit]:hover {
+  background: #214987;
+}
+
+#block_screen_view_todolist {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #11111199;
+  right: 0;
+  left: 0;
+  top: 0;
+  z-index: 5;
+}
+
+#bg_view_table_todolist {
+  max-height: 80vh;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 100px;
+  position: absolute;
+  border: 1px solid #333;
+  box-shadow: 1px 6px 6px #00000099;
+  background: green;
+  padding: 80px;
+  border-radius: 5px;
+  resize: both;
+  overflow: auto;
+}
+#bg_view_table_todolist .window_bar {
+  background-color: #333;
+}
+#bg_view_table_todolist #view_todolist {
+  position: absolute;
+  width: 600px;
+  height: 400px;
+  border: 2px solid red;
+  top: 40px;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0px 6px 4px #00000099;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+
+#form_add_user #user_privilege {
+  width: 50px;
+}
+
+#form_config_perm textarea {
+  width: 100%;
+  min-height: 300px;
+}
+
+.nav_forms {
+  margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.nav_forms ul {
+  display: flex;
+}
+.nav_forms ul li {
+  list-style: none;
+}
+.nav_forms ul li a {
+  margin-right: 0px;
+}
+
+#view_table_users .td_user_foto {
+  text-align: center;
+}
+#view_table_users .td_user_foto img {
+  border-radius: 50%;
+}
+#view_table_users .td_user_level {
+  text-align: center;
+  width: 20px;
+}
+
+#users_content {
+  padding: 1px;
 }
 
 @keyframes spinner-line-fade-more {

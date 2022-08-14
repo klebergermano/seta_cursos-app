@@ -1,0 +1,5 @@
+@use "../../../assets/css/sass/abstracts/" as *;
+
+#form_reauth_user{
+    @extend .form_flex_absolute;;
+}
