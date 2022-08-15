@@ -1,10 +1,11 @@
 @use 'base';
-@use 'abstracts' as *;
-@use 'elements';
-@use 'update_app';
+@use './abstracts/' as *;
 
 
-//Componentes
+//appContent
+@use '../../../appContent/sass' as appContent;
+
+//componentes
 @use '../../../components/alunos/sass/' as alunos;
 @use '../../../components/contratos/sass/' as contratos;
 @use '../../../components/controleAula/sass' as controleAula;
