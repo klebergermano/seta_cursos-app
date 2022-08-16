@@ -1,0 +1,37 @@
+@use "../../../assets/css/sass/abstracts/" as *;
+
+dialog{
+    margin: 0 auto;
+    padding: $padding-medium;
+  }
+  
+  
+  .forms_controle_aula{
+    @extend .form_flex_absolute;
+    #aluno_nome, #curso_nome, #bimestre_nome{
+      margin-top:10px;
+      padding:$padding-light;
+      font-size: 16px;
+      border:1px solid #ccc;
+      font-weight: bold;
+      width:50%;
+      span{
+      font-weight: normal;
+        padding:5px 5px 5px 0px;
+      }
+    }
+  }
+#btn_novo_aluno{
+    float:right;
+    flex-basis: 100%;
+    clear:both;
+    display:none;
+  }
+
+   
+    input[type=submit]:disabled {
+    background:#999 !important;
+  }
+    input:disabled, textarea:disabled {
+    background:#ddd !important;
+  }

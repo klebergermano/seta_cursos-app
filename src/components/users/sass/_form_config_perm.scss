@@ -1,0 +1,12 @@
+
+@use "../../../assets/css/sass/abstracts/" as *;
+
+#form_config_perm{
+    @extend .form_flex_absolute;; 
+
+    textarea{
+        width:100%;
+        min-height: 300px;
+    }
+    
+}

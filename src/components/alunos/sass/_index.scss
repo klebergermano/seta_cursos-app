@@ -1,0 +1,12 @@
+@use "../../../assets/css/sass/abstracts/" as *;
+@use "./form_add_aluno";
+@use "./form_add_curso";
+@use "./form_add_certificado";
+@use "./form_delete_curso";
+@use "./info_aluno";
+@use "./id_aluno";
+@use "./view_table_alunos";
+@use "./view_table_status_cursos";
+#teste{
+    border:2px solid #f99; 
+}
