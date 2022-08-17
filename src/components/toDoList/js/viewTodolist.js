@@ -39,42 +39,47 @@ const viewTodolist = (() => {
   function _marginViewTodolist(){
     const el = $('bg_view_table_todolist');
     const appContent = $('appContent')
-    let top =  20 + appContent.scrollTop + 'px'; 
-    el.style.top = top ; 
+    let top =  appContent.scrollTop + 'px'; 
+    el.style.top = top; 
     //------------------------
     watchScrollEvent(appContent)
-
   }
   function changeMarginTop(el, val){
-    el.style.top = 20 + val + 'px'
+    el.style.top =  val + 'px'
   }
-  function watchScrollEvent(el, callback){
+  function watchScrollEvent(el){
     let table = $('bg_view_table_todolist'); 
    el.addEventListener('scroll', (e)=>{
-    if(table && table.offsetTop <= (20 + e.target.scrollTop)){
-      changeMarginTop(table, e.target.scrollTop)
-    }else{
-      
-    }
+    if(table && table.offsetTop <=  e.target.scrollTop){changeMarginTop(table, e.target.scrollTop) }
    })
-    
   }
   
   const _eventsTodolist = async () => {
- 
- 
-    _marginViewTodolist()
-    _btnCloseViewTodolist()
+    _marginViewTodolist();
+    _btnCloseViewTodolist();
     dragElementAbsolute($('bg_view_table_todolist'));
-    _insertContentTableViewHTML(await _getUserTodoList())
+    _insertContentTableViewHTML(await _getUserTodoList());
     _doubleClickWindowBarEvent();
+    _eventsBtnAddTodolist();
   }
 
+  const _eventsBtnAddTodolist = () =>{
+    $('btn_add_todo').addEventListener('click', async (e)=>{
+      if(!$("form_add_todo")) (await appendExternElHTML('./components/todoList/formAddTodo.html'))('bg_view_table_todolist')(_eventFormAddTodo); 
+    });
+  }
+  function removeForm(e){
+    (e.target.closest('form')).remove();
+    }
+  const _eventFormAddTodo = () => {
+   const btnCloseForm = $('form_add_todo').querySelector('.btn_close_form')
+   btnCloseForm.addEventListener('click', (e)=>{
+    removeForm(e)
+   })
+  }
   const _insertContentTableViewHTML = (userTodolist) => {
     $('view_table_todolist').querySelector('tbody').innerHTML = createContrentTableTodolistHTML(userTodolist);
   }
-
-
 
   function createContrentTableTodolistHTML(userTodolist) {
     let tbody = document.createElement('tbody');
@@ -82,7 +87,6 @@ const viewTodolist = (() => {
       const item = userTodolist[key];
       const tr = document.createElement('tr');
       tr.setAttribute('tarefa_id', key);
-
       let trContent =
         `
           <td class='td_id'>${key}</td>
@@ -126,9 +130,11 @@ const viewTodolist = (() => {
       el.setAttribute('data-prev_width', `${el.offsetWidth}px`);
       el.setAttribute('data-prev_height', `${el.offsetHeight}px`);
     }
-    let elBoundings = el.getBoundingClientRect(); 
+
+    //let elBoundings = el.getBoundingClientRect(); 
     
     if (!el.dataset?.prev_width || !el.dataset?.prev_height) setDataPrevWidhtHeightEl(el)
+    
     if (!el.classList.contains('el_maximized')) {
       el.classList.add('el_maximized');
       el.style.left = '0';
@@ -139,10 +145,7 @@ const viewTodolist = (() => {
       el.classList.remove('el_maximized')
       el.style.width = el.dataset.prev_width;
       el.style.height = el.dataset.prev_height;
-
     }
-
-
   }
 
   const _btnCloseViewTodolist = () => {
