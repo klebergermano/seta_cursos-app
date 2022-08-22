@@ -4349,8 +4349,114 @@ form.forms_fluxo_caixa .div_submit input[type=submit] {
   background: #214987;
 }
 
+.btnCleanInput {
+  max-width: 30px;
+  padding: 2px !important;
+  margin: 0px !important;
+}
+.btnCleanInput svg {
+  max-width: 100%;
+}
+.btnCleanInput:active {
+  background-color: #ccc;
+}
+
 #form_add_todo {
   position: relative;
+}
+#form_add_todo div {
+  display: flex;
+  height: auto;
+  padding: 0px;
+}
+#form_add_todo div textarea {
+  width: 100%;
+  max-width: 100%;
+}
+#form_add_todo > div {
+  width: 100%;
+}
+#form_add_todo > div div {
+  margin: 0px;
+  min-width: auto !important;
+  background-color: red;
+}
+#form_add_todo button {
+  padding: 10px;
+  margin: 0 5px;
+  width: auto;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid #333;
+  border-radius: 3px;
+}
+#form_add_todo button svg {
+  max-width: 20px !important;
+  max-height: 20px !important;
+}
+#form_add_todo #descricao {
+  min-height: 100px;
+}
+#form_add_todo #btnSelectFlag {
+  width: 140px;
+}
+#form_add_todo #btnSelectFlag input {
+  position: absolute;
+  top: 20px;
+  left: 200px;
+}
+#form_add_todo #btnSelectFlag svg {
+  margin-bottom: -5px;
+}
+#form_add_todo #btnSelectFlag:hover {
+  background: #ddd;
+}
+#form_add_todo #btnSelectFlag svg {
+  pointer-events: none;
+}
+#form_add_todo #btnSelectFlag .flag-1 {
+  color: red;
+}
+#form_add_todo #btnSelectFlag .flag-2 {
+  color: orange;
+}
+#form_add_todo #btnSelectFlag .flag-3 {
+  color: blue;
+}
+#form_add_todo #btnSelectFlag .flag-4 {
+  color: #8adfbe;
+}
+#form_add_todo #btnSelectFlag #subMenuFlags {
+  display: none;
+  position: absolute;
+  width: 100%;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 5px;
+  left: 0;
+  top: 40px;
+  height: auto;
+}
+#form_add_todo #btnSelectFlag #subMenuFlags ul {
+  width: 100%;
+}
+#form_add_todo #btnSelectFlag #subMenuFlags li {
+  display: flex;
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+  padding: 5px;
+}
+#form_add_todo #btnSelectFlag #subMenuFlags li:hover {
+  background-color: #ddd;
+}
+#form_add_todo #btnSelectFlag #subMenuFlags li span {
+  display: block;
+  padding-top: 2px;
+  padding-left: 5px;
+}
+#form_add_todo #alarmClock, #form_add_todo #data_created {
+  width: 100px !important;
 }
 
 #block_screen_view_todolist {

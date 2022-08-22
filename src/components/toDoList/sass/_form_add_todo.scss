@@ -1,3 +1,113 @@
-#form_add_todo{
-  position: relative;
+@use "../../../assets/css/sass/abstracts/" as *;
+//Remover desse arquivo
+.btnCleanInput{
+max-width:30px; 
+padding:2px !important;
+margin:0px !important;
+svg{max-width: 100%;}
+&:active{ background-color: #ccc;}
+}
+
+//-----------------------------------------------
+
+#form_add_todo {
+    position: relative;
+    div {
+        display: flex;
+        height: auto;
+        padding:0px;
+   textarea{ width:100%; max-width: 100%;}
+   input{ 
+     }
+    }
+    & > div {
+        width: 100%;
+        div{
+            margin:0px;
+            min-width: auto !important;
+            background-color: red;
+        }
+
+    }
+
+    button {
+        padding: 10px;
+        margin: 0 5px;
+        width: auto;
+        cursor: pointer;
+        position: relative;
+        border: 1px solid #333;
+        border-radius: 3px;
+        svg{max-width: 20px !important; max-height:20px !important;}
+    }
+  
+     #descricao{
+        min-height: 100px;
+     }
+    #btnSelectFlag {
+        width: 140px;
+
+        input {
+            position: absolute;
+            top: 20px;
+            left: 200px;
+        }
+        svg {
+            margin-bottom: -5px;
+        }
+        &:hover {
+            background: #ddd
+        }
+        svg {
+            pointer-events: none;
+        }
+        .flag-1 {
+            color: red;
+        }
+        .flag-2 {
+            color: orange;
+        }
+        .flag-3 {
+            color: blue;
+        }
+        .flag-4 {
+            color: rgb(138, 223, 190);
+        }
+
+        #subMenuFlags {
+            display: none;
+            position: absolute;
+            width: 100%;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            border-radius: 5px;
+            left: 0;
+            top: 40px;
+            height: auto;
+            ul {
+                width: 100%;
+            }
+            li {
+                display: flex;
+                width: 100%;
+                cursor: pointer;
+                text-align: left;
+                padding: 5px;
+                &:hover {
+                    background-color: #ddd;
+                }
+                svg {}
+                span {
+                    display: block;
+                    padding-top: 2px;
+                    padding-left: 5px;
+                }
+            }
+        }
+    }
+
+#alarmClock, #data_created{
+    width:100px !important;
+   
+}
 }

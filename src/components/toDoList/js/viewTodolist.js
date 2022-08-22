@@ -10,7 +10,7 @@ const auth = getAuth(firebaseApp);
 import dragElementAbsolute from "../../../functions/dragElementAbsolute.js";
 
 import $ from "../../../functions/$.js"
-import appendExternElHTML from "../../../functions/appendExternElHTML.js";
+import appendFetchedElHTML from "../../../functions/appendFetchedElHTML.js";
 import pipe from "../../../functions/pipe.js";
 //---------------------------------------------------------------//
 
@@ -22,7 +22,7 @@ const viewTodolist = (() => {
     const bgViewTablaTodolist = $("bg_view_table_todolist")
     bgViewTablaTodolist
       ? $('page_content').removeChild(bgViewTablaTodolist) // Se bg_view_table_todolist existe é removido do page_element.
-      : (await appendExternElHTML('./components/todoList/viewTodolist.html'))('page_content')(_eventsTodolist.bind(viewTodolist)); // Se não existir é adicionado.
+      : (await appendFetchedElHTML('./components/todoList/viewTodolist.html'))('page_content')(_eventsTodolist.bind(viewTodolist)); // Se não existir é adicionado.
   }
 
   const _getUserContent = async () => {
@@ -36,24 +36,54 @@ const viewTodolist = (() => {
     return todoList[0].data();
   }
 
-  function _marginViewTodolist(){
+
+  function _eventBtnSelectFlag() {
+    const btnSelectFlag = $('btnSelectFlag')
+    btnSelectFlag.addEventListener("click", (e) => {
+      let element = e.target.nodeName === "LI" ? e.target : e.target.parentElement;
+      element.nodeName !== "LI" ? toggleSubmenu() : setValueSubmenu(element);
+      function setValueSubmenu(li) {
+        console.log(li.textContent.trim());
+        btnSelectFlag.querySelector("span").innerHTML =
+          li.innerHTML;
+        btnSelectFlag.querySelector("#inputValueSubmenu").value = li.textContent.trim();
+        
+        //---------------------------------------------
+       $(`subMenuFlags`).style.display = `none`;
+
+      }
+      function toggleSubmenu() {
+        const subMenuFlags = document.querySelector(`#subMenuFlags`);
+        subMenuFlags.style.display === "block"
+          ? (subMenuFlags.style.display = `none`)
+          : (subMenuFlags.style.display = `block`);
+      }
+    })
+  }
+
+  function setValueBtnSelectFlag() {
+    $('btnSelectFlag');
+  }
+
+
+  function _marginViewTodolist() {
     const el = $('bg_view_table_todolist');
     const appContent = $('appContent')
-    let top =  appContent.scrollTop + 'px'; 
-    el.style.top = top; 
+    let top = appContent.scrollTop + 'px';
+    el.style.top = top;
     //------------------------
     watchScrollEvent(appContent)
   }
-  function changeMarginTop(el, val){
-    el.style.top =  val + 'px'
+  function changeMarginTop(el, val) {
+    el.style.top = val + 'px'
   }
-  function watchScrollEvent(el){
-    let table = $('bg_view_table_todolist'); 
-   el.addEventListener('scroll', (e)=>{
-    if(table && table.offsetTop <=  e.target.scrollTop){changeMarginTop(table, e.target.scrollTop) }
-   })
+  function watchScrollEvent(el) {
+    let table = $('bg_view_table_todolist');
+    el.addEventListener('scroll', (e) => {
+      if (table && table.offsetTop <= e.target.scrollTop) { changeMarginTop(table, e.target.scrollTop) }
+    })
   }
-  
+
   const _eventsTodolist = async () => {
     _marginViewTodolist();
     _btnCloseViewTodolist();
@@ -63,19 +93,21 @@ const viewTodolist = (() => {
     _eventsBtnAddTodolist();
   }
 
-  const _eventsBtnAddTodolist = () =>{
-    $('btn_add_todo').addEventListener('click', async (e)=>{
-      if(!$("form_add_todo")) (await appendExternElHTML('./components/todoList/formAddTodo.html'))('bg_view_table_todolist')(_eventFormAddTodo); 
+  const _eventsBtnAddTodolist = () => {
+    $('btn_add_todo').addEventListener('click', async (e) => {
+      if (!$("form_add_todo")) (await appendFetchedElHTML('./components/todoList/formAddTodo.html'))('bg_view_table_todolist')(_eventFormAddTodo);
     });
   }
-  function removeForm(e){
+  function removeForm(e) {
     (e.target.closest('form')).remove();
-    }
+  }
   const _eventFormAddTodo = () => {
-   const btnCloseForm = $('form_add_todo').querySelector('.btn_close_form')
-   btnCloseForm.addEventListener('click', (e)=>{
-    removeForm(e)
-   })
+    const btnCloseForm = $('form_add_todo').querySelector('.btn_close_form')
+    btnCloseForm.addEventListener('click', (e) => {
+      e.preventDefault();
+      removeForm(e)
+    })
+    _eventBtnSelectFlag();
   }
   const _insertContentTableViewHTML = (userTodolist) => {
     $('view_table_todolist').querySelector('tbody').innerHTML = createContrentTableTodolistHTML(userTodolist);
@@ -124,7 +156,7 @@ const viewTodolist = (() => {
   }
 
   const maxOrMinimizeElement = (el, scrolledElement) => {
-  const maxHeight = window.innerHeight; 
+    const maxHeight = window.innerHeight;
 
     function setDataPrevWidhtHeightEl(el) {
       el.setAttribute('data-prev_width', `${el.offsetWidth}px`);
@@ -132,9 +164,9 @@ const viewTodolist = (() => {
     }
 
     //let elBoundings = el.getBoundingClientRect(); 
-    
+
     if (!el.dataset?.prev_width || !el.dataset?.prev_height) setDataPrevWidhtHeightEl(el)
-    
+
     if (!el.classList.contains('el_maximized')) {
       el.classList.add('el_maximized');
       el.style.left = '0';
