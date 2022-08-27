@@ -14,10 +14,7 @@ import appendFetchedElHTML from "../../../functions/appendFetchedElHTML.js";
 import pipe from "../../../functions/pipe.js";
 //---------------------------------------------------------------//
 
-
-
 const viewTodolist = (() => {
-
   async function appendViewTodolist() {
     const bgViewTablaTodolist = $("bg_view_table_todolist")
     bgViewTablaTodolist
@@ -25,14 +22,23 @@ const viewTodolist = (() => {
       : (await appendFetchedElHTML('./components/todoList/viewTodolist.html'))('page_content')(_eventsTodolist.bind(viewTodolist)); // Se não existir é adicionado.
   }
 
-  const _getUserContent = async () => {
-    return await getDocs(collection(db, 'users', auth.currentUser.uid, 'content'))
+  const _resetSimblingInputDate = (btn) => {
+    btn.addEventListener('click', (e)=>{
+     const parent = e.target.parentElement; 
+     const inputDate = parent.querySelector('input[type="date"]'); 
+          if(inputDate) inputDate.value=''; 
+    });
   }
 
+  const _setCurrentDate = (inputDate)=>{
+      inputDate.value = new Date().toISOString().substring(0, 10); 
+  }
+  const _getUserContent = async () => await getDocs(collection(db, 'users', auth.currentUser.uid, 'content'));
+
+  // Retorna o to-do list do usuário
   const _getUserTodoList = async () => {
     const userContent = await _getUserContent()
     const todoList = userContent.docs.filter((item) => item.id === 'to-do_list');
-    console.log('todoList', todoList[0].data())
     return todoList[0].data();
   }
 
@@ -40,31 +46,22 @@ const viewTodolist = (() => {
   function _eventBtnSelectFlag() {
     const btnSelectFlag = $('btnSelectFlag')
     btnSelectFlag.addEventListener("click", (e) => {
+      
       let element = e.target.nodeName === "LI" ? e.target : e.target.parentElement;
       element.nodeName !== "LI" ? toggleSubmenu() : setValueSubmenu(element);
-      function setValueSubmenu(li) {
-        console.log(li.textContent.trim());
-        btnSelectFlag.querySelector("span").innerHTML =
-          li.innerHTML;
-        btnSelectFlag.querySelector("#inputValueSubmenu").value = li.textContent.trim();
-        
-        //---------------------------------------------
-       $(`subMenuFlags`).style.display = `none`;
 
+      function setValueSubmenu(li) {
+          btnSelectFlag.querySelector("span").innerHTML = li.innerHTML;
+          btnSelectFlag.querySelector("#inputValueSubmenu").value = li.textContent.trim();
+          $(`subMenuFlags`).style.display = `none`;
       }
+
       function toggleSubmenu() {
         const subMenuFlags = document.querySelector(`#subMenuFlags`);
-        subMenuFlags.style.display === "block"
-          ? (subMenuFlags.style.display = `none`)
-          : (subMenuFlags.style.display = `block`);
+        subMenuFlags.style.display === "block" ? (subMenuFlags.style.display = `none`) : (subMenuFlags.style.display = `block`);
       }
     })
   }
-
-  function setValueBtnSelectFlag() {
-    $('btnSelectFlag');
-  }
-
 
   function _marginViewTodolist() {
     const el = $('bg_view_table_todolist');
@@ -97,6 +94,7 @@ const viewTodolist = (() => {
     $('btn_add_todo').addEventListener('click', async (e) => {
       if (!$("form_add_todo")) (await appendFetchedElHTML('./components/todoList/formAddTodo.html'))('bg_view_table_todolist')(_eventFormAddTodo);
     });
+
   }
   function removeForm(e) {
     (e.target.closest('form')).remove();
@@ -108,10 +106,14 @@ const viewTodolist = (() => {
       removeForm(e)
     })
     _eventBtnSelectFlag();
+    _resetSimblingInputDate($('form_add_todo').querySelector('.btnCleanInput'))
+    _setCurrentDate($('form_add_todo').querySelector('#currentDate'))
   }
   const _insertContentTableViewHTML = (userTodolist) => {
     $('view_table_todolist').querySelector('tbody').innerHTML = createContrentTableTodolistHTML(userTodolist);
   }
+
+
 
   function createContrentTableTodolistHTML(userTodolist) {
     let tbody = document.createElement('tbody');
