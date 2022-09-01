@@ -92,7 +92,6 @@ function eventsFilters() {
                     let cursos = document.createElement('div');
                     res.forEach((item)=>{
                        cursos.innerHTML += `<span class="${item.data()?.curso_info?.nome}"> ${item.data()?.curso_info?.nome} </span>`;
-       
                     })
                     return cursos;
                 })

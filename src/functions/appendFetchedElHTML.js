@@ -10,7 +10,7 @@ const fetchElementHTML = (pathHTML) => {
 const appendElementHTML = (element) => (target) => target.appendChild(element);
 
 // Curried function to aappend a element HTML
-async function appendExternElHTML(pathToFetchElementHTML) {
+async function appendFetchedElHTML(pathToFetchElementHTML) {
   try{
     const elementToAppend = await fetchElementHTML(pathToFetchElementHTML);
     return (targetElementID) => {
@@ -21,4 +21,4 @@ async function appendExternElHTML(pathToFetchElementHTML) {
 
 }
 
-export default appendExternElHTML;
+export default appendFetchedElHTML;

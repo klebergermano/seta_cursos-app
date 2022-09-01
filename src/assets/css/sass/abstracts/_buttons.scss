@@ -9,6 +9,7 @@
     padding: 10px 15px;
     margin:5px;
     border:0px;
+    user-select: none;
     cursor:pointer;
     svg {
         max-width: 100px;
@@ -39,7 +40,7 @@
 }
 .btn-secondary{
     @extend .btn;
-    @include set-background-text-color($primary-color);
+    @include set-background-text-color(darken($secondary-color, 5%));
 }
 
 .btn-default-cancel{

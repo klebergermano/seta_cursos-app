@@ -1,5 +1,7 @@
-#block_screen_view_todolist{
-    position: relative; 
+@use './form_add_todo' as formAddTodo;
+
+#block_screen_view_todolist {
+    position: relative;
     width: 100%;
     min-height: 100vh;
     position: fixed;
@@ -12,43 +14,37 @@
     top: 0;
     z-index: 5;
 }
-#bg_view_table_todolist{
-    max-height: 80vh;
-        width: 100%;
-        margin-left: auto; 
-        margin-right: auto; 
-        left:0; 
-        right:0;
-        top:100px;
-        position: absolute;
-        border:1px solid #333; 
-        box-shadow: 1px 6px 6px #00000099;
-        background: green;
-        padding:80px;
-        border-radius: 5px;
-
-        resize: both;
-        overflow: auto;
-
-     .window_bar{
+#bg_view_table_todolist {
+    width: 100%;
+    max-height: 85vh;
+    resize: both;
+    overflow: auto;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 100px;
+    position: absolute;
+    border: 1px solid #333;
+    box-shadow: 1px 6px 6px #000000cc;
+    background: rgb(255, 249, 184);
+    padding: 60px;
+    border-radius: 5px;
+    .bg_search_inputs {
+       margin-bottom:0px;
+    }
+    .window_bar {
         background-color: #333;
-     }
-     #btn_add_tarefa{
-       
-     }
-    #view_todolist{
-        position: absolute;
-        width:600px;
-        height:400px; 
-        border:2px solid red;
-        top:40px;
-        background: #fff;
-        padding:20px;
-        box-shadow: 0px 6px 4px #00000099;
-        //Centralilza o elemento em posição absoluta.
-        margin-left: auto;
-        margin-right: auto;
-        left: 0;
-        right: 0;
+    }
+    #btn_add_tarefa {}
+    table {
+        td {
+            text-align: center;
+            textarea {
+                width: 100%
+            }
+        }
+
+
     }
 }

@@ -1,10 +1,10 @@
 @use 'base';
-@use 'abstracts' as *;
-@use 'elements';
-@use 'update_app';
+@use './abstracts/' as *;
 
+//appContent
+@use '../../../appContent/sass' as appContent;
 
-//Componentes
+//componentes
 @use '../../../components/alunos/sass/' as alunos;
 @use '../../../components/contratos/sass/' as contratos;
 @use '../../../components/controleAula/sass' as controleAula;
@@ -14,11 +14,7 @@
 @use '../../../components/login/sass/' as login;
 @use '../../../components/todoList/sass' as todoList;
 @use '../../../components/users/sass' as users;
-
-
-
- 
-
+@use '../../../components/todoList/sass/index';
 
 @keyframes spinner-line-fade-more {
   0%, 100% {

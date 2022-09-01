@@ -5,9 +5,14 @@
     padding:10px;
 
     .bg_search_inputs{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         background:#ddd;
         padding:5px;
         margin-bottom:5px;
+        height: auto;
+        overflow: hidden;
         label{
             padding:5px;
         }
