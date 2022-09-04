@@ -14,22 +14,14 @@ import $ from "../../../functions/$.js"
 import appendFetchedElHTML from "../../../functions/appendFetchedElHTML.js";
 import getFormValuesAsObj from "../../../functions/getFormValuesAsObj.js"; 
 import sortObjIntKeysIntoArr from "../../../functions/sortObjIntKeysIntoArr.js"; 
+import setCurrentDateIntoInputEl from "../../../functions/setCurrentDateIntoInputEl.js"; 
+import resetSimblingElInputDate from "../../../functions/resetSimblingElInputDate.js"; 
+import addOneStringNumbPadStart from "../../../functions/addOneStringNumbPadStart.js"; 
 
 
 import pipe from "../../../functions/pipe.js";
 //---------------------------------------------------------------//
 
-//=====================================================================================//
-//=====================================================================================//
-//=====================================================================================//
-
-
-
-
-
-//=====================================================================================//
-//=====================================================================================//
-//=====================================================================================//
 
 
 const viewTodolist = (() => {
@@ -40,17 +32,47 @@ const viewTodolist = (() => {
       : (await appendFetchedElHTML('./components/todoList/viewTodolist.html'))('page_content')(_eventsTodolist.bind(viewTodolist)); // Se não existir é adicionado.
   }
 
-  const _resetSimblingInputDate = (btn) => {
-    btn.addEventListener('click', (e)=>{
-     const parent = e.target.parentElement; 
-     const inputDate = parent.querySelector('input[type="date"]'); 
-          if(inputDate) inputDate.value=''; 
+
+  const _eventsTodolist = async () => {
+    _marginViewTodolist();
+    _btnCloseViewTodolist();
+    dragElementAbsolute($('bg_view_table_todolist'));
+    _insertContentTableViewHTML(await _getUserTodoList());
+    _doubleClickWindowBarEvent();
+    _eventsBtnAddTodolist();
+  }
+
+  const _eventsBtnAddTodolist = () => {
+    $('btn_add_todo').addEventListener('click', async (e) => {
+      if (!$("form_add_todo")) (await appendFetchedElHTML('./components/todoList/formAddTodo.html'))('bg_view_table_todolist')(_eventFormAddTodo);
     });
   }
 
-  const _setCurrentDate = (inputDate)=>{
-      inputDate.value = new Date().toISOString().substring(0, 10); 
+  const _eventFormAddTodo = () => {
+    const btnCloseForm = $('form_add_todo').querySelector('.btn_close_form')
+    btnCloseForm.addEventListener('click', (e) => {
+      e.preventDefault();
+      removeForm(e)
+    })
+    _eventBtnSelectFlag();
+    _eventBtnResetInputDate($('form_add_todo').querySelector('.btnCleanInput'))
+    _submitFormAddTodoList();
+
+    //-----------------------------------------------------------------------------
+    setCurrentDateIntoInputEl($('form_add_todo').querySelector('#data'))
+    //-----------------------------------------------------------------------------
   }
+
+  const _eventBtnResetInputDate = (btn) => {
+    btn.addEventListener('click', (e)=>{
+      resetSimblingElInputDate(e)
+    });
+  }
+  
+
+
+
+
   const _getUserContent = async () => await getDocs(collection(db, 'users', auth.currentUser.uid, 'content'));
 
   // Retorna o to-do list do usuário
@@ -60,11 +82,9 @@ const viewTodolist = (() => {
     return todoList[0].data();
   }
 
-
   function _eventBtnSelectFlag() {
     const btnSelectFlag = $('btnSelectFlag')
     btnSelectFlag.addEventListener("click", (e) => {
-      
       let element = e.target.nodeName === "LI" ? e.target : e.target.parentElement;
       element.nodeName !== "LI" ? toggleSubmenu() : setValueSubmenu(element);
 
@@ -81,54 +101,34 @@ const viewTodolist = (() => {
     })
   }
 
-  function _marginViewTodolist() {
-    const el = $('bg_view_table_todolist');
-    const appContent = $('appContent')
-    let top = appContent.scrollTop + 'px';
-    el.style.top = top;
-    //------------------------
-    watchScrollEvent(appContent)
-  }
-  function changeMarginTop(el, val) {
-    el.style.top = val + 'px'
-  }
-  function watchScrollEvent(el) {
-    let table = $('bg_view_table_todolist');
-    el.addEventListener('scroll', (e) => {
-      if (table && table.offsetTop <= e.target.scrollTop) { changeMarginTop(table, e.target.scrollTop) }
-    })
-  }
 
-  const _eventsTodolist = async () => {
-    _marginViewTodolist();
-    _btnCloseViewTodolist();
-    dragElementAbsolute($('bg_view_table_todolist'));
-    _insertContentTableViewHTML(await _getUserTodoList());
-    _doubleClickWindowBarEvent();
-    _eventsBtnAddTodolist();
-  }
 
+   const addOneToKeyDBTodoList = async () => addOneStringNumbPadStart(await getLastEntryFromDB())('2')('0'); 
+   
+   
 
   //Form Add To-do List -----------------------------------------------------------------
   const _submitFormAddTodoList = ()=>{
-    $('form_add_todo').addEventListener('submit', (e)=>{
+    $('form_add_todo').addEventListener('submit', async (e)=>{
       e.preventDefault();
       const UID = auth.currentUser.uid; 
-      console.log(auth)
-      console.log(UID)
       const formValueObj = getFormValuesAsObj(e.target);
-      setDocMergeToFirestoreDB(UID, formValueObj)
+      const newKey = await addOneToKeyDBTodoList(); 
+      const newObj = {
+        [newKey] : formValueObj
+      }
+      setDocToFirestoreDBMerge(UID, newObj)
     })
   }
 
-  function setDocMergeToFirestoreDB(ID, valuesObj) {
-
+  function setDocToFirestoreDBMerge(ID, valuesObj) {
+    console.log('vaulesObj:', valuesObj)
     setDoc(doc(db, 'users', ID, 'content', 'to-do_list'),
        valuesObj,
       { merge: true }
     )
       .then(() => {
-        defaultEventsAfterSubmitForm("#form_add_aula", "Aula adicionada com sucesso!")
+       // defaultEventsAfterSubmitForm("#form_add_aula", "Aula adicionada com sucesso!")
       }).then(() => {
        // addLogInfo('to-do_list', 'info', `tarefa adic.`);
       })
@@ -136,56 +136,31 @@ const viewTodolist = (() => {
         console.log(error);
         //addLogInfo('do_list', 'error', `erro ao adc.`, error);
       });
-  }
+    }
 
 
 
-  const _eventsBtnAddTodolist = () => {
-    $('btn_add_todo').addEventListener('click', async (e) => {
-      if (!$("form_add_todo")) (await appendFetchedElHTML('./components/todoList/formAddTodo.html'))('bg_view_table_todolist')(_eventFormAddTodo);
-    });
-  }
 
   function removeForm(e) {
     (e.target.closest('form')).remove();
   }
 
 
-
-
 //***************************************************************************************************** */
   const getLastEntryFromDB = async ()=>{
     const obj = await _getUserTodoList(); 
     const sortedKeys = sortObjIntKeysIntoArr(obj); 
+    console.log('sortedKeys', sortedKeys); 
     const lastArrValue = sortedKeys[sortedKeys.length - 1];
+    return lastArrValue; 
    }
 
-   const addOneTwoStringNumberWithPadStart = (stringNumber)=>{
-    let n = parseInt(stringNumber);
-    let newNumb = (n + 1).toString().padStart("2", "0");
-    return newNumb; 
-   }
 
 
 //***************************************************************************************************** */
 
 
 
-  const _eventFormAddTodo = () => {
-    const btnCloseForm = $('form_add_todo').querySelector('.btn_close_form')
-    btnCloseForm.addEventListener('click', (e) => {
-      e.preventDefault();
-      removeForm(e)
-    })
-    _eventBtnSelectFlag();
-    _resetSimblingInputDate($('form_add_todo').querySelector('.btnCleanInput'))
-    _setCurrentDate($('form_add_todo').querySelector('#data'))
-    _submitFormAddTodoList();
-
-    //-----------------------------------------------------------------------------
-    getLastEntryFromDB()
-
-  }
 
 //--------------------------------------------------------------------------------------------------
 
@@ -228,11 +203,21 @@ const viewTodolist = (() => {
   const _doubleClickWindowBarEvent = () => {
     const bgViewTableTodolist = $('bg_view_table_todolist');
     bgViewTableTodolist.querySelector('.window_bar').addEventListener('dblclick', () => {
-      maxOrMinimizeElement(bgViewTableTodolist, $('appContent'));
+      _maxOrMinimizeElement(bgViewTableTodolist, $('appContent'));
     })
   }
 
-  const maxOrMinimizeElement = (el, scrolledElement) => {
+  const _btnCloseViewTodolist = () => {
+    $('btn_close_view_todolist')?.addEventListener('click', () => {
+      $('page_content').removeChild($('bg_view_table_todolist'))
+    });
+  }
+
+  //----------------------------------------------------------------------//
+  //----------------------------------------------------------------------//
+  //----------------------------------------------------------------------//
+
+  const _maxOrMinimizeElement = (el, scrolledElement) => {
     const maxHeight = window.innerHeight;
 
     function setDataPrevWidhtHeightEl(el) {
@@ -240,7 +225,6 @@ const viewTodolist = (() => {
       el.setAttribute('data-prev_height', `${el.offsetHeight}px`);
     }
 
-    //let elBoundings = el.getBoundingClientRect(); 
 
     if (!el.dataset?.prev_width || !el.dataset?.prev_height) setDataPrevWidhtHeightEl(el)
 
@@ -257,11 +241,24 @@ const viewTodolist = (() => {
     }
   }
 
-  const _btnCloseViewTodolist = () => {
-    $('btn_close_view_todolist')?.addEventListener('click', () => {
-      $('page_content').removeChild($('bg_view_table_todolist'))
-    });
+  const _marginViewTodolist = () => {
+    const el = $('bg_view_table_todolist');
+    const appContent = $('appContent')
+    let top = appContent.scrollTop + 'px';
+    el.style.top = top;
+    //------------------------
+    _watchScrollEvent(appContent)
   }
+  const _changeMarginTop = (el, val) => {
+    el.style.top = val + 'px'
+  }
+ const _watchScrollEvent = (el) => {
+    let table = $('bg_view_table_todolist');
+    el.addEventListener('scroll', (e) => {
+      if (table && table.offsetTop <= e.target.scrollTop) { _changeMarginTop(table, e.target.scrollTop) }
+    })
+  }
+
 
   //Retorna as funções plublicas.
   return {
