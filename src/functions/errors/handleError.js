@@ -1,10 +1,10 @@
 function handleError(err) {
     if (err instanceof TypeError) {
-        console.log(error)
+        console.log('handle Error (typeError)', error)
         return
     }
     if (err instanceof CustomError) {
-        console.log(error)
+        console.log('handle Error (CustomError)', error)
         return
     }
     console.log(err.name);
@@ -13,4 +13,4 @@ function handleError(err) {
 
 }
 
-export default HandleError
+export default handleError
