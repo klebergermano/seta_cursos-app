@@ -17,6 +17,8 @@ import setCurrentDateIntoInputEl from "../../../functions/helpers/setCurrentDate
 import resetSimblingElInputDate from "../../../functions/helpers/resetSimblingElInputDate.js";
 import addEventListenerToEl from "../../../functions/helpers/addEventListenerToEl.js";
 import maxOrMinimizeEl from "../../../functions/helpers/maxOrMinimizeEl.js";
+import confirmBoxDelete from "../../../functions/messages/confirmBoxFunc.js"; 
+
 //todoList
 import submitFormAddTodoList from './formToDoList.js';
 import removeItemTodolist from './removeItemTodolist.js';
@@ -28,7 +30,7 @@ const viewTodolist = (() => {
     const bgViewTablaTodolist = $("bg_view_table_todolist")
     bgViewTablaTodolist
       ? $('page_content').removeChild(bgViewTablaTodolist) // Se bg_view_table_todolist existe é removido do page_element.
-      : appendViewTodolist() // Se não existir é adicionado.
+      : appendViewTodolist() // Se não existir é adicionado. 
   }
   const appendViewTodolist = async () => {
     try {
@@ -48,10 +50,13 @@ const viewTodolist = (() => {
   }
 
   function delegateEventToBtnRemoveItem(e){
-    if(e.target && e.target?.nodeName === 'BUTTON' && e.target.classList.contains('btn_remove_item_todolist')) removeItemTodolist(e);
+   if(e.target && e.target?.nodeName === 'BUTTON' && e.target.classList.contains('btn_remove_item_todolist')) removeItemTodolist(e);
+  }
+  function _confirmBoxDeleteItem(){
+    confirmBoxDelete('view_table_todolist')('Deletar Terefa')(delegateEventToBtnRemoveItem);
   }
   const _addEventsBtnRemoveItemTodolist = () =>{
-    addEventListenerToEl($('view_table_todolist'))('click')(delegateEventToBtnRemoveItem)
+    addEventListenerToEl($('view_table_todolist'))('click')(_confirmBoxDeleteItem)
   }
   const _marginViewTodolist = () => {
     const el = $('bg_view_table_todolist');
@@ -94,7 +99,7 @@ const viewTodolist = (() => {
     for (let key in userTodolist) {
       const item = userTodolist[key];
       const tr = document.createElement('tr');
-      tr.setAttribute('item_id', key);
+      tr.setAttribute('data-item_id', key);
       let trContent =
         `
           <td class='td_id'>${key}</td>
