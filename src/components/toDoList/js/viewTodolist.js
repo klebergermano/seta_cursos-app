@@ -49,14 +49,20 @@ const viewTodolist = (() => {
     _addEventsBtnRemoveItemTodolist();
   }
 
+  function _confirmBoxDeleteItem(itemID){
+    confirmBoxDelete('view_table_todolist')('Deletar Terefa?')(() => removeItemTodolist(itemID));
+  }
+
   function delegateEventToBtnRemoveItem(e){
-   if(e.target && e.target?.nodeName === 'BUTTON' && e.target.classList.contains('btn_remove_item_todolist')) removeItemTodolist(e);
+   if(e.target && e.target?.nodeName === 'BUTTON' && e.target.classList.contains('btn_remove_item_todolist')) {
+    const itemID= e.target.closest('tr').dataset.item_id;
+    _confirmBoxDeleteItem(itemID);
+   }
   }
-  function _confirmBoxDeleteItem(){
-    confirmBoxDelete('view_table_todolist')('Deletar Terefa')(delegateEventToBtnRemoveItem);
-  }
-  const _addEventsBtnRemoveItemTodolist = () =>{
-    addEventListenerToEl($('view_table_todolist'))('click')(_confirmBoxDeleteItem)
+
+  const _addEventsBtnRemoveItemTodolist = () => {
+    addEventListenerToEl($('view_table_todolist'))('click')(delegateEventToBtnRemoveItem)
+    
   }
   const _marginViewTodolist = () => {
     const el = $('bg_view_table_todolist');
@@ -99,6 +105,7 @@ const viewTodolist = (() => {
     for (let key in userTodolist) {
       const item = userTodolist[key];
       const tr = document.createElement('tr');
+      tr.classList.add('tr_item');
       tr.setAttribute('data-item_id', key);
       let trContent =
         `
