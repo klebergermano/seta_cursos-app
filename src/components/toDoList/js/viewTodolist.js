@@ -1,5 +1,4 @@
-//Ramda Functional Programming -----------------------------------//
-import * as R from '../../../../node_modules/ramda/dist/ramda.js';
+
 
 //---------------------------------------------------------------//
 //Firebase
@@ -22,7 +21,6 @@ import confirmBoxDelete from "../../../functions/messages/confirmBoxFunc.js";
 //todoList
 import submitFormAddTodoList from './formToDoList.js';
 import removeItemTodolist from './removeItemTodolist.js';
-
 //--------------------------------------------------------------//
 
 const viewTodolist = (() => {
@@ -38,12 +36,11 @@ const viewTodolist = (() => {
     } catch (e) { console.log(e) }
   }
 
-
   const _eventsTodolist = async () => {
     dragElementAbsolute($('bg_view_table_todolist'));
     _marginViewTodolist();
     _btnCloseViewTodolist();
-    _insertContentTableViewHTML(await _getUserTodoList());
+    _insertContentTableViewHTML(await getUserTodoList());
     _doubleClickWindowBarEvent();
     _eventsBtnAddTodolist();
     _addEventsBtnRemoveItemTodolist();
@@ -62,8 +59,8 @@ const viewTodolist = (() => {
 
   const _addEventsBtnRemoveItemTodolist = () => {
     addEventListenerToEl($('view_table_todolist'))('click')(delegateEventToBtnRemoveItem)
-    
   }
+
   const _marginViewTodolist = () => {
     const el = $('bg_view_table_todolist');
     const appContent = $('appContent')
@@ -109,15 +106,16 @@ const viewTodolist = (() => {
       tr.setAttribute('data-item_id', key);
       let trContent =
         `
+        <td class='td_checkbox'>
+        <input type='checkbox'>
+        </td>
           <td class='td_id'>${key}</td>
           <td class='td_prioridade'>${item.prioridade}</td>
           <td class='td_titulo'>${item.titulo}</td>
           <td class='td_descricao'><textarea>${item.descricao}</textarea></td>
           <td class='td_data'>${item.data}</td>
           <td class='td_prazo'>${item.prazo}</td>
-          <td class='td_checkbox'>
-          <input type='checkbox'>
-          </td>
+      
           <td class='td_controls'>
             <button title="Deletar item to-do list" class='btn_remove_item_todolist'>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -159,7 +157,7 @@ const viewTodolist = (() => {
   const _getUserContent = async () => await getDocs(collection(db, 'users', auth.currentUser.uid, 'content'));
 
   // Retorna o to-do list do usuário
-  const _getUserTodoList = async () => {
+  const getUserTodoList = async () => {
     try {
       const userContent = await _getUserContent()
       const todoList = userContent.docs.filter((item) => item.id === 'to-do_list');
@@ -190,7 +188,8 @@ const viewTodolist = (() => {
 
   //Retorna as funções plublicas.
   return {
-    appendOrRemoveViewTodolist
+    appendOrRemoveViewTodolist,
+    getUserTodoList
   }
 })();
 

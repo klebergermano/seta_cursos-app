@@ -6,25 +6,16 @@ const db = getFirestore(firebaseApp);
 const { getAuth } = require("firebase/auth");
 const auth = getAuth(firebaseApp);
 //--------------------------------
-import viewTodolist from "./viewTodolist.js"; 
-
-
+import atualizaViewTodoList from "./atualizaViewTodoList.js"; 
 
 function deleteItemTodolistDB(idItem) {
     let deleteQuery = {};
     deleteQuery[idItem] = deleteField();
     const docTodolist = doc(db, 'users', auth.currentUser.uid, 'content', 'to-do_list');
     updateDoc(docTodolist, deleteQuery)
-    .then(() => {
-        //Chama a função duas vezes, para que remova e readicione o viewTodoList.
-        viewTodolist.appendOrRemoveViewTodolist();
-        viewTodolist.appendOrRemoveViewTodolist();
-
-    })
-       
+        .then(() => { atualizaViewTodoList() })
         .catch((error) => {
             console.log(error);
-           // addLogInfo('log_alunato', 'error', `${RA} - ${curso} - ${bimestre} - delete_${aula}`, error);
         });
 }
 

@@ -1,25 +1,35 @@
 
-//helpers
+//Firebase
+import { firebaseApp } from "../../dbConfig/firebaseApp.js";
+const { getFirestore, setDoc, doc } = require("firebase/firestore");
+const db = getFirestore(firebaseApp);
+const { getAuth } = require("firebase/auth");
+const auth = getAuth(firebaseApp);
+//Helpers
 import addOneStringNumbPadStart from "../../../functions/helpers/addOneStringNumbPadStart.js";
 import getFormValuesAsObj from "../../../functions/helpers/getFormValuesAsObj.js";
 import sortObjIntKeysIntoArr from "../../../functions/helpers/sortObjIntKeysIntoArr.js";
 import $ from "../../../functions/helpers/$.js";
-
 //Forms
+import viewTodoList from "./viewTodoList.js";
 import defaultEventsAfterSubmitFixedForm from "../../../functions/forms/defaultEventAfterSubmitgFixedForm.js";
-      const getLastEntryFromDB = async () => {
-        const obj = await _getUserTodoList();
-        const sortedKeys = sortObjIntKeysIntoArr(obj);
-        console.log('sortedKeys', sortedKeys);
-        const lastArrValue = sortedKeys[sortedKeys.length - 1];
-        return lastArrValue;
-      }
-      //***************************************************************************************************** */
-      
+import atualizaViewTodoList from "./atualizaViewTodoList.js"; 
+
 //Errors
 import CustomError from '../../../functions/errors/CustomError.js';
 import handleError from '../../../functions/errors/handleError.js';
-//**** */
+//---------------------------------------------------------------//
+
+
+
+const getLastEntryFromDB = async () => {
+  const obj = await viewTodoList.getUserTodoList();
+  const sortedKeys = sortObjIntKeysIntoArr(obj);
+  console.log('sortedKeys', sortedKeys);
+  const lastArrValue = sortedKeys[sortedKeys.length - 1];
+  return lastArrValue;
+}
+
   const addOneToKeyDBTodoList = async () => addOneStringNumbPadStart(await getLastEntryFromDB())('2')('0');
 
 
@@ -47,7 +57,7 @@ import handleError from '../../../functions/errors/handleError.js';
       .then(() => {
         defaultEventsAfterSubmitFixedForm('#form_add_todo')('Tarefa adicionada com sucesso!')(removeFormAddTodoListWithSetTimeout)
       }).then(() => {
-        // addLogInfo('to-do_list', 'info', `tarefa adic.`);
+        atualizaViewTodoList();
       })
       .catch((error) => {
         console.log(error);
