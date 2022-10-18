@@ -22,6 +22,8 @@ import confirmBoxDelete from "../../../functions/messages/confirmBoxFunc.js";
 import submitFormAddTodoList from './formToDoList.js';
 import removeItemTodolist from './removeItemTodolist.js';
 //--------------------------------------------------------------//
+import Button from "../../elements/js/Button.js"; 
+
 
 const viewTodolist = (() => {
   async function appendOrRemoveViewTodolist() {
@@ -98,16 +100,20 @@ const viewTodolist = (() => {
   }
 
   function createContentTableTodolistHTML(userTodolist) {
+
     let tbody = document.createElement('tbody');
     for (let key in userTodolist) {
+      const btn = new Button();
+      const roundBtn = btn.createRoundCheckboxBtn();
+      console.log(roundBtn)
+      
       const item = userTodolist[key];
       const tr = document.createElement('tr');
       tr.classList.add('tr_item');
       tr.setAttribute('data-item_id', key);
       let trContent =
         `
-        <td class='td_checkbox'>
-        <input type='checkbox'>
+        <td class='td_status'>
         </td>
           <td class='td_id'>${key}</td>
           <td class='td_prioridade'>${item.prioridade}</td>
@@ -126,6 +132,7 @@ const viewTodolist = (() => {
           </td>
           `
       tr.innerHTML = trContent;
+      tr.querySelector('.td_status').appendChild(roundBtn)
       tbody.appendChild(tr);
     }
     return tbody.outerHTML;
