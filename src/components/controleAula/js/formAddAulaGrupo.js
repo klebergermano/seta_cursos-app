@@ -1,3 +1,4 @@
+
 //---------------------------------------------------------------//
 //Firebase
 import { firebaseApp } from "../../dbConfig/firebaseApp.js";
@@ -110,10 +111,7 @@ function adicionaAluno() {
   })
   divAluno.insertAdjacentElement('afterbegin', btnDel);
   bgAlunoAdicionado.appendChild(divAluno)
-
   eventsDivAlunoAdicinado(divAluno);
-
-
 }
 
 function enableSelectBimestre(e) {
@@ -181,8 +179,6 @@ function removeOptionsSelectionadosDatalist() {
     }
   })
 }
-
-
 
 function validaSelectAula(e) {
   let divAluno = e.target.closest('.div_aluno_adicionado');

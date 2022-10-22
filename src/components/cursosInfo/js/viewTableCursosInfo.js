@@ -48,6 +48,7 @@ function setEditCursoInfo(trInfo) {
         formEdit.querySelector('#valor_mes').value = trInfo.querySelector('#td_valor').innerHTML;
         formEdit.querySelector('#parcelas').value = trInfo.querySelector('#td_parcelas').innerHTML;
         formEdit.querySelector('#modulos').value = trInfo.querySelector('#td_modulos textarea').innerHTML;
+        formEdit.querySelector('#modulos_certificado').value = trInfo.querySelector('#td_modulos_certificado textarea').innerHTML;
         formEdit.querySelector('#duracao').value = trInfo.querySelector('#td_duracao').innerHTML;
         formEdit.querySelector('#carga_horaria').value = trInfo.querySelector('#td_carga_horaria').innerHTML;
         formEdit.querySelector('#id_curso').value = trInfo.querySelector('#td_id_curso').innerHTML;
@@ -103,6 +104,7 @@ function createTableCursosInfoHTML(cursosInfo) {
             <td id='td_nome' class='color_${curso.nome}'>${curso.nome}</td>
             <td id='td_categoria'>${curso.categoria}</td>
             <td id='td_modulos'><textarea readonly='true'>${curso.modulos}</textarea></td>
+            <td id='td_modulos_certificado'><textarea readonly='true'>${curso.modulos_certificado}</textarea></td>
             <td id='td_duracao'>${curso.duracao}</td>
             <td id='td_parcelas'>${curso.parcelas}</td>
             <td id='td_carga_horaria'>${curso.carga_horaria}</td>

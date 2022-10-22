@@ -35,30 +35,47 @@
         <option value='recreativo'>Recreativo</option>
     </select>
     </div>
-    <div  id='div_duracao'>
-        <label>Duração: </label>
-        <input  required='true' type='number' id='duracao' />
-    </div>
+    <div  id='div_aulas_semana'>
+        <label>Horas p/ Aula:</label>
+        <input  required='true' type='number' id='horas_aula' value="2" />
 
-    <div id='div_modulos'>
-        <label>Módulos: </label>
-        <textarea  required='true' id='modulos'></textarea>
+        <label>Aulas p/ Semana:</label>
+        <input  required='true' type='number' id='aulas_semana' value="1" />
+    
+        <label>Mêses:</label>
+        <input  required='true' type='number' id='meses' />
+       
     </div>
-
-    <div id='div_carga_horaria'>
-        <label>C. Hr.: </label>
-        <input  required='true' type='number' id='carga_horaria' />
+    <div  id='div_horas_aula'>
         
     </div>
 
-    <div id='div_parcelas'>
+
+
+    <div id='div_modulos'>
+        <label>Módulos: </label>
+        <textarea  required='true' id='modulos' ></textarea>
+    </div>
+    <div id='div_modulos_certificado'>
+        <label>M. Certificado: </label>
+        <textarea  required='true' id='modulos_certificado' maxlength="310"></textarea>
+    </div>
+
+    <div id=''>
+        <label>Qtd. aulas:</label>
+        <input  required='true' readonly="true" type='number' id='qtd_aulas' />
+
+        <label>C. Hr.: </label>
+        <input  required='true'  readonly="true" type='number' id='carga_horaria' />
+
         <label>Parcelas: </label>
         <input  required='true' type='number' id='parcelas' />
-    </div>
-    <div id='div_valor_mes'>
+        
         <label>Valor: </label>
         <input  required='true' type='text' id='valor_mes' value='0,00'/>
     </div>
+
+   
 
  
 

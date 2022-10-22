@@ -11,10 +11,14 @@ import insertElementHTML from "../../jsCommon/insertElementHTML.js";
 import { displaySpinnerLoad, removeSpinnerLoad } from "../../jsCommon/spinnerJS.js";
 import { addLogInfo } from "../../logData/js/logFunctions.js";
 import { insertFormAddCertificadoHTML } from "./formAddCertificado.js";
+
 //---------------------------------------------------------------//
+import getDataDocDB from "../../../functions/DB/getDocDB.js";
 //Other libraries
 const VMasker = require("vanilla-masker");
 //---------------------------------------------------------------//
+
+
 
 // Função principal de inserção da página html.
 export function insertInfoAlunoHTML(RA) {
@@ -144,6 +148,7 @@ function setMasksFormAluno() {
 
 // Insere os cursos que o aluno faz na página.
 function insertAlunoCursoInfo(alunoCompleteInfo) {
+    console.log('alunoCompleteInfo:', alunoCompleteInfo)
     let RA = alunoCompleteInfo.aluno.ra;
     let cursos = alunoCompleteInfo.cursos;
     //Faz um loop pelos cursos dentro do objeto "aluncoCompleteInfo.cursos".
@@ -334,25 +339,7 @@ function submitFormsInfoCurso(e) {
         })
 }
 
-/* Modelo do objeto parcelas de pagamento.
-      parcelas:{
-                    '01': { 
-                        desconto: "40,00",
-                        n_lanc: "C0001F01",
-                        valor: "160,00",
-                        valor_total: "120,00", 
-                        vencimento: "2022-05-24",
-                        pagamento:{
-                            form_pag: "",
-                                obs: "",
-                                pago_em:"",
-                                status:"pendente",
-                                valor_pago:"",
-                                valor:"110,00",
-                        }
-                    },
-                },
-*/
+
 
 // Submit do formulário de aluno.
 function submitFormInfoAluno(e) {
@@ -404,6 +391,8 @@ function getCertificadoInfo(e) {
     certificadoInfo.horas_aula = formInfo.querySelector("#horas_aula").value;
     certificadoInfo.carga_horaria = formInfo.querySelector("#carga_horaria").value;
     certificadoInfo.modulos = formInfo.querySelector("#modulos").value;
+    certificadoInfo.modulos_certificado = formInfo.querySelector("#modulos_certificado").value;
+
     return certificadoInfo;
 }
 
@@ -687,7 +676,7 @@ function createCertificadoStatusFieldsetHTML(curso) {
     return certificadoFieldsetHTML;
 }
 
-// Cria o conteúdo para ser inserido no fielset do certificado HTML.
+// Cria o conteúdo para ser inserido no fieldset do certificado HTML.
 function createCertificadoContentHTML(curso) {
     let certificadoEntregue = curso.curso_info?.certificado?.entregue;
     let certificadoHTML = ``;
@@ -767,8 +756,17 @@ function createResponsavelFieldsetHTML(curso) {
     return respFieldsetHTML;
 }
 
+async function setDescricaoModuloCertificado(cursoInfo){
+    let cursoInfoDB = await getDataDocDB('cursos_info', cursoInfo.cod); 
+    let el = document.querySelector(`[data-curso_nome='${cursoInfo.nome}']`);
+    el.querySelector('#modulos_certificado').value = cursoInfoDB.modulos_certificado; 
+
+}
 // Cria o fieldset com informações do curso para inserção HTML.
 function createCursoFieldsetHTML(curso) {
+    let modulos_certificado = curso.curso_info.modulos_certificado; 
+    if(!modulos_certificado){ modulos_certificado = ''; setDescricaoModuloCertificado(curso.curso_info)}
+    
     let cursoFieldsetHTML = `
     <div class='fieldset fieldset_curso_info fieldset_curso_dados'>
         <legend>Curso Info.</legend>
@@ -828,6 +826,10 @@ function createCursoFieldsetHTML(curso) {
             <label>Módulos:</label>
             <textarea  id='modulos' readonly='true'>${curso.curso_info.modulos}</textarea>
         </div>
+        <div class='div_input_info' id='div_modulos' >
+        <label>M. Certificado:</label>
+        <textarea  id='modulos_certificado' readonly='true'>${modulos_certificado}</textarea>
+    </div>
         <div class='div_input_info' id='div_curso_obs'>
             <label>Obs.:</label>
             <textarea id='curso_obs' >${curso.curso_info.obs}</textarea>
@@ -849,7 +851,6 @@ function getInfoStatusCurso(curso) {
         statusInfo.data = curso.status_info.data;
         statusInfo.situacao = curso.status_info.situacao;
     }
-
     return statusInfo;
 }
 

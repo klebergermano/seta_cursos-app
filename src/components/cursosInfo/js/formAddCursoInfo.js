@@ -20,11 +20,21 @@ export function insertFormAddCursosInfoHTML() {
 }
 
 function setCargaHoraria() {
-  let duracao = document.querySelector('#form_add_curso_info #duracao').value;
+  const meses = document.querySelector('#form_add_curso_info #meses').value;
+  const horas_aula = document.querySelector('#form_add_curso_info #horas_aula').value;
+  const aulas_semana = document.querySelector('#form_add_curso_info #aulas_semana').value;
+const aulas_por_mes = aulas_semana * 4; 
   let cargaHorariaInput = document.querySelector('#carga_horaria');
-  cargaHorariaInput.value = parseInt(duracao) * 16 // duração * 8 aulas por mês * 2 horas por aula.
+  cargaHorariaInput.value = parseInt(horas_aula) * parseInt(aulas_por_mes) * parseInt(meses) // duração * 8 aulas por mês * 2 horas por aula.
 }
+function setQtdAulas() {
+  const aulas_semana = document.querySelector('#form_add_curso_info #aulas_semana').value;
+  const aulas_por_mes = aulas_semana * 4; 
+  const meses = document.querySelector('#form_add_curso_info #meses').value;
+  const qtdAulas = document.querySelector('#qtd_aulas');
+  qtdAulas.value = aulas_por_mes * meses; 
 
+}
 export function eventsFormAddCursosInfo() {
   insertOptionslistIdCursosInfo();
   VMasker(document.querySelector('#valor_mes')).maskMoney();
@@ -35,8 +45,12 @@ export function eventsFormAddCursosInfo() {
     checkInputIDCurso();
   });
 
-  document.querySelector('#form_add_curso_info #duracao').addEventListener('input', () => {
-    setCargaHoraria()
+  document.querySelector('#form_add_curso_info').addEventListener('input', (e) => {
+    if(e.target && e.target.id === 'meses' || e.target.id === 'horas_aula' || e.target.id === 'aulas_semana'){
+      setCargaHoraria()
+      setQtdAulas();
+
+    }
   });
   let form = document.querySelector('#form_add_curso_info');
   form.addEventListener("submit", (e) => {
@@ -44,7 +58,6 @@ export function eventsFormAddCursosInfo() {
 
     if (form.classList.contains('form_edit_curso_info')) {
       submitFormEditCursoInfo(e)
-
     } else {
       submitFormAddCursoInfo(e)
 
@@ -114,8 +127,11 @@ export function submitFormEditCursoInfo(e) {
       cod: form.id_curso.value,
       categoria: form.categoria.value,
       nome: form.nome.value,
+      horas_aula: form.horas_aula.value,
+      aulas_semana: form.aulas_semana.value,
+      meses: form.meses.value,
       modulos: form.modulos.value,
-      duracao: form.duracao.value,
+      modulos_certificado: form.modulos_certificado.value,
       parcelas: form.parcelas.value,
       valor: form.valor_mes.value,
       carga_horaria: form.carga_horaria.value,
@@ -140,8 +156,11 @@ export function submitFormAddCursoInfo(e) {
       cod: idCurso,
       categoria: form.categoria.value,
       nome: form.nome.value,
+      horas_aula: form.horas_aula.value,
+      aulas_semana: form.aulas_semana.value,
+      meses: form.meses.value,
       modulos: form.modulos.value,
-      duracao: form.duracao.value,
+      modulos_certificado: form.modulos_certificado.value,
       parcelas: form.parcelas.value,
       valor: form.valor_mes.value,
       carga_horaria: form.carga_horaria.value,
