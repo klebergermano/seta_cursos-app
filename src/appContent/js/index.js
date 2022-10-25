@@ -61,7 +61,7 @@ function eventsHeaderAppContent() {
 
   let btn_todolist = document.querySelector('#btn_todolist');
   btn_todolist.addEventListener('click', ()=>{
-    viewTodolist.appendViewTodolist();
+    viewTodolist.appendOrRemoveViewTodolist();
   })  
 }
 

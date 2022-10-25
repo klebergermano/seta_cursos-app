@@ -109,10 +109,14 @@
          font-weight: normal;
        vertical-align: middle;}
 
+tr:nth-child(even){
+    background:#dddddf;
+}
 
        tr:hover{
            background:#ffe;
        }
+    
 
 
 }

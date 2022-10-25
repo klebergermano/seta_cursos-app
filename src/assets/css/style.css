@@ -599,7 +599,7 @@ inputs, .input-primary {
   border-radius: 3px;
   border-color: #999;
   padding: 40px;
-  max-width: 650px;
+  max-width: 750px;
   height: auto;
   background: #fff;
   transition: all 2s;
@@ -877,6 +877,9 @@ inputs, .input-primary {
   color: #f0f0f0;
   font-weight: normal;
   vertical-align: middle;
+}
+.tables tr:nth-child(even), .table_info tr:nth-child(even), #view_table_users tr:nth-child(even), .view_table tr:nth-child(even) {
+  background: #dddddf;
 }
 .tables tr:hover, .table_info tr:hover, #view_table_users tr:hover, .view_table tr:hover {
   background: #ffe;
@@ -3698,21 +3701,33 @@ input:disabled, textarea:disabled {
   font-weight: bold;
 }
 
-#form_add_curso_info #div_modulos {
+#form_add_curso_info #div_modulos, #form_add_curso_info #div_modulos_certificado {
+  display: block;
   width: 100%;
+}
+#form_add_curso_info #div_modulos label, #form_add_curso_info #div_modulos_certificado label {
+  width: 100%;
+  clear: both;
+  text-align: center;
+  background-color: #ffc;
+}
+#form_add_curso_info #div_modulos textarea, #form_add_curso_info #div_modulos_certificado textarea {
+  width: 100%;
+  max-width: 100%;
+  max-height: 130px;
 }
 #form_add_curso_info #id_curso {
   text-transform: uppercase;
 }
-#form_add_curso_info #div_valor_mes, #form_add_curso_info #div_duracao, #form_add_curso_info #div_parcelas, #form_add_curso_info #div_carga_horaria, #form_add_curso_info #div_id_curso {
+#form_add_curso_info #div_valor_mes, #form_add_curso_info #div_qtd_aulas, #form_add_curso_info #div_duracao, #form_add_curso_info #div_parcelas, #form_add_curso_info #div_carga_horaria, #form_add_curso_info #div_id_curso {
   padding: 3px;
-  max-width: 33.3333%;
+  max-width: 25%;
 }
-#form_add_curso_info #div_valor_mes input, #form_add_curso_info #div_duracao input, #form_add_curso_info #div_parcelas input, #form_add_curso_info #div_carga_horaria input, #form_add_curso_info #div_id_curso input {
+#form_add_curso_info #div_valor_mes input, #form_add_curso_info #div_qtd_aulas input, #form_add_curso_info #div_duracao input, #form_add_curso_info #div_parcelas input, #form_add_curso_info #div_carga_horaria input, #form_add_curso_info #div_id_curso input {
   max-width: 100%;
   min-width: 50px !important;
 }
-#form_add_curso_info #modulos {
+#form_add_curso_info #modulos, #form_add_curso_info #modulos_certificado {
   min-height: 150px;
 }
 #form_add_curso_info input[readonly=true] {
@@ -4455,7 +4470,7 @@ form.forms_fluxo_caixa .div_submit input[type=submit] {
   padding-top: 2px;
   padding-left: 5px;
 }
-#form_add_todo #alarmClock, #form_add_todo #data_created {
+#form_add_todo #data, #form_add_todo #prazo {
   width: 100px !important;
 }
 
@@ -4542,6 +4557,18 @@ form.forms_fluxo_caixa .div_submit input[type=submit] {
 
 #users_content {
   padding: 1px;
+}
+
+.roundCheckboxBtn {
+  display: flex;
+  width: 25px;
+  height: 25px;
+  border: 1px solid #ccc;
+  border-radius: 50% 50%;
+  cursor: pointer;
+}
+.roundCheckboxBtn:hover {
+  background-color: #bce1e2;
 }
 
 @keyframes spinner-line-fade-more {

@@ -9,6 +9,7 @@
     <span class="btn_close_form">X</span>
 <div  id='div_id_curso'>
     <label>Cod.: </label>
+    <!--o id_curso é referente ao "ID do Banco de Dados" e não ao "ID do HTML" -->
     <input  required='true' list='list_id_cursos_info' id='id_curso' placeholder="ex.: IFC"/>
     <datalist id='list_id_cursos_info'>
         <option></option>
@@ -35,32 +36,46 @@
         <option value='recreativo'>Recreativo</option>
     </select>
     </div>
-    <div  id='div_duracao'>
-        <label>Duração: </label>
-        <input  required='true' type='number' id='duracao' />
+    <div  id='div_aulas_semana'>
+        <label>Horas p/ Aula:</label>
+        <input  required='true' type='number' id='horas_aula' value="2" />
+
+        <label>Aulas p/ Semana:</label>
+        <input  required='true' type='number' id='aulas_semana' value="1" />
+    
+        <label>Mêses:</label>
+        <input  required='true' type='number' id='meses' />
+       
     </div>
 
     <div id='div_modulos'>
         <label>Módulos: </label>
-        <textarea  required='true' id='modulos'></textarea>
+        <textarea  required='true' id='modulos' ></textarea>
+    </div>
+    <div id='div_modulos_certificado'>
+        <label>M. Certificado: </label>
+        <textarea  required='true' id='modulos_certificado' maxlength="310"></textarea>
+    </div>
+
+    <div id='div_qtd_aulas'>
+        <label>Qtd. aulas:</label>
+        <input  required='true' readonly="true" type='number' id='qtd_aulas' />
     </div>
 
     <div id='div_carga_horaria'>
         <label>C. Hr.: </label>
-        <input  required='true' type='number' id='carga_horaria' />
-        
+        <input  required='true'  readonly="true" type='number' id='carga_horaria' />
     </div>
 
     <div id='div_parcelas'>
         <label>Parcelas: </label>
         <input  required='true' type='number' id='parcelas' />
     </div>
-    <div id='div_valor_mes'>
+
+    <div id='div_valor_mes'>   
         <label>Valor: </label>
         <input  required='true' type='text' id='valor_mes' value='0,00'/>
     </div>
-
- 
 
     <div class='div_submit'><input type='submit' value="Salvar"/></div>
 

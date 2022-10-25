@@ -14,6 +14,7 @@ import { setCurrentDate } from "../../jsCommon/dateFunc.js";
 //---------------------------------------------------------------//
 
 export function insertFormAddCertificadoHTML(certificadoInfo) {
+  console.log('certificadoInfo:', certificadoInfo)
   insertElementHTML('#page_content',
     './components/alunos/formAddCertificado.html', () => {
       eventsFormAddCertificado(certificadoInfo)
@@ -49,7 +50,7 @@ function insertCertificadoInfoInputs(certificadoInfo){
   form.querySelector("#aluno_ra").value = certificadoInfo.ra;
   form.querySelector("#aluno_nome").value = certificadoInfo.aluno;
   form.querySelector("#curso_nome").value = certificadoInfo.curso;
-  form.querySelector("#curso_modulos").value = certificadoInfo.modulos;
+  form.querySelector("#curso_modulos_certificado").value = certificadoInfo.modulos_certificado;
   form.querySelector("#curso_carga_horaria").value = certificadoInfo.carga_horaria;
   form.querySelector("#curso_inicio").value = certificadoInfo.inicio;
   form.querySelector("#curso_conclusao").value = certificadoInfo.conclusao;

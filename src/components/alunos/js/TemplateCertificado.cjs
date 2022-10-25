@@ -12,9 +12,7 @@ function changeDateToDislayText(dateString) {
 
 
 const TemplateCertificado = (certificadoInfo) => {
-    console.log('--------------------------------------------------------------------');
-    console.log(certificadoInfo);
-    console.log('--------------------------------------------------------------------');
+   
 
 
     return (`
@@ -90,7 +88,7 @@ const TemplateCertificado = (certificadoInfo) => {
               <div id='bg_info_1' class='bg_info'>
               <p class='p_curso'>Certificamos que <span id='aluno'>${certificadoInfo.aluno_nome}</span>, 
               concluiu com êxito o curso de <span id='curso'>${certificadoInfo.curso_nome}</span></p>
-              <p  class='p_modulos'>Módulos: <span id='modulos'>${certificadoInfo.curso_modulos}</span></p>
+              <p  class='p_modulos'>Módulos: <span id='modulos'>${certificadoInfo.curso_modulos_certificado}</span></p>
               <p>Carga horária: <span id='horas'>${certificadoInfo.curso_carga_horaria} horas</span></p>
               <p>Início: <span id='inicio'>${changeDateToDislayText(certificadoInfo.curso_inicio)}</span></p>
               <p>Conclusão: <span id='conclusao'>${changeDateToDislayText(certificadoInfo.curso_conclusao)}</span></p>

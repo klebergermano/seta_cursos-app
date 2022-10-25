@@ -4,23 +4,26 @@
 #form_add_curso_info{
     @extend .form_flex_absolute;
 
-    #div_modulos{
+    #div_modulos, #div_modulos_certificado{
+        display: block;
         width:100%;
+        label{width:100%; clear: both; text-align: center;
+        background-color: #ffc;}
+        textarea{width:100%; max-width: 100%; max-height: 130px;}
     }
 #id_curso{
     text-transform: uppercase;
 }
-
-    #div_valor_mes, #div_duracao, #div_parcelas, #div_carga_horaria, #div_id_curso{
+    #div_valor_mes, #div_qtd_aulas, #div_duracao, #div_parcelas, #div_carga_horaria, #div_id_curso{
         padding:3px;
-        max-width: 33.3333%;
+        max-width: 25%;
         input{
             max-width: 100%;
             min-width: 50px !important;
         }
     }
 
-    #modulos{ min-height: 150px;}
+    #modulos, #modulos_certificado{ min-height: 150px;}
     input[ readonly='true']{
         background: #ddd;
     }
