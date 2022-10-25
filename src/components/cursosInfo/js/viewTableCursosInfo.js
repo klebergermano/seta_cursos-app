@@ -49,10 +49,14 @@ function setEditCursoInfo(trInfo) {
         formEdit.querySelector('#parcelas').value = trInfo.querySelector('#td_parcelas').innerHTML;
         formEdit.querySelector('#modulos').value = trInfo.querySelector('#td_modulos textarea').innerHTML;
         formEdit.querySelector('#modulos_certificado').value = trInfo.querySelector('#td_modulos_certificado textarea').innerHTML;
-        formEdit.querySelector('#duracao').value = trInfo.querySelector('#td_duracao').innerHTML;
+        formEdit.querySelector('#meses').value = trInfo.querySelector('#td_meses').innerHTML;
+        formEdit.querySelector('#qtd_aulas').value = trInfo.querySelector('#td_qtd_aulas').innerHTML;
         formEdit.querySelector('#carga_horaria').value = trInfo.querySelector('#td_carga_horaria').innerHTML;
+        
+        //O id_curso é referente ao "ID do Banco de Dados" e não ao "ID do HTML".
         formEdit.querySelector('#id_curso').value = trInfo.querySelector('#td_id_curso').innerHTML;
-        let selectCategoria = formEdit.querySelector('#categoria')
+        
+       let selectCategoria = formEdit.querySelector('#categoria')
         let arrOptions = Array.from(selectCategoria.options);
         arrOptions.forEach((item) => {
             if (item.value === trInfo.querySelector('#td_categoria').innerHTML) {
@@ -105,8 +109,9 @@ function createTableCursosInfoHTML(cursosInfo) {
             <td id='td_categoria'>${curso.categoria}</td>
             <td id='td_modulos'><textarea readonly='true'>${curso.modulos}</textarea></td>
             <td id='td_modulos_certificado'><textarea readonly='true'>${curso.modulos_certificado}</textarea></td>
-            <td id='td_duracao'>${curso.duracao}</td>
+            <td id='td_meses'>${curso.meses}</td>
             <td id='td_parcelas'>${curso.parcelas}</td>
+            <td id='td_qtd_aulas'>${curso.qtd_aulas}</td>
             <td id='td_carga_horaria'>${curso.carga_horaria}</td>
             <td id='td_valor'>${curso.valor}</td>
             <td>

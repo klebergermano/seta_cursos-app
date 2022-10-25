@@ -33,7 +33,6 @@ function setQtdAulas() {
   const meses = document.querySelector('#form_add_curso_info #meses').value;
   const qtdAulas = document.querySelector('#qtd_aulas');
   qtdAulas.value = aulas_por_mes * meses; 
-
 }
 export function eventsFormAddCursosInfo() {
   insertOptionslistIdCursosInfo();
@@ -60,7 +59,6 @@ export function eventsFormAddCursosInfo() {
       submitFormEditCursoInfo(e)
     } else {
       submitFormAddCursoInfo(e)
-
     }
   });
 }
@@ -130,11 +128,13 @@ export function submitFormEditCursoInfo(e) {
       horas_aula: form.horas_aula.value,
       aulas_semana: form.aulas_semana.value,
       meses: form.meses.value,
+      qtd_aulas: form.qtd_aulas.value,
+      carga_horaria: form.carga_horaria.value,
       modulos: form.modulos.value,
       modulos_certificado: form.modulos_certificado.value,
       parcelas: form.parcelas.value,
       valor: form.valor_mes.value,
-      carga_horaria: form.carga_horaria.value,
+   
       metadata: {
         modified: new Date()
       }
@@ -159,11 +159,14 @@ export function submitFormAddCursoInfo(e) {
       horas_aula: form.horas_aula.value,
       aulas_semana: form.aulas_semana.value,
       meses: form.meses.value,
+      qtd_aulas: form.qtd_aulas.value,
+      carga_horaria: form.carga_horaria.value,
+
       modulos: form.modulos.value,
       modulos_certificado: form.modulos_certificado.value,
       parcelas: form.parcelas.value,
       valor: form.valor_mes.value,
-      carga_horaria: form.carga_horaria.value,
+     
       metadata: {
         created: new Date(),
         modified: new Date()
